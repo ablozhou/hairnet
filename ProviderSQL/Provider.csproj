@@ -1,0 +1,160 @@
+﻿<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="3.5">
+  <PropertyGroup>
+    <ProjectType>Local</ProjectType>
+    <ProductVersion>8.0.50727</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{A2DF3516-4D41-465B-8022-165A73143574}</ProjectGuid>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ApplicationIcon>
+    </ApplicationIcon>
+    <AssemblyKeyContainerName>
+    </AssemblyKeyContainerName>
+    <AssemblyName>HairNet.Provider</AssemblyName>
+    <AssemblyOriginatorKeyFile>
+    </AssemblyOriginatorKeyFile>
+    <DefaultClientScript>JScript</DefaultClientScript>
+    <DefaultHTMLPageLayout>Grid</DefaultHTMLPageLayout>
+    <DefaultTargetSchema>IE50</DefaultTargetSchema>
+    <DelaySign>false</DelaySign>
+    <OutputType>Library</OutputType>
+    <RootNamespace>HairNet.Provider</RootNamespace>
+    <RunPostBuildEvent>OnBuildSuccess</RunPostBuildEvent>
+    <StartupObject>
+    </StartupObject>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <UpgradeBackupLocation>
+    </UpgradeBackupLocation>
+    <SccProjectName>
+    </SccProjectName>
+    <SccLocalPath>
+    </SccLocalPath>
+    <SccAuxPath>
+    </SccAuxPath>
+    <SccProvider>
+    </SccProvider>
+    <OldToolsVersion>2.0</OldToolsVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <OutputPath>bin\Debug\</OutputPath>
+    <AllowUnsafeBlocks>false</AllowUnsafeBlocks>
+    <BaseAddress>285212672</BaseAddress>
+    <CheckForOverflowUnderflow>false</CheckForOverflowUnderflow>
+    <ConfigurationOverrideFile>
+    </ConfigurationOverrideFile>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DocumentationFile>
+    </DocumentationFile>
+    <DebugSymbols>true</DebugSymbols>
+    <FileAlignment>4096</FileAlignment>
+    <NoStdLib>false</NoStdLib>
+    <NoWarn>
+    </NoWarn>
+    <Optimize>false</Optimize>
+    <RegisterForComInterop>false</RegisterForComInterop>
+    <RemoveIntegerChecks>false</RemoveIntegerChecks>
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+    <WarningLevel>4</WarningLevel>
+    <DebugType>full</DebugType>
+    <ErrorReport>prompt</ErrorReport>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <OutputPath>bin\Release\</OutputPath>
+    <AllowUnsafeBlocks>false</AllowUnsafeBlocks>
+    <BaseAddress>285212672</BaseAddress>
+    <CheckForOverflowUnderflow>false</CheckForOverflowUnderflow>
+    <ConfigurationOverrideFile>
+    </ConfigurationOverrideFile>
+    <DefineConstants>TRACE</DefineConstants>
+    <DocumentationFile>
+    </DocumentationFile>
+    <DebugSymbols>false</DebugSymbols>
+    <FileAlignment>4096</FileAlignment>
+    <NoStdLib>false</NoStdLib>
+    <NoWarn>
+    </NoWarn>
+    <Optimize>true</Optimize>
+    <RegisterForComInterop>false</RegisterForComInterop>
+    <RemoveIntegerChecks>false</RemoveIntegerChecks>
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+    <WarningLevel>4</WarningLevel>
+    <DebugType>none</DebugType>
+    <ErrorReport>prompt</ErrorReport>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System">
+      <Name>System</Name>
+    </Reference>
+    <Reference Include="System.configuration" />
+    <Reference Include="System.Data">
+      <Name>System.Data</Name>
+    </Reference>
+    <Reference Include="System.Drawing">
+      <Name>System.Drawing</Name>
+    </Reference>
+    <Reference Include="System.Web" />
+    <Reference Include="System.Windows.Forms">
+      <Name>System.Windows.Forms</Name>
+    </Reference>
+    <Reference Include="System.Xml">
+      <Name>System.XML</Name>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="ArticleDataProviderInstance.cs" />
+    <Compile Include="AssemblyInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Base\GroupBase.cs" />
+    <Compile Include="Base\NameBase.cs" />
+    <Compile Include="Base\TagBase.cs" />
+    <Compile Include="CommonDataProviderInstance.cs" />
+    <Compile Include="DataHelper.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Entry\Article.cs" />
+    <Compile Include="Base\CommentBase.cs" />
+    <Compile Include="Entry\ArticleComment.cs" />
+    <Compile Include="Entry\ArticleTag.cs" />
+    <Compile Include="Entry\City.cs" />
+    <Compile Include="Entry\HairEngineer.cs" />
+    <Compile Include="Entry\HairEngineerComment.cs" />
+    <Compile Include="Entry\HairEngineerTag.cs" />
+    <Compile Include="Entry\HairNetTag.cs" />
+    <Compile Include="Entry\HairNetTagGroup.cs" />
+    <Compile Include="Entry\HairShop.cs" />
+    <Compile Include="Entry\HairShopComment.cs" />
+    <Compile Include="Entry\HairShopTag.cs" />
+    <Compile Include="Entry\PictureStore.cs" />
+    <Compile Include="Entry\PictureStoreComment.cs" />
+    <Compile Include="Entry\PictureStoreTag.cs" />
+    <Compile Include="Entry\PriceRange.cs" />
+    <Compile Include="Entry\Product.cs" />
+    <Compile Include="Entry\ProductComment.cs" />
+    <Compile Include="Entry\ProductTag.cs" />
+    <Compile Include="Enumerations\SortFilter.cs" />
+    <Compile Include="Enumerations\Status.cs" />
+    <Compile Include="Enumerations\UpLoadFileType.cs" />
+    <Compile Include="Enumerations\UserAction.cs" />
+    <Compile Include="HairEngineerDataProviderInstance.cs" />
+    <Compile Include="HairShopDataProviderInstance.cs" />
+    <Compile Include="MsSqlParameter.cs" />
+    <Compile Include="PictureStoreDataProviderInstance.cs" />
+    <Compile Include="ProductDataProviderInstance.cs" />
+    <Compile Include="Provider\ArticleDataProvider.cs" />
+    <Compile Include="Provider\HairEngineerDataProvider.cs" />
+    <Compile Include="Provider\HairShopDataProvider.cs" />
+    <Compile Include="Provider\PictureStoreDataProvider.cs" />
+    <Compile Include="Provider\ProductDataProvider.cs" />
+    <Compile Include="Provider\ProviderFactory.cs" />
+    <Compile Include="Provider\CommonDataProvider.cs" />
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PreBuildEvent>
+    </PreBuildEvent>
+    <PostBuildEvent>
+    </PostBuildEvent>
+  </PropertyGroup>
+</Project>
