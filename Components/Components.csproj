@@ -104,6 +104,9 @@
     <Compile Include="AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="BackendBusiness\InfoAdmin.cs" />
+    <Compile Include="BackendBusiness\OrderAdmin.cs" />
+    <Compile Include="BackendBusiness\UserAdmin.cs" />
     <Compile Include="Utilities\AutoCreateHtmlClass.cs" />
     <Compile Include="Utilities\FileOperate.cs" />
     <Compile Include="Utilities\PicOperate.cs" />
@@ -118,7 +121,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="bin\Debug\" />
-    <Folder Include="Business\" />
+    <Folder Include="FroendBusiness\" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
