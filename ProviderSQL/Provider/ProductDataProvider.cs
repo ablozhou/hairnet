@@ -1,6 +1,8 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
+using HairNet.Entry;
+using HairNet.Enumerations;
 
 namespace HairNet.Provider
 {
@@ -12,6 +14,8 @@ namespace HairNet.Provider
         public static ProductDataProvider CreateInstance()
         {
             return (ProductDataProvider)ProviderFactory.CreateInstance("ProductDataProvider");
-        } 
+        }
+
+        public abstract bool ProductCreateDeleteUpdate(Product product, UserAction ua);
     }
 }
