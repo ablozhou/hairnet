@@ -61,6 +61,26 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Admin\Blue\BlueStyle.css" />
+    <Content Include="Admin\Blue\titlebarLeft.gif" />
+    <Content Include="Admin\Blue\titlebarLeft_Head.gif" />
+    <Content Include="Admin\Blue\titlebarMiddle.gif" />
+    <Content Include="Admin\Blue\titlebarMiddle_Head.gif" />
+    <Content Include="Admin\Blue\TitlebarRight.gif" />
+    <Content Include="Admin\Blue\TitlebarRight_Head.gif" />
+    <Content Include="Admin\Image\api.gif" />
+    <Content Include="Admin\Image\bg.gif" />
+    <Content Include="Admin\Image\copy.gif" />
+    <Content Include="Admin\Image\demo.gif" />
+    <Content Include="Admin\Image\dload.gif" />
+    <Content Include="Admin\Image\friends.gif" />
+    <Content Include="Admin\Image\list.gif" />
+    <Content Include="Admin\Image\mslogo.gif" />
+    <Content Include="Admin\Image\update.gif" />
+    <Content Include="Admin\index.aspx" />
+    <Content Include="Admin\menu.html" />
+    <Content Include="Admin\TaskMenu.js" />
+    <Content Include="Admin\welcome.aspx" />
     <Content Include="Default.aspx" />
     <Content Include="Web.config" />
   </ItemGroup>
@@ -83,6 +103,10 @@
       <Project>{A2DF3516-4D41-465B-8022-165A73143574}</Project>
       <Name>Provider</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Admin\Blue\Thumbs.db" />
+    <None Include="Admin\Image\Thumbs.db" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="AjaxHandle\" />
