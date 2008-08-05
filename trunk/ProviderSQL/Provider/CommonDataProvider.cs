@@ -4,17 +4,8 @@ using System.Text;
 
 namespace HairNet.Provider
 {
-    public abstract class CommonDataProvider
+    public interface ICommonDataProvider
     {
-        public CommonDataProvider()
-        { }
-        public static CommonDataProvider CreateInstance()
-        {
-            return (CommonDataProvider)ProviderFactory.CreateInstance("CommonDataProvider");
-        }
-        public virtual int GetInt()
-        {
-            throw new Exception("没实现");
-        }
+        //定义接口
     }
 }

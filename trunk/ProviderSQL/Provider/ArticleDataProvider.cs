@@ -4,13 +4,8 @@ using System.Text;
 
 namespace HairNet.Provider
 {
-    public abstract class ArticleDataProvider
+    public interface IArticleDataProvider
     {
-        public ArticleDataProvider()
-        { }
-        public static ArticleDataProvider CreateInstance()
-        {
-            return (ArticleDataProvider)ProviderFactory.CreateInstance("ArticleDataProvider");
-        }
+        //定义数据接口
     }
 }

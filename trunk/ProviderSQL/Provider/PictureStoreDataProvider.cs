@@ -4,13 +4,8 @@ using System.Text;
 
 namespace HairNet.Provider
 {
-    public abstract class PictureStoreDataProvider
+    public interface IPictureStoreDataProvider
     {
-        public PictureStoreDataProvider()
-        { }
-        public static PictureStoreDataProvider CreateInstance()
-        {
-            return (PictureStoreDataProvider)ProviderFactory.CreateInstance("PictureStoreDataProvider");
-        }
+        int getInt(int i);
     }
 }

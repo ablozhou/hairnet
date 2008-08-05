@@ -6,16 +6,8 @@ using HairNet.Enumerations;
 
 namespace HairNet.Provider
 {
-    public abstract class ProductDataProvider
+    public interface IProductDataProvider
     {
-        public ProductDataProvider()
-        { }
-
-        public static ProductDataProvider CreateInstance()
-        {
-            return (ProductDataProvider)ProviderFactory.CreateInstance("ProductDataProvider");
-        }
-
-        public abstract bool ProductCreateDeleteUpdate(Product product, UserAction ua);
+        bool ProductCreateDeleteUpdate(Product product, UserAction ua);
     }
 }
