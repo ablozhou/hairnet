@@ -1,5 +1,6 @@
 <html>
-<head>
+<head >
+<meta http-equiv="content-type" content="text/html; charset=utf8" />
 <style type="Text/css">
 <!--
 BODY{margin:20px;border:0px;background-color:#ffffff}
