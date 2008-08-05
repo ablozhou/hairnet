@@ -4,7 +4,8 @@ using System.Text;
 
 namespace HairNet.Provider
 {
-    public class UserDataProviderInstance :UserDataProvider
+    public class UserDataProviderInstance :IUserDataProvider
     {
+        //具体实现
     }
 }

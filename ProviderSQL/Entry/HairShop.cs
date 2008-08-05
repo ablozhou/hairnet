@@ -127,7 +127,7 @@ namespace HairNet.Entry
             get { return this._hairShopMainIDs; }
         }
 
-        public string HairPartialIDs
+        public string HairShopPartialIDs
         {
             set { this._hairShopPartialIDs = value; }
             get { return this._hairShopPartialIDs; }

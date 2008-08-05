@@ -4,13 +4,8 @@ using System.Text;
 
 namespace HairNet.Provider
 {
-    public class CommonDataProviderInstance :CommonDataProvider
+    public class CommonDataProviderInstance :ICommonDataProvider
     {
-        public CommonDataProviderInstance()
-        {}
-        public override int GetInt()
-        {
-            return 1;
-        }
+        //具体实现
     }
 }

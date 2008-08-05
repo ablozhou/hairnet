@@ -7,9 +7,9 @@ using HairNet.Enumerations;
 
 namespace HairNet.Provider
 {
-    public class ProductDataProviderInstance: ProductDataProvider
+    public class ProductDataProviderInstance: IProductDataProvider
     {
-        public override bool ProductCreateDeleteUpdate(Product product, UserAction ua)
+        public bool ProductCreateDeleteUpdate(Product product, UserAction ua)
         {
             bool result = false;
             string commandText = string.Empty;

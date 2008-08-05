@@ -7,16 +7,16 @@ using System.Data.SqlClient;
 
 namespace HairNet.Provider
 {
-    public class HairShopDataProviderInstance : HairShopDataProvider
+    public class HairShopDataProviderInstance : IHairShopDataProvider
     {
-        public override bool HairShopDataPrividerCreateDeleteUpdate(HairShop hairShop, UserAction ua)
+        public bool HairShopDataPrividerCreateDeleteUpdate(HairShop hairShop, UserAction ua)
         {
             bool result = false;
             string commandText = string.Empty;
             switch (ua)
             {
                 case UserAction.Create:
-                    commandText = "insert into HairShop(HairShopName,HairShopCityID,HairShopMapZoneID,HairShopHotZoneID,HairShopAddress,HairShopPhoneNum,HairShopPictureStoreIDs,HairShopMainIDs,HairShopPartialIDs,HairShopEngineerNum,HairShopOpenTime,WorkRangeIDs,HairShopWebSite,HairShopEmail,HairShopDiscount,HairShopLogo,HairShopCreateTime,HairShopDescription,ProductIDs,HairShopTagIDs,HairShopShortName,IsBest,IsJoin,TypeID,IsPostStation,IsPostMachine) values('name',0,0,0,'address','phonenum','picturestoreids','mainids','partialIDs',0,'opentime','workids','website','email','discount','logo','createtime','description','productids','tagsids','shortname',0,0,0,0,0)";
+                    commandText = "insert into HairShop(HairShopName,HairShopCityID,HairShopMapZoneID,HairShopHotZoneID,HairShopAddress,HairShopPhoneNum,HairShopPictureStoreIDs,HairShopMainIDs,HairShopPartialIDs,HairShopEngineerNum,HairShopOpenTime,WorkRangeIDs,HairShopWebSite,HairShopEmail,HairShopDiscount,HairShopLogo,HairShopCreateTime,HairShopDescription,ProductIDs,HairShopTagIDs,HairShopShortName,IsBest,IsJoin,TypeID,IsPostStation,IsPostMachine) values('"+hairShop.HairShopName+"',"+hairShop.HairShopCityID.ToString()+","+hairShop.HairShopMapZoneID.ToString()+","+hairShop.HairShopHotZoneID.ToString()+",'"+hairShop.HairShopAddress+"','"+hairShop.HairShopPhoneNum+"','"+hairShop.HairShopPictureStoreIDs+"','"+hairShop.HairShopMainIDs+"','"+hairShop.HairShopPartialIDs+"',"+hairShop.HairShopEngineerNum.ToString()+",'"+hairShop.HairShopOpenTime+"','"+hairShop.WorkRangeIDs+"','"+hairShop.HairShopWebSite+"','"+hairShop.HairShopEmail+"','"+hairShop.HairShopDiscount+"','"+hairShop.HairShopLogo+"','"+hairShop.HairShopCreateTime+"','"+hairShop.HairShopDescription+"','"+hairShop.ProductIDs+"','"+hairShop.HairShopTagIDs+"','"+hairShop.HairShopShortName+"',"+hairShop.IsBest.CompareTo(true).ToString()+","+hairShop.IsJoin.CompareTo(true).ToString()+","+hairShop.TypeID.ToString()+","+hairShop.IsPostStation.CompareTo(true).ToString()+","+hairShop.IsPostMachine.CompareTo(true).ToString()+")";
                     break;
                 case UserAction.Delete:
                     commandText = "";

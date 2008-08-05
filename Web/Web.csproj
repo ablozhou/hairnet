@@ -82,6 +82,7 @@
     <Content Include="Admin\TaskMenu.js" />
     <Content Include="Admin\welcome.aspx" />
     <Content Include="Default.aspx" />
+    <Content Include="test\HairShopTest.aspx" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
@@ -93,6 +94,13 @@
       <DependentUpon>Default.aspx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="test\HairShopTest.aspx.cs">
+      <SubType>ASPXCodeBehind</SubType>
+      <DependentUpon>HairShopTest.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="test\HairShopTest.aspx.designer.cs">
+      <DependentUpon>HairShopTest.aspx</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Components\Components.csproj">

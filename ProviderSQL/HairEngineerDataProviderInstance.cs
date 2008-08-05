@@ -7,9 +7,9 @@ using HairNet.Enumerations;
 
 namespace HairNet.Provider
 {
-    public class HairEngineerDataProviderInstance : HairEngineerDataProvider
+    public class HairEngineerDataProviderInstance : IHairEngineerDataProvider
     {
-        public override bool HairEngineerCreateDeleteUpdate(HairEngineer hairEngineer, UserAction ua)
+        public bool HairEngineerCreateDeleteUpdate(HairEngineer hairEngineer, UserAction ua)
         {
             bool result = false;
             string commandText = string.Empty;
