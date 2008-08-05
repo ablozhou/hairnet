@@ -16,7 +16,7 @@ namespace HairNet.Provider
             switch (ua)
             {
                 case UserAction.Create:
-                    commandText = "";
+                    commandText = "insert into HairShop(HairShopName,HairShopCityID,HairShopMapZoneID,HairShopHotZoneID,HairShopAddress,HairShopPhoneNum,HairShopPictureStoreIDs,HairShopMainIDs,HairShopPartialIDs,HairShopEngineerNum,HairShopOpenTime,WorkRangeIDs,HairShopWebSite,HairShopEmail,HairShopDiscount,HairShopLogo,HairShopCreateTime,HairShopDescription,ProductIDs,HairShopTagIDs,HairShopShortName,IsBest,IsJoin,TypeID,IsPostStation,IsPostMachine) values('name',0,0,0,'address','phonenum','picturestoreids','mainids','partialIDs',0,'opentime','workids','website','email','discount','logo','createtime','description','productids','tagsids','shortname',0,0,0,0,0)";
                     break;
                 case UserAction.Delete:
                     commandText = "";
