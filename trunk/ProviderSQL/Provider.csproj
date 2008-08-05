@@ -113,6 +113,7 @@
     <Compile Include="DataHelper.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="DataHelper2.cs" />
     <Compile Include="Entry\Article.cs" />
     <Compile Include="Base\CommentBase.cs" />
     <Compile Include="Entry\ArticleComment.cs" />
@@ -154,6 +155,8 @@
     <Compile Include="Provider\ProductDataProvider.cs" />
     <Compile Include="Provider\ProviderFactory.cs" />
     <Compile Include="Provider\CommonDataProvider.cs" />
+    <Compile Include="Provider\UserDataProvider.cs" />
+    <Compile Include="UserDataProviderInstance.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
