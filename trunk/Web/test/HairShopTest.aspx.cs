@@ -11,6 +11,7 @@ using System.Web.UI.HtmlControls;
 using HairNet.Provider;
 using HairNet.Entry;
 using HairNet.Enumerations;
+using System.Collections.Generic;
 
 namespace Web.test
 {
@@ -20,14 +21,19 @@ namespace Web.test
         {
 
         }
-        protected void btnTest_OnClick(object sender, EventArgs e)
+        protected void btnTest1_OnClick(object sender, EventArgs e)
         {
-            HairShop hairshop = new HairShop();
-            hairshop.HairShopName = "testHairShop";
-            hairshop.IsBest = true;
-            hairshop.IsJoin = false;
+            HairEngineerRecommand he = ProviderFactory.GetHairEngineerDataProviderInstance().GetHairEngineerRecommandByHairEngineerRecommandID(1);
+            Response.Write(he.HairShopID.ToString());
+        }
+        protected void btnTest2_OnClick(object sender, EventArgs e)
+        {
+            HairShopRecommand hr = new HairShopRecommand();
+            hr.HairShopRecommandEx = "oo";
+            hr.HairShopRecommandID = 1;
 
-            if (ProviderFactory.GetHairShopDataProviderInstance().HairShopDataPrividerCreateDeleteUpdate(hairshop, UserAction.Create))
+
+            if (ProviderFactory.GetHairShopDataProviderInstance().HairShopRecommandCreateDeleteUpdate(hr, UserAction.Update))
             {
                 Response.Write("success");
             }
@@ -35,8 +41,22 @@ namespace Web.test
             {
                 Response.Write("fail");
             }
-            
-            
+        }
+        protected void btnTest3_OnClick(object sender, EventArgs e)
+        {
+            HairShopRecommand hr = new HairShopRecommand();
+            hr.HairShopRecommandEx = "haha";
+            hr.HairShopRecommandID = 1;
+
+
+            if (ProviderFactory.GetHairShopDataProviderInstance().HairShopRecommandCreateDeleteUpdate(hr, UserAction.Delete))
+            {
+                Response.Write("success");
+            }
+            else
+            {
+                Response.Write("fail");
+            }
         }
     }
 }

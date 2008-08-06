@@ -14,6 +14,7 @@ namespace HairNet.Entry
         private int _hairEngineerSex = 0;
         private string _hairEngineerPhoto = string.Empty;
         private int _hairShopID = 0;
+        private string _hairShopName = string.Empty;
         private string _hairEngineerYear = string.Empty;
         private string _hairEngineerSkill = string.Empty;
         private string _hairEngineerTagIDs = string.Empty;
@@ -66,6 +67,12 @@ namespace HairNet.Entry
         {
             set { this._hairShopID = value; }
             get { return this._hairShopID; }
+        }
+
+        public string HairShopName
+        {
+            set { this._hairShopName = value; }
+            get { return this._hairShopName; }
         }
 
         public string HairEngineerYear
