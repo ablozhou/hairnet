@@ -29,6 +29,13 @@ namespace HairNet.Entry
         private string _hairEngineerRecommandEx = string.Empty;
         private string _hairEngineerRecommandInfo = string.Empty;
 
+        private string _hairShopName = string.Empty;
+        private int _hairEngineerGood = 0;
+        private int _hairEngineerBad = 0;
+        private int _hairEngineerOrderNum = 0;
+        private int _hairEngineerRecommandNum = 0;
+        private int _hairEngineerHits = 0;
+
         #endregion
 
         #region HairEngineer Properties
@@ -138,6 +145,39 @@ namespace HairNet.Entry
         {
             set { this._hairEngineerRecommandInfo = value; }
             get { return this._hairEngineerRecommandInfo; }
+        }
+
+        public int HairEngineerHits
+        {
+            set { this._hairEngineerHits = value; }
+            get { return this._hairEngineerHits; }
+        }
+        public int HairEngineerOrderNum
+        {
+            set { this._hairEngineerOrderNum = value; }
+            get { return this._hairEngineerOrderNum; }
+        }
+
+        public int HairEngineerRecommandNum
+        {
+            set { this._hairEngineerRecommandNum = value; }
+            get { return this._hairEngineerRecommandNum; }
+        }
+        public int HairEngineerGood
+        {
+            set { this._hairEngineerGood = value; }
+            get { return this._hairEngineerGood; }
+        }
+
+        public int HairEngineerBad
+        {
+            set { this._hairEngineerBad = value; }
+            get { return this._hairEngineerBad; }
+        }
+        public string HairShopName
+        {
+            set { this._hairShopName = value; }
+            get { return this._hairShopName; }
         }
         #endregion
 

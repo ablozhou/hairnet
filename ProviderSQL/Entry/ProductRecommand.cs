@@ -22,6 +22,8 @@ namespace HairNet.Entry
         private string _productTagIDs = string.Empty;
         private string _productRecommandEx = string.Empty;
         private string _productRecommandInfo = string.Empty;
+
+        private int _productHits = 0;
         #endregion
 
         #region Product Properties
@@ -76,8 +78,8 @@ namespace HairNet.Entry
 
         public string ProductRawPrice
         {
-            set { this.ProductRawPrice = value; }
-            get { return this.ProductRawPrice; }
+            set { this._productRawPrice = value; }
+            get { return this._productRawPrice; }
         }
 
         public string ProductPrice
@@ -108,6 +110,12 @@ namespace HairNet.Entry
         {
             set { this._productRecommandInfo = value; }
             get { return this._productRecommandInfo; }
+        }
+
+        public int ProductHits
+        {
+            set { this._productHits = value; }
+            get { return this._productHits; }
         }
         #endregion
 

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using HairNet.Provider;
 
 namespace HairNet.Entry
 {
@@ -39,6 +40,7 @@ namespace HairNet.Entry
         private bool _isBest = false;
         private bool _isJoin = false;
         private int _typeID = 0;
+        private string _typeName = string.Empty;
         private bool _isPostStation = false;
         private bool _isPostMachine = false;
         private int _hairShopGood = 0;
@@ -240,6 +242,11 @@ namespace HairNet.Entry
             set { this._typeID = value; }
             get { return this._typeID; }
         }
+        public string TypeName
+        {
+            set { this._typeName = value; }
+            get { return this._typeName; }
+        }
 
         public bool IsPostStation
         {
@@ -267,8 +274,8 @@ namespace HairNet.Entry
         #endregion
 
         #region HairShop Methods
-        
-        //ToDo
+
+        //Todo
 
         #endregion
     }

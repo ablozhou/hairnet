@@ -9,7 +9,9 @@
 <body>
     <form id="form1" runat="server">
     <div>
-    <asp:Button ID="btnTest" runat="server" OnClick="btnTest_OnClick" />
+    <asp:Button ID="btnTest1" runat="server" OnClick="btnTest1_OnClick" /><br />
+    <asp:Button ID="btnTest2" runat="server" OnClick="btnTest2_OnClick" /><br />
+    <asp:Button ID="btnTest3" runat="server" OnClick="btnTest3_OnClick" /><br />
     </div>
     </form>
 </body>

@@ -42,6 +42,13 @@ namespace HairNet.Entry
         private string _hairShopRecommandEx = string.Empty;
         private string _hairShopRecommandInfo = string.Empty;
 
+        private string _typeName = string.Empty;
+        private int _hairShopOrderNum = 0;
+        private int _hairShopVisitNum = 0;
+        private int _hairShopRecommandNum = 0;
+        private int _hairShopGood = 0;
+        private int _hairShopBad = 0;
+
         #endregion
 
         #region HairShop Properties
@@ -130,7 +137,7 @@ namespace HairNet.Entry
             get { return this._hairShopMainIDs; }
         }
 
-        public string HairPartialIDs
+        public string HairShopPartialIDs
         {
             set { this._hairShopPartialIDs = value; }
             get { return this._hairShopPartialIDs; }
@@ -248,6 +255,39 @@ namespace HairNet.Entry
         {
             set { this._hairShopRecommandInfo = value; }
             get { return this._hairShopRecommandInfo; }
+        }
+
+        public string TypeName
+        {
+            set { this._typeName = value; }
+            get { return this._typeName; }
+        }
+        public int HairShopOrderNum
+        {
+            set { this._hairShopOrderNum = value; }
+            get { return this._hairShopOrderNum; }
+        }
+
+        public int HairShopVisitNum
+        {
+            set { this._hairShopVisitNum = value; }
+            get { return this._hairShopVisitNum; }
+        }
+        public int HairShopRecommandNum
+        {
+            set { this._hairShopRecommandNum = value; }
+            get { return this._hairShopRecommandNum; }
+        }
+        public int HairShopGood
+        {
+            set { this._hairShopGood = value; }
+            get { return this._hairShopGood; }
+        }
+
+        public int HairShopBad
+        {
+            set { this._hairShopBad = value; }
+            get { return this._hairShopBad; }
         }
         #endregion
 

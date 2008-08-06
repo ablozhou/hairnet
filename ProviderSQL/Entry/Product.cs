@@ -75,8 +75,8 @@ namespace HairNet.Entry
 
         public string ProductRawPrice
         {
-            set { this.ProductRawPrice = value; }
-            get { return this.ProductRawPrice; }
+            set { this._productRawPrice = value; }
+            get { return this._productRawPrice; }
         }
 
         public string ProductPrice
