@@ -106,7 +106,7 @@ namespace HairNet.Provider
 
             using (SqlConnection conn = new SqlConnection(DataHelper2.SqlConnectionString))
             {
-                string commText = "select * from HairEngineer he inner join HairEngineerClass hec on he.HairEngineerClassID = hec.HairEngineerClassID inner join HairShop hs on hs.HairShopID = he.HairShopID where he.HairEngineerID=" + hairEngineerID.ToString();
+                string commText = "select * from HairEngineer he inner join HairEngineerClass hec on he.HairEngineerClassID = hec.HairEngineerClassID inner join HairShop hs on hs.HairShopID = he.HairShopID where he.HairEngineerID=" + hairEngineerID.ToString()+" order by he.HairEngineerID desc";
                 {
                     using (SqlCommand comm = new SqlCommand())
                     {
@@ -161,10 +161,10 @@ namespace HairNet.Provider
             switch (count)
             {
                 case 0:
-                    commText = "select * from HairEngineer he inner join HairEngineerClass hec on he.HairEngineerClassID = hec.HairEngineerClassID inner join HairShop hs on hs.HairShopID = he.HairShopID";
+                    commText = "select * from HairEngineer he inner join HairEngineerClass hec on he.HairEngineerClassID = hec.HairEngineerClassID inner join HairShop hs on hs.HairShopID = he.HairShopID order by he.HairEngineerID desc";
                     break;
                 default:
-                    commText = "select top "+count.ToString()+" * from HairEngineer he inner join HairEngineerClass hec on he.HairEngineerClassID = hec.HairEngineerClassID inner join HairShop hs on hs.HairShopID = he.HairShopID";
+                    commText = "select top " + count.ToString() + " * from HairEngineer he inner join HairEngineerClass hec on he.HairEngineerClassID = hec.HairEngineerClassID inner join HairShop hs on hs.HairShopID = he.HairShopID order by he.HairEngineerID desc";
                     break;
             }
 
@@ -226,7 +226,7 @@ namespace HairNet.Provider
 
             using (SqlConnection conn = new SqlConnection(DataHelper2.SqlConnectionString))
             {
-                string commText = "select * from HairEngineerRecommand her inner join HairEngineer he on her.HairEngineerRawID = he.HairEngineerID inner join HairShop hs on her.HairShopID = hs.HairShopID inner join HairEngineerClass hec on her.HairEngineerClassID = hec.HairEngineerClassID where her.HairEngineerRecommandID =" + hairEngineerRecommandID.ToString();
+                string commText = "select * from HairEngineerRecommand her inner join HairEngineer he on her.HairEngineerRawID = he.HairEngineerID inner join HairShop hs on her.HairShopID = hs.HairShopID inner join HairEngineerClass hec on her.HairEngineerClassID = hec.HairEngineerClassID where her.HairEngineerRecommandID =" + hairEngineerRecommandID.ToString() + " order by her.HairEngineerRecommandID desc";
                 
                 using (SqlCommand comm = new SqlCommand())
                 {
@@ -283,10 +283,10 @@ namespace HairNet.Provider
             switch (count)
             {
                 case 0:
-                    commText = "select * from HairEngineerRecommand her inner join HairEngineer he on her.HairEngineerRawID = he.HairEngineerID inner join HairShop hs on her.HairShopID = hs.HairShopID inner join HairEngineerClass hec on her.HairEngineerClassID = hec.HairEngineerClassID";
+                    commText = "select * from HairEngineerRecommand her inner join HairEngineer he on her.HairEngineerRawID = he.HairEngineerID inner join HairShop hs on her.HairShopID = hs.HairShopID inner join HairEngineerClass hec on her.HairEngineerClassID = hec.HairEngineerClassID order by her.HairEngineerRecommandID desc";
                     break;
                 default:
-                    commText = "select top " + count.ToString() + " * from HairEngineerRecommand her inner join HairEngineer he on her.HairEngineerRawID = he.HairEngineerID inner join HairShop hs on her.HairShopID = hs.HairShopID inner join HairEngineerClass hec on her.HairEngineerClassID = hec.HairEngineerClassID";
+                    commText = "select top " + count.ToString() + " * from HairEngineerRecommand her inner join HairEngineer he on her.HairEngineerRawID = he.HairEngineerID inner join HairShop hs on her.HairShopID = hs.HairShopID inner join HairEngineerClass hec on her.HairEngineerClassID = hec.HairEngineerClassID order by her.HairEngineerRecommandID desc";
                     break;
             }
 

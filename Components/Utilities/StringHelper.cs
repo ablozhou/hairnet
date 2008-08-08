@@ -45,5 +45,9 @@ namespace HairNet.Utilities
             
             return returnUrl;
         }
+        public static void AlertInfo(string info,System.Web.UI.Page page)
+        {
+            page.Response.Write("<script>alert('"+info+"')</script>");
+        }
     }
 }

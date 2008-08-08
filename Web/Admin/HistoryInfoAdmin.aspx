@@ -8,6 +8,7 @@
 </head>
 <body>
     <form id="form1" runat="server">
+    <link type="text/css" rel="Stylesheet" href="Style/Main.css" />
     <div>
     用户轨迹
     </div>
