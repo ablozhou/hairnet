@@ -23,7 +23,7 @@ namespace HairNet.Business
         /// </summary>
         /// <param name="count"></param>
         /// <returns></returns>
-        public static List<HairEngineer> GetHairEngineer(int count)
+        public static List<HairEngineer> GetHairEngineers(int count)
         {
             return ProviderFactory.GetHairEngineerDataProviderInstance().GetHairEngineers(count);
         }

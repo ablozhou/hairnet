@@ -9,9 +9,9 @@
 <body>
     <form id="form1" runat="server">
     <div>
-    <asp:Button ID="btnTest1" runat="server" OnClick="btnTest1_OnClick" /><br />
-    <asp:Button ID="btnTest2" runat="server" OnClick="btnTest2_OnClick" /><br />
-    <asp:Button ID="btnTest3" runat="server" OnClick="btnTest3_OnClick" /><br />
+    <asp:Button ID="btnTest1" runat="server" OnClick="btnTest1_OnClick" Text="给美发厅添加数据" /><br />
+    <asp:Button ID="btnTest2" runat="server" OnClick="btnTest2_OnClick" Text="给美发师添加数据" /><br />
+    <asp:Button ID="btnTest3" runat="server" OnClick="btnTest3_OnClick" Text="给美发产品添加数据" /><br />
     </div>
     </form>
 </body>
