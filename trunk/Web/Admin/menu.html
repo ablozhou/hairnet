@@ -26,14 +26,17 @@ window.onload = function()
 	////////////////////////////////////////////////
 	item1 = new TaskMenuItem("后台首页","Image/demo.gif","parent.window.frames[1].location.href='welcome.aspx'");
 	item2 = new TaskMenuItem("前台首页","Image/demo.gif","parent.window.location.href='/index.aspx'");
-	item3 = new TaskMenuItem("美发厅信息","image/copy.gif","parent.window.frames[1].location.href='admin_index.aspx'");
-	item4 = new TaskMenuItem("美发师信息","image/copy.gif","parent.window.frames[1].location.href='admin_CorpanyNewsAdd.aspx'");
-	item5 = new TaskMenuItem("美发产品信息","image/copy.gif","parent.window.frames[1].location.href='admin_InformationAdd.aspx'");
+	item3 = new TaskMenuItem("美发厅信息","image/copy.gif","parent.window.frames[1].location.href='HairShopAdmin.aspx'");
+	item13 = new TaskMenuItem("美发厅推荐信息","image/copy.gif","parent.window.frames[1].location.href='HairShopRecommandAdmin.aspx'");
+	item4 = new TaskMenuItem("美发师信息","image/copy.gif","parent.window.frames[1].location.href='HairEngineerAdmin.aspx'");
+	item14 = new TaskMenuItem("美发师推荐信息","image/copy.gif","parent.window.frames[1].location.href='HairEngineerRecommandAdmin.aspx'");
+	item5 = new TaskMenuItem("美发产品信息","image/copy.gif","parent.window.frames[1].location.href='ProductAdmin.aspx'");
+	item15 = new TaskMenuItem("美发产品推荐信息","image/copy.gif","parent.window.frames[1].location.href='ProductRecommandAdmin.aspx'");
 	
-	item6 = new TaskMenuItem("用户信息","image/copy.gif","parent.window.frames[1].location.href='admin_NoticeAdd.aspx'");
-	item9 = new TaskMenuItem("用户轨迹信息","Image/friends.gif","parent.window.frames[1].location.href='admin_FriendsAdd.aspx'");
+	item6 = new TaskMenuItem("用户信息","image/copy.gif","parent.window.frames[1].location.href='UserInfoAdmin.aspx'");
+	item9 = new TaskMenuItem("用户轨迹信息","Image/friends.gif","parent.window.frames[1].location.href='HistoryInfoAdmin.aspx'");
 	
-	item10 = new TaskMenuItem("订单信息","image/dload.gif","parent.window.frames[1].location.href='admin_ProductAdd.aspx'");
+	item10 = new TaskMenuItem("订单信息","image/dload.gif","parent.window.frames[1].location.href='OrderInfoAdmin.aspx'");
 	//item7 = new TaskMenuItem("<B>Game Show</B>");
 	item8 = new TaskMenuItem();
 	item8.setLabel("当前版本 <b style='color:purple'>1.0</b>");
@@ -48,6 +51,9 @@ window.onload = function()
 	taskMenu2.add(item3);
 	taskMenu2.add(item4);
 	taskMenu2.add(item5);
+	taskMenu2.add(item13);
+	taskMenu2.add(item14);
+	taskMenu2.add(item15);
 	taskMenu2.init();
 	taskMenu3 = new TaskMenu("用户管理");
 	taskMenu3.add(item6);
