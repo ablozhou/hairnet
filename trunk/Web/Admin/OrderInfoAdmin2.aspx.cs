@@ -78,7 +78,10 @@ namespace Web.Admin
         protected void dg_OnItemCommand(object sender, DataGridCommandEventArgs e)
         { }
         protected void dg_OnPageIndexChanged(object sender, DataGridPageChangedEventArgs e)
-        { }
+        {
+            this.dg.CurrentPageIndex = e.NewPageIndex;
+            this.databind();
+        }
         protected void Page_Click(Object sender, EventArgs e)
         {
             int nPage;
