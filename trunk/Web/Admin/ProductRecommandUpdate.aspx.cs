@@ -21,27 +21,58 @@ namespace Web.Admin
         {
             if (!this.IsPostBack)
             {
-                int productRecommandID = int.Parse(this.Request.QueryString["productRecommandID"].ToString());
-                ProductRecommand p = InfoAdmin.GetProductRecommand(productRecommandID);
+                string operateType = this.Request.QueryString["operateType"].ToString();
 
-                this.content.Value = p.ProductRecommandInfo;
+                if (operateType == "1")
+                {
+                    string productRecommandInfo = ConfigurationManager.AppSettings["ProductRecommandInfo"].ToString();
+
+                    this.content.Value = productRecommandInfo;
+                }
+                else
+                {
+                    int productRecommandID = int.Parse(this.Request.QueryString["productRecommandID"].ToString());
+                    ProductRecommand p = InfoAdmin.GetProductRecommand(productRecommandID);
+
+                    this.content.Value = p.ProductRecommandInfo;
+                }
             }
         }
         protected void btnSubmit_OnClick(object sender, EventArgs e)
         {
-            int productID = int.Parse(this.Request.QueryString["productID"].ToString());
-            int productRecommandID = int.Parse(this.Request.QueryString["productRecommandID"].ToString());
-
-            string productRecommandInfo = this.content.Value;
-            string productRecommandEx = this.txtRecommandEx.Text.Trim();
-            if (InfoAdmin.RecommandProduct(productID, productRecommandID, productRecommandInfo, productRecommandEx, UserAction.Update))
+            string operateType = this.Request.QueryString["operateType"].ToString();
+            if (operateType == "1")
             {
-                StringHelper.AlertInfo("更新成功", this.Page);
-                this.Response.Redirect("ProductRecommandAdmin.aspx");
+                int productID = int.Parse(this.Request.QueryString["productID"].ToString());
+                string productRecommandInfo = this.content.Value;
+                string productRecommandEx = this.txtRecommandEx.Text.Trim();
+
+                if (InfoAdmin.RecommandProduct(productID, 0, productRecommandInfo, productRecommandEx, UserAction.Create))
+                {
+                    StringHelper.AlertInfo("推荐成功", this.Page);
+                    this.Response.Redirect("ProductAdmin.aspx");
+                }
+                else
+                {
+                    StringHelper.AlertInfo("推荐失败", this.Page);
+                }
             }
             else
             {
-                StringHelper.AlertInfo("更新失败", this.Page);
+                int productID = int.Parse(this.Request.QueryString["productID"].ToString());
+                int productRecommandID = int.Parse(this.Request.QueryString["productRecommandID"].ToString());
+
+                string productRecommandInfo = this.content.Value;
+                string productRecommandEx = this.txtRecommandEx.Text.Trim();
+                if (InfoAdmin.RecommandProduct(productID, productRecommandID, productRecommandInfo, productRecommandEx, UserAction.Update))
+                {
+                    StringHelper.AlertInfo("更新成功", this.Page);
+                    this.Response.Redirect("ProductRecommandAdmin.aspx");
+                }
+                else
+                {
+                    StringHelper.AlertInfo("更新失败", this.Page);
+                }
             }
         }
     }

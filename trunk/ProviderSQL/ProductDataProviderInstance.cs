@@ -50,6 +50,30 @@ namespace HairNet.Provider
 
                 }
             }
+            if (ua == UserAction.Delete)
+            {
+                using (SqlConnection conn = new SqlConnection(DataHelper2.SqlConnectionString))
+                {
+                    result = false;
+                    commandText = "delete from ProductRecommand where ProductRawID=" + product.ProductID.ToString();
+                    using (SqlCommand comm = new SqlCommand())
+                    {
+                        comm.CommandText = commandText;
+                        comm.Connection = conn;
+                        conn.Open();
+                        try
+                        {
+                            comm.ExecuteNonQuery();
+                            result = true;
+                        }
+                        catch (Exception ex)
+                        {
+                            throw new Exception(ex.Message);
+                        }
+
+                    }
+                }
+            }
             return result;
         }
         /// <summary>
@@ -151,10 +175,10 @@ namespace HairNet.Provider
             switch (count)
             {
                 case 0:
-                    commText = "select * from Product";
+                    commText = "select * from Product order by ProductID desc";
                     break;
                 default:
-                    commText = "select top "+count.ToString()+" * from Product";
+                    commText = "select top "+count.ToString()+" * from Product order by ProductID desc";
                     break;
             }
 
@@ -254,10 +278,10 @@ namespace HairNet.Provider
             switch (count)
             {
                 case 0:
-                    commText = "select * from ProductRecommand pr inner join Product p on pr.ProductRawID = p.ProductID";
+                    commText = "select * from ProductRecommand pr inner join Product p on pr.ProductRawID = p.ProductID order by pr.ProductRecommandID desc";
                     break;
                 default:
-                    commText = "select top "+count.ToString()+" * from ProductRecommand pr inner join Product p on pr.ProductRawID = p.ProductID";
+                    commText = "select top "+count.ToString()+" * from ProductRecommand pr inner join Product p on pr.ProductRawID = p.ProductID order by pr.ProductRecommandID desc";
                     break;
             }
 

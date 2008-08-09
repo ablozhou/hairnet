@@ -50,6 +50,30 @@ namespace HairNet.Provider
 
                 }
             }
+            if (ua == UserAction.Delete)
+            {
+                using (SqlConnection conn = new SqlConnection(DataHelper2.SqlConnectionString))
+                {
+                    result = false;
+                    commandText = "delete from HairEngineerRecommand where HairEngineerRawID=" + hairEngineer.HairEngineerID.ToString();
+                    using (SqlCommand comm = new SqlCommand())
+                    {
+                        comm.CommandText = commandText;
+                        comm.Connection = conn;
+                        conn.Open();
+                        try
+                        {
+                            comm.ExecuteNonQuery();
+                            result = true;
+                        }
+                        catch (Exception ex)
+                        {
+                            throw new Exception(ex.Message);
+                        }
+
+                    }
+                }
+            }
             return result;
         }
         /// <summary>

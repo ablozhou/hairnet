@@ -44,7 +44,9 @@
                     </ItemTemplate>
                 </asp:TemplateColumn>
                 <asp:HyperLinkColumn DataNavigateUrlField="HairEngineerID" DataNavigateUrlFormatString="HairEngineerDetails.aspx?id={0}" Target="_blank" Text="详细"></asp:HyperLinkColumn>
+                <asp:HyperLinkColumn DataNavigateUrlField="HairEngineerID" DataNavigateUrlFormatString="HairEngineerEdit.aspx?id={0}" Target="_blank" Text="编辑"></asp:HyperLinkColumn>
                 <asp:ButtonColumn ButtonType="LinkButton" CommandName="recommand" Text="推荐"></asp:ButtonColumn>
+                <asp:ButtonColumn ButtonType="LinkButton" CommandName="delete" Text="删除"></asp:ButtonColumn>
             </Columns>
         </asp:DataGrid>
     </div>

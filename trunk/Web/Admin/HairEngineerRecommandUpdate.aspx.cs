@@ -21,27 +21,57 @@ namespace Web.Admin
         {
             if (!this.IsPostBack)
             {
-                int hairEngineerRecommandID = int.Parse(this.Request.QueryString["hairEngineerRecommandID"].ToString());
-                HairEngineerRecommand he = InfoAdmin.GetHairEngineerRecommand(hairEngineerRecommandID);
+                string operateType = this.Request.QueryString["operateType"].ToString();
 
-                this.content.Value = he.HairEngineerRecommandInfo;
+                if (operateType == "1")
+                {
+                    string hairEngineerRecommandInfo = ConfigurationManager.AppSettings["HairEngineerRecommandInfo"].ToString();
+
+                    this.content.Value = hairEngineerRecommandInfo;
+                }
+                else
+                {
+                    int hairEngineerRecommandID = int.Parse(this.Request.QueryString["hairEngineerRecommandID"].ToString());
+                    HairEngineerRecommand he = InfoAdmin.GetHairEngineerRecommand(hairEngineerRecommandID);
+
+                    this.content.Value = he.HairEngineerRecommandInfo;
+                }
             }
         }
         protected void btnSubmit_OnClick(object sender, EventArgs e)
         {
-            int hairEngineerID = int.Parse(this.Request.QueryString["hairEngineerID"].ToString());
-            int hairEngineerRecommandID = int.Parse(this.Request.QueryString["hairEngineerRecommandID"].ToString());
-
-            string hairEngineerRecommandInfo = this.content.Value;
-            string hairEngineerRecommandEx = this.txtRecommandEx.Text.Trim();
-            if (InfoAdmin.RecommandHairEngineer(hairEngineerID, hairEngineerRecommandID, hairEngineerRecommandInfo, hairEngineerRecommandEx, UserAction.Update))
+            string operateType = this.Request.QueryString["operateType"].ToString();
+            if (operateType == "1")
             {
-                StringHelper.AlertInfo("更新成功", this.Page);
-                this.Response.Redirect("HairEngineerRecommandAdmin.aspx");
+                int hairEngineerID = int.Parse(this.Request.QueryString["hairEngineerID"].ToString());
+                string hairEngineerRecommandInfo = this.content.Value;
+                string hairEngineerRecommandEx = this.txtRecommandEx.Text.Trim();
+                if (InfoAdmin.RecommandHairEngineer(hairEngineerID, 0, hairEngineerRecommandInfo, hairEngineerRecommandEx, UserAction.Create))
+                {
+                    StringHelper.AlertInfo("推荐成功", this.Page);
+                    this.Response.Redirect("HairEngineerAdmin.aspx");
+                }
+                else
+                {
+                    StringHelper.AlertInfo("推荐失败", this.Page);
+                }
             }
             else
             {
-                StringHelper.AlertInfo("更新失败", this.Page);
+                int hairEngineerID = int.Parse(this.Request.QueryString["hairEngineerID"].ToString());
+                int hairEngineerRecommandID = int.Parse(this.Request.QueryString["hairEngineerRecommandID"].ToString());
+
+                string hairEngineerRecommandInfo = this.content.Value;
+                string hairEngineerRecommandEx = this.txtRecommandEx.Text.Trim();
+                if (InfoAdmin.RecommandHairEngineer(hairEngineerID, hairEngineerRecommandID, hairEngineerRecommandInfo, hairEngineerRecommandEx, UserAction.Update))
+                {
+                    StringHelper.AlertInfo("更新成功", this.Page);
+                    this.Response.Redirect("HairEngineerRecommandAdmin.aspx");
+                }
+                else
+                {
+                    StringHelper.AlertInfo("更新失败", this.Page);
+                }
             }
         }
     }

@@ -110,7 +110,7 @@ namespace Web.Admin
                 }
                 lblCommentRate.Text = commentRate.ToString();
 
-                lblEdit.Text = "<a href='HairEngineerRecommandUpdate.aspx?HairEngineerRecommandID="+hairEngineerRecommand.HairEngineerRecommandID.ToString()+"&HairEngineerID="+hairEngineerRecommand.HairEngineerRawID.ToString()+"'>编辑</a>";
+                lblEdit.Text = "<a href='HairEngineerRecommandUpdate.aspx?HairEngineerRecommandID="+hairEngineerRecommand.HairEngineerRecommandID.ToString()+"&HairEngineerID="+hairEngineerRecommand.HairEngineerRawID.ToString()+"&operateType=2'>编辑</a>";
             }
         }
         public void dg_OnPageIndexChanged(object sender, DataGridPageChangedEventArgs e)

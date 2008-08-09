@@ -56,15 +56,23 @@ namespace Web.Admin
                 if (e.CommandName == "recommand")
                 {
                     int hairShopID = int.Parse(this.dg.DataKeys[e.Item.ItemIndex].ToString());
-                    string hairShopRecommandInfo = ConfigurationManager.AppSettings["HairShopRecommandInfo"].ToString();
-                    if (InfoAdmin.RecommandHairShop(hairShopID, 0, hairShopRecommandInfo, string.Empty, UserAction.Create))
+
+                    string redirectUrl = "HairShopRecommandUpdate.aspx?hairShopID=" + hairShopID.ToString() + "&hairShopRecommandID=0&operateType=" + Convert.ToInt32(UserAction.Create).ToString();
+
+                    this.Response.Redirect(redirectUrl);
+                }
+                if (e.CommandName == "delete")
+                {
+                    int hairShopID = int.Parse(this.dg.DataKeys[e.Item.ItemIndex].ToString());
+
+                    if (InfoAdmin.DeleteHairShop(hairShopID))
                     {
-                        StringHelper.AlertInfo("推荐成功", this.Page);
+                        StringHelper.AlertInfo("删除成功", this.Page);
                         this.Response.Redirect("HairShopAdmin.aspx");
                     }
                     else
                     {
-                        StringHelper.AlertInfo("推荐失败", this.Page);
+                        StringHelper.AlertInfo("删除失败", this.Page);
                     }
                 }
             }
@@ -75,7 +83,8 @@ namespace Web.Admin
             {
                 e.Item.Attributes.Add("onmouseover", "c=this.style.backgroundColor;this.style.backgroundColor='#ffffff';");
                 e.Item.Attributes.Add("onmouseout", "this.style.backgroundColor=c;");
-                e.Item.Cells[9].Attributes.Add("onclick", "return confirm('确认推荐么?');");
+                e.Item.Cells[10].Attributes.Add("onclick", "return confirm('确定推荐么?');");
+                e.Item.Cells[11].Attributes.Add("onclick", "return confirm('确定删除么?');");
 
                 HairShop hairShop = e.Item.DataItem as HairShop;
                 Label lblID = e.Item.FindControl("lblID") as Label;
