@@ -4,14 +4,14 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml" >
 <head runat="server">
-    <title>无标题页</title>
+    <title>用户管理</title>
     <link type="text/css" rel="Stylesheet" href="Style/Main.css" />
 </head>
 <body>
     <form id="form1" runat="server">
     <div>
     用户信息
-    </div>
+ </div>
     </form>
 </body>
 </html>
