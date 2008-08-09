@@ -9,6 +9,14 @@
 </head>
 <body>
      <form id="form1" runat="server">
+     <div style="text-align: center">
+     <table width="98%" border="0" cellpadding="2" cellspacing="1" bgcolor="#CCCCCC">
+            <tr>
+                <td bgcolor="#FFFFFF" align="left">
+                    当前页面:<b>美发产品推荐管理</b>
+                </td>
+            </tr>
+    </table>
     <div style="text-align: center">
         <asp:DataGrid ID ="dg" PageSize="30" runat = "server" AllowPaging="true" AutoGenerateColumns="false" BackColor="White" BorderColor="White" BorderStyle="Ridge" BorderWidth="2px" CellPadding="3" Width="98%" CellSpacing="1" GridLines="None" OnItemDataBound="dg_OnItemDataBound" OnPageIndexChanged="dg_OnPageIndexChanged" OnItemCommand="dg_OnItemCommand">
             <FooterStyle BackColor="#C6C3C6" ForeColor="Black" />
@@ -55,7 +63,7 @@
 				 <asp:Label ID="Page_nRecCount_1" runat="server" ForeColor="Red"></asp:Label>
 条  <asp:Label ID="Page_strSQL" runat="server" Visible="false"></asp:Label>	
 
-</div>
+</div></div>
     </form>
 </body>
 </html>
