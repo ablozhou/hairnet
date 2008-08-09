@@ -19,6 +19,7 @@ namespace HairNet.Entry
         private string _email = string.Empty;
         private int _integral = 0;
         private int _userRoleID = 0;
+        private string _userRoleName = string.Empty;
         #endregion
 
         #region UserPersonalInfo Fields
@@ -129,6 +130,11 @@ namespace HairNet.Entry
             get { return this._userRoleID; }
         }
 
+        public string UserRoleName
+        {
+            set { this._userRoleName = value; }
+            get { return this._userRoleName; }
+        }
         #endregion
 
         #region UserPersonalInfo Properties
