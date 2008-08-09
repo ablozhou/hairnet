@@ -10,6 +10,14 @@
 <body>
     <form id="form1" runat="server">
     <div style="text-align: center">
+    <table width="98%" border="0" cellpadding="2" cellspacing="1" bgcolor="#CCCCCC">
+            <tr>
+                <td bgcolor="#FFFFFF" align="left">
+                    当前页面:<b>美发师管理</b>
+                </td>
+            </tr>
+    </table>
+    <div style="text-align: center">
         <asp:DataGrid ID ="dg" runat = "server" PageSize="30" AllowPaging="true" AutoGenerateColumns="false" BackColor="White" BorderColor="White" BorderStyle="Ridge" BorderWidth="2px" CellPadding="3" Width="98%" CellSpacing="1" GridLines="None" OnItemDataBound="dg_OnItemDataBound" OnItemCommand="dg_OnItemCommand" OnPageIndexChanged="dg_OnPageIndexChanged">
             <FooterStyle BackColor="#C6C3C6" ForeColor="Black" />
             <SelectedItemStyle BackColor="#9471DE" Font-Bold="True" ForeColor="White" />
@@ -69,7 +77,7 @@
 				 <asp:Label ID="Page_nRecCount_1" runat="server" ForeColor="Red"></asp:Label>
 条  <asp:Label ID="Page_strSQL" runat="server" Visible="false"></asp:Label>	
 
-</div>
+</div></div>
     </form>
 </body>
 </html>
