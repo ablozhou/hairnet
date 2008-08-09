@@ -17,9 +17,6 @@ namespace HairNet.Provider
         /// <param name="ua"></param>
         /// <returns></returns>
         bool UserCreate(UserEntry user);
-       
-        
-        
         
         /// <summary>
         /// 删除
@@ -64,10 +61,5 @@ namespace HairNet.Provider
         /// <param name="strUserName"></param>
         /// <returns></returns>
         List<UserEntry> GetUsersByName(string strUserName);
-
-
-
-
-        
     }
 }

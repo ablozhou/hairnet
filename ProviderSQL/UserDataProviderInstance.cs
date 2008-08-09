@@ -149,10 +149,7 @@ namespace HairNet.Provider
         public bool UserDelete(int userID)
         {
             bool result = false;
-            string commandText = "DELETE FROM UserBasicInfo FROM UserBasicInfo INNER JOIN " +
-                " UserBusinessInfo ON UserBasicInfo.UserID = UserBusinessInfo.UserID INNER JOIN " +
-                " UserContactInfo ON UserBasicInfo.UserID = UserContactInfo.UserID INNER JOIN " +
-                " UserPersonalInfo ON UserBasicInfo.UserID = UserPersonalInfo.UserID Where UserBasicInfo.UserID=" + userID;
+            string commandText = "delete from UserBasicInfo where UserID=" + userID.ToString();
 
             using (SqlConnection conn = new SqlConnection(DataHelper2.SqlConnectionString))
             {
@@ -171,6 +168,68 @@ namespace HairNet.Provider
                         throw new Exception(ex.Message);
                     }
 
+                }
+            }
+            commandText = "delete from UserBusinessInfo where UserID=" + userID.ToString();
+
+            using (SqlConnection conn = new SqlConnection(DataHelper2.SqlConnectionString))
+            {
+                using (SqlCommand comm = new SqlCommand())
+                {
+                    comm.CommandText = commandText;
+                    comm.Connection = conn;
+                    conn.Open();
+                    try
+                    {
+                        comm.ExecuteNonQuery();
+                        result = true;
+                    }
+                    catch (Exception ex)
+                    {
+                        throw new Exception(ex.Message);
+                    }
+
+                }
+            }
+            commandText = "delete from UserContactInfo where UserID=" + userID.ToString();
+
+            using (SqlConnection conn = new SqlConnection(DataHelper2.SqlConnectionString))
+            {
+                using (SqlCommand comm = new SqlCommand())
+                {
+                    comm.CommandText = commandText;
+                    comm.Connection = conn;
+                    conn.Open();
+                    try
+                    {
+                        comm.ExecuteNonQuery();
+                        result = true;
+                    }
+                    catch (Exception ex)
+                    {
+                        throw new Exception(ex.Message);
+                    }
+
+                }
+            }
+            commandText = "delete from UserPersonalInfo where UserID=" + userID.ToString();
+
+            using (SqlConnection conn = new SqlConnection(DataHelper2.SqlConnectionString))
+            {
+                using (SqlCommand comm = new SqlCommand())
+                {
+                    comm.CommandText = commandText;
+                    comm.Connection = conn;
+                    conn.Open();
+                    try
+                    {
+                        comm.ExecuteNonQuery();
+                        result = true;
+                    }
+                    catch (Exception ex)
+                    {
+                        throw new Exception(ex.Message);
+                    }
                 }
             }
 
@@ -220,7 +279,7 @@ namespace HairNet.Provider
         {
             UserEntry ue = new UserEntry();
 
-            string commandText = "SELECT * FROM UserBasicInfo INNER JOIN UserBusinessInfo ON UserBasicInfo.UserID = UserBusinessInfo.UserID INNER JOIN UserContactInfo ON UserBasicInfo.UserID = UserContactInfo.UserID INNER JOIN UserPersonalInfo ON UserBasicInfo.UserID = UserPersonalInfo.UserID WHERE (UserBusinessInfo.UserID = " + userID + " )";
+            string commandText = "SELECT * FROM UserBasicInfo Inner join UserRole ur on UserBasicInfo.UserRoleID = ur.UserRoleID INNER JOIN UserBusinessInfo ON UserBasicInfo.UserID = UserBusinessInfo.UserID INNER JOIN UserContactInfo ON UserBasicInfo.UserID = UserContactInfo.UserID INNER JOIN UserPersonalInfo ON UserBasicInfo.UserID = UserPersonalInfo.UserID WHERE (UserBusinessInfo.UserID = " + userID + " )";
             using (SqlConnection conn = new SqlConnection(DataHelper2.SqlConnectionString))
             {
                 using (SqlCommand comm = new SqlCommand())
@@ -228,10 +287,9 @@ namespace HairNet.Provider
                     comm.CommandText = commandText;
                     comm.Connection = conn;
                     conn.Open();
-                    try
+
+                    using (SqlDataReader reader = comm.ExecuteReader())
                     {
-                        SqlDataReader reader = comm.ExecuteReader();
-                        // Call Read before accessing data.
                         if (reader.Read())
                         {
                             ue.UserID = int.Parse(reader["UserID"].ToString());
@@ -243,6 +301,7 @@ namespace HairNet.Provider
                             ue.Email = reader["Email"].ToString();
                             ue.Integral = int.Parse(reader["Integral"].ToString());
                             ue.UserRoleID = int.Parse(reader["UserRoleID"].ToString());
+                            ue.UserRoleName = reader["UserRoleName"].ToString();
                             ue.Duty = reader["Duty"].ToString();
                             ue.Company = reader["Company"].ToString();
                             ue.CompanyCountry = reader["CompanyCountry"].ToString();
@@ -277,19 +336,8 @@ namespace HairNet.Provider
                             ue.Vocational = reader["Vocational"].ToString();
                             ue.Location = reader["Location"].ToString();
                             ue.Interest = reader["Interest"].ToString();
-
                         }
-
-                        // Call Close when done reading.
-                        reader.Close();
-
-
                     }
-                    catch (Exception ex)
-                    {
-                        throw new Exception(ex.Message);
-                    }
-
                 }
             }
 
@@ -304,7 +352,7 @@ namespace HairNet.Provider
         public UserEntry GetUserByName(string userName)
         {
             UserEntry ue = new UserEntry();
-            string commandText = "SELECT UserBasicInfo.UserName, UserBasicInfo.Password, UserBasicInfo.FindPassQus, " +
+            string commandText = "SELECT UserBasicInfo.UserName,ur.UserRoleName, UserBasicInfo.Password, UserBasicInfo.FindPassQus, " +
                   " UserBasicInfo.FindPassAsw, UserBasicInfo.ActivatedIDS, UserBasicInfo.Email, " +
                   " UserBasicInfo.Integral, UserBasicInfo.UserRoleID, " +
                   " UserBusinessInfo.UserID AS Expr1, UserBusinessInfo.Duty, " +
@@ -323,7 +371,7 @@ namespace HairNet.Provider
                   " UserPersonalInfo.LastName, UserPersonalInfo.Name, UserPersonalInfo.Country, " +
                   " UserPersonalInfo.City, UserPersonalInfo.PostalCode, UserPersonalInfo.Vocational, " +
                   " UserPersonalInfo.Location, UserPersonalInfo.Interest, UserBasicInfo.UserID" +
-            " FROM UserBasicInfo INNER JOIN " +
+            " FROM UserBasicInfo Inner join UserRole ur on UserBasicInfo.UserRoleID = ur.UserRoleID INNER JOIN " +
                   " UserBusinessInfo ON UserBasicInfo.UserID = UserBusinessInfo.UserID INNER JOIN " +
                  " UserContactInfo ON UserBasicInfo.UserID = UserContactInfo.UserID INNER JOIN " +
                  " UserPersonalInfo ON UserBasicInfo.UserID = UserPersonalInfo.UserID " +
@@ -336,10 +384,9 @@ namespace HairNet.Provider
                     comm.CommandText = commandText;
                     comm.Connection = conn;
                     conn.Open();
-                    try
+
+                    using (SqlDataReader reader = comm.ExecuteReader())
                     {
-                        SqlDataReader reader = comm.ExecuteReader();
-                        // Call Read before accessing data.
                         if (reader.Read())
                         {
                             ue.UserID = int.Parse(reader["UserID"].ToString());
@@ -351,6 +398,7 @@ namespace HairNet.Provider
                             ue.Email = reader["Email"].ToString();
                             ue.Integral = int.Parse(reader["Integral"].ToString());
                             ue.UserRoleID = int.Parse(reader["UserRoleID"].ToString());
+                            ue.UserRoleName = reader["UserRoleName"].ToString();
                             ue.Duty = reader["Duty"].ToString();
                             ue.Company = reader["Company"].ToString();
                             ue.CompanyCountry = reader["CompanyCountry"].ToString();
@@ -385,19 +433,8 @@ namespace HairNet.Provider
                             ue.Vocational = reader["Vocational"].ToString();
                             ue.Location = reader["Location"].ToString();
                             ue.Interest = reader["Interest"].ToString();
-
                         }
-
-                        // Call Close when done reading.
-                        reader.Close();
-
-
-                    }
-                    catch (Exception ex)
-                    {
-                        throw new Exception(ex.Message);
-                    }
-
+                    }   
                 }
             }
             return ue;
@@ -422,7 +459,7 @@ namespace HairNet.Provider
             }
 
             //降序
-            string commandText = "select " + obj + " FROM UserBasicInfo INNER JOIN " +
+            string commandText = "select " + obj + " FROM UserBasicInfo Inner join UserRole ur on UserBasicInfo.UserRoleID = ur.UserRoleID INNER JOIN " +
                 " UserBusinessInfo ON UserBasicInfo.UserID = UserBusinessInfo.UserID INNER JOIN " +
                 " UserContactInfo ON UserBasicInfo.UserID = UserContactInfo.UserID INNER JOIN " +
                 " UserPersonalInfo ON UserBasicInfo.UserID = UserPersonalInfo.UserID ORDER BY UserBasicInfo.UserID DESC";
@@ -433,10 +470,9 @@ namespace HairNet.Provider
                     comm.CommandText = commandText;
                     comm.Connection = conn;
                     conn.Open();
-                    try
+                    
+                    using(SqlDataReader reader = comm.ExecuteReader())
                     {
-                        SqlDataReader reader = comm.ExecuteReader();
-                        // Call Read before accessing data.
                         while (reader.Read())
                         {
                             UserEntry ue = new UserEntry();
@@ -449,6 +485,7 @@ namespace HairNet.Provider
                             ue.Email = reader["Email"].ToString();
                             ue.Integral = int.Parse(reader["Integral"].ToString());
                             ue.UserRoleID = int.Parse(reader["UserRoleID"].ToString());
+                            ue.UserRoleName = reader["UserRoleName"].ToString();
                             ue.Duty = reader["Duty"].ToString();
                             ue.Company = reader["Company"].ToString();
                             ue.CompanyCountry = reader["CompanyCountry"].ToString();
@@ -486,17 +523,7 @@ namespace HairNet.Provider
 
                             li.Add(ue);
                         }
-
-                        // Call Close when done reading.
-                        reader.Close();
-
-
-                    }
-                    catch (Exception ex)
-                    {
-                        throw new Exception(ex.Message);
-                    }
-
+                    }   
                 }
             }
 
@@ -511,7 +538,7 @@ namespace HairNet.Provider
         public List<UserEntry> GetUsersByName(string strUserName)
         {
             List<UserEntry> li = new List<UserEntry>();
-            string commandText = "select * FROM UserBasicInfo INNER JOIN " +
+            string commandText = "select * FROM UserBasicInfo Inner join UserRole ur on UserBasicInfo.UserRoleID = ur.UserRoleID INNER JOIN " +
                 " UserBusinessInfo ON UserBasicInfo.UserID = UserBusinessInfo.UserID INNER JOIN " +
                 " UserContactInfo ON UserBasicInfo.UserID = UserContactInfo.UserID INNER JOIN " +
                 " UserPersonalInfo ON UserBasicInfo.UserID = UserPersonalInfo.UserID WHERE (UserBasicInfo.UserName LIKE '%"+strUserName+"%') ";
@@ -522,10 +549,9 @@ namespace HairNet.Provider
                     comm.CommandText = commandText;
                     comm.Connection = conn;
                     conn.Open();
-                    try
+
+                    using(SqlDataReader reader = comm.ExecuteReader())
                     {
-                        SqlDataReader reader = comm.ExecuteReader();
-                        // Call Read before accessing data.
                         while (reader.Read())
                         {
                             UserEntry ue = new UserEntry();
@@ -538,6 +564,7 @@ namespace HairNet.Provider
                             ue.Email = reader["Email"].ToString();
                             ue.Integral = int.Parse(reader["Integral"].ToString());
                             ue.UserRoleID = int.Parse(reader["UserRoleID"].ToString());
+                            ue.UserRoleName = reader["UserRoleName"].ToString();
                             ue.Duty = reader["Duty"].ToString();
                             ue.Company = reader["Company"].ToString();
                             ue.CompanyCountry = reader["CompanyCountry"].ToString();
@@ -575,23 +602,11 @@ namespace HairNet.Provider
 
                             li.Add(ue);
                         }
-
-                        // Call Close when done reading.
-                        reader.Close();
-
-
                     }
-                    catch (Exception ex)
-                    {
-                        throw new Exception(ex.Message);
-                    }
-
                 }
             }
 
             return li;
-
         }
-
     }
 }

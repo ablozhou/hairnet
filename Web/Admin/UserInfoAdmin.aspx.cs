@@ -10,6 +10,8 @@ using System.Web.UI.WebControls.WebParts;
 using System.Web.UI.HtmlControls;
 using System.Collections.Generic;
 using HairNet.Entry;
+using HairNet.Business;
+using HairNet.Utilities;
 
 namespace Web.Admin
 {
@@ -19,6 +21,8 @@ namespace Web.Admin
         {
             if (!this.IsPostBack)
             {
+                List<UserEntry> list = UserAdmin.GetUsers(0);
+                Session["list"] = list;
                 this.databind();
             }
         }
@@ -47,24 +51,56 @@ namespace Web.Admin
         }
         public void btnQuery_OnClick(object sender, EventArgs e)
         {
-
+            string userName = this.txtQueryName.Text.Trim();
+            List<UserEntry> list = UserAdmin.GetUsersByUserName(userName);
+            Session["list"] = list;
+            this.databind();
         }
         public void btnSend_OnClick(object sender, EventArgs e)
         {
+            //foreach (DataGridItem dgi in this.dg.Items)
+            //{
+            //    CheckBox chkIsSend = dgi.FindControl("chkIsSend") as CheckBox;
+            //    if (chkIsSend.Checked)
+            //    {
+            //        int userID = int.Parse(this.dg.DataKeys[dgi.ItemIndex].ToString());
 
+            //        if (UserAdmin.DeleteUserByUserID(userID))
+            //        {
+            //            //this.Response.Redirect("UserInfoAdmin.aspx");
+            //        }
+            //        else
+            //        {
+            //            StringHelper.AlertInfo("删除失败", this.Page);
+            //        }
+            //    }
+            //}
+            //this.Response.Redirect("UserInfoAdmin.aspx");
         }
         public void btnDelete_OnClick(object sender, EventArgs e)
         {
+            foreach (DataGridItem dgi in this.dg.Items)
+            {
+                CheckBox chkIsSend = dgi.FindControl("chkIsSend") as CheckBox;
+                if (chkIsSend.Checked)
+                {
+                    int userID = int.Parse(this.dg.DataKeys[dgi.ItemIndex].ToString());
 
+                    if (UserAdmin.DeleteUserByUserID(userID))
+                    {
+                        //this.Response.Redirect("UserInfoAdmin.aspx");
+                    }
+                    else
+                    {
+                        StringHelper.AlertInfo("删除失败", this.Page);
+                    }
+                }
+            }
+            this.Response.Redirect("UserInfoAdmin.aspx");
         }
         protected void databind()
         {
-            List<UserEntry> list = new List<UserEntry>();
-            for (int i = 0; i < 50; i++)
-            {
-                UserEntry u = new UserEntry();
-                list.Add(u);
-            }
+            List<UserEntry> list = Session["list"] as List<UserEntry>;
 
             this.dg.DataKeyField = "UserID";
             this.dg.DataSource = list;
@@ -99,9 +135,26 @@ namespace Web.Admin
             }
         }
         protected void dg_OnItemCommand(object sender, DataGridCommandEventArgs e)
-        { }
+        {
+            if (e.CommandName == "delete")
+            {
+                int userID = int.Parse(this.dg.DataKeys[e.Item.ItemIndex].ToString());
+
+                if (UserAdmin.DeleteUserByUserID(userID))
+                {
+                    this.Response.Redirect("UserInfoAdmin.aspx");
+                }
+                else
+                {
+                    StringHelper.AlertInfo("删除失败", this.Page);
+                }
+            }
+        }
         protected void dg_OnPageIndexChanged(object sender, DataGridPageChangedEventArgs e)
-        { }
+        {
+            this.dg.CurrentPageIndex = e.NewPageIndex;
+            this.databind();
+        }
         protected void Page_Click(Object sender, EventArgs e)
         {
             int nPage;
