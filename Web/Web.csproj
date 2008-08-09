@@ -35,6 +35,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="DMSTime, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Assembly\DMSTime.dll</HintPath>
+    </Reference>
     <Reference Include="FredCK.FCKeditorV2, Version=2.2.2106.29420, Culture=neutral, PublicKeyToken=4f86767c9b519a06">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\Assembly\FredCK.FCKeditorV2.dll</HintPath>
@@ -976,6 +980,7 @@
     <Content Include="Admin\index.aspx" />
     <Content Include="Admin\menu.html" />
     <Content Include="Admin\OrderInfoAdmin.aspx" />
+    <Content Include="Admin\OrderInfoAdmin2.aspx" />
     <Content Include="Admin\ProductAdmin.aspx" />
     <Content Include="Admin\ProductRecommandAdmin.aspx" />
     <Content Include="Admin\ProductRecommandUpdate.aspx" />
@@ -1043,6 +1048,13 @@
     </Compile>
     <Compile Include="Admin\OrderInfoAdmin.aspx.designer.cs">
       <DependentUpon>OrderInfoAdmin.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\OrderInfoAdmin2.aspx.cs">
+      <SubType>ASPXCodeBehind</SubType>
+      <DependentUpon>OrderInfoAdmin2.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\OrderInfoAdmin2.aspx.designer.cs">
+      <DependentUpon>OrderInfoAdmin2.aspx</DependentUpon>
     </Compile>
     <Compile Include="Admin\ProductAdmin.aspx.cs">
       <SubType>ASPXCodeBehind</SubType>
