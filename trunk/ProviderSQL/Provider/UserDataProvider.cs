@@ -18,13 +18,15 @@ namespace HairNet.Provider
         /// <returns></returns>
         bool UserCreate(UserEntry user);
        
+        
+        
+        
         /// <summary>
         /// 删除
         /// </summary>
-        /// <param name="user"></param>
-        /// <param name="ua"></param>
+        /// <param name="userID"></param>
         /// <returns></returns>
-        bool UserDelet(UserEntry user);
+        bool UserDelete(int  userID);
        
         /// <summary>
         /// 修改
@@ -64,6 +66,8 @@ namespace HairNet.Provider
         List<UserEntry> GetUsersByName(string strUserName);
 
 
-       
+
+
+        
     }
 }
