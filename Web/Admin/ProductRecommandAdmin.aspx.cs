@@ -88,7 +88,7 @@ namespace Web.Admin
                 lblID.Text = num.ToString();
                 Session["num"] = num;
 
-                lblEdit.Text = "<a href='ProductRecommandUpdate.aspx?ProductRecommandID=" + productRecommand.ProductRecommandID.ToString() + "&ProductID=" + productRecommand.ProductRawID.ToString() + "'>编辑</a>";
+                lblEdit.Text = "<a href='ProductRecommandUpdate.aspx?ProductRecommandID=" + productRecommand.ProductRecommandID.ToString() + "&ProductID=" + productRecommand.ProductRawID.ToString() + "&operateType=2'>编辑</a>";
             }
         }
         public void dg_OnPageIndexChanged(object sender, DataGridPageChangedEventArgs e)

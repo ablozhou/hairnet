@@ -55,15 +55,23 @@ namespace Web.Admin
                 if (e.CommandName == "recommand")
                 {
                     int productID = int.Parse(this.dg.DataKeys[e.Item.ItemIndex].ToString());
-                    string productRecommandInfo = ConfigurationManager.AppSettings["ProductRecommandInfo"].ToString();
-                    if (InfoAdmin.RecommandProduct(productID, 0, productRecommandInfo, string.Empty, UserAction.Create))
+
+                    string redirectUrl = "ProductRecommandUpdate.aspx?productID=" + productID.ToString() + "&productRecommandID=0&operateType=" + Convert.ToInt32(UserAction.Create).ToString();
+
+                    this.Response.Redirect(redirectUrl);
+                }
+                if (e.CommandName == "delete")
+                {
+                    int productID = int.Parse(this.dg.DataKeys[e.Item.ItemIndex].ToString());
+
+                    if (InfoAdmin.DeleteProduct(productID))
                     {
-                        StringHelper.AlertInfo("推荐成功", this.Page);
+                        StringHelper.AlertInfo("删除成功", this.Page);
                         this.Response.Redirect("ProductAdmin.aspx");
                     }
                     else
                     {
-                        StringHelper.AlertInfo("推荐失败", this.Page);
+                        StringHelper.AlertInfo("删除失败", this.Page);
                     }
                 }
             }
@@ -74,7 +82,8 @@ namespace Web.Admin
             {
                 e.Item.Attributes.Add("onmouseover", "c=this.style.backgroundColor;this.style.backgroundColor='#ffffff';");
                 e.Item.Attributes.Add("onmouseout", "this.style.backgroundColor=c;");
-                e.Item.Cells[5].Attributes.Add("onclick", "return confirm('确认推荐么?');");
+                e.Item.Cells[6].Attributes.Add("onclick", "return confirm('确定推荐么?');");
+                e.Item.Cells[7].Attributes.Add("onclick", "return confirm('确定删除么?');");
 
                 Product hairShop = e.Item.DataItem as Product;
                 Label lblID = e.Item.FindControl("lblID") as Label;

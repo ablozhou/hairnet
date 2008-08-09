@@ -237,5 +237,41 @@ namespace HairNet.Business
 
             return result;
         }
+        /// <summary>
+        /// 删除美发厅
+        /// </summary>
+        /// <param name="hairShopID"></param>
+        /// <returns></returns>
+        public static bool DeleteHairShop(int hairShopID)
+        {
+            HairShop hairshop = new HairShop();
+            hairshop.HairShopID = hairShopID;
+
+            return ProviderFactory.GetHairShopDataProviderInstance().HairShopDataPrividerCreateDeleteUpdate(hairshop, UserAction.Delete);
+        }
+        /// <summary>
+        /// 删除美发师
+        /// </summary>
+        /// <param name="hairEngineerID"></param>
+        /// <returns></returns>
+        public static bool DeleteHairEngineer(int hairEngineerID)
+        {
+            HairEngineer hairEngineer = new HairEngineer();
+            hairEngineer.HairEngineerID = hairEngineerID;
+
+            return ProviderFactory.GetHairEngineerDataProviderInstance().HairEngineerCreateDeleteUpdate(hairEngineer, UserAction.Delete);
+        }
+        /// <summary>
+        /// 删除美发产品
+        /// </summary>
+        /// <param name="productID"></param>
+        /// <returns></returns>
+        public static bool DeleteProduct(int productID)
+        {
+            Product product = new Product();
+            product.ProductID = productID;
+
+            return ProviderFactory.GetProductDataProviderInstance().ProductCreateDeleteUpdate(product, UserAction.Delete);
+        }
     }
 }

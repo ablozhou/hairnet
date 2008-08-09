@@ -57,15 +57,23 @@ namespace Web.Admin
                 if (e.CommandName == "recommand")
                 {
                     int hairEngineerID = int.Parse(this.dg.DataKeys[e.Item.ItemIndex].ToString());
-                    string hairEngineerRecommandInfo = ConfigurationManager.AppSettings["HairEngineerRecommandInfo"].ToString();
-                    if (InfoAdmin.RecommandHairEngineer(hairEngineerID,0, hairEngineerRecommandInfo,string.Empty, UserAction.Create))
+
+                    string redirectUrl = "HairEngineerRecommandUpdate.aspx?hairEngineerID="+hairEngineerID.ToString()+"&hairEngineerRecommandID=0&operateType="+Convert.ToInt32(UserAction.Create).ToString();
+
+                    this.Response.Redirect(redirectUrl);
+                }
+                if (e.CommandName == "delete")
+                {
+                    int hairEngineerID = int.Parse(this.dg.DataKeys[e.Item.ItemIndex].ToString());
+
+                    if (InfoAdmin.DeleteHairEngineer(hairEngineerID))
                     {
-                        StringHelper.AlertInfo("推荐成功", this.Page);
+                        StringHelper.AlertInfo("删除成功",this.Page);
                         this.Response.Redirect("HairEngineerAdmin.aspx");
                     }
                     else
                     {
-                        StringHelper.AlertInfo("推荐失败", this.Page);
+                        StringHelper.AlertInfo("删除失败", this.Page);
                     }
                 }
             }
@@ -76,7 +84,8 @@ namespace Web.Admin
             {
                 e.Item.Attributes.Add("onmouseover", "c=this.style.backgroundColor;this.style.backgroundColor='#ffffff';");
                 e.Item.Attributes.Add("onmouseout", "this.style.backgroundColor=c;");
-                e.Item.Cells[10].Attributes.Add("onclick", "return confirm('确认推荐么?');");
+                e.Item.Cells[11].Attributes.Add("onclick", "return confirm('确定推荐么?');");
+                e.Item.Cells[12].Attributes.Add("onclick", "return confirm('确定删除么?');");
 
                 HairEngineer hairEngineer = e.Item.DataItem as HairEngineer;
                 Label lblID = e.Item.FindControl("lblID") as Label;

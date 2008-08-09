@@ -50,6 +50,30 @@ namespace HairNet.Provider
 
                 }
             }
+            if (ua == UserAction.Delete)
+            {
+                using (SqlConnection conn = new SqlConnection(DataHelper2.SqlConnectionString))
+                {
+                    result = false;
+                    commandText = "delete from HairShopRecommand where HairShopRawID=" + hairShop.HairShopID.ToString();
+                    using (SqlCommand comm = new SqlCommand())
+                    {
+                        comm.CommandText = commandText;
+                        comm.Connection = conn;
+                        conn.Open();
+                        try
+                        {
+                            comm.ExecuteNonQuery();
+                            result = true;
+                        }
+                        catch (Exception ex)
+                        {
+                            throw new Exception(ex.Message);
+                        }
+
+                    }
+                }
+            }
             return result;
         }
 
@@ -176,10 +200,10 @@ namespace HairNet.Provider
             switch (count)
             {
                 case 0:
-                    commText = "select * from HairShop hs inner join City c on hs.HairShopCityID=c.cityID inner join MapZone m on hs.HairShopMapZoneID = m.MapZoneID inner join HotZone h on hs.HairShopHotZoneID = h.HotZoneID inner join TypeTable tt on hs.TypeID=tt.TypeID";
+                    commText = "select * from HairShop hs inner join City c on hs.HairShopCityID=c.cityID inner join MapZone m on hs.HairShopMapZoneID = m.MapZoneID inner join HotZone h on hs.HairShopHotZoneID = h.HotZoneID inner join TypeTable tt on hs.TypeID=tt.TypeID order by hs.HairShopID desc";
                     break;
                 default:
-                    commText = "select top "+count.ToString()+" * from HairShop hs inner join City c on hs.HairShopCityID=c.cityID inner join MapZone m on hs.HairShopMapZoneID = m.MapZoneID inner join HotZone h on hs.HairShopHotZoneID = h.HotZoneID inner join TypeTable tt on hs.TypeID=tt.TypeID";
+                    commText = "select top " + count.ToString() + " * from HairShop hs inner join City c on hs.HairShopCityID=c.cityID inner join MapZone m on hs.HairShopMapZoneID = m.MapZoneID inner join HotZone h on hs.HairShopHotZoneID = h.HotZoneID inner join TypeTable tt on hs.TypeID=tt.TypeID order by hs.HairShopID desc";
                     break;
             }
 
@@ -327,10 +351,10 @@ namespace HairNet.Provider
             switch (count)
             {
                 case 0:
-                    commText = "select * from HairShopRecommand hsr inner join HairShop hs on hsr.HairShopRawID = hs.HairShopID inner join City c on hs.HairShopCityID=c.cityID inner join MapZone m on hs.HairShopMapZoneID = m.MapZoneID inner join HotZone h on hs.HairShopHotZoneID = h.HotZoneID inner join TypeTable tt on hs.TypeID=tt.TypeID";
+                    commText = "select * from HairShopRecommand hsr inner join HairShop hs on hsr.HairShopRawID = hs.HairShopID inner join City c on hs.HairShopCityID=c.cityID inner join MapZone m on hs.HairShopMapZoneID = m.MapZoneID inner join HotZone h on hs.HairShopHotZoneID = h.HotZoneID inner join TypeTable tt on hs.TypeID=tt.TypeID order by hsr.HairShopRecommandID desc";
                     break;
                 default:
-                    commText = "select top "+count.ToString()+" * from HairShopRecommand hsr inner join HairShop hs on hsr.HairShopRawID = hs.HairShopID inner join City c on hs.HairShopCityID=c.cityID inner join MapZone m on hs.HairShopMapZoneID = m.MapZoneID inner join HotZone h on hs.HairShopHotZoneID = h.HotZoneID inner join TypeTable tt on hs.TypeID=tt.TypeID";
+                    commText = "select top " + count.ToString() + " * from HairShopRecommand hsr inner join HairShop hs on hsr.HairShopRawID = hs.HairShopID inner join City c on hs.HairShopCityID=c.cityID inner join MapZone m on hs.HairShopMapZoneID = m.MapZoneID inner join HotZone h on hs.HairShopHotZoneID = h.HotZoneID inner join TypeTable tt on hs.TypeID=tt.TypeID order by hsr.HairShopRecommandID desc";
                     break;
             }
 

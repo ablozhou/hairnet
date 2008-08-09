@@ -21,27 +21,57 @@ namespace Web.Admin
         {
             if (!this.IsPostBack)
             {
-                int hairShopRecommandID = int.Parse(this.Request.QueryString["hairShopRecommandID"].ToString());
-                HairShopRecommand hsr = InfoAdmin.GetHairShopRecommand(hairShopRecommandID);
+                string operateType = this.Request.QueryString["operateType"].ToString();
 
-                this.content.Value = hsr.HairShopRecommandInfo;
+                if (operateType == "1")
+                {
+                    string hairShopRecommandInfo = ConfigurationManager.AppSettings["HairShopRecommandInfo"].ToString();
+
+                    this.content.Value = hairShopRecommandInfo;
+                }
+                else
+                {
+                    int hairShopRecommandID = int.Parse(this.Request.QueryString["hairShopRecommandID"].ToString());
+                    HairShopRecommand hsr = InfoAdmin.GetHairShopRecommand(hairShopRecommandID);
+
+                    this.content.Value = hsr.HairShopRecommandInfo;
+                }
             }
         }
         protected void btnSubmit_OnClick(object sender, EventArgs e)
         {
-            int hairShopID = int.Parse(this.Request.QueryString["hairShopID"].ToString());
-            int hairShopRecommandID = int.Parse(this.Request.QueryString["hairShopRecommandID"].ToString());
-
-            string hairShopRecommandInfo = this.content.Value;
-            string hairShopRecommandEx = this.txtRecommandEx.Text.Trim();
-            if (InfoAdmin.RecommandHairShop(hairShopID, hairShopRecommandID, hairShopRecommandInfo, hairShopRecommandEx, UserAction.Update))
+            string operateType = this.Request.QueryString["operateType"].ToString();
+            if (operateType == "1")
             {
-                StringHelper.AlertInfo("更新成功", this.Page);
-                this.Response.Redirect("HairShopRecommandAdmin.aspx");
+                int hairShopID = int.Parse(this.Request.QueryString["hairShopID"].ToString());
+                string hairShopRecommandInfo = this.content.Value;
+                string hairShopRecommandEx = this.txtRecommandEx.Text.Trim();
+                if (InfoAdmin.RecommandHairShop(hairShopID, 0, hairShopRecommandInfo, hairShopRecommandEx, UserAction.Create))
+                {
+                    StringHelper.AlertInfo("推荐成功", this.Page);
+                    this.Response.Redirect("HairShopAdmin.aspx");
+                }
+                else
+                {
+                    StringHelper.AlertInfo("推荐失败", this.Page);
+                }
             }
             else
             {
-                StringHelper.AlertInfo("更新失败", this.Page);
+                int hairShopID = int.Parse(this.Request.QueryString["hairShopID"].ToString());
+                int hairShopRecommandID = int.Parse(this.Request.QueryString["hairShopRecommandID"].ToString());
+
+                string hairShopRecommandInfo = this.content.Value;
+                string hairShopRecommandEx = this.txtRecommandEx.Text.Trim();
+                if (InfoAdmin.RecommandHairShop(hairShopID, hairShopRecommandID, hairShopRecommandInfo, hairShopRecommandEx, UserAction.Update))
+                {
+                    StringHelper.AlertInfo("更新成功", this.Page);
+                    this.Response.Redirect("HairShopRecommandAdmin.aspx");
+                }
+                else
+                {
+                    StringHelper.AlertInfo("更新失败", this.Page);
+                }
             }
         }
     }
