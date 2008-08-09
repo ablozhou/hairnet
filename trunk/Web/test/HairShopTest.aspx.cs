@@ -111,5 +111,80 @@ namespace Web.test
                 Response.Write("fail");
             }
         }
+
+        protected void Button1_Click(object sender, EventArgs e)
+        {
+ 
+        }
+
+        protected void Button2_Click(object sender, EventArgs e)
+        {
+       }
+
+        protected void adduser_Click(object sender, EventArgs e)
+        {
+            UserEntry ue = new UserEntry();
+
+            ue.UserName = "zhouhh";
+            ue.Password = "123";
+            ue.FindPassQus = "123";
+            ue.FindPassAsw = "123";
+            ue.ActivatedIDS = "123";
+            ue.Email = "ablozhou@gmail.com";
+            ue.Integral = 98;
+            ue.UserRoleID = 0;
+            ue.Duty = "duty";
+            ue.Company = "jingpin";
+            ue.CompanyCountry = "china";
+            ue.CompanyCity = "beijing";
+            ue.OfficeCity = "china";
+            ue.OfficeAddr = "beijing 海淀";
+            ue.OfficeTel1 = "otel232";
+            ue.OfficeTel2 = "otel2 232";
+            ue.OfficeFax = "2322fax";
+            ue.WorkEmail = "work@test.com";
+            ue.WorkMessageAddr = "asfmsgaddr";
+            ue.BeginWork = "23";
+            ue.MonthlyIncome = "12000";
+            ue.LiveCity = "北京";
+            ue.HomeAddr = "湖南";
+            ue.HomeTel1 = "2355";
+            ue.HomeTel2 = "2356";
+            ue.Mobile = "135333333";
+            ue.LiveFax = "asdf";
+            ue.PersonalEmail = "persol@test.com";
+            ue.PersonalMessageAddr = "asdf";
+            ue.MSN = "ablo_zhou@hotmail.com";
+            ue.QQ = "2323";
+            ue.Sex = 1;
+            ue.Birthday = "1985-01-01";
+            ue.FirstName = "ablo";
+            ue.LastName = "zhou";
+            ue.Name = "ablo zhou";
+            ue.Country = "中国";
+            ue.City = "北京";
+            ue.PostalCode = "100022";
+            ue.Vocational = "asdf";
+            ue.Location = "海淀";
+            ue.Interest = "电影";
+
+
+            if (ProviderFactory.GetUserDataProviderInstance().UserCreate(ue))
+            {
+                Response.Write("success");
+            }
+            else
+            {
+                Response.Write("fail");
+            }
+        }
+
+        protected void queryuser_Click(object sender, EventArgs e)
+        {
+            UserEntry user = ProviderFactory.GetUserDataProviderInstance().GetUserByID(2);
+
+            Response.Write("user name=" + user.Name);
+ 
+        }
     }
 }
