@@ -45,7 +45,7 @@
                 </asp:TemplateColumn>
                 <asp:BoundColumn DataField="UserName" HeaderText="用户名"></asp:BoundColumn>
                 <asp:BoundColumn DataField="Sex" HeaderText="性别"></asp:BoundColumn>
-                <asp:BoundColumn DataField="UserRoleID" HeaderText="身份"></asp:BoundColumn>
+                <asp:BoundColumn DataField="UserRoleName" HeaderText="身份"></asp:BoundColumn>
                 <asp:BoundColumn DataField="Integral" HeaderText="积分"></asp:BoundColumn>
                 <asp:HyperLinkColumn DataNavigateUrlField="UserID" DataNavigateUrlFormatString="UserDetails.aspx?id={0}" Target="_blank" Text="详细"></asp:HyperLinkColumn>
                 <asp:HyperLinkColumn DataNavigateUrlField="UserID" DataNavigateUrlFormatString="UserEdit.aspx?id={0}" Target="_blank" Text="编辑"></asp:HyperLinkColumn>
