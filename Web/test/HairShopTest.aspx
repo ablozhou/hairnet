@@ -12,6 +12,9 @@
     <asp:Button ID="btnTest1" runat="server" OnClick="btnTest1_OnClick" Text="给美发厅添加数据" /><br />
     <asp:Button ID="btnTest2" runat="server" OnClick="btnTest2_OnClick" Text="给美发师添加数据" /><br />
     <asp:Button ID="btnTest3" runat="server" OnClick="btnTest3_OnClick" Text="给美发产品添加数据" /><br />
+    <asp:Button ID="Button1" runat="server"  Text="增加用户" onclick="adduser_Click" />
+        <br />
+    <asp:Button ID="Button2" runat="server"  Text="查询用户" onclick="queryuser_Click" /><br />
     </div>
     </form>
 </body>

@@ -8,7 +8,16 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Provider", "ProviderSQL\Pro
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Web", "Web\Web.csproj", "{AA67A172-FF0F-4C2B-B68A-10E02F9D12AD}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{0E618859-F158-4CEF-90B2-D97E9A598950}"
+	ProjectSection(SolutionItems) = preProject
+		HairNet2008.vsmdi = HairNet2008.vsmdi
+		LocalTestRun.testrunconfig = LocalTestRun.testrunconfig
+	EndProjectSection
+EndProject
 Global
+	GlobalSection(TestCaseManagementSettings) = postSolution
+		CategoryFile = HairNet2008.vsmdi
+	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug_Local|Any CPU = Debug_Local|Any CPU
 		Debug_NoCache|Any CPU = Debug_NoCache|Any CPU
