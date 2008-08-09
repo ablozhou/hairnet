@@ -13,7 +13,7 @@ using System.Collections.Generic;
 
 namespace Web.Admin
 {
-    public partial class OrderInfoAdmin : System.Web.UI.Page
+    public partial class OrderInfoAdmin2 : System.Web.UI.Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -24,7 +24,7 @@ namespace Web.Admin
         }
         protected void btnQuery_OnClick(object sender, EventArgs e)
         {
- 
+
         }
         protected void databind()
         {
