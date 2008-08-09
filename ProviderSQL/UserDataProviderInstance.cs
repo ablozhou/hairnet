@@ -139,19 +139,20 @@ namespace HairNet.Provider
             return result;
         }
 
+        
+        
         /// <summary>
         /// 删除
         /// </summary>
-        /// <param name="user"></param>
-        /// <param name="ua"></param>
+        /// <param name="userID"></param>
         /// <returns></returns>
-        public bool UserDelet(UserEntry user)
+        public bool UserDelete(int userID)
         {
             bool result = false;
             string commandText = "DELETE FROM UserBasicInfo FROM UserBasicInfo INNER JOIN " +
                 " UserBusinessInfo ON UserBasicInfo.UserID = UserBusinessInfo.UserID INNER JOIN " +
                 " UserContactInfo ON UserBasicInfo.UserID = UserContactInfo.UserID INNER JOIN " +
-                " UserPersonalInfo ON UserBasicInfo.UserID = UserPersonalInfo.UserID ";
+                " UserPersonalInfo ON UserBasicInfo.UserID = UserPersonalInfo.UserID Where UserBasicInfo.UserID=" + userID;
 
             using (SqlConnection conn = new SqlConnection(DataHelper2.SqlConnectionString))
             {
@@ -411,9 +412,13 @@ namespace HairNet.Provider
         {
             List<UserEntry> li = new List<UserEntry>();
             string obj = " * ";
-            if (count == 0)
+            if (count > 0)
             {
                 obj = " top " + count + " * ";
+            }
+            else if (count < 0)
+            {
+                return li;
             }
 
             //降序

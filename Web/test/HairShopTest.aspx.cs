@@ -179,12 +179,50 @@ namespace Web.test
             }
         }
 
-        protected void queryuser_Click(object sender, EventArgs e)
+        protected void queryuserbyid_Click(object sender, EventArgs e)
         {
-            UserEntry user = ProviderFactory.GetUserDataProviderInstance().GetUserByID(2);
+            UserEntry user = ProviderFactory.GetUserDataProviderInstance().GetUserByID(int.Parse (userid.Text) );
 
             Response.Write("user name=" + user.Name);
  
         }
+
+        protected void queryuserbyname_Click(object sender, EventArgs e)
+        {
+            UserEntry user = ProviderFactory.GetUserDataProviderInstance().GetUserByName(username.Text);
+
+            Response.Write("user name=" + user.Name);
+ 
+
+        }
+
+        protected void queryusercount_Click(object sender, EventArgs e)
+        {
+            List<UserEntry > liuser = ProviderFactory.GetUserDataProviderInstance().GetUsers(int.Parse (count.Text));
+
+            foreach( UserEntry ue in liuser )
+                Response.Write("user id="+ue.UserID +" ,user name=" + ue.UserName);
+ 
+        }
+
+        protected void searchuserbyname_Click(object sender, EventArgs e)
+        {
+            List<UserEntry > liuser = ProviderFactory.GetUserDataProviderInstance().GetUsersByName (username0.Text);
+
+            foreach( UserEntry ue in liuser )
+                Response.Write("user id="+ue.UserID +" ,user name=" + ue.UserName);
+ 
+
+        }
+
+        protected void deletebyid_Click(object sender, EventArgs e)
+        {
+            bool b = ProviderFactory.GetUserDataProviderInstance().UserDelete(int.Parse(userid1.Text));
+
+            Response.Write("delete =" + b);
+ 
+        }
+
+      
     }
 }
