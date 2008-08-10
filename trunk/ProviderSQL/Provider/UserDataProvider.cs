@@ -32,7 +32,14 @@ namespace HairNet.Provider
         /// <param name="ua"></param>
         /// <returns></returns>
         bool UserUpdate(UserEntry user);
-         
+
+        /// <summary>
+        /// 更新用户状态（为删除用户标记）
+        /// </summary>
+        /// <param name="userID"></param>
+        /// <param name="isActive"></param>
+        /// <returns></returns>
+        bool UserUpdateStatus(int userID,bool isActive);
         
         /// <summary>
         /// 通过ID得到用户实体
@@ -61,5 +68,12 @@ namespace HairNet.Provider
         /// <param name="strUserName"></param>
         /// <returns></returns>
         List<UserEntry> GetUsersByName(string strUserName);
+
+        /// <summary>
+        /// EMAIL发送的临时表
+        /// </summary>
+        /// <param name="tempEmail"></param>
+        /// <returns></returns>
+        bool TempEmailCreateDeleteUpdate(TempEmail tempEmail,UserAction ua);
     }
 }

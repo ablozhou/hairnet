@@ -24,11 +24,66 @@ namespace Web.Admin
                 this.databind();
             }
         }
+        public void btnSelect_OnClick(object sender, EventArgs e)
+        {
+            foreach (DataGridItem dgi in this.dg.Items)
+            {
+                CheckBox IsSelect = dgi.FindControl("IsSelect") as CheckBox;
+                if (this.btnSelect.Text == "全选")
+                {
+                    IsSelect.Checked = true;
+                }
+                else
+                {
+                    IsSelect.Checked = false;
+                }
+            }
+            if (this.btnSelect.Text == "全选")
+            {
+                this.btnSelect.Text = "全不选";
+            }
+            else
+            {
+                this.btnSelect.Text = "全选";
+            }
+        }
+        public void btnAdd_OnClick(object sender, EventArgs e)
+        {
+            //添加操作，转向添加页面
+        }
+        public void btnRecommand_OnClick(object sender, EventArgs e)
+        {
+            int i = 0;
+            foreach (DataGridItem dgi in this.dg.Items)
+            {
+                CheckBox IsSelect = dgi.FindControl("IsSelect") as CheckBox;
+                if (IsSelect.Checked == true)
+                {
+                    i++;
+                    int productID = int.Parse(this.dg.DataKeys[dgi.ItemIndex].ToString());
+
+                    string productRecommandInfo = ConfigurationManager.AppSettings["ProductRecommandInfo"].ToString();
+                    string productRecommandEx = string.Empty;
+
+                    if (!InfoAdmin.RecommandProduct(productID, 0, productRecommandInfo, productRecommandEx, UserAction.Create))
+                    {
+                        StringHelper.AlertInfo("推荐失败", this.Page);
+                    }
+                }
+            }
+            if (i == 0)
+            {
+                StringHelper.AlertInfo("请选择要推荐的项", this.Page);
+            }
+            else
+            {
+                this.Response.Redirect("ProductAdmin.aspx");
+            }
+        }
         public void databind()
         {
             List<Product> list = InfoAdmin.GetProducts(0);
 
-            Session["num"] = 0;
             this.dg.DataKeyField = "ProductID";
             this.dg.DataSource = list;
             this.dg.DataBind();
@@ -84,15 +139,6 @@ namespace Web.Admin
                 e.Item.Attributes.Add("onmouseout", "this.style.backgroundColor=c;");
                 e.Item.Cells[6].Attributes.Add("onclick", "return confirm('确定推荐么?');");
                 e.Item.Cells[7].Attributes.Add("onclick", "return confirm('确定删除么?');");
-
-                Product hairShop = e.Item.DataItem as Product;
-                Label lblID = e.Item.FindControl("lblID") as Label;
-
-                //序号
-                int num = int.Parse(Session["num"].ToString());
-                num++;
-                lblID.Text = num.ToString();
-                Session["num"] = num;
             }
         }
         public void dg_OnPageIndexChanged(object sender, DataGridPageChangedEventArgs e)

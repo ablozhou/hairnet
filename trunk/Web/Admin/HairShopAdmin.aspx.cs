@@ -25,11 +25,65 @@ namespace Web.Admin
                 this.databind();
             }
         }
+        public void btnSelect_OnClick(object sender, EventArgs e)
+        {
+            foreach (DataGridItem dgi in this.dg.Items)
+            {
+                CheckBox IsSelect = dgi.FindControl("IsSelect") as CheckBox;
+                if (this.btnSelect.Text == "全选")
+                {
+                    IsSelect.Checked = true;
+                }
+                else
+                {
+                    IsSelect.Checked = false;
+                }
+            }
+            if (this.btnSelect.Text == "全选")
+            {
+                this.btnSelect.Text = "全不选";
+            }
+            else
+            {
+                this.btnSelect.Text = "全选";
+            }
+        }
+        public void btnRecommand_OnClick(object sender, EventArgs e)
+        {
+            int i = 0;
+            foreach (DataGridItem dgi in this.dg.Items)
+            {
+                CheckBox IsSelect = dgi.FindControl("IsSelect") as CheckBox;
+                if (IsSelect.Checked == true)
+                {
+                    i++;
+
+                    int hairShopID = int.Parse(this.dg.DataKeys[dgi.ItemIndex].ToString());
+                    string hairShopRecommandInfo = ConfigurationManager.AppSettings["HairShopRecommandInfo"].ToString();
+                    string hairShopRecommandEx = string.Empty;
+                    if (!InfoAdmin.RecommandHairShop(hairShopID, 0, hairShopRecommandInfo, hairShopRecommandEx, UserAction.Create))
+                    {
+                        StringHelper.AlertInfo("推荐失败", this.Page);
+                    }
+                }
+            }
+            if (i == 0)
+            {
+                StringHelper.AlertInfo("请选择要推荐的项", this.Page);
+            }
+            else
+            {
+                this.Response.Redirect("HairShopAdmin.aspx");
+            }
+        }
+        public void btnAdd_OnClick(object sender, EventArgs e)
+        {
+            //添加操作，转向添加页面
+        }
         public void databind()
         {
             List<HairShop> list = InfoAdmin.GetHairShops(0);
 
-            Session["num"] = 0;
             this.dg.DataKeyField = "HairShopID";
             this.dg.DataSource = list;
             this.dg.DataBind();
@@ -87,16 +141,10 @@ namespace Web.Admin
                 e.Item.Cells[11].Attributes.Add("onclick", "return confirm('确定删除么?');");
 
                 HairShop hairShop = e.Item.DataItem as HairShop;
-                Label lblID = e.Item.FindControl("lblID") as Label;
                 Label lblRecommandRate = e.Item.FindControl("lblRecommandRate") as Label;
                 Label lblCommentTotal = e.Item.FindControl("lblCommentTotal") as Label;
                 Label lblCommentRate = e.Item.FindControl("lblCommentRate") as Label;
 
-                //序号
-                int num = int.Parse(Session["num"].ToString());
-                num++;
-                lblID.Text = num.ToString();
-                Session["num"] = num;
                 //推荐指数（访问数+好评评论数+我要推荐数）
                 int recommandRate = hairShop.HairShopVisitNum + hairShop.HairShopGood + hairShop.HairShopRecommandNum;
 

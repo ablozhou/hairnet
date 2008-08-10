@@ -12,6 +12,7 @@ using System.Collections.Generic;
 using HairNet.Entry;
 using HairNet.Business;
 using HairNet.Utilities;
+using HairNet.Enumerations;
 
 namespace Web.Admin
 {
@@ -58,24 +59,20 @@ namespace Web.Admin
         }
         public void btnSend_OnClick(object sender, EventArgs e)
         {
-            //foreach (DataGridItem dgi in this.dg.Items)
-            //{
-            //    CheckBox chkIsSend = dgi.FindControl("chkIsSend") as CheckBox;
-            //    if (chkIsSend.Checked)
-            //    {
-            //        int userID = int.Parse(this.dg.DataKeys[dgi.ItemIndex].ToString());
+            foreach (DataGridItem dgi in this.dg.Items)
+            {
+                CheckBox chkIsSend = dgi.FindControl("chkIsSend") as CheckBox;
+                if (chkIsSend.Checked)
+                {
+                    TempEmail tempEmail = new TempEmail();
+                    tempEmail.TempEmailName = dgi.Cells[3].ToString();
 
-            //        if (UserAdmin.DeleteUserByUserID(userID))
-            //        {
-            //            //this.Response.Redirect("UserInfoAdmin.aspx");
-            //        }
-            //        else
-            //        {
-            //            StringHelper.AlertInfo("删除失败", this.Page);
-            //        }
-            //    }
-            //}
-            //this.Response.Redirect("UserInfoAdmin.aspx");
+                    if (!UserAdmin.TempEmailCreateDeleteUpdate(tempEmail, UserAction.Create))
+                    {
+                        StringHelper.AlertInfo("发送邮件插入失败", this.Page);
+                    }
+                }
+            }
         }
         public void btnDelete_OnClick(object sender, EventArgs e)
         {
@@ -128,10 +125,10 @@ namespace Web.Admin
             {
                 e.Item.Attributes.Add("onmouseover", "c=this.style.backgroundColor;this.style.backgroundColor='#ffffff';");
                 e.Item.Attributes.Add("onmouseout", "this.style.backgroundColor=c;");
-                e.Item.Cells[8].Attributes.Add("onclick", "return confirm('确定删除么?')");
+                e.Item.Cells[9].Attributes.Add("onclick", "return confirm('确定删除么?')");
 
-                UserEntry userEntry = e.Item.DataItem as UserEntry;
-                CheckBox chkIsSend = e.Item.FindControl("chkIsSend") as CheckBox;
+                //UserEntry userEntry = e.Item.DataItem as UserEntry;
+                //CheckBox chkIsSend = e.Item.FindControl("chkIsSend") as CheckBox;
             }
         }
         protected void dg_OnItemCommand(object sender, DataGridCommandEventArgs e)
@@ -140,7 +137,8 @@ namespace Web.Admin
             {
                 int userID = int.Parse(this.dg.DataKeys[e.Item.ItemIndex].ToString());
 
-                if (UserAdmin.DeleteUserByUserID(userID))
+                //删除并不是真正删除，只是标记当前用户不可使用，及IsActive为false
+                if (UserAdmin.UserUpdateStatus(userID,false))
                 {
                     this.Response.Redirect("UserInfoAdmin.aspx");
                 }

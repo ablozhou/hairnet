@@ -45,6 +45,7 @@
                 </asp:TemplateColumn>
                 <asp:BoundColumn DataField="UserName" HeaderText="用户名"></asp:BoundColumn>
                 <asp:BoundColumn DataField="Sex" HeaderText="性别"></asp:BoundColumn>
+                <asp:BoundColumn DataField="Email" HeaderText="邮箱"></asp:BoundColumn>
                 <asp:BoundColumn DataField="UserRoleName" HeaderText="身份"></asp:BoundColumn>
                 <asp:BoundColumn DataField="Integral" HeaderText="积分"></asp:BoundColumn>
                 <asp:HyperLinkColumn DataNavigateUrlField="UserID" DataNavigateUrlFormatString="HistoryInfoAdmin.aspx?id={0}" Target="_blank" Text="轨迹跟踪"></asp:HyperLinkColumn>

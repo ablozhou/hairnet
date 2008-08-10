@@ -21,8 +21,8 @@ namespace HairNet.Provider
             bool result = false;
             string commandText = string.Empty;
 
-            commandText = "INSERT INTO UserBasicInfo ( UserName, Password, FindPassQus, FindPassAsw, ActivatedIDS, Email,Integral, UserRoleID) values ('" +
-                user.UserName + "','" + user.Password + "','" + user.FindPassQus + "','" + user.FindPassAsw + "','" + user.ActivatedIDS + "','" + user.Email + "'," + user.Integral + "," + user.UserRoleID + ")";
+            commandText = "INSERT INTO UserBasicInfo ( UserName, Password, FindPassQus, FindPassAsw, ActivatedIDS, Email,Integral, UserRoleID,IsActive) values ('" +
+                user.UserName + "','" + user.Password + "','" + user.FindPassQus + "','" + user.FindPassAsw + "','" + user.ActivatedIDS + "','" + user.Email + "'," + user.Integral + "," + user.UserRoleID + ","+user.IsActive.CompareTo(false).ToString()+")";
             using (SqlConnection conn = new SqlConnection(DataHelper2.SqlConnectionString))
             {
                 using (SqlCommand comm = new SqlCommand())
@@ -245,28 +245,29 @@ namespace HairNet.Provider
         public bool UserUpdate(UserEntry user)
         {
             bool result = false;
-            string commandText = "UPDATE UserBasicInfo SET UserID = " + user.UserID + ", UserName = '" + user.UserName + "', Password = '" + user.Password + "', FindPassQus = '" + user.FindPassQus + "', FindPassAsw = '" + user.FindPassAsw + "', ActivatedIDS = '" + user.ActivatedIDS + "', Email = '" + user.Email + "', Integral = " + user.Integral + ", UserRoleID = " + user.UserRoleID +
-                " FROM UserBasicInfo INNER JOIN  UserBusinessInfo ON UserBasicInfo.UserID = UserBusinessInfo.UserID INNER JOIN UserContactInfo ON UserBasicInfo.UserID = UserContactInfo.UserID INNER JOIN " +
-                "  UserPersonalInfo ON UserBasicInfo.UserID = UserPersonalInfo.UserID ";
-            using (SqlConnection conn = new SqlConnection(DataHelper2.SqlConnectionString))
-            {
-                using (SqlCommand comm = new SqlCommand())
-                {
-                    comm.CommandText = commandText;
-                    comm.Connection = conn;
-                    conn.Open();
-                    try
-                    {
-                        comm.ExecuteNonQuery();
-                        result = true;
-                    }
-                    catch (Exception ex)
-                    {
-                        throw new Exception(ex.Message);
-                    }
+            //string commandText = "UPDATE UserBasicInfo SET UserID = " + user.UserID + ", UserName = '" + user.UserName + "', Password = '" + user.Password + "', FindPassQus = '" + user.FindPassQus + "', FindPassAsw = '" + user.FindPassAsw + "', ActivatedIDS = '" + user.ActivatedIDS + "', Email = '" + user.Email + "', Integral = " + user.Integral + ", UserRoleID = " + user.UserRoleID +
+            //    " FROM UserBasicInfo INNER JOIN  UserBusinessInfo ON UserBasicInfo.UserID = UserBusinessInfo.UserID INNER JOIN UserContactInfo ON UserBasicInfo.UserID = UserContactInfo.UserID INNER JOIN " +
+            //    "  UserPersonalInfo ON UserBasicInfo.UserID = UserPersonalInfo.UserID ";
+            //using (SqlConnection conn = new SqlConnection(DataHelper2.SqlConnectionString))
+            //{
+            //    using (SqlCommand comm = new SqlCommand())
+            //    {
+            //        comm.CommandText = commandText;
+            //        comm.Connection = conn;
+            //        conn.Open();
+            //        try
+            //        {
+            //            comm.ExecuteNonQuery();
+            //            result = true;
+            //        }
+            //        catch (Exception ex)
+            //        {
+            //            throw new Exception(ex.Message);
+            //        }
 
-                }
-            }
+            //    }
+            //}
+            //实现的不对，需要重新写，SQL语句错了，需要更新四个表的数据
             return result;
         }
 
@@ -302,6 +303,7 @@ namespace HairNet.Provider
                             ue.Integral = int.Parse(reader["Integral"].ToString());
                             ue.UserRoleID = int.Parse(reader["UserRoleID"].ToString());
                             ue.UserRoleName = reader["UserRoleName"].ToString();
+                            ue.IsActive = Convert.ToBoolean(reader["IsActive"].ToString());
                             ue.Duty = reader["Duty"].ToString();
                             ue.Company = reader["Company"].ToString();
                             ue.CompanyCountry = reader["CompanyCountry"].ToString();
@@ -352,7 +354,7 @@ namespace HairNet.Provider
         public UserEntry GetUserByName(string userName)
         {
             UserEntry ue = new UserEntry();
-            string commandText = "SELECT UserBasicInfo.UserName,ur.UserRoleName, UserBasicInfo.Password, UserBasicInfo.FindPassQus, " +
+            string commandText = "SELECT UserBasicInfo.UserName,UserBasicInfo.IsActive,ur.UserRoleName, UserBasicInfo.Password, UserBasicInfo.FindPassQus, " +
                   " UserBasicInfo.FindPassAsw, UserBasicInfo.ActivatedIDS, UserBasicInfo.Email, " +
                   " UserBasicInfo.Integral, UserBasicInfo.UserRoleID, " +
                   " UserBusinessInfo.UserID AS Expr1, UserBusinessInfo.Duty, " +
@@ -399,6 +401,7 @@ namespace HairNet.Provider
                             ue.Integral = int.Parse(reader["Integral"].ToString());
                             ue.UserRoleID = int.Parse(reader["UserRoleID"].ToString());
                             ue.UserRoleName = reader["UserRoleName"].ToString();
+                            ue.IsActive = Convert.ToBoolean(reader["IsActive"].ToString());
                             ue.Duty = reader["Duty"].ToString();
                             ue.Company = reader["Company"].ToString();
                             ue.CompanyCountry = reader["CompanyCountry"].ToString();
@@ -486,6 +489,7 @@ namespace HairNet.Provider
                             ue.Integral = int.Parse(reader["Integral"].ToString());
                             ue.UserRoleID = int.Parse(reader["UserRoleID"].ToString());
                             ue.UserRoleName = reader["UserRoleName"].ToString();
+                            ue.IsActive = Convert.ToBoolean(reader["IsActive"].ToString());
                             ue.Duty = reader["Duty"].ToString();
                             ue.Company = reader["Company"].ToString();
                             ue.CompanyCountry = reader["CompanyCountry"].ToString();
@@ -565,6 +569,7 @@ namespace HairNet.Provider
                             ue.Integral = int.Parse(reader["Integral"].ToString());
                             ue.UserRoleID = int.Parse(reader["UserRoleID"].ToString());
                             ue.UserRoleName = reader["UserRoleName"].ToString();
+                            ue.IsActive = Convert.ToBoolean(reader["IsActive"].ToString());
                             ue.Duty = reader["Duty"].ToString();
                             ue.Company = reader["Company"].ToString();
                             ue.CompanyCountry = reader["CompanyCountry"].ToString();
@@ -607,6 +612,74 @@ namespace HairNet.Provider
             }
 
             return li;
+        }
+        public bool UserUpdateStatus(int userID, bool isActive)
+        {
+            bool result = false;
+            string commandText = "update UserBasicInfo set IsActive="+isActive.CompareTo(false).ToString()+" where UserID="+userID.ToString();
+            
+            using (SqlConnection conn = new SqlConnection(DataHelper2.SqlConnectionString))
+            {
+                using (SqlCommand comm = new SqlCommand())
+                {
+                    comm.CommandText = commandText;
+                    comm.Connection = conn;
+                    conn.Open();
+                    try
+                    {
+                        comm.ExecuteNonQuery();
+                        result = true;
+                    }
+                    catch (Exception ex)
+                    {
+                        throw new Exception(ex.Message);
+                    }
+
+                }
+            }
+            return result;
+        }
+        /// <summary>
+        /// EMAIL临时发送表 添加，删除，更新
+        /// </summary>
+        /// <param name="tempEmail"></param>
+        /// <returns></returns>
+        public bool TempEmailCreateDeleteUpdate(TempEmail tempEmail,UserAction ua)
+        {
+            bool result = false;
+            string commandText = string.Empty;
+            switch (ua)
+            {
+                case UserAction.Create:
+                    commandText = "insert into TempEmail(TempEmailName,TempEmailIsSend,TempEmailCreateTime) values('"+tempEmail.TempEmailName+"',"+tempEmail.TempEmailIsSend.CompareTo(false).ToString()+",'"+tempEmail.TempEmailCreateTime.ToString()+"')";
+                    break;
+                case UserAction.Delete:
+                    commandText = "delete from TempEmail where TempEmailID ="+tempEmail.TempEmailID.ToString();
+                    break;
+                case UserAction.Update:
+                    commandText = "update TempEmail set TempEmailName='"+tempEmail.TempEmailName+"',TempEmailIsSend='"+tempEmail.TempEmailIsSend.CompareTo(false).ToString()+"',TempEmailCreateTime'"+tempEmail.TempEmailCreateTime.ToString()+"' where TempEmailID="+tempEmail.TempEmailID.ToString();
+                    break;
+            }
+            using (SqlConnection conn = new SqlConnection(DataHelper2.SqlConnectionString))
+            {
+                using (SqlCommand comm = new SqlCommand())
+                {
+                    comm.CommandText = commandText;
+                    comm.Connection = conn;
+                    conn.Open();
+                    try
+                    {
+                        comm.ExecuteNonQuery();
+                        result = true;
+                    }
+                    catch (Exception ex)
+                    {
+                        throw new Exception(ex.Message);
+                    }
+
+                }
+            }
+            return result;
         }
     }
 }

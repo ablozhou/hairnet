@@ -16,6 +16,13 @@
                     当前页面:<b>美发厅管理</b>
                 </td>
             </tr>
+            <tr>
+                <td align="right" bgcolor="#F5F5F5">
+                <asp:Button ID="btnSelect" runat="server" CssClass="btn" Text="全选" OnClick="btnSelect_OnClick"/>&nbsp;&nbsp;
+                    <asp:Button ID="btnAdd" runat="server" CssClass="btn" Text="添加" OnClick="btnAdd_OnClick"/>&nbsp;&nbsp;
+                    <asp:Button ID="btnRecommand" runat="server" CssClass="btn" Text="推荐" OnClick="btnRecommand_OnClick"/>
+                </td>
+            </tr>
     </table>
     <div style="text-align: center">
         <asp:DataGrid ID ="dg" runat = "server" PageSize="30" AllowPaging="true" AutoGenerateColumns="false" BackColor="White" BorderColor="White" BorderStyle="Ridge" BorderWidth="2px" CellPadding="3" Width="98%" CellSpacing="1" GridLines="None" OnItemDataBound="dg_OnItemDataBound" OnItemCommand="dg_OnItemCommand" OnPageIndexChanged="dg_OnPageIndexChanged">
@@ -26,9 +33,9 @@
             <ItemStyle BackColor="#DEDFDE" ForeColor="Black" />
             <HeaderStyle BackColor="#667BD8" Font-Bold="True" ForeColor="#E7E7FF" />
             <Columns>
-                <asp:TemplateColumn HeaderText="序号">
+                <asp:TemplateColumn>
                     <ItemTemplate>
-                        <asp:Label ID="lblID" runat="server"></asp:Label>
+                        <asp:CheckBox ID="IsSelect" runat="server" />
                     </ItemTemplate>
                 </asp:TemplateColumn>
                 <asp:BoundColumn DataField="HairShopName" HeaderText="名称"></asp:BoundColumn>
