@@ -25,11 +25,66 @@ namespace Web.Admin
                 this.databind();
             }
         }
+        public void btnSelect_OnClick(object sender, EventArgs e)
+        {
+            foreach (DataGridItem dgi in this.dg.Items)
+            {
+                CheckBox IsSelect = dgi.FindControl("IsSelect") as CheckBox;
+                if (this.btnSelect.Text == "全选")
+                {
+                    IsSelect.Checked = true;
+                }
+                else
+                {
+                    IsSelect.Checked = false;
+                }
+            }
+            if (this.btnSelect.Text == "全选")
+            {
+                this.btnSelect.Text = "全不选";
+            }
+            else
+            {
+                this.btnSelect.Text = "全选";
+            }
+        }
+        public void btnRecommand_OnClick(object sender, EventArgs e)
+        {
+            int i = 0;
+            foreach (DataGridItem dgi in this.dg.Items)
+            {
+                CheckBox IsSelect = dgi.FindControl("IsSelect") as CheckBox;
+                if (IsSelect.Checked == true)
+                {
+                    i++;
+
+                    int hairEngineerID = int.Parse(this.dg.DataKeys[dgi.ItemIndex].ToString());
+
+                    string hairEngineerRecommandInfo = ConfigurationManager.AppSettings["HairEngineerRecommandInfo"].ToString();
+                    string hairEngineerRecommandEx = string.Empty;
+                    if (!InfoAdmin.RecommandHairEngineer(hairEngineerID, 0, hairEngineerRecommandInfo, hairEngineerRecommandEx, UserAction.Create))
+                    {
+                        StringHelper.AlertInfo("推荐失败", this.Page);
+                    }
+                }
+            }
+            if (i == 0)
+            {
+                StringHelper.AlertInfo("请选择要推荐的项", this.Page);
+            }
+            else
+            {
+                this.Response.Redirect("HairEngineerAdmin.aspx");
+            }
+        }
+        public void btnAdd_OnClick(object sender, EventArgs e)
+        {
+            //添加操作，转向添加页面
+        }
         public void databind()
         {
             List<HairEngineer> list = InfoAdmin.GetHairEngineers(0);
 
-            Session["num"] = 0;
             this.dg.DataKeyField = "HairEngineerID";
             this.dg.DataSource = list;
             this.dg.DataBind();
@@ -88,16 +143,11 @@ namespace Web.Admin
                 e.Item.Cells[12].Attributes.Add("onclick", "return confirm('确定删除么?');");
 
                 HairEngineer hairEngineer = e.Item.DataItem as HairEngineer;
-                Label lblID = e.Item.FindControl("lblID") as Label;
                 Label lblRecommandRate = e.Item.FindControl("lblRecommandRate") as Label;
                 Label lblCommentTotal = e.Item.FindControl("lblCommentTotal") as Label;
                 Label lblCommentRate = e.Item.FindControl("lblCommentRate") as Label;
 
-                //序号
-                int num = int.Parse(Session["num"].ToString());
-                num++;
-                lblID.Text = num.ToString();
-                Session["num"] = num;
+                
                 //推荐指数（点击数+好评评论数+我要推荐数）?美发师的预约数不应该计算在内么?
                 int recommandRate = hairEngineer.HairEngineerHits + hairEngineer.HairEngineerGood + hairEngineer.HairEngineerRecommandNum;
 

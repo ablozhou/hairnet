@@ -139,6 +139,7 @@
     <Compile Include="Entry\ProductComment.cs" />
     <Compile Include="Entry\ProductRecommand.cs" />
     <Compile Include="Entry\ProductTag.cs" />
+    <Compile Include="Entry\TempEmail.cs" />
     <Compile Include="Entry\UserEntry.cs" />
     <Compile Include="Enumerations\SortFilter.cs" />
     <Compile Include="Enumerations\Status.cs" />

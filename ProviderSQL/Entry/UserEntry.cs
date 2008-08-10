@@ -20,6 +20,7 @@ namespace HairNet.Entry
         private int _integral = 0;
         private int _userRoleID = 0;
         private string _userRoleName = string.Empty;
+        private bool _isActive = true;
         #endregion
 
         #region UserPersonalInfo Fields
@@ -134,6 +135,11 @@ namespace HairNet.Entry
         {
             set { this._userRoleName = value; }
             get { return this._userRoleName; }
+        }
+        public bool IsActive
+        {
+            set { this._isActive = value; }
+            get { return this._isActive; }
         }
         #endregion
 
