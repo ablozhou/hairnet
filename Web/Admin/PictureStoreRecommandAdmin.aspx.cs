@@ -9,14 +9,14 @@ using System.Web.UI.WebControls;
 using System.Web.UI.WebControls.WebParts;
 using System.Web.UI.HtmlControls;
 using System.Collections.Generic;
-using HairNet.Business;
 using HairNet.Entry;
+using HairNet.Business;
 using HairNet.Enumerations;
 using HairNet.Utilities;
 
 namespace Web.Admin
 {
-    public partial class ProductRecommandAdmin : System.Web.UI.Page
+    public partial class PictureStoreRecommandAdmin : System.Web.UI.Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -27,10 +27,10 @@ namespace Web.Admin
         }
         public void databind()
         {
-            List<ProductRecommand> list = InfoAdmin.GetProductRecommands(0);
-
+            List<PictureStoreRecommand> list = InfoAdmin.GetPictureStoreRecommands(0);
+            
             Session["num"] = 0;
-            this.dg.DataKeyField = "ProductRecommandID";
+            this.dg.DataKeyField = "PictureStoreRecommandID";
             this.dg.DataSource = list;
             this.dg.DataBind();
 
@@ -56,12 +56,12 @@ namespace Web.Admin
             {
                 if (e.CommandName == "delete")
                 {
-                    int productRecommandID = int.Parse(this.dg.DataKeys[e.Item.ItemIndex].ToString());
+                    int pictureStoreRecommandID = int.Parse(this.dg.DataKeys[e.Item.ItemIndex].ToString());
 
-                    if (InfoAdmin.RecommandProduct(0, productRecommandID, string.Empty, string.Empty, UserAction.Delete))
+                    if (InfoAdmin.RecommandPictureStore(0, pictureStoreRecommandID, string.Empty, string.Empty, UserAction.Delete))
                     {
                         StringHelper.AlertInfo("删除成功", this.Page);
-                        this.Response.Redirect("ProductRecommandAdmin.aspx");
+                        this.Response.Redirect("PictureStoreRecommandAdmin.aspx");
                     }
                     else
                     {
@@ -78,8 +78,9 @@ namespace Web.Admin
                 e.Item.Attributes.Add("onmouseout", "this.style.backgroundColor=c;");
                 e.Item.Cells[7].Attributes.Add("onclick", "return confirm('确定删除么?')");
 
-                ProductRecommand productRecommand = e.Item.DataItem as ProductRecommand;
+                PictureStoreRecommand pictureStoreRecommand = e.Item.DataItem as PictureStoreRecommand;
                 Label lblID = e.Item.FindControl("lblID") as Label;
+                Label lblPictureUrl = e.Item.FindControl("lblPictureUrl") as Label;
                 Label lblEdit = e.Item.FindControl("lblEdit") as Label;
 
                 //序号
@@ -87,8 +88,10 @@ namespace Web.Admin
                 num++;
                 lblID.Text = num.ToString();
                 Session["num"] = num;
+                //预览图片
+                lblPictureUrl.Text = "<a href='#'target='_blank'><img src='http://www.baidu.com/img/baidu_logo.gif' width='40' height='20' alt='点击查看大图' /></a>";
 
-                lblEdit.Text = "<a href='ProductRecommandUpdate.aspx?ProductRecommandID=" + productRecommand.ProductRecommandID.ToString() + "&ProductID=" + productRecommand.ProductRawID.ToString() + "&operateType=2'>编辑</a>";
+                lblEdit.Text = "<a href='PictureStoreUpdate.aspx?PictureStoreRecommandID=" + pictureStoreRecommand.PictureStoreRecommandID.ToString() + "&PictureStoreID=" + pictureStoreRecommand.PictureStoreRawID.ToString() + "&operateType=2'>编辑</a>";
             }
         }
         public void dg_OnPageIndexChanged(object sender, DataGridPageChangedEventArgs e)

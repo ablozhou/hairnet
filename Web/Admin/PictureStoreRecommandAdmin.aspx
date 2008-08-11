@@ -1,19 +1,19 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="ProductRecommandAdmin.aspx.cs" Inherits="Web.Admin.ProductRecommandAdmin" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="PictureStoreRecommandAdmin.aspx.cs" Inherits="Web.Admin.PictureStoreRecommandAdmin" %>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
 <html xmlns="http://www.w3.org/1999/xhtml" >
 <head runat="server">
-    <title>产品推荐信息</title>
+    <title>图片库推荐信息管理</title>
     <link type="text/css" rel="Stylesheet" href="Style/Main.css" />
 </head>
 <body>
-     <form id="form1" runat="server">
-     <div style="text-align: center">
-     <table width="98%" border="0" cellpadding="2" cellspacing="1" bgcolor="#CCCCCC">
+    <form id="form1" runat="server">
+    <div style="text-align: center">
+    <table width="98%" border="0" cellpadding="2" cellspacing="1" bgcolor="#CCCCCC">
             <tr>
                 <td bgcolor="#FFFFFF" align="left">
-                    当前页面:<b>美发产品推荐管理</b>
+                    当前页面:<b>图片库推荐管理</b>
                 </td>
             </tr>
     </table>
@@ -31,11 +31,15 @@
                         <asp:Label ID="lblID" runat="server"></asp:Label>
                     </ItemTemplate>
                 </asp:TemplateColumn>
-                <asp:BoundColumn DataField="ProductName" HeaderText="名称"></asp:BoundColumn>
-                <asp:BoundColumn DataField="ProductCompany" HeaderText="厂商"></asp:BoundColumn>
-                <asp:BoundColumn DataField="ProductHits" HeaderText="点击数"></asp:BoundColumn>
-                <asp:HyperLinkColumn DataNavigateUrlField="ProductRawID" DataNavigateUrlFormatString="ProductComments.aspx?id={0}" Target="_blank" Text="浏览评论"></asp:HyperLinkColumn>
-                <asp:HyperLinkColumn DataNavigateUrlField="ProductRawID" DataNavigateUrlFormatString="ProductDetails.aspx?id={0}" Target="_blank" Text="详细"></asp:HyperLinkColumn>
+                <asp:BoundColumn DataField="PictureStoreName" HeaderText="名称"></asp:BoundColumn>
+                <asp:TemplateColumn HeaderText="图片">
+                    <ItemTemplate>
+                        <asp:Label ID="lblPictureUrl" runat="server"></asp:Label>
+                    </ItemTemplate>
+                </asp:TemplateColumn>
+                <asp:BoundColumn DataField="PictureStoreHits" HeaderText="点击数"></asp:BoundColumn>
+                <asp:HyperLinkColumn DataNavigateUrlField="PictureStoreRawID" DataNavigateUrlFormatString="PictureStoreComments.aspx?id={0}" Target="_blank" Text="浏览评论"></asp:HyperLinkColumn>
+                <asp:HyperLinkColumn DataNavigateUrlField="PictureStoreRawID" DataNavigateUrlFormatString="PictureStoreDetails.aspx?id={0}" Target="_blank" Text="详细"></asp:HyperLinkColumn>
                 <asp:TemplateColumn>
                     <ItemTemplate>
                         <asp:Label ID="lblEdit" runat="server"></asp:Label>

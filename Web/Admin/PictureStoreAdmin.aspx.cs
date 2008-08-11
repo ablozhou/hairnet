@@ -9,14 +9,14 @@ using System.Web.UI.WebControls;
 using System.Web.UI.WebControls.WebParts;
 using System.Web.UI.HtmlControls;
 using System.Collections.Generic;
-using HairNet.Business;
 using HairNet.Entry;
+using HairNet.Business;
 using HairNet.Enumerations;
 using HairNet.Utilities;
 
 namespace Web.Admin
 {
-    public partial class ProductRecommandAdmin : System.Web.UI.Page
+    public partial class PictureStoreAdmin : System.Web.UI.Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -25,12 +25,67 @@ namespace Web.Admin
                 this.databind();
             }
         }
+        public void btnSelect_OnClick(object sender, EventArgs e)
+        {
+            foreach (DataGridItem dgi in this.dg.Items)
+            {
+                CheckBox IsSelect = dgi.FindControl("IsSelect") as CheckBox;
+                if (this.btnSelect.Text == "全选")
+                {
+                    IsSelect.Checked = true;
+                }
+                else
+                {
+                    IsSelect.Checked = false;
+                }
+            }
+            if (this.btnSelect.Text == "全选")
+            {
+                this.btnSelect.Text = "全不选";
+            }
+            else
+            {
+                this.btnSelect.Text = "全选";
+            }
+        }
+        public void btnRecommand_OnClick(object sender, EventArgs e)
+        {
+            int i = 0;
+            foreach (DataGridItem dgi in this.dg.Items)
+            {
+                CheckBox IsSelect = dgi.FindControl("IsSelect") as CheckBox;
+                if (IsSelect.Checked == true)
+                {
+                    i++;
+
+                    int pictureStoreID = int.Parse(this.dg.DataKeys[dgi.ItemIndex].ToString());
+
+                    string pictureStoreRecommandInfo = ConfigurationManager.AppSettings["PictureStoreRecommandInfo"].ToString();
+                    string pictureStoreRecommandEx = string.Empty;
+                    if (!InfoAdmin.RecommandPictureStore(pictureStoreID, 0, pictureStoreRecommandInfo, pictureStoreRecommandEx, UserAction.Create))
+                    {
+                        StringHelper.AlertInfo("推荐失败", this.Page);
+                    }
+                }
+            }
+            if (i == 0)
+            {
+                StringHelper.AlertInfo("请选择要推荐的项", this.Page);
+            }
+            else
+            {
+                this.Response.Redirect("PictureStoreAdmin.aspx");
+            }
+        }
+        public void btnAdd_OnClick(object sender, EventArgs e)
+        {
+            //添加操作，转向添加页面
+        }
         public void databind()
         {
-            List<ProductRecommand> list = InfoAdmin.GetProductRecommands(0);
+            List<PictureStore> list = InfoAdmin.GetPictureStores(0);
 
-            Session["num"] = 0;
-            this.dg.DataKeyField = "ProductRecommandID";
+            this.dg.DataKeyField = "PictureStoreID";
             this.dg.DataSource = list;
             this.dg.DataBind();
 
@@ -54,14 +109,22 @@ namespace Web.Admin
         {
             if (e.Item.ItemType == ListItemType.AlternatingItem || e.Item.ItemType == ListItemType.Item)
             {
+                if (e.CommandName == "recommand")
+                {
+                    int pictureStoreID = int.Parse(this.dg.DataKeys[e.Item.ItemIndex].ToString());
+
+                    string redirectUrl = "PictureStoreUpdate.aspx?pictureStoreID=" + pictureStoreID.ToString() + "&pictureStoreRecommandID=0&operateType=" + Convert.ToInt32(UserAction.Create).ToString();
+
+                    this.Response.Redirect(redirectUrl);
+                }
                 if (e.CommandName == "delete")
                 {
-                    int productRecommandID = int.Parse(this.dg.DataKeys[e.Item.ItemIndex].ToString());
+                    int pictureStoreID = int.Parse(this.dg.DataKeys[e.Item.ItemIndex].ToString());
 
-                    if (InfoAdmin.RecommandProduct(0, productRecommandID, string.Empty, string.Empty, UserAction.Delete))
+                    if (InfoAdmin.DeletePictureStore(pictureStoreID))
                     {
                         StringHelper.AlertInfo("删除成功", this.Page);
-                        this.Response.Redirect("ProductRecommandAdmin.aspx");
+                        this.Response.Redirect("PictureStoreAdmin.aspx");
                     }
                     else
                     {
@@ -76,19 +139,14 @@ namespace Web.Admin
             {
                 e.Item.Attributes.Add("onmouseover", "c=this.style.backgroundColor;this.style.backgroundColor='#ffffff';");
                 e.Item.Attributes.Add("onmouseout", "this.style.backgroundColor=c;");
-                e.Item.Cells[7].Attributes.Add("onclick", "return confirm('确定删除么?')");
+                e.Item.Cells[7].Attributes.Add("onclick", "return confirm('确定推荐么?');");
+                e.Item.Cells[8].Attributes.Add("onclick", "return confirm('确定删除么?');");
 
-                ProductRecommand productRecommand = e.Item.DataItem as ProductRecommand;
-                Label lblID = e.Item.FindControl("lblID") as Label;
-                Label lblEdit = e.Item.FindControl("lblEdit") as Label;
+                PictureStore pictureStore = e.Item.DataItem as PictureStore;
+                Label lblPictureUrl = e.Item.FindControl("lblPictureUrl") as Label;
 
-                //序号
-                int num = int.Parse(Session["num"].ToString());
-                num++;
-                lblID.Text = num.ToString();
-                Session["num"] = num;
+                lblPictureUrl.Text = "<a href='#'target='_blank'><img src='http://www.baidu.com/img/baidu_logo.gif' width='40' height='20' alt='点击查看大图' /></a>";
 
-                lblEdit.Text = "<a href='ProductRecommandUpdate.aspx?ProductRecommandID=" + productRecommand.ProductRecommandID.ToString() + "&ProductID=" + productRecommand.ProductRawID.ToString() + "&operateType=2'>编辑</a>";
             }
         }
         public void dg_OnPageIndexChanged(object sender, DataGridPageChangedEventArgs e)
