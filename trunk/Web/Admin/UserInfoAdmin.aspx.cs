@@ -65,7 +65,7 @@ namespace Web.Admin
                 if (chkIsSend.Checked)
                 {
                     TempEmail tempEmail = new TempEmail();
-                    tempEmail.TempEmailName = dgi.Cells[3].ToString();
+                    tempEmail.TempEmailName = dgi.Cells[3].Text;
 
                     if (!UserAdmin.TempEmailCreateDeleteUpdate(tempEmail, UserAction.Create))
                     {
@@ -73,6 +73,7 @@ namespace Web.Admin
                     }
                 }
             }
+            this.Response.Redirect("UserInfoAdmin.aspx");
         }
         public void btnDelete_OnClick(object sender, EventArgs e)
         {

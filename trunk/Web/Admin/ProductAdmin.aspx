@@ -41,6 +41,7 @@
                 <asp:BoundColumn DataField="ProductName" HeaderText="名称"></asp:BoundColumn>
                 <asp:BoundColumn DataField="ProductCompany" HeaderText="厂商"></asp:BoundColumn>
                 <asp:BoundColumn DataField="ProductHits" HeaderText="点击数"></asp:BoundColumn>
+                <asp:HyperLinkColumn DataNavigateUrlField="ProductID" DataNavigateUrlFormatString="ProductComments.aspx?id={0}" Target="_blank" Text="浏览评论"></asp:HyperLinkColumn>
                 <asp:HyperLinkColumn DataNavigateUrlField="ProductID" DataNavigateUrlFormatString="ProductDetails.aspx?id={0}" Target="_blank" Text="详细"></asp:HyperLinkColumn>
                 <asp:HyperLinkColumn DataNavigateUrlField="ProductID" DataNavigateUrlFormatString="ProductEdit.aspx?id={0}" Target="_blank" Text="编辑"></asp:HyperLinkColumn>
                 <asp:ButtonColumn ButtonType="LinkButton" CommandName="recommand" Text="推荐"></asp:ButtonColumn>

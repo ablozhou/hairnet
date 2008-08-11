@@ -133,6 +133,7 @@
     <Compile Include="Entry\OrderEntry.cs" />
     <Compile Include="Entry\PictureStore.cs" />
     <Compile Include="Entry\PictureStoreComment.cs" />
+    <Compile Include="Entry\PictureStoreRecommand.cs" />
     <Compile Include="Entry\PictureStoreTag.cs" />
     <Compile Include="Entry\PriceRange.cs" />
     <Compile Include="Entry\Product.cs" />

@@ -981,6 +981,9 @@
     <Content Include="Admin\menu.html" />
     <Content Include="Admin\OrderInfoAdmin.aspx" />
     <Content Include="Admin\OrderInfoAdmin2.aspx" />
+    <Content Include="Admin\PictureStoreAdmin.aspx" />
+    <Content Include="Admin\PictureStoreRecommandAdmin.aspx" />
+    <Content Include="Admin\PictureStoreUpdate.aspx" />
     <Content Include="Admin\ProductAdmin.aspx" />
     <Content Include="Admin\ProductRecommandAdmin.aspx" />
     <Content Include="Admin\ProductRecommandUpdate.aspx" />
@@ -1055,6 +1058,27 @@
     </Compile>
     <Compile Include="Admin\OrderInfoAdmin2.aspx.designer.cs">
       <DependentUpon>OrderInfoAdmin2.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\PictureStoreAdmin.aspx.cs">
+      <SubType>ASPXCodeBehind</SubType>
+      <DependentUpon>PictureStoreAdmin.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\PictureStoreAdmin.aspx.designer.cs">
+      <DependentUpon>PictureStoreAdmin.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\PictureStoreRecommandAdmin.aspx.cs">
+      <SubType>ASPXCodeBehind</SubType>
+      <DependentUpon>PictureStoreRecommandAdmin.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\PictureStoreRecommandAdmin.aspx.designer.cs">
+      <DependentUpon>PictureStoreRecommandAdmin.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\PictureStoreUpdate.aspx.cs">
+      <SubType>ASPXCodeBehind</SubType>
+      <DependentUpon>PictureStoreUpdate.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\PictureStoreUpdate.aspx.designer.cs">
+      <DependentUpon>PictureStoreUpdate.aspx</DependentUpon>
     </Compile>
     <Compile Include="Admin\ProductAdmin.aspx.cs">
       <SubType>ASPXCodeBehind</SubType>

@@ -96,6 +96,33 @@ namespace HairNet.Business
             return ProviderFactory.GetProductDataProviderInstance().GetProductRecommandByProductRecommandID(productRecommandID);
         }
         /// <summary>
+        /// 获得图片库信息列表
+        /// </summary>
+        /// <param name="count"></param>
+        /// <returns></returns>
+        public static List<PictureStore> GetPictureStores(int count)
+        {
+            return ProviderFactory.GetPictureStoreDataProviderInstance().GetPictureStores(count);
+        }
+        /// <summary>
+        /// 获得图片库信息推荐列表
+        /// </summary>
+        /// <param name="count"></param>
+        /// <returns></returns>
+        public static List<PictureStoreRecommand> GetPictureStoreRecommands(int count)
+        {
+            return ProviderFactory.GetPictureStoreDataProviderInstance().GetPictureStoreRecommands(count);
+        }
+        /// <summary>
+        /// 获得图片推荐
+        /// </summary>
+        /// <param name="pictureStoreRecommandID"></param>
+        /// <returns></returns>
+        public static PictureStoreRecommand GetPictureStoreRecommand(int pictureStoreRecommandID)
+        {
+            return ProviderFactory.GetPictureStoreDataProviderInstance().GetPictureStoreRecommandByPictureStoreRecommandID(pictureStoreRecommandID);
+        }
+        /// <summary>
         /// 推荐美发厅
         /// </summary>
         /// <param name="hairShopID"></param>
@@ -237,6 +264,49 @@ namespace HairNet.Business
 
             return result;
         }
+
+        /// <summary>
+        /// 推荐图片库 添加，删除，修改
+        /// </summary>
+        /// <param name="pictureStoreID"></param>
+        /// <param name="pictureStoreRecommandID"></param>
+        /// <param name="pictureStoreRecommandInfo"></param>
+        /// <param name="pictureStoreRecommandEx"></param>
+        /// <param name="ua"></param>
+        /// <returns></returns>
+        public static bool RecommandPictureStore(int pictureStoreID, int pictureStoreRecommandID, string pictureStoreRecommandInfo, string pictureStoreRecommandEx, UserAction ua)
+        {
+            bool result = false;
+
+            PictureStore product = ProviderFactory.GetPictureStoreDataProviderInstance().GetPictureStoreByPictureStoreID(pictureStoreID);
+
+            if (product == null)
+            {
+                return false;
+            }
+
+            PictureStoreRecommand pictureStoreRecommand = new PictureStoreRecommand();
+            pictureStoreRecommand.PictureStoreRecommandID = pictureStoreRecommandID;
+            pictureStoreRecommand.PictureStoreRawID = product.PictureStoreID;
+            pictureStoreRecommand.PictureStoreName = product.PictureStoreName;
+            pictureStoreRecommand.PictureStoreRawUrl = product.PictureStoreRawUrl;
+            pictureStoreRecommand.PictureStoreLittleUrl = product.PictureStoreLittleUrl;
+            pictureStoreRecommand.PictureStoreTagIDs = product.PictureStoreTagIDs;
+            pictureStoreRecommand.PictureStoreDescription = product.PictureStoreDescription;
+            pictureStoreRecommand.PictureStoreHairEngineerIDs = product.PictureStoreHairEngineerIDs;
+            pictureStoreRecommand.PictureStoreHairShopIDs = product.PictureStoreHairShopIDs;
+            pictureStoreRecommand.PictureStoreCreateTime = product.PictureStoreCreateTime;
+            pictureStoreRecommand.PictureStoreGroupIDs = product.PictureStoreGroupIDs;
+            pictureStoreRecommand.PictureStoreRecommandEx = pictureStoreRecommandEx;
+            pictureStoreRecommand.PictureStoreRecommandInfo = pictureStoreRecommandInfo;
+
+            if (ProviderFactory.GetPictureStoreDataProviderInstance().PictureStoreRecommandCreateDeleteUpdate(pictureStoreRecommand, ua))
+            {
+                result = true;
+            }
+
+            return result;
+        }
         /// <summary>
         /// 删除美发厅
         /// </summary>
@@ -272,6 +342,19 @@ namespace HairNet.Business
             product.ProductID = productID;
 
             return ProviderFactory.GetProductDataProviderInstance().ProductCreateDeleteUpdate(product, UserAction.Delete);
+        }
+
+        /// <summary>
+        /// 删除图片库信息
+        /// </summary>
+        /// <param name="pictureStoreID"></param>
+        /// <returns></returns>
+        public static bool DeletePictureStore(int pictureStoreID)
+        {
+            PictureStore pictureStore = new PictureStore();
+            pictureStore.PictureStoreID = pictureStoreID;
+
+            return ProviderFactory.GetPictureStoreDataProviderInstance().PictureStoreCreateDeleteUpdate(pictureStore, UserAction.Delete);
         }
     }
 }
