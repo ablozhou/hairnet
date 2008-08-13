@@ -50,6 +50,7 @@ namespace Web.Admin
         public void btnAdd_OnClick(object sender, EventArgs e)
         {
             //添加操作，转向添加页面
+            this.Response.Redirect("ProductAdd.aspx");
         }
         public void btnRecommand_OnClick(object sender, EventArgs e)
         {
