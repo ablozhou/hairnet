@@ -325,5 +325,37 @@ namespace HairNet.Provider
 
             return list;
         }
+
+        public bool ProductCommentCreateDeleteUpdate(ProductComment productComment, UserAction ua)
+        {
+            bool result = false;
+            return result;
+        }
+        public List<ProductComment> GetProductCommentsByProductID(int productID, int count, string orderKey)
+        {
+            List<ProductComment> list = new List<ProductComment>();
+            return list;
+        }
+        public List<ProductComment> GetProductCommentsByUserID(int userID, int count, string orderKey)
+        {
+            List<ProductComment> list = new List<ProductComment>();
+            return list;
+        }
+
+        public bool ProductTagCreateDeleteUpdate(ProductTag productTag, UserAction ua)
+        {
+            bool result = false;
+            return result;
+        }
+        public List<ProductTag> GetProductTags(int count)
+        {
+            List<ProductTag> list = new List<ProductTag>();
+            return list;
+        }
+        public ProductTag GetProductTagByProductTagID(int productTagID)
+        {
+            ProductTag productTag = new ProductTag();
+            return productTag;
+        }
     }
 }

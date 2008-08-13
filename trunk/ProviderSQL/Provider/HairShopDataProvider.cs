@@ -52,6 +52,81 @@ namespace HairNet.Provider
         /// <param name="count">0 全部</param>
         /// <returns></returns>
         List<HairShopRecommand> GetHairShopRecommands(int count);
-        
+
+        /// <summary>
+        /// 获得美发店风格列表
+        /// </summary>
+        /// <returns></returns>
+        List<TypeTable> GetTypeTables();
+
+        /// <summary>
+        /// 美发店风格 添加，删除，修改
+        /// </summary>
+        /// <param name="typeTable"></param>
+        /// <param name="ua"></param>
+        /// <returns></returns>
+        bool TypeTableCreateDeleteUpdate(TypeTable typeTable, UserAction ua);
+
+        /// <summary>
+        /// 获得美发厅营业范围列表
+        /// </summary>
+        /// <returns></returns>
+        List<WorkRange> GetWorkRanges();
+
+        /// <summary>
+        /// 美发厅营业范围 添加，删除，修改
+        /// </summary>
+        /// <param name="workRange"></param>
+        /// <param name="ua"></param>
+        /// <returns></returns>
+        bool WorkRangeCreateDeleteUpdate(WorkRange workRange, UserAction ua);
+
+        /// <summary>
+        /// 获取美发厅TAG列表
+        /// </summary>
+        /// <param name="count"></param>
+        /// <returns></returns>
+        List<HairShopTag> GetHairShopTags(int count);
+
+        /// <summary>
+        /// 美发厅TAG列表 添加，删除，修改
+        /// </summary>
+        /// <param name="hairShopTag"></param>
+        /// <param name="ua"></param>
+        /// <returns></returns>
+        bool HairShopTagCreateDeleteUpdate(HairShopTag hairShopTag, UserAction ua);
+
+        /// <summary>
+        /// 通过TAGID获取美发厅TAG实体
+        /// </summary>
+        /// <param name="hairShopTagID"></param>
+        /// <returns></returns>
+        HairShopTag GetHairShopTagByHairShopTagID(int hairShopTagID);
+
+        /// <summary>
+        /// 通过美发厅ID获取美发厅评论列表
+        /// </summary>
+        /// <param name="hairShopID"></param>
+        /// <param name="count"></param>
+        /// <param name="orderKey">用户排序KEY 例如：时间排序，好评排序，按照用户排序</param>
+        /// <returns></returns>
+        List<HairShopComment> GetHairShopCommentsByHairShopID(int hairShopID,int count,string orderKey);
+
+        /// <summary>
+        /// 通过USERID获取美发厅的评论列表
+        /// </summary>
+        /// <param name="userID"></param>
+        /// <param name="count"></param>
+        /// <param name="orderKey">用户排序KEY 时间排序，好评排序，美发厅排序</param>
+        /// <returns></returns>
+        List<HairShopComment> GetHairShopCommentsByUserID(int userID, int count,string orderKey);
+
+        /// <summary>
+        /// 美发厅评论 添加，删除，修改
+        /// </summary>
+        /// <param name="hairShopComment"></param>
+        /// <param name="ua"></param>
+        /// <returns></returns>
+        bool HairShopCommentCreateDeleteUpdate(HairShopComment hairShopComment, UserAction ua);
     }
 }

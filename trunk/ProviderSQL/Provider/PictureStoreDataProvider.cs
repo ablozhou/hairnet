@@ -16,5 +16,18 @@ namespace HairNet.Provider
 
         PictureStoreRecommand GetPictureStoreRecommandByPictureStoreRecommandID(int pictureStoreRecommandID);
         List<PictureStoreRecommand> GetPictureStoreRecommands(int count);
+
+        bool PictureStoreCommentCreateDeleteUpdate(PictureStoreComment pictureStoreComment, UserAction ua);
+        List<PictureStoreComment> GetPictureStoreCommentsByPictureStoreID(int pictureStoreID,int count,string orderKey);
+        List<PictureStoreComment> GetPictureStoreCommentsByUserID(int userID, int count, string orderKey);
+
+        bool PictureStoreGroupCreateDeleteUpdate(PictureStoreGroup pictureStoreGroup, UserAction ua);
+        List<PictureStoreGroup> GetPictureStoreGroups(int count);
+        PictureStoreGroup GetPictureStoreGroupByPictureStoreGroupID(int pictureStoreGroupID);
+        List<PictureStoreGroup> GetPictureStoreGroupsByParentID(int parentID, int count);
+
+        bool PictureStoreTagCreateDeleteUpdate(PictureStoreTag pictureStoreTag, UserAction ua);
+        List<PictureStoreTag> GetPictureStoreTags(int count);
+        PictureStoreTag GetPictureStoreTagByPictureStoreTagID(int pictureStoreTagID);
     }
 }

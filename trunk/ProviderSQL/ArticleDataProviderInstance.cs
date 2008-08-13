@@ -130,20 +130,34 @@ namespace HairNet.Provider
         /// 获取文章
         /// </summary>
         /// <param name="count">0 所有</param>
-        /// <param name="userID">user ID</param>
+        /// <param name="groupID">0  所有</param>
         /// <returns></returns>
-        public List<Article> GetArticlesByUserID(int count, int userID)
+        public List<Article> GetArticlesByGroupID(int count, int groupID)
         {
-            List<Article > li = new List<Article> ();
+            List<Article> li = new List<Article>();
             string commText = "";
-            switch (count)
+            if (groupID == 0)
             {
-                case 0:
-                    commText = "select * from Article order by ArticleID desc where userID = "+userID ;
-                    break;
-                default:
-                    commText = "select top " + count.ToString() + " * from Article where userID = "+userID +" order by ArticleID desc";
-                    break;
+                switch (count)
+                {
+                    case 0:
+                        commText = "select * from Article order by ArticleID desc";
+                        break;
+                    default:
+                        commText = "select top " + count.ToString() + " * from Article order by ArticleID desc";
+                        break;
+                }
+            }
+            {
+                switch (count)
+                {
+                    case 0:
+                        commText = "select * from Article order by ArticleID desc where ArticleGroupID = " + groupID.ToString();
+                        break;
+                    default:
+                        commText = "select top " + count.ToString() + " * from Article where ArticleGroupID = " + groupID.ToString() + " order by ArticleID desc";
+                        break;
+                }
             }
 
             using (SqlConnection conn = new SqlConnection(DataHelper2.SqlConnectionString))
@@ -164,7 +178,7 @@ namespace HairNet.Provider
                                 art.ArticleAuthor = reader["ArticleAuthor"].ToString();
                                 art.ArticleContent = reader["ArticleContent"].ToString();
                                 art.ArticleDigNum = int.Parse(reader["ArticleDigNum"].ToString());
-                                art.ArticleGroupID = int.Parse ( reader["ArticleGroupID"].ToString());
+                                art.ArticleGroupID = int.Parse(reader["ArticleGroupID"].ToString());
                                 art.ArticleID = int.Parse(reader["ArticleID"].ToString());
                                 art.ArticleOutLink = reader["ArticleOutLink"].ToString();
                                 art.ArticlePublishDate = DateTime.Parse(reader["ArticlePublishDate"].ToString());
@@ -179,6 +193,59 @@ namespace HairNet.Provider
                 }
             }
             return li;
+        }
+
+        public bool ArticleTagCreateDeleteUpdate(ArticleTag articleTag, UserAction ua)
+        {
+            bool result = false;
+            return result;
+        }
+        public List<ArticleTag> GetArticleTags(int count)
+        {
+            List<ArticleTag> list = new List<ArticleTag>();
+            return list;
+        }
+        public ArticleTag GetArticleTagByArticleTagID(int articleTagID)
+        {
+            ArticleTag articleTag = new ArticleTag();
+            return articleTag;
+        }
+
+        public bool ArticleCommentCreateDeleteUpdate(ArticleComment articleComment, UserAction ua)
+        {
+            bool result = false;
+            return result;
+        }
+        public List<ArticleComment> GetArticleCommentsByArticleID(int articleID, int count, string orderKey)
+        {
+            List<ArticleComment> list = new List<ArticleComment>();
+            return list;
+        }
+        public List<ArticleComment> GetArticleCommentsByUserID(int userID, int count, string orderKey)
+        {
+            List<ArticleComment> list = new List<ArticleComment>();
+            return list;
+        }
+
+        public bool ArticleGroupCreateDeleteUpdate(ArticleGroup articleGroup, UserAction userAction)
+        {
+            bool result = false;
+            return result;
+        }
+        public List<ArticleGroup> GetArticleGroups(int count)
+        {
+            List<ArticleGroup> list = new List<ArticleGroup>();
+            return list;
+        }
+        public List<ArticleGroup> GetArticleGroupsByParentID(int parentID, int count)
+        {
+            List<ArticleGroup> list = new List<ArticleGroup>();
+            return list; 
+        }
+        public ArticleGroup GetArticleGroupByArticleGroupID(int articleGroupID)
+        {
+            ArticleGroup articleGroup = new ArticleGroup();
+            return articleGroup;
         }
     }
 }

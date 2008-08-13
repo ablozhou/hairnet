@@ -51,5 +51,13 @@ namespace HairNet.Provider
         /// <param name="count">0 È«²¿</param>
         /// <returns></returns>
         List<ProductRecommand> GetProductRecommands(int count);
+
+        bool ProductCommentCreateDeleteUpdate(ProductComment productComment, UserAction ua);
+        List<ProductComment> GetProductCommentsByProductID(int productID, int count, string orderKey);
+        List<ProductComment> GetProductCommentsByUserID(int userID, int count, string orderKey);
+
+        bool ProductTagCreateDeleteUpdate(ProductTag productTag, UserAction ua);
+        List<ProductTag> GetProductTags(int count);
+        ProductTag GetProductTagByProductTagID(int productTagID);
     }
 }

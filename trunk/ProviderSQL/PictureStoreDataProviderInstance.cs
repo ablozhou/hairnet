@@ -267,5 +267,59 @@ namespace HairNet.Provider
 
             return list;
         }
+
+        public bool PictureStoreCommentCreateDeleteUpdate(PictureStoreComment pictureStoreComment, UserAction ua)
+        {
+            bool result = false;
+            return result;
+        }
+
+        public List<PictureStoreComment> GetPictureStoreCommentsByPictureStoreID(int pictureStoreID, int count, string orderKey)
+        {
+            List<PictureStoreComment> list = new List<PictureStoreComment>();
+            return list;
+        }
+        public List<PictureStoreComment> GetPictureStoreCommentsByUserID(int userID, int count, string orderKey)
+        {
+            List<PictureStoreComment> list = new List<PictureStoreComment>();
+            return list;
+        }
+
+        public bool PictureStoreGroupCreateDeleteUpdate(PictureStoreGroup pictureStoreGroup, UserAction ua)
+        {
+            bool result = false;
+            return result;
+        }
+        public List<PictureStoreGroup> GetPictureStoreGroups(int count)
+        {
+            List<PictureStoreGroup> list = new List<PictureStoreGroup>();
+            return list;
+        }
+        public PictureStoreGroup GetPictureStoreGroupByPictureStoreGroupID(int pictureStoreGroupID)
+        {
+            PictureStoreGroup pictureStoreGroup = new PictureStoreGroup();
+            return pictureStoreGroup;
+        }
+        public List<PictureStoreGroup> GetPictureStoreGroupsByParentID(int parentID, int count)
+        {
+            List<PictureStoreGroup> list = new List<PictureStoreGroup>();
+            return list;
+        }
+
+        public bool PictureStoreTagCreateDeleteUpdate(PictureStoreTag pictureStoreTag, UserAction ua)
+        {
+            bool result = false;
+            return result;
+        }
+        public List<PictureStoreTag> GetPictureStoreTags(int count)
+        {
+            List<PictureStoreTag> pictureStoreTag = new List<PictureStoreTag>();
+            return pictureStoreTag;
+        }
+        public PictureStoreTag GetPictureStoreTagByPictureStoreTagID(int pictureStoreTagID)
+        {
+            PictureStoreTag pictureStoreTag = new PictureStoreTag();
+            return pictureStoreTag;
+        }
     }
 }
