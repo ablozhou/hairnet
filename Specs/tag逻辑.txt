@@ -26,3 +26,6 @@ when delete   the_object
 
 更新：不支持。逻辑如下：
 （更新业务实体的时候，要先对以前的TAG进行删除操作，然后，进行更新操作，更新的时候，先看当前TAG存在不，如果存在，则将当前业务实体添加到当前的TAG的业务实体列表中，如果不存在，则添加TAG）
+
+
+Mark has reviewed. No problem.
