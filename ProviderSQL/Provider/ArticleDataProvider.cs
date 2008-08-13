@@ -36,8 +36,20 @@ namespace HairNet.Provider
         /// </summary>
         /// <param name="count">0 Ыљга</param>
         /// <returns></returns>
-        List<Article> GetArticlesByUserID(int count,int userID);
+        List<Article> GetArticlesByGroupID(int count, int groupID);
 
+        bool ArticleTagCreateDeleteUpdate(ArticleTag articleTag, UserAction ua);
+        List<ArticleTag> GetArticleTags(int count);
+        ArticleTag GetArticleTagByArticleTagID(int articleTagID);
+
+        bool ArticleCommentCreateDeleteUpdate(ArticleComment articleComment, UserAction ua);
+        List<ArticleComment> GetArticleCommentsByArticleID(int articleID, int count, string orderKey);
+        List<ArticleComment> GetArticleCommentsByUserID(int userID, int count, string orderKey);
+
+        bool ArticleGroupCreateDeleteUpdate(ArticleGroup articleGroup, UserAction userAction);
+        List<ArticleGroup> GetArticleGroups(int count);
+        List<ArticleGroup> GetArticleGroupsByParentID(int parentID, int count);
+        ArticleGroup GetArticleGroupByArticleGroupID(int articleGroupID);
     
     }
 }

@@ -942,9 +942,11 @@
     <Content Include="Admin\FCKeditor\FCKeditor\license.txt" />
     <Content Include="Admin\FCKeditor\fckstyles.xml" />
     <Content Include="Admin\FCKeditor\fcktemplates.xml" />
+    <Content Include="Admin\HairEngineerAdd.aspx" />
     <Content Include="Admin\HairEngineerAdmin.aspx" />
     <Content Include="Admin\HairEngineerRecommandAdmin.aspx" />
     <Content Include="Admin\HairEngineerRecommandUpdate.aspx" />
+    <Content Include="Admin\HairShopAdd.aspx" />
     <Content Include="Admin\HairShopAdmin.aspx" />
     <Content Include="Admin\HairShopRecommandAdmin.aspx" />
     <Content Include="Admin\HairShopRecommandUpdate.aspx" />
@@ -981,9 +983,11 @@
     <Content Include="Admin\menu.html" />
     <Content Include="Admin\OrderInfoAdmin.aspx" />
     <Content Include="Admin\OrderInfoAdmin2.aspx" />
+    <Content Include="Admin\PictureStoreAdd.aspx" />
     <Content Include="Admin\PictureStoreAdmin.aspx" />
     <Content Include="Admin\PictureStoreRecommandAdmin.aspx" />
     <Content Include="Admin\PictureStoreUpdate.aspx" />
+    <Content Include="Admin\ProductAdd.aspx" />
     <Content Include="Admin\ProductAdmin.aspx" />
     <Content Include="Admin\ProductRecommandAdmin.aspx" />
     <Content Include="Admin\ProductRecommandUpdate.aspx" />
@@ -996,6 +1000,13 @@
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Admin\HairEngineerAdd.aspx.cs">
+      <SubType>ASPXCodeBehind</SubType>
+      <DependentUpon>HairEngineerAdd.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\HairEngineerAdd.aspx.designer.cs">
+      <DependentUpon>HairEngineerAdd.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Admin\HairEngineerAdmin.aspx.cs">
       <SubType>ASPXCodeBehind</SubType>
       <DependentUpon>HairEngineerAdmin.aspx</DependentUpon>
@@ -1016,6 +1027,13 @@
     </Compile>
     <Compile Include="Admin\HairEngineerRecommandUpdate.aspx.designer.cs">
       <DependentUpon>HairEngineerRecommandUpdate.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\HairShopAdd.aspx.cs">
+      <SubType>ASPXCodeBehind</SubType>
+      <DependentUpon>HairShopAdd.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\HairShopAdd.aspx.designer.cs">
+      <DependentUpon>HairShopAdd.aspx</DependentUpon>
     </Compile>
     <Compile Include="Admin\HairShopAdmin.aspx.cs">
       <SubType>ASPXCodeBehind</SubType>
@@ -1059,6 +1077,13 @@
     <Compile Include="Admin\OrderInfoAdmin2.aspx.designer.cs">
       <DependentUpon>OrderInfoAdmin2.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Admin\PictureStoreAdd.aspx.cs">
+      <SubType>ASPXCodeBehind</SubType>
+      <DependentUpon>PictureStoreAdd.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\PictureStoreAdd.aspx.designer.cs">
+      <DependentUpon>PictureStoreAdd.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Admin\PictureStoreAdmin.aspx.cs">
       <SubType>ASPXCodeBehind</SubType>
       <DependentUpon>PictureStoreAdmin.aspx</DependentUpon>
@@ -1079,6 +1104,13 @@
     </Compile>
     <Compile Include="Admin\PictureStoreUpdate.aspx.designer.cs">
       <DependentUpon>PictureStoreUpdate.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\ProductAdd.aspx.cs">
+      <SubType>ASPXCodeBehind</SubType>
+      <DependentUpon>ProductAdd.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\ProductAdd.aspx.designer.cs">
+      <DependentUpon>ProductAdd.aspx</DependentUpon>
     </Compile>
     <Compile Include="Admin\ProductAdmin.aspx.cs">
       <SubType>ASPXCodeBehind</SubType>

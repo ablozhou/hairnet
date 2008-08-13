@@ -51,5 +51,67 @@ namespace HairNet.Provider
         /// <param name="count">0 所有</param>
         /// <returns></returns>
         List<HairEngineerRecommand> GetHairEngineerRecommands(int count);
+
+        /// <summary>
+        /// 获得美发师类别列表
+        /// </summary>
+        /// <returns></returns>
+        List<HairEngineerClass> GetHairEngineerClasses();
+
+        /// <summary>
+        /// 美发师类别 添加，删除，修改
+        /// </summary>
+        /// <param name="hairEngineerClass"></param>
+        /// <param name="ua"></param>
+        /// <returns></returns>
+        bool HairEngineerClassCreateDeleteUpdate(HairEngineerClass hairEngineerClass, UserAction ua);
+
+        /// <summary>
+        /// 获取美发师TAG列表
+        /// </summary>
+        /// <param name="count"></param>
+        /// <returns></returns>
+        List<HairEngineerTag> GetHairEngineerTags(int count);
+
+        /// <summary>
+        /// 获得美发师TAG实体
+        /// </summary>
+        /// <param name="hairEngineerTagID"></param>
+        /// <returns></returns>
+        HairEngineerTag GetHairEngineerTagByHairEngineerTagID(int hairEngineerTagID);
+
+        /// <summary>
+        /// 美发师TAG 添加，删除，修改
+        /// </summary>
+        /// <param name="hairEngineerTag"></param>
+        /// <param name="ua"></param>
+        /// <returns></returns>
+        bool HairEngineerTagCreateDeleteUpdate(HairEngineerTag hairEngineerTag, UserAction ua);
+
+        /// <summary>
+        /// 获取美发师评论列表
+        /// </summary>
+        /// <param name="hairEngineerID"></param>
+        /// <param name="count"></param>
+        /// <param name="orderKey">排序KEY 按照时间排序，按照好评排序，按照用户ID排序</param>
+        /// <returns></returns>
+        List<HairEngineerComment> GetHairEngineerCommentsByHairEngineerID(int hairEngineerID,int count,string orderKey);
+
+        /// <summary>
+        /// 获取美发师评论列表
+        /// </summary>
+        /// <param name="userID"></param>
+        /// <param name="count"></param>
+        /// <param name="orderKey">排序KEY 按照时间排序，按照好评排序，按照美发师排序</param>
+        /// <returns></returns>
+        List<HairEngineerComment> GetHairEngineerCommentsByUserID(int userID, int count, string orderKey);
+
+        /// <summary>
+        /// 获取美发师评论列表
+        /// </summary>
+        /// <param name="hairEngineerComment"></param>
+        /// <param name="ua"></param>
+        /// <returns></returns>
+        bool HairEngineerCommentCreateDeleteUpdate(HairEngineerComment hairEngineerComment, UserAction ua);
     }
 }
