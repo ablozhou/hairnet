@@ -1,0 +1,28 @@
+添加TAG的业务逻辑:
+
+先判断，要添加的TAG字段存在不存在，如果存在，则不添加，但需要判断id里面存不存在，如果存在，不添加，否则，先删后加
+
+if( tag not exist)
+{
+	add tag
+}
+
+add object_id to ids
+
+  
+删除TAG的业务逻辑是这样的
+在删除业务对象的时候的时候出现,不允许更新业务实体的tag
+先将要删的业务对象的TAG列表取出，挨个查找tag，找到tag记录对应的ids，将业务对象对应的id从ids列表中移除，再判断当前ids列表是否为空，如果为空，则删除当前TAG
+
+when delete   the_object
+{
+	get tags of the_object;
+	foreach tag in tags:
+		remove id from ids of the tag
+		if ids is empty:
+			remove tag	
+
+}
+
+更新：不支持。逻辑如下：
+（更新业务实体的时候，要先对以前的TAG进行删除操作，然后，进行更新操作，更新的时候，先看当前TAG存在不，如果存在，则将当前业务实体添加到当前的TAG的业务实体列表中，如果不存在，则添加TAG）
