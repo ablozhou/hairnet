@@ -38,6 +38,7 @@ namespace HairNet.Provider
         /// <returns></returns>
         List<Article> GetArticlesByGroupID(int count, int groupID);
 
+        int GetTag(string tagName);
         bool ArticleTagCreateDeleteUpdate(ArticleTag articleTag, UserAction ua);
         List<ArticleTag> GetArticleTags(int count);
         ArticleTag GetArticleTagByArticleTagID(int articleTagID);

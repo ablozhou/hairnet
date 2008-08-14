@@ -135,7 +135,7 @@ namespace HairNet.Provider
         public List<Article> GetArticlesByGroupID(int count, int groupID)
         {
             List<Article> li = new List<Article>();
-            string commText = "";
+            string commText = string.Empty ;
             if (groupID == 0)
             {
                 switch (count)
@@ -198,54 +198,438 @@ namespace HairNet.Provider
         public bool ArticleTagCreateDeleteUpdate(ArticleTag articleTag, UserAction ua)
         {
             bool result = false;
+            string commandText = string.Empty;
+            switch (ua)
+            {
+                case UserAction.Create:
+                    commandText = "INSERT INTO ArticleTag  (ArticleTagID, ArticleTagName, ArticleIDs) VALUES ("+articleTag.TagID +", '"+articleTag.TagName +"', '"+articleTag.ArticleIDs +"')";
+                    break;
+                case UserAction.Delete:
+                    commandText = "DELETE FROM ArticleTag WHERE (ArticleTagID = "+articleTag.TagID +")";
+                    break;
+                case UserAction.Update:
+                    commandText = "UPDATE ArticleTag SET ArticleTagName ='"+articleTag.TagName +"', ArticleIDs ='"+articleTag.ArticleIDs +"' WHERE (ArticleTagID = "+articleTag.TagID +")";
+                    break;
+            }
+            using (SqlConnection conn = new SqlConnection(DataHelper2.SqlConnectionString))
+            {
+                using (SqlCommand comm = new SqlCommand())
+                {
+                    comm.CommandText = commandText;
+                    comm.Connection = conn;
+                    conn.Open();
+                    try
+                    {
+                        comm.ExecuteNonQuery();
+                        result = true;
+                    }
+                    catch (Exception ex)
+                    {
+                        throw new Exception(ex.Message);
+                    }
+
+                }
+            }
+          
             return result;
         }
         public List<ArticleTag> GetArticleTags(int count)
         {
             List<ArticleTag> list = new List<ArticleTag>();
+            string commText = string.Empty;
+            switch (count)
+            {
+                case 0:
+                    commText = "SELECT articletagID,ArticleTagName, ArticleIDs FROM ArticleTag order by articletagID desc";
+                    break;
+                default:
+                    commText = "select top " + count.ToString() + " * ArticleTag order by articletagID   desc";
+                    break;
+            }
+            
+
+            using (SqlConnection conn = new SqlConnection(DataHelper2.SqlConnectionString))
+            {
+                {
+                    using (SqlCommand comm = new SqlCommand())
+                    {
+                        comm.Connection = conn;
+                        comm.CommandText = commText;
+                        conn.Open();
+
+                        using (SqlDataReader reader = comm.ExecuteReader())
+                        {
+                            while (reader.Read())
+                            {
+                                ArticleTag tag = new ArticleTag();
+
+                                tag.TagID = int.Parse(reader["ArticletagID"].ToString());
+                                tag.TagName = reader["ArticleTagName"].ToString();
+                                tag.ArticleIDs  = reader["ArticleIDs"].ToString();
+
+                                list.Add(tag);
+                            }
+                        }
+                    }
+                }
+            }
             return list;
         }
         public ArticleTag GetArticleTagByArticleTagID(int articleTagID)
         {
-            ArticleTag articleTag = new ArticleTag();
-            return articleTag;
+            ArticleTag tag = new ArticleTag();
+
+            string commText = "SELECT * FROM ArticleTag where ArticleTagID="+articleTagID ;
+            using (SqlConnection conn = new SqlConnection(DataHelper2.SqlConnectionString))
+            {
+                {
+                    using (SqlCommand comm = new SqlCommand())
+                    {
+                        comm.Connection = conn;
+                        comm.CommandText = commText;
+                        conn.Open();
+
+                        using (SqlDataReader reader = comm.ExecuteReader())
+                        {
+                            while (reader.Read())
+                            {
+  
+                                tag.TagID = int.Parse(reader["TagID"].ToString());
+                                tag.TagName = reader["TagName"].ToString();
+                                tag.ArticleIDs = reader["ArticleIDs"].ToString();
+
+                               
+                            }
+                        }
+                    }
+                }
+            }
+            return tag;
         }
 
         public bool ArticleCommentCreateDeleteUpdate(ArticleComment articleComment, UserAction ua)
         {
             bool result = false;
+            string commandText = string.Empty;
+            switch (ua)
+            {
+                case UserAction.Create:
+                    commandText = "INSERT INTO ArticleComment  (ArticleCommentID, ArticleCommentText, UserID, UserName, UserAddress,  ArticleCommentCreateTime, ArticleID) VALUES ("+
+                        articleComment.CommentID +", '"+articleComment.CommentText +"',"+articleComment.UserID +", '"+articleComment.UserName +"', '"+articleComment.UserAddress +"','"+articleComment.CommentCreateTime +"',"+articleComment.ArticleID +")";
+                        break;
+                case UserAction.Delete:
+                    commandText = "DELETE FROM ArticleComment WHERE (ArticleCommentID = "+articleComment.CommentID +")";
+                    break;
+                case UserAction.Update:
+                    commandText = "UPDATE ArticleComment SET ArticleCommentText = '"+articleComment.CommentText +"', UserID = "+articleComment.UserID +", UserName = '"+articleComment.UserName +"', UserAddress = '"+articleComment.UserAddress +
+                        "',ArticleCommentCreateTime = '"+articleComment.CommentCreateTime +"', ArticleID = "+articleComment.ArticleID +" WHERE (ArticleCommentID = "+articleComment.CommentID +")";
+                    break;
+            }
+            using (SqlConnection conn = new SqlConnection(DataHelper2.SqlConnectionString))
+            {
+                using (SqlCommand comm = new SqlCommand())
+                {
+                    comm.CommandText = commandText;
+                    comm.Connection = conn;
+                    conn.Open();
+                    try
+                    {
+                        comm.ExecuteNonQuery();
+                        result = true;
+                    }
+                    catch (Exception ex)
+                    {
+                        throw new Exception(ex.Message);
+                    }
+
+                }
+            }
+          
             return result;
         }
         public List<ArticleComment> GetArticleCommentsByArticleID(int articleID, int count, string orderKey)
         {
             List<ArticleComment> list = new List<ArticleComment>();
-            return list;
+            string commText = string.Empty;
+            switch (count)
+            {
+                case 0:
+                    commText = "SELECT ArticleCommentText, UserID, UserName, UserAddress, ArticleCommentCreateTime, ArticleID, ArticleCommentID "+
+                        " FROM ArticleComment "+
+                        " WHERE (ArticleID = "+articleID +")";
+                        
+                    break;
+                default:
+                    commText = "select top " + count.ToString() + " * from ArticleComment WHERE (ArticleID = "+articleID +")";
+                    break;
+            }
+            
+           if (orderKey == "DESC")
+           {
+               commText += "ORDER BY ArticleCommentID DESC";
+           }
+           else
+           {
+               commText += "ORDER BY ArticleCommentID ";
+           }
+
+           using (SqlConnection conn = new SqlConnection(DataHelper2.SqlConnectionString))
+           {
+               {
+                   using (SqlCommand comm = new SqlCommand())
+                   {
+                       comm.Connection = conn;
+                       comm.CommandText = commText;
+                       conn.Open();
+
+                       using (SqlDataReader reader = comm.ExecuteReader())
+                       {
+                           while (reader.Read())
+                           {
+                               ArticleComment comment = new ArticleComment();
+
+                               comment.CommentID = int.Parse(reader["ArticleCommentID"].ToString());
+                               comment.ArticleID = int.Parse(reader["ArticleID"].ToString());
+                               comment.CommentCreateTime = DateTime.Parse(reader["ArticleCommentCreateTime"].ToString());
+                               comment.CommentText = reader["ArticleCommentText"].ToString();
+                               comment.UserAddress = reader["UserAddress"].ToString();
+                               comment.UserID = int.Parse(reader["UserID"].ToString());
+                               comment.UserName = reader["UserName"].ToString();
+
+
+                               list.Add(comment);
+                           }
+                       }
+                   }
+               }
+           }
+           return list;
         }
         public List<ArticleComment> GetArticleCommentsByUserID(int userID, int count, string orderKey)
         {
             List<ArticleComment> list = new List<ArticleComment>();
+            string commText = string.Empty;
+            switch (count)
+            {
+                case 0:
+                    commText = "SELECT ArticleCommentText, UserID, UserName, UserAddress, ArticleCommentCreateTime, ArticleID, ArticleCommentID " +
+                        " FROM ArticleComment " +
+                        " WHERE (UserID = " + userID  + ")";
+
+                    break;
+                default:
+                    commText = "select top " + count.ToString() + " * from ArticleComment WHERE (UserID = " + userID + ")";
+                    break;
+            }
+
+            if (orderKey == "DESC")
+            {
+                commText += "ORDER BY ArticleCommentID DESC";
+            }
+            else
+            {
+                commText += "ORDER BY ArticleCommentID ";
+            }
+
+            using (SqlConnection conn = new SqlConnection(DataHelper2.SqlConnectionString))
+            {
+                {
+                    using (SqlCommand comm = new SqlCommand())
+                    {
+                        comm.Connection = conn;
+                        comm.CommandText = commText;
+                        conn.Open();
+
+                        using (SqlDataReader reader = comm.ExecuteReader())
+                        {
+                            while (reader.Read())
+                            {
+                                ArticleComment comment = new ArticleComment();
+
+                                comment.CommentID = int.Parse(reader["ArticleCommentID"].ToString());
+                                comment.ArticleID = int.Parse(reader["ArticleID"].ToString());
+                                comment.CommentCreateTime = DateTime.Parse(reader["ArticleCommentCreateTime"].ToString());
+                                comment.CommentText = reader["ArticleCommentText"].ToString();
+                                comment.UserAddress = reader["UserAddress"].ToString();
+                                comment.UserID = int.Parse(reader["UserID"].ToString());
+                                comment.UserName = reader["UserName"].ToString();
+
+
+                                list.Add(comment);
+                            }
+                        }
+                    }
+                }
+            } 
+            
             return list;
         }
 
         public bool ArticleGroupCreateDeleteUpdate(ArticleGroup articleGroup, UserAction userAction)
         {
             bool result = false;
+            bool result = false;
+            string commandText = string.Empty;
+            switch (ua)
+            {
+                case UserAction.Create:
+                    commandText = "INSERT INTO ArticleGroup (ArticleGroupID, ArticleGroupName, ArticleGroupParentID, ArticleIDs) VALUES (" + articleGroup.ID + ", '" + articleGroup.Name + "', " + articleGroup.ArticleGroupParentID + ", '" + articleGroup.ArticleIDs + "')";
+                        break;
+                case UserAction.Delete:
+                    commandText = "DELETE FROM ArticleGroup WHERE (ArticleGroupID = "+articleGroup.ID +")";
+                    break;
+                case UserAction.Update:
+                    commandText = "UPDATE ArticleGroup SET ArticleGroupName = '" + articleGroup.Name + "', ArticleGroupParentID = " + articleGroup.ArticleGroupParentID + ", ArticleIDs = '" + articleGroup.ArticleIDs + "'";
+                    break;
+            }
+            using (SqlConnection conn = new SqlConnection(DataHelper2.SqlConnectionString))
+            {
+                using (SqlCommand comm = new SqlCommand())
+                {
+                    comm.CommandText = commandText;
+                    comm.Connection = conn;
+                    conn.Open();
+                    try
+                    {
+                        comm.ExecuteNonQuery();
+                        result = true;
+                    }
+                    catch (Exception ex)
+                    {
+                        throw new Exception(ex.Message);
+                    }
+
+                }
+            }
+          
+            
             return result;
         }
         public List<ArticleGroup> GetArticleGroups(int count)
         {
             List<ArticleGroup> list = new List<ArticleGroup>();
+            string commText = string.Empty;
+            switch (count)
+            {
+                case 0:
+                    commText = "SELECT ArticleGroup.* FROM ArticleGroup " ;
+
+                    break;
+                default:
+                    commText = "select top " + count.ToString() + " * from FROM ArticleGroup";
+                    break;
+            }
+
+            using (SqlConnection conn = new SqlConnection(DataHelper2.SqlConnectionString))
+            {
+                {
+                    using (SqlCommand comm = new SqlCommand())
+                    {
+                        comm.Connection = conn;
+                        comm.CommandText = commText;
+                        conn.Open();
+
+                        using (SqlDataReader reader = comm.ExecuteReader())
+                        {
+                            while (reader.Read())
+                            {
+                                ArticleGroup group = new ArticleGroup();
+                               
+
+                                group.ID  = int.Parse(reader["ArticleGroupID"].ToString());
+                               group.ArticleIDs  = reader["ArticleIDs"].ToString();
+                                group.ArticleGroupParentID = int.Parse(reader["ArticleGroupParentID"].ToString());
+                                group.Name  = reader["ArticleGroupName"].ToString();
+
+
+                                list.Add(group);
+                            }
+                        }
+                    }
+                }
+            } 
             return list;
         }
         public List<ArticleGroup> GetArticleGroupsByParentID(int parentID, int count)
         {
             List<ArticleGroup> list = new List<ArticleGroup>();
+            string commText = string.Empty;
+            switch (count)
+            {
+                case 0:
+                    commText = "SELECT ArticleGroup.* FROM ArticleGroup WHERE (ArticleGroupParentID = "+parentID+") ";
+
+                    break;
+                default:
+                    commText = "select top " + count.ToString() + " * from FROM ArticleGroup WHERE (ArticleGroupParentID = " + parentID + ") ";
+                    break;
+            }
+
+            using (SqlConnection conn = new SqlConnection(DataHelper2.SqlConnectionString))
+            {
+                {
+                    using (SqlCommand comm = new SqlCommand())
+                    {
+                        comm.Connection = conn;
+                        comm.CommandText = commText;
+                        conn.Open();
+
+                        using (SqlDataReader reader = comm.ExecuteReader())
+                        {
+                            while (reader.Read())
+                            {
+                                ArticleGroup group = new ArticleGroup();
+
+
+                                group.ID = int.Parse(reader["ArticleGroupID"].ToString());
+                                group.ArticleIDs = reader["ArticleIDs"].ToString();
+                                group.ArticleGroupParentID = int.Parse(reader["ArticleGroupParentID"].ToString());
+                                group.Name = reader["ArticleGroupName"].ToString();
+
+
+                                list.Add(group);
+                            }
+                        }
+                    }
+                }
+            } 
             return list; 
         }
         public ArticleGroup GetArticleGroupByArticleGroupID(int articleGroupID)
         {
-            ArticleGroup articleGroup = new ArticleGroup();
-            return articleGroup;
+            ArticleGroup group = new ArticleGroup();
+
+            string commText = "SELECT ArticleGroup.* FROM ArticleGroup WHERE (ArticleGroupID =  " + articleGroupID + ") ";
+
+
+            using (SqlConnection conn = new SqlConnection(DataHelper2.SqlConnectionString))
+            {
+                {
+                    using (SqlCommand comm = new SqlCommand())
+                    {
+                        comm.Connection = conn;
+                        comm.CommandText = commText;
+                        conn.Open();
+
+                        using (SqlDataReader reader = comm.ExecuteReader())
+                        {
+                            while (reader.Read())
+                            {
+
+                                group.ID = int.Parse(reader["ArticleGroupID"].ToString());
+                                group.ArticleIDs = reader["ArticleIDs"].ToString();
+                                group.ArticleGroupParentID = int.Parse(reader["ArticleGroupParentID"].ToString());
+                                group.Name = reader["ArticleGroupName"].ToString();
+
+
+                               
+                            }
+                        }
+                    }
+                }
+            } 
+    
+            return group;
         }
     }
 }
