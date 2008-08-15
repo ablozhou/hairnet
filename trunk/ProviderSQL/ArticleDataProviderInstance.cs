@@ -30,7 +30,7 @@ namespace HairNet.Provider
                             art.ArticleOutLink  + "','" + art.ArticleSource + "'," + art.ArticleGroupID + ",'" + art.ArticlePublishDate  + "')";
                     break;
                 case UserAction.Delete:
-                    commandText = "DELETE FROM Article FROM Article   where ArticleID=" + art.ArticleID.ToString();
+                    commandText = "DELETE FROM Article   where ArticleID=" + art.ArticleID.ToString();
                     break;
                 case UserAction.Update:
                     commandText = "UPDATE Article SET ArticleTitle = '" + art.ArticleTitle + "', ArticleAuthor = '" + art.ArticleAuthor + "', ArticleContent = '" + art.ArticleContent + "', ArticleTagIDs = '" + art.ArticleTagIDs + "'," +
