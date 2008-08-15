@@ -365,30 +365,243 @@ namespace HairNet.Provider
 
             return result;
         }
-        public List<ProductComment> GetProductCommentsByProductID(int productID, int count, string orderKey)
+        public List<ProductComment> GetProductCommentsByProductID(int productID, int count, OrderKey ok)
         {
             List<ProductComment> list = new List<ProductComment>();
+
+            string orderKey = " order by ";
+            switch (ok)
+            {
+                //case OrderKey.Good:
+                //    orderKey = "IsGood desc";
+                //    break;
+                case OrderKey.ID:
+                    orderKey = "UserID desc";
+                    break;
+                case OrderKey.Time:
+                    orderKey = "ProductCommentCreateTime desc";
+                    break;
+                default:
+                    orderKey = "ProductCommentID desc";
+                    break;
+            }
+            string commText = string.Empty;
+            switch (count)
+            {
+                case 0:
+                    commText = "select * from ProductComment where ProductID=" + productID.ToString() + orderKey;
+                    break;
+                default:
+                    commText = "select top " + count.ToString() + " * from ProductComment where ProductID=" + productID.ToString() + orderKey;
+                    break;
+            }
+
+            using (SqlConnection conn = new SqlConnection(DataHelper2.SqlConnectionString))
+            {
+                {
+                    using (SqlCommand comm = new SqlCommand())
+                    {
+                        comm.Connection = conn;
+                        comm.CommandText = commText;
+                        conn.Open();
+
+                        using (SqlDataReader sdr = comm.ExecuteReader())
+                        {
+                            while (sdr.Read())
+                            {
+                                ProductComment productComment = new ProductComment();
+
+                                productComment.CommentCreateTime = Convert.ToDateTime(sdr["ProductCommentCreateTime"].ToString());
+                                productComment.CommentID = int.Parse(sdr["ProductCommentID"].ToString());
+                                productComment.CommentText = sdr["ProductCommentText"].ToString();
+                                productComment.ProductID = int.Parse(sdr["ProductID"].ToString());
+                                productComment.UserAddress = sdr["UserAddress"].ToString();
+                                productComment.UserID = int.Parse(sdr["UserID"].ToString());
+                                productComment.UserName = sdr["UserName"].ToString();
+
+                                list.Add(productComment);
+                            }
+                        }
+                    }
+                }
+            }
+
             return list;
         }
-        public List<ProductComment> GetProductCommentsByUserID(int userID, int count, string orderKey)
+        public List<ProductComment> GetProductCommentsByUserID(int userID, int count, OrderKey ok)
         {
             List<ProductComment> list = new List<ProductComment>();
+
+            string orderKey = " order by ";
+            switch (ok)
+            {
+                //case OrderKey.Good:
+                //    orderKey = "IsGood desc";
+                //    break;
+                case OrderKey.ID:
+                    orderKey = "ProductID desc";
+                    break;
+                case OrderKey.Time:
+                    orderKey = "ProductCommentCreateTime desc";
+                    break;
+                default:
+                    orderKey = "ProductCommentID desc";
+                    break;
+            }
+            string commText = string.Empty;
+            switch (count)
+            {
+                case 0:
+                    commText = "select * from ProductComment where UserID=" + userID.ToString() + orderKey;
+                    break;
+                default:
+                    commText = "select top " + count.ToString() + " * from ProductComment where UserID=" + userID.ToString() + orderKey;
+                    break;
+            }
+
+            using (SqlConnection conn = new SqlConnection(DataHelper2.SqlConnectionString))
+            {
+                {
+                    using (SqlCommand comm = new SqlCommand())
+                    {
+                        comm.Connection = conn;
+                        comm.CommandText = commText;
+                        conn.Open();
+
+                        using (SqlDataReader sdr = comm.ExecuteReader())
+                        {
+                            while (sdr.Read())
+                            {
+                                ProductComment productComment = new ProductComment();
+
+                                productComment.CommentCreateTime = Convert.ToDateTime(sdr["ProductCommentCreateTime"].ToString());
+                                productComment.CommentID = int.Parse(sdr["ProductCommentID"].ToString());
+                                productComment.CommentText = sdr["ProductCommentText"].ToString();
+                                productComment.ProductID = int.Parse(sdr["ProductID"].ToString());
+                                productComment.UserAddress = sdr["UserAddress"].ToString();
+                                productComment.UserID = int.Parse(sdr["UserID"].ToString());
+                                productComment.UserName = sdr["UserName"].ToString();
+
+                                list.Add(productComment);
+                            }
+                        }
+                    }
+                }
+            }
+
             return list;
         }
 
         public bool ProductTagCreateDeleteUpdate(ProductTag productTag, UserAction ua)
         {
             bool result = false;
+
+            string commandText = string.Empty;
+            switch (ua)
+            {
+                case UserAction.Create:
+                    commandText = "insert into ProductTag(ProductTagName,ProductIDs) values('" + productTag.TagName + "','" + productTag.ProductIDs + "')";
+                    break;
+                case UserAction.Delete:
+                    commandText = "delete from ProductTag where ProductTagID=" + productTag.TagID.ToString();
+                    break;
+                case UserAction.Update:
+                    commandText = "update ProductTag set ProductTagName = '" + productTag.TagName + "',ProductIDs='" + productTag.ProductIDs + "' where ProductTagID=" + productTag.TagID.ToString();
+                    break;
+            }
+            using (SqlConnection conn = new SqlConnection(DataHelper2.SqlConnectionString))
+            {
+                using (SqlCommand comm = new SqlCommand())
+                {
+                    comm.CommandText = commandText;
+                    comm.Connection = conn;
+                    conn.Open();
+                    try
+                    {
+                        comm.ExecuteNonQuery();
+                        result = true;
+                    }
+                    catch (Exception ex)
+                    {
+                        throw new Exception(ex.Message);
+                    }
+
+                }
+            }
+
             return result;
         }
         public List<ProductTag> GetProductTags(int count)
         {
             List<ProductTag> list = new List<ProductTag>();
+
+            string commText = "";
+            switch (count)
+            {
+                case 0:
+                    commText = "select * from ProductTag Order by ProductTagID desc";
+                    break;
+                default:
+                    commText = "select top " + count.ToString() + " * from ProductTag order by ProductTagID desc";
+                    break;
+            }
+
+            using (SqlConnection conn = new SqlConnection(DataHelper2.SqlConnectionString))
+            {
+                {
+                    using (SqlCommand comm = new SqlCommand())
+                    {
+                        comm.Connection = conn;
+                        comm.CommandText = commText;
+                        conn.Open();
+
+                        using (SqlDataReader sdr = comm.ExecuteReader())
+                        {
+                            while (sdr.Read())
+                            {
+                                ProductTag productTag = new ProductTag();
+
+                                productTag.ProductIDs = sdr["ProductIDs"].ToString();
+                                productTag.TagID = int.Parse(sdr["ProductTagID"].ToString());
+                                productTag.TagName = sdr["ProductTagName"].ToString();
+
+                                list.Add(productTag);
+                            }
+                        }
+                    }
+                }
+            }
+
             return list;
         }
         public ProductTag GetProductTagByProductTagID(int productTagID)
         {
             ProductTag productTag = new ProductTag();
+
+            string commText = "select * from ProductTag where ProductTagID = " + productTagID.ToString();
+
+            using (SqlConnection conn = new SqlConnection(DataHelper2.SqlConnectionString))
+            {
+                {
+                    using (SqlCommand comm = new SqlCommand())
+                    {
+                        comm.Connection = conn;
+                        comm.CommandText = commText;
+                        conn.Open();
+
+                        using (SqlDataReader sdr = comm.ExecuteReader())
+                        {
+                            while (sdr.Read())
+                            {
+                                productTag.ProductIDs = sdr["ProductIDs"].ToString();
+                                productTag.TagID = int.Parse(sdr["ProductTagID"].ToString());
+                                productTag.TagName = sdr["ProductTagName"].ToString();
+                            }
+                        }
+                    }
+                }
+            }
+
             return productTag;
         }
     }

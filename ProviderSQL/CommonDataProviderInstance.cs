@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using HairNet.Entry;
 using HairNet.Enumerations;
+using System.Data.SqlClient;
 
 namespace HairNet.Provider
 {
@@ -256,7 +257,7 @@ namespace HairNet.Provider
             {
                 case UserAction.Create:
                     commandText = "INSERT INTO HotZone (HotZoneID, HotZoneName, HotZoneVisible,CityID) " +
-                            " VALUES (" + hotZone.ID + ",'" + hotZone.Name + "'," + hotZone.IsVisible + "," + hotZone.CityID + ")";
+                            " VALUES (" + hotZone.ID + ",'" + hotZone.Name + "'," + hotZone.IsVisible + "," + hotZone.ID + ")";
                     break;
                 case UserAction.Delete:
                     commandText = "DELETE FROM HotZone   where HotZoneID=" + hotZone.ID.ToString();

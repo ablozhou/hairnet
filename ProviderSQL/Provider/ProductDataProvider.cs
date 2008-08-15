@@ -53,8 +53,8 @@ namespace HairNet.Provider
         List<ProductRecommand> GetProductRecommands(int count);
 
         bool ProductCommentCreateDeleteUpdate(ProductComment productComment, UserAction ua);
-        List<ProductComment> GetProductCommentsByProductID(int productID, int count, string orderKey);
-        List<ProductComment> GetProductCommentsByUserID(int userID, int count, string orderKey);
+        List<ProductComment> GetProductCommentsByProductID(int productID, int count, OrderKey ok);
+        List<ProductComment> GetProductCommentsByUserID(int userID, int count, OrderKey ok);
 
         bool ProductTagCreateDeleteUpdate(ProductTag productTag, UserAction ua);
         List<ProductTag> GetProductTags(int count);
