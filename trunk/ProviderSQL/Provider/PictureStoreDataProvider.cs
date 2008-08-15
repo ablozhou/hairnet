@@ -18,8 +18,8 @@ namespace HairNet.Provider
         List<PictureStoreRecommand> GetPictureStoreRecommands(int count);
 
         bool PictureStoreCommentCreateDeleteUpdate(PictureStoreComment pictureStoreComment, UserAction ua);
-        List<PictureStoreComment> GetPictureStoreCommentsByPictureStoreID(int pictureStoreID,int count,string orderKey);
-        List<PictureStoreComment> GetPictureStoreCommentsByUserID(int userID, int count, string orderKey);
+        List<PictureStoreComment> GetPictureStoreCommentsByPictureStoreID(int pictureStoreID,int count,OrderKey ok);
+        List<PictureStoreComment> GetPictureStoreCommentsByUserID(int userID, int count, OrderKey ok);
 
         bool PictureStoreGroupCreateDeleteUpdate(PictureStoreGroup pictureStoreGroup, UserAction ua);
         List<PictureStoreGroup> GetPictureStoreGroups(int count);

@@ -271,54 +271,440 @@ namespace HairNet.Provider
         public bool PictureStoreCommentCreateDeleteUpdate(PictureStoreComment pictureStoreComment, UserAction ua)
         {
             bool result = false;
+
+            string commandText = string.Empty;
+            switch (ua)
+            {
+                case UserAction.Create:
+                    commandText = "insert into PictureStoreComment(PictureStoreCommentText,UserID,UserName,UserAddress,PictureStoreCommentCreateTime,PictureStoreID) values('" + pictureStoreComment.CommentText + "'," + pictureStoreComment.UserID.ToString() + ",'" + pictureStoreComment.UserName + "','" + pictureStoreComment.UserAddress + "','" + pictureStoreComment.CommentCreateTime.ToString() + "'," + pictureStoreComment.PictureStoreID.ToString() + ")";
+                    break;
+                case UserAction.Delete:
+                    commandText = "delete from PictureStoreComment whre PictureStoreCommentID = " + pictureStoreComment.CommentID.ToString();
+                    break;
+                case UserAction.Update:
+                    commandText = "update PictureStoreComment set PictureStoreCommentText ='" + pictureStoreComment.CommentText + "',UserID=" + pictureStoreComment.UserID.ToString() + ",UserName='" + pictureStoreComment.UserName + "',UserAddress='" + pictureStoreComment.UserAddress + "',PictureStoreCommentCreateTime='" + pictureStoreComment.CommentCreateTime.ToString() + "',PictureStoreID=" + pictureStoreComment.PictureStoreID.ToString() + " where PictureStoreCommentID=" + pictureStoreComment.CommentID.ToString();
+                    break;
+            }
+            using (SqlConnection conn = new SqlConnection(DataHelper2.SqlConnectionString))
+            {
+                using (SqlCommand comm = new SqlCommand())
+                {
+                    comm.CommandText = commandText;
+                    comm.Connection = conn;
+                    conn.Open();
+                    try
+                    {
+                        comm.ExecuteNonQuery();
+                        result = true;
+                    }
+                    catch (Exception ex)
+                    {
+                        throw new Exception(ex.Message);
+                    }
+
+                }
+            }
+
             return result;
         }
 
-        public List<PictureStoreComment> GetPictureStoreCommentsByPictureStoreID(int pictureStoreID, int count, string orderKey)
+        public List<PictureStoreComment> GetPictureStoreCommentsByPictureStoreID(int pictureStoreID, int count, OrderKey ok)
         {
             List<PictureStoreComment> list = new List<PictureStoreComment>();
+
+            string orderKey = " order by ";
+            switch (ok)
+            {
+                //case OrderKey.Good:
+                //    orderKey = "IsGood desc";
+                //    break;
+                case OrderKey.ID:
+                    orderKey = "UserID desc";
+                    break;
+                case OrderKey.Time:
+                    orderKey = "PictureStoreCommentCreateTime desc";
+                    break;
+                default:
+                    orderKey = "PictureStoreCommentID desc";
+                    break;
+            }
+            string commText = string.Empty;
+            switch (count)
+            {
+                case 0:
+                    commText = "select * from PictureStoreComment where PictureStoreID=" + pictureStoreID.ToString() + orderKey;
+                    break;
+                default:
+                    commText = "select top " + count.ToString() + " * from PictureStoreComment where PictureStoreID=" + pictureStoreID.ToString() + orderKey;
+                    break;
+            }
+
+            using (SqlConnection conn = new SqlConnection(DataHelper2.SqlConnectionString))
+            {
+                {
+                    using (SqlCommand comm = new SqlCommand())
+                    {
+                        comm.Connection = conn;
+                        comm.CommandText = commText;
+                        conn.Open();
+
+                        using (SqlDataReader sdr = comm.ExecuteReader())
+                        {
+                            while (sdr.Read())
+                            {
+                                PictureStoreComment pictureStoreComment = new PictureStoreComment();
+
+                                pictureStoreComment.CommentCreateTime = Convert.ToDateTime(sdr["PictureStoreCommentCreateTime"].ToString());
+                                pictureStoreComment.CommentID = int.Parse(sdr["PictureStoreCommentID"].ToString());
+                                pictureStoreComment.CommentText = sdr["PictureStoreCommentText"].ToString();
+                                pictureStoreComment.PictureStoreID = int.Parse(sdr["PictureStoreID"].ToString());
+                                pictureStoreComment.UserAddress = sdr["UserAddress"].ToString();
+                                pictureStoreComment.UserID = int.Parse(sdr["UserID"].ToString());
+                                pictureStoreComment.UserName = sdr["UserName"].ToString();
+
+                                list.Add(pictureStoreComment);
+                            }
+                        }
+                    }
+                }
+            }
+
             return list;
         }
-        public List<PictureStoreComment> GetPictureStoreCommentsByUserID(int userID, int count, string orderKey)
+        public List<PictureStoreComment> GetPictureStoreCommentsByUserID(int userID, int count, OrderKey ok)
         {
             List<PictureStoreComment> list = new List<PictureStoreComment>();
+
+            string orderKey = " order by ";
+            switch (ok)
+            {
+                //case OrderKey.Good:
+                //    orderKey = "IsGood desc";
+                //    break;
+                case OrderKey.ID:
+                    orderKey = "PictureStoreID desc";
+                    break;
+                case OrderKey.Time:
+                    orderKey = "PictureStoreCommentCreateTime desc";
+                    break;
+                default:
+                    orderKey = "PictureStoreCommentID desc";
+                    break;
+            }
+            string commText = string.Empty;
+            switch (count)
+            {
+                case 0:
+                    commText = "select * from PictureStoreComment where UserID=" + userID.ToString() + orderKey;
+                    break;
+                default:
+                    commText = "select top " + count.ToString() + " * from PictureStoreComment where UserID=" + userID.ToString() + orderKey;
+                    break;
+            }
+
+            using (SqlConnection conn = new SqlConnection(DataHelper2.SqlConnectionString))
+            {
+                {
+                    using (SqlCommand comm = new SqlCommand())
+                    {
+                        comm.Connection = conn;
+                        comm.CommandText = commText;
+                        conn.Open();
+
+                        using (SqlDataReader sdr = comm.ExecuteReader())
+                        {
+                            while (sdr.Read())
+                            {
+                                PictureStoreComment pictureStoreComment = new PictureStoreComment();
+
+                                pictureStoreComment.CommentCreateTime = Convert.ToDateTime(sdr["PictureStoreCommentCreateTime"].ToString());
+                                pictureStoreComment.CommentID = int.Parse(sdr["PictureStoreCommentID"].ToString());
+                                pictureStoreComment.CommentText = sdr["PictureStoreCommentText"].ToString();
+                                pictureStoreComment.PictureStoreID = int.Parse(sdr["PictureStoreID"].ToString());
+                                pictureStoreComment.UserAddress = sdr["UserAddress"].ToString();
+                                pictureStoreComment.UserID = int.Parse(sdr["UserID"].ToString());
+                                pictureStoreComment.UserName = sdr["UserName"].ToString();
+
+                                list.Add(pictureStoreComment);
+                            }
+                        }
+                    }
+                }
+            }
+
             return list;
         }
 
         public bool PictureStoreGroupCreateDeleteUpdate(PictureStoreGroup pictureStoreGroup, UserAction ua)
         {
             bool result = false;
+
+            string commandText = string.Empty;
+            switch (ua)
+            {
+                case UserAction.Create:
+                    commandText = "insert into PictureStoreGroup(PictureStoreGroupName,PictureStoreGroupParentID,PictureStoreIDs) values('"+pictureStoreGroup.Name+"','"+pictureStoreGroup.PictureStoreGroupParentID+"','"+pictureStoreGroup.PictureStoreIDs+"')";
+                    break;
+                case UserAction.Delete:
+                    commandText = "delete from PictureStoreGroup where PictureStoreGroupID="+pictureStoreGroup.ID.ToString();
+                    break;
+                case UserAction.Update:
+                    commandText = "update PictureStoreGroup set PictureStoreGroupName='"+pictureStoreGroup.Name+"',PictureStoreGroupParentID='"+pictureStoreGroup.PictureStoreGroupParentID+"',PictureStoreIDs='"+pictureStoreGroup.PictureStoreIDs+"' where PictureStoreGroupID="+pictureStoreGroup.ID.ToString();
+                    break;
+            }
+            using (SqlConnection conn = new SqlConnection(DataHelper2.SqlConnectionString))
+            {
+                using (SqlCommand comm = new SqlCommand())
+                {
+                    comm.CommandText = commandText;
+                    comm.Connection = conn;
+                    conn.Open();
+                    try
+                    {
+                        comm.ExecuteNonQuery();
+                        result = true;
+                    }
+                    catch (Exception ex)
+                    {
+                        throw new Exception(ex.Message);
+                    }
+
+                }
+            }
+
             return result;
         }
         public List<PictureStoreGroup> GetPictureStoreGroups(int count)
         {
             List<PictureStoreGroup> list = new List<PictureStoreGroup>();
+
+            string commText = "";
+            switch (count)
+            {
+                case 0:
+                    commText = "select * from PictureStoreGroup order by PictureStoreGroupID desc";
+                    break;
+                default:
+                    commText = "select top "+count.ToString()+" * from PictureStoreGroup order by PictureStoreGroupID desc";
+                    break;
+            }
+
+            using (SqlConnection conn = new SqlConnection(DataHelper2.SqlConnectionString))
+            {
+                {
+                    using (SqlCommand comm = new SqlCommand())
+                    {
+                        comm.Connection = conn;
+                        comm.CommandText = commText;
+                        conn.Open();
+
+                        using (SqlDataReader sdr = comm.ExecuteReader())
+                        {
+                            while (sdr.Read())
+                            {
+                                PictureStoreGroup pictureStoreGroup = new PictureStoreGroup();
+
+                                pictureStoreGroup.ID = int.Parse(sdr["PictureStoreGroupID"].ToString());
+                                pictureStoreGroup.Name = sdr["PictureStoreGroupName"].ToString();
+                                pictureStoreGroup.PictureStoreGroupParentID = int.Parse(sdr["PictureStoreGroupParentID"].ToString());
+                                pictureStoreGroup.PictureStoreIDs = sdr["PictureStoreIDs"].ToString();
+
+                                list.Add(pictureStoreGroup);
+                            }
+                        }
+                    }
+                }
+            }
+
             return list;
         }
         public PictureStoreGroup GetPictureStoreGroupByPictureStoreGroupID(int pictureStoreGroupID)
         {
             PictureStoreGroup pictureStoreGroup = new PictureStoreGroup();
+
+            string commText = "select * from PictureStoreGroup where PictureStoreGroupID=" + pictureStoreGroupID.ToString();
+                
+
+            using (SqlConnection conn = new SqlConnection(DataHelper2.SqlConnectionString))
+            {
+                {
+                    using (SqlCommand comm = new SqlCommand())
+                    {
+                        comm.Connection = conn;
+                        comm.CommandText = commText;
+                        conn.Open();
+
+                        using (SqlDataReader sdr = comm.ExecuteReader())
+                        {
+                            while (sdr.Read())
+                            {
+                                pictureStoreGroup.ID = int.Parse(sdr["PictureStoreGroupID"].ToString());
+                                pictureStoreGroup.Name = sdr["PictureStoreGroupName"].ToString();
+                                pictureStoreGroup.PictureStoreGroupParentID = int.Parse(sdr["PictureStoreGroupParentID"].ToString());
+                                pictureStoreGroup.PictureStoreIDs = sdr["PictureStoreIDs"].ToString();
+                            }
+                        }
+                    }
+                }
+            }
+
             return pictureStoreGroup;
         }
         public List<PictureStoreGroup> GetPictureStoreGroupsByParentID(int parentID, int count)
         {
             List<PictureStoreGroup> list = new List<PictureStoreGroup>();
+
+            string commText = "";
+            switch (count)
+            {
+                case 0:
+                    commText = "select * from PictureStoreGroup where PictureStoreGroupParentID="+parentID.ToString()+" order by PictureStoreGroupID desc";
+                    break;
+                default:
+                    commText = "select top " + count.ToString() + " * from PictureStoreGroup where PictureStoreGroupParentID="+parentID.ToString()+" order by PictureStoreGroupID desc";
+                    break;
+            }
+
+            using (SqlConnection conn = new SqlConnection(DataHelper2.SqlConnectionString))
+            {
+                {
+                    using (SqlCommand comm = new SqlCommand())
+                    {
+                        comm.Connection = conn;
+                        comm.CommandText = commText;
+                        conn.Open();
+
+                        using (SqlDataReader sdr = comm.ExecuteReader())
+                        {
+                            while (sdr.Read())
+                            {
+                                PictureStoreGroup pictureStoreGroup = new PictureStoreGroup();
+
+                                pictureStoreGroup.ID = int.Parse(sdr["PictureStoreGroupID"].ToString());
+                                pictureStoreGroup.Name = sdr["PictureStoreGroupName"].ToString();
+                                pictureStoreGroup.PictureStoreGroupParentID = int.Parse(sdr["PictureStoreGroupParentID"].ToString());
+                                pictureStoreGroup.PictureStoreIDs = sdr["PictureStoreIDs"].ToString();
+
+                                list.Add(pictureStoreGroup);
+                            }
+                        }
+                    }
+                }
+            }
+
             return list;
         }
 
         public bool PictureStoreTagCreateDeleteUpdate(PictureStoreTag pictureStoreTag, UserAction ua)
         {
             bool result = false;
+
+            string commandText = string.Empty;
+            switch (ua)
+            {
+                case UserAction.Create:
+                    commandText = "insert into PictureStoreTag(PictureStoreTagName,PictureStoreIDs) values('" + pictureStoreTag.TagName + "','" + pictureStoreTag.PictureStoreIDs + "')";
+                    break;
+                case UserAction.Delete:
+                    commandText = "delete from PictureStoreTag where PictureStoreTagID=" + pictureStoreTag.TagID.ToString();
+                    break;
+                case UserAction.Update:
+                    commandText = "update PictureStoreTag set PictureStoreTagName = '" + pictureStoreTag.TagName + "',PictureStoreIDs='" + pictureStoreTag.PictureStoreIDs + "' where PictureStoreTagID=" + pictureStoreTag.TagID.ToString();
+                    break;
+            }
+            using (SqlConnection conn = new SqlConnection(DataHelper2.SqlConnectionString))
+            {
+                using (SqlCommand comm = new SqlCommand())
+                {
+                    comm.CommandText = commandText;
+                    comm.Connection = conn;
+                    conn.Open();
+                    try
+                    {
+                        comm.ExecuteNonQuery();
+                        result = true;
+                    }
+                    catch (Exception ex)
+                    {
+                        throw new Exception(ex.Message);
+                    }
+
+                }
+            }
+
             return result;
         }
         public List<PictureStoreTag> GetPictureStoreTags(int count)
         {
-            List<PictureStoreTag> pictureStoreTag = new List<PictureStoreTag>();
-            return pictureStoreTag;
+            List<PictureStoreTag> list = new List<PictureStoreTag>();
+
+            string commText = "";
+            switch (count)
+            {
+                case 0:
+                    commText = "select * from PictureStoreTag Order by PictureStoreTagID desc";
+                    break;
+                default:
+                    commText = "select top " + count.ToString() + " * from PictureStoreTag order by PictureStoreTagID desc";
+                    break;
+            }
+
+            using (SqlConnection conn = new SqlConnection(DataHelper2.SqlConnectionString))
+            {
+                {
+                    using (SqlCommand comm = new SqlCommand())
+                    {
+                        comm.Connection = conn;
+                        comm.CommandText = commText;
+                        conn.Open();
+
+                        using (SqlDataReader sdr = comm.ExecuteReader())
+                        {
+                            while (sdr.Read())
+                            {
+                                PictureStoreTag pictureStoreTag = new PictureStoreTag();
+
+                                pictureStoreTag.PictureStoreIDs = sdr["PictureStoreIDs"].ToString();
+                                pictureStoreTag.TagID = int.Parse(sdr["PictureStoreTagID"].ToString());
+                                pictureStoreTag.TagName = sdr["PictureStoreTagName"].ToString();
+
+                                list.Add(pictureStoreTag);
+                            }
+                        }
+                    }
+                }
+            }
+
+            return list;
         }
         public PictureStoreTag GetPictureStoreTagByPictureStoreTagID(int pictureStoreTagID)
         {
             PictureStoreTag pictureStoreTag = new PictureStoreTag();
+
+            string commText = "select * from PictureStoreTag where PictureStoreTagID=" + pictureStoreTagID.ToString();
+            
+            using (SqlConnection conn = new SqlConnection(DataHelper2.SqlConnectionString))
+            {
+                {
+                    using (SqlCommand comm = new SqlCommand())
+                    {
+                        comm.Connection = conn;
+                        comm.CommandText = commText;
+                        conn.Open();
+
+                        using (SqlDataReader sdr = comm.ExecuteReader())
+                        {
+                            while (sdr.Read())
+                            {
+                                pictureStoreTag.PictureStoreIDs = sdr["PictureStoreIDs"].ToString();
+                                pictureStoreTag.TagID = int.Parse(sdr["PictureStoreTagID"].ToString());
+                                pictureStoreTag.TagName = sdr["PictureStoreTagName"].ToString();
+                            }
+                        }
+                    }
+                }
+            }
+
             return pictureStoreTag;
         }
     }
