@@ -66,7 +66,7 @@ namespace HairNet.Provider
                     commandText = "DELETE FROM City   where CityID=" + city.ID.ToString();
                     break;
                 case UserAction.Update:
-                    commandText = "UPDATE City SET CityID = " + city.ID  + ", CityName = '" + city.Name  + "', CityVisible = " + city.IsVisible  ;
+                    commandText = "UPDATE City SET CityID = " + city.ID  + ", CityName = '" + city.Name  + "', CityVisible = " + city.IsVisible +" where CityID = "+city.ID  ;
                     break;
             }
             using (SqlConnection conn = new SqlConnection(DataHelper2.SqlConnectionString))
@@ -176,7 +176,7 @@ namespace HairNet.Provider
                     commandText = "DELETE FROM MapZone   where MapZoneID=" + mapZone.ID.ToString();
                     break;
                 case UserAction.Update:
-                    commandText = "UPDATE MapZone SET MapZoneID = " + mapZone.ID + ", mapZoneName = '" + mapZone.Name + "', mapZoneVisible = " + mapZone.IsVisible +",CityID="+mapZone.CityID ;
+                    commandText = "UPDATE MapZone SET MapZoneID = " + mapZone.ID + ", mapZoneName = '" + mapZone.Name + "', mapZoneVisible = " + mapZone.IsVisible +",CityID="+mapZone.CityID +" where MapZoneID="+mapZone.ID ;
                     break;
             }
             using (SqlConnection conn = new SqlConnection(DataHelper2.SqlConnectionString))
@@ -229,7 +229,7 @@ namespace HairNet.Provider
 
                                 hotz.MapZoneID = int.Parse(reader["MapZoneID"].ToString());
                                 hotz.ID = int.Parse(reader["HotZoneID"].ToString());
-                                hotz.IsVisible = bool.Parse(reader["HotZoneID"].ToString());
+                                hotz.IsVisible = bool.Parse(reader["HotZoneVisible"].ToString());
                                 hotz.Name = reader["HotZoneName"].ToString();
 
                                 list.Add(hotz);
@@ -263,7 +263,7 @@ namespace HairNet.Provider
                     commandText = "DELETE FROM HotZone   where HotZoneID=" + hotZone.ID.ToString();
                     break;
                 case UserAction.Update:
-                    commandText = "UPDATE HotZone SET HotZoneID = " + hotZone.ID + ", HotZoneName = '" +hotZone.Name + "', HotZoneVisible = " + hotZone.IsVisible + ",MapZoneID=" + hotZone.MapZoneID;
+                    commandText = "UPDATE HotZone SET HotZoneID = " + hotZone.ID + ", HotZoneName = '" +hotZone.Name + "', HotZoneVisible = " + hotZone.IsVisible + ",MapZoneID=" + hotZone.MapZoneID +" where HotZoneID = "+hotZone.ID;
                     break;
             }
             using (SqlConnection conn = new SqlConnection(DataHelper2.SqlConnectionString))
@@ -299,8 +299,43 @@ namespace HairNet.Provider
         public List<PriceRange> GetPriceRanges(int count)
         {
             List<PriceRange> list = new List<PriceRange>();
+            string commText = string.Empty; 
 
+            switch (count)
+            {
+                case 0:
+                    commText = "SELECT PriceRange.* FROM PriceRange ORDER BY PriceRangeID DESC";
+                    break;
+                default:
+                    commText = "select top " + count.ToString() + " * FROM PriceRange ORDER BY PriceRangeID DESC";
+                    break;
+            }
+            using (SqlConnection conn = new SqlConnection(DataHelper2.SqlConnectionString))
+            {
+                {
+                    using (SqlCommand comm = new SqlCommand())
+                    {
+                        comm.Connection = conn;
+                        comm.CommandText = commText;
+                        conn.Open();
 
+                        using (SqlDataReader reader = comm.ExecuteReader())
+                        {
+                            while (reader.Read())
+                            {
+                                PriceRange price = new PriceRange();
+
+                                price.ID = int.Parse(reader["PriceRangeID"].ToString());
+                                
+                                price.IsVisible = bool.Parse(reader["PriceRangeVisible"].ToString());
+                                price.Name = reader["PriceRangeName"].ToString();
+
+                                list.Add(price);
+                            }
+                        }
+                    }
+                }
+            }
             return list;
         }
 
@@ -309,9 +344,42 @@ namespace HairNet.Provider
         /// </summary>
         /// <param name="priceRange"></param>
         /// <returns></returns>
-        public bool PriceRangeCreateDeleteUpdate(PriceRange priceRange)
+        public bool PriceRangeCreateDeleteUpdate(PriceRange priceRange, UserAction ua)
         {
             bool result = false;
+            string commandText = string.Empty;
+            switch (ua)
+            {
+                case UserAction.Create:
+                    commandText = "INSERT INTO PriceRange (PriceRangeID, PriceRangeName, PriceRangeVisible) VALUES (" +
+                        priceRange.ID + ", '" + priceRange.Name + "'," + priceRange.IsVisible + ") ";
+                    break;
+                case UserAction.Delete:
+                    commandText = "DELETE FROM PriceRange   where PriceRangeID=" + priceRange.ID.ToString();
+                    break;
+                case UserAction.Update:
+                    commandText = "UPDATE PriceRange SET PriceRangeID = " + priceRange.ID + ", PriceRangeName = '" + priceRange.Name + "', PriceRangeVisible = " + priceRange.IsVisible + " where PriceRangeID ="+priceRange.ID ;
+                    break;
+            }
+            using (SqlConnection conn = new SqlConnection(DataHelper2.SqlConnectionString))
+            {
+                using (SqlCommand comm = new SqlCommand())
+                {
+                    comm.CommandText = commandText;
+                    comm.Connection = conn;
+                    conn.Open();
+                    try
+                    {
+                        comm.ExecuteNonQuery();
+                        result = true;
+                    }
+                    catch (Exception ex)
+                    {
+                        throw new Exception(ex.Message);
+                    }
+
+                }
+            }
             return result;
         }
 
@@ -326,6 +394,33 @@ namespace HairNet.Provider
         public List<HairNetTag> GetHairNetTagsByHairNetTagGroupID(int hairNetTagGroupID)
         {
             List<HairNetTag> list = new List<HairNetTag>();
+
+            string commText = "SELECT * FROM HairNetTag where HairNetTagGroupID=" + hairNetTagGroupID;
+            using (SqlConnection conn = new SqlConnection(DataHelper2.SqlConnectionString))
+            {
+                {
+                    using (SqlCommand comm = new SqlCommand())
+                    {
+                        comm.Connection = conn;
+                        comm.CommandText = commText;
+                        conn.Open();
+
+                        using (SqlDataReader reader = comm.ExecuteReader())
+                        {
+                            while (reader.Read())
+                            {
+                                HairNetTag tag = new HairNetTag();
+                                tag.TagID  = int.Parse(reader["HairNetTagID"].ToString());
+                                tag.TagName = reader["HairNetTagName"].ToString();
+                                tag.HairNetTagGroupID = int.Parse (reader["HairNetTagGroupID"].ToString());
+                                // there is no ids?
+                                list.Add(tag);
+
+                            }
+                        }
+                    }
+                }
+            }
             return list;
         }
 
@@ -339,7 +434,38 @@ namespace HairNet.Provider
         public bool HairNetTagCreateDeleteUpdate(HairNetTag hairNetTag, UserAction ua)
         {
             bool result = false;
+            string commandText = string.Empty;
+            switch (ua)
+            {
+                case UserAction.Create:
+                    commandText = "INSERT INTO HairNetTag  (HairNetTagID, HairNetTagName, HairNetTagGroupID) VALUES (" + hairNetTag.TagID + ", '" + hairNetTag.TagName + "', '" + hairNetTag.HairNetTagGroupID + "')";
+                    break;
+                case UserAction.Delete:
+                    commandText = "DELETE FROM HairNetTag WHERE (HairNetTagID = " + hairNetTag.TagID + ")";
+                    break;
+                case UserAction.Update:
+                    commandText = "UPDATE HairNetTag SET HairNetTagName ='" + hairNetTag.TagName + "', HairNetTagGroupID =" + hairNetTag.HairNetTagGroupID + " WHERE (HairNetTagID = " + hairNetTag.TagID + ")";
+                    break;
+            }
+            using (SqlConnection conn = new SqlConnection(DataHelper2.SqlConnectionString))
+            {
+                using (SqlCommand comm = new SqlCommand())
+                {
+                    comm.CommandText = commandText;
+                    comm.Connection = conn;
+                    conn.Open();
+                    try
+                    {
+                        comm.ExecuteNonQuery();
+                        result = true;
+                    }
+                    catch (Exception ex)
+                    {
+                        throw new Exception(ex.Message);
+                    }
 
+                }
+            }
             return result;
         }
 
@@ -351,6 +477,44 @@ namespace HairNet.Provider
         public List<HairNetTagGroup> GetHairNetTagGroups(int count)
         {
             List<HairNetTagGroup> list = new List<HairNetTagGroup>();
+            string commText = string.Empty;
+
+            switch (count)
+            {
+                case 0:
+                    commText = "SELECT * FROM HairNetTagGroup ORDER BY HairNetTagGroupID DESC";
+                    break;
+                default:
+                    commText = "select top " + count.ToString() + " * FROM HairNetTagGroup ORDER BY HairNetTagGroupID DESC";
+                    break;
+            }
+            
+            using (SqlConnection conn = new SqlConnection(DataHelper2.SqlConnectionString))
+            {
+                {
+                    using (SqlCommand comm = new SqlCommand())
+                    {
+                        comm.Connection = conn;
+                        comm.CommandText = commText;
+                        conn.Open();
+
+                        using (SqlDataReader reader = comm.ExecuteReader())
+                        {
+                            while (reader.Read())
+                            {
+                                HairNetTagGroup tag = new HairNetTagGroup();
+                                tag.ID  = int.Parse(reader["HairNetTagGroupID"].ToString());
+                                tag.Name = reader["HairNetTagGroupName"].ToString();
+                                
+                               
+                                list.Add(tag);
+
+                            }
+                        }
+                    }
+                }
+            }
+
             return list;
         }
 
@@ -363,7 +527,38 @@ namespace HairNet.Provider
         public bool HairNetTagGroupCreateDeleteUpdate(HairNetTagGroup hairNetTagGroup, UserAction ua)
         {
             bool result = false;
+            string commandText = string.Empty;
+            switch (ua)
+            {
+                case UserAction.Create:
+                    commandText = "INSERT INTO HairNetTagGroup  (HairNetTagGroupID, HairNetTagGroupName) VALUES (" + hairNetTagGroup.ID + ", '" + hairNetTagGroup.Name + "')";
+                    break;
+                case UserAction.Delete:
+                    commandText = "DELETE FROM HairNetTagGroup WHERE (HairNetTagGroupID = " + hairNetTagGroup.ID + ")";
+                    break;
+                case UserAction.Update:
+                    commandText = "UPDATE HairNetTagGroup SET HairNetTagGroupName ='" + hairNetTagGroup.Name + "' WHERE (HairNetTagGroupID = " + hairNetTagGroup.ID + ")";
+                    break;
+            }
+            using (SqlConnection conn = new SqlConnection(DataHelper2.SqlConnectionString))
+            {
+                using (SqlCommand comm = new SqlCommand())
+                {
+                    comm.CommandText = commandText;
+                    comm.Connection = conn;
+                    conn.Open();
+                    try
+                    {
+                        comm.ExecuteNonQuery();
+                        result = true;
+                    }
+                    catch (Exception ex)
+                    {
+                        throw new Exception(ex.Message);
+                    }
 
+                }
+            }
             return result;
         }
     }

@@ -67,7 +67,7 @@ namespace HairNet.Provider
         /// </summary>
         /// <param name="priceRange"></param>
         /// <returns></returns>
-        bool PriceRangeCreateDeleteUpdate(PriceRange priceRange);
+        bool PriceRangeCreateDeleteUpdate(PriceRange priceRange,UserAction ua);
 
         //排序方式，现在暂不书写，这是根据天天的图设计的需求，但是，咱不适合
 
