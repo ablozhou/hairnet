@@ -110,7 +110,7 @@ namespace HairNet.Provider
         /// <param name="count"></param>
         /// <param name="orderKey">用户排序KEY 例如：时间排序，好评排序，按照用户排序</param>
         /// <returns></returns>
-        List<HairShopComment> GetHairShopCommentsByHairShopID(int hairShopID,int count,string orderKey);
+        List<HairShopComment> GetHairShopCommentsByHairShopID(int hairShopID,int count,OrderKey ok);
 
         /// <summary>
         /// 通过USERID获取美发厅的评论列表
@@ -119,7 +119,7 @@ namespace HairNet.Provider
         /// <param name="count"></param>
         /// <param name="orderKey">用户排序KEY 时间排序，好评排序，美发厅排序</param>
         /// <returns></returns>
-        List<HairShopComment> GetHairShopCommentsByUserID(int userID, int count,string orderKey);
+        List<HairShopComment> GetHairShopCommentsByUserID(int userID, int count,OrderKey ok);
 
         /// <summary>
         /// 美发厅评论 添加，删除，修改

@@ -95,7 +95,7 @@ namespace HairNet.Provider
         /// <param name="count"></param>
         /// <param name="orderKey">排序KEY 按照时间排序，按照好评排序，按照用户ID排序</param>
         /// <returns></returns>
-        List<HairEngineerComment> GetHairEngineerCommentsByHairEngineerID(int hairEngineerID,int count,string orderKey);
+        List<HairEngineerComment> GetHairEngineerCommentsByHairEngineerID(int hairEngineerID,int count,OrderKey ok);
 
         /// <summary>
         /// 获取美发师评论列表
@@ -104,7 +104,7 @@ namespace HairNet.Provider
         /// <param name="count"></param>
         /// <param name="orderKey">排序KEY 按照时间排序，按照好评排序，按照美发师排序</param>
         /// <returns></returns>
-        List<HairEngineerComment> GetHairEngineerCommentsByUserID(int userID, int count, string orderKey);
+        List<HairEngineerComment> GetHairEngineerCommentsByUserID(int userID, int count, OrderKey ok);
 
         /// <summary>
         /// 获取美发师评论列表

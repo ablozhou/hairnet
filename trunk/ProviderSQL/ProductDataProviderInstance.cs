@@ -329,6 +329,40 @@ namespace HairNet.Provider
         public bool ProductCommentCreateDeleteUpdate(ProductComment productComment, UserAction ua)
         {
             bool result = false;
+
+            string commandText = string.Empty;
+            switch (ua)
+            {
+                case UserAction.Create:
+                    commandText = "insert into ProductComment(ProductCommentText,UserID,UserName,UserAddress,ProductCommentCreateTime,ProductID) values('" + productComment.CommentText + "'," + productComment.UserID.ToString() + ",'" + productComment.UserName + "','" + productComment.UserAddress + "','" + productComment.CommentCreateTime.ToString() + "'," + productComment.ProductID.ToString() + ")";
+                    break;
+                case UserAction.Delete:
+                    commandText = "delete from ProductComment whre ProductCommentID = " + productComment.CommentID.ToString();
+                    break;
+                case UserAction.Update:
+                    commandText = "update ProductComment set ProductCommentText ='" + productComment.CommentText + "',UserID=" + productComment.UserID.ToString() + ",UserName='" + productComment.UserName + "',UserAddress='" + productComment.UserAddress + "',ProductCommentCreateTime='" + productComment.CommentCreateTime.ToString() + "',ProductID=" + productComment.ProductID.ToString() + " where ProductCommentID=" + productComment.CommentID.ToString();
+                    break;
+            }
+            using (SqlConnection conn = new SqlConnection(DataHelper2.SqlConnectionString))
+            {
+                using (SqlCommand comm = new SqlCommand())
+                {
+                    comm.CommandText = commandText;
+                    comm.Connection = conn;
+                    conn.Open();
+                    try
+                    {
+                        comm.ExecuteNonQuery();
+                        result = true;
+                    }
+                    catch (Exception ex)
+                    {
+                        throw new Exception(ex.Message);
+                    }
+
+                }
+            }
+
             return result;
         }
         public List<ProductComment> GetProductCommentsByProductID(int productID, int count, string orderKey)
