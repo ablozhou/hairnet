@@ -1,7 +1,7 @@
 ﻿<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="3.5">
   <PropertyGroup>
     <ProjectType>Local</ProjectType>
-    <ProductVersion>9.0.21022</ProductVersion>
+    <ProductVersion>8.0.50727</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{A2DF3516-4D41-465B-8022-165A73143574}</ProjectGuid>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -133,6 +133,7 @@
     <Compile Include="Entry\OrderEntry.cs" />
     <Compile Include="Entry\PictureStore.cs" />
     <Compile Include="Entry\PictureStoreComment.cs" />
+    <Compile Include="Entry\PictureStoreRecommand.cs" />
     <Compile Include="Entry\PictureStoreTag.cs" />
     <Compile Include="Entry\PriceRange.cs" />
     <Compile Include="Entry\Product.cs" />
@@ -141,6 +142,7 @@
     <Compile Include="Entry\ProductTag.cs" />
     <Compile Include="Entry\TempEmail.cs" />
     <Compile Include="Entry\UserEntry.cs" />
+    <Compile Include="Enumerations\OrderKey.cs" />
     <Compile Include="Enumerations\SortFilter.cs" />
     <Compile Include="Enumerations\Status.cs" />
     <Compile Include="Enumerations\UpLoadFileType.cs" />

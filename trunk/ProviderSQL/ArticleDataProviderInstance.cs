@@ -465,9 +465,8 @@ namespace HairNet.Provider
             return list;
         }
 
-        public bool ArticleGroupCreateDeleteUpdate(ArticleGroup articleGroup, UserAction userAction)
+        public bool ArticleGroupCreateDeleteUpdate(ArticleGroup articleGroup, UserAction ua)
         {
-            bool result = false;
             bool result = false;
             string commandText = string.Empty;
             switch (ua)
