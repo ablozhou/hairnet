@@ -291,7 +291,7 @@ namespace HairNet.Provider
 
                         using (SqlDataReader reader = comm.ExecuteReader())
                         {
-                            while (reader.Read())
+                            if (reader.Read())
                             {
   
                                 tag.TagID = int.Parse(reader["TagID"].ToString());
