@@ -44,8 +44,8 @@ namespace HairNet.Provider
         ArticleTag GetArticleTagByArticleTagID(int articleTagID);
 
         bool ArticleCommentCreateDeleteUpdate(ArticleComment articleComment, UserAction ua);
-        List<ArticleComment> GetArticleCommentsByArticleID(int articleID, int count, string orderKey);
-        List<ArticleComment> GetArticleCommentsByUserID(int userID, int count, string orderKey);
+        List<ArticleComment> GetArticleCommentsByArticleID(int articleID, int count,  OrderKey ok );
+        List<ArticleComment> GetArticleCommentsByUserID(int userID, int count, OrderKey ok);
 
         bool ArticleGroupCreateDeleteUpdate(ArticleGroup articleGroup, UserAction userAction);
         List<ArticleGroup> GetArticleGroups(int count);
