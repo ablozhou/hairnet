@@ -37,7 +37,15 @@ namespace HairNet.Provider
         /// </summary>
         /// <param name="count">0 全部</param>
         /// <returns></returns>
-        List<HairShop> GetHairShops(int count);
+        List<HairShop> GetHairShops(int count,OrderKey ok);
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="count"></param>
+        /// <param name="ok"></param>
+        /// <returns></returns>
+        List<HairShop> GetHairShops(int count, OrderKey ok,string hairShopName);
 
         /// <summary>
         /// 通过美发厅推荐ID获得美发厅推荐实体
@@ -128,5 +136,29 @@ namespace HairNet.Provider
         /// <param name="ua"></param>
         /// <returns></returns>
         bool HairShopCommentCreateDeleteUpdate(HairShopComment hairShopComment, UserAction ua);
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="count"></param>
+        /// <returns></returns>
+        List<HairShopComment> GetHairShopComments(int count);
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="count"></param>
+        /// <returns></returns>
+        List<HairShopComment> GetHairShopCommentsByKeyText(int count, string keyText);
+
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="count"></param>
+        /// <param name="sTime"></param>
+        /// <param name="eTime"></param>
+        /// <returns></returns>
+        List<HairShopComment> GetHairShopCommentsByTimeZone(int count, string sTime, string eTime);
     }
 }

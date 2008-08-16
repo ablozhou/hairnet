@@ -23,13 +23,14 @@ namespace Web.Admin
             {
                 this.databind();
 
+                Session["query"] = null;
                 this.txtQueryName.Visible = true;
-                this.lblQueryNameSpace.Visible = true;
                 this.txtStartTime.Visible = false;
                 this.txtEndTime.Visible = false;
                 this.lblEndTime.Visible = false;
                 this.lblStartTime.Visible = false;
                 this.lblTimeSpace.Visible = false;
+                this.lblQueryNameSpace.Visible = true;
             }
         }
         public void ddlQuery_OnSelectedIndexChanged(object sender, EventArgs e)
@@ -57,11 +58,13 @@ namespace Web.Admin
         }
         public void ddlOrderWay_OnSelectIndexChanged(object sender, EventArgs e)
         {
-            //根据排序绑定
+            this.databind();
         }
         public void btnQuery_OnClick(object sender, EventArgs e)
         {
-
+            //目前只实现名称模糊查询，关键字和时间段具体实现需要确认
+            Session["query"] = this.txtQueryName.Text;
+            this.databind();
         }
         public void btnSelect_OnClick(object sender, EventArgs e)
         {
@@ -122,7 +125,61 @@ namespace Web.Admin
         }
         public void databind()
         {
-            List<Product> list = InfoAdmin.GetProducts(0);
+            List<Product> list = new List<Product>();
+
+            if (Session["query"] == null || Session["query"].ToString() == string.Empty)
+            {
+                //根据排序绑定,均是倒序
+                switch (this.ddlOrderWay.SelectedValue)
+                {
+                    case "1":
+                        //发布时间，即ID
+                        list = InfoAdmin.GetProducts(0, OrderKey.ID);
+                        break;
+                    case "2":
+                        //点击数
+                        list = InfoAdmin.GetProducts(0, OrderKey.HitNum);
+                        break;
+                    case "3":
+                        //评论数
+                        //目前未实现评论数排序，目前为对评论数进行预处理，故DESIGN改变后，再实现
+                        //list = InfoAdmin.GetProducts(0, OrderKey.CommentNum);
+                        break;
+                }
+            }
+            else
+            {
+                switch (this.ddlQuery.SelectedValue)
+                {
+                    case "1":
+                        //名称
+                        //根据排序绑定,均是倒序
+                        switch (this.ddlOrderWay.SelectedValue)
+                        {
+                            case "1":
+                                //发布时间，即ID
+                                list = InfoAdmin.GetProducts(0, OrderKey.ID, Session["query"].ToString());
+                                break;
+                            case "2":
+                                //点击数
+                                list = InfoAdmin.GetProducts(0, OrderKey.HitNum, Session["query"].ToString());
+                                break;
+                            case "3":
+                                //评论数
+                                //目前未实现评论数排序，目前为对评论数进行预处理，故DESIGN改变后，再实现
+                                //list = InfoAdmin.GetProducts(0, OrderKey.CommentNum, Session["query"].ToString());
+                                break;
+                        }
+                        break;
+                    case "2":
+                        //关键字
+                        break;
+                    case "3":
+                        //时间段
+                        break;
+
+                }
+            }
 
             this.dg.DataKeyField = "ProductID";
             this.dg.DataSource = list;

@@ -14,9 +14,19 @@ namespace HairNet.Business
         /// </summary>
         /// <param name="count"></param>
         /// <returns></returns>
-        public static List<HairShop> GetHairShops(int count)
+        public static List<HairShop> GetHairShops(int count,OrderKey ok)
         {
-            return ProviderFactory.GetHairShopDataProviderInstance().GetHairShops(count);  
+            return ProviderFactory.GetHairShopDataProviderInstance().GetHairShops(count,ok);  
+        }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="count"></param>
+        /// <param name="ok"></param>
+        /// <returns></returns>
+        public static List<HairShop> GetHairShops(int count, OrderKey ok,string hairShopName)
+        {
+            return ProviderFactory.GetHairShopDataProviderInstance().GetHairShops(count, ok,hairShopName);
         }
 
         /// <summary>
@@ -24,9 +34,20 @@ namespace HairNet.Business
         /// </summary>
         /// <param name="count"></param>
         /// <returns></returns>
-        public static List<HairEngineer> GetHairEngineers(int count)
+        public static List<HairEngineer> GetHairEngineers(int count,OrderKey ok)
         {
-            return ProviderFactory.GetHairEngineerDataProviderInstance().GetHairEngineers(count);
+            return ProviderFactory.GetHairEngineerDataProviderInstance().GetHairEngineers(count,ok);
+        }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="count"></param>
+        /// <param name="ok"></param>
+        /// <param name="hairEngineerName"></param>
+        /// <returns></returns>
+        public static List<HairEngineer> GetHairEngineers(int count,OrderKey ok,string hairEngineerName)
+        {
+            return ProviderFactory.GetHairEngineerDataProviderInstance().GetHairEngineers(count,ok,hairEngineerName);
         }
 
         /// <summary>
@@ -34,9 +55,21 @@ namespace HairNet.Business
         /// </summary>
         /// <param name="count"></param>
         /// <returns></returns>
-        public static List<Product> GetProducts(int count)
+        public static List<Product> GetProducts(int count,OrderKey ok)
         {
-            return ProviderFactory.GetProductDataProviderInstance().GetProducts(count);  
+            return ProviderFactory.GetProductDataProviderInstance().GetProducts(count,ok);  
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="count"></param>
+        /// <param name="ok"></param>
+        /// <param name="productName"></param>
+        /// <returns></returns>
+        public static List<Product> GetProducts(int count, OrderKey ok,string productName)
+        {
+            return ProviderFactory.GetProductDataProviderInstance().GetProducts(count, ok,productName);
         }
 
         /// <summary>
@@ -100,9 +133,19 @@ namespace HairNet.Business
         /// </summary>
         /// <param name="count"></param>
         /// <returns></returns>
-        public static List<PictureStore> GetPictureStores(int count)
+        public static List<PictureStore> GetPictureStores(int count,OrderKey ok)
         {
-            return ProviderFactory.GetPictureStoreDataProviderInstance().GetPictureStores(count);
+            return ProviderFactory.GetPictureStoreDataProviderInstance().GetPictureStores(count,ok);
+        }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="count"></param>
+        /// <param name="ok"></param>
+        /// <returns></returns>
+        public static List<PictureStore> GetPictureStores(int count, OrderKey ok,string pictureStoreName)
+        {
+            return ProviderFactory.GetPictureStoreDataProviderInstance().GetPictureStores(count, ok,pictureStoreName);
         }
         /// <summary>
         /// 获得图片库信息推荐列表
@@ -355,6 +398,81 @@ namespace HairNet.Business
             pictureStore.PictureStoreID = pictureStoreID;
 
             return ProviderFactory.GetPictureStoreDataProviderInstance().PictureStoreCreateDeleteUpdate(pictureStore, UserAction.Delete);
+        }
+        public static List<HairEngineerComment> GetHairEngineerComments(int count)
+        {
+            return ProviderFactory.GetHairEngineerDataProviderInstance().GetHairEngineerComments(count);
+        }
+        public static List<HairEngineerComment> GetHairEngineerCommentsByKeyText(int count, string keyText)
+        {
+            return ProviderFactory.GetHairEngineerDataProviderInstance().GetHairEngineerCommentsByKeyText(count, keyText); 
+        }
+        public static bool DeleteHairEngineerCommentByHairEngineerCommentID(int hairEngineerCommentID)
+        {
+            HairEngineerComment hairEngineerComment = new HairEngineerComment();
+            hairEngineerComment.CommentID = hairEngineerCommentID;
+            return ProviderFactory.GetHairEngineerDataProviderInstance().HairEngineerCommentCreateDeleteUpdate(hairEngineerComment, UserAction.Delete);
+        }
+        public static List<HairEngineerComment> GetHairEngineerCommentsByTimeZone(int count, string sTime, string eTime)
+        {
+            return ProviderFactory.GetHairEngineerDataProviderInstance().GetHairEngineerCommentsByTimeZone(count, sTime, eTime);
+        }
+
+        public static List<HairShopComment> GetHairShopComments(int count)
+        {
+            return ProviderFactory.GetHairShopDataProviderInstance().GetHairShopComments(count);
+        }
+        public static List<HairShopComment> GetHairShopCommentsByKeyText(int count, string keyText)
+        {
+            return ProviderFactory.GetHairShopDataProviderInstance().GetHairShopCommentsByKeyText(count, keyText);
+        }
+        public static bool DeleteHairShopCommentByHairShopCommentID(int hairShopCommentID)
+        {
+            HairShopComment hairShopComment = new HairShopComment();
+            hairShopComment.CommentID = hairShopCommentID;
+            return ProviderFactory.GetHairShopDataProviderInstance().HairShopCommentCreateDeleteUpdate(hairShopComment, UserAction.Delete);
+        }
+        public static List<HairShopComment> GetHairShopCommentsByTimeZone(int count, string sTime, string eTime)
+        {
+            return ProviderFactory.GetHairShopDataProviderInstance().GetHairShopCommentsByTimeZone(count, sTime, eTime);
+        }
+
+        public static List<ProductComment> GetProductComments(int count)
+        {
+            return ProviderFactory.GetProductDataProviderInstance().GetProductComments(count);
+        }
+        public static List<ProductComment> GetProductCommentsByKeyText(int count, string keyText)
+        {
+            return ProviderFactory.GetProductDataProviderInstance().GetProductCommentsByKeyText(count, keyText);
+        }
+        public static bool DeleteProductCommentByProductCommentID(int productCommentID)
+        {
+            ProductComment productComment = new ProductComment();
+            productComment.CommentID = productCommentID;
+            return ProviderFactory.GetProductDataProviderInstance().ProductCommentCreateDeleteUpdate(productComment, UserAction.Delete);
+        }
+        public static List<ProductComment> GetProductCommentsByTimeZone(int count, string sTime, string eTime)
+        {
+            return ProviderFactory.GetProductDataProviderInstance().GetProductCommentsByTimeZone(count, sTime, eTime);
+        }
+
+        public static List<PictureStoreComment> GetPictureStoreComments(int count)
+        {
+            return ProviderFactory.GetPictureStoreDataProviderInstance().GetPictureStoreComments(count);
+        }
+        public static List<PictureStoreComment> GetPictureStoreCommentsByKeyText(int count, string keyText)
+        {
+            return ProviderFactory.GetPictureStoreDataProviderInstance().GetPictureStoreCommentsByKeyText(count, keyText);
+        }
+        public static bool DeletePictureStoreCommentByPictureStoreCommentID(int pictureStoreCommentID)
+        {
+            PictureStoreComment pictureStoreComment = new PictureStoreComment();
+            pictureStoreComment.CommentID = pictureStoreCommentID;
+            return ProviderFactory.GetPictureStoreDataProviderInstance().PictureStoreCommentCreateDeleteUpdate(pictureStoreComment, UserAction.Delete);
+        }
+        public static List<PictureStoreComment> GetPictureStoreCommentsByTimeZone(int count, string sTime, string eTime)
+        {
+            return ProviderFactory.GetPictureStoreDataProviderInstance().GetPictureStoreCommentsByTimeZone(count, sTime, eTime);
         }
     }
 }

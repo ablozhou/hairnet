@@ -36,7 +36,16 @@ namespace HairNet.Provider
         /// </summary>
         /// <param name="count">0 所有</param>
         /// <returns></returns>
-        List<HairEngineer> GetHairEngineers(int count);
+        List<HairEngineer> GetHairEngineers(int count,OrderKey ok);
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="count"></param>
+        /// <param name="ok"></param>
+        /// <param name="hairEngineerName"></param>
+        /// <returns></returns>
+        List<HairEngineer> GetHairEngineers(int count, OrderKey ok,string hairEngineerName);
 
         /// <summary>
         /// 通过美发师推荐ID来获取美发师推荐实体
@@ -98,6 +107,20 @@ namespace HairNet.Provider
         List<HairEngineerComment> GetHairEngineerCommentsByHairEngineerID(int hairEngineerID,int count,OrderKey ok);
 
         /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="count"></param>
+        /// <returns></returns>
+        List<HairEngineerComment> GetHairEngineerComments(int count);
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="count"></param>
+        /// <returns></returns>
+        List<HairEngineerComment> GetHairEngineerCommentsByKeyText(int count,string keyText);
+
+        /// <summary>
         /// 获取美发师评论列表
         /// </summary>
         /// <param name="userID"></param>
@@ -105,6 +128,15 @@ namespace HairNet.Provider
         /// <param name="orderKey">排序KEY 按照时间排序，按照好评排序，按照美发师排序</param>
         /// <returns></returns>
         List<HairEngineerComment> GetHairEngineerCommentsByUserID(int userID, int count, OrderKey ok);
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="count"></param>
+        /// <param name="sTime"></param>
+        /// <param name="eTime"></param>
+        /// <returns></returns>
+        List<HairEngineerComment> GetHairEngineerCommentsByTimeZone(int count, string sTime,string eTime);
 
         /// <summary>
         /// 获取美发师评论列表

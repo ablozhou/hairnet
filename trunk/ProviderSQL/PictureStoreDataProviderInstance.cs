@@ -121,18 +121,108 @@ namespace HairNet.Provider
             return pictureStore;
         }
 
-        public List<PictureStore> GetPictureStores(int count)
+        public List<PictureStore> GetPictureStores(int count,OrderKey ok)
         {
             List<PictureStore> list = new List<PictureStore>();
+
+            string orderKey = " order by ";
+            switch (ok)
+            {
+                case OrderKey.ID:
+                    orderKey += "PictureStoreID desc";
+                    break;
+                //case OrderKey.CommentNum:
+                //评论数未作预处理，暂不实现
+                //    orderKey += "he.HairEngineerGood+he.HairEngineerBad desc";
+                //    break;
+                case OrderKey.HitNum:
+                    orderKey += "PictureStoreHits desc";
+                    break;
+                default:
+                    orderKey += "PictureStoreID desc";
+                    break;
+
+            }
 
             string commText = "";
             switch (count)
             {
                 case 0:
-                    commText = "select * from PictureStore order by PictureStoreID desc";
+                    commText = "select * from PictureStore" + orderKey;
                     break;
                 default:
-                    commText = "select top "+count.ToString()+" * from PictureStore order by PictureStoreID desc";
+                    commText = "select top " + count.ToString() + " * from PictureStore" + orderKey;
+                    break;
+            }
+
+            using (SqlConnection conn = new SqlConnection(DataHelper2.SqlConnectionString))
+            {
+                {
+                    using (SqlCommand comm = new SqlCommand())
+                    {
+                        comm.Connection = conn;
+                        comm.CommandText = commText;
+                        conn.Open();
+
+                        using (SqlDataReader sdr = comm.ExecuteReader())
+                        {
+                            while (sdr.Read())
+                            {
+                                PictureStore pictureStore = new PictureStore();
+
+                                pictureStore.PictureStoreID = int.Parse(sdr["PictureStoreID"].ToString());
+                                pictureStore.PictureStoreName = sdr["PictureStoreName"].ToString();
+                                pictureStore.PictureStoreRawUrl = sdr["PictureStoreRawUrl"].ToString();
+                                pictureStore.PictureStoreLittleUrl = sdr["PictureStoreLittleUrl"].ToString();
+                                pictureStore.PictureStoreTagIDs = sdr["PictureStoreTagIDs"].ToString();
+                                pictureStore.PictureStoreHits = int.Parse(sdr["PictureStoreHits"].ToString());
+                                pictureStore.PictureStoreDescription = sdr["PictureStoreDescription"].ToString();
+                                pictureStore.PictureStoreHairEngineerIDs = sdr["HairEngineerIDs"].ToString();
+                                pictureStore.PictureStoreHairShopIDs = sdr["HairShopIDs"].ToString();
+                                pictureStore.PictureStoreCreateTime = Convert.ToDateTime(sdr["PictureStoreCreateTime"].ToString());
+                                pictureStore.PictureStoreGroupIDs = sdr["PictureStoreGroupIDs"].ToString();
+
+                                list.Add(pictureStore);
+                            }
+                        }
+                    }
+                }
+            }
+
+            return list;
+        }
+
+        public List<PictureStore> GetPictureStores(int count, OrderKey ok,string pictureStoreName)
+        {
+            List<PictureStore> list = new List<PictureStore>();
+
+            string orderKey = " order by ";
+            switch (ok)
+            {
+                case OrderKey.ID:
+                    orderKey += "PictureStoreID desc";
+                    break;
+                //case OrderKey.CommentNum:
+                //评论数未作预处理，暂不实现
+                //    orderKey += "he.HairEngineerGood+he.HairEngineerBad desc";
+                //    break;
+                case OrderKey.HitNum:
+                    orderKey += "PictureStoreHits desc";
+                    break;
+                default:
+                    orderKey += "PictureStoreID desc";
+                    break;
+
+            }
+
+            string commText = "";
+            switch (count)
+            {
+                case 0:
+                    commText = "select * from PictureStore where PictureStoreName like '%"+pictureStoreName+"%'" + orderKey;
+                    break;
+                default:
+                    commText = "select top " + count.ToString() + " * from PictureStore where PictureStoreName like '%" + pictureStoreName + "%'" + orderKey;
                     break;
             }
 
@@ -279,7 +369,7 @@ namespace HairNet.Provider
                     commandText = "insert into PictureStoreComment(PictureStoreCommentText,UserID,UserName,UserAddress,PictureStoreCommentCreateTime,PictureStoreID) values('" + pictureStoreComment.CommentText + "'," + pictureStoreComment.UserID.ToString() + ",'" + pictureStoreComment.UserName + "','" + pictureStoreComment.UserAddress + "','" + pictureStoreComment.CommentCreateTime.ToString() + "'," + pictureStoreComment.PictureStoreID.ToString() + ")";
                     break;
                 case UserAction.Delete:
-                    commandText = "delete from PictureStoreComment whre PictureStoreCommentID = " + pictureStoreComment.CommentID.ToString();
+                    commandText = "delete from PictureStoreComment where PictureStoreCommentID = " + pictureStoreComment.CommentID.ToString();
                     break;
                 case UserAction.Update:
                     commandText = "update PictureStoreComment set PictureStoreCommentText ='" + pictureStoreComment.CommentText + "',UserID=" + pictureStoreComment.UserID.ToString() + ",UserName='" + pictureStoreComment.UserName + "',UserAddress='" + pictureStoreComment.UserAddress + "',PictureStoreCommentCreateTime='" + pictureStoreComment.CommentCreateTime.ToString() + "',PictureStoreID=" + pictureStoreComment.PictureStoreID.ToString() + " where PictureStoreCommentID=" + pictureStoreComment.CommentID.ToString();
@@ -319,13 +409,13 @@ namespace HairNet.Provider
                 //    orderKey = "IsGood desc";
                 //    break;
                 case OrderKey.ID:
-                    orderKey = "UserID desc";
+                    orderKey += "UserID desc";
                     break;
                 case OrderKey.Time:
-                    orderKey = "PictureStoreCommentCreateTime desc";
+                    orderKey += "PictureStoreCommentCreateTime desc";
                     break;
                 default:
-                    orderKey = "PictureStoreCommentID desc";
+                    orderKey += "PictureStoreCommentID desc";
                     break;
             }
             string commText = string.Empty;
@@ -382,13 +472,13 @@ namespace HairNet.Provider
                 //    orderKey = "IsGood desc";
                 //    break;
                 case OrderKey.ID:
-                    orderKey = "PictureStoreID desc";
+                    orderKey += "PictureStoreID desc";
                     break;
                 case OrderKey.Time:
-                    orderKey = "PictureStoreCommentCreateTime desc";
+                    orderKey += "PictureStoreCommentCreateTime desc";
                     break;
                 default:
-                    orderKey = "PictureStoreCommentID desc";
+                    orderKey += "PictureStoreCommentID desc";
                     break;
             }
             string commText = string.Empty;
@@ -706,6 +796,167 @@ namespace HairNet.Provider
             }
 
             return pictureStoreTag;
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="count"></param>
+        /// <returns></returns>
+        public List<PictureStoreComment> GetPictureStoreComments(int count)
+        {
+            List<PictureStoreComment> list = new List<PictureStoreComment>();
+
+            string commText = string.Empty;
+            switch (count)
+            {
+                case 0:
+                    commText = "select * from PictureStoreComment order by PictureStoreCommentID desc";
+                    break;
+                default:
+                    commText = "select top " + count.ToString() + " * from PictureStoreComment order by PictureStoreCommentID desc";
+                    break;
+            }
+
+            using (SqlConnection conn = new SqlConnection(DataHelper2.SqlConnectionString))
+            {
+                {
+                    using (SqlCommand comm = new SqlCommand())
+                    {
+                        comm.Connection = conn;
+                        comm.CommandText = commText;
+                        conn.Open();
+
+                        using (SqlDataReader sdr = comm.ExecuteReader())
+                        {
+                            while (sdr.Read())
+                            {
+                                PictureStoreComment pictureStoreComment = new PictureStoreComment();
+
+                                pictureStoreComment.CommentCreateTime = Convert.ToDateTime(sdr["PictureStoreCommentCreateTime"].ToString());
+                                pictureStoreComment.CommentID = int.Parse(sdr["PictureStoreCommentID"].ToString());
+                                pictureStoreComment.CommentText = sdr["PictureStoreCommentText"].ToString();
+                                pictureStoreComment.PictureStoreID = int.Parse(sdr["PictureStoreID"].ToString());
+                                pictureStoreComment.UserAddress = sdr["UserAddress"].ToString();
+                                pictureStoreComment.UserID = int.Parse(sdr["UserID"].ToString());
+                                pictureStoreComment.UserName = sdr["UserName"].ToString();
+
+                                list.Add(pictureStoreComment);
+                            }
+                        }
+                    }
+                }
+            }
+
+            return list;
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="count"></param>
+        /// <returns></returns>
+        public List<PictureStoreComment> GetPictureStoreCommentsByKeyText(int count, string keyText)
+        {
+            List<PictureStoreComment> list = new List<PictureStoreComment>();
+
+            string commText = string.Empty;
+            switch (count)
+            {
+                case 0:
+                    commText = "select * from PictureStoreComment where PictureStoreCommentText like '%"+keyText+"%' order by PictureStoreCommentID desc";
+                    break;
+                default:
+                    commText = "select top " + count.ToString() + " * from PictureStoreComment where PictureStoreCommentText like '%" + keyText + "%' order by PictureStoreCommentID desc";
+                    break;
+            }
+
+            using (SqlConnection conn = new SqlConnection(DataHelper2.SqlConnectionString))
+            {
+                {
+                    using (SqlCommand comm = new SqlCommand())
+                    {
+                        comm.Connection = conn;
+                        comm.CommandText = commText;
+                        conn.Open();
+
+                        using (SqlDataReader sdr = comm.ExecuteReader())
+                        {
+                            while (sdr.Read())
+                            {
+                                PictureStoreComment pictureStoreComment = new PictureStoreComment();
+
+                                pictureStoreComment.CommentCreateTime = Convert.ToDateTime(sdr["PictureStoreCommentCreateTime"].ToString());
+                                pictureStoreComment.CommentID = int.Parse(sdr["PictureStoreCommentID"].ToString());
+                                pictureStoreComment.CommentText = sdr["PictureStoreCommentText"].ToString();
+                                pictureStoreComment.PictureStoreID = int.Parse(sdr["PictureStoreID"].ToString());
+                                pictureStoreComment.UserAddress = sdr["UserAddress"].ToString();
+                                pictureStoreComment.UserID = int.Parse(sdr["UserID"].ToString());
+                                pictureStoreComment.UserName = sdr["UserName"].ToString();
+
+                                list.Add(pictureStoreComment);
+                            }
+                        }
+                    }
+                }
+            }
+
+            return list;
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="count"></param>
+        /// <param name="sTime"></param>
+        /// <param name="eTime"></param>
+        /// <returns></returns>
+        public List<PictureStoreComment> GetPictureStoreCommentsByTimeZone(int count, string sTime, string eTime)
+        {
+            List<PictureStoreComment> list = new List<PictureStoreComment>();
+
+            string commText = string.Empty;
+            switch (count)
+            {
+                case 0:
+                    commText = "select * from PictureStoreComment where PictureStoreCommentCreateTime<'"+eTime+"' and PictureStoreCommentCreateTime >'"+sTime+"' order by PictureStoreCommentID desc";
+                    break;
+                default:
+                    commText = "select top " + count.ToString() + " * from PictureStoreComment where PictureStoreCommentCreateTime<'" + eTime + "' and PictureStoreCommentCreateTime >'" + sTime + "' order by PictureStoreCommentID desc";
+                    break;
+            }
+
+            using (SqlConnection conn = new SqlConnection(DataHelper2.SqlConnectionString))
+            {
+                {
+                    using (SqlCommand comm = new SqlCommand())
+                    {
+                        comm.Connection = conn;
+                        comm.CommandText = commText;
+                        conn.Open();
+
+                        using (SqlDataReader sdr = comm.ExecuteReader())
+                        {
+                            while (sdr.Read())
+                            {
+                                PictureStoreComment pictureStoreComment = new PictureStoreComment();
+
+                                pictureStoreComment.CommentCreateTime = Convert.ToDateTime(sdr["PictureStoreCommentCreateTime"].ToString());
+                                pictureStoreComment.CommentID = int.Parse(sdr["PictureStoreCommentID"].ToString());
+                                pictureStoreComment.CommentText = sdr["PictureStoreCommentText"].ToString();
+                                pictureStoreComment.PictureStoreID = int.Parse(sdr["PictureStoreID"].ToString());
+                                pictureStoreComment.UserAddress = sdr["UserAddress"].ToString();
+                                pictureStoreComment.UserID = int.Parse(sdr["UserID"].ToString());
+                                pictureStoreComment.UserName = sdr["UserName"].ToString();
+
+                                list.Add(pictureStoreComment);
+                            }
+                        }
+                    }
+                }
+            }
+
+            return list;
         }
     }
 }

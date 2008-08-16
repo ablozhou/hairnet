@@ -12,7 +12,8 @@ namespace HairNet.Provider
         bool PictureStoreRecommandCreateDeleteUpdate(PictureStoreRecommand pictureStoreRecommand, UserAction ua);
 
         PictureStore GetPictureStoreByPictureStoreID(int pictureStoreID);
-        List<PictureStore> GetPictureStores(int count);
+        List<PictureStore> GetPictureStores(int count,OrderKey ok);
+        List<PictureStore> GetPictureStores(int count, OrderKey ok,string pictureStoreName);
 
         PictureStoreRecommand GetPictureStoreRecommandByPictureStoreRecommandID(int pictureStoreRecommandID);
         List<PictureStoreRecommand> GetPictureStoreRecommands(int count);
@@ -29,5 +30,29 @@ namespace HairNet.Provider
         bool PictureStoreTagCreateDeleteUpdate(PictureStoreTag pictureStoreTag, UserAction ua);
         List<PictureStoreTag> GetPictureStoreTags(int count);
         PictureStoreTag GetPictureStoreTagByPictureStoreTagID(int pictureStoreTagID);
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="count"></param>
+        /// <returns></returns>
+        List<PictureStoreComment> GetPictureStoreComments(int count);
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="count"></param>
+        /// <returns></returns>
+        List<PictureStoreComment> GetPictureStoreCommentsByKeyText(int count, string keyText);
+
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="count"></param>
+        /// <param name="sTime"></param>
+        /// <param name="eTime"></param>
+        /// <returns></returns>
+        List<PictureStoreComment> GetPictureStoreCommentsByTimeZone(int count, string sTime, string eTime);
     }
 }

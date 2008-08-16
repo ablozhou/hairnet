@@ -192,18 +192,148 @@ namespace HairNet.Provider
         /// </summary>
         /// <param name="count">0 È«²¿</param>
         /// <returns></returns>
-        public List<HairShop> GetHairShops(int count)
+        public List<HairShop> GetHairShops(int count,OrderKey ok)
         {
             List<HairShop> list = new List<HairShop>();
+
+            string orderKey = " order by ";
+            switch (ok)
+            {
+                case OrderKey.ID:
+                    orderKey += "hs.HairShopID desc";
+                    break;
+                case OrderKey.CommentNum:
+                    orderKey += "hs.HairShopGood+hs.HairShopBad desc";
+                    break;
+                case OrderKey.RecommandNum:
+                    orderKey += "hs.HairShopRecommandNum desc";
+                    break;
+                case OrderKey.HitNum:
+                    orderKey += "hs.HairShopVisitNum desc";
+                    break;
+                case OrderKey.OrderNum:
+                    orderKey += "hs.HairShopOrderNum desc";
+                    break;
+                default:
+                    orderKey += "hs.HairShopID desc";
+                    break;
+
+            }
 
             string commText = "";
             switch (count)
             {
                 case 0:
-                    commText = "select * from HairShop hs inner join City c on hs.HairShopCityID=c.cityID inner join MapZone m on hs.HairShopMapZoneID = m.MapZoneID inner join HotZone h on hs.HairShopHotZoneID = h.HotZoneID inner join TypeTable tt on hs.TypeID=tt.TypeID order by hs.HairShopID desc";
+                    commText = "select * from HairShop hs inner join City c on hs.HairShopCityID=c.cityID inner join MapZone m on hs.HairShopMapZoneID = m.MapZoneID inner join HotZone h on hs.HairShopHotZoneID = h.HotZoneID inner join TypeTable tt on hs.TypeID=tt.TypeID"+orderKey;
                     break;
                 default:
-                    commText = "select top " + count.ToString() + " * from HairShop hs inner join City c on hs.HairShopCityID=c.cityID inner join MapZone m on hs.HairShopMapZoneID = m.MapZoneID inner join HotZone h on hs.HairShopHotZoneID = h.HotZoneID inner join TypeTable tt on hs.TypeID=tt.TypeID order by hs.HairShopID desc";
+                    commText = "select top " + count.ToString() + " * from HairShop hs inner join City c on hs.HairShopCityID=c.cityID inner join MapZone m on hs.HairShopMapZoneID = m.MapZoneID inner join HotZone h on hs.HairShopHotZoneID = h.HotZoneID inner join TypeTable tt on hs.TypeID=tt.TypeID" + orderKey;
+                    break;
+            }
+
+            using (SqlConnection conn = new SqlConnection(DataHelper2.SqlConnectionString))
+            {
+                {
+                    using (SqlCommand comm = new SqlCommand())
+                    {
+                        comm.Connection = conn;
+                        comm.CommandText = commText;
+                        conn.Open();
+
+                        using (SqlDataReader sdr = comm.ExecuteReader())
+                        {
+                            while (sdr.Read())
+                            {
+                                HairShop hairShop = new HairShop();
+
+                                hairShop.HairShopID = int.Parse(sdr["HairShopID"].ToString());
+                                hairShop.HairShopName = sdr["HairShopName"].ToString();
+                                hairShop.HairShopCityID = int.Parse(sdr["HairShopCityID"].ToString());
+                                hairShop.HairShopCityName = sdr["CityName"].ToString();
+                                hairShop.HairShopMapZoneID = int.Parse(sdr["HairShopMapZoneID"].ToString());
+                                hairShop.HairShopMapZoneName = sdr["MapZoneName"].ToString();
+                                hairShop.HairShopHotZoneID = int.Parse(sdr["HairShopHotZoneID"].ToString());
+                                hairShop.HairShopHotZoneName = sdr["HotZoneName"].ToString();
+                                hairShop.HairShopAddress = sdr["HairShopAddress"].ToString();
+                                hairShop.HairShopPhoneNum = sdr["HairShopPhoneNum"].ToString();
+                                hairShop.HairShopPictureStoreIDs = sdr["HairShopPictureStoreIDs"].ToString();
+                                hairShop.HairShopMainIDs = sdr["HairShopMainIDs"].ToString();
+                                hairShop.HairShopPartialIDs = sdr["HairShopPartialIDs"].ToString();
+                                hairShop.HairShopEngineerNum = int.Parse(sdr["HairShopEngineerNum"].ToString());
+                                hairShop.HairShopOpenTime = sdr["HairShopOpenTime"].ToString();
+                                hairShop.HairShopOrderNum = int.Parse(sdr["HairShopOrderNum"].ToString());
+                                hairShop.HairShopVisitNum = int.Parse(sdr["HairShopVisitNum"].ToString());
+                                hairShop.WorkRangeIDs = sdr["WorkRangeIDs"].ToString();
+                                hairShop.HairShopWebSite = sdr["HairShopWebSite"].ToString();
+                                hairShop.HairShopEmail = sdr["HairShopEmail"].ToString();
+                                hairShop.HairShopDiscount = sdr["HairShopDiscount"].ToString();
+                                hairShop.HairShopLogo = sdr["HairShopLogo"].ToString();
+                                hairShop.HairShopRecommandNum = int.Parse(sdr["HairShopRecommandNum"].ToString());
+                                hairShop.HairShopCreateTime = sdr["HairShopCreateTime"].ToString();
+                                hairShop.HairShopDescription = sdr["HairShopDescription"].ToString();
+                                hairShop.ProductIDs = sdr["ProductIDs"].ToString();
+                                hairShop.HairShopTagIDs = sdr["HairShopTagIDs"].ToString();
+                                hairShop.HairShopShortName = sdr["HairShopShortName"].ToString();
+                                hairShop.IsBest = bool.Parse(sdr["IsBest"].ToString());
+                                hairShop.IsJoin = bool.Parse(sdr["IsJoin"].ToString());
+                                hairShop.TypeID = int.Parse(sdr["TypeID"].ToString());
+                                hairShop.TypeName = sdr["TypeName"].ToString();
+                                hairShop.IsPostStation = bool.Parse(sdr["IsPostStation"].ToString());
+                                hairShop.IsPostMachine = bool.Parse(sdr["IsPostMachine"].ToString());
+                                hairShop.HairShopGood = int.Parse(sdr["HairShopGood"].ToString());
+                                hairShop.HairShopBad = int.Parse(sdr["HairShopBad"].ToString());
+
+                                list.Add(hairShop);
+                            }
+                        }
+                    }
+                }
+            }
+
+            return list;
+        }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="count"></param>
+        /// <param name="ok"></param>
+        /// <returns></returns>
+        public List<HairShop> GetHairShops(int count, OrderKey ok,string hairShopName)
+        {
+            List<HairShop> list = new List<HairShop>();
+
+            string orderKey = " order by ";
+            switch (ok)
+            {
+                case OrderKey.ID:
+                    orderKey += "hs.HairShopID desc";
+                    break;
+                case OrderKey.CommentNum:
+                    orderKey += "hs.HairShopGood+hs.HairShopBad desc";
+                    break;
+                case OrderKey.RecommandNum:
+                    orderKey += "hs.HairShopRecommandNum desc";
+                    break;
+                case OrderKey.HitNum:
+                    orderKey += "hs.HairShopVisitNum desc";
+                    break;
+                case OrderKey.OrderNum:
+                    orderKey += "hs.HairShopOrderNum desc";
+                    break;
+                default:
+                    orderKey += "hs.HairShopID desc";
+                    break;
+
+            }
+
+            string commText = "";
+            switch (count)
+            {
+                case 0:
+                    commText = "select * from HairShop hs inner join City c on hs.HairShopCityID=c.cityID inner join MapZone m on hs.HairShopMapZoneID = m.MapZoneID inner join HotZone h on hs.HairShopHotZoneID = h.HotZoneID inner join TypeTable tt on hs.TypeID=tt.TypeID where hs.HairShopName like '%"+hairShopName+"%'" + orderKey;
+                    break;
+                default:
+                    commText = "select top " + count.ToString() + " * from HairShop hs inner join City c on hs.HairShopCityID=c.cityID inner join MapZone m on hs.HairShopMapZoneID = m.MapZoneID inner join HotZone h on hs.HairShopHotZoneID = h.HotZoneID inner join TypeTable tt on hs.TypeID=tt.TypeID where hs.HairShopName like '%" + hairShopName + "%'" + orderKey;
                     break;
             }
 
@@ -739,16 +869,16 @@ namespace HairNet.Provider
             switch (ok)
             {
                 case OrderKey.Good:
-                    orderKey = "IsGood desc";
+                    orderKey += "IsGood desc";
                     break;
                 case OrderKey.ID:
-                    orderKey = "UserID desc";
+                    orderKey += "UserID desc";
                     break;
                 case OrderKey.Time:
-                    orderKey = "HairShopCommentCreateTime desc";
+                    orderKey += "HairShopCommentCreateTime desc";
                     break;
                 default:
-                    orderKey = "HairShopCommentID desc";
+                    orderKey += "HairShopCommentID desc";
                     break;
             }
             string commText = string.Empty;
@@ -811,16 +941,16 @@ namespace HairNet.Provider
             switch (ok)
             {
                 case OrderKey.Good:
-                    orderKey = "IsGood desc";
+                    orderKey += "IsGood desc";
                     break;
                 case OrderKey.ID:
-                    orderKey = "HairShopID desc";
+                    orderKey += "HairShopID desc";
                     break;
                 case OrderKey.Time:
-                    orderKey = "HairShopCommentCreateTime desc";
+                    orderKey += "HairShopCommentCreateTime desc";
                     break;
                 default:
-                    orderKey = "HairShopCommentID desc";
+                    orderKey += "HairShopCommentID desc";
                     break;
             }
             string commText = string.Empty;
@@ -885,7 +1015,7 @@ namespace HairNet.Provider
                     commandText = "insert into HairShopComment(HairShopCommentText,UserID,UserName,UserAddress,IsGood,HairShopCommentCreateTime,HairShopID) values('" + hairShopComment.CommentText + "'," + hairShopComment.UserID.ToString() + ",'" + hairShopComment.UserName + "','" + hairShopComment.UserAddress + "'," + hairShopComment.IsGood.CompareTo(false).ToString() + ",'" + hairShopComment.CommentCreateTime.ToString() + "'," + hairShopComment.HairShopID.ToString() + ")";
                     break;
                 case UserAction.Delete:
-                    commandText = "delete from HairShopComment whre HairShopCommentID = " + hairShopComment.CommentID.ToString();
+                    commandText = "delete from HairShopComment where HairShopCommentID = " + hairShopComment.CommentID.ToString();
                     break;
                 case UserAction.Update:
                     commandText = "update HairShopComment set HairShopCommentText ='" + hairShopComment.CommentText + "',UserID=" + hairShopComment.UserID.ToString() + ",UserName='" + hairShopComment.UserName + "',UserAddress='" + hairShopComment.UserAddress + "',IsGood=" + hairShopComment.IsGood.CompareTo(false).ToString() + ",HairShopCommentCreateTime='" + hairShopComment.CommentCreateTime.ToString() + "',HairShopID=" + hairShopComment.HairShopID.ToString() + " where HairShopCommentID=" + hairShopComment.CommentID.ToString();
@@ -912,6 +1042,171 @@ namespace HairNet.Provider
             }
 
             return result;
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="count"></param>
+        /// <returns></returns>
+        public List<HairShopComment> GetHairShopComments(int count)
+        {
+            List<HairShopComment> list = new List<HairShopComment>();
+
+            string commText = string.Empty;
+            switch (count)
+            {
+                case 0:
+                    commText = "select * from HairShopComment order by HairShopCommentID desc";
+                    break;
+                default:
+                    commText = "select top " + count.ToString() + " * from HairShopComment order by HairShopCommentID desc";
+                    break;
+            }
+
+            using (SqlConnection conn = new SqlConnection(DataHelper2.SqlConnectionString))
+            {
+                {
+                    using (SqlCommand comm = new SqlCommand())
+                    {
+                        comm.Connection = conn;
+                        comm.CommandText = commText;
+                        conn.Open();
+
+                        using (SqlDataReader sdr = comm.ExecuteReader())
+                        {
+                            while (sdr.Read())
+                            {
+                                HairShopComment hairShopComment = new HairShopComment();
+
+                                hairShopComment.CommentCreateTime = Convert.ToDateTime(sdr["HairShopCommentCreateTime"].ToString());
+                                hairShopComment.CommentID = int.Parse(sdr["HairShopCommentID"].ToString());
+                                hairShopComment.CommentText = sdr["HairShopCommentText"].ToString();
+                                hairShopComment.HairShopID = int.Parse(sdr["HairShopID"].ToString());
+                                hairShopComment.UserAddress = sdr["UserAddress"].ToString();
+                                hairShopComment.UserID = int.Parse(sdr["UserID"].ToString());
+                                hairShopComment.UserName = sdr["UserName"].ToString();
+                                hairShopComment.IsGood = Convert.ToBoolean(sdr["IsGood"].ToString());
+
+                                list.Add(hairShopComment);
+                            }
+                        }
+                    }
+                }
+            }
+
+            return list;
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="count"></param>
+        /// <returns></returns>
+        public List<HairShopComment> GetHairShopCommentsByKeyText(int count, string keyText)
+        {
+            List<HairShopComment> list = new List<HairShopComment>();
+
+            string commText = string.Empty;
+            switch (count)
+            {
+                case 0:
+                    commText = "select * from HairShopComment where HairShopCommentText like '%"+keyText+"%' order by HairShopCommentID desc";
+                    break;
+                default:
+                    commText = "select top " + count.ToString() + " * from HairShopComment where HairShopCommentText like '%" + keyText + "%' order by HairShopCommentID desc";
+                    break;
+            }
+
+            using (SqlConnection conn = new SqlConnection(DataHelper2.SqlConnectionString))
+            {
+                {
+                    using (SqlCommand comm = new SqlCommand())
+                    {
+                        comm.Connection = conn;
+                        comm.CommandText = commText;
+                        conn.Open();
+
+                        using (SqlDataReader sdr = comm.ExecuteReader())
+                        {
+                            while (sdr.Read())
+                            {
+                                HairShopComment hairShopComment = new HairShopComment();
+
+                                hairShopComment.CommentCreateTime = Convert.ToDateTime(sdr["HairShopCommentCreateTime"].ToString());
+                                hairShopComment.CommentID = int.Parse(sdr["HairShopCommentID"].ToString());
+                                hairShopComment.CommentText = sdr["HairShopCommentText"].ToString();
+                                hairShopComment.HairShopID = int.Parse(sdr["HairShopID"].ToString());
+                                hairShopComment.UserAddress = sdr["UserAddress"].ToString();
+                                hairShopComment.UserID = int.Parse(sdr["UserID"].ToString());
+                                hairShopComment.UserName = sdr["UserName"].ToString();
+                                hairShopComment.IsGood = Convert.ToBoolean(sdr["IsGood"].ToString());
+
+                                list.Add(hairShopComment);
+                            }
+                        }
+                    }
+                }
+            }
+
+            return list;
+        }
+
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="count"></param>
+        /// <param name="sTime"></param>
+        /// <param name="eTime"></param>
+        /// <returns></returns>
+        public List<HairShopComment> GetHairShopCommentsByTimeZone(int count, string sTime, string eTime)
+        {
+            List<HairShopComment> list = new List<HairShopComment>();
+
+            string commText = string.Empty;
+            switch (count)
+            {
+                case 0:
+                    commText = "select * from HairShopComment where HairShopCommentCreateTime<'"+eTime+"' and HairShopCommentCreateTime>'"+sTime+"' order by HairShopCommentID desc";
+                    break;
+                default:
+                    commText = "select top " + count.ToString() + " * from HairShopComment where HairShopCommentCreateTime<'" + eTime + "' and HairShopCommentCreateTime>'" + sTime + "' order by HairShopCommentID desc";
+                    break;
+            }
+
+            using (SqlConnection conn = new SqlConnection(DataHelper2.SqlConnectionString))
+            {
+                {
+                    using (SqlCommand comm = new SqlCommand())
+                    {
+                        comm.Connection = conn;
+                        comm.CommandText = commText;
+                        conn.Open();
+
+                        using (SqlDataReader sdr = comm.ExecuteReader())
+                        {
+                            while (sdr.Read())
+                            {
+                                HairShopComment hairShopComment = new HairShopComment();
+
+                                hairShopComment.CommentCreateTime = Convert.ToDateTime(sdr["HairShopCommentCreateTime"].ToString());
+                                hairShopComment.CommentID = int.Parse(sdr["HairShopCommentID"].ToString());
+                                hairShopComment.CommentText = sdr["HairShopCommentText"].ToString();
+                                hairShopComment.HairShopID = int.Parse(sdr["HairShopID"].ToString());
+                                hairShopComment.UserAddress = sdr["UserAddress"].ToString();
+                                hairShopComment.UserID = int.Parse(sdr["UserID"].ToString());
+                                hairShopComment.UserName = sdr["UserName"].ToString();
+                                hairShopComment.IsGood = Convert.ToBoolean(sdr["IsGood"].ToString());
+
+                                list.Add(hairShopComment);
+                            }
+                        }
+                    }
+                }
+            }
+
+            return list;
         }
     }
 }
