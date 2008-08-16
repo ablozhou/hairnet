@@ -12,12 +12,12 @@ namespace Web.Admin {
     
     
     /// <summary>
-    /// PictureStoreAdd 类。
+    /// ProductAdd2 类。
     /// </summary>
     /// <remarks>
     /// 自动生成的类。
     /// </remarks>
-    public partial class PictureStoreAdd {
+    public partial class ProductAdd2 {
         
         /// <summary>
         /// form1 控件。
@@ -47,22 +47,22 @@ namespace Web.Admin {
         protected global::System.Web.UI.WebControls.TextBox txtPictureStoreTag;
         
         /// <summary>
-        /// ddlPictureStoreGroup 控件。
+        /// txtPictureStoreDescriptioin 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlPictureStoreGroup;
+        protected global::System.Web.UI.WebControls.TextBox txtPictureStoreDescriptioin;
         
         /// <summary>
-        /// txtPictureStoreDescription 控件。
+        /// btnAddPic 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::FredCK.FCKeditorV2.FCKeditor txtPictureStoreDescription;
+        protected global::System.Web.UI.WebControls.Button btnAddPic;
         
         /// <summary>
         /// btnSubmit 控件。

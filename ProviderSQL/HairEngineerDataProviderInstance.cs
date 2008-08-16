@@ -177,23 +177,140 @@ namespace HairNet.Provider
         /// </summary>
         /// <param name="count">0 所有</param>
         /// <returns></returns>
-        public List<HairEngineer> GetHairEngineers(int count)
+        public List<HairEngineer> GetHairEngineers(int count,OrderKey ok)
         {
             List<HairEngineer> list = new List<HairEngineer>();
+
+            string orderKey = " order by ";
+            switch (ok)
+            {
+                case OrderKey.ID:
+                    orderKey += "he.HairEngineerID desc";
+                    break;
+                case OrderKey.CommentNum:
+                    orderKey += "he.HairEngineerGood+he.HairEngineerBad desc";
+                    break;
+                case OrderKey.RecommandNum:
+                    orderKey += "he.HairEngineerRecommandNum desc";
+                    break;
+                case OrderKey.HitNum:
+                    orderKey += "he.HairEngineerHits desc";
+                    break;
+                case OrderKey.OrderNum:
+                    orderKey += "he.HairEngineerOrderNum desc";
+                    break;
+                default:
+                    orderKey += "he.HairEngineerID desc";
+                    break;
+
+            }
 
             string commText = "";
             switch (count)
             {
                 case 0:
-                    commText = "select * from HairEngineer he inner join HairEngineerClass hec on he.HairEngineerClassID = hec.HairEngineerClassID inner join HairShop hs on hs.HairShopID = he.HairShopID order by he.HairEngineerID desc";
+                    commText = "select * from HairEngineer he inner join HairEngineerClass hec on he.HairEngineerClassID = hec.HairEngineerClassID inner join HairShop hs on hs.HairShopID = he.HairShopID"+orderKey;
                     break;
                 default:
-                    commText = "select top " + count.ToString() + " * from HairEngineer he inner join HairEngineerClass hec on he.HairEngineerClassID = hec.HairEngineerClassID inner join HairShop hs on hs.HairShopID = he.HairShopID order by he.HairEngineerID desc";
+                    commText = "select top " + count.ToString() + " * from HairEngineer he inner join HairEngineerClass hec on he.HairEngineerClassID = hec.HairEngineerClassID inner join HairShop hs on hs.HairShopID = he.HairShopID" + orderKey;
                     break;
             }
 
             using (SqlConnection conn = new SqlConnection(DataHelper2.SqlConnectionString))
             {   
+                {
+                    using (SqlCommand comm = new SqlCommand())
+                    {
+                        comm.Connection = conn;
+                        comm.CommandText = commText;
+                        conn.Open();
+
+                        using (SqlDataReader sdr = comm.ExecuteReader())
+                        {
+                            while (sdr.Read())
+                            {
+                                HairEngineer hairEngineer = new HairEngineer();
+
+                                hairEngineer.HairEngineerID = int.Parse(sdr["HairEngineerID"].ToString());
+                                hairEngineer.HairEngineerAge = sdr["HairEngineerAge"].ToString();
+                                hairEngineer.HairEngineerName = sdr["HairEngineerName"].ToString();
+                                hairEngineer.HairEngineerSex = int.Parse(sdr["HairEngineerSex"].ToString());
+                                hairEngineer.HairEngineerPhoto = sdr["HairEngineerPhoto"].ToString();
+                                hairEngineer.HairShopID = int.Parse(sdr["HairShopID"].ToString());
+                                hairEngineer.HairShopName = sdr["HairShopName"].ToString();
+                                hairEngineer.HairEngineerYear = sdr["HairEngineerYear"].ToString();
+                                hairEngineer.HairEngineerSkill = sdr["HairEngineerSkill"].ToString();
+                                hairEngineer.HairEngineerTagIDs = sdr["HairEngineerTagIDs"].ToString();
+                                hairEngineer.HairEngineerPictureStoreIDs = sdr["HairEngineerPictureStoreIDs"].ToString();
+                                hairEngineer.HairEngineerHits = int.Parse(sdr["HairEngineerHits"].ToString());
+                                hairEngineer.HairEngineerDescription = sdr["HairEngineerDescription"].ToString();
+                                hairEngineer.HairEngineerOrderNum = int.Parse(sdr["HairEngineerOrderNum"].ToString());
+                                hairEngineer.HairEngineerRecommandNum = int.Parse(sdr["HairEngineerRecommandNum"].ToString());
+                                hairEngineer.HairEngineerRawPrice = sdr["HairEngineerRawPrice"].ToString();
+                                hairEngineer.HairEngineerPrice = sdr["HairEngineerPrice"].ToString();
+                                hairEngineer.HairEngineerGood = int.Parse(sdr["HairEngineerGood"].ToString());
+                                hairEngineer.HairEngineerBad = int.Parse(sdr["HairEngineerBad"].ToString());
+                                hairEngineer.HairEngineerClassID = int.Parse(sdr["HairEngineerClassID"].ToString());
+                                hairEngineer.HairEngineerClassName = sdr["HairEngineerClassName"].ToString();
+
+                                list.Add(hairEngineer);
+                            }
+                        }
+                    }
+                }
+            }
+
+            return list;
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="count"></param>
+        /// <param name="ok"></param>
+        /// <param name="hairEngineerName"></param>
+        /// <returns></returns>
+        public List<HairEngineer> GetHairEngineers(int count, OrderKey ok,string hairEngineerName)
+        {
+            List<HairEngineer> list = new List<HairEngineer>();
+
+            string orderKey = " order by ";
+            switch (ok)
+            {
+                case OrderKey.ID:
+                    orderKey += "he.HairEngineerID desc";
+                    break;
+                case OrderKey.CommentNum:
+                    orderKey += "he.HairEngineerGood+he.HairEngineerBad desc";
+                    break;
+                case OrderKey.RecommandNum:
+                    orderKey += "he.HairEngineerRecommandNum desc";
+                    break;
+                case OrderKey.HitNum:
+                    orderKey += "he.HairEngineerHits desc";
+                    break;
+                case OrderKey.OrderNum:
+                    orderKey += "he.HairEngineerOrderNum desc";
+                    break;
+                default:
+                    orderKey += "he.HairEngineerID desc";
+                    break;
+
+            }
+
+            string commText = "";
+            switch (count)
+            {
+                case 0:
+                    commText = "select * from HairEngineer he inner join HairEngineerClass hec on he.HairEngineerClassID = hec.HairEngineerClassID inner join HairShop hs on hs.HairShopID = he.HairShopID where he.HairEngineerName like '%"+hairEngineerName.ToString()+"%'" + orderKey;
+                    break;
+                default:
+                    commText = "select top " + count.ToString() + " * from HairEngineer he inner join HairEngineerClass hec on he.HairEngineerClassID = hec.HairEngineerClassID inner join HairShop hs on hs.HairShopID = he.HairShopID where he.HairEngineerName like '%" + hairEngineerName.ToString() + "%'" + orderKey;
+                    break;
+            }
+
+            using (SqlConnection conn = new SqlConnection(DataHelper2.SqlConnectionString))
+            {
                 {
                     using (SqlCommand comm = new SqlCommand())
                     {
@@ -595,16 +712,16 @@ namespace HairNet.Provider
             switch (ok)
             {
                 case OrderKey.Good:
-                    orderKey = "IsGood desc";
+                    orderKey += "IsGood desc";
                     break;
                 case OrderKey.ID:
-                    orderKey = "UserID desc";
+                    orderKey += "UserID desc";
                     break;
                 case OrderKey.Time:
-                    orderKey = "HairEngineerCommentCreateTime desc";
+                    orderKey += "HairEngineerCommentCreateTime desc";
                     break;
                 default:
-                    orderKey = "HairEngineerCommentID desc";
+                    orderKey += "HairEngineerCommentID desc";
                     break;
             }
             string commText = string.Empty;
@@ -667,16 +784,16 @@ namespace HairNet.Provider
             switch (ok)
             {
                 case OrderKey.Good:
-                    orderKey = "IsGood desc";
+                    orderKey += "IsGood desc";
                     break;
                 case OrderKey.ID:
-                    orderKey = "HairEngineerID desc";
+                    orderKey += "HairEngineerID desc";
                     break;
                 case OrderKey.Time:
-                    orderKey = "HairEngineerCommentCreateTime desc";
+                    orderKey += "HairEngineerCommentCreateTime desc";
                     break;
                 default:
-                    orderKey = "HairEngineerCommentID desc";
+                    orderKey += "HairEngineerCommentID desc";
                     break;
             }
             string commText = string.Empty;
@@ -725,6 +842,171 @@ namespace HairNet.Provider
         }
 
         /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="count"></param>
+        /// <returns></returns>
+        public List<HairEngineerComment> GetHairEngineerComments(int count)
+        {
+            List<HairEngineerComment> list = new List<HairEngineerComment>();
+
+                        
+            string commText = string.Empty;
+            switch (count)
+            {
+                case 0:
+                    commText = "select * from HairEngineerComment order by HairEngineerCommentID desc";
+                    break;
+                default:
+                    commText = "select top " + count.ToString() + " * from HairEngineerComment order by HairEngineerCommentID desc";
+                    break;
+            }
+
+            using (SqlConnection conn = new SqlConnection(DataHelper2.SqlConnectionString))
+            {
+                {
+                    using (SqlCommand comm = new SqlCommand())
+                    {
+                        comm.Connection = conn;
+                        comm.CommandText = commText;
+                        conn.Open();
+
+                        using (SqlDataReader sdr = comm.ExecuteReader())
+                        {
+                            while (sdr.Read())
+                            {
+                                HairEngineerComment hairEngineerComment = new HairEngineerComment();
+
+                                hairEngineerComment.CommentCreateTime = Convert.ToDateTime(sdr["HairEngineerCommentCreateTime"].ToString());
+                                hairEngineerComment.CommentID = int.Parse(sdr["HairEngineerCommentID"].ToString());
+                                hairEngineerComment.CommentText = sdr["HairEngineerCommentText"].ToString();
+                                hairEngineerComment.HairEngineerID = int.Parse(sdr["HairEngineerID"].ToString());
+                                hairEngineerComment.UserAddress = sdr["UserAddress"].ToString();
+                                hairEngineerComment.UserID = int.Parse(sdr["UserID"].ToString());
+                                hairEngineerComment.UserName = sdr["UserName"].ToString();
+                                hairEngineerComment.IsGood = Convert.ToBoolean(sdr["IsGood"].ToString());
+
+                                list.Add(hairEngineerComment);
+                            }
+                        }
+                    }
+                }
+            }
+
+            return list;
+        }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="count"></param>
+        /// <param name="keyText"></param>
+        /// <returns></returns>
+        public List<HairEngineerComment> GetHairEngineerCommentsByKeyText(int count,string keyText)
+        {
+            List<HairEngineerComment> list = new List<HairEngineerComment>();
+
+
+            string commText = string.Empty;
+            switch (count)
+            {
+                case 0:
+                    commText = "select * from HairEngineerComment where HairEngineerCommentText like '%"+keyText+"%' order by HairEngineerCommentID desc";
+                    break;
+                default:
+                    commText = "select top " + count.ToString() + " * from HairEngineerComment where HairEngineerCommentText like '%" + keyText + "%' order by HairEngineerCommentID desc";
+                    break;
+            }
+
+            using (SqlConnection conn = new SqlConnection(DataHelper2.SqlConnectionString))
+            {
+                {
+                    using (SqlCommand comm = new SqlCommand())
+                    {
+                        comm.Connection = conn;
+                        comm.CommandText = commText;
+                        conn.Open();
+
+                        using (SqlDataReader sdr = comm.ExecuteReader())
+                        {
+                            while (sdr.Read())
+                            {
+                                HairEngineerComment hairEngineerComment = new HairEngineerComment();
+
+                                hairEngineerComment.CommentCreateTime = Convert.ToDateTime(sdr["HairEngineerCommentCreateTime"].ToString());
+                                hairEngineerComment.CommentID = int.Parse(sdr["HairEngineerCommentID"].ToString());
+                                hairEngineerComment.CommentText = sdr["HairEngineerCommentText"].ToString();
+                                hairEngineerComment.HairEngineerID = int.Parse(sdr["HairEngineerID"].ToString());
+                                hairEngineerComment.UserAddress = sdr["UserAddress"].ToString();
+                                hairEngineerComment.UserID = int.Parse(sdr["UserID"].ToString());
+                                hairEngineerComment.UserName = sdr["UserName"].ToString();
+                                hairEngineerComment.IsGood = Convert.ToBoolean(sdr["IsGood"].ToString());
+
+                                list.Add(hairEngineerComment);
+                            }
+                        }
+                    }
+                }
+            }
+
+            return list;
+        }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="count"></param>
+        /// <param name="sTime"></param>
+        /// <param name="eTime"></param>
+        /// <returns></returns>
+        public List<HairEngineerComment> GetHairEngineerCommentsByTimeZone(int count, string sTime, string eTime)
+        {
+            List<HairEngineerComment> list = new List<HairEngineerComment>();
+
+
+            string commText = string.Empty;
+            switch (count)
+            {
+                case 0:
+                    commText = "select * from HairEngineerComment where HairEngineerCommentCreateTime > '"+sTime+"' and HairEngineerCommentCreateTime<'"+eTime+"' order by HairEngineerCommentID desc";
+                    break;
+                default:
+                    commText = "select top " + count.ToString() + " * from HairEngineerComment where HairEngineerCommentCreateTime > '" + sTime + "' and HairEngineerCommentCreateTime<'" + eTime + "' order by HairEngineerCommentID desc";
+                    break;
+            }
+
+            using (SqlConnection conn = new SqlConnection(DataHelper2.SqlConnectionString))
+            {
+                {
+                    using (SqlCommand comm = new SqlCommand())
+                    {
+                        comm.Connection = conn;
+                        comm.CommandText = commText;
+                        conn.Open();
+
+                        using (SqlDataReader sdr = comm.ExecuteReader())
+                        {
+                            while (sdr.Read())
+                            {
+                                HairEngineerComment hairEngineerComment = new HairEngineerComment();
+
+                                hairEngineerComment.CommentCreateTime = Convert.ToDateTime(sdr["HairEngineerCommentCreateTime"].ToString());
+                                hairEngineerComment.CommentID = int.Parse(sdr["HairEngineerCommentID"].ToString());
+                                hairEngineerComment.CommentText = sdr["HairEngineerCommentText"].ToString();
+                                hairEngineerComment.HairEngineerID = int.Parse(sdr["HairEngineerID"].ToString());
+                                hairEngineerComment.UserAddress = sdr["UserAddress"].ToString();
+                                hairEngineerComment.UserID = int.Parse(sdr["UserID"].ToString());
+                                hairEngineerComment.UserName = sdr["UserName"].ToString();
+                                hairEngineerComment.IsGood = Convert.ToBoolean(sdr["IsGood"].ToString());
+
+                                list.Add(hairEngineerComment);
+                            }
+                        }
+                    }
+                }
+            }
+
+            return list;
+        }
+        /// <summary>
         /// 获取美发师评论列表
         /// </summary>
         /// <param name="hairEngineerComment"></param>
@@ -741,7 +1023,7 @@ namespace HairNet.Provider
                     commandText = "insert into HairEngineerComment(HairEngineerCommentText,UserID,UserName,UserAddress,IsGood,HairEngineerCommentCreateTime,HairEngineerID) values('"+hairEngineerComment.CommentText+"',"+hairEngineerComment.UserID.ToString()+",'"+hairEngineerComment.UserName+"','"+hairEngineerComment.UserAddress+"',"+hairEngineerComment.IsGood.CompareTo(false).ToString()+",'"+hairEngineerComment.CommentCreateTime.ToString()+"',"+hairEngineerComment.HairEngineerID.ToString()+")";
                     break;
                 case UserAction.Delete:
-                    commandText = "delete from HairEngineerComment whre HairEngineerCommentID = "+hairEngineerComment.CommentID.ToString();
+                    commandText = "delete from HairEngineerComment where HairEngineerCommentID = "+hairEngineerComment.CommentID.ToString();
                     break;
                 case UserAction.Update:
                     commandText = "update HairEngineerComment set HairEngineerCommentText ='"+hairEngineerComment.CommentText+"',UserID="+hairEngineerComment.UserID.ToString()+",UserName='"+hairEngineerComment.UserName+"',UserAddress='"+hairEngineerComment.UserAddress+"',IsGood="+hairEngineerComment.IsGood.CompareTo(false).ToString()+",HairEngineerCommentCreateTime='"+hairEngineerComment.CommentCreateTime.ToString()+"',HairEngineerID="+hairEngineerComment.HairEngineerID.ToString()+" where HairEngineerCommentID="+hairEngineerComment.CommentID.ToString();

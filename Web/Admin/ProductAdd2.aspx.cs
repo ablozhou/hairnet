@@ -11,7 +11,7 @@ using System.Web.UI.HtmlControls;
 
 namespace Web.Admin
 {
-    public partial class ProductAdd : System.Web.UI.Page
+    public partial class ProductAdd2 : System.Web.UI.Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -19,7 +19,7 @@ namespace Web.Admin
         }
         protected void btnSubmit_OnClick(object sender, EventArgs e)
         {
-            this.Response.Redirect("ProductAdd2.aspx");
+            this.Response.Redirect("ProductAdmin.aspx");
         }
     }
 }

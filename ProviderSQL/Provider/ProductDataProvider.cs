@@ -36,7 +36,16 @@ namespace HairNet.Provider
         /// </summary>
         /// <param name="count">0 全部</param>
         /// <returns></returns>
-        List<Product> GetProducts(int count);
+        List<Product> GetProducts(int count,OrderKey ok);
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="count"></param>
+        /// <param name="ok"></param>
+        /// <param name="productName"></param>
+        /// <returns></returns>
+        List<Product> GetProducts(int count, OrderKey ok,string productName);
 
         /// <summary>
         /// 通过美发产品推荐ID获得美发产品推荐实体
@@ -59,5 +68,29 @@ namespace HairNet.Provider
         bool ProductTagCreateDeleteUpdate(ProductTag productTag, UserAction ua);
         List<ProductTag> GetProductTags(int count);
         ProductTag GetProductTagByProductTagID(int productTagID);
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="count"></param>
+        /// <returns></returns>
+        List<ProductComment> GetProductComments(int count);
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="count"></param>
+        /// <returns></returns>
+        List<ProductComment> GetProductCommentsByKeyText(int count, string keyText);
+
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="count"></param>
+        /// <param name="sTime"></param>
+        /// <param name="eTime"></param>
+        /// <returns></returns>
+        List<ProductComment> GetProductCommentsByTimeZone(int count, string sTime, string eTime);
     }
 }

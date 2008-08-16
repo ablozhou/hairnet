@@ -993,6 +993,7 @@
     <Content Include="Admin\PictureStoreRecommandAdmin.aspx" />
     <Content Include="Admin\PictureStoreUpdate.aspx" />
     <Content Include="Admin\ProductAdd.aspx" />
+    <Content Include="Admin\ProductAdd2.aspx" />
     <Content Include="Admin\ProductAdmin.aspx" />
     <Content Include="Admin\ProductCommentAdmin.aspx" />
     <Content Include="Admin\ProductRecommandAdmin.aspx" />
@@ -1153,6 +1154,13 @@
     </Compile>
     <Compile Include="Admin\ProductAdd.aspx.designer.cs">
       <DependentUpon>ProductAdd.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\ProductAdd2.aspx.cs">
+      <SubType>ASPXCodeBehind</SubType>
+      <DependentUpon>ProductAdd2.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\ProductAdd2.aspx.designer.cs">
+      <DependentUpon>ProductAdd2.aspx</DependentUpon>
     </Compile>
     <Compile Include="Admin\ProductAdmin.aspx.cs">
       <SubType>ASPXCodeBehind</SubType>
