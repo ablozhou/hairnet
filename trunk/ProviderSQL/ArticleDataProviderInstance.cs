@@ -347,31 +347,40 @@ namespace HairNet.Provider
           
             return result;
         }
-        public List<ArticleComment> GetArticleCommentsByArticleID(int articleID, int count, string orderKey)
+        public List<ArticleComment> GetArticleCommentsByArticleID(int articleID, int count, OrderKey ok)
         {
             List<ArticleComment> list = new List<ArticleComment>();
+            string orderKey = " order by ";
+            switch (ok)
+            {
+                //case OrderKey.Good:
+                //    orderKey = "IsGood desc";
+                //    break;
+                case OrderKey.ID:
+                    orderKey = "UserID desc";
+                    break;
+                case OrderKey.Time:
+                    orderKey = "ArticleCommentCreateTime desc";
+                    break;
+                default:
+                    orderKey = "ArticleCommentID desc";
+                    break;
+            }
             string commText = string.Empty;
             switch (count)
             {
                 case 0:
                     commText = "SELECT ArticleCommentText, UserID, UserName, UserAddress, ArticleCommentCreateTime, ArticleID, ArticleCommentID "+
                         " FROM ArticleComment "+
-                        " WHERE (ArticleID = "+articleID +")";
+                        " WHERE (ArticleID = "+articleID +")"+orderKey ;
                         
                     break;
                 default:
-                    commText = "select top " + count.ToString() + " * from ArticleComment WHERE (ArticleID = "+articleID +")";
+                    commText = "select top " + count.ToString() + " * from ArticleComment WHERE (ArticleID = "+articleID +")"+orderKey ;
                     break;
             }
             
-           if (orderKey == "DESC")
-           {
-               commText += "ORDER BY ArticleCommentID DESC";
-           }
-           else
-           {
-               commText += "ORDER BY ArticleCommentID ";
-           }
+
 
            using (SqlConnection conn = new SqlConnection(DataHelper2.SqlConnectionString))
            {
@@ -405,32 +414,40 @@ namespace HairNet.Provider
            }
            return list;
         }
-        public List<ArticleComment> GetArticleCommentsByUserID(int userID, int count, string orderKey)
+        public List<ArticleComment> GetArticleCommentsByUserID(int userID, int count, OrderKey ok)
         {
             List<ArticleComment> list = new List<ArticleComment>();
+            string orderKey = " order by ";
+            switch (ok)
+            {
+                //case OrderKey.Good:
+                //    orderKey = "IsGood desc";
+                //    break;
+                case OrderKey.ID:
+                    orderKey = "ArticleID desc";
+                    break;
+                case OrderKey.Time:
+                    orderKey = "ArticleCommentCreateTime desc";
+                    break;
+                default:
+                    orderKey = "ArticleCommentID desc";
+                    break;
+            }
             string commText = string.Empty;
             switch (count)
             {
                 case 0:
                     commText = "SELECT ArticleCommentText, UserID, UserName, UserAddress, ArticleCommentCreateTime, ArticleID, ArticleCommentID " +
                         " FROM ArticleComment " +
-                        " WHERE (UserID = " + userID  + ")";
+                        " WHERE (UserID = " + userID  + ") "+ orderKey ;
 
                     break;
                 default:
-                    commText = "select top " + count.ToString() + " * from ArticleComment WHERE (UserID = " + userID + ")";
+                    commText = "select top " + count.ToString() + " * from ArticleComment WHERE (UserID = " + userID + ")" + orderKey ;
                     break;
             }
 
-            if (orderKey == "DESC")
-            {
-                commText += "ORDER BY ArticleCommentID DESC";
-            }
-            else
-            {
-                commText += "ORDER BY ArticleCommentID ";
-            }
-
+   
             using (SqlConnection conn = new SqlConnection(DataHelper2.SqlConnectionString))
             {
                 {
