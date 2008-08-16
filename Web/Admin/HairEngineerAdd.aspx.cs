@@ -17,5 +17,9 @@ namespace Web.Admin
         {
 
         }
+        protected void btnSubmit_OnClick(object sender, EventArgs e)
+        {
+            this.Response.Redirect("HairEngineerAdd2.aspx");
+        }
     }
 }

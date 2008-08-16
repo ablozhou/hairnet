@@ -23,7 +23,46 @@ namespace Web.Admin
             if (!this.IsPostBack)
             {
                 this.databind();
+
+                this.txtQueryName.Visible = true;
+                this.txtStartTime.Visible = false;
+                this.txtEndTime.Visible = false;
+                this.lblEndTime.Visible = false;
+                this.lblStartTime.Visible = false;
+                this.lblTimeSpace.Visible = false;
+                this.lblQueryNameSpace.Visible = true;
             }
+        }
+        public void ddlQuery_OnSelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (this.ddlQuery.SelectedValue != "3")
+            {
+                this.txtQueryName.Visible = true;
+                this.lblQueryNameSpace.Visible = true;
+                this.txtStartTime.Visible = false;
+                this.txtEndTime.Visible = false;
+                this.lblEndTime.Visible = false;
+                this.lblStartTime.Visible = false;
+                this.lblTimeSpace.Visible = false;
+            }
+            else
+            {
+                this.txtQueryName.Visible = false;
+                this.lblQueryNameSpace.Visible = false;
+                this.txtStartTime.Visible = true;
+                this.txtEndTime.Visible = true;
+                this.lblStartTime.Visible = true;
+                this.lblEndTime.Visible = true;
+                this.lblTimeSpace.Visible = true;
+            }
+        }
+        public void ddlOrderWay_OnSelectIndexChanged(object sender, EventArgs e)
+        {
+            //根据排序绑定
+        }
+        public void btnQuery_OnClick(object sender, EventArgs e)
+        {
+ 
         }
         public void btnSelect_OnClick(object sender, EventArgs e)
         {
@@ -138,8 +177,8 @@ namespace Web.Admin
             {
                 e.Item.Attributes.Add("onmouseover", "c=this.style.backgroundColor;this.style.backgroundColor='#ffffff';");
                 e.Item.Attributes.Add("onmouseout", "this.style.backgroundColor=c;");
-                e.Item.Cells[10].Attributes.Add("onclick", "return confirm('确定推荐么?');");
-                e.Item.Cells[11].Attributes.Add("onclick", "return confirm('确定删除么?');");
+                e.Item.Cells[11].Attributes.Add("onclick", "return confirm('确定推荐么?');");
+                e.Item.Cells[12].Attributes.Add("onclick", "return confirm('确定删除么?');");
 
                 HairShop hairShop = e.Item.DataItem as HairShop;
                 Label lblRecommandRate = e.Item.FindControl("lblRecommandRate") as Label;

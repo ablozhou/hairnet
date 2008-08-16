@@ -35,6 +35,12 @@ window.onload = function()
 	item7 = new TaskMenuItem("图片库信息","image/copy.gif","parent.window.frames[1].location.href='PictureStoreAdmin.aspx'");
 	item17 = new TaskMenuItem("图片库推荐信息","image/copy.gif","parent.window.frames[1].location.href='PictureStoreRecommandAdmin.aspx'");
 	
+	item18 = new TaskMenuItem("美发厅评论管理","image/copy.gif","parent.window.frames[1].location.href='HairShopCommentAdmin.aspx'");
+	item19 = new TaskMenuItem("美发师评论管理","image/copy.gif","parent.window.frames[1].location.href='HairEngineerCommentAdmin.aspx'");
+	item20 = new TaskMenuItem("美发产品评论管理","image/copy.gif","parent.window.frames[1].location.href='ProductCommentAdmin.aspx'");
+	item21 = new TaskMenuItem("图片库评论管理","image/copy.gif","parent.window.frames[1].location.href='PictureStoreCommentAdmin.aspx'");
+	
+	
 	item6 = new TaskMenuItem("用户信息","Image/friends.gif","parent.window.frames[1].location.href='UserInfoAdmin.aspx'");
 	//item9 = new TaskMenuItem("用户轨迹信息","Image/friends.gif","parent.window.frames[1].location.href='HistoryInfoAdmin.aspx'");
 	
@@ -64,6 +70,14 @@ window.onload = function()
 	taskMenu4.add(item17);
 	taskMenu4.init();
 	taskMenu4._close();
+	
+	taskMenu6 = new TaskMenu("评论管理");
+	taskMenu6.add(item18);
+	taskMenu6.add(item19);
+	taskMenu6.add(item20);
+	taskMenu6.add(item21);
+	taskMenu6.init();
+	taskMenu6._close();
 	
 	taskMenu3 = new TaskMenu("用户管理");
 	taskMenu3.add(item6);
