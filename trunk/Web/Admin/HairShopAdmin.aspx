@@ -1,5 +1,5 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="HairShopAdmin.aspx.cs" Inherits="Web.Admin.HairShopAdmin" %>
-
+<%@ Register Assembly="DMSTime" Namespace="DMSTime" TagPrefix="cc1" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
 <html xmlns="http://www.w3.org/1999/xhtml" >
@@ -18,6 +18,12 @@
             </tr>
             <tr>
                 <td align="right" bgcolor="#F5F5F5">
+                     搜索方式<asp:DropDownList ID="ddlQuery" AutoPostBack="true" runat="server" OnSelectedIndexChanged="ddlQuery_OnSelectedIndexChanged"><asp:ListItem Value="1" Selected="true">名称</asp:ListItem><asp:ListItem Value="2">关键字</asp:ListItem><asp:ListItem Value="3">时间段</asp:ListItem></asp:DropDownList>&nbsp;&nbsp;
+                     <asp:TextBox ID="txtQueryName" runat="server" CssClass="TextBox"></asp:TextBox><asp:Label ID="lblQueryNameSpace" Text="&nbsp;&nbsp;&nbsp;" runat="server"></asp:Label>
+                     <asp:Label ID="lblStartTime" Text="S:" runat="server"></asp:Label> <cc1:DMSTimeControl ID="txtStartTime" runat="server" />
+                     <asp:Label ID="lblEndTime" Text="&nbsp;&nbsp;E:" runat="server"></asp:Label><cc1:DMSTimeControl ID="txtEndTime" runat="server" /><asp:Label ID="lblTimeSpace" runat="server" Text="&nbsp;&nbsp;"></asp:Label>
+                     <asp:Button ID="btnQuery" runat="server" CssClass="btn"  Text="查询" OnClick="btnQuery_OnClick" />&nbsp;&nbsp;
+                    排序方式:<asp:DropDownList ID="ddlOrderWay" runat="server" AutoPostBack="true" OnSelectedIndexChanged="ddlOrderWay_OnSelectIndexChanged"><asp:ListItem Value="1" Selected="true">发布时间</asp:ListItem><asp:ListItem Value="2">点击数</asp:ListItem><asp:ListItem Value="3">评论数</asp:ListItem><asp:ListItem Value="4">推荐数</asp:ListItem></asp:DropDownList>&nbsp;&nbsp;
                 <asp:Button ID="btnSelect" runat="server" CssClass="btn" Text="全选" OnClick="btnSelect_OnClick"/>&nbsp;&nbsp;
                     <asp:Button ID="btnAdd" runat="server" CssClass="btn" Text="添加" OnClick="btnAdd_OnClick"/>&nbsp;&nbsp;
                     <asp:Button ID="btnRecommand" runat="server" CssClass="btn" Text="推荐" OnClick="btnRecommand_OnClick"/>
@@ -58,6 +64,7 @@
                     </ItemTemplate>
                 </asp:TemplateColumn>
                 <asp:HyperLinkColumn DataNavigateUrlField="HairShopID" DataNavigateUrlFormatString="HairShopDetails.aspx?id={0}" Target="_blank" Text="详细"></asp:HyperLinkColumn>
+                <asp:HyperLinkColumn DataNavigateUrlField="HairShopID" DataNavigateUrlFormatString="HairShopCommentAdmin.aspx?id={0}" Target="_blank" Text="评论"></asp:HyperLinkColumn>
                 <asp:HyperLinkColumn DataNavigateUrlField="HairShopID" DataNavigateUrlFormatString="HairShopEdit.aspx?id={0}" Target="_blank" Text="编辑"></asp:HyperLinkColumn>
                 <asp:ButtonColumn ButtonType="LinkButton" CommandName="recommand" Text="推荐"></asp:ButtonColumn>
                 <asp:ButtonColumn ButtonType="LinkButton" CommandName="delete" Text="删除"></asp:ButtonColumn>

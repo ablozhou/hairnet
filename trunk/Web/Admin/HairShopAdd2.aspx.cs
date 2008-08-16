@@ -9,9 +9,9 @@ using System.Web.UI.WebControls;
 using System.Web.UI.WebControls.WebParts;
 using System.Web.UI.HtmlControls;
 
-namespace Web.Admin
+namespace Web
 {
-    public partial class HairShopAdd : System.Web.UI.Page
+    public partial class HairShopAdd2 : System.Web.UI.Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -19,7 +19,7 @@ namespace Web.Admin
         }
         protected void btnSubmit_OnClick(object sender, EventArgs e)
         {
-            this.Response.Redirect("HairShopAdd2.aspx");
+            this.Response.Redirect("HairShopAdd3.aspx");
         }
     }
 }

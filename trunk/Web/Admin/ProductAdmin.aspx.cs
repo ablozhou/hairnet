@@ -22,7 +22,46 @@ namespace Web.Admin
             if (!this.IsPostBack)
             {
                 this.databind();
+
+                this.txtQueryName.Visible = true;
+                this.lblQueryNameSpace.Visible = true;
+                this.txtStartTime.Visible = false;
+                this.txtEndTime.Visible = false;
+                this.lblEndTime.Visible = false;
+                this.lblStartTime.Visible = false;
+                this.lblTimeSpace.Visible = false;
             }
+        }
+        public void ddlQuery_OnSelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (this.ddlQuery.SelectedValue != "3")
+            {
+                this.txtQueryName.Visible = true;
+                this.lblQueryNameSpace.Visible = true;
+                this.txtStartTime.Visible = false;
+                this.txtEndTime.Visible = false;
+                this.lblEndTime.Visible = false;
+                this.lblStartTime.Visible = false;
+                this.lblTimeSpace.Visible = false;
+            }
+            else
+            {
+                this.txtQueryName.Visible = false;
+                this.lblQueryNameSpace.Visible = false;
+                this.txtStartTime.Visible = true;
+                this.txtEndTime.Visible = true;
+                this.lblStartTime.Visible = true;
+                this.lblEndTime.Visible = true;
+                this.lblTimeSpace.Visible = true;
+            }
+        }
+        public void ddlOrderWay_OnSelectIndexChanged(object sender, EventArgs e)
+        {
+            //根据排序绑定
+        }
+        public void btnQuery_OnClick(object sender, EventArgs e)
+        {
+
         }
         public void btnSelect_OnClick(object sender, EventArgs e)
         {
