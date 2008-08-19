@@ -474,5 +474,42 @@ namespace HairNet.Business
         {
             return ProviderFactory.GetPictureStoreDataProviderInstance().GetPictureStoreCommentsByTimeZone(count, sTime, eTime);
         }
+        /// <summary>
+        /// 获取城市列表
+        /// </summary>
+        /// <returns></returns>
+        public static List<City> GetCityItems()
+        {
+            return ProviderFactory.GetCommonDataProviderInstance().GetCitys();
+        }
+        /// <summary>
+        /// 根据CityID获取区域列表
+        /// </summary>
+        /// <param name="cityid"></param>
+        /// <returns></returns>
+        public static List<MapZone> GetMapZoneByCityID(int cityid)
+        {
+            return ProviderFactory.GetCommonDataProviderInstance().GetMapZonesByCityID(cityid);
+        }
+
+        public static List<HotZone> GetHotZoneByMapZoneID(int mapzoneid)
+        {
+            return ProviderFactory.GetCommonDataProviderInstance().GetHotZonesByMapZoneID(mapzoneid);
+        }
+
+        public static List<TypeTable> GetTypeTable()
+        {
+            return ProviderFactory.GetHairShopDataProviderInstance().GetTypeTables();
+        }
+
+        public static List<WorkRange> GetWorkRange()
+        {
+            return ProviderFactory.GetHairShopDataProviderInstance().GetWorkRanges();
+        }
+
+        public static bool AddHairShop(HairShop hairShop)
+        {
+            return ProviderFactory.GetHairShopDataProviderInstance().AddHairShop(hairShop);
+        }
     }
 }

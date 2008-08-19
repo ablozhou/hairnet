@@ -142,7 +142,7 @@ namespace HairNet.Provider
 
                                 mapz.CityID = int.Parse(reader["CityID"].ToString());
                                 mapz.ID = int.Parse(reader["MapZoneID"].ToString());
-                                mapz.IsVisible = bool.Parse(reader["MapZoneID"].ToString());
+                                mapz.IsVisible = bool.Parse(reader["MapZoneVisible"].ToString());
                                 mapz.Name = reader["MapZoneName"].ToString();
 
                                 list.Add(mapz);

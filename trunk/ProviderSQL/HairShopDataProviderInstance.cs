@@ -1208,5 +1208,32 @@ namespace HairNet.Provider
 
             return list;
         }
+
+
+        public bool AddHairShop(HairShop hairShop)
+        {
+            bool bReturn = false;
+            string sSql = "insert into HairShop([HairShopName],[HairShopCityID],[HairShopMapZoneID],[HairShopHotZoneID],[HairShopAddress],[HairShopPhoneNum],[HairShopPictureStoreIDs],[HairShopMainIDs],[HairShopPartialIDs],[HairShopEngineerNum],[HairShopOpenTime],[HairShopOrderNum],[HairShopVisitNum],[WorkRangeIDs],[HairShopWebSite],[HairShopEmail],[HairshopDiscount],[HairShopLogo],[HairShopRecommandNum],[HairShopCreateTime],[HairShopDescription],[ProductIDs],[HairShopTagIDs],[HairShopShortName],[IsBest],[IsJoin],[TypeID],[IsPostStation],[IsPostMachine],[HairShopGood],[HairShopBad])"
+                + " values('" + hairShop.HairShopName + "'," + hairShop.HairShopCityID + "," + hairShop.HairShopMapZoneID + "," + hairShop.HairShopHotZoneID + ",'" + hairShop.HairShopAddress + "','" + hairShop.HairShopPhoneNum + "','" + hairShop.HairShopPictureStoreIDs + "','" + hairShop.HairShopMainIDs + "','" + hairShop.HairShopPartialIDs + "'," + hairShop.HairShopEngineerNum + ",'" + hairShop.HairShopOpenTime + "'," + hairShop.HairShopOrderNum + "," + hairShop.HairShopVisitNum + ",'" + hairShop.WorkRangeIDs + "','" + hairShop.HairShopWebSite + "','" + hairShop.HairShopEmail + "','" + hairShop.HairShopDiscount + "','" + hairShop.HairShopLogo + "'"
+                + "," + hairShop.HairShopRecommandNum + ",'" + hairShop.HairShopCreateTime + "','" + hairShop.HairShopDescription + "','" + hairShop.ProductIDs + "','" + hairShop.HairShopTagIDs + "','" + hairShop.HairShopShortName + "','" + hairShop.IsBest + "','" + hairShop.IsJoin + "'," + hairShop.TypeID + ",'" + hairShop.IsPostStation + "','" + hairShop.IsPostMachine + "'," + hairShop.HairShopGood + "," + hairShop.HairShopBad + ")";
+
+            using (SqlConnection conn = new SqlConnection(DataHelper2.SqlConnectionString))
+            {
+                using (SqlCommand comm = new SqlCommand())
+                {
+                    comm.Connection = conn;
+                    comm.CommandText = sSql;
+                    conn.Open();
+
+                    if (comm.ExecuteNonQuery()==1)
+                    {
+                        bReturn = true;
+                    }
+                    conn.Close();
+                }
+            }
+            sSql = null;
+            return bReturn;
+        }
     }
 }

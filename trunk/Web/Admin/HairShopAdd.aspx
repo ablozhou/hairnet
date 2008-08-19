@@ -28,8 +28,10 @@
     <br />
     开业时间：<asp:TextBox ID="txtHairShopCreateTime" runat="server" Width="200" CssClass="TextBox"></asp:TextBox>
     <br />
-    城市： <asp:DropDownList ID="ddlCity" runat="server"></asp:DropDownList>&nbsp;&nbsp;     
-    区域： <asp:DropDownList ID="ddlMapZone" runat="server"></asp:DropDownList>&nbsp;&nbsp;       
+    城市： <asp:DropDownList ID="ddlCity" runat="server" AutoPostBack="True" 
+            onselectedindexchanged="ddlCity_SelectedIndexChanged"></asp:DropDownList>&nbsp;&nbsp;     
+    区域： <asp:DropDownList ID="ddlMapZone" runat="server" AutoPostBack="True" 
+            onselectedindexchanged="ddlMapZone_SelectedIndexChanged"></asp:DropDownList>&nbsp;&nbsp;       
     地段：<asp:DropDownList ID="ddlHotZone" runat="server"></asp:DropDownList>&nbsp;&nbsp;
     <br />
     详细地址：<asp:TextBox ID="txtHairShopAddress" runat="server" Width="200" CssClass="TextBox"></asp:TextBox>
@@ -47,7 +49,8 @@
     是否停车：<asp:CheckBox ID="chkIsPostStation" runat="server" />&nbsp;&nbsp;
     是否刷卡：<asp:CheckBox ID="chkIsPostMachine" runat="server" />
     <br />
-    描述：<FCKEDITORV2:FCKEDITOR id="txtHairShopDescription" runat="server" BasePath="FCKeditor/" Width="98%" Height="400"></FCKEDITORV2:FCKEDITOR>
+    描述：<asp:TextBox ID="txtDescription" runat="server" Height="200px" 
+            TextMode="MultiLine" Width="900px"></asp:TextBox>
     </div>
     <div>
         <br />
