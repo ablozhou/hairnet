@@ -11,12 +11,6 @@
 namespace Web.Admin {
     
     
-    /// <summary>
-    /// HairShopAdd 类。
-    /// </summary>
-    /// <remarks>
-    /// 自动生成的类。
-    /// </remarks>
     public partial class HairShopAdd {
         
         /// <summary>
@@ -24,7 +18,7 @@ namespace Web.Admin {
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
-        /// 要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlForm form1;
         
@@ -33,7 +27,7 @@ namespace Web.Admin {
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
-        /// 要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtHairShopName;
         
@@ -42,7 +36,7 @@ namespace Web.Admin {
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
-        /// 要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtHairShopShortName;
         
@@ -51,7 +45,7 @@ namespace Web.Admin {
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
-        /// 要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList ddlTypeTable;
         
@@ -60,7 +54,7 @@ namespace Web.Admin {
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
-        /// 要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtHairShopWebSite;
         
@@ -69,7 +63,7 @@ namespace Web.Admin {
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
-        /// 要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtHairShopEmail;
         
@@ -78,7 +72,7 @@ namespace Web.Admin {
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
-        /// 要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtHairShopDiscount;
         
@@ -87,7 +81,7 @@ namespace Web.Admin {
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
-        /// 要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtHairShopLogo;
         
@@ -96,7 +90,7 @@ namespace Web.Admin {
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
-        /// 要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtHairShopCreateTime;
         
@@ -105,7 +99,7 @@ namespace Web.Admin {
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
-        /// 要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList ddlCity;
         
@@ -114,7 +108,7 @@ namespace Web.Admin {
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
-        /// 要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList ddlMapZone;
         
@@ -123,7 +117,7 @@ namespace Web.Admin {
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
-        /// 要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList ddlHotZone;
         
@@ -132,7 +126,7 @@ namespace Web.Admin {
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
-        /// 要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtHairShopAddress;
         
@@ -141,7 +135,7 @@ namespace Web.Admin {
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
-        /// 要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtHairShopPhoneNum;
         
@@ -150,7 +144,7 @@ namespace Web.Admin {
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
-        /// 要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtHairShopOpenTime;
         
@@ -159,7 +153,7 @@ namespace Web.Admin {
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
-        /// 要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtHairShopTag;
         
@@ -168,7 +162,7 @@ namespace Web.Admin {
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
-        /// 要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
         protected global::System.Web.UI.WebControls.CheckBoxList chkListWorkRange;
         
@@ -177,7 +171,7 @@ namespace Web.Admin {
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
-        /// 要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
         protected global::System.Web.UI.WebControls.CheckBox chkIsBest;
         
@@ -186,7 +180,7 @@ namespace Web.Admin {
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
-        /// 要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
         protected global::System.Web.UI.WebControls.CheckBox chkIsJoin;
         
@@ -195,7 +189,7 @@ namespace Web.Admin {
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
-        /// 要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
         protected global::System.Web.UI.WebControls.CheckBox chkIsPostStation;
         
@@ -204,25 +198,25 @@ namespace Web.Admin {
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
-        /// 要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
         protected global::System.Web.UI.WebControls.CheckBox chkIsPostMachine;
         
         /// <summary>
-        /// txtHairShopDescription 控件。
+        /// txtDescription 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
-        /// 要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::FredCK.FCKeditorV2.FCKeditor txtHairShopDescription;
+        protected global::System.Web.UI.WebControls.TextBox txtDescription;
         
         /// <summary>
         /// btnSubmit 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
-        /// 要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnSubmit;
     }

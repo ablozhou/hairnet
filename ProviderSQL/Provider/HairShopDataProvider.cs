@@ -160,5 +160,7 @@ namespace HairNet.Provider
         /// <param name="eTime"></param>
         /// <returns></returns>
         List<HairShopComment> GetHairShopCommentsByTimeZone(int count, string sTime, string eTime);
+
+        bool AddHairShop(HairShop hairShop);
     }
 }
