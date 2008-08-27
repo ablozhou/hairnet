@@ -12,11 +12,35 @@
     <div>
     总店，分店信息
     <br /><br /><br />
-    美发厅列表&nbsp;&nbsp;<asp:DropDownList ID="ddlHairShopName" runat="server"><asp:ListItem>美发厅1</asp:ListItem><asp:ListItem>美发厅2</asp:ListItem></asp:DropDownList>&nbsp;&nbs;
-    <asp:Button ID="btnAddMain" runat="server" Text="添加为总店" />&nbsp;&nbsp;
-    <asp:Button ID="btnAddPartial" runat="server" Text="添加为分店" />
-    <asp:Panel ID="p1" runat="server">总店信息</asp:Panel>
-    <asp:Panel ID="p2" runat="server">分店信息</asp:Panel>
+    美发厅列表&nbsp;&nbsp;<asp:DropDownList ID="ddlHairShopName" runat="server"></asp:DropDownList>&nbsp;&nbsp;
+    <asp:Button ID="btnAddMain" runat="server" Text="添加为总店" 
+            onclick="btnAddMain_Click" />&nbsp;&nbsp;
+    <asp:Button ID="btnAddPartial" runat="server" Text="添加为分店" 
+            onclick="btnAddPartial_Click" />
+    <asp:Panel ID="p1" runat="server">
+        <asp:GridView ID="gvZD" runat="server" AutoGenerateColumns="False" 
+            CellPadding="2" ShowHeader="False" Caption="总店信息" 
+            onrowdeleting="gvZD_RowDeleting">
+            <Columns>
+                <asp:BoundField DataField="Name">
+                    <ItemStyle Width="200px" />
+                </asp:BoundField>
+                <asp:CommandField ShowDeleteButton="True" />
+            </Columns>
+        </asp:GridView>
+    </asp:Panel>
+    <asp:Panel ID="p2" runat="server">
+        <asp:GridView ID="gvFD" runat="server" AutoGenerateColumns="False" 
+            CellPadding="2" ShowHeader="False" Caption="分店信息" 
+            onrowdeleting="gvFD_RowDeleting">
+            <Columns>
+                <asp:BoundField DataField="Name">
+                    <ItemStyle Width="200px" />
+                </asp:BoundField>
+                <asp:CommandField ShowDeleteButton="True" />
+            </Columns>
+        </asp:GridView>
+    </asp:Panel>
     </div>
     <div>
     <br /><br />

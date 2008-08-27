@@ -24,7 +24,7 @@
     <br />
     美发师折扣：<asp:TextBox ID="txtHairShopDiscount" runat="server" Width="200" CssClass="TextBox"></asp:TextBox>
     <br />
-    美发厅LOGO：<asp:TextBox ID="txtHairShopLogo" runat="server" Width="200" CssClass="TextBox"></asp:TextBox>
+    美发厅LOGO：<input type="file" id="fileLogo" runat="server" />
     <br />
     开业时间：<asp:TextBox ID="txtHairShopCreateTime" runat="server" Width="200" CssClass="TextBox"></asp:TextBox>
     <br />
