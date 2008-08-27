@@ -11,6 +11,7 @@ using System.Web.UI.HtmlControls;
 using System.Collections.Generic;
 using HairNet.Entry;
 using HairNet.Business;
+using HairNet.Utilities;
 
 namespace Web.Admin
 {
@@ -36,7 +37,11 @@ namespace Web.Admin
             hs.HairShopWebSite = txtHairShopWebSite.Text.Trim();
             hs.HairShopEmail = txtHairShopEmail.Text.Trim();
             hs.HairShopDiscount = txtHairShopDiscount.Text.Trim();
-            hs.HairShopLogo = txtHairShopLogo.Text.Trim();
+            //获取上传图片后的路径
+            UpLoadClass upload = new UpLoadClass();
+            hs.HairShopLogo = upload.UpLoadImg(fileLogo, "/uploadfiles/logo/");
+            upload = null;
+
             hs.HairShopCreateTime = txtHairShopCreateTime.Text.Trim();
             hs.HairShopCityID = int.Parse(ddlCity.SelectedValue);
             hs.HairShopMapZoneID = int.Parse(ddlMapZone.SelectedValue);
@@ -45,17 +50,32 @@ namespace Web.Admin
             hs.HairShopPhoneNum = txtHairShopPhoneNum.Text.Trim();
             hs.HairShopOpenTime = txtHairShopOpenTime.Text.Trim();
             hs.HairShopTagIDs = txtHairShopTag.Text.Trim();
-            hs.WorkRangeIDs = chkListWorkRange.SelectedValue;
+
+
+            List<string> IDs = new List<string>();
+            int chkI = chkListWorkRange.Items.Count;
+            for (int i = 0; i < chkI; i++)
+            {
+                if (chkListWorkRange.Items[i].Selected)
+                {
+                    IDs.Add(chkListWorkRange.Items[i].Value);
+                }
+            }
+            IDs.Sort();
+            hs.WorkRangeIDs = string.Join(",", IDs.ToArray());
+
+
             hs.IsBest = chkIsBest.Checked;
             hs.IsJoin = chkIsJoin.Checked;
             hs.IsPostMachine = chkIsPostStation.Checked;
             hs.IsPostStation = chkIsPostMachine.Checked;
             hs.HairShopDescription = txtDescription.Text.Trim();
 
-            if (InfoAdmin.AddHairShop(hs))
-            {
-                this.Response.Redirect("HairShopAdd2.aspx");
-            }
+            //if (InfoAdmin.AddHairShop(hs))
+            //{
+            Session["HairShopInfo"] = hs;
+            this.Response.Redirect("HairShopAdd2.aspx");
+            //}
 
         }
 

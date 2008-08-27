@@ -11,12 +11,6 @@
 namespace Web {
     
     
-    /// <summary>
-    /// HairShopAdd2 类。
-    /// </summary>
-    /// <remarks>
-    /// 自动生成的类。
-    /// </remarks>
     public partial class HairShopAdd2 {
         
         /// <summary>
@@ -24,7 +18,7 @@ namespace Web {
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
-        /// 要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlForm form1;
         
@@ -33,7 +27,7 @@ namespace Web {
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
-        /// 要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList ddlHairShopName;
         
@@ -42,7 +36,7 @@ namespace Web {
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
-        /// 要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnAddMain;
         
@@ -51,7 +45,7 @@ namespace Web {
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
-        /// 要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnAddPartial;
         
@@ -60,25 +54,43 @@ namespace Web {
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
-        /// 要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
         protected global::System.Web.UI.WebControls.Panel p1;
+        
+        /// <summary>
+        /// gvZD 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.GridView gvZD;
         
         /// <summary>
         /// p2 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
-        /// 要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
         protected global::System.Web.UI.WebControls.Panel p2;
+        
+        /// <summary>
+        /// gvFD 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.GridView gvFD;
         
         /// <summary>
         /// btnSubmit 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
-        /// 要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnSubmit;
     }
