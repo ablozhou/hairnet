@@ -176,7 +176,7 @@ namespace HairNet.Utilities
                 Random r = new Random();
                 filename = y + "/" + m + "/" + d + "/" +"images"+"/"+ filename + r.Next(100000000);
                 filename = filename + "." + name.Substring(name.Length - 3);
-                FN = "/"+ filename;
+                FN = pathSave + filename;
                 filename = path + "/" + filename;
                 upload_img.PostedFile.SaveAs(filename);
             }
