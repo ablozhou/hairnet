@@ -4,6 +4,7 @@ using System.Text;
 using HairNet.Entry;
 using HairNet.Enumerations;
 using System.Data.SqlClient;
+using System.Data;
 
 namespace HairNet.Provider
 {
@@ -1213,26 +1214,82 @@ namespace HairNet.Provider
         public bool AddHairShop(HairShop hairShop)
         {
             bool bReturn = false;
-            string sSql = "insert into HairShop([HairShopName],[HairShopCityID],[HairShopMapZoneID],[HairShopHotZoneID],[HairShopAddress],[HairShopPhoneNum],[HairShopPictureStoreIDs],[HairShopMainIDs],[HairShopPartialIDs],[HairShopEngineerNum],[HairShopOpenTime],[HairShopOrderNum],[HairShopVisitNum],[WorkRangeIDs],[HairShopWebSite],[HairShopEmail],[HairshopDiscount],[HairShopLogo],[HairShopRecommandNum],[HairShopCreateTime],[HairShopDescription],[ProductIDs],[HairShopTagIDs],[HairShopShortName],[IsBest],[IsJoin],[TypeID],[IsPostStation],[IsPostMachine],[HairShopGood],[HairShopBad])"
-                + " values('" + hairShop.HairShopName + "'," + hairShop.HairShopCityID + "," + hairShop.HairShopMapZoneID + "," + hairShop.HairShopHotZoneID + ",'" + hairShop.HairShopAddress + "','" + hairShop.HairShopPhoneNum + "','" + hairShop.HairShopPictureStoreIDs + "','" + hairShop.HairShopMainIDs + "','" + hairShop.HairShopPartialIDs + "'," + hairShop.HairShopEngineerNum + ",'" + hairShop.HairShopOpenTime + "'," + hairShop.HairShopOrderNum + "," + hairShop.HairShopVisitNum + ",'" + hairShop.WorkRangeIDs + "','" + hairShop.HairShopWebSite + "','" + hairShop.HairShopEmail + "','" + hairShop.HairShopDiscount + "','" + hairShop.HairShopLogo + "'"
-                + "," + hairShop.HairShopRecommandNum + ",'" + hairShop.HairShopCreateTime + "','" + hairShop.HairShopDescription + "','" + hairShop.ProductIDs + "','" + hairShop.HairShopTagIDs + "','" + hairShop.HairShopShortName + "','" + hairShop.IsBest + "','" + hairShop.IsJoin + "'," + hairShop.TypeID + ",'" + hairShop.IsPostStation + "','" + hairShop.IsPostMachine + "'," + hairShop.HairShopGood + "," + hairShop.HairShopBad + ")";
+
+            //string sSql = "insert into HairShop([HairShopName],[HairShopCityID],[HairShopMapZoneID],[HairShopHotZoneID],[HairShopAddress],[HairShopPhoneNum],[HairShopPictureStoreIDs],[HairShopMainIDs],[HairShopPartialIDs],[HairShopEngineerNum],[HairShopOpenTime],[HairShopOrderNum],[HairShopVisitNum],[WorkRangeIDs],[HairShopWebSite],[HairShopEmail],[HairshopDiscount],[HairShopLogo],[HairShopRecommandNum],[HairShopCreateTime],[HairShopDescription],[ProductIDs],[HairShopTagIDs],[HairShopShortName],[IsBest],[IsJoin],[TypeID],[IsPostStation],[IsPostMachine],[HairShopGood],[HairShopBad])"
+            //    + " values('" + hairShop.HairShopName + "'," + hairShop.HairShopCityID + "," + hairShop.HairShopMapZoneID + "," + hairShop.HairShopHotZoneID + ",'" + hairShop.HairShopAddress + "','" + hairShop.HairShopPhoneNum + "','" + hairShop.HairShopPictureStoreIDs + "','" + hairShop.HairShopMainIDs + "','" + hairShop.HairShopPartialIDs + "'," + hairShop.HairShopEngineerNum + ",'" + hairShop.HairShopOpenTime + "'," + hairShop.HairShopOrderNum + "," + hairShop.HairShopVisitNum + ",'" + hairShop.WorkRangeIDs + "','" + hairShop.HairShopWebSite + "','" + hairShop.HairShopEmail + "','" + hairShop.HairShopDiscount + "','" + hairShop.HairShopLogo + "'"
+            //    + "," + hairShop.HairShopRecommandNum + ",'" + hairShop.HairShopCreateTime + "','" + hairShop.HairShopDescription + "','" + hairShop.ProductIDs + "','" + hairShop.HairShopTagIDs + "','" + hairShop.HairShopShortName + "','" + hairShop.IsBest + "','" + hairShop.IsJoin + "'," + hairShop.TypeID + ",'" + hairShop.IsPostStation + "','" + hairShop.IsPostMachine + "'," + hairShop.HairShopGood + "," + hairShop.HairShopBad + ")";
+
+            //using (SqlConnection conn = new SqlConnection(DataHelper2.SqlConnectionString))
+            //{
+            //    using (SqlCommand comm = new SqlCommand())
+            //    {
+            //        comm.Connection = conn;
+            //        comm.CommandText = sSql;
+            //        conn.Open();
+
+            //        if (comm.ExecuteNonQuery()==1)
+            //        {
+            //            bReturn = true;
+            //        }
+            //        conn.Close();
+            //    }
+            //}
+            //sSql = null;
 
             using (SqlConnection conn = new SqlConnection(DataHelper2.SqlConnectionString))
             {
-                using (SqlCommand comm = new SqlCommand())
+                using (SqlDataAdapter adapter = new SqlDataAdapter("select top 1 * from hairshop", conn))
                 {
-                    comm.Connection = conn;
-                    comm.CommandText = sSql;
-                    conn.Open();
+                    SqlCommandBuilder cb = new SqlCommandBuilder(adapter);
+                    DataTable dt = new DataTable();
+                    adapter.Fill(dt);
 
-                    if (comm.ExecuteNonQuery()==1)
+                    DataRow row = dt.NewRow();
+                    row["HairShopName"] = hairShop.HairShopName;
+                    row["HairShopCityID"] = hairShop.HairShopCityID;
+                    row["HairShopMapZoneID"] = hairShop.HairShopMapZoneID;
+                    row["HairShopHotZoneID"] = hairShop.HairShopHotZoneID;
+                    row["HairShopAddress"] = hairShop.HairShopAddress;
+                    row["HairShopPhoneNum"] = hairShop.HairShopPhoneNum;
+                    row["HairShopPictureStoreIDs"] = hairShop.HairShopPictureStoreIDs;
+                    row["HairShopMainIDs"] = hairShop.HairShopMainIDs;
+                    row["HairShopPartialIDs"] = hairShop.HairShopPartialIDs;
+                    row["HairShopEngineerNum"] = hairShop.HairShopEngineerNum;
+                    row["HairShopOpenTime"] = hairShop.HairShopOpenTime;
+                    row["HairShopOrderNum"] = hairShop.HairShopOrderNum;
+                    row["HairShopVisitNum"] = hairShop.HairShopVisitNum;
+                    row["WorkRangeIDs"] = hairShop.WorkRangeIDs;
+                    row["HairShopWebSite"] = hairShop.HairShopWebSite;
+                    row["HairShopEmail"] = hairShop.HairShopEmail;
+                    row["HairShopDiscount"] = hairShop.HairShopDiscount;
+                    row["HairShopLogo"] = hairShop.HairShopLogo;
+                    row["HairShopRecommandNum"] = hairShop.HairShopRecommandNum;
+                    row["HairShopCreateTime"] = hairShop.HairShopCreateTime;
+                    row["HairShopDescription"] = hairShop.HairShopDescription;
+                    row["ProductIDs"] = hairShop.ProductIDs;
+                    row["HairShopTagIDs"] = hairShop.HairShopTagIDs;
+                    row["HairShopShortName"] = hairShop.HairShopShortName;
+                    row["IsBest"] = hairShop.IsBest;
+                    row["IsJoin"] = hairShop.IsJoin;
+                    row["TypeID"] = hairShop.TypeID;
+                    row["IsPostStation"] = hairShop.IsPostStation;
+                    row["IsPostMachine"] = hairShop.IsPostMachine;
+                    row["HairShopGood"] = hairShop.HairShopGood;
+                    row["HairShopBad"] = hairShop.HairShopBad;
+
+                    dt.Rows.Add(row);
+                    if (adapter.Update(dt) == 1)
                     {
                         bReturn = true;
                     }
-                    conn.Close();
+
+                    cb.Dispose();
+                    dt.Dispose();
+                    cb = null;
+                    dt = null;
                 }
             }
-            sSql = null;
+
             return bReturn;
         }
     }
