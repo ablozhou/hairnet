@@ -266,7 +266,6 @@ namespace HairNet.Utilities
             grPhoto.Dispose();
             grWatermark.Dispose();
 
-             
             imgPhoto.Save(picAddedWaterMarkPath,ImageFormat.Jpeg);
             imgPhoto.Dispose();
             imgWatermark.Dispose();

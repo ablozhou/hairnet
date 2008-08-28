@@ -511,5 +511,25 @@ namespace HairNet.Business
         {
             return ProviderFactory.GetHairShopDataProviderInstance().AddHairShop(hairShop);
         }
+        public static string GetHairShopTagIDs(string tagNames)
+        {
+            return ProviderFactory.GetHairShopDataProviderInstance().GetHairShopTagIDs(tagNames);
+        }
+        public static List<PictureStoreGroup> GetPictureStoreGroups(int count)
+        {
+            return ProviderFactory.GetPictureStoreDataProviderInstance().GetPictureStoreGroups(count);
+        }
+        public static string GetPictureStoreTagIDs(string tagNames)
+        {
+            return ProviderFactory.GetPictureStoreDataProviderInstance().GetPictureStoreTagIDs(tagNames);
+        }
+        public static string GetHairEngineerTagIDs(string tagNames)
+        {
+            return ProviderFactory.GetHairEngineerDataProviderInstance().GetHairEngineerTagIDs(tagNames);
+        }
+        public static int AddPictureStore(PictureStore ps)
+        {
+            return ProviderFactory.GetPictureStoreDataProviderInstance().AddPictureStore(ps);
+        }
     }
 }
