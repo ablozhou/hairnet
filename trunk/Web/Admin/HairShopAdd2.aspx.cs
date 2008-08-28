@@ -73,7 +73,7 @@ namespace Web
             List<string> id2 = new List<string>();
             for (int i = 0; i < gvFD.DataKeys.Count; i++)
             {
-                id2.Add(gvZD.DataKeys[i].Value.ToString());
+                id2.Add(gvFD.DataKeys[i].Value.ToString());
             }
             id2.Sort();
             hs.HairShopPartialIDs = string.Join(",", id2.ToArray());

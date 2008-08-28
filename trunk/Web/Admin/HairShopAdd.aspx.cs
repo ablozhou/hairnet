@@ -49,7 +49,9 @@ namespace Web.Admin
             hs.HairShopAddress = txtHairShopAddress.Text.Trim();
             hs.HairShopPhoneNum = txtHairShopPhoneNum.Text.Trim();
             hs.HairShopOpenTime = txtHairShopOpenTime.Text.Trim();
-            hs.HairShopTagIDs = txtHairShopTag.Text.Trim();
+
+
+            hs.HairShopTagIDs = InfoAdmin.GetHairShopTagIDs(txtHairShopTag.Text.Trim());
 
 
             List<string> IDs = new List<string>();

@@ -10,22 +10,73 @@
 <body>
     <form id="form1" runat="server">
     <div>
-    图片信息
-    <br /><br /><br />
-    类型:<asp:RadioButtonList ID="rBtnList" runat="server" RepeatDirection="horizontal"><asp:ListItem Value="1">店面环境</asp:ListItem><asp:ListItem Value="2">店内环境</asp:ListItem></asp:RadioButtonList>
-    <br />
-    名称:<asp:TextBox ID="txtPictureStoreName" runat="server" CssClass="TextBox" Width="200"></asp:TextBox>
-    <br />
-    关键字:<asp:TextBox ID="txtPictureStoreTag" runat="server" CssClass="TextBox" Width="200"></asp:TextBox>
-    <br />
-    描述:<asp:TextBox ID="txtPictureStoreDescriptioin" runat="server" CssClass="TextBox" Wrap="true" TextMode="MultiLine" Width="200" Height="300"></asp:TextBox>
-    <br />
-    浏览图片，上传控件
-    <br />
-    <asp:Button ID="btnAddPic" runat="server" Text="添加" />
+     <table border="0" cellpadding="2" cellspacing="2" width="98%">
+     <tr>
+     <th colspan="2"><b>图片信息</b></th>
+     </tr>
+     <tr>
+     <td width="120" align="right">
+         类型：
+     </td>
+     <td>
+         <asp:DropDownList ID="ddlPicGroup" runat="server">
+         </asp:DropDownList>
+         </td>
+     </tr>
+     <tr>
+        <td width="120" align="right">
+            名称：         </td>
+        <td>
+        <asp:TextBox ID="txtPictureStoreName" runat="server" CssClass="TextBox" Width="200"></asp:TextBox>
+        </td>
+     </tr>
+     <tr>
+        <td width="120" align="right">
+            关键字：         </td>
+        <td>
+        <asp:TextBox ID="txtPictureStoreTag" runat="server" CssClass="TextBox" Width="200"></asp:TextBox>
+        </td>
+     </tr>
+     <tr>
+        <td width="120" align="right">
+            描述：         </td>
+        <td>
+        <asp:TextBox ID="txtPictureStoreDescriptioin" runat="server" CssClass="TextBox" Wrap="true" TextMode="MultiLine" Width="500" Height="300"></asp:TextBox>
+        </td>
+     </tr>
+     <tr>
+        <td width="120" align="right">
+        
+            操作：</td>
+        <td>
+        
+            <input id="uploadpic" type="file" runat="server" /><asp:Button ID="btnAddPic" runat="server" 
+                Text="添加" onclick="btnAddPic_Click" />
+        
+        </td>
+     </tr>
+     <tr>
+        <td width="120" align="right">
+        
+            本次上传图片：</td>
+        <td>
+            
+            <asp:GridView ID="gvPicList" runat="server" BorderStyle="Solid" 
+                BorderWidth="1px" CellPadding="2" ShowHeader="False" 
+                AutoGenerateColumns="False" onrowdeleting="gvPicList_RowDeleting">
+                <Columns>
+                    <asp:BoundField DataField="PictureStoreName" ShowHeader="False">
+                        <ItemStyle Width="200px" />
+                    </asp:BoundField>
+                    <asp:CommandField ShowDeleteButton="True" />
+                </Columns>
+            </asp:GridView>
+            
+        </td>
+     </tr>
+     </table>
     </div>
     <div>
-    <br /><br />
     <asp:Button ID="btnSubmit" runat="server" Text="提交 <<图片信息>>" OnClick="btnSubmit_OnClick" />
     </div>
     </form>
