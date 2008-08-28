@@ -615,6 +615,52 @@ namespace HairNet.Provider
             return list;
         }
 
+        public string GetHairEngineerTagIDs(string tagNames)
+        {
+            string[] tags = tagNames.Split(',');
+            List<string> list = new List<string>();
+            foreach (string tag in tags)
+            {
+                list.Add(this.AddHairEngineerTag(tag).ToString());
+            }
+            return string.Join(",", list.ToArray());
+        }
+
+        private int AddHairEngineerTag(string name)
+        {
+            int TagID = 0;
+
+            string strsql = "select HairEngineerTagID from HairEngineerTag where HairEngineerTagName='" + name + "'";
+            using (SqlConnection conn = new SqlConnection(DataHelper2.SqlConnectionString))
+            {
+                using (SqlCommand cmd = new SqlCommand(strsql, conn))
+                {
+                    conn.Open();
+                    SqlDataReader dr = cmd.ExecuteReader();
+                    if (dr.Read())
+                    {
+                        TagID = dr.GetInt32(0);
+                    }
+                    else
+                    {
+                        dr.Close();
+                        strsql = "insert into HairEngineerTag(HairEngineerTagName,HairEngineerIDs) values('" + name + "','');select @@identity as 'id';";
+                        cmd.CommandText = strsql;
+                        dr = cmd.ExecuteReader();
+                        if (dr.Read())
+                        {
+                            TagID = int.Parse(dr[0].ToString());
+                        }
+                        dr.Close();
+                    }
+                    dr.Dispose();
+                    dr = null;
+                    conn.Close();
+                }
+            }
+            return TagID;
+        }
+
         /// <summary>
         /// 获得美发师TAG实体
         /// </summary>

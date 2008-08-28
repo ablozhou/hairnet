@@ -1214,28 +1214,6 @@ namespace HairNet.Provider
         public bool AddHairShop(HairShop hairShop)
         {
             bool bReturn = false;
-
-            //string sSql = "insert into HairShop([HairShopName],[HairShopCityID],[HairShopMapZoneID],[HairShopHotZoneID],[HairShopAddress],[HairShopPhoneNum],[HairShopPictureStoreIDs],[HairShopMainIDs],[HairShopPartialIDs],[HairShopEngineerNum],[HairShopOpenTime],[HairShopOrderNum],[HairShopVisitNum],[WorkRangeIDs],[HairShopWebSite],[HairShopEmail],[HairshopDiscount],[HairShopLogo],[HairShopRecommandNum],[HairShopCreateTime],[HairShopDescription],[ProductIDs],[HairShopTagIDs],[HairShopShortName],[IsBest],[IsJoin],[TypeID],[IsPostStation],[IsPostMachine],[HairShopGood],[HairShopBad])"
-            //    + " values('" + hairShop.HairShopName + "'," + hairShop.HairShopCityID + "," + hairShop.HairShopMapZoneID + "," + hairShop.HairShopHotZoneID + ",'" + hairShop.HairShopAddress + "','" + hairShop.HairShopPhoneNum + "','" + hairShop.HairShopPictureStoreIDs + "','" + hairShop.HairShopMainIDs + "','" + hairShop.HairShopPartialIDs + "'," + hairShop.HairShopEngineerNum + ",'" + hairShop.HairShopOpenTime + "'," + hairShop.HairShopOrderNum + "," + hairShop.HairShopVisitNum + ",'" + hairShop.WorkRangeIDs + "','" + hairShop.HairShopWebSite + "','" + hairShop.HairShopEmail + "','" + hairShop.HairShopDiscount + "','" + hairShop.HairShopLogo + "'"
-            //    + "," + hairShop.HairShopRecommandNum + ",'" + hairShop.HairShopCreateTime + "','" + hairShop.HairShopDescription + "','" + hairShop.ProductIDs + "','" + hairShop.HairShopTagIDs + "','" + hairShop.HairShopShortName + "','" + hairShop.IsBest + "','" + hairShop.IsJoin + "'," + hairShop.TypeID + ",'" + hairShop.IsPostStation + "','" + hairShop.IsPostMachine + "'," + hairShop.HairShopGood + "," + hairShop.HairShopBad + ")";
-
-            //using (SqlConnection conn = new SqlConnection(DataHelper2.SqlConnectionString))
-            //{
-            //    using (SqlCommand comm = new SqlCommand())
-            //    {
-            //        comm.Connection = conn;
-            //        comm.CommandText = sSql;
-            //        conn.Open();
-
-            //        if (comm.ExecuteNonQuery()==1)
-            //        {
-            //            bReturn = true;
-            //        }
-            //        conn.Close();
-            //    }
-            //}
-            //sSql = null;
-
             using (SqlConnection conn = new SqlConnection(DataHelper2.SqlConnectionString))
             {
                 using (SqlDataAdapter adapter = new SqlDataAdapter("select top 1 * from hairshop", conn))
@@ -1291,6 +1269,52 @@ namespace HairNet.Provider
             }
 
             return bReturn;
+        }
+
+        public string GetHairShopTagIDs(string tagNames)
+        {
+            string[] tags = tagNames.Split(',');
+            List<string> list = new List<string>();
+            foreach (string tag in tags)
+            {
+                list.Add(this.AddHairShopTag(tag).ToString());
+            }
+            return string.Join(",", list.ToArray());
+        }
+
+        private int AddHairShopTag(string name)
+        {
+            int TagID = 0;
+
+            string strsql = "select HairShopTagID from HairShopTag where HairShopTagName='" + name + "'";
+            using (SqlConnection conn = new SqlConnection(DataHelper2.SqlConnectionString))
+            {
+                using (SqlCommand cmd = new SqlCommand(strsql, conn))
+                {
+                    conn.Open();
+                    SqlDataReader dr = cmd.ExecuteReader();
+                    if (dr.Read())
+                    {
+                        TagID = dr.GetInt32(0);
+                    }
+                    else
+                    {
+                        dr.Close();
+                        strsql = "insert into HairShopTag(HairShopTagName,HairShopIDs) values('" + name + "','');select @@identity as 'id';";
+                        cmd.CommandText = strsql;
+                        dr = cmd.ExecuteReader();
+                        if (dr.Read())
+                        {
+                            TagID = int.Parse(dr[0].ToString());
+                        }
+                        dr.Close();
+                    }
+                    dr.Dispose();
+                    dr = null;
+                    conn.Close();
+                }
+            }
+            return TagID;
         }
     }
 }

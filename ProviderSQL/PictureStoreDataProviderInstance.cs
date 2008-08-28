@@ -4,10 +4,11 @@ using System.Text;
 using HairNet.Entry;
 using HairNet.Enumerations;
 using System.Data.SqlClient;
+using System.Data;
 
 namespace HairNet.Provider
 {
-    public class PictureStoreDataProviderInstance:IPictureStoreDataProvider
+    public class PictureStoreDataProviderInstance : IPictureStoreDataProvider
     {
         public bool PictureStoreCreateDeleteUpdate(PictureStore pictureStore, UserAction ua)
         {
@@ -16,13 +17,13 @@ namespace HairNet.Provider
             switch (ua)
             {
                 case UserAction.Create:
-                    commandText = "insert into PictureStore(PictureStoreName,PictureStoreRawUrl,PictureStoreLittleUrl,PictureStoreTagIDs,PictureStoreDescription,HairEngineerIDs,HairShopIDs,PictureStoreCreateTime,PictureStoreGroupIDs) values('"+pictureStore.PictureStoreName+"','"+pictureStore.PictureStoreRawUrl+"','"+pictureStore.PictureStoreLittleUrl+"','"+pictureStore.PictureStoreTagIDs+"','"+pictureStore.PictureStoreDescription+"','"+pictureStore.PictureStoreHairEngineerIDs+"','"+pictureStore.PictureStoreHairShopIDs+"','"+pictureStore.PictureStoreCreateTime.ToString()+"','"+pictureStore.PictureStoreGroupIDs+"')";
+                    commandText = "insert into PictureStore(PictureStoreName,PictureStoreRawUrl,PictureStoreLittleUrl,PictureStoreTagIDs,PictureStoreDescription,HairEngineerIDs,HairShopIDs,PictureStoreCreateTime,PictureStoreGroupIDs) values('" + pictureStore.PictureStoreName + "','" + pictureStore.PictureStoreRawUrl + "','" + pictureStore.PictureStoreLittleUrl + "','" + pictureStore.PictureStoreTagIDs + "','" + pictureStore.PictureStoreDescription + "','" + pictureStore.PictureStoreHairEngineerIDs + "','" + pictureStore.PictureStoreHairShopIDs + "','" + pictureStore.PictureStoreCreateTime.ToString() + "','" + pictureStore.PictureStoreGroupIDs + "')";
                     break;
                 case UserAction.Delete:
-                    commandText = "delete from PictureStore where PictureStoreID="+pictureStore.PictureStoreID.ToString();
+                    commandText = "delete from PictureStore where PictureStoreID=" + pictureStore.PictureStoreID.ToString();
                     break;
                 case UserAction.Update:
-                    commandText = "update PictureStore set PictureStoreName = '"+pictureStore.PictureStoreName+"',PictureStoreRawUrl = '"+pictureStore.PictureStoreRawUrl+"',PictureStoreLittleUrl='"+pictureStore.PictureStoreLittleUrl+"',PictureStoreTagIDs='"+pictureStore.PictureStoreTagIDs+"',PictureStoreDescription='"+pictureStore.PictureStoreDescription+"',HairEngineerIDs='"+pictureStore.PictureStoreHairEngineerIDs+"',HairShopIDs='"+pictureStore.PictureStoreHairShopIDs+"',PictureStoreCreateTime='"+pictureStore.PictureStoreCreateTime.ToString()+"',PictureStoreGroupIDs='"+pictureStore.PictureStoreGroupIDs+"' where PictureStoreID="+pictureStore.PictureStoreID.ToString();
+                    commandText = "update PictureStore set PictureStoreName = '" + pictureStore.PictureStoreName + "',PictureStoreRawUrl = '" + pictureStore.PictureStoreRawUrl + "',PictureStoreLittleUrl='" + pictureStore.PictureStoreLittleUrl + "',PictureStoreTagIDs='" + pictureStore.PictureStoreTagIDs + "',PictureStoreDescription='" + pictureStore.PictureStoreDescription + "',HairEngineerIDs='" + pictureStore.PictureStoreHairEngineerIDs + "',HairShopIDs='" + pictureStore.PictureStoreHairShopIDs + "',PictureStoreCreateTime='" + pictureStore.PictureStoreCreateTime.ToString() + "',PictureStoreGroupIDs='" + pictureStore.PictureStoreGroupIDs + "' where PictureStoreID=" + pictureStore.PictureStoreID.ToString();
                     break;
             }
             using (SqlConnection conn = new SqlConnection(DataHelper2.SqlConnectionString))
@@ -53,13 +54,13 @@ namespace HairNet.Provider
             switch (ua)
             {
                 case UserAction.Create:
-                    commandText = "insert into PictureStoreRecommand(PictureStoreRawID,PictureStoreName,PictureStoreRawUrl,PictureStoreLittleUrl,PictureStoreTagIDs,PictureStoreDescription,HairEngineerIDs,HairShopIDs,PictureStoreCreateTime,PictureStoreGroupIDs,PictureStoreRecommandEx,PictureStoreRecommandInfo) values("+pictureStoreRecommand.PictureStoreRawID.ToString()+",'"+pictureStoreRecommand.PictureStoreName+"','"+pictureStoreRecommand.PictureStoreRawUrl+"','"+pictureStoreRecommand.PictureStoreLittleUrl+"','"+pictureStoreRecommand.PictureStoreTagIDs+"','"+pictureStoreRecommand.PictureStoreDescription+"','"+pictureStoreRecommand.PictureStoreHairEngineerIDs+"','"+pictureStoreRecommand.PictureStoreHairShopIDs+"','"+pictureStoreRecommand.PictureStoreCreateTime.ToString()+"','"+pictureStoreRecommand.PictureStoreGroupIDs+"','"+pictureStoreRecommand.PictureStoreRecommandEx+"','"+pictureStoreRecommand.PictureStoreRecommandInfo+"')";
+                    commandText = "insert into PictureStoreRecommand(PictureStoreRawID,PictureStoreName,PictureStoreRawUrl,PictureStoreLittleUrl,PictureStoreTagIDs,PictureStoreDescription,HairEngineerIDs,HairShopIDs,PictureStoreCreateTime,PictureStoreGroupIDs,PictureStoreRecommandEx,PictureStoreRecommandInfo) values(" + pictureStoreRecommand.PictureStoreRawID.ToString() + ",'" + pictureStoreRecommand.PictureStoreName + "','" + pictureStoreRecommand.PictureStoreRawUrl + "','" + pictureStoreRecommand.PictureStoreLittleUrl + "','" + pictureStoreRecommand.PictureStoreTagIDs + "','" + pictureStoreRecommand.PictureStoreDescription + "','" + pictureStoreRecommand.PictureStoreHairEngineerIDs + "','" + pictureStoreRecommand.PictureStoreHairShopIDs + "','" + pictureStoreRecommand.PictureStoreCreateTime.ToString() + "','" + pictureStoreRecommand.PictureStoreGroupIDs + "','" + pictureStoreRecommand.PictureStoreRecommandEx + "','" + pictureStoreRecommand.PictureStoreRecommandInfo + "')";
                     break;
                 case UserAction.Delete:
-                    commandText = "delete from PictureStoreRecommand from PictureStoreRecommandID="+pictureStoreRecommand.PictureStoreRecommandID.ToString();
+                    commandText = "delete from PictureStoreRecommand from PictureStoreRecommandID=" + pictureStoreRecommand.PictureStoreRecommandID.ToString();
                     break;
                 case UserAction.Update:
-                    commandText = "update PictureStoreRecommand set PictureStoreRawID="+pictureStoreRecommand.PictureStoreRawID.ToString()+",PictureStoreName = '"+pictureStoreRecommand.PictureStoreName+"',PictureStoreRawUrl = '"+pictureStoreRecommand.PictureStoreRawUrl+"',PictureStoreLittleUrl='"+pictureStoreRecommand.PictureStoreLittleUrl+"',PictureStoreTagIDs='"+pictureStoreRecommand.PictureStoreTagIDs+"',PictureStoreDescription='"+pictureStoreRecommand.PictureStoreDescription+"',HairEngineerIDs='"+pictureStoreRecommand.PictureStoreHairEngineerIDs+"',HairShopIDs='"+pictureStoreRecommand.PictureStoreHairShopIDs+"',PictureStoreCreateTime='"+pictureStoreRecommand.PictureStoreCreateTime.ToString()+"',PictureStoreGroupIDs='"+pictureStoreRecommand.PictureStoreGroupIDs+"',PictureStoreRecommandEx='"+pictureStoreRecommand.PictureStoreRecommandEx+"',PictureStoreRecommandInfo='"+pictureStoreRecommand.PictureStoreRecommandInfo+"' where PictureStoreRecommandID="+pictureStoreRecommand.PictureStoreRecommandID.ToString();
+                    commandText = "update PictureStoreRecommand set PictureStoreRawID=" + pictureStoreRecommand.PictureStoreRawID.ToString() + ",PictureStoreName = '" + pictureStoreRecommand.PictureStoreName + "',PictureStoreRawUrl = '" + pictureStoreRecommand.PictureStoreRawUrl + "',PictureStoreLittleUrl='" + pictureStoreRecommand.PictureStoreLittleUrl + "',PictureStoreTagIDs='" + pictureStoreRecommand.PictureStoreTagIDs + "',PictureStoreDescription='" + pictureStoreRecommand.PictureStoreDescription + "',HairEngineerIDs='" + pictureStoreRecommand.PictureStoreHairEngineerIDs + "',HairShopIDs='" + pictureStoreRecommand.PictureStoreHairShopIDs + "',PictureStoreCreateTime='" + pictureStoreRecommand.PictureStoreCreateTime.ToString() + "',PictureStoreGroupIDs='" + pictureStoreRecommand.PictureStoreGroupIDs + "',PictureStoreRecommandEx='" + pictureStoreRecommand.PictureStoreRecommandEx + "',PictureStoreRecommandInfo='" + pictureStoreRecommand.PictureStoreRecommandInfo + "' where PictureStoreRecommandID=" + pictureStoreRecommand.PictureStoreRecommandID.ToString();
                     break;
             }
             using (SqlConnection conn = new SqlConnection(DataHelper2.SqlConnectionString))
@@ -90,7 +91,7 @@ namespace HairNet.Provider
 
             using (SqlConnection conn = new SqlConnection(DataHelper2.SqlConnectionString))
             {
-                string commText = "select * from PictureStore where PictureStoreID="+pictureStoreID.ToString()+" order by PictureStoreID desc";
+                string commText = "select * from PictureStore where PictureStoreID=" + pictureStoreID.ToString() + " order by PictureStoreID desc";
 
                 using (SqlCommand comm = new SqlCommand())
                 {
@@ -121,7 +122,7 @@ namespace HairNet.Provider
             return pictureStore;
         }
 
-        public List<PictureStore> GetPictureStores(int count,OrderKey ok)
+        public List<PictureStore> GetPictureStores(int count, OrderKey ok)
         {
             List<PictureStore> list = new List<PictureStore>();
 
@@ -192,7 +193,7 @@ namespace HairNet.Provider
             return list;
         }
 
-        public List<PictureStore> GetPictureStores(int count, OrderKey ok,string pictureStoreName)
+        public List<PictureStore> GetPictureStores(int count, OrderKey ok, string pictureStoreName)
         {
             List<PictureStore> list = new List<PictureStore>();
 
@@ -219,7 +220,7 @@ namespace HairNet.Provider
             switch (count)
             {
                 case 0:
-                    commText = "select * from PictureStore where PictureStoreName like '%"+pictureStoreName+"%'" + orderKey;
+                    commText = "select * from PictureStore where PictureStoreName like '%" + pictureStoreName + "%'" + orderKey;
                     break;
                 default:
                     commText = "select top " + count.ToString() + " * from PictureStore where PictureStoreName like '%" + pictureStoreName + "%'" + orderKey;
@@ -269,7 +270,7 @@ namespace HairNet.Provider
 
             using (SqlConnection conn = new SqlConnection(DataHelper2.SqlConnectionString))
             {
-                string commText = "select * from PictureStoreRecommand psr inner join PictureStore ps on psr.PictureStoreRawID=ps.PictureStoreID where psr.PictureStoreRecommandID=" + pictureStoreRecommandID.ToString()+ " order by psr.PictureStoreRecommandID desc";
+                string commText = "select * from PictureStoreRecommand psr inner join PictureStore ps on psr.PictureStoreRawID=ps.PictureStoreID where psr.PictureStoreRecommandID=" + pictureStoreRecommandID.ToString() + " order by psr.PictureStoreRecommandID desc";
 
                 using (SqlCommand comm = new SqlCommand())
                 {
@@ -314,7 +315,7 @@ namespace HairNet.Provider
                     commText = "select * from PictureStoreRecommand psr inner join PictureStore ps on psr.PictureStoreRawID=ps.PictureStoreID order by psr.PictureStoreRecommandID desc";
                     break;
                 default:
-                    commText = "select top "+count.ToString()+" * from PictureStoreRecommand psr inner join PictureStore ps on psr.PictureStoreRawID=ps.PictureStoreID order by psr.PictureStoreRecommandID desc";
+                    commText = "select top " + count.ToString() + " * from PictureStoreRecommand psr inner join PictureStore ps on psr.PictureStoreRawID=ps.PictureStoreID order by psr.PictureStoreRecommandID desc";
                     break;
             }
 
@@ -533,13 +534,13 @@ namespace HairNet.Provider
             switch (ua)
             {
                 case UserAction.Create:
-                    commandText = "insert into PictureStoreGroup(PictureStoreGroupName,PictureStoreGroupParentID,PictureStoreIDs) values('"+pictureStoreGroup.Name+"','"+pictureStoreGroup.PictureStoreGroupParentID+"','"+pictureStoreGroup.PictureStoreIDs+"')";
+                    commandText = "insert into PictureStoreGroup(PictureStoreGroupName,PictureStoreGroupParentID,PictureStoreIDs) values('" + pictureStoreGroup.Name + "','" + pictureStoreGroup.PictureStoreGroupParentID + "','" + pictureStoreGroup.PictureStoreIDs + "')";
                     break;
                 case UserAction.Delete:
-                    commandText = "delete from PictureStoreGroup where PictureStoreGroupID="+pictureStoreGroup.ID.ToString();
+                    commandText = "delete from PictureStoreGroup where PictureStoreGroupID=" + pictureStoreGroup.ID.ToString();
                     break;
                 case UserAction.Update:
-                    commandText = "update PictureStoreGroup set PictureStoreGroupName='"+pictureStoreGroup.Name+"',PictureStoreGroupParentID='"+pictureStoreGroup.PictureStoreGroupParentID+"',PictureStoreIDs='"+pictureStoreGroup.PictureStoreIDs+"' where PictureStoreGroupID="+pictureStoreGroup.ID.ToString();
+                    commandText = "update PictureStoreGroup set PictureStoreGroupName='" + pictureStoreGroup.Name + "',PictureStoreGroupParentID='" + pictureStoreGroup.PictureStoreGroupParentID + "',PictureStoreIDs='" + pictureStoreGroup.PictureStoreIDs + "' where PictureStoreGroupID=" + pictureStoreGroup.ID.ToString();
                     break;
             }
             using (SqlConnection conn = new SqlConnection(DataHelper2.SqlConnectionString))
@@ -575,7 +576,7 @@ namespace HairNet.Provider
                     commText = "select * from PictureStoreGroup order by PictureStoreGroupID desc";
                     break;
                 default:
-                    commText = "select top "+count.ToString()+" * from PictureStoreGroup order by PictureStoreGroupID desc";
+                    commText = "select top " + count.ToString() + " * from PictureStoreGroup order by PictureStoreGroupID desc";
                     break;
             }
 
@@ -613,7 +614,7 @@ namespace HairNet.Provider
             PictureStoreGroup pictureStoreGroup = new PictureStoreGroup();
 
             string commText = "select * from PictureStoreGroup where PictureStoreGroupID=" + pictureStoreGroupID.ToString();
-                
+
 
             using (SqlConnection conn = new SqlConnection(DataHelper2.SqlConnectionString))
             {
@@ -648,10 +649,10 @@ namespace HairNet.Provider
             switch (count)
             {
                 case 0:
-                    commText = "select * from PictureStoreGroup where PictureStoreGroupParentID="+parentID.ToString()+" order by PictureStoreGroupID desc";
+                    commText = "select * from PictureStoreGroup where PictureStoreGroupParentID=" + parentID.ToString() + " order by PictureStoreGroupID desc";
                     break;
                 default:
-                    commText = "select top " + count.ToString() + " * from PictureStoreGroup where PictureStoreGroupParentID="+parentID.ToString()+" order by PictureStoreGroupID desc";
+                    commText = "select top " + count.ToString() + " * from PictureStoreGroup where PictureStoreGroupParentID=" + parentID.ToString() + " order by PictureStoreGroupID desc";
                     break;
             }
 
@@ -767,12 +768,97 @@ namespace HairNet.Provider
 
             return list;
         }
+
+        public string GetPictureStoreTagIDs(string tagNames)
+        {
+            string[] tags = tagNames.Split(',');
+            List<string> list = new List<string>();
+            foreach (string tag in tags)
+            {
+                list.Add(this.AddPictureStoreTag(tag).ToString());
+            }
+            return string.Join(",", list.ToArray());
+        }
+
+        private int AddPictureStoreTag(string name)
+        {
+            int TagID = 0;
+
+            string strsql = "select PictureStoreTagID from PictureStoreTag where PictureStoreTagName='" + name + "'";
+            using (SqlConnection conn = new SqlConnection(DataHelper2.SqlConnectionString))
+            {
+                using (SqlCommand cmd = new SqlCommand(strsql, conn))
+                {
+                    conn.Open();
+                    SqlDataReader dr = cmd.ExecuteReader();
+                    if (dr.Read())
+                    {
+                        TagID = dr.GetInt32(0);
+                    }
+                    else
+                    {
+                        dr.Close();
+                        strsql = "insert into PictureStoreTag(PictureStoreTagName,PictureStoreIDs) values('" + name + "','');select @@identity as 'id';";
+                        cmd.CommandText = strsql;
+                        dr = cmd.ExecuteReader();
+                        if (dr.Read())
+                        {
+                            TagID = int.Parse(dr[0].ToString());
+                        }
+                        dr.Close();
+                    }
+                    dr.Dispose();
+                    dr = null;
+                    conn.Close();
+                }
+            }
+            return TagID;
+        }
+
+        public int AddPictureStore(PictureStore ps)
+        {
+            int bReturn = 0;
+            using (SqlConnection conn = new SqlConnection(DataHelper2.SqlConnectionString))
+            {
+                using (SqlDataAdapter adapter = new SqlDataAdapter("select top 1 * from picturestore", conn))
+                {
+                    SqlCommandBuilder cb = new SqlCommandBuilder(adapter);
+                    DataTable dt = new DataTable();
+                    adapter.Fill(dt);
+
+                    DataRow row = dt.NewRow();
+                    row["PictureStoreName"] = ps.PictureStoreName;
+                    row["PictureStoreRawUrl"] = ps.PictureStoreRawUrl;
+                    row["PictureStoreLittleUrl"] = ps.PictureStoreLittleUrl;
+                    row["PictureStoreTagIDs"] = ps.PictureStoreTagIDs;
+                    row["PictureStoreHits"] = ps.PictureStoreHits;
+                    row["PictureStoreGroupIDs"] = ps.PictureStoreGroupIDs;
+                    row["PictureStoreDescription"] = ps.PictureStoreDescription;
+                    row["PictureStoreCreateTime"] = ps.PictureStoreCreateTime.ToString("G");
+
+                    dt.Rows.Add(row);
+                    adapter.RowUpdated += new SqlRowUpdatedEventHandler(adapter_RowUpdated);
+                    if (adapter.Update(dt) == 1)
+                    {
+                        bReturn = int.Parse(dt.Rows[1]["PictureStoreID"].ToString());
+                    }
+
+                    cb.Dispose();
+                    dt.Dispose();
+                    cb = null;
+                    dt = null;
+                }
+            }
+
+            return bReturn;
+        }
+
         public PictureStoreTag GetPictureStoreTagByPictureStoreTagID(int pictureStoreTagID)
         {
             PictureStoreTag pictureStoreTag = new PictureStoreTag();
 
             string commText = "select * from PictureStoreTag where PictureStoreTagID=" + pictureStoreTagID.ToString();
-            
+
             using (SqlConnection conn = new SqlConnection(DataHelper2.SqlConnectionString))
             {
                 {
@@ -864,7 +950,7 @@ namespace HairNet.Provider
             switch (count)
             {
                 case 0:
-                    commText = "select * from PictureStoreComment where PictureStoreCommentText like '%"+keyText+"%' order by PictureStoreCommentID desc";
+                    commText = "select * from PictureStoreComment where PictureStoreCommentText like '%" + keyText + "%' order by PictureStoreCommentID desc";
                     break;
                 default:
                     commText = "select top " + count.ToString() + " * from PictureStoreComment where PictureStoreCommentText like '%" + keyText + "%' order by PictureStoreCommentID desc";
@@ -919,7 +1005,7 @@ namespace HairNet.Provider
             switch (count)
             {
                 case 0:
-                    commText = "select * from PictureStoreComment where PictureStoreCommentCreateTime<'"+eTime+"' and PictureStoreCommentCreateTime >'"+sTime+"' order by PictureStoreCommentID desc";
+                    commText = "select * from PictureStoreComment where PictureStoreCommentCreateTime<'" + eTime + "' and PictureStoreCommentCreateTime >'" + sTime + "' order by PictureStoreCommentID desc";
                     break;
                 default:
                     commText = "select top " + count.ToString() + " * from PictureStoreComment where PictureStoreCommentCreateTime<'" + eTime + "' and PictureStoreCommentCreateTime >'" + sTime + "' order by PictureStoreCommentID desc";

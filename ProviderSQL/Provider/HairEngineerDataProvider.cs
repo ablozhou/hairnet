@@ -145,5 +145,7 @@ namespace HairNet.Provider
         /// <param name="ua"></param>
         /// <returns></returns>
         bool HairEngineerCommentCreateDeleteUpdate(HairEngineerComment hairEngineerComment, UserAction ua);
+
+        string GetHairEngineerTagIDs(string tagNames);
     }
 }
