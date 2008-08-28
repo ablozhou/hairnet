@@ -31,6 +31,9 @@ namespace HairNet.Provider
         List<PictureStoreTag> GetPictureStoreTags(int count);
         PictureStoreTag GetPictureStoreTagByPictureStoreTagID(int pictureStoreTagID);
 
+        string GetPictureStoreTagIDs(string tagNames);
+        int AddPictureStore(PictureStore ps);
+
         /// <summary>
         /// 
         /// </summary>
