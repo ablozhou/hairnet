@@ -112,6 +112,7 @@
     <Compile Include="Utilities\PicOperate.cs" />
     <Compile Include="Utilities\StringHelper.cs" />
     <Compile Include="Utilities\UpLoadClass.cs" />
+    <Compile Include="Utilities\WaterSettings.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\ProviderSQL\Provider.csproj">
