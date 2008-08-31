@@ -12,7 +12,8 @@
     <div style="text-align:left;">
     推荐信息:
     <br />
-    <FCKEDITORV2:FCKEDITOR id="content" runat="server" BasePath="FCKeditor/" Width="98%" Height="400"></FCKEDITORV2:FCKEDITOR>
+        <asp:TextBox ID="content" runat="server" Rows="15" TextMode="MultiLine" 
+            Width="98%"></asp:TextBox>
     <br /><br />
     推荐扩展:
     <asp:TextBox ID="txtRecommandEx" runat="server" Width="98%"></asp:TextBox>

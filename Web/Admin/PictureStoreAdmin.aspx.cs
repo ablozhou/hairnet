@@ -242,7 +242,7 @@ namespace Web.Admin
                 PictureStore pictureStore = e.Item.DataItem as PictureStore;
                 Label lblPictureUrl = e.Item.FindControl("lblPictureUrl") as Label;
 
-                lblPictureUrl.Text = "<a href='#'target='_blank'><img src='http://www.baidu.com/img/baidu_logo.gif' width='40' height='20' alt='点击查看大图' /></a>";
+                lblPictureUrl.Text = "<a href='" + DataBinder.Eval(e.Item.DataItem, "PictureStoreRawUrl").ToString() + "'target='_blank'><img src='" + DataBinder.Eval(e.Item.DataItem, "PictureStoreLittleUrl").ToString() + "' width='40' height='20' alt='点击查看大图' /></a>";
 
             }
         }

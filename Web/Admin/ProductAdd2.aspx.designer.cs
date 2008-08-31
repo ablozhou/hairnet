@@ -11,12 +11,6 @@
 namespace Web.Admin {
     
     
-    /// <summary>
-    /// ProductAdd2 类。
-    /// </summary>
-    /// <remarks>
-    /// 自动生成的类。
-    /// </remarks>
     public partial class ProductAdd2 {
         
         /// <summary>
@@ -24,52 +18,52 @@ namespace Web.Admin {
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
-        /// 要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlForm form1;
         
         /// <summary>
-        /// txtPictureStoreName 控件。
+        /// ddlHairShopName 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
-        /// 要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtPictureStoreName;
+        protected global::System.Web.UI.WebControls.DropDownList ddlHairShopName;
         
         /// <summary>
-        /// txtPictureStoreTag 控件。
+        /// btnAddMain 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
-        /// 要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtPictureStoreTag;
+        protected global::System.Web.UI.WebControls.Button btnAddMain;
         
         /// <summary>
-        /// txtPictureStoreDescriptioin 控件。
+        /// p1 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
-        /// 要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtPictureStoreDescriptioin;
+        protected global::System.Web.UI.WebControls.Panel p1;
         
         /// <summary>
-        /// btnAddPic 控件。
+        /// gvHairShopList 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
-        /// 要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnAddPic;
+        protected global::System.Web.UI.WebControls.GridView gvHairShopList;
         
         /// <summary>
         /// btnSubmit 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
-        /// 要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnSubmit;
     }

@@ -35,6 +35,12 @@ namespace Web.Admin
                 List<PictureStore> list = new List<PictureStore>();
                 ViewState["PicList"] = list;
             }
+            else
+            {
+                List<PictureStore> list = (List<PictureStore>)ViewState["PicList"];
+                gvPicList.DataSource = list;
+                gvPicList.DataBind();
+            }
         }
 
         private void bindPicGroup()
@@ -47,6 +53,32 @@ namespace Web.Admin
 
         protected void btnSubmit_OnClick(object sender, EventArgs e)
         {
+            HairShop hs = (HairShop)Session["HairShopInfo"];
+            //获取图片ID集合
+            List<string> tmpid1 = new List<string>();
+            List<PictureStore> list = (List<PictureStore>)ViewState["PicList"];
+            foreach (PictureStore ps in list)
+            {
+                tmpid1.Add(ps.PictureStoreID.ToString());
+            }
+            hs.HairShopPictureStoreIDs = string.Join(",", tmpid1.ToArray());
+
+            //添加美发厅并返回新的ID
+            hs.HairShopID = InfoAdmin.AddHairShop(hs);
+
+            
+            //在图片中对应新添加的美发厅ID
+            foreach(string id in hs.HairShopPictureStoreIDs.Split(','))
+            {
+                InfoAdmin.SetPictureStoreByHairShop(hs.HairShopID, int.Parse(id));
+            }
+
+            //在标签中对应新添加的美发厅ID
+            foreach (string tagid in hs.HairShopTagIDs.Split(','))
+            {
+                InfoAdmin.SetHairShopTag(hs.HairShopID, int.Parse(tagid));
+            }
+
             this.Response.Redirect("HairShopAdmin.aspx");
         }
 
@@ -70,10 +102,16 @@ namespace Web.Admin
             string newfilepath = filepath.Substring(0, filepath.LastIndexOf(".")) + "_new" + Path.GetExtension(filepath);
             po.AddWaterMarkOperate(Server.MapPath(filepath), Server.MapPath(WaterSettings.WaterMarkPath), Server.MapPath(newfilepath), WaterSettings.CopyrightText);
             ps.PictureStoreRawUrl = newfilepath;
-            ps.PictureStoreLittleUrl = po.CreateMicroPic(filepath, "", WaterSettings.PictureScaleSize[0], WaterSettings.PictureScaleSize[1]);
+            ps.PictureStoreLittleUrl = po.CreateMicroPic(newfilepath, "", WaterSettings.PictureScaleSize[0], WaterSettings.PictureScaleSize[1]);
             po = null;
 
+            //更新图片标签
             ps.PictureStoreID = InfoAdmin.AddPictureStore(ps);
+            foreach (string tagid in ps.PictureStoreTagIDs.Split(','))
+            {
+                InfoAdmin.SetPictureStoreTag(ps.PictureStoreID, int.Parse(tagid));
+            }
+
 
             list.Add(ps);
             ViewState["PicList"] = list;
@@ -87,7 +125,6 @@ namespace Web.Admin
             txtPictureStoreDescriptioin.Text = "";
             txtPictureStoreName.Text = "";
             txtPictureStoreTag.Text = "";
-            uploadpic.Value = "";
         }
 
         protected void gvPicList_RowDeleting(object sender, GridViewDeleteEventArgs e)

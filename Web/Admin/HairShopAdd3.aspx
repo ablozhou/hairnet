@@ -65,9 +65,10 @@
                 BorderWidth="1px" CellPadding="2" ShowHeader="False" 
                 AutoGenerateColumns="False" onrowdeleting="gvPicList_RowDeleting">
                 <Columns>
-                    <asp:BoundField DataField="PictureStoreName" ShowHeader="False">
+                    <asp:HyperLinkField DataNavigateUrlFields="PictureStoreRawUrl" 
+                        DataTextField="PictureStoreName" Target="_blank">
                         <ItemStyle Width="200px" />
-                    </asp:BoundField>
+                    </asp:HyperLinkField>
                     <asp:CommandField ShowDeleteButton="True" />
                 </Columns>
             </asp:GridView>

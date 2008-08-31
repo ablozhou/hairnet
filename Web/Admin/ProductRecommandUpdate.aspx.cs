@@ -27,14 +27,14 @@ namespace Web.Admin
                 {
                     string productRecommandInfo = ConfigurationManager.AppSettings["ProductRecommandInfo"].ToString();
 
-                    this.content.Value = productRecommandInfo;
+                    this.content.Text = productRecommandInfo;
                 }
                 else
                 {
                     int productRecommandID = int.Parse(this.Request.QueryString["productRecommandID"].ToString());
                     ProductRecommand p = InfoAdmin.GetProductRecommand(productRecommandID);
 
-                    this.content.Value = p.ProductRecommandInfo;
+                    this.content.Text = p.ProductRecommandInfo;
                 }
             }
         }
@@ -44,7 +44,7 @@ namespace Web.Admin
             if (operateType == "1")
             {
                 int productID = int.Parse(this.Request.QueryString["productID"].ToString());
-                string productRecommandInfo = this.content.Value;
+                string productRecommandInfo = this.content.Text;
                 string productRecommandEx = this.txtRecommandEx.Text.Trim();
 
                 if (InfoAdmin.RecommandProduct(productID, 0, productRecommandInfo, productRecommandEx, UserAction.Create))
@@ -62,7 +62,7 @@ namespace Web.Admin
                 int productID = int.Parse(this.Request.QueryString["productID"].ToString());
                 int productRecommandID = int.Parse(this.Request.QueryString["productRecommandID"].ToString());
 
-                string productRecommandInfo = this.content.Value;
+                string productRecommandInfo = this.content.Text;
                 string productRecommandEx = this.txtRecommandEx.Text.Trim();
                 if (InfoAdmin.RecommandProduct(productID, productRecommandID, productRecommandInfo, productRecommandEx, UserAction.Update))
                 {

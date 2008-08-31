@@ -27,14 +27,14 @@ namespace Web.Admin
                 {
                     string pictureStoreRecommandInfo = ConfigurationManager.AppSettings["PictureStoreRecommandInfo"].ToString();
 
-                    this.content.Value = pictureStoreRecommandInfo;
+                    this.content.Text = pictureStoreRecommandInfo;
                 }
                 else
                 {
                     int pictureStoreRecommandID = int.Parse(this.Request.QueryString["pictureStoreRecommandID"].ToString());
                     PictureStoreRecommand pse = InfoAdmin.GetPictureStoreRecommand(pictureStoreRecommandID);
 
-                    this.content.Value = pse.PictureStoreRecommandInfo.ToString();
+                    this.content.Text = pse.PictureStoreRecommandInfo.ToString();
                 }
             }
         }
@@ -44,7 +44,7 @@ namespace Web.Admin
             if (operateType == "1")
             {
                 int pictureStoreID = int.Parse(this.Request.QueryString["pictureStoreID"].ToString());
-                string pictureStoreRecommandInfo = this.content.Value;
+                string pictureStoreRecommandInfo = this.content.Text;
                 string pictureStoreRecommandEx = this.txtRecommandEx.Text.Trim();
                 if (InfoAdmin.RecommandPictureStore(pictureStoreID, 0, pictureStoreRecommandInfo, pictureStoreRecommandEx, UserAction.Create))
                 {
@@ -61,7 +61,7 @@ namespace Web.Admin
                 int pictureStoreID = int.Parse(this.Request.QueryString["pictureStoreID"].ToString());
                 int pictureStoreRecommandID = int.Parse(this.Request.QueryString["pictureStoreRecommandID"].ToString());
 
-                string pictureStoreRecommandInfo = this.content.Value;
+                string pictureStoreRecommandInfo = this.content.Text;
                 string pictureStoreRecommandEx = this.txtRecommandEx.Text.Trim();
                 if (InfoAdmin.RecommandPictureStore(pictureStoreID, pictureStoreRecommandID, pictureStoreRecommandInfo, pictureStoreRecommandEx, UserAction.Update))
                 {

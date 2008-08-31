@@ -27,14 +27,14 @@ namespace Web.Admin
                 {
                     string hairShopRecommandInfo = ConfigurationManager.AppSettings["HairShopRecommandInfo"].ToString();
 
-                    this.content.Value = hairShopRecommandInfo;
+                    this.content.Text = hairShopRecommandInfo;
                 }
                 else
                 {
                     int hairShopRecommandID = int.Parse(this.Request.QueryString["hairShopRecommandID"].ToString());
                     HairShopRecommand hsr = InfoAdmin.GetHairShopRecommand(hairShopRecommandID);
 
-                    this.content.Value = hsr.HairShopRecommandInfo;
+                    this.content.Text = hsr.HairShopRecommandInfo;
                 }
             }
         }
@@ -44,7 +44,7 @@ namespace Web.Admin
             if (operateType == "1")
             {
                 int hairShopID = int.Parse(this.Request.QueryString["hairShopID"].ToString());
-                string hairShopRecommandInfo = this.content.Value;
+                string hairShopRecommandInfo = this.content.Text;
                 string hairShopRecommandEx = this.txtRecommandEx.Text.Trim();
                 if (InfoAdmin.RecommandHairShop(hairShopID, 0, hairShopRecommandInfo, hairShopRecommandEx, UserAction.Create))
                 {
@@ -61,7 +61,7 @@ namespace Web.Admin
                 int hairShopID = int.Parse(this.Request.QueryString["hairShopID"].ToString());
                 int hairShopRecommandID = int.Parse(this.Request.QueryString["hairShopRecommandID"].ToString());
 
-                string hairShopRecommandInfo = this.content.Value;
+                string hairShopRecommandInfo = this.content.Text;
                 string hairShopRecommandEx = this.txtRecommandEx.Text.Trim();
                 if (InfoAdmin.RecommandHairShop(hairShopID, hairShopRecommandID, hairShopRecommandInfo, hairShopRecommandEx, UserAction.Update))
                 {

@@ -13,7 +13,7 @@ using HairNet.Enumerations;
 using HairNet.Entry;
 using System.Collections.Generic;
 
-namespace Web
+namespace Web.Admin
 {
     public partial class HairShopAdd2 : System.Web.UI.Page
     {
