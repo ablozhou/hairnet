@@ -14,7 +14,7 @@ namespace HairNet.Provider
         /// <param name="hairEngineer"></param>
         /// <param name="ua"></param>
         /// <returns></returns>
-        bool HairEngineerCreateDeleteUpdate(HairEngineer hairEngineer, UserAction ua);
+        bool HairEngineerCreateDeleteUpdate(HairEngineer hairEngineer, UserAction ua,out int hairEngineerID);
 
         /// <summary>
         /// 美发师推荐 删除，添加，修改
@@ -147,5 +147,7 @@ namespace HairNet.Provider
         bool HairEngineerCommentCreateDeleteUpdate(HairEngineerComment hairEngineerComment, UserAction ua);
 
         string GetHairEngineerTagIDs(string tagNames);
+
+        string GetHairEngineerTagNames(string tagIDs);
     }
 }

@@ -15,14 +15,14 @@ namespace HairNet.Provider
         /// <param name="product"></param>
         /// <param name="ua"></param>
         /// <returns></returns>
-        public bool ProductCreateDeleteUpdate(Product product, UserAction ua)
+        public bool ProductCreateDeleteUpdate(Product product, UserAction ua,out int newID)
         {
             bool result = false;
             string commandText = string.Empty;
             switch (ua)
             {
                 case UserAction.Create:
-                    commandText = "insert into Product(ProductName,ProductCompany,ProductCompanyDescription,ProductPictureStoreIDs,ProductDescription,HairShopIDs,ProductRawPrice,ProductPrice,ProductDiscount,ProductTagIDs) values('"+product.ProductName+"','"+product.ProductCompany+"','"+product.ProductCompanyDescription+"','"+product.ProductPictureStoreIDs+"','"+product.ProductDescription+"','"+product.HairShopIDs+"','"+product.ProductRawPrice+"','"+product.ProductPrice+"','"+product.ProductDiscount+"','"+product.ProductTagIDs+"')";
+                    commandText = "insert into Product(ProductName,ProductCompany,ProductCompanyDescription,ProductPictureStoreIDs,ProductDescription,HairShopIDs,ProductRawPrice,ProductPrice,ProductDiscount,ProductTagIDs) values('"+product.ProductName+"','"+product.ProductCompany+"','"+product.ProductCompanyDescription+"','"+product.ProductPictureStoreIDs+"','"+product.ProductDescription+"','"+product.HairShopIDs+"','"+product.ProductRawPrice+"','"+product.ProductPrice+"','"+product.ProductDiscount+"','"+product.ProductTagIDs+"');select @@identity;";
                     break;
                 case UserAction.Delete:
                     commandText = "delete from Product where ProductID="+product.ProductID.ToString();
@@ -40,7 +40,14 @@ namespace HairNet.Provider
                     conn.Open();
                     try
                     {
-                        comm.ExecuteNonQuery();
+                        try
+                        {
+                            newID = Convert.ToInt32(comm.ExecuteScalar());
+                        }
+                        catch (InvalidCastException)
+                        {
+                            newID = 0;
+                        }
                         result = true;
                     }
                     catch (Exception ex)
@@ -693,6 +700,63 @@ namespace HairNet.Provider
             }
 
             return productTag;
+        }
+
+        public string GetProductTagIDs(string productTagNames)
+        {
+            string[] tags = productTagNames.Split(',');
+            List<string> list = new List<string>();
+            foreach (string tag in tags)
+            {
+                list.Add(this.AddProductTag(tag).ToString());
+            }
+            return string.Join(",", list.ToArray());
+        }
+
+        private int AddProductTag(string name)
+        {
+            int TagID = 0;
+
+            string strsql = "select ProductTagID from ProductTag where ProductTagName='" + name + "'";
+            using (SqlConnection conn = new SqlConnection(DataHelper2.SqlConnectionString))
+            {
+                using (SqlCommand cmd = new SqlCommand(strsql, conn))
+                {
+                    conn.Open();
+                    SqlDataReader dr = cmd.ExecuteReader();
+                    if (dr.Read())
+                    {
+                        TagID = dr.GetInt32(0);
+                    }
+                    else
+                    {
+                        dr.Close();
+                        strsql = "insert into ProductTag(ProductTagName,ProductIDs) values('" + name + "','');select @@identity as 'id';";
+                        cmd.CommandText = strsql;
+                        dr = cmd.ExecuteReader();
+                        if (dr.Read())
+                        {
+                            TagID = int.Parse(dr[0].ToString());
+                        }
+                        dr.Close();
+                    }
+                    dr.Dispose();
+                    dr = null;
+                    conn.Close();
+                }
+            }
+            return TagID;
+        }
+
+        public string GetProductTagNames(string productTagIDs)
+        {
+            string[] ids = productTagIDs.Split(',');
+            List<string> list = new List<string>();
+            foreach (string id in ids)
+            {
+                list.Add(this.GetProductTagByProductTagID(int.Parse(id)).TagName);
+            }
+            return string.Join(",", list.ToArray());
         }
 
         /// <summary>

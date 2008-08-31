@@ -4,6 +4,7 @@ using System.Text;
 
 namespace HairNet.Entry
 {
+    [Serializable()]
     public class Product
     {
         #region Product Fields

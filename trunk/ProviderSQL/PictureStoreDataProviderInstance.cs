@@ -57,7 +57,7 @@ namespace HairNet.Provider
                     commandText = "insert into PictureStoreRecommand(PictureStoreRawID,PictureStoreName,PictureStoreRawUrl,PictureStoreLittleUrl,PictureStoreTagIDs,PictureStoreDescription,HairEngineerIDs,HairShopIDs,PictureStoreCreateTime,PictureStoreGroupIDs,PictureStoreRecommandEx,PictureStoreRecommandInfo) values(" + pictureStoreRecommand.PictureStoreRawID.ToString() + ",'" + pictureStoreRecommand.PictureStoreName + "','" + pictureStoreRecommand.PictureStoreRawUrl + "','" + pictureStoreRecommand.PictureStoreLittleUrl + "','" + pictureStoreRecommand.PictureStoreTagIDs + "','" + pictureStoreRecommand.PictureStoreDescription + "','" + pictureStoreRecommand.PictureStoreHairEngineerIDs + "','" + pictureStoreRecommand.PictureStoreHairShopIDs + "','" + pictureStoreRecommand.PictureStoreCreateTime.ToString() + "','" + pictureStoreRecommand.PictureStoreGroupIDs + "','" + pictureStoreRecommand.PictureStoreRecommandEx + "','" + pictureStoreRecommand.PictureStoreRecommandInfo + "')";
                     break;
                 case UserAction.Delete:
-                    commandText = "delete from PictureStoreRecommand from PictureStoreRecommandID=" + pictureStoreRecommand.PictureStoreRecommandID.ToString();
+                    commandText = "delete from PictureStoreRecommand where PictureStoreRecommandID=" + pictureStoreRecommand.PictureStoreRecommandID.ToString();
                     break;
                 case UserAction.Update:
                     commandText = "update PictureStoreRecommand set PictureStoreRawID=" + pictureStoreRecommand.PictureStoreRawID.ToString() + ",PictureStoreName = '" + pictureStoreRecommand.PictureStoreName + "',PictureStoreRawUrl = '" + pictureStoreRecommand.PictureStoreRawUrl + "',PictureStoreLittleUrl='" + pictureStoreRecommand.PictureStoreLittleUrl + "',PictureStoreTagIDs='" + pictureStoreRecommand.PictureStoreTagIDs + "',PictureStoreDescription='" + pictureStoreRecommand.PictureStoreDescription + "',HairEngineerIDs='" + pictureStoreRecommand.PictureStoreHairEngineerIDs + "',HairShopIDs='" + pictureStoreRecommand.PictureStoreHairShopIDs + "',PictureStoreCreateTime='" + pictureStoreRecommand.PictureStoreCreateTime.ToString() + "',PictureStoreGroupIDs='" + pictureStoreRecommand.PictureStoreGroupIDs + "',PictureStoreRecommandEx='" + pictureStoreRecommand.PictureStoreRecommandEx + "',PictureStoreRecommandInfo='" + pictureStoreRecommand.PictureStoreRecommandInfo + "' where PictureStoreRecommandID=" + pictureStoreRecommand.PictureStoreRecommandID.ToString();
@@ -820,34 +820,20 @@ namespace HairNet.Provider
             int bReturn = 0;
             using (SqlConnection conn = new SqlConnection(DataHelper2.SqlConnectionString))
             {
-                using (SqlDataAdapter adapter = new SqlDataAdapter("select top 1 * from picturestore", conn))
+                //using (SqlDataAdapter adapter = new SqlDataAdapter("select top 1 * from picturestore", conn))
+                //{
+                string strsql = "insert into picturestore(PictureStoreName,PictureStoreRawUrl,PictureStoreLittleUrl,PictureStoreTagIDs,PictureStoreHits,PictureStoreGroupIDs,PictureStoreDescription,PictureStoreCreateTime) values('" + ps.PictureStoreName + "','" + ps.PictureStoreRawUrl + "','" + ps.PictureStoreLittleUrl + "','" + ps.PictureStoreTagIDs + "'," + ps.PictureStoreHits + ",'" + ps.PictureStoreGroupIDs + "','" + ps.PictureStoreDescription + "','" + ps.PictureStoreCreateTime.ToString("G") + "');select @@identity;";
+                SqlCommand cmd = new SqlCommand(strsql, conn);
+                conn.Open();
+                SqlDataReader dr = cmd.ExecuteReader();
+                if (dr.Read())
                 {
-                    SqlCommandBuilder cb = new SqlCommandBuilder(adapter);
-                    DataTable dt = new DataTable();
-                    adapter.Fill(dt);
-
-                    DataRow row = dt.NewRow();
-                    row["PictureStoreName"] = ps.PictureStoreName;
-                    row["PictureStoreRawUrl"] = ps.PictureStoreRawUrl;
-                    row["PictureStoreLittleUrl"] = ps.PictureStoreLittleUrl;
-                    row["PictureStoreTagIDs"] = ps.PictureStoreTagIDs;
-                    row["PictureStoreHits"] = ps.PictureStoreHits;
-                    row["PictureStoreGroupIDs"] = ps.PictureStoreGroupIDs;
-                    row["PictureStoreDescription"] = ps.PictureStoreDescription;
-                    row["PictureStoreCreateTime"] = ps.PictureStoreCreateTime.ToString("G");
-
-                    dt.Rows.Add(row);
-                    adapter.RowUpdated += new SqlRowUpdatedEventHandler(adapter_RowUpdated);
-                    if (adapter.Update(dt) == 1)
-                    {
-                        bReturn = int.Parse(dt.Rows[1]["PictureStoreID"].ToString());
-                    }
-
-                    cb.Dispose();
-                    dt.Dispose();
-                    cb = null;
-                    dt = null;
+                    bReturn = int.Parse(dr[0].ToString());
                 }
+                dr.Close();
+                conn.Close();
+                cmd.Dispose();
+                cmd = null;
             }
 
             return bReturn;

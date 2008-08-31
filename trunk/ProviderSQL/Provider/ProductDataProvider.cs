@@ -14,7 +14,7 @@ namespace HairNet.Provider
         /// <param name="product"></param>
         /// <param name="ua"></param>
         /// <returns></returns>
-        bool ProductCreateDeleteUpdate(Product product, UserAction ua);
+        bool ProductCreateDeleteUpdate(Product product, UserAction ua,out int newID);
 
         /// <summary>
         /// 美发产品推荐 添加，删除，修改
@@ -92,5 +92,9 @@ namespace HairNet.Provider
         /// <param name="eTime"></param>
         /// <returns></returns>
         List<ProductComment> GetProductCommentsByTimeZone(int count, string sTime, string eTime);
+
+        string GetProductTagIDs(string productTagNames);
+
+        string GetProductTagNames(string productTagIDs);
     }
 }

@@ -5,6 +5,7 @@ using HairNet.Provider;
 
 namespace HairNet.Entry
 {
+    [Serializable()]
     public class HairShop
     {
         #region HairShop Fields
