@@ -161,7 +161,7 @@ namespace HairNet.Provider
         /// <returns></returns>
         List<HairShopComment> GetHairShopCommentsByTimeZone(int count, string sTime, string eTime);
 
-        bool AddHairShop(HairShop hairShop);
+        int AddHairShop(HairShop hairShop);
 
         /// <summary>
         /// 获取标签对应的ID的集合
@@ -169,5 +169,7 @@ namespace HairNet.Provider
         /// <param name="tagNames">标签名称的集合</param>
         /// <returns></returns>
         string GetHairShopTagIDs(string tagNames);
+
+        string GetHairShopTagNames(string ids);
     }
 }

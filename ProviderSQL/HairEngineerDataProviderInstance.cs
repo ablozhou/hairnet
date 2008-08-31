@@ -15,7 +15,7 @@ namespace HairNet.Provider
         /// <param name="hairEngineer"></param>
         /// <param name="ua"></param>
         /// <returns></returns>
-        public bool HairEngineerCreateDeleteUpdate(HairEngineer hairEngineer, UserAction ua)
+        public bool HairEngineerCreateDeleteUpdate(HairEngineer hairEngineer, UserAction ua,out int hairEngineerID)
         {
             bool result = false;
             string commandText = string.Empty;
@@ -23,14 +23,15 @@ namespace HairNet.Provider
             {
                 case UserAction.Create:
                     commandText = "insert into HairEngineer(HairEngineerAge,HairEngineerName,HairEngineerSex,HairEngineerPhoto,HairShopID,HairEngineerYear,HairEngineerSkill,HairEngineerTagIDs,HairEngineerPictureStoreIDs,HairEngineerDescription,HairEngineerRawPrice,HairEngineerPrice,HairEngineerClassID) values('"+hairEngineer.HairEngineerAge+"','"+hairEngineer.HairEngineerName+"',"+hairEngineer.HairEngineerSex.ToString()+",'"+hairEngineer.HairEngineerPhoto+"',"+hairEngineer.HairShopID.ToString()+",'"+hairEngineer.HairEngineerYear+"','"+hairEngineer.HairEngineerSkill+"','"+hairEngineer.HairEngineerTagIDs+"','"+hairEngineer.HairEngineerPictureStoreIDs+"','"+hairEngineer.HairEngineerDescription+"','"+hairEngineer.HairEngineerRawPrice+"','"+hairEngineer.HairEngineerPrice+"',"+hairEngineer.HairEngineerClassID.ToString()+")";
+                    commandText += ";select @@identity;";
                     break;
                 case UserAction.Delete:
                     commandText = "delete from HairEngineer where HairEngineerID="+hairEngineer.HairEngineerID.ToString();
                     break;
                 case UserAction.Update:
-                    commandText = "update HairEngineer set HairEngineerAge='"+hairEngineer.HairEngineerAge+"',HairEngineerName='"+hairEngineer.HairEngineerName+"',HairEngineerSex="+hairEngineer.HairEngineerSex.ToString()+",HairEngineerPhoto='"+hairEngineer.HairEngineerPhoto+"',HairShopID="+hairEngineer.HairEngineerID.ToString()+",HairEngineerYear='"+hairEngineer.HairEngineerYear+"',HairEngineerSkill='"+hairEngineer.HairEngineerSkill+"',HairEngineerTagIDs='"+hairEngineer.HairEngineerTagIDs+"',HairEngineerPictureStoreIDs='"+hairEngineer.HairEngineerPictureStoreIDs+"',HairEngineerDescription='"+hairEngineer.HairEngineerDescription+"',HairEngineerRawPrice='"+hairEngineer.HairEngineerRawPrice+"',HairEngineerPrice='"+hairEngineer.HairEngineerPrice+"',HairEngineerClassID="+hairEngineer.HairEngineerClassID.ToString()+" where HairEngineerID = "+hairEngineer.HairEngineerID.ToString();
+                    commandText = "update HairEngineer set HairEngineerAge='"+hairEngineer.HairEngineerAge+"',HairEngineerName='"+hairEngineer.HairEngineerName+"',HairEngineerSex="+hairEngineer.HairEngineerSex.ToString()+",HairEngineerPhoto='"+hairEngineer.HairEngineerPhoto+"',HairShopID="+hairEngineer.HairShopID.ToString()+",HairEngineerYear='"+hairEngineer.HairEngineerYear+"',HairEngineerSkill='"+hairEngineer.HairEngineerSkill+"',HairEngineerTagIDs='"+hairEngineer.HairEngineerTagIDs+"',HairEngineerPictureStoreIDs='"+hairEngineer.HairEngineerPictureStoreIDs+"',HairEngineerDescription='"+hairEngineer.HairEngineerDescription+"',HairEngineerRawPrice='"+hairEngineer.HairEngineerRawPrice+"',HairEngineerPrice='"+hairEngineer.HairEngineerPrice+"',HairEngineerClassID="+hairEngineer.HairEngineerClassID.ToString()+" where HairEngineerID = "+hairEngineer.HairEngineerID.ToString();
                     break;
-            }
+            } 
             using (SqlConnection conn = new SqlConnection(DataHelper2.SqlConnectionString))
             {
                 using (SqlCommand comm = new SqlCommand())
@@ -40,7 +41,14 @@ namespace HairNet.Provider
                     conn.Open();
                     try
                     {
-                        comm.ExecuteNonQuery();
+                        try
+                        {
+                            hairEngineerID = Convert.ToInt32(comm.ExecuteScalar());
+                        }
+                        catch (InvalidCastException)
+                        {
+                            hairEngineerID = 0;
+                        }
                         result = true;
                     }
                     catch (Exception ex)
@@ -695,6 +703,17 @@ namespace HairNet.Provider
             }
 
             return hairEngineerTag;
+        }
+
+        public string GetHairEngineerTagNames(string tagIDs)
+        {
+            string[] ids = tagIDs.Split(',');
+            List<string> list = new List<string>();
+            foreach (string id in ids)
+            {
+                list.Add(this.GetHairEngineerTagByHairEngineerTagID(int.Parse(id)).TagName);
+            }
+            return string.Join(",", list.ToArray());
         }
 
         /// <summary>
