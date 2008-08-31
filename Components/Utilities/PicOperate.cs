@@ -96,7 +96,7 @@ namespace HairNet.Utilities
             string micFileFullName = "";
             string picPath = header + fileName.ToLower();
                 //缩略图路径是目录+文件名+缩略图标签+扩展名
-                string createdPicPath = header + fileName.Substring(0, fileName.LastIndexOf(".")) + "a"+ Path.GetExtension(fileName);
+                string createdPicPath = header + fileName.Substring(0, fileName.LastIndexOf(".")) + "_a"+ Path.GetExtension(fileName);
                 Bitmap bitmap = new Bitmap(System.Web.HttpContext.Current.Server.MapPath(picPath));
                 float fWidth = float.Parse(bitmap.Width.ToString());
                 float fHeight = float.Parse(bitmap.Height.ToString());
