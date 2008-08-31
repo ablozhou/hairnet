@@ -1,5 +1,4 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" EnableEventValidation="false" ValidateRequest="false" CodeBehind="PictureStoreUpdate.aspx.cs" Inherits="Web.Admin.PictureStoreUpdate" %>
-<%@ Register TagPrefix="FCKeditorV2" Namespace="FredCK.FCKeditorV2" Assembly="FredCK.FCKeditorV2" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
 <html xmlns="http://www.w3.org/1999/xhtml" >
@@ -12,7 +11,8 @@
     <div style="text-align:left;">
     推荐信息:
     <br />
-    <FCKEDITORV2:FCKEDITOR id="content" runat="server" BasePath="FCKeditor/" Width="98%" Height="400"></FCKEDITORV2:FCKEDITOR>
+        <asp:TextBox ID="content" runat="server" Rows="15" TextMode="MultiLine" 
+            Width="98%"></asp:TextBox>
     <br /><br />
     推荐扩展:
     <asp:TextBox ID="txtRecommandEx" runat="server" Width="98%"></asp:TextBox>

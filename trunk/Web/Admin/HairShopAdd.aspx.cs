@@ -73,12 +73,8 @@ namespace Web.Admin
             hs.IsPostStation = chkIsPostMachine.Checked;
             hs.HairShopDescription = txtDescription.Text.Trim();
 
-            //if (InfoAdmin.AddHairShop(hs))
-            //{
             Session["HairShopInfo"] = hs;
             this.Response.Redirect("HairShopAdd2.aspx");
-            //}
-
         }
 
         private void bindtype()

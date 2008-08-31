@@ -27,14 +27,14 @@ namespace Web.Admin
                 {
                     string hairEngineerRecommandInfo = ConfigurationManager.AppSettings["HairEngineerRecommandInfo"].ToString();
 
-                    this.content.Value = hairEngineerRecommandInfo;
+                    this.content.Text = hairEngineerRecommandInfo;
                 }
                 else
                 {
                     int hairEngineerRecommandID = int.Parse(this.Request.QueryString["hairEngineerRecommandID"].ToString());
                     HairEngineerRecommand he = InfoAdmin.GetHairEngineerRecommand(hairEngineerRecommandID);
 
-                    this.content.Value = he.HairEngineerRecommandInfo;
+                    this.content.Text = he.HairEngineerRecommandInfo;
                 }
             }
         }
@@ -44,7 +44,7 @@ namespace Web.Admin
             if (operateType == "1")
             {
                 int hairEngineerID = int.Parse(this.Request.QueryString["hairEngineerID"].ToString());
-                string hairEngineerRecommandInfo = this.content.Value;
+                string hairEngineerRecommandInfo = this.content.Text;
                 string hairEngineerRecommandEx = this.txtRecommandEx.Text.Trim();
                 if (InfoAdmin.RecommandHairEngineer(hairEngineerID, 0, hairEngineerRecommandInfo, hairEngineerRecommandEx, UserAction.Create))
                 {
@@ -61,7 +61,7 @@ namespace Web.Admin
                 int hairEngineerID = int.Parse(this.Request.QueryString["hairEngineerID"].ToString());
                 int hairEngineerRecommandID = int.Parse(this.Request.QueryString["hairEngineerRecommandID"].ToString());
 
-                string hairEngineerRecommandInfo = this.content.Value;
+                string hairEngineerRecommandInfo = this.content.Text;
                 string hairEngineerRecommandEx = this.txtRecommandEx.Text.Trim();
                 if (InfoAdmin.RecommandHairEngineer(hairEngineerID, hairEngineerRecommandID, hairEngineerRecommandInfo, hairEngineerRecommandEx, UserAction.Update))
                 {
