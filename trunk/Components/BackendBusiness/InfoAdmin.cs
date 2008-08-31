@@ -4,6 +4,7 @@ using System.Text;
 using HairNet.Entry;
 using HairNet.Provider;
 using HairNet.Enumerations;
+using System.Collections;
 
 namespace HairNet.Business
 {
@@ -14,9 +15,9 @@ namespace HairNet.Business
         /// </summary>
         /// <param name="count"></param>
         /// <returns></returns>
-        public static List<HairShop> GetHairShops(int count,OrderKey ok)
+        public static List<HairShop> GetHairShops(int count, OrderKey ok)
         {
-            return ProviderFactory.GetHairShopDataProviderInstance().GetHairShops(count,ok);  
+            return ProviderFactory.GetHairShopDataProviderInstance().GetHairShops(count, ok);
         }
         /// <summary>
         /// 
@@ -24,9 +25,9 @@ namespace HairNet.Business
         /// <param name="count"></param>
         /// <param name="ok"></param>
         /// <returns></returns>
-        public static List<HairShop> GetHairShops(int count, OrderKey ok,string hairShopName)
+        public static List<HairShop> GetHairShops(int count, OrderKey ok, string hairShopName)
         {
-            return ProviderFactory.GetHairShopDataProviderInstance().GetHairShops(count, ok,hairShopName);
+            return ProviderFactory.GetHairShopDataProviderInstance().GetHairShops(count, ok, hairShopName);
         }
 
         /// <summary>
@@ -34,9 +35,9 @@ namespace HairNet.Business
         /// </summary>
         /// <param name="count"></param>
         /// <returns></returns>
-        public static List<HairEngineer> GetHairEngineers(int count,OrderKey ok)
+        public static List<HairEngineer> GetHairEngineers(int count, OrderKey ok)
         {
-            return ProviderFactory.GetHairEngineerDataProviderInstance().GetHairEngineers(count,ok);
+            return ProviderFactory.GetHairEngineerDataProviderInstance().GetHairEngineers(count, ok);
         }
         /// <summary>
         /// 
@@ -45,9 +46,9 @@ namespace HairNet.Business
         /// <param name="ok"></param>
         /// <param name="hairEngineerName"></param>
         /// <returns></returns>
-        public static List<HairEngineer> GetHairEngineers(int count,OrderKey ok,string hairEngineerName)
+        public static List<HairEngineer> GetHairEngineers(int count, OrderKey ok, string hairEngineerName)
         {
-            return ProviderFactory.GetHairEngineerDataProviderInstance().GetHairEngineers(count,ok,hairEngineerName);
+            return ProviderFactory.GetHairEngineerDataProviderInstance().GetHairEngineers(count, ok, hairEngineerName);
         }
 
         /// <summary>
@@ -55,9 +56,24 @@ namespace HairNet.Business
         /// </summary>
         /// <param name="count"></param>
         /// <returns></returns>
-        public static List<Product> GetProducts(int count,OrderKey ok)
+        public static List<Product> GetProducts(int count, OrderKey ok)
         {
-            return ProviderFactory.GetProductDataProviderInstance().GetProducts(count,ok);  
+            return ProviderFactory.GetProductDataProviderInstance().GetProducts(count, ok);
+        }
+
+        public static string GetProductTagIDs(string productTagNames)
+        {
+            return ProviderFactory.GetProductDataProviderInstance().GetProductTagIDs(productTagNames);
+        }
+
+        public static string GetProductTagNames(string productTagIDs)
+        {
+            return ProviderFactory.GetProductDataProviderInstance().GetProductTagNames(productTagIDs);
+        }
+
+        public static Product GetProductByProductID(string productID)
+        {
+            return ProviderFactory.GetProductDataProviderInstance().GetProductByProductID(int.Parse(productID));
         }
 
         /// <summary>
@@ -67,9 +83,9 @@ namespace HairNet.Business
         /// <param name="ok"></param>
         /// <param name="productName"></param>
         /// <returns></returns>
-        public static List<Product> GetProducts(int count, OrderKey ok,string productName)
+        public static List<Product> GetProducts(int count, OrderKey ok, string productName)
         {
-            return ProviderFactory.GetProductDataProviderInstance().GetProducts(count, ok,productName);
+            return ProviderFactory.GetProductDataProviderInstance().GetProducts(count, ok, productName);
         }
 
         /// <summary>
@@ -133,9 +149,9 @@ namespace HairNet.Business
         /// </summary>
         /// <param name="count"></param>
         /// <returns></returns>
-        public static List<PictureStore> GetPictureStores(int count,OrderKey ok)
+        public static List<PictureStore> GetPictureStores(int count, OrderKey ok)
         {
-            return ProviderFactory.GetPictureStoreDataProviderInstance().GetPictureStores(count,ok);
+            return ProviderFactory.GetPictureStoreDataProviderInstance().GetPictureStores(count, ok);
         }
         /// <summary>
         /// 
@@ -143,9 +159,9 @@ namespace HairNet.Business
         /// <param name="count"></param>
         /// <param name="ok"></param>
         /// <returns></returns>
-        public static List<PictureStore> GetPictureStores(int count, OrderKey ok,string pictureStoreName)
+        public static List<PictureStore> GetPictureStores(int count, OrderKey ok, string pictureStoreName)
         {
-            return ProviderFactory.GetPictureStoreDataProviderInstance().GetPictureStores(count, ok,pictureStoreName);
+            return ProviderFactory.GetPictureStoreDataProviderInstance().GetPictureStores(count, ok, pictureStoreName);
         }
         /// <summary>
         /// 获得图片库信息推荐列表
@@ -228,7 +244,7 @@ namespace HairNet.Business
         /// <param name="hairEngineerID"></param>
         /// <param name="hairEngineerRecommandInfo"></param>
         /// <returns></returns>
-        public static bool RecommandHairEngineer(int hairEngineerID,int hairEngineerRecommandID,string hairEngineerRecommandInfo,string hairEngineerRecommandEx,UserAction ua)
+        public static bool RecommandHairEngineer(int hairEngineerID, int hairEngineerRecommandID, string hairEngineerRecommandInfo, string hairEngineerRecommandEx, UserAction ua)
         {
             bool result = false;
 
@@ -371,8 +387,8 @@ namespace HairNet.Business
         {
             HairEngineer hairEngineer = new HairEngineer();
             hairEngineer.HairEngineerID = hairEngineerID;
-
-            return ProviderFactory.GetHairEngineerDataProviderInstance().HairEngineerCreateDeleteUpdate(hairEngineer, UserAction.Delete);
+            int outID = 0;
+            return ProviderFactory.GetHairEngineerDataProviderInstance().HairEngineerCreateDeleteUpdate(hairEngineer, UserAction.Delete, out outID);
         }
         /// <summary>
         /// 删除美发产品
@@ -383,8 +399,8 @@ namespace HairNet.Business
         {
             Product product = new Product();
             product.ProductID = productID;
-
-            return ProviderFactory.GetProductDataProviderInstance().ProductCreateDeleteUpdate(product, UserAction.Delete);
+            int tmp = 0;
+            return ProviderFactory.GetProductDataProviderInstance().ProductCreateDeleteUpdate(product, UserAction.Delete, out tmp);
         }
 
         /// <summary>
@@ -405,7 +421,7 @@ namespace HairNet.Business
         }
         public static List<HairEngineerComment> GetHairEngineerCommentsByKeyText(int count, string keyText)
         {
-            return ProviderFactory.GetHairEngineerDataProviderInstance().GetHairEngineerCommentsByKeyText(count, keyText); 
+            return ProviderFactory.GetHairEngineerDataProviderInstance().GetHairEngineerCommentsByKeyText(count, keyText);
         }
         public static bool DeleteHairEngineerCommentByHairEngineerCommentID(int hairEngineerCommentID)
         {
@@ -507,13 +523,31 @@ namespace HairNet.Business
             return ProviderFactory.GetHairShopDataProviderInstance().GetWorkRanges();
         }
 
-        public static bool AddHairShop(HairShop hairShop)
+        public static int AddHairShop(HairShop hairShop)
         {
             return ProviderFactory.GetHairShopDataProviderInstance().AddHairShop(hairShop);
+        }
+        public static bool UpdateHairShop(HairShop hairShop)
+        {
+            return ProviderFactory.GetHairShopDataProviderInstance().HairShopDataPrividerCreateDeleteUpdate(hairShop, UserAction.Update);
+        }
+
+        public static bool UpdateProduct(Product product)
+        {
+            int tmp = 0;
+            return ProviderFactory.GetProductDataProviderInstance().ProductCreateDeleteUpdate(product, UserAction.Update, out tmp);
         }
         public static string GetHairShopTagIDs(string tagNames)
         {
             return ProviderFactory.GetHairShopDataProviderInstance().GetHairShopTagIDs(tagNames);
+        }
+        public static string GetHairShopTagNames(string tagIDs)
+        {
+            return ProviderFactory.GetHairShopDataProviderInstance().GetHairShopTagNames(tagIDs);
+        }
+        public static string GetHairEngineerTagNames(string tagIDs)
+        {
+            return ProviderFactory.GetHairEngineerDataProviderInstance().GetHairEngineerTagNames(tagIDs);
         }
         public static List<PictureStoreGroup> GetPictureStoreGroups(int count)
         {
@@ -530,6 +564,185 @@ namespace HairNet.Business
         public static int AddPictureStore(PictureStore ps)
         {
             return ProviderFactory.GetPictureStoreDataProviderInstance().AddPictureStore(ps);
+        }
+
+        /// <summary>
+        /// 设置图片标签里对应的图片ID
+        /// </summary>
+        /// <param name="PictureStoreID">图片ID</param>
+        /// <param name="PictureStoreTagID">标签ID</param>
+        public static void SetPictureStoreTag(int PictureStoreID, int PictureStoreTagID)
+        {
+            PictureStoreTag pst = ProviderFactory.GetPictureStoreDataProviderInstance().GetPictureStoreTagByPictureStoreTagID(PictureStoreTagID);
+            string[] pic_ids = pst.PictureStoreIDs.Split(',');
+            if (!ArrayIsExist<string>(PictureStoreID.ToString(), pic_ids))
+            {
+                if (pst.PictureStoreIDs == "")
+                {
+                    pst.PictureStoreIDs = PictureStoreID.ToString();
+                }
+                else
+                {
+                    pst.PictureStoreIDs += "," + PictureStoreID.ToString();
+                }
+                ProviderFactory.GetPictureStoreDataProviderInstance().PictureStoreTagCreateDeleteUpdate(pst, UserAction.Update);
+            }
+        }
+
+        public static void SetPictureStoreByHairShop(int HairShopID, int PictureStoreID)
+        {
+            PictureStore ps = ProviderFactory.GetPictureStoreDataProviderInstance().GetPictureStoreByPictureStoreID(PictureStoreID);
+            string[] hairshop_ids = ps.PictureStoreHairShopIDs.Split(',');
+            if (!ArrayIsExist<string>(HairShopID.ToString(), hairshop_ids))
+            {
+                if (ps.PictureStoreHairShopIDs == "")
+                {
+                    ps.PictureStoreHairShopIDs = HairShopID.ToString();
+                }
+                else
+                {
+                    ps.PictureStoreHairShopIDs += "," + HairShopID.ToString();
+                }
+                ProviderFactory.GetPictureStoreDataProviderInstance().PictureStoreCreateDeleteUpdate(ps, UserAction.Update);
+            }
+        }
+
+        public static void SetHairShopByProduct(int ProductID, int HairShopID)
+        {
+            HairShop hs = ProviderFactory.GetHairShopDataProviderInstance().GetHairShopByHairShopID(HairShopID);
+            string[] product_ids = hs.ProductIDs.Split(',');
+            if (!ArrayIsExist<string>(ProductID.ToString(), product_ids))
+            {
+                if (hs.ProductIDs == "")
+                {
+                    hs.ProductIDs = ProductID.ToString();
+                }
+                else
+                {
+                    hs.ProductIDs += "," + ProductID.ToString();
+                }
+                ProviderFactory.GetHairShopDataProviderInstance().HairShopDataPrividerCreateDeleteUpdate(hs, UserAction.Update);
+            }
+        }
+
+        public static void SetPictureStoreByHairEngineer(int HairEngineerID, int PictureStoreID)
+        {
+            PictureStore ps = ProviderFactory.GetPictureStoreDataProviderInstance().GetPictureStoreByPictureStoreID(PictureStoreID);
+            string[] he_ids = ps.PictureStoreHairShopIDs.Split(',');
+            if (!ArrayIsExist<string>(HairEngineerID.ToString(), he_ids))
+            {
+                if (ps.PictureStoreHairShopIDs == "")
+                {
+                    ps.PictureStoreHairShopIDs = HairEngineerID.ToString();
+                }
+                else
+                {
+                    ps.PictureStoreHairShopIDs += "," + HairEngineerID.ToString();
+                }
+                ProviderFactory.GetPictureStoreDataProviderInstance().PictureStoreCreateDeleteUpdate(ps, UserAction.Update);
+            }
+        }
+        public static void SetHairShopTag(int HairShopID, int HairShopTagID)
+        {
+            HairShopTag hst = ProviderFactory.GetHairShopDataProviderInstance().GetHairShopTagByHairShopTagID(HairShopTagID);
+            string[] tagids = hst.HairShopIDs.Split(',');
+            if (!ArrayIsExist<string>(HairShopID.ToString(), tagids))
+            {
+                if (hst.HairShopIDs == "")
+                {
+                    hst.HairShopIDs = HairShopID.ToString();
+                }
+                else
+                {
+                    hst.HairShopIDs += "," + HairShopID.ToString();
+                }
+                ProviderFactory.GetHairShopDataProviderInstance().HairShopTagCreateDeleteUpdate(hst, UserAction.Update);
+            }
+        }
+
+        public static void SetProductTag(int ProductID, int ProductTagID)
+        {
+            ProductTag pt = ProviderFactory.GetProductDataProviderInstance().GetProductTagByProductTagID(ProductTagID);
+            string[] tagids = pt.ProductIDs.Split(',');
+            if (!ArrayIsExist<string>(ProductID.ToString(), tagids))
+            {
+                if (pt.ProductIDs == "")
+                {
+                    pt.ProductIDs = ProductID.ToString();
+                }
+                else
+                {
+                    pt.ProductIDs += "," + ProductID.ToString();
+                }
+                ProviderFactory.GetProductDataProviderInstance().ProductTagCreateDeleteUpdate(pt, UserAction.Update);
+            }
+        }
+
+        public static void SetHairEngineerTag(int HairEngineerID, int HairEngineerTagID)
+        {
+            HairEngineerTag het = ProviderFactory.GetHairEngineerDataProviderInstance().GetHairEngineerTagByHairEngineerTagID(HairEngineerTagID);
+            string[] tagids = het.HairEngineerIDs.Split(',');
+            if (!ArrayIsExist<string>(HairEngineerID.ToString(), tagids))
+            {
+                if (het.HairEngineerIDs == "")
+                {
+                    het.HairEngineerIDs = HairEngineerID.ToString();
+                }
+                else
+                {
+                    het.HairEngineerIDs += "," + HairEngineerID.ToString();
+                }
+                ProviderFactory.GetHairEngineerDataProviderInstance().HairEngineerTagCreateDeleteUpdate(het, UserAction.Update);
+            }
+        }
+
+        private static bool ArrayIsExist<T>(T p, T[] pn) where T : class, IEnumerable
+        {
+            bool isExist = false;
+            foreach (T o in pn)
+            {
+                if (o == p)
+                {
+                    isExist = true;
+                    break;
+                }
+            }
+            return isExist;
+        }
+
+        public static PictureStore GetPictureStoreByPictureStoreID(int id)
+        {
+            return ProviderFactory.GetPictureStoreDataProviderInstance().GetPictureStoreByPictureStoreID(id);
+        }
+
+        public static List<HairEngineerClass> GetHairEngineerClasses()
+        {
+            return ProviderFactory.GetHairEngineerDataProviderInstance().GetHairEngineerClasses();
+        }
+
+        public static int AddHairEngineer(HairEngineer he)
+        {
+            int hairEngineerID = 0;
+            ProviderFactory.GetHairEngineerDataProviderInstance().HairEngineerCreateDeleteUpdate(he, UserAction.Create, out hairEngineerID);
+            return hairEngineerID;
+        }
+
+        public static int AddProduct(Product product)
+        {
+            int productID = 0;
+            ProviderFactory.GetProductDataProviderInstance().ProductCreateDeleteUpdate(product, UserAction.Create, out productID);
+            return productID;
+        }
+
+        public static bool UpdateHairEngineer(HairEngineer he)
+        {
+            int tmp = 0;
+            return ProviderFactory.GetHairEngineerDataProviderInstance().HairEngineerCreateDeleteUpdate(he, UserAction.Update, out tmp);
+        }
+
+        public static HairEngineer GetHairEngineerByHairEngineerID(int HairEngineerID)
+        {
+            return ProviderFactory.GetHairEngineerDataProviderInstance().GetHairEngineerByHairEngineerID(HairEngineerID);
         }
     }
 }
