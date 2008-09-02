@@ -52,7 +52,6 @@
                 <asp:BoundColumn DataField="UserAddress" HeaderText="邮箱"></asp:BoundColumn>
                 <asp:BoundColumn DataField="CommentCreateTime" HeaderText="创建时间"></asp:BoundColumn>
                 <asp:HyperLinkColumn DataNavigateUrlField="CommentID" DataNavigateUrlFormatString="CommentDetails.aspx?id={0}" Target="_blank" Text="详细"></asp:HyperLinkColumn>
-                <asp:HyperLinkColumn DataNavigateUrlField="CommentID" DataNavigateUrlFormatString="CommentEdit.aspx?id={0}" Target="_blank" Text="编辑"></asp:HyperLinkColumn>
                 <asp:ButtonColumn ButtonType="LinkButton" CommandName="delete" Text="删除"></asp:ButtonColumn>
             </Columns>
         </asp:DataGrid>

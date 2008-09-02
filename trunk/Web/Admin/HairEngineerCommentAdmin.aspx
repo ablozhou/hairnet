@@ -33,7 +33,11 @@
             </tr>
         </table>
         <div style="text-align: center">
-        <asp:DataGrid ID ="dg" runat = "server" PageSize="30" AllowPaging="true" AutoGenerateColumns="false" BackColor="White" BorderColor="White" BorderStyle="Ridge" BorderWidth="2px" CellPadding="3" Width="98%" CellSpacing="1" GridLines="None" OnItemDataBound="dg_OnItemDataBound" OnItemCommand="dg_OnItemCommand" OnPageIndexChanged="dg_OnPageIndexChanged">
+        <asp:DataGrid ID ="dg" runat = "server" PageSize="30" AllowPaging="True" 
+                AutoGenerateColumns="False" BackColor="White" BorderColor="White" 
+                BorderStyle="Ridge" BorderWidth="2px" CellPadding="3" Width="98%" 
+                CellSpacing="1" GridLines="None" OnItemDataBound="dg_OnItemDataBound" 
+                OnItemCommand="dg_OnItemCommand" OnPageIndexChanged="dg_OnPageIndexChanged">
             <FooterStyle BackColor="#C6C3C6" ForeColor="Black" />
             <SelectedItemStyle BackColor="#9471DE" Font-Bold="True" ForeColor="White" />
             <PagerStyle BackColor="#C6C3C6" ForeColor="Black" HorizontalAlign="Right" NextPageText="下一页"
@@ -52,7 +56,6 @@
                 <asp:BoundColumn DataField="UserAddress" HeaderText="邮箱"></asp:BoundColumn>
                 <asp:BoundColumn DataField="CommentCreateTime" HeaderText="创建时间"></asp:BoundColumn>
                 <asp:HyperLinkColumn DataNavigateUrlField="CommentID" DataNavigateUrlFormatString="CommentDetails.aspx?id={0}" Target="_blank" Text="详细"></asp:HyperLinkColumn>
-                <asp:HyperLinkColumn DataNavigateUrlField="CommentID" DataNavigateUrlFormatString="CommentEdit.aspx?id={0}" Target="_blank" Text="编辑"></asp:HyperLinkColumn>
                 <asp:ButtonColumn ButtonType="LinkButton" CommandName="delete" Text="删除"></asp:ButtonColumn>
             </Columns>
         </asp:DataGrid>
