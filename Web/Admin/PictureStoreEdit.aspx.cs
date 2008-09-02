@@ -1,29 +1,32 @@
 ﻿using System;
-using System.Data;
-using System.Configuration;
 using System.Collections;
+using System.Configuration;
+using System.Data;
+using System.Linq;
 using System.Web;
 using System.Web.Security;
 using System.Web.UI;
+using System.Web.UI.HtmlControls;
 using System.Web.UI.WebControls;
 using System.Web.UI.WebControls.WebParts;
-using System.Web.UI.HtmlControls;
-using HairNet.Utilities;
+using System.Xml.Linq;
+using HairNet.Business;
 using HairNet.Entry;
 using System.Collections.Generic;
-using HairNet.Business;
 using System.IO;
 using HairNet.Components.Utilities;
+using HairNet.Utilities;
 
 namespace Web.Admin
 {
-    public partial class PictureStoreAdd : System.Web.UI.Page
+    public partial class PictureStoreEdit : System.Web.UI.Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
             {
                 this.bindPicGroup();
+                this.SetInfo();
             }
         }
 
@@ -35,9 +38,22 @@ namespace Web.Admin
             ddlPictureStoreGroup.DataBind();
         }
 
-        protected void btnSubmit_OnClick(object sender,EventArgs e)
+        private void SetInfo()
         {
-            PictureStore ps = new PictureStore();
+            string id = Request["id"];
+            PictureStore ps = InfoAdmin.GetPictureStoreByPictureStoreID(int.Parse(id));
+
+            txtPictureStoreName.Text = ps.PictureStoreName;
+            txtPictureStoreDescription.Text = ps.PictureStoreDescription;
+            txtPictureStoreTag.Text = InfoAdmin.GetPictureStoreTagNames(ps.PictureStoreTagIDs);
+
+            ddlPictureStoreGroup.SelectedValue = ps.PictureStoreGroupIDs;
+            ViewState["PictureStoreInfo"] = ps;
+        }
+
+        protected void btnSubmit_OnClick(object sender, EventArgs e)
+        {
+            PictureStore ps = (PictureStore)ViewState["PictureStoreInfo"];
             ps.PictureStoreName = txtPictureStoreName.Text.Trim();
             ps.PictureStoreGroupIDs = ddlPictureStoreGroup.SelectedValue;
             ps.PictureStoreDescription = txtPictureStoreDescription.Text.Trim();
@@ -58,7 +74,8 @@ namespace Web.Admin
                 ps.PictureStoreLittleUrl = po.CreateMicroPic(newfilepath, "", WaterSettings.PictureScaleSize[0], WaterSettings.PictureScaleSize[1]);
                 po = null;
             }
-            ps.PictureStoreID = InfoAdmin.AddPictureStore(ps);
+            InfoAdmin.UpdatePictureStore(ps);
+
             foreach (string tagid in ps.PictureStoreTagIDs.Split(','))
             {
                 InfoAdmin.SetPictureStoreTag(ps.PictureStoreID, int.Parse(tagid));
