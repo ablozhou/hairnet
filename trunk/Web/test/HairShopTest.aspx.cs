@@ -77,8 +77,8 @@ namespace Web.test
             he.HairEngineerYear = "2年";
             he.HairShopID = 1;
 
-
-            if (ProviderFactory.GetHairEngineerDataProviderInstance().HairEngineerCreateDeleteUpdate(he, UserAction.Create))
+            int tmpid = 0;
+            if (ProviderFactory.GetHairEngineerDataProviderInstance().HairEngineerCreateDeleteUpdate(he, UserAction.Create,out tmpid))
             {
                 Response.Write("success");
             }
@@ -101,8 +101,8 @@ namespace Web.test
             p.ProductRawPrice = "20";
             p.ProductTagIDs = "1,2";
 
-
-            if (ProviderFactory.GetProductDataProviderInstance().ProductCreateDeleteUpdate(p, UserAction.Create))
+            int tmpid = 0;
+            if (ProviderFactory.GetProductDataProviderInstance().ProductCreateDeleteUpdate(p, UserAction.Create,out tmpid))
             {
                 Response.Write("success");
             }

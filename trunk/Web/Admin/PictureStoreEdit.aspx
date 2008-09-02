@@ -1,11 +1,8 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="PictureStoreAdd.aspx.cs"
-    Inherits="Web.Admin.PictureStoreAdd" %>
-
-<%@ Register TagPrefix="FCKeditorV2" Namespace="FredCK.FCKeditorV2" Assembly="FredCK.FCKeditorV2" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="PictureStoreEdit.aspx.cs" Inherits="Web.Admin.PictureStoreEdit" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
-<head runat="server">
-    <title>图片添加</title>
+<head id="Head1" runat="server">
+    <title>图片编辑</title>
     <link type="text/css" rel="Stylesheet" href="Style/Main.css" />
 </head>
 <body>
