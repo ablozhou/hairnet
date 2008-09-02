@@ -780,6 +780,17 @@ namespace HairNet.Provider
             return string.Join(",", list.ToArray());
         }
 
+        public string GetPictureStoreTagNames(string tagIDs)
+        {
+            string[] IDs = tagIDs.Split(',');
+            List<string> list = new List<string>();
+            foreach (string id in IDs)
+            {
+                list.Add(this.GetPictureStoreTagByPictureStoreTagID(int.Parse(id)).TagName);
+            }
+            return string.Join(",", list.ToArray());
+        }
+
         private int AddPictureStoreTag(string name)
         {
             int TagID = 0;
