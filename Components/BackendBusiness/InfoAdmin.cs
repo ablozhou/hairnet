@@ -537,6 +537,11 @@ namespace HairNet.Business
             int tmp = 0;
             return ProviderFactory.GetProductDataProviderInstance().ProductCreateDeleteUpdate(product, UserAction.Update, out tmp);
         }
+
+        public static bool UpdatePictureStore(PictureStore ps)
+        {
+            return ProviderFactory.GetPictureStoreDataProviderInstance().PictureStoreCreateDeleteUpdate(ps, UserAction.Update);
+        }
         public static string GetHairShopTagIDs(string tagNames)
         {
             return ProviderFactory.GetHairShopDataProviderInstance().GetHairShopTagIDs(tagNames);
@@ -556,6 +561,10 @@ namespace HairNet.Business
         public static string GetPictureStoreTagIDs(string tagNames)
         {
             return ProviderFactory.GetPictureStoreDataProviderInstance().GetPictureStoreTagIDs(tagNames);
+        }
+        public static string GetPictureStoreTagNames(string tagIDs)
+        {
+            return ProviderFactory.GetPictureStoreDataProviderInstance().GetPictureStoreTagNames(tagIDs);
         }
         public static string GetHairEngineerTagIDs(string tagNames)
         {
