@@ -4,7 +4,7 @@
 并列的dotnet目录下是UCenter的dotnet接口。
 需要完成dotnet各接口和php UCenter的功能调试，包括：
 用户注册，增删好友，上传图像，增加轨迹。超级用户对用户的管理如何实现？
-请火灵先测试一下上述功能，给个结论。因为康盛UCenter .net接口并不公开发布，也不完善。
+请先测试一下上述功能，给个结论。因为康盛UCenter .net接口并不公开发布，也不完善。
 
 参考网站：http://comsenz.com
 http://www.discuz.net
