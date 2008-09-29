@@ -1,0 +1,82 @@
+/* CSS Document */
+body {
+	background-color: #FFFFFF;
+	margin-left: 0px;
+	margin-top: 0px;
+	margin-right: 0px;
+	margin-bottom: 0px;
+	font-size: 12px;
+	background-image: url(../images/fair-bg.gif);
+	background-repeat: repeat-x;
+	background-position: top;
+}
+img {border:0px;}
+.clear {clear:both;}
+ul,li{list-style-type:none;margin:0px 0px 0px 0px;padding:0px 0px 0px 0px;}
+a:link {text-decoration: none;}
+a:visited {text-decoration: none;}
+a:hover {text-decoration: underline;}
+a:active {text-decoration: none;}
+.gray12-line {
+	background-image: url(../images/sg-meifa-line01.gif);
+	background-repeat: repeat-x;
+	background-position: bottom;
+	font-size:12px;
+	line-height:28px;
+	color:#666666;
+	text-align:left;
+}
+
+.gray14-line {background-image: url(../images/sg-meifa-line01.gif);background-repeat: repeat-x;background-position: bottom;font-size:14px;line-height:29px;color:#666666;text-align:left;}
+.gray14-line a:link,.gray14-line a:visited {color:#666666;}
+.gray14-line a:hover {color:#cc0033;}
+
+.gray12 {font-size:12px;line-height:28px;color:#666666;}
+.gray12-c {font-size:12px;line-height:24px;color:#666666;}
+.gray12-d {font-size:12px;line-height:22px;color:#666666;}
+.gray12b {font-size:12px;line-height:20px;color:#666666;}
+.gray14 {font-size:14px;line-height:26px;color:#666666;}
+.gray12-d a:link,.gray12-d a:visited,.gray12-line a:link,.gray12-line a:visited,.gray12-c a:link,.gray12-c a:visited,.gray12 a:link,.gray12 a:visited,.gray12 a:link,.gray12 a:visited,.gray14 a:link,.gray14 a:visited,.gray12b a:link,.gray12b a:visited  {color:#666666;}
+.gray12-d a:hover,.gray12-line a:hover,.gray12-c a:hover,.gray12 a:hover,.gray a:hover,.gray14 a:hover,.gray12b a:hover {color:#cc0033;text-decoration:underline;}
+
+
+.red14b {font-size:14px;font-weight:bold;line-height:24px;color:#cc0033;}
+.red14b a:link,.red14b a:visited,.red14b a:hover {color:#cc0033;}
+
+.red12 {font-size:12px;line-height:22px;color:#f40418;}
+.red12 a:link,.red12 a:visited {color:#f40418;}
+.red12 a:hover {color:#cc0033;}
+.red12-c {font-size:12px;line-height:22px;color:#cc0000;}
+.red12-c a:link,.red12-c a:visited {color:#cc0000;}
+.red12-c a:hover {color:#cc0033;}
+.red14 {font-size:14px;line-height:26px;color:#f40418;}
+
+.gray12-b {font-size:12px;font-weight:bold;line-height:24px;color:#666666;}
+.gray12-b a:link,.gray12-b a:visited {color:#666666;}
+.gray12-b a:hover {color:#cc0033;}
+
+.gray14-b {font-size:14px;font-weight:bold;line-height:24px;color:#666666;}
+.gray14-b a:link,.gray14-b a:visited {color:#666666;}
+.gray14-b a:hover {color:#cc0033;}
+
+.gray14-e {font-size:14px;line-height:28px;color:#666666;}
+.gray14-e a:link,.gray14-e a:visited {color:#666666;}
+.gray14-e a:hover {color:#cc0033;}
+
+.red12-line {color:#f40418;line-height:20px;font-size:12px;text-decoration:underline;}
+.red12-line a:link,.red12-line a:visited {color:#f40418;text-decoration:underline;}
+.red12-line a:hover {color:#cc0033;text-decoration:underline;}
+.gray12-lp {color:#666666;line-height:20px;font-size:12px;}
+.gray12-lp a:link,.gray12-lp a:visited {color:#666666;}
+.gray12-lp a:hover {color:#cc0033;}
+
+.liangpin-pic img {width:95px;height:70px;border:#e9e9e9 1px solid;}
+
+
+.gray12-e {font-size:12px;line-height:24px;color:#b5b5b5;}
+.gray12-e a:link,.gray12-e a:visited {color:#b5b5b5;}
+.gray12-e a:hover {color:#cc0033;}
+
+.gray14-c {font-size:14px;font-weight:bold;line-height:50px;color:#898989;}
+.gray14-c a:link,.gray14-c a:visited {color:#898989;}
+.gray14-c a:hover {color:#cc0033;}
