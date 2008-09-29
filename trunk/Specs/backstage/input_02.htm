@@ -1,0 +1,390 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+<title>input</title>
+<link href="css/default.css" rel="stylesheet" type="text/css" />
+<script language="javascript">
+	function hideInfo(eIMG,eID,eOpen,eClose){
+	
+		if(eID.style.display=="none"){
+			eIMG.src=eClose;
+			eID.style.display="block";
+		}
+		else{
+			eIMG.src=eOpen;
+			eID.style.display="none";
+		}
+		
+	}
+</script>
+</head>
+
+<body background="images/body_bg.gif">
+<table width="100%" border="0" cellpadding="0" cellspacing="1" class="tbBorderStyle">
+  <tr>
+    <td class="tdBorderColor"><table width="100%" border="0" cellspacing="0" cellpadding="0">
+      <tr>
+        <td height="31" style="padding-left:10px"><img src="images/icon_question.gif" width="13" height="13" align="absmiddle" /> <span class="tbTitleFont">在此页，您可以对用户组的权限进行编辑或者管理。</span> </td>
+        <td align="right" style="padding-right:10px"><span class="tbIntroFont">帮助信息</span> <a href="javascript:hideInfo(cOpen,info1,'images/icon_title_open.gif','images/icon_title_close.gif');"><img src="images/icon_title_open.gif" name="cOpen" width="41" height="11" border="0" align="absmiddle" id="cOpen" /></a></td>
+      </tr>
+    </table></td>
+  </tr>
+  <tr>
+    <td valign="top" class="tdBorderColor" style="padding:10px"><div id="info1" style="display:none">
+      <fieldset style="border-color:#6699CC; border-width:1px; border-style:solid">
+        <legend><strong>用户组权限　操作简介</strong></legend>
+        <table width="100%" border="0" cellspacing="0" cellpadding="0">
+          <tr>
+            <td class="L15" style="padding:15px;">在此页面，您可以对用户组的权限进行编辑或者管理。<br />
+              在此页面，您可以对用户组的权限进行编辑或者管理。<br />
+              在此页面，您可以对用户组的权限进行编辑或者管理。</td>
+          </tr>
+        </table>
+        </fieldset>
+      <br />
+    </div>
+        <div id="div"></div>
+        <table width="100%" border="0" cellspacing="0" cellpadding="0">
+          <tr>
+            <td width="71" height="26" align="center" class="tabSelect"><a href="javascript:;"><strong>个人信息</strong></a></td>
+            <td width="4" class="tabBlank">&nbsp;</td>
+            <td width="71" align="center" class="tabNoSelect"><a href="javascript:;">学历学位</a></td>
+            <td width="4" align="center" class="tabBlank">&nbsp;</td>
+            <td width="71" align="center" class="tabNoSelect"><a href="javascript:;">个人简历</a></td>
+            <td width="4" align="center" class="tabBlank">&nbsp;</td>
+            <td width="71" align="center" class="tabNoSelect"><a href="javascript:;">语言能力</a></td>
+            <td width="4" align="center" class="tabBlank">&nbsp;</td>
+            <td width="71" align="center" class="tabNoSelect"><a href="javascript:;">政治面貌</a></td>
+            <td width="4" align="center" class="tabBlank">&nbsp;</td>
+            <td width="71" align="center" class="tabNoSelect"><a href="javascript:;">家庭成员</a></td>
+            <td width="4" align="center" class="tabBlank">&nbsp;</td>
+            <td width="71" align="center" class="tabNoSelect"><a href="javascript:;">家庭情况</a></td>
+            <td class="tabBlank">&nbsp;</td>
+          </tr>
+        </table>
+        <table width="100%" border="0" cellspacing="0" cellpadding="0">
+          <tr>
+            <td height="28" class="tabInfo" style="padding-left:5px;">员工编号：1107　姓名：冯小刚</td>
+          </tr>
+        </table>
+        <table width="100%" border="0" cellspacing="0" cellpadding="0">
+          <tr>
+            <td class="paneBorder"><table width="100%" border="0" cellspacing="0" cellpadding="0">
+              <tr>
+                <td valign="top"><table width="100%" border="0" cellspacing="0" cellpadding="0">
+                  <tr>
+                    <td width="60" height="30" class="paneFont">基本信息</td>
+                    <td><table width="100%" border="0" cellspacing="0" cellpadding="0">
+                        <tr>
+                          <td height="1" class="paneBorderC"><img name="" src="" width="1" height="1" alt=""></td>
+                        </tr>
+                        <tr>
+                          <td height="1" bgcolor="#FFFFFF"><img name="" src="" width="1" height="1" alt=""></td>
+                        </tr>
+                    </table></td>
+                    </tr>
+                </table>
+                  <table width="100%" border="0" cellpadding="4" cellspacing="0">
+                    <tr>
+                      <td width="25%" nowrap>从教年月：
+                        <input name="textfield322" type="text" size="15"></td>
+                      <td width="12%" align="right" nowrap>岗位职业：</td>
+                      <td width="13%"><select name="select2">
+                          <option>请选择</option>
+                      </select></td>
+                      <td width="12%" align="right" nowrap>工作年月：</td>
+                      <td width="13%"><input name="textfield12222" type="text" size="15"></td>
+                      <td width="12%" align="right" nowrap>职称：</td>
+                      <td><select name="select2">
+                          <option>请选择</option>
+                        </select>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td nowrap>主页地址：
+                        <input name="textfield2222" type="text" size="15"></td>
+                      <td align="right" nowrap>连续工龄：</td>
+                      <td><input name="textfield9222" type="text" size="15"></td>
+                      <td align="right" nowrap>用工形式：</td>
+                      <td><select name="select2">
+                          <option>请选择</option>
+                      </select></td>
+                      <td align="right" nowrap>职务：</td>
+                      <td><select name="select2">
+                          <option>请选择</option>
+                      </select></td>
+                    </tr>
+                  </table>
+                  <table width="100%" border="0" cellpadding="4" cellspacing="0">
+                    <tr>
+                      <td width="25%" nowrap>从教年月：
+                        <input name="textfield3222" type="text" size="15"></td>
+                      <td width="12%" align="right" nowrap>岗位职业：</td>
+                      <td width="13%"><select name="select4">
+                          <option>请选择</option>
+                      </select></td>
+                      <td width="12%" align="right" nowrap>工作年月：</td>
+                      <td width="13%"><input name="textfield122222" type="text" size="15"></td>
+                      <td width="12%" align="right" nowrap>职称：</td>
+                      <td><select name="select4">
+                          <option>请选择</option>
+                        </select>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td nowrap>主页地址：
+                        <input name="textfield22222" type="text" size="15"></td>
+                      <td align="right" nowrap>连续工龄：</td>
+                      <td><input name="textfield92222" type="text" size="15"></td>
+                      <td align="right" nowrap>用工形式：</td>
+                      <td><select name="select4">
+                          <option>请选择</option>
+                      </select></td>
+                      <td align="right" nowrap>职务：</td>
+                      <td><select name="select4">
+                          <option>请选择</option>
+                      </select></td>
+                    </tr>
+                  </table></td>
+                <td width="125"><table width="112" border="0" align="center" cellpadding="0" cellspacing="0">
+                  <tr>
+                    <td><img src="images/photo_fram1.gif" width="112" height="5"></td>
+                  </tr>
+                </table>
+                  <table width="112" border="0" align="center" cellpadding="0" cellspacing="0">
+                    <tr>
+                      <td align="center" background="images/photo_fram2.gif"><img src="images/photo_fram4.gif" width="99" height="128"></td>
+                    </tr>
+                  </table>
+                  <table width="112" border="0" align="center" cellpadding="0" cellspacing="0">
+                    <tr>
+                      <td><img src="images/photo_fram3.gif" width="112" height="5"></td>
+                    </tr>
+                  </table></td>
+              </tr>
+            </table>
+            <table width="100%" border="0" cellspacing="0" cellpadding="0">
+              <tr>
+                <td width="60" height="30" class="paneFont">基本信息</td>
+                <td><table width="100%" border="0" cellspacing="0" cellpadding="0">
+                    <tr>
+                      <td height="1" class="paneBorderC"><img name="" src="" width="1" height="1" alt=""></td>
+                    </tr>
+                    <tr>
+                      <td height="1" bgcolor="#FFFFFF"><img name="" src="" width="1" height="1" alt=""></td>
+                    </tr>
+                </table></td>
+                <td width="16"><a href="javascript:hideInfo(AOpen,cont1,'images/icon_arrow_close.gif','images/icon_arrow_open.gif');"><img src="images/icon_arrow_close.gif" name="AOpen" width="16" height="16" border="0" id="AOpen"></a></td>
+              </tr>
+            </table>
+              <table width="100%" border="0" cellpadding="4" cellspacing="0">
+                <tr>
+                  <td width="25%" nowrap>从教年月：
+                    <input name="textfield32" type="text" size="15"></td>
+                  <td width="12%" align="right" nowrap>岗位职业：</td>
+                  <td width="13%"><select name="select9">
+                      <option>请选择</option>
+                  </select></td>
+                  <td width="12%" align="right" nowrap>参加工作年月：</td>
+                  <td width="13%"><input name="textfield1222" type="text" size="15"></td>
+                  <td width="12%" align="right" nowrap>当前职称：</td>
+                  <td><select name="select9">
+                      <option>请选择</option>
+                    </select>
+                  </td>
+                </tr>
+                <tr>
+                  <td nowrap>主页地址：
+                    <input name="textfield222" type="text" size="15"></td>
+                  <td align="right" nowrap>连续工龄：</td>
+                  <td><input name="textfield922" type="text" size="15"></td>
+                  <td align="right" nowrap>用工形式：</td>
+                  <td><select name="select9">
+                      <option>请选择</option>
+                  </select></td>
+                  <td align="right" nowrap>当前职务：</td>
+                  <td><select name="select9">
+                      <option>请选择</option>
+                  </select></td>
+                </tr>
+              </table>
+              <table width="100%" border="0" cellpadding="4" cellspacing="0" id="cont1" style="display:none">
+                <tr>
+                  <td width="25%" nowrap>从教年月：
+                  <input name="textfield" type="text" size="15"></td>
+                  <td width="12%" align="right" nowrap>岗位职业：</td>
+                  <td width="13%"><select name="select3">
+                    <option>请选择</option>
+                  </select></td>
+                  <td width="12%" align="right" nowrap>参加工作年月：</td>
+                  <td width="13%"><input name="textfield5" type="text" size="15"></td>
+                  <td width="12%" align="right" nowrap>当前职称：</td>
+                  <td><select name="select">
+                    <option>请选择</option>
+                  </select>                  </td>
+                </tr>
+              </table>
+              <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                <tr>
+                  <td width="30" height="30" class="paneFont">学历</td>
+                  <td><table width="100%" border="0" cellspacing="0" cellpadding="0">
+                      <tr>
+                        <td height="1" class="paneBorderC"><img name="" src="" width="1" height="1" alt=""></td>
+                      </tr>
+                      <tr>
+                        <td height="1" bgcolor="#FFFFFF"><img name="" src="" width="1" height="1" alt=""></td>
+                      </tr>
+                  </table></td>
+                  <td width="16"><a href="javascript:hideInfo(AOpen1,cont2,'images/icon_arrow_close.gif','images/icon_arrow_open.gif');"><img src="images/icon_arrow_close.gif" name="AOpen1" width="16" height="16" border="0" id="AOpen1"></a></td>
+                </tr>
+              </table>
+              <table width="100%" border="0" cellpadding="4" cellspacing="0">
+                <tr>
+                  <td width="25%" nowrap>从教年月：
+                    <input name="textfield3" type="text" size="15"></td>
+                  <td width="12%" align="right" nowrap>岗位职业：</td>
+                  <td width="13%"><select name="select7">
+                      <option>请选择</option>
+                  </select></td>
+                  <td width="12%" align="right" nowrap>参加工作年月：</td>
+                  <td width="13%"><input name="textfield122" type="text" size="15"></td>
+                  <td width="12%" align="right" nowrap>当前职称：</td>
+                  <td><select name="select7">
+                      <option>请选择</option>
+                    </select>
+                  </td>
+                </tr>
+                <tr>
+                  <td nowrap>主页地址：
+                    <input name="textfield22" type="text" size="15"></td>
+                  <td align="right" nowrap>连续工龄：</td>
+                  <td><input name="textfield92" type="text" size="15"></td>
+                  <td align="right" nowrap>用工形式：</td>
+                  <td><select name="select7">
+                      <option>请选择</option>
+                  </select></td>
+                  <td align="right" nowrap>当前职务：</td>
+                  <td><select name="select7">
+                      <option>请选择</option>
+                  </select></td>
+                </tr>
+              </table>
+              <table width="100%" border="0" cellpadding="4" cellspacing="0" id="cont2" style="display:none">
+                <tr>
+                  <td width="25%" nowrap>从教年月：
+                    <input name="textfield" type="text" size="15"></td>
+                  <td width="12%" align="right" nowrap>岗位职业：</td>
+                  <td width="13%"><select name="select5">
+                      <option>请选择</option>
+                  </select></td>
+                  <td width="12%" align="right" nowrap>参加工作年月：</td>
+                  <td width="13%"><input name="textfield12" type="text" size="15"></td>
+                  <td width="12%" align="right" nowrap>当前职称：</td>
+                  <td><select name="select5">
+                      <option>请选择</option>
+                    </select>                  </td>
+                </tr>
+                <tr>
+                  <td nowrap>主页地址：
+                    <input name="textfield2" type="text" size="15"></td>
+                  <td align="right" nowrap>连续工龄：</td>
+                  <td><input name="textfield9" type="text" size="15"></td>
+                  <td align="right" nowrap>用工形式：</td>
+                  <td><select name="select5">
+                      <option>请选择</option>
+                  </select></td>
+                  <td align="right" nowrap>当前职务：</td>
+                  <td><select name="select5">
+                      <option>请选择</option>
+                  </select></td>
+                </tr>
+              </table>
+              <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                <tr>
+                  <td width="30" height="30" class="paneFont">工资</td>
+                  <td><table width="100%" border="0" cellspacing="0" cellpadding="0">
+                      <tr>
+                        <td height="1" class="paneBorderC"><img name="" src="" width="1" height="1" alt=""></td>
+                      </tr>
+                      <tr>
+                        <td height="1" bgcolor="#FFFFFF"><img name="" src="" width="1" height="1" alt=""></td>
+                      </tr>
+                  </table></td>
+                  <td width="16"><a href="javascript:hideInfo(AOpen2,cont3,'images/icon_arrow_close.gif','images/icon_arrow_open.gif');"><img src="images/icon_arrow_close.gif" name="AOpen2" width="16" height="16" border="0" id="AOpen2"></a></td>
+                </tr>
+              </table>
+              <table width="100%" border="0" cellpadding="4" cellspacing="0">
+                <tr>
+                  <td width="25%" nowrap>从教年月：
+                    <input name="textfield6" type="text" size="15"></td>
+                  <td width="12%" align="right" nowrap>岗位职业：</td>
+                  <td width="13%"><select name="select8">
+                      <option>请选择</option>
+                  </select></td>
+                  <td width="12%" align="right" nowrap>参加工作年月：</td>
+                  <td width="13%"><input name="textfield123" type="text" size="15"></td>
+                  <td width="12%" align="right" nowrap>当前职称：</td>
+                  <td><select name="select8">
+                      <option>请选择</option>
+                    </select>
+                  </td>
+                </tr>
+                <tr>
+                  <td nowrap>主页地址：
+                    <input name="textfield23" type="text" size="15"></td>
+                  <td align="right" nowrap>连续工龄：</td>
+                  <td><input name="textfield93" type="text" size="15"></td>
+                  <td align="right" nowrap>用工形式：</td>
+                  <td><select name="select8">
+                      <option>请选择</option>
+                  </select></td>
+                  <td align="right" nowrap>当前职务：</td>
+                  <td><select name="select8">
+                      <option>请选择</option>
+                  </select></td>
+                </tr>
+              </table>
+              <table width="100%" border="0" cellpadding="4" cellspacing="0" id="cont3" style="display:none">
+                <tr>
+                  <td width="25%" nowrap>从教年月：
+                    <input name="textfield" type="text" size="15"></td>
+                  <td width="12%" align="right" nowrap>岗位职业：</td>
+                  <td width="13%"><select name="select6">
+                      <option>请选择</option>
+                  </select></td>
+                  <td width="12%" align="right" nowrap>参加工作年月：</td>
+                  <td width="13%"><input name="textfield11" type="text" size="15"></td>
+                  <td width="12%" align="right" nowrap>当前职称：</td>
+                  <td><select name="select6">
+                      <option>请选择</option>
+                    </select>                  </td>
+                </tr>
+                <tr>
+                  <td nowrap>主页地址：
+                    <input name="textfield2" type="text" size="15"></td>
+                  <td align="right" nowrap>连续工龄：</td>
+                  <td><input name="textfield10" type="text" size="15"></td>
+                  <td align="right" nowrap>用工形式：</td>
+                  <td><select name="select6">
+                      <option>请选择</option>
+                  </select></td>
+                  <td align="right" nowrap>当前职务：</td>
+                  <td><select name="select6">
+                      <option>请选择</option>
+                  </select></td>
+                </tr>
+              </table>
+              <table width="100%" border="0" cellspacing="0" cellpadding="4">
+                <tr>
+                  <td>
+                    <input name="Submit3" type="submit" class="btnStyle" onMouseOver="this.className='btnStyleO'" onMouseOut="this.className='btnStyle'" value="添加" />
+                    <input name="Submit4" type="submit" class="btnStyle" onMouseOver="this.className='btnStyleO'" onMouseOut="this.className='btnStyle'" value="删除" />
+                  <input name="Submit5" type="submit" class="btnStyle" onMouseOver="this.className='btnStyleO'" onMouseOut="this.className='btnStyle'" value="审批通过" />                    <input name="Submit6" type="submit" class="btnStyle" onMouseOver="this.className='btnStyleO'" onMouseOut="this.className='btnStyle'" value="审批未通过" />                  </td>
+                </tr>
+              </table></td>
+          </tr>
+        </table></td>
+  </tr>
+</table>
+</body>
+</html>

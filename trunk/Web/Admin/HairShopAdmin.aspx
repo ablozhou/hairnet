@@ -31,7 +31,7 @@
             </tr>
     </table>
     <div style="text-align: center">
-        <asp:DataGrid ID ="dg" runat = "server" PageSize="30" AllowPaging="True" 
+        <asp:DataGrid ID ="dg" runat = "server" PageSize="3" AllowPaging="True" 
             AutoGenerateColumns="False" BackColor="White" BorderColor="White" 
             BorderStyle="Ridge" BorderWidth="2px" CellPadding="3" Width="98%" 
             CellSpacing="1" GridLines="None" OnItemDataBound="dg_OnItemDataBound" 
@@ -50,28 +50,22 @@
                 </asp:TemplateColumn>
                 <asp:BoundColumn DataField="HairShopName" HeaderText="名称"></asp:BoundColumn>
                 <asp:BoundColumn DataField="HairShopVisitNum" HeaderText="访问数"></asp:BoundColumn>
-                <asp:BoundColumn DataField="HairShopOrderNum" HeaderText="预约数"></asp:BoundColumn>
-                <asp:BoundColumn DataField="HairShopRecommandNum" HeaderText="推荐数"></asp:BoundColumn>
                 <asp:TemplateColumn HeaderText="推荐指数">
                     <ItemTemplate>
                         <asp:Label ID="lblRecommandRate" runat="server"></asp:Label>
                     </ItemTemplate>
                 </asp:TemplateColumn>
-                <asp:TemplateColumn HeaderText="评论数">
-                    <ItemTemplate>
-                        <asp:Label ID="lblCommentTotal" runat="server"></asp:Label>
-                    </ItemTemplate>
-                </asp:TemplateColumn>
+             
                 <asp:TemplateColumn HeaderText="好评率">
                     <ItemTemplate>
                         <asp:Label ID="lblCommentRate" runat="server"></asp:Label>
                     </ItemTemplate>
                 </asp:TemplateColumn>
-                <asp:HyperLinkColumn DataNavigateUrlField="HairShopID" DataNavigateUrlFormatString="HairShopDetails.aspx?id={0}" Target="_blank" Text="详细"></asp:HyperLinkColumn>
-                <asp:HyperLinkColumn DataNavigateUrlField="HairShopID" DataNavigateUrlFormatString="HairShopCommentAdmin.aspx?id={0}" Target="_blank" Text="评论"></asp:HyperLinkColumn>
+                <asp:HyperLinkColumn DataNavigateUrlField="HairShopID" DataNavigateUrlFormatString="HairShopDetails.aspx?id={0}" Target="_blank" Text="预览"></asp:HyperLinkColumn>
                 <asp:HyperLinkColumn DataNavigateUrlField="HairShopID" 
                     DataNavigateUrlFormatString="HairShopEdit.aspx?id={0}" Target="_self" Text="编辑"></asp:HyperLinkColumn>
-                <asp:ButtonColumn ButtonType="LinkButton" CommandName="recommand" Text="推荐"></asp:ButtonColumn>
+                <asp:ButtonColumn ButtonType="LinkButton" CommandName="recommand" Text="美发师"></asp:ButtonColumn>
+                <asp:ButtonColumn ButtonType="LinkButton" CommandName="recommand" Text="图片"></asp:ButtonColumn>
                 <asp:ButtonColumn ButtonType="LinkButton" CommandName="delete" Text="删除"></asp:ButtonColumn>
             </Columns>
         </asp:DataGrid>

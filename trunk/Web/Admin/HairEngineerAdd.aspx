@@ -11,10 +11,14 @@
     <div>
     <table width="98%" border="0" cellpadding="2" cellspacing="2">
         <tr>
-            <th colspan="2">基本信息</th>
+            <th colspan="2">美发师基本信息</th>
         </tr>
-        <tr>
-            <td width="120" align="right">名称：</td>
+          <tr>
+            <td width="120" align="right">所属美发厅：&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </td>
+            <td><asp:DropDownList ID="ddlHairShop" runat="server"></asp:DropDownList></td>
+        </tr>
+         <tr>
+            <td width="120" align="right">姓名：</td>
             <td><asp:TextBox ID="txtHairEngineerName" runat="server" CssClass="TextBox"></asp:TextBox></td>
         </tr>
         <tr>
@@ -23,29 +27,32 @@
         </tr>
         <tr>
             <td width="120" align="right">性别：</td>
-            <td><asp:RadioButtonList ID="rBtnListHairEngineerSex" runat="server"><asp:ListItem Value="1" Selected="True">男</asp:ListItem><asp:ListItem Value="2">女</asp:ListItem></asp:RadioButtonList></td>
+            <td width="120"><asp:RadioButtonList ID="rBtnListHairEngineerSex" runat="server" Height="16px" 
+                    onselectedindexchanged="rBtnListHairEngineerSex_SelectedIndexChanged" 
+                    Width="307px"><asp:ListItem Value="1" Selected="True">男</asp:ListItem>    <asp:ListItem Value="2">女</asp:ListItem></asp:RadioButtonList></td>
         </tr>
         <tr>
-            <td width="120" align="right">价格：</td>
+            <td width="120" align="right">剪发价格：</td>
             <td><asp:TextBox ID="txtHairEngineerRawPrice" runat="server" CssClass="TextBox"></asp:TextBox></td>
         </tr>
         <tr>
-            <td width="120" align="right">打折价格：</td>
+            <td width="120" align="right">预约电话：</td>
             <td><asp:TextBox ID="txtHairEngineerPrice" runat="server" CssClass="TextBox"></asp:TextBox></td>
         </tr>
+          <tr>
+            <td width="120" align="right">星座：</td>
+            <td><asp:TextBox ID="TextBox1" runat="server" CssClass="TextBox"></asp:TextBox></td>
+        </tr>
         <tr>
-            <td width="120" align="right">所属级别：</td>
+            <td width="120" align="right">头衔：</td>
             <td><asp:DropDownList ID="ddlHairShopClass" runat="server"></asp:DropDownList></td>
         </tr>
         <tr>
-            <td width="120" align="right">个人照片：</td>
+            <td width="120" align="right">个人照片：&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </td>
             <td>
                 <input id="fileLogo" type="file" runat="server"/></td>
         </tr>
-        <tr>
-            <td width="120" align="right">所属美发厅：</td>
-            <td><asp:DropDownList ID="ddlHairShop" runat="server"></asp:DropDownList></td>
-        </tr>
+     
         <tr>
             <td width="120" align="right">工作年限：</td>
             <td><asp:TextBox ID="txtHairEngineerYear" runat="server" CssClass="TextBox"></asp:TextBox></td>
@@ -59,13 +66,13 @@
             <td><asp:TextBox ID="txtHairEngineerTag" runat="server" CssClass="TextBox"></asp:TextBox></td>
         </tr>
         <tr>
-            <td width="120" align="right">描述：</td>
+            <td width="120" align="right">所获奖项及描述：</td>
             <td><asp:TextBox runat="server" Width="98%" Rows="15" TextMode="MultiLine" 
-                    ID="txtHairEngineerDescription"></asp:TextBox></td></tr>
+                    ID="txtHairEngineerDescription" Height="110px"></asp:TextBox></td></tr>
     </table>
     </div>
     <div>
-        <asp:Button ID="btnSubmit" runat="server" Text="提交 <<基本信息>>" OnClick="btnSubmit_OnClick" />
+        <asp:Button ID="btnSubmit" runat="server" Text="下一步" OnClick="btnSubmit_OnClick" />
     </div>
     </form>
 </body>

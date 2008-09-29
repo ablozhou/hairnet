@@ -23,31 +23,13 @@ namespace Web.Admin {
         protected global::System.Web.UI.HtmlControls.HtmlForm form1;
         
         /// <summary>
-        /// ddlHairShopName 控件。
+        /// addengineer 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlHairShopName;
-        
-        /// <summary>
-        /// btnAddMain 控件。
-        /// </summary>
-        /// <remarks>
-        /// 自动生成的字段。
-        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnAddMain;
-        
-        /// <summary>
-        /// btnAddPartial 控件。
-        /// </summary>
-        /// <remarks>
-        /// 自动生成的字段。
-        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnAddPartial;
+        protected global::System.Web.UI.WebControls.Button addengineer;
         
         /// <summary>
         /// p1 控件。
@@ -59,15 +41,6 @@ namespace Web.Admin {
         protected global::System.Web.UI.WebControls.Panel p1;
         
         /// <summary>
-        /// gvZD 控件。
-        /// </summary>
-        /// <remarks>
-        /// 自动生成的字段。
-        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView gvZD;
-        
-        /// <summary>
         /// p2 控件。
         /// </summary>
         /// <remarks>
@@ -77,13 +50,13 @@ namespace Web.Admin {
         protected global::System.Web.UI.WebControls.Panel p2;
         
         /// <summary>
-        /// gvFD 控件。
+        /// dg 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView gvFD;
+        protected global::System.Web.UI.WebControls.DataGrid dg;
         
         /// <summary>
         /// btnSubmit 控件。

@@ -1,0 +1,171 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<title>menu</title>
+<link href="css/default.css" rel="stylesheet" type="text/css">
+<link REL="stylesheet" TYPE="text/css" HREF="css/dtree.css">
+<script SRC="js/dtree.js"></script>
+
+<SCRIPT>
+function menu_hide(){
+
+	if(parent.parent.oa.cols=="0,*"){
+		parent.parent.oa.cols="150,*";
+		parent.Main.toolbarFrame.arrow.src="images/icon_barclose.gif";
+		parent.Main.toolbarFrame.redarrow.style.display="none";
+		}
+
+	else{
+		parent.parent.oa.cols="0,*";
+		parent.Main.toolbarFrame.arrow.src="images/icon_baropen.gif";
+		parent.Main.toolbarFrame.redarrow.style.display="block";
+		}
+}
+</SCRIPT>
+<STYLE type=text/css>#floater {
+	Z-INDEX: 10; right: 0px; WIDTH: 15px; POSITION: absolute; TOP: 5px
+}
+</STYLE>
+</head>
+
+<body class="menubg">
+ <script language="JavaScript">        
+	self.onError=null;        
+	currentX = currentY = 0;          
+	whichIt = null;           
+        	lastScrollX = 0; lastScrollY = 0;        
+	NS = (document.layers) ? 1 : 0;        
+	IE = (document.all) ? 1: 0;        
+	<!-- STALKER CODE -->        
+	function heartBeat() {        
+		if(IE) { diffY = document.body.scrollTop; diffX = document.body.scrollLeft; }        
+	    if(NS) { diffY = self.pageYOffset; diffX = self.pageXOffset; }        
+		if(diffY != lastScrollY) {	                percent = .1 * (diffY - lastScrollY);        
+	                if(percent > 0) percent = Math.ceil(percent);        
+	                else percent = Math.floor(percent);					if(IE) document.all.floater.style.pixelTop += percent;        
+					if(NS) document.floater.top += percent; 	                lastScrollY = lastScrollY + percent;        
+	    }        
+		if(diffX != lastScrollX) {        
+			percent = .1 * (diffX - lastScrollX);        
+			if(percent > 0) percent = Math.ceil(percent);        
+			else percent = Math.floor(percent);        
+			if(IE) document.all.floater.style.pixelLeft += percent;        
+			if(NS) document.floater.left += percent;        
+			lastScrollX = lastScrollX + percent;        
+		}	        
+	}	<!-- /STALKER CODE -->        
+	<!-- DRAG DROP CODE -->        
+	function checkFocus(x,y) {         
+	        stalkerx = document.floater.pageX;        
+	        stalkery = document.floater.pageY;        
+	        stalkerwidth = document.floater.clip.width;        
+	        stalkerheight = document.floater.clip.height;        
+	        if( (x > stalkerx && x < (stalkerx+stalkerwidth)) && (y > stalkery && y < (stalkery+stalkerheight))) return true;        
+	        else return false;        
+	}	function grabIt(e) {        
+		if(IE) {        
+			whichIt = event.srcElement;        
+			while (whichIt.id.indexOf("floater") == -1) {        
+				whichIt = whichIt.parentElement;        
+				if (whichIt == null) { return true; }        
+		    }        
+			whichIt.style.pixelLeft = whichIt.offsetLeft;        
+		    whichIt.style.pixelTop = whichIt.offsetTop;        
+			currentX = (event.clientX + document.body.scrollLeft);        
+	   		currentY = (event.clientY + document.body.scrollTop); 	        
+		} else {         
+	        window.captureEvents(Event.MOUSEMOVE);        
+	        if(checkFocus (e.pageX,e.pageY)) {         
+	                whichIt = document.floater;        
+	                StalkerTouchedX = e.pageX-document.floater.pageX;        
+	                StalkerTouchedY = e.pageY-document.floater.pageY;        
+	        } 		}        
+	    return true;        
+	}        
+	function moveIt(e) {        
+		if (whichIt == null) { return false; }        
+		if(IE) {        
+		    newX = (event.clientX + document.body.scrollLeft);        
+		    newY = (event.clientY + document.body.scrollTop);        
+		    distanceX = (newX - currentX);    distanceY = (newY - currentY);		    currentX = newX;    currentY = newY;        
+		    whichIt.style.pixelLeft += distanceX;		    whichIt.style.pixelTop += distanceY;        
+			if(whichIt.style.pixelTop < document.body.scrollTop) whichIt.style.pixelTop = document.body.scrollTop;			if(whichIt.style.pixelLeft < document.body.scrollLeft) whichIt.style.pixelLeft = document.body.scrollLeft;        
+			if(whichIt.style.pixelLeft > document.body.offsetWidth - document.body.scrollLeft - whichIt.style.pixelWidth - 20) whichIt.style.pixelLeft = document.body.offsetWidth - whichIt.style.pixelWidth - 20;        
+			if(whichIt.style.pixelTop > document.body.offsetHeight + document.body.scrollTop - whichIt.style.pixelHeight - 5) whichIt.style.pixelTop = document.body.offsetHeight + document.body.scrollTop - whichIt.style.pixelHeight - 5;        
+			event.returnValue = false;        
+		} else {        
+			whichIt.moveTo(e.pageX-StalkerTouchedX,e.pageY-StalkerTouchedY);        
+	        if(whichIt.left < 0+self.pageXOffset) whichIt.left = 0+self.pageXOffset;        
+	        if(whichIt.top < 0+self.pageYOffset) whichIt.top = 0+self.pageYOffset;        
+	        if( (whichIt.left + whichIt.clip.width) >= (window.innerWidth+self.pageXOffset-17)) whichIt.left = ((window.innerWidth+self.pageXOffset)-whichIt.clip.width)-17;        
+	        if( (whichIt.top + whichIt.clip.height) >= (window.innerHeight+self.pageYOffset-17)) whichIt.top = ((window.innerHeight+self.pageYOffset)-whichIt.clip.height)-17;        
+	        return false;        
+		}        
+	    return false;        
+	}        
+	function dropIt() {        
+		whichIt = null;        
+	    if(NS) window.releaseEvents (Event.MOUSEMOVE);        
+	    return true;        
+	}        
+	<!-- DRAG DROP CODE -->        
+	if(NS) {        
+		window.captureEvents(Event.MOUSEUP|Event.MOUSEDOWN);        
+		window.onmousedown = grabIt;        
+	 	//window.onmousemove = moveIt;        
+		window.onmouseup = dropIt;        
+	}        
+	if(IE) {        
+		document.onmousedown = grabIt;        
+	 	//document.onmousemove = moveIt;        
+		document.onmouseup = dropIt;        
+	}        
+	if(NS || IE) action = window.setInterval("heartBeat()",1);        
+	</script>              
+<div id="floater" align="center"> 
+  <table width="95%" border="0" cellpadding="1" cellspacing="1" bordercolor="#cccccc">
+    <tr> 
+      <td height="42"><a href="javascript:;"><img src="images/icon_red_close.gif" width="15" height="47" border="0" onClick="menu_hide()"></a></td>
+    </tr>
+  </table>                                         
+</div>            
+<table>
+    <tr>
+        <td>
+            <A href="javascript:d.openAll();"><img src="images/icon_treeopenfull.gif" width="14" height="14" border="0" title="全部展开"></A>&nbsp;&nbsp;<A href="javascript:d.closeAll();"><img src="images/icon_treeclosefull.gif" width="14" height="14" border="0" title="全部关闭"></A>
+        </td>
+    </tr>
+</table>
+<table width="100%" border="0" cellpadding="0" cellspacing="0">
+  <tr>
+    <td valign="top" class="menuborder" nowrap>
+
+    <SCRIPT type="text/javascript">
+	<!--
+	d = new dTree('d');
+        d.add("9999","-1","美发频道","","","");
+
+d.add("firstMenu0100000001","9999","美发厅信息","list_05.htm","","mainFrame");
+//d.add("firstMenu0200000001","9999","添加美发厅","tree_list.htm","","mainFrame");
+d.add("firstMenu0300000001","9999","美发师信息","list_01.htm","","mainFrame");
+d.add("firstMenu0400000001","9999","图库信息","list_02.htm","","mainFrame");
+d.add("firstMenu0500000001","9999","用户管理","list_06.htm","","mainFrame");
+d.add("firstMenu0600000001","9999","系统管理","list_04.htm","","mainFrame");
+d.add("firstMenu0700000001","9999","版    本","input.htm","","mainFrame");
+/*d.add("firstMenu0800000001","9999","财务管理","input_01.htm","","mainFrame");
+d.add("firstMenu0900000001","9999","考核管理","input_02.htm","","mainFrame");
+d.add("firstMenu1000000001","9999","信息技术管理","pop_style.htm","","mainFrame");
+d.add("firstMenu1200000001","9999","少量信息输入一","input_04.htm","","mainFrame");
+d.add("firstMenu1300000001","9999","少量信息输入二","input_05.htm","","mainFrame");
+d.add("firstMenu1400000001","9999","标签页","list_08.htm","","mainFrame");
+*/
+
+	
+document.write(d);
+  //-->
+  </SCRIPT></td>
+  </tr>
+</table>
+</body>
+</html>

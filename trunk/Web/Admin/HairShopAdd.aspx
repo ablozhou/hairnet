@@ -7,26 +7,28 @@
 <head runat="server">
     <title>美发厅添加 -- 基本信息</title>
     <link type="text/css" rel="Stylesheet" href="Style/Main.css" />
+    <style type="text/css">
+        .style1
+        {
+            width: 118px;
+        }
+    </style>
 </head>
 <body>
     <form id="form1" runat="server">
     <div>
         <table width="98%" border="0" cellpadding="2" cellspacing="2">
+           
             <tr>
-                <th colspan="2">
-                    <b>基本信息</b>
-                </th>
-            </tr>
-            <tr>
-                <td width="120" align="right">
+                <td align="right" class="style1">
                     名称：
                 </td>
                 <td>
                     <asp:TextBox ID="txtHairShopName" runat="server" CssClass="TextBox" Width="200"></asp:TextBox>
-                </td>
+                    *</td>
             </tr>
             <tr>
-                <td width="120" align="right">
+                <td align="right" class="style1">
                     简称：
                 </td>
                 <td>
@@ -34,18 +36,18 @@
                 </td>
             </tr>
             <tr>
-                <td width="120" align="right">
+                <td align="right" class="style1">
                     风格：
                 </td>
                 <td>
                     <asp:DropDownList ID="ddlTypeTable" runat="server">
-                        <asp:ListItem>炫酷</asp:ListItem>
-                        <asp:ListItem>超酷</asp:ListItem>
+                        <asp:ListItem>普通</asp:ListItem><asp:ListItem>日风</asp:ListItem>
+                        <asp:ListItem>韩流</asp:ListItem><asp:ListItem>港台</asp:ListItem><asp:ListItem>大陆</asp:ListItem>
                     </asp:DropDownList>
                 </td>
             </tr>
             <tr>
-                <td width="120" align="right">
+                <td align="right" class="style1">
                     官方网址：
                 </td>
                 <td>
@@ -53,7 +55,7 @@
                 </td>
             </tr>
             <tr>
-                <td width="120" align="right">
+                <td align="right" class="style1">
                     联系邮箱：
                 </td>
                 <td>
@@ -61,15 +63,51 @@
                 </td>
             </tr>
             <tr>
-                <td width="120" align="right">
-                    美发师折扣：
+                <td align="right" class="style1">
+                    美发厅折扣：
                 </td>
                 <td>
                     <asp:TextBox ID="txtHairShopDiscount" runat="server" Width="200" CssClass="TextBox"></asp:TextBox>
                 </td>
+            </tr>   <tr>
+                <td align="right" class="style1">
+                    剪发折扣：
+                </td>
+                <td>
+                    <asp:TextBox ID="TextBox1" runat="server" Width="200" CssClass="TextBox"></asp:TextBox>
+                </td>
+            </tr>   <tr>
+                <td align="right" class="style1">
+                    烫发折扣：
+                </td>
+                <td>
+                    <asp:TextBox ID="TextBox2" runat="server" Width="200" CssClass="TextBox"></asp:TextBox>
+                </td>
+            </tr>   <tr>
+                <td align="right" class="style1">
+                    染发折扣：
+                </td>
+                <td>
+                    <asp:TextBox ID="TextBox3" runat="server" Width="200" CssClass="TextBox"></asp:TextBox>
+                </td>
             </tr>
             <tr>
-                <td width="120" align="right">
+                <td align="right" class="style1">
+                    营业面积：
+                </td>
+                <td>
+                    <asp:TextBox ID="TextBox4" runat="server" Width="200" CssClass="TextBox"></asp:TextBox>
+                </td>
+            </tr><tr>
+                <td align="right" class="style1">
+                    地图URL：
+                </td>
+                <td>
+                    <asp:TextBox ID="TextBox5" runat="server" Width="200" CssClass="TextBox"></asp:TextBox>
+                </td>
+            </tr>
+            <tr>
+                <td align="right" class="style1">
                     美发厅LOGO：
                 </td>
                 <td>
@@ -77,29 +115,30 @@
                 </td>
             </tr>
             <tr>
-                <td width="120" align="right">
-                    开业时间：
+                <td align="right" class="style1">
+                    开业时间：&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                 </td>
                 <td>
                     <asp:TextBox ID="txtHairShopCreateTime" runat="server" Width="200" CssClass="TextBox"></asp:TextBox>
                 </td>
             </tr>
             <tr>
-                <td width="120" align="right">
+                <td align="right" class="style1">
                     城市：
                 </td>
                 <td>
-                    <asp:DropDownList ID="ddlCity" runat="server" AutoPostBack="True" OnSelectedIndexChanged="ddlCity_SelectedIndexChanged">
+                    <asp:DropDownList ID="ddlCity" runat="server" AutoPostBack="True" 
+                        OnSelectedIndexChanged="ddlCity_SelectedIndexChanged" Width="88px">
                     </asp:DropDownList>
                     &nbsp;&nbsp; 区域：
                     <asp:DropDownList ID="ddlMapZone" runat="server" AutoPostBack="True" OnSelectedIndexChanged="ddlMapZone_SelectedIndexChanged">
                     </asp:DropDownList>
-                    &nbsp;&nbsp; 地段：<asp:DropDownList ID="ddlHotZone" runat="server">
+                    &nbsp;&nbsp; 商圈：<asp:DropDownList ID="ddlHotZone" runat="server">
                     </asp:DropDownList>
                 </td>
             </tr>
             <tr>
-                <td width="120" align="right">
+                <td align="right" class="style1">
                     详细地址：
                 </td>
                 <td>
@@ -107,7 +146,7 @@
                 </td>
             </tr>
             <tr>
-                <td width="120" align="right">
+                <td align="right" class="style1">
                     电话号码：
                 </td>
                 <td>
@@ -115,15 +154,15 @@
                 </td>
             </tr>
             <tr>
-                <td width="120" align="right">
-                    营业时间：
+                <td align="left" class="style1">
+                营业时间&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                 </td>
                 <td>
                     <asp:TextBox ID="txtHairShopOpenTime" runat="server" Width="200" CssClass="TextBox"></asp:TextBox>
                 </td>
             </tr>
             <tr>
-                <td width="120" align="right">
+                <td align="right" class="style1">
                     关键字：
                 </td>
                 <td>
@@ -131,51 +170,45 @@
                 </td>
             </tr>
             <tr>
-                <td width="120" align="right">
+                <td align="right" class="style1">
                     运营项目：
                 </td>
                 <td>
-                    <asp:CheckBoxList ID="chkListWorkRange" runat="server" RepeatDirection="horizontal">
+                    <asp:CheckBoxList ID="chkListWorkRange" runat="server" 
+                        RepeatDirection="horizontal" Width="16px">
                         <asp:ListItem>烫</asp:ListItem>
                         <asp:ListItem>染</asp:ListItem>
                         <asp:ListItem>剪</asp:ListItem>
                     </asp:CheckBoxList>
                 </td>
             </tr>
+        
             <tr>
-                <td width="120" align="right">
-                    是否旗舰店：
-                </td>
-                <td>
-                    <asp:CheckBox ID="chkIsBest" runat="server" />
-                </td>
-            </tr>
-            <tr>
-                <td width="120" align="right">
-                    是否加盟店：
+                <td align="right" class="style1">
+                    加盟连锁：
                 </td>
                 <td>
                     <asp:CheckBox ID="chkIsJoin" runat="server" />
                 </td>
             </tr>
             <tr>
-                <td width="120" align="right">
+                <td align="right" class="style1">
                     是否停车：
                 </td>
                 <td>
-                    <asp:CheckBox ID="chkIsPostStation" runat="server" />
+                    <asp:CheckBox ID="chkIsPostStation" runat="server" Checked="True" />
                 </td>
             </tr>
             <tr>
-                <td width="120" align="right">
+                <td align="right" class="style1">
                     是否刷卡：
                 </td>
                 <td>
-                    <asp:CheckBox ID="chkIsPostMachine" runat="server" />
+                    <asp:CheckBox ID="chkIsPostMachine" runat="server" Checked="True" />
                 </td>
             </tr>
             <tr>
-                <td width="120" align="right">
+                <td align="right" class="style1">
                     描述：
                 </td>
                 <td>
@@ -183,11 +216,10 @@
                         Width="900px"></asp:TextBox>
                 </td>
             </tr>
-            <tr>
-                <td colspan="2" align="center">
-                    <asp:Button ID="btnSubmit" runat="server" Text="提交 <<基本信息>>" OnClick="btnSubmit_OnClick" />
-                </td>
-            </tr>
+            <tr><td></td><td>
+                <asp:Button ID="btnSubmit" runat="server" Text="下一步" 
+            OnClick="btnSubmit_OnClick" Width="98px"  /></td></tr>
+            
         </table>
     </div>
     </form>

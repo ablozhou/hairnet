@@ -32,17 +32,9 @@
      </tr>
      <tr>
         <td width="120" align="right">
-            关键字：         </td>
+            &nbsp;</td>
         <td>
-        <asp:TextBox ID="txtPictureStoreTag" runat="server" CssClass="TextBox" Width="200"></asp:TextBox>
-        </td>
-     </tr>
-     <tr>
-        <td width="120" align="right">
-            描述：         </td>
-        <td>
-        <asp:TextBox ID="txtPictureStoreDescriptioin" runat="server" CssClass="TextBox" Wrap="true" TextMode="MultiLine" Width="500" Height="300"></asp:TextBox>
-        </td>
+            &nbsp;</td>
      </tr>
      <tr>
         <td width="120" align="right">

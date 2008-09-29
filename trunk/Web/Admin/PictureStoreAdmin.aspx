@@ -31,7 +31,7 @@
             </tr>
     </table>
     <div style="text-align: center">
-        <asp:DataGrid ID ="dg" runat = "server" PageSize="30" AllowPaging="true" AutoGenerateColumns="false" BackColor="White" BorderColor="White" BorderStyle="Ridge" BorderWidth="2px" CellPadding="3" Width="98%" CellSpacing="1" GridLines="None" OnItemDataBound="dg_OnItemDataBound" OnItemCommand="dg_OnItemCommand" OnPageIndexChanged="dg_OnPageIndexChanged">
+        <asp:DataGrid ID ="dg" runat = "server" PageSize="3" AllowPaging="true" AutoGenerateColumns="false" BackColor="White" BorderColor="White" BorderStyle="Ridge" BorderWidth="2px" CellPadding="3" Width="98%" CellSpacing="1" GridLines="None" OnItemDataBound="dg_OnItemDataBound" OnItemCommand="dg_OnItemCommand" OnPageIndexChanged="dg_OnPageIndexChanged">
             <FooterStyle BackColor="#C6C3C6" ForeColor="Black" />
             <SelectedItemStyle BackColor="#9471DE" Font-Bold="True" ForeColor="White" />
             <PagerStyle BackColor="#C6C3C6" ForeColor="Black" HorizontalAlign="Right" NextPageText="下一页"
@@ -45,15 +45,10 @@
                     </ItemTemplate>
                 </asp:TemplateColumn>
                 <asp:BoundColumn DataField="PictureStoreName" HeaderText="名称"></asp:BoundColumn>
-                <asp:TemplateColumn HeaderText="图片">
-                    <ItemTemplate>
-                        <asp:Label ID="lblPictureUrl" runat="server"></asp:Label>
-                    </ItemTemplate>
-                </asp:TemplateColumn>
+               
                 <asp:BoundColumn DataField="PictureStoreHits" HeaderText="点击数"></asp:BoundColumn>
-                <asp:HyperLinkColumn DataNavigateUrlField="PictureStoreID" DataNavigateUrlFormatString="PictureStoreDetails.aspx?id={0}" Target="_blank" Text="详细"></asp:HyperLinkColumn>
-                <asp:HyperLinkColumn DataNavigateUrlField="PictureStoreID" DataNavigateUrlFormatString="PictureStoreCommentAdmin.aspx?id={0}" Target="_blank" Text="评论"></asp:HyperLinkColumn>
-                <asp:HyperLinkColumn DataNavigateUrlField="PictureStoreID" DataNavigateUrlFormatString="PictureStoreEdit.aspx?id={0}" Target="_self" Text="编辑"></asp:HyperLinkColumn>
+                <asp:HyperLinkColumn DataNavigateUrlField="PictureStoreID" DataNavigateUrlFormatString="PictureStoreDetails.aspx?id={0}" Target="_blank" Text="预览"></asp:HyperLinkColumn>
+                   <asp:HyperLinkColumn DataNavigateUrlField="PictureStoreID" DataNavigateUrlFormatString="PictureStoreEdit.aspx?id={0}" Target="_self" Text="编辑"></asp:HyperLinkColumn>
                 <asp:ButtonColumn ButtonType="LinkButton" CommandName="recommand" Text="推荐"></asp:ButtonColumn>
                 <asp:ButtonColumn ButtonType="LinkButton" CommandName="delete" Text="删除"></asp:ButtonColumn>
             </Columns>
