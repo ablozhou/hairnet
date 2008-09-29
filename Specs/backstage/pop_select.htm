@@ -1,0 +1,85 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+<title>pop_select</title>
+<link href="css/default.css" rel="stylesheet" type="text/css" />
+</head>
+
+<body>
+<table width="100%" border="0" cellpadding="1" cellspacing="1" class="popBorder">
+  <tr>
+    <td class="popCon"><table width="100%" border="0" cellspacing="0" cellpadding="0">
+      <tr>
+        <td height="25" class="popTitle" style="padding-left:5px;"><strong><img src="images/pop_title_01.gif" width="34" height="16" />更换教师</strong></td>
+      </tr>
+    </table>
+        <table width="100%" border="0" cellspacing="0" cellpadding="0">
+          <tr>
+            <td valign="top" style="padding-left:10px;padding-right:10px;padding-top:10px;padding-bottom:3px;"><table width="100%" border="0" cellspacing="0" cellpadding="4">
+              <tr>
+                <td width="170" valign="top"><table width="100%" border="0" cellpadding="0" cellspacing="1" class="treeColor">
+                    <tr>
+                      <td height="20" class="treeTitle" style="padding-left:10px;">1.请选择部门</td>
+                    </tr>
+                    <tr>
+                      <td height="365" class="treeContent" style="padding-left:3px; padding-right:3px;"><iframe src="tree_menu.htm" name="menushow" width="100%" height="100%" frameborder="0" id="menushow"></iframe></td>
+                    </tr>
+                </table>
+                  <table width="100%" border="0" cellspacing="0" cellpadding="4">
+                    <tr>
+                      <td><input type="checkbox" name="checkbox" value="checkbox" />
+                      全选</td>
+                      <td align="right">                        <input name="Submit" type="submit" class="btnStyle" onmouseover="this.className='btnStyleO'" onmouseout="this.className='btnStyle'" value="查询" onclick="window.location='pop_select.htm'" />                      </td>
+                    </tr>
+                  </table></td>
+                <td valign="top"><table width="100%" border="0" cellpadding="0" cellspacing="1" class="tbBorderStyle">
+                  <tr>
+                    <td class="tdBorderColor"><table width="100%" border="0" cellspacing="0" cellpadding="0">
+                        <tr>
+                          <td height="31" class="popTitle2" style="padding-left:10px">2.请选择教师</td>
+                        </tr>
+                    </table></td>
+                  </tr>
+                  <tr>
+                    <td valign="top" class="tdBorderColor" style="padding-left:10px;padding-right:10px;padding-top:10px;padding-bottom:5px"><table width="100%" border="0" cellpadding="4" cellspacing="0" bgcolor="#FAFCFE">
+                        <tr>
+                          <td width="40%">待选择的教师</td>
+                          <td>&nbsp;</td>
+                          <td width="40%">被选择的教师</td>
+                        </tr>
+                        <tr>
+                          <td valign="top"><select name="select" size="22" style="width:100%">
+                            <option>张老师(zhanglaoshi)</option>
+                                                      </select>                          </td>
+                          <td align="center"><input name="Submit2" type="submit" class="btnStyle" onmouseover="this.className='btnStyleO'" onmouseout="this.className='btnStyle'" value="添加&gt;&gt;" />
+                            <br />
+                            <br />
+                            <input name="Submit3" type="submit" class="btnStyle" onmouseover="this.className='btnStyleO'" onmouseout="this.className='btnStyle'" value="&lt;&lt;删除" /></td>
+                          <td valign="top"><select name="select2" size="22" class="selectBorder" style="width:100%">
+                                                                                                                                  </select></td>
+                        </tr>
+                    </table>
+                      <table width="100%" border="0" cellspacing="0" cellpadding="4">
+                        <tr>
+                          <td align="right"><input name="Submit4" type="submit" class="btnStyle" onmouseover="this.className='btnStyleO'" onmouseout="this.className='btnStyle'" value="确定" />
+                            
+                            <input name="Submit5" type="submit" class="btnStyle" onmouseover="this.className='btnStyleO'" onmouseout="this.className='btnStyle'" value="取消" /></td>
+                        </tr>
+                      </table></td>
+                  </tr>
+                </table>
+                </td>
+              </tr>
+            </table></td>
+          </tr>
+        </table>
+      <table width="100%" border="0" cellspacing="0" cellpadding="0">
+          <tr>
+            <td height="6" class="popBottom"></td>
+          </tr>
+      </table></td>
+  </tr>
+</table>
+</body>
+</html>

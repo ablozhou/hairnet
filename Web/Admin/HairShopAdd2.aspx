@@ -12,54 +12,67 @@
         <table border="0" cellpadding="2" cellspacing="2">
             <tr>
                 <th>
-                    <b>总店，分店信息</b>
+                    <b>添加美发师</b>
                 </th>
             </tr>
             <tr>
                 <td>
-                    美发厅列表&nbsp;&nbsp;<asp:DropDownList ID="ddlHairShopName" runat="server">
-                    </asp:DropDownList>
-                    &nbsp;&nbsp;
-                    <asp:Button ID="btnAddMain" runat="server" Text="添加为总店" OnClick="btnAddMain_Click" />&nbsp;&nbsp;
-                    <asp:Button ID="btnAddPartial" runat="server" Text="添加为分店" OnClick="btnAddPartial_Click" />
-                </td>
+                    &nbsp;
+                    <asp:Button ID="addengineer" runat="server" Text="添加美发师" />
+                 </td>
             </tr>
             <tr>
                 <td>
                     <asp:Panel ID="p1" runat="server">
-                        <asp:GridView ID="gvZD" runat="server" AutoGenerateColumns="False" CellPadding="2"
-                            ShowHeader="False" Caption="总店信息" OnRowDeleting="gvZD_RowDeleting">
-                            <Columns>
-                                <asp:BoundField DataField="Name">
-                                    <ItemStyle Width="200px" />
-                                </asp:BoundField>
-                                <asp:CommandField ShowDeleteButton="True" />
-                            </Columns>
-                        </asp:GridView>
                     </asp:Panel>
                 </td>
             </tr>
             <tr>
                 <td>
                     <asp:Panel ID="p2" runat="server">
-                        <asp:GridView ID="gvFD" runat="server" AutoGenerateColumns="False" CellPadding="2"
-                            ShowHeader="False" Caption="分店信息" OnRowDeleting="gvFD_RowDeleting">
-                            <Columns>
-                                <asp:BoundField DataField="Name">
-                                    <ItemStyle Width="200px" />
-                                </asp:BoundField>
-                                <asp:CommandField ShowDeleteButton="True" />
-                            </Columns>
-                        </asp:GridView>
                     </asp:Panel>
                 </td>
             </tr>
         </table>
     </div>
     <div>
+    <div style="text-align: center">
+        <asp:DataGrid ID ="dg" runat = "server" PageSize="30" AllowPaging="true" AutoGenerateColumns="false" BackColor="White" BorderColor="White" BorderStyle="Ridge" BorderWidth="2px" CellPadding="3" Width="98%" CellSpacing="1" GridLines="None" OnItemDataBound="dg_OnItemDataBound" OnItemCommand="dg_OnItemCommand" OnPageIndexChanged="dg_OnPageIndexChanged">
+            <FooterStyle BackColor="#C6C3C6" ForeColor="Black" />
+            <SelectedItemStyle BackColor="#9471DE" Font-Bold="True" ForeColor="White" />
+            <PagerStyle BackColor="#C6C3C6" ForeColor="Black" HorizontalAlign="Right" NextPageText="下一页"
+                PrevPageText="上一页" />
+            <ItemStyle BackColor="#DEDFDE" ForeColor="Black" />
+            <HeaderStyle BackColor="#667BD8" Font-Bold="True" ForeColor="#E7E7FF" />
+            <Columns>
+                <asp:TemplateColumn>
+                    <ItemTemplate>
+                        <asp:CheckBox ID="IsSelect" runat="server" />
+                    </ItemTemplate>
+                </asp:TemplateColumn>
+                <asp:BoundColumn DataField="HairEngineerName" HeaderText="姓名"></asp:BoundColumn>
+                <asp:BoundColumn DataField="HairShopName" HeaderText="所属美发厅"></asp:BoundColumn>
+                <asp:BoundColumn DataField="HairEngineerHits" HeaderText="点击数"></asp:BoundColumn>
+                <asp:TemplateColumn HeaderText="推荐指数">
+                    <ItemTemplate>
+                        <asp:Label ID="lblRecommandRate" runat="server"></asp:Label>
+                    </ItemTemplate>
+                </asp:TemplateColumn>
+                 <asp:TemplateColumn HeaderText="好评率">
+                    <ItemTemplate>
+                        <asp:Label ID="lblCommentRate" runat="server"></asp:Label>
+                    </ItemTemplate>
+                </asp:TemplateColumn>
+                <asp:HyperLinkColumn DataNavigateUrlField="HairEngineerID" DataNavigateUrlFormatString="HairEngineerDetails.aspx?id={0}" Target="_blank" Text="预览"></asp:HyperLinkColumn>
+                <asp:HyperLinkColumn DataNavigateUrlField="HairEngineerID" DataNavigateUrlFormatString="HairEngineerEdit.aspx?id={0}" Target="_self" Text="编辑"></asp:HyperLinkColumn>
+                <asp:ButtonColumn ButtonType="LinkButton" CommandName="recommand" Text="添加作品"></asp:ButtonColumn>
+                <asp:ButtonColumn ButtonType="LinkButton" CommandName="delete" Text="删除"></asp:ButtonColumn>
+            </Columns>
+        </asp:DataGrid>
+    </div>
         <br />
         <br />
-        <asp:Button ID="btnSubmit" runat="server" Text="提交 <<总店，分店信息>>" OnClick="btnSubmit_OnClick" />
+        <asp:Button ID="btnSubmit" runat="server" Text="下一步" OnClick="btnSubmit_OnClick" />
     </div>
     </form>
 </body>

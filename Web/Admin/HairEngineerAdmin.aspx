@@ -31,7 +31,7 @@
             </tr>
     </table>
     <div style="text-align: center">
-        <asp:DataGrid ID ="dg" runat = "server" PageSize="30" AllowPaging="true" AutoGenerateColumns="false" BackColor="White" BorderColor="White" BorderStyle="Ridge" BorderWidth="2px" CellPadding="3" Width="98%" CellSpacing="1" GridLines="None" OnItemDataBound="dg_OnItemDataBound" OnItemCommand="dg_OnItemCommand" OnPageIndexChanged="dg_OnPageIndexChanged">
+        <asp:DataGrid ID ="dg" runat = "server" PageSize="3" AllowPaging="true" AutoGenerateColumns="false" BackColor="White" BorderColor="White" BorderStyle="Ridge" BorderWidth="2px" CellPadding="3" Width="98%" CellSpacing="1" GridLines="None" OnItemDataBound="dg_OnItemDataBound" OnItemCommand="dg_OnItemCommand" OnPageIndexChanged="dg_OnPageIndexChanged">
             <FooterStyle BackColor="#C6C3C6" ForeColor="Black" />
             <SelectedItemStyle BackColor="#9471DE" Font-Bold="True" ForeColor="White" />
             <PagerStyle BackColor="#C6C3C6" ForeColor="Black" HorizontalAlign="Right" NextPageText="下一页"
@@ -47,27 +47,19 @@
                 <asp:BoundColumn DataField="HairEngineerName" HeaderText="姓名"></asp:BoundColumn>
                 <asp:BoundColumn DataField="HairShopName" HeaderText="所属美发厅"></asp:BoundColumn>
                 <asp:BoundColumn DataField="HairEngineerHits" HeaderText="点击数"></asp:BoundColumn>
-                <asp:BoundColumn DataField="HairEngineerOrderNum" HeaderText="预约数"></asp:BoundColumn>
-                <asp:BoundColumn DataField="HairEngineerRecommandNum" HeaderText="推荐数"></asp:BoundColumn>
                 <asp:TemplateColumn HeaderText="推荐指数">
                     <ItemTemplate>
                         <asp:Label ID="lblRecommandRate" runat="server"></asp:Label>
                     </ItemTemplate>
                 </asp:TemplateColumn>
-                <asp:TemplateColumn HeaderText="评论数">
-                    <ItemTemplate>
-                        <asp:Label ID="lblCommentTotal" runat="server"></asp:Label>
-                    </ItemTemplate>
-                </asp:TemplateColumn>
-                <asp:TemplateColumn HeaderText="好评率">
+                 <asp:TemplateColumn HeaderText="好评率">
                     <ItemTemplate>
                         <asp:Label ID="lblCommentRate" runat="server"></asp:Label>
                     </ItemTemplate>
                 </asp:TemplateColumn>
-                <asp:HyperLinkColumn DataNavigateUrlField="HairEngineerID" DataNavigateUrlFormatString="HairEngineerDetails.aspx?id={0}" Target="_blank" Text="详细"></asp:HyperLinkColumn>
-                <asp:HyperLinkColumn DataNavigateUrlField="HairEngineerID" DataNavigateUrlFormatString="HairEngineerCommentAdmin.aspx?id={0}" Target="_blank" Text="评论"></asp:HyperLinkColumn>
+                <asp:HyperLinkColumn DataNavigateUrlField="HairEngineerID" DataNavigateUrlFormatString="HairEngineerDetails.aspx?id={0}" Target="_blank" Text="预览"></asp:HyperLinkColumn>
                 <asp:HyperLinkColumn DataNavigateUrlField="HairEngineerID" DataNavigateUrlFormatString="HairEngineerEdit.aspx?id={0}" Target="_self" Text="编辑"></asp:HyperLinkColumn>
-                <asp:ButtonColumn ButtonType="LinkButton" CommandName="recommand" Text="推荐"></asp:ButtonColumn>
+                <asp:ButtonColumn ButtonType="LinkButton" CommandName="recommand" Text="添加作品"></asp:ButtonColumn>
                 <asp:ButtonColumn ButtonType="LinkButton" CommandName="delete" Text="删除"></asp:ButtonColumn>
             </Columns>
         </asp:DataGrid>

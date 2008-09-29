@@ -11,7 +11,7 @@
     <div>
      <table border="0" cellpadding="2" cellspacing="2" width="98%">
      <tr>
-     <th colspan="2"><b>图片信息</b></th>
+     <th colspan="2"><b>作品信息</b></th>
      </tr>
      <tr>
      <td width="120" align="right">
@@ -77,7 +77,7 @@
      </table>
     </div>
     <div>
-    <asp:Button ID="btnSubmit" runat="server" Text="提交 <<图片信息>>" OnClick="btnSubmit_OnClick" />
+    <asp:Button ID="btnSubmit" runat="server" Text="提交作品" OnClick="btnSubmit_OnClick" />
     </div>
     </form>
 </body>

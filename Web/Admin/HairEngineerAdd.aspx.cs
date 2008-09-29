@@ -67,5 +67,10 @@ namespace Web.Admin
             Session["HairEngineerInfo"] = he;
             this.Response.Redirect("HairEngineerAdd2.aspx");
         }
+
+        protected void rBtnListHairEngineerSex_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }

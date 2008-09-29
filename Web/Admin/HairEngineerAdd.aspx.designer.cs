@@ -23,6 +23,15 @@ namespace Web.Admin {
         protected global::System.Web.UI.HtmlControls.HtmlForm form1;
         
         /// <summary>
+        /// ddlHairShop 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddlHairShop;
+        
+        /// <summary>
         /// txtHairEngineerName 控件。
         /// </summary>
         /// <remarks>
@@ -68,6 +77,15 @@ namespace Web.Admin {
         protected global::System.Web.UI.WebControls.TextBox txtHairEngineerPrice;
         
         /// <summary>
+        /// TextBox1 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox TextBox1;
+        
+        /// <summary>
         /// ddlHairShopClass 控件。
         /// </summary>
         /// <remarks>
@@ -84,15 +102,6 @@ namespace Web.Admin {
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlInputFile fileLogo;
-        
-        /// <summary>
-        /// ddlHairShop 控件。
-        /// </summary>
-        /// <remarks>
-        /// 自动生成的字段。
-        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlHairShop;
         
         /// <summary>
         /// txtHairEngineerYear 控件。

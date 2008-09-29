@@ -1,0 +1,87 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<title>华山中学办公管理平台</title>
+<link href="css/default.css" rel="stylesheet" type="text/css">
+<style type="text/css">
+<!--
+.input01 {	background-color: #FFFFFF;
+	border: 1px solid #666666;
+}
+.content-bg {
+	background-image: url(images/content_bg.gif);
+}
+-->
+</style>
+<script language="JavaScript">
+function login() {
+    if(form1.txtLoginName.value=="" || form1.txtPasswd.value==""){
+		alert("请输入用户名和密码!");
+	}
+	else if(form1.txtLoginName.value=="admin" && form1.txtPasswd.value=="admin" && form1.select1.value=="校长"){
+		window.open('index.htm','oa','toolbar=no,location=no,resizable = yes,status=no,menubar=no,scrollbars=yes,left=0,top=0,width=1012,height=718');
+	}
+	else{
+		alert("请输入正确的用户名和密码!");
+	}
+}
+</script>
+</head>
+
+<body class="content-bg">
+<table width="100%" height="100%" border="0" cellpadding="0" cellspacing="0">
+  <tr>
+    <td align="center"><form name="form1" method="post" action="">
+      <table width="557" border="0" cellspacing="0" cellpadding="0">
+        <tr>
+          <td bgcolor="#FFFFFF"><img src="images/login_page_01.jpg" width="557" height="92"></td>
+        </tr>
+      </table>
+      <table width="557" border="0" cellspacing="0" cellpadding="0">
+        <tr>
+          <td bgcolor="#FFFFFF"><img src="images/login_page_02.jpg" width="557" height="97"></td>
+        </tr>
+      </table>
+      <table width="557" border="0" cellspacing="0" cellpadding="0">
+        <tr>
+          <td width="1" bgcolor="#DDE8FF"><img name="" src="" width="1" height="1" alt=""></td>
+          <td height="118" bgcolor="#FFFFFF"><table width="100%" border="0" cellspacing="0" cellpadding="0">
+              <tr>
+                <td align="right"><table width="220" border="0" cellspacing="0" cellpadding="3">
+                    <tr>
+                      <td width="60" align="center"><font color="#666666">用户名</font>:</td>
+                      <td><input name="txtLoginName" type="text" class="input01" value="admin" size="20" caption="用户名" maxLen="40" dataType="code" isEmpty></td>
+                    </tr>
+                    <tr>
+                      <td align="center"><font color="#666666">密　码</font>:</td>
+                      <td><input name="txtPasswd" type="password" class="input01" value="admin" size="20" caption="密码" maxLen="30" dataType="password" isEmpty></td>
+                    </tr>
+                    <tr>
+                      <td align="center"><font color="#666666">角　色:</font></td>
+                      <td><select name="select1">
+                          <option value="校长" selected>校长</option>
+                        </select>
+                  　　
+                  <input name="imageField" type="image" onClick="javascript:login();" src="images/login_page_13.gif" width="56" height="20" border="0">                  </td>
+                    </tr>
+                </table></td>
+                <td width="80" align="center" valign="bottom">&nbsp;</td>
+              </tr>
+          </table></td>
+          <td width="1" bgcolor="#B5CFEE"><img name="" src="" width="1" height="1" alt=""></td>
+        </tr>
+      </table>
+      <table width="557" border="0" cellspacing="0" cellpadding="0">
+        <tr>
+          <td width="5"><img src="images/login_page_03.gif" width="6" height="17"></td>
+          <td align="center" background="images/login_page_04.gif"><font color="#97AAD7">TCL教育互联事业部　版权所有</font></td>
+          <td width="4"><img src="images/login_page_05.gif" width="6" height="17"></td>
+        </tr>
+      </table>
+    </form>
+    </td>
+  </tr>
+</table>
+</body>
+</html>
