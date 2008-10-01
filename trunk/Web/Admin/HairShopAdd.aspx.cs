@@ -67,7 +67,7 @@ namespace Web.Admin
             hs.WorkRangeIDs = string.Join(",", IDs.ToArray());
 
 
-            hs.IsBest = chkIsBest.Checked;
+            //hs.IsBest = chkIsBest.Checked;
             hs.IsJoin = chkIsJoin.Checked;
             hs.IsPostMachine = chkIsPostStation.Checked;
             hs.IsPostStation = chkIsPostMachine.Checked;

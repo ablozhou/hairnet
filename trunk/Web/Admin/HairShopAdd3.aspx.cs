@@ -92,8 +92,8 @@ namespace Web.Admin
             PictureStore ps = new PictureStore();
             ps.PictureStoreName = txtPictureStoreName.Text.Trim();
             ps.PictureStoreGroupIDs = ddlPicGroup.SelectedValue;
-            ps.PictureStoreDescription = txtPictureStoreDescriptioin.Text.Trim();
-            ps.PictureStoreTagIDs = InfoAdmin.GetPictureStoreTagIDs(txtPictureStoreTag.Text.Trim());
+            //ps.PictureStoreDescription = txtPictureStoreDescriptioin.Text.Trim();
+            //ps.PictureStoreTagIDs = InfoAdmin.GetPictureStoreTagIDs(txtPictureStoreTag.Text.Trim());
             ps.PictureStoreHits = 0;
             ps.PictureStoreCreateTime = DateTime.Now;
 
@@ -122,9 +122,9 @@ namespace Web.Admin
 
         void clearText()
         {
-            txtPictureStoreDescriptioin.Text = "";
-            txtPictureStoreName.Text = "";
-            txtPictureStoreTag.Text = "";
+            //txtPictureStoreDescriptioin.Text = "";
+            //txtPictureStoreName.Text = "";
+            //txtPictureStoreTag.Text = "";
         }
 
         protected void gvPicList_RowDeleting(object sender, GridViewDeleteEventArgs e)
