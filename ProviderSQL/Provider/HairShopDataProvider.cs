@@ -26,6 +26,13 @@ namespace HairNet.Provider
         bool HairShopRecommandCreateDeleteUpdate(HairShopRecommand hairShopRecommand, UserAction ua);
 
         /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="coupon"></param>
+        /// <param name="action"></param>
+        void CouponCreateDeleteUpdate(Coupon coupon, UserAction action);
+
+        /// <summary>
         /// 通过美发厅ID获得美发厅实体
         /// </summary>
         /// <param name="hairShopID"></param>
@@ -171,5 +178,7 @@ namespace HairNet.Provider
         string GetHairShopTagIDs(string tagNames);
 
         string GetHairShopTagNames(string ids);
+
+
     }
 }

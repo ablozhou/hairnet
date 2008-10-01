@@ -183,7 +183,7 @@ namespace HairNet.Provider
 
             if (action == UserAction.Delete)
                 SqlHelper.ExecuteNonQuery(DataHelper2.SqlConnectionString, CommandType.StoredProcedure,
-                    "DeleteHairStyle", parameters[11]);
+                    "DeleteHairStyle", parameters[0]);
         }
 
         /// <summary>
@@ -202,10 +202,10 @@ namespace HairNet.Provider
                 "QueryHairStyle", parameter))
             {
                 while (Reader.Read())
-                    valueList.Add(new HairStyleEntity(Reader.GetInt32(0), Reader.GetString(1), Reader.GetInt16(2), Reader.GetInt16(3),
-                        Reader.GetInt16(4), Reader.GetInt16(5), Reader.GetInt16(6), Reader.GetString(7), Reader.GetString(8), Reader.GetString(9),
+                    valueList.Add(new HairStyleEntity(Reader.GetInt32(0), Reader.GetString(1), Reader.GetByte(2), Reader.GetByte(3),
+                        Reader.GetByte(4), Reader.GetByte(5), Reader.GetByte(6), Reader.GetString(7), Reader.GetString(8), Reader.GetString(9),
                         Reader.GetString(10), Reader.GetString(11), Reader.GetString(12), Reader.GetString(13), Reader.GetInt32(14),
-                        Reader.GetInt32(15), Reader.GetInt32(16), Reader.GetInt16(17), Reader.GetInt16(18), Reader.GetDateTime(19),
+                        Reader.GetInt32(15), Reader.GetInt32(16), Reader.GetByte(17), Reader.GetByte(18), Reader.GetDateTime(19),
                         Reader.GetString(20), Reader.GetInt32(21), Reader.GetInt32(22), Reader.GetInt32(23), Reader.GetString(24)));
             }
 

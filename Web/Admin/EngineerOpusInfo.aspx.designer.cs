@@ -41,6 +41,15 @@ namespace Web.Admin {
         protected global::System.Web.UI.WebControls.FileUpload frontsidePic;
         
         /// <summary>
+        /// lbFPic control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbFPic;
+        
+        /// <summary>
         /// flanksidePic control.
         /// </summary>
         /// <remarks>
@@ -48,6 +57,15 @@ namespace Web.Admin {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.FileUpload flanksidePic;
+        
+        /// <summary>
+        /// lbFlPic control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbFlPic;
         
         /// <summary>
         /// backsidePic control.
@@ -59,6 +77,15 @@ namespace Web.Admin {
         protected global::System.Web.UI.WebControls.FileUpload backsidePic;
         
         /// <summary>
+        /// lbBPic control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbBPic;
+        
+        /// <summary>
         /// assistancePic control.
         /// </summary>
         /// <remarks>
@@ -66,6 +93,15 @@ namespace Web.Admin {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.FileUpload assistancePic;
+        
+        /// <summary>
+        /// lbAPic control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbAPic;
         
         /// <summary>
         /// listHairStyle control.

@@ -74,7 +74,7 @@ namespace Web.Admin
             hs.HairShopDescription = txtDescription.Text.Trim();
 
             Session["HairShopInfo"] = hs;
-            this.Response.Redirect("HairShopAdd2.aspx");
+            this.Response.Redirect("HairEngineerAdd.aspx");
         }
 
         private void bindtype()
@@ -132,6 +132,11 @@ namespace Web.Admin
         protected void ddlMapZone_SelectedIndexChanged(object sender, EventArgs e)
         {
             this.bindhotzone();
+        }
+
+        protected void btnAddCoupon_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("AddCoupon.aspx");
         }
     }
 }

@@ -69,6 +69,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Admin\AddCoupon.aspx" />
     <Content Include="Admin\Blue\BlueStyle.css" />
     <Content Include="Admin\Blue\titlebarLeft.gif" />
     <Content Include="Admin\Blue\titlebarLeft_Head.gif" />
@@ -1012,6 +1013,7 @@
     <Content Include="Admin\TaskMenu.js" />
     <Content Include="Admin\UserInfoAdmin.aspx" />
     <Content Include="Admin\welcome.aspx" />
+    <Content Include="CouponAdmin.aspx" />
     <Content Include="Default.aspx" />
     <Content Include="Admin\HairShopAdd2.aspx" />
     <Content Include="Admin\HairShopEdit.aspx" />
@@ -1019,6 +1021,13 @@
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Admin\AddCoupon.aspx.cs">
+      <DependentUpon>AddCoupon.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\AddCoupon.aspx.designer.cs">
+      <DependentUpon>AddCoupon.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Admin\EngineerOpusInfo.aspx.cs">
       <DependentUpon>EngineerOpusInfo.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -1277,6 +1286,13 @@
     </Compile>
     <Compile Include="Admin\UserInfoAdmin.aspx.designer.cs">
       <DependentUpon>UserInfoAdmin.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="CouponAdmin.aspx.cs">
+      <DependentUpon>CouponAdmin.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CouponAdmin.aspx.designer.cs">
+      <DependentUpon>CouponAdmin.aspx</DependentUpon>
     </Compile>
     <Compile Include="Default.aspx.cs">
       <SubType>ASPXCodeBehind</SubType>

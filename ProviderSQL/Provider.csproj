@@ -120,6 +120,7 @@
     <Compile Include="Entry\ArticleComment.cs" />
     <Compile Include="Entry\ArticleTag.cs" />
     <Compile Include="Entry\City.cs" />
+    <Compile Include="Entry\Coupon.cs" />
     <Compile Include="Entry\HairStyleEntity.cs" />
     <Compile Include="Entry\HairEngineer.cs" />
     <Compile Include="Entry\HairEngineerComment.cs" />

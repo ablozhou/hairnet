@@ -11,7 +11,7 @@
 namespace Web.Admin {
     
     
-    public partial class HairShopAdd2 {
+    public partial class AddCoupon {
         
         /// <summary>
         /// form1 control.
@@ -23,48 +23,75 @@ namespace Web.Admin {
         protected global::System.Web.UI.HtmlControls.HtmlForm form1;
         
         /// <summary>
-        /// addengineer control.
+        /// tbCouponName control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button addengineer;
+        protected global::System.Web.UI.WebControls.TextBox tbCouponName;
         
         /// <summary>
-        /// p1 control.
+        /// ddlShopList control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Panel p1;
+        protected global::System.Web.UI.WebControls.DropDownList ddlShopList;
         
         /// <summary>
-        /// p2 control.
+        /// tbDiscount control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Panel p2;
+        protected global::System.Web.UI.WebControls.TextBox tbDiscount;
         
         /// <summary>
-        /// dg control.
+        /// tbExpired control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DataGrid dg;
+        protected global::System.Web.UI.WebControls.TextBox tbExpired;
         
         /// <summary>
-        /// btnSubmit control.
+        /// tbDesc control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnSubmit;
+        protected global::System.Web.UI.WebControls.TextBox tbDesc;
+        
+        /// <summary>
+        /// tbTag control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox tbTag;
+        
+        /// <summary>
+        /// tbPhone control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox tbPhone;
+        
+        /// <summary>
+        /// btnAddCoupon control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnAddCoupon;
     }
 }

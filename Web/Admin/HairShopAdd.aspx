@@ -10,7 +10,7 @@
     <style type="text/css">
         .style1
         {
-            width: 118px;
+            width: 85px;
         }
     </style>
 </head>
@@ -116,7 +116,7 @@
             </tr>
             <tr>
                 <td align="right" class="style1">
-                    开业时间：&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    开业时间：
                 </td>
                 <td>
                     <asp:TextBox ID="txtHairShopCreateTime" runat="server" Width="200" CssClass="TextBox"></asp:TextBox>
@@ -154,8 +154,8 @@
                 </td>
             </tr>
             <tr>
-                <td align="left" class="style1">
-                营业时间&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <td align="right" class="style1">
+                营业时间
                 </td>
                 <td>
                     <asp:TextBox ID="txtHairShopOpenTime" runat="server" Width="200" CssClass="TextBox"></asp:TextBox>
@@ -174,12 +174,21 @@
                     运营项目：
                 </td>
                 <td>
+                <!--
                     <asp:CheckBoxList ID="chkListWorkRange" runat="server" 
-                        RepeatDirection="horizontal" Width="16px">
-                        <asp:ListItem>烫</asp:ListItem>
-                        <asp:ListItem>染</asp:ListItem>
-                        <asp:ListItem>剪</asp:ListItem>
+                        RepeatDirection="horizontal" Width="16px" Enabled="true" Visible="true">
+                        <asp:ListItem Enabled="true" Selected="True">烫</asp:ListItem>
+                        <asp:ListItem Enabled="true">染</asp:ListItem>
+                        <asp:ListItem Enabled="true">剪</asp:ListItem>
                     </asp:CheckBoxList>
+                 -->
+                 <table cellpadding="0" cellspacing="0" border="0">
+                    <tr>
+                        <td><asp:CheckBox ID="chkItem1" runat="server" />烫</td>
+                        <td><asp:CheckBox ID="chkItem2" runat="server" />染</td>
+                        <td><asp:CheckBox ID="chkItem3" runat="server" />剪</td>
+                    </tr>
+                 </table>
                 </td>
             </tr>
         
@@ -208,7 +217,7 @@
                 </td>
             </tr>
             <tr>
-                <td align="right" class="style1">
+                <td align="right" class="style1" valign="top">
                     描述：
                 </td>
                 <td>
@@ -216,9 +225,11 @@
                         Width="900px"></asp:TextBox>
                 </td>
             </tr>
-            <tr><td></td><td>
-                <asp:Button ID="btnSubmit" runat="server" Text="下一步" 
-            OnClick="btnSubmit_OnClick" Width="98px"  /></td></tr>
+            <tr><td class="style1"></td><td>
+                <asp:Button ID="btnSubmit" runat="server" Text="下一步"  OnClick="btnSubmit_OnClick" Width="98px"  />
+                <asp:Button ID="btnAddCoupon" runat="server" Text="添加优惠券" Width="100px" 
+                    onclick="btnAddCoupon_Click"  />
+                </tr>
             
         </table>
     </div>

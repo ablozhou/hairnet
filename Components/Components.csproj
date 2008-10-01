@@ -109,6 +109,7 @@
     <Compile Include="BackendBusiness\UserAdmin.cs" />
     <Compile Include="Utilities\AutoCreateHtmlClass.cs" />
     <Compile Include="Utilities\FileOperate.cs" />
+    <Compile Include="Utilities\MessageObject.cs" />
     <Compile Include="Utilities\PicOperate.cs" />
     <Compile Include="Utilities\StringHelper.cs" />
     <Compile Include="Utilities\UpLoadClass.cs" />

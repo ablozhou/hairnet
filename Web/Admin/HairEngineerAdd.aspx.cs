@@ -19,6 +19,13 @@ namespace Web.Admin
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            if (Session["HairShopInfo"] == null)
+                throw new ArgumentException("参数错误", "无法找到美发厅相关缓存信息");
+
+            HairShop Shop = Session["HairShopInfo"] as HairShop;
+            if(Shop == null)
+                throw new ArgumentException("参数错误", "无法找到美发厅相关缓存信息");
+
             if (!IsPostBack)
             {
                 this.bindClass();
@@ -65,7 +72,7 @@ namespace Web.Admin
             he.HairEngineerTagIDs = InfoAdmin.GetHairEngineerTagIDs(txtHairEngineerTag.Text.Trim());
 
             Session["HairEngineerInfo"] = he;
-            this.Response.Redirect("HairEngineerAdd2.aspx");
+            this.Response.Redirect("EngineerOpusInfo.aspx");
         }
 
         protected void rBtnListHairEngineerSex_SelectedIndexChanged(object sender, EventArgs e)
