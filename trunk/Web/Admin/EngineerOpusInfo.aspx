@@ -15,24 +15,28 @@
             <th colspan="2">美发师作品添加</th>
         </tr>
           <tr>
-            <td width="120" align="right">名称: </td>
+            <td width="120px" align="right">名称: </td>
             <td><asp:TextBox ID="txtOpusName" runat=server CssClass="TextBox" Width="300px"></asp:TextBox></td>
         </tr>
          <tr>
-            <td width="120" align="right">正面图片: </td>
+            <td align="right">正面图片: </td>
             <td><asp:FileUpload ID="frontsidePic" runat="server" Width="300px" /></td>
+            <td><asp:Label ID="lbFPic" Width="300px" runat=server></asp:Label></td>
         </tr>
          <tr>
-            <td width="120" align="right">侧面图片: </td>
+            <td align="right">侧面图片: </td>
             <td><asp:FileUpload ID="flanksidePic" runat="server" Width="300px" /></td>
+            <td><asp:Label ID="lbFlPic" Width="300px" runat=server></asp:Label></td>
         </tr>
          <tr>
-            <td width="120" align="right">背面图片: </td>
+            <td align="right">背面图片: </td>
             <td><asp:FileUpload ID="backsidePic" runat="server" Width="300px" /></td>
+            <td><asp:Label ID="lbBPic" Width="300px" runat=server></asp:Label></td>
         </tr>
          <tr>
-            <td width="120" align="right">辅助图片: </td>
+            <td align="right">辅助图片: </td>
             <td><asp:FileUpload ID="assistancePic" runat="server" Width="300px" /></td>
+            <td><asp:Label ID="lbAPic" Width="300px" runat=server></asp:Label></td>
         </tr>
     </table>
     <table width="98%" border="0" cellpadding="0" cellspacing="0">

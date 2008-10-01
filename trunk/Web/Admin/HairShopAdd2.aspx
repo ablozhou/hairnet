@@ -18,7 +18,8 @@
             <tr>
                 <td>
                     &nbsp;
-                    <asp:Button ID="addengineer" runat="server" Text="添加美发师" />
+                    <asp:Button ID="addengineer" runat="server" Text="添加美发师" 
+                        onclick="addengineer_Click" />
                  </td>
             </tr>
             <tr>

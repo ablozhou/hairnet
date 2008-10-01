@@ -6,10 +6,15 @@ using HairNet.Enumerations;
 using System.Data.SqlClient;
 using System.Data;
 
+using HairNet.DBUtility;
+
 namespace HairNet.Provider
 {
     public class HairShopDataProviderInstance : IHairShopDataProvider
     {
+        private const string SQL_HAIRSHOPPARMCACHE = "HAIRSHOPPARMCACHE";
+        private const string SQL_COUPONPARMCACHE = "COUPONPARMCACHE";
+
         /// <summary>
         /// 美发厅
         /// </summary>
@@ -1222,11 +1227,170 @@ namespace HairNet.Provider
                 conn.Open();
                 newID = int.Parse(cmd.ExecuteScalar().ToString());
                 conn.Close();
+                //显示调用Dispose方法会导致此方法不能在第一时间被GC回收,况且已经使用using,此处为何用Dispose()??!!
                 cmd.Dispose();
                 cmd = null;
             }
 
             return newID;
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="haiShop">haiShop</param>
+        /// <returns></returns>
+        public Int32 AddHairShopByUsingSP(HairShop hairShop)
+        {
+            SqlParameter[] Parameters = GetHairShopParameters();
+
+            Parameters[0].Value = hairShop.HairShopID;
+            Parameters[1].Value = hairShop.HairShopName;
+            Parameters[2].Value = hairShop.HairShopCityID;
+            Parameters[3].Value = hairShop.HairShopMapZoneID;
+            Parameters[4].Value = hairShop.HairShopHotZoneID;
+            Parameters[5].Value = hairShop.HairShopAddress;
+            Parameters[6].Value = hairShop.HairShopPhoneNum;
+            Parameters[7].Value = hairShop.HairShopPictureStoreIDs;
+            Parameters[8].Value = hairShop.HairShopMainIDs;
+            Parameters[9].Value = hairShop.HairShopPartialIDs;
+            Parameters[10].Value = hairShop.HairShopEngineerNum;
+            Parameters[11].Value = hairShop.HairShopOpenTime;
+            Parameters[12].Value = hairShop.HairShopOrderNum;
+            Parameters[13].Value = hairShop.HairShopVisitNum;
+            Parameters[14].Value = hairShop.WorkRangeIDs;
+            Parameters[15].Value = hairShop.HairShopWebSite;
+            Parameters[16].Value = hairShop.HairShopEmail;
+            Parameters[17].Value = hairShop.HairShopDiscount;
+            Parameters[18].Value = hairShop.HairShopLogo;
+            Parameters[19].Value = hairShop.HairShopRecommandNum;
+            Parameters[20].Value = hairShop.HairShopCreateTime;
+            Parameters[21].Value = hairShop.HairShopDescription;
+            Parameters[22].Value = hairShop.ProductIDs;
+            Parameters[23].Value = hairShop.HairShopTagIDs;
+            Parameters[24].Value = hairShop.HairShopShortName;
+            Parameters[25].Value = hairShop.HairShopShortName;
+            Parameters[26].Value = hairShop.IsBest;
+            Parameters[27].Value = hairShop.IsJoin;
+            Parameters[28].Value = hairShop.IsPostStation;
+            Parameters[29].Value = hairShop.IsPostMachine;
+            Parameters[30].Value = hairShop.HairShopGood;
+            Parameters[31].Value = hairShop.HairShopBad;
+
+            SqlHelper.ExecuteNonQuery(DataHelper2.SqlConnectionString, CommandType.StoredProcedure, "InsertHairShop", Parameters);
+
+            return Int32.Parse(Parameters[32].Value.ToString());
+            
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
+        protected virtual SqlParameter[] GetHairShopParameters()
+        {
+            SqlParameter[] HairShopParameters = SqlHelperParameterCache.GetCachedParameterSet(DataHelper2.SqlConnectionString, SQL_HAIRSHOPPARMCACHE);
+
+            if (HairShopParameters == null)
+            {
+                HairShopParameters = new SqlParameter[]{
+
+                new SqlParameter("@HairShopID", SqlDbType.Int),
+                new SqlParameter("@HairShopName", SqlDbType.VarChar,100),
+                new SqlParameter("@HairShopCityID", SqlDbType.Int),
+                new SqlParameter("@HairShopMapZoneID", SqlDbType.Int),
+                new SqlParameter("@HairShopHotZoneID", SqlDbType.Int),
+                new SqlParameter("@HairShopAddress", SqlDbType.VarChar, 100),
+                new SqlParameter("@HairShopPhoneNum", SqlDbType.VarChar, 100),
+                new SqlParameter("@HairShopPictureStoreIDs", SqlDbType.VarChar, 1024),
+                new SqlParameter("@HairShopMainIDs", SqlDbType.VarChar, 1024),
+                new SqlParameter("@HairShopPartialIDs", SqlDbType.VarChar, 1024),
+                new SqlParameter("@HairShopEngineerNum", SqlDbType.Int),
+                new SqlParameter("@HairShopOpenTime", SqlDbType.VarChar, 1024),
+                new SqlParameter("@HairShopOrderNum", SqlDbType.Int),
+                new SqlParameter("@HairShopVisitNum", SqlDbType.Int),
+                new SqlParameter("@WorkRangeIDs", SqlDbType.VarChar, 1024),
+                new SqlParameter("@HairShopWebSite", SqlDbType.VarChar, 1024),
+                new SqlParameter("@HairShopEmail", SqlDbType.VarChar, 1024),
+                new SqlParameter("@HairshopDiscount", SqlDbType.VarChar, 100),
+                new SqlParameter("@HairShopLogo", SqlDbType.VarChar, 1024),
+                new SqlParameter("@HairShopRecommandNum", SqlDbType.Int),
+                new SqlParameter("@HairShopCreateTime", SqlDbType.VarChar, 100),
+                new SqlParameter("@HairShopDescription", SqlDbType.Text),
+                new SqlParameter("@ProductIDs", SqlDbType.VarChar, 1024),
+                new SqlParameter("@HairShopTagIDs", SqlDbType.VarChar, 1024),
+                new SqlParameter("@HairShopShortName", SqlDbType.VarChar, 100),
+                new SqlParameter("@IsBest", SqlDbType.Bit),
+                new SqlParameter("@IsJoin", SqlDbType.Bit),
+                new SqlParameter("@TypeID", SqlDbType.Int),
+                new SqlParameter("@IsPostStation", SqlDbType.Bit),
+                new SqlParameter("@IsPostMachine", SqlDbType.Bit),
+                new SqlParameter("@HairShopGood", SqlDbType.Int),
+                new SqlParameter("@HairShopBad", SqlDbType.Int),
+                new SqlParameter("@ReturnValue", SqlDbType.Int, 4,ParameterDirection.Output,
+                    false, byte.MinValue, byte.MinValue, String.Empty, DataRowVersion.Default, null)
+                };
+            }
+
+            SqlHelperParameterCache.CacheParameterSet(DataHelper2.SqlConnectionString, SQL_HAIRSHOPPARMCACHE, HairShopParameters);
+
+            return HairShopParameters;
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="coupon"></param>
+        /// <param name="action"></param>
+        public void CouponCreateDeleteUpdate(Coupon coupon, UserAction action)
+        {
+            SqlParameter[] Parameters = GetCouponParameters();
+
+            Parameters[0].Value = coupon.ID;
+            Parameters[1].Value = coupon.Name;
+            Parameters[2].Value = coupon.HairShopID;
+            Parameters[3].Value = coupon.Discount;
+            Parameters[4].Value = coupon.ExpiredDate;
+            Parameters[5].Value = coupon.PhoneNumber;
+            Parameters[6].Value = coupon.CouponTag;
+            Parameters[7].Value = coupon.Description;
+
+            if (action == UserAction.Create)
+                SqlHelper.ExecuteNonQuery(DataHelper2.SqlConnectionString, CommandType.StoredProcedure, "InsertCoupon", Parameters);
+
+            if (action == UserAction.Update)
+                SqlHelper.ExecuteNonQuery(DataHelper2.SqlConnectionString, CommandType.StoredProcedure, "UpdateCoupon", Parameters);
+
+            if (action == UserAction.Delete)
+                SqlHelper.ExecuteNonQuery(DataHelper2.SqlConnectionString, CommandType.StoredProcedure, "DeleteCoupon", Parameters[0]);
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
+        protected virtual SqlParameter[] GetCouponParameters()
+        {
+            SqlParameter[] CouponParameters = SqlHelperParameterCache.GetCachedParameterSet(DataHelper2.SqlConnectionString, SQL_COUPONPARMCACHE);
+
+            if (CouponParameters == null)
+            {
+                CouponParameters = new SqlParameter[]{
+
+                new SqlParameter("@ID", SqlDbType.Int),
+                new SqlParameter("@Name",SqlDbType.NVarChar,256),
+                new SqlParameter("@HairShopID",SqlDbType.Int),
+                new SqlParameter("@Discount",SqlDbType.NVarChar, 256),
+                new SqlParameter("@ExpiredDate",SqlDbType.NVarChar,64),
+                new SqlParameter("@PhoneNumber",SqlDbType.NVarChar,32),
+                new SqlParameter("@CouponTag",SqlDbType.NVarChar,1024),
+                new SqlParameter("@Description",SqlDbType.NVarChar,1024)
+                };
+            }
+
+            SqlHelperParameterCache.CacheParameterSet(DataHelper2.SqlConnectionString, SQL_COUPONPARMCACHE, CouponParameters);
+
+            return CouponParameters;
         }
 
         public string GetHairShopTagIDs(string tagNames)

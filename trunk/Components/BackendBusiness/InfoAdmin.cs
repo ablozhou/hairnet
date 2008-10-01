@@ -527,9 +527,25 @@ namespace HairNet.Business
         {
             return ProviderFactory.GetHairShopDataProviderInstance().AddHairShop(hairShop);
         }
+
         public static bool UpdateHairShop(HairShop hairShop)
         {
             return ProviderFactory.GetHairShopDataProviderInstance().HairShopDataPrividerCreateDeleteUpdate(hairShop, UserAction.Update);
+        }
+
+        public static void AddCoupon(Coupon coupon)
+        {
+            ProviderFactory.GetHairShopDataProviderInstance().CouponCreateDeleteUpdate(coupon, UserAction.Create);
+        }
+
+        public static void UpdateCoupon(Coupon coupon)
+        {
+            ProviderFactory.GetHairShopDataProviderInstance().CouponCreateDeleteUpdate(coupon, UserAction.Update);
+        }
+
+        public static void DeleteCoupon(Coupon coupon)
+        {
+            ProviderFactory.GetHairShopDataProviderInstance().CouponCreateDeleteUpdate(coupon, UserAction.Delete);
         }
 
         public static bool UpdateProduct(Product product)
@@ -753,5 +769,33 @@ namespace HairNet.Business
         {
             return ProviderFactory.GetHairEngineerDataProviderInstance().GetHairEngineerByHairEngineerID(HairEngineerID);
         }
+
+        /// <summary>
+        /// Add HairStyle Entity
+        /// </summary>
+        /// <param name="HairStyleEnt"></param>
+        public static void AddHairStyle(HairStyleEntity HairStyleEnt)
+        {
+            ProviderFactory.GetHairEngineerDataProviderInstance().HairStyleCreateDeleteUpdate(HairStyleEnt, UserAction.Create);
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="HairStyleEnt"></param>
+        public static void UpdateHairStyle(HairStyleEntity HairStyleEnt)
+        {
+            ProviderFactory.GetHairEngineerDataProviderInstance().HairStyleCreateDeleteUpdate(HairStyleEnt, UserAction.Update);
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="HairStyleEnt"></param>
+        public static void DeleteHairStyle(HairStyleEntity HairStyleEnt)
+        {
+            ProviderFactory.GetHairEngineerDataProviderInstance().HairStyleCreateDeleteUpdate(HairStyleEnt, UserAction.Delete);
+        }
+
     }
 }

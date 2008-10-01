@@ -7,13 +7,13 @@ namespace HairNet.Entry
     [Serializable]
     public class HairStyleEntity
     {
-        private int id = -1;
+        private int id = 0;
         private string hairName = string.Empty;
-        private Int16 hairStyle = -1;
-        private Int16 faceStyle = -1;
-        private Int16 temperament = 1;
-        private Int16 occasion = -1;
-        private Int16 sex = -1;
+        private Byte hairStyle = 0;
+        private Byte faceStyle = 0;
+        private Byte temperament = 1;
+        private Byte occasion = 0;
+        private Byte sex = 0;
         private string bigPic = string.Empty;
         private string smallPic_F = string.Empty;
         private string smallPic_B = string.Empty;
@@ -22,16 +22,16 @@ namespace HairNet.Entry
         private string pic1 = string.Empty;
         private string pic2 = string.Empty;
         private string pic3 = string.Empty;
-        private int hairShopID = -1;
-        private int hairEngineerID = -1;
-        private int hairQuantity = -1;
-        private Int16 hairNature = -1;
-        private Int16 hairColor = -1;
+        private int hairShopID = 0;
+        private int hairEngineerID = 0;
+        private int hairQuantity = 0;
+        private Byte hairNature = 0;
+        private Byte hairColor = 0;
         private DateTime createTime;
         private string bbsURL = string.Empty;
-        private int good = -1;
-        private int normal = -1;
-        private int bad = -1;
+        private int good = 0;
+        private int normal = 0;
+        private int bad = 0;
         private string tag = string.Empty;
 
         /// <summary>
@@ -62,9 +62,9 @@ namespace HairNet.Entry
         /// <param name="normal">normal</param>
         /// <param name="bad">bad</param>
         /// <param name="tag">tag</param>
-        public HairStyleEntity(int id, string hairName, Int16 hairStyle, Int16 faceStyle, Int16 temperament, Int16 occasion, Int16 sex,
+        public HairStyleEntity(int id, string hairName, Byte hairStyle, Byte faceStyle, Byte temperament, Byte occasion, Byte sex,
             string bigPic, string smallPic_F, string smallPic_B, string smallPic_S, string pic1, string pic2, string pic3,
-            int hairShopID, int hairEngineerID, int hairQuantity, Int16 hairNature, Int16 hairColor, DateTime createTime, 
+            int hairShopID, int hairEngineerID, int hairQuantity, Byte hairNature, Byte hairColor, DateTime createTime, 
             string bbsURL, int good, int normal, int bad, string tag)
         {
             this.id = id;
@@ -107,8 +107,8 @@ namespace HairNet.Entry
         /// <param name="hairQuantity">hairQuantity</param>
         /// <param name="hairNature">hairNature</param>
         /// <param name="tag">tag</param>
-        public HairStyleEntity(string hairName, string bigPic, string smallPic_F, string smallPic_B, string smallPic_S, Int16 hairStyle,
-            Int16 faceStyle, Int16 hairQuantity, Int16 hairNature, string tag)
+        public HairStyleEntity(string hairName, string bigPic, string smallPic_F, string smallPic_B, string smallPic_S, Byte hairStyle,
+            Byte faceStyle, Byte hairQuantity, Byte hairNature, string tag)
         {
             this.hairName = hairName;
             this.bigPic = bigPic;
@@ -134,31 +134,31 @@ namespace HairNet.Entry
             get { return hairName; }
         }
 
-        public Int16 HairStyle
+        public Byte HairStyle
         {
             set { hairStyle = value; }
             get { return hairStyle; }
         }
 
-        public Int16 FaceStyle
+        public Byte FaceStyle
         {
             set { faceStyle = value; }
             get { return faceStyle; }
         }
 
-        public Int16 Temperament
+        public Byte Temperament
         {
             set { temperament = value; }
             get { return temperament; }
         }
 
-        public Int16 Occasion
+        public Byte Occasion
         {
             set { occasion = value; }
             get { return occasion; }
         }
 
-        public Int16 Sex
+        public Byte Sex
         {
             set { sex = value; }
             get { return sex; }
@@ -224,13 +224,13 @@ namespace HairNet.Entry
             get { return hairQuantity; }
         }
 
-        public Int16 HairNature
+        public Byte HairNature
         {
             set { hairNature = value; }
             get { return hairNature; }
         }
 
-        public Int16 HairColor
+        public Byte HairColor
         {
             set { hairColor = value; }
             get { return hairColor; }
@@ -239,7 +239,7 @@ namespace HairNet.Entry
         public DateTime CreateTime
         {
             set { createTime = value; }
-            get { return createTime; }
+            get { return DateTime.Now; }
         }
 
         public String BBSURL

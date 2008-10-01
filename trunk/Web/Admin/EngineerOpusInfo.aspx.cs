@@ -12,19 +12,30 @@ using System.Web.UI.WebControls.WebParts;
 using System.Xml.Linq;
 
 using HairNet.Entry;
+using HairNet.Utilities;
+using HairNet.Business;
+using HairNet.Components.Utilities;
 
 namespace Web.Admin
 {
     public partial class EngineerOpusInfo : System.Web.UI.Page
     {
         private const string Parameter = "ENGINEERID";
+        private const string Type = "TYPE";
+        private const string PATH = @"/uploadfiles/pictures/";
+
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (String.IsNullOrEmpty(Request.Params[Parameter]))
-                throw new ArgumentNullException("缺少参数", "未提供工程师ID");
+            //if (String.IsNullOrEmpty(Request.Params[Parameter]))
+            //    throw new ArgumentNullException("缺少参数", "未提供工程师ID");
 
             if (!IsPostBack)
                 BindControlData();
+
+            if (Request.Params[Type].ToUpper() == "UPDATE")
+            {
+
+            }
         }
 
         /// <summary>
@@ -34,11 +45,31 @@ namespace Web.Admin
         /// <param name="e"></param>
         protected void btnAdd_Click(object sender, EventArgs e)
         {
-            HairStyleEntity HairStyle = new HairStyleEntity(txtOpusName.Text.Trim(), frontsidePic.FileName, flanksidePic.FileName,
-                backsidePic.FileName, assistancePic.FileName, Int16.Parse(listHairStyle.SelectedValue), Int16.Parse(listFaceType.SelectedValue),
-                Int16.Parse(listHairType.SelectedValue), Int16.Parse(listHairItem.SelectedValue), txtDesc.Text.Trim());
+            UpLoadClass upload = new UpLoadClass();
+            String frontFilePath = upload.UploadImageFile(frontsidePic, PATH);
+            String flankFilePath = upload.UploadImageFile(flanksidePic, PATH);
+            String backFilePath = upload.UploadImageFile(backsidePic, PATH);
+            String assistanceFilePath = upload.UploadImageFile(assistancePic, PATH);
 
-            HairStyle.HairEngineerID = Int32.Parse(Request.Params[Parameter]);
+            PicOperate WaterMark = new PicOperate();
+
+            //Water Mark Operation
+            string newFrontFilePath = frontFilePath.Substring(0, frontFilePath.LastIndexOf(".")) + "_new" + System.IO.Path.GetExtension(frontFilePath);
+            string newFlankFilePath = flankFilePath.Substring(0, flankFilePath.LastIndexOf(".")) + "_new" + System.IO.Path.GetExtension(flankFilePath);
+            string newBackFilePath = backFilePath.Substring(0, backFilePath.LastIndexOf(".")) + "_new" + System.IO.Path.GetExtension(backFilePath);
+            string newAssistanceFilePath = assistanceFilePath.Substring(0, assistanceFilePath.LastIndexOf(".")) + "_new" + System.IO.Path.GetExtension(assistanceFilePath);
+
+            WaterMark.AddWaterMarkOperate(frontFilePath, Server.MapPath(WaterSettings.WaterMarkPath), newFrontFilePath, WaterSettings.CopyrightText);
+            WaterMark.AddWaterMarkOperate(flankFilePath, Server.MapPath(WaterSettings.WaterMarkPath), newFlankFilePath, WaterSettings.CopyrightText);
+            WaterMark.AddWaterMarkOperate(backFilePath, Server.MapPath(WaterSettings.WaterMarkPath), newBackFilePath, WaterSettings.CopyrightText);
+            WaterMark.AddWaterMarkOperate(assistanceFilePath, Server.MapPath(WaterSettings.WaterMarkPath), newAssistanceFilePath, WaterSettings.CopyrightText);
+
+
+            HairStyleEntity HairStyle = new HairStyleEntity(txtOpusName.Text.Trim(), newFrontFilePath, newFlankFilePath,
+                newBackFilePath, newAssistanceFilePath, Byte.Parse(listHairStyle.SelectedValue), Byte.Parse(listFaceType.SelectedValue),
+                Byte.Parse(listHairType.SelectedValue), Byte.Parse(listHairItem.SelectedValue), txtDesc.Text.Trim());
+
+            InfoAdmin.AddHairStyle(HairStyle);
         }
 
         /// <summary>
@@ -59,6 +90,12 @@ namespace Web.Admin
             listFaceType.Items.Add(new ListItem("长形", "3"));
             listFaceType.Items.Add(new ListItem("圆形", "4"));
             listFaceType.Items.Add(new ListItem("方形", "5"));
+
+            //
+            listHairType.Items.Add(new ListItem("测试", "1"));
+
+            //
+            listHairItem.Items.Add(new ListItem("测试", "1"));
         }
 
         protected void Validation()
