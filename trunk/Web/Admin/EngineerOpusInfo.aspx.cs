@@ -34,11 +34,11 @@ namespace Web.Admin
         /// <param name="e"></param>
         protected void btnAdd_Click(object sender, EventArgs e)
         {
-            EngOpusInfo engOpusInfo = new EngOpusInfo(0, Int32.Parse(Request.Params[Parameter]), txtOpusName.Text.Trim(),
-                frontsidePic.FileName, flanksidePic.FileName, backsidePic.FileName, assistancePic.FileName,
-                Int32.Parse(listHairStyle.SelectedValue), Int32.Parse(listFaceType.SelectedValue),
-                Int32.Parse(listHairType.SelectedValue), Int32.Parse(listHairItem.SelectedValue),
-                txtDesc.Text.Trim());
+            HairStyleEntity HairStyle = new HairStyleEntity(txtOpusName.Text.Trim(), frontsidePic.FileName, flanksidePic.FileName,
+                backsidePic.FileName, assistancePic.FileName, Int16.Parse(listHairStyle.SelectedValue), Int16.Parse(listFaceType.SelectedValue),
+                Int16.Parse(listHairType.SelectedValue), Int16.Parse(listHairItem.SelectedValue), txtDesc.Text.Trim());
+
+            HairStyle.HairEngineerID = Int32.Parse(Request.Params[Parameter]);
         }
 
         /// <summary>

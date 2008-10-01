@@ -139,34 +139,78 @@ namespace HairNet.Provider
         /// </summary>
         /// <param name="engineerOpusInfo"></param>
         /// <param name="action"></param>
-        public void HairEgnineerOpusCreateDeleteUpdate(EngOpusInfo engineerOpusInfo, UserAction action)
+        public void HairStyleCreateDeleteUpdate(HairStyleEntity hairStyle, UserAction action)
         {
             SqlParameter[] parameters = GetEngineerOpusParameters();
 
-            parameters[0].Value = engineerOpusInfo.EngineerID;
-            parameters[1].Value = engineerOpusInfo.OpusName;
-            parameters[2].Value = engineerOpusInfo.FrontSidePic;
-            parameters[3].Value = engineerOpusInfo.FlankSidePic;
-            parameters[4].Value = engineerOpusInfo.BackSidePic;
-            parameters[5].Value = engineerOpusInfo.AssistancePic;
-            parameters[6].Value = engineerOpusInfo.HairStyle;
-            parameters[7].Value = engineerOpusInfo.FaceStyle;
-            parameters[8].Value = engineerOpusInfo.HairType;
-            parameters[9].Value = engineerOpusInfo.HairItem;
-            parameters[10].Value = engineerOpusInfo.OpusDesc;
-            parameters[11].Value = engineerOpusInfo.OpusID;
+            parameters[0].Value = hairStyle.ID;
+            parameters[1].Value = hairStyle.HairName;
+            parameters[2].Value = hairStyle.HairStyle;
+            parameters[3].Value = hairStyle.FaceStyle;
+            parameters[4].Value = hairStyle.Temperament;
+            parameters[5].Value = hairStyle.Occasion;
+            parameters[6].Value = hairStyle.Sex;
+
+            parameters[7].Value = hairStyle.BigPic;
+            parameters[8].Value = hairStyle.SmallPic_F;
+            parameters[9].Value = hairStyle.SmallPic_B;
+            parameters[10].Value = hairStyle.SmallPic_S;
+            parameters[11].Value = hairStyle.Pic1;
+            parameters[12].Value = hairStyle.Pic2;
+            parameters[13].Value = hairStyle.Pic3;
+
+            parameters[14].Value = hairStyle.HairShopID;
+            parameters[15].Value = hairStyle.HairEngineerID;
+            parameters[16].Value = hairStyle.HairQuantity;
+            parameters[17].Value = hairStyle.HairNature;
+            parameters[18].Value = hairStyle.HairColor;
+
+            parameters[19].Value = hairStyle.CreateTime;
+            parameters[20].Value = hairStyle.BBSURL;
+            parameters[21].Value = hairStyle.Good;
+            parameters[22].Value = hairStyle.Normal;
+            parameters[23].Value = hairStyle.Bad;
+            parameters[24].Value = hairStyle.Tag;
+            
 
             if (action == UserAction.Create)
                 SqlHelper.ExecuteNonQuery(DataHelper2.SqlConnectionString, CommandType.StoredProcedure,
-                    "InsertEngineerOpus", parameters);
+                    "InsertHairStyle", parameters);
 
             if (action == UserAction.Update)
                 SqlHelper.ExecuteNonQuery(DataHelper2.SqlConnectionString, CommandType.StoredProcedure,
-                    "UpdateEngineerOpus", parameters);
+                    "UpdateHairStyle", parameters);
 
             if (action == UserAction.Delete)
                 SqlHelper.ExecuteNonQuery(DataHelper2.SqlConnectionString, CommandType.StoredProcedure,
-                    "DeleteEngineerOpus", parameters[11]);
+                    "DeleteHairStyle", parameters[11]);
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="engineerID"></param>
+        /// <returns></returns>
+        public List<HairStyleEntity> GetEngineerOpusByEngineerID(Int32 engineerID)
+        {
+            SqlParameter parameter = new SqlParameter("@ID", SqlDbType.Int);
+            parameter.Value = engineerID;
+
+            List<HairStyleEntity> valueList = new List<HairStyleEntity>();
+
+            using (SqlDataReader Reader = SqlHelper.ExecuteReader(DataHelper2.SqlConnectionString, CommandType.StoredProcedure,
+                "QueryHairStyle", parameter))
+            {
+                while (Reader.Read())
+                    valueList.Add(new HairStyleEntity(Reader.GetInt32(0), Reader.GetString(1), Reader.GetInt16(2), Reader.GetInt16(3),
+                        Reader.GetInt16(4), Reader.GetInt16(5), Reader.GetInt16(6), Reader.GetString(7), Reader.GetString(8), Reader.GetString(9),
+                        Reader.GetString(10), Reader.GetString(11), Reader.GetString(12), Reader.GetString(13), Reader.GetInt32(14),
+                        Reader.GetInt32(15), Reader.GetInt32(16), Reader.GetInt16(17), Reader.GetInt16(18), Reader.GetDateTime(19),
+                        Reader.GetString(20), Reader.GetInt32(21), Reader.GetInt32(22), Reader.GetInt32(23), Reader.GetString(24)));
+            }
+
+            return valueList;
+                
         }
 
         /// <summary>
@@ -181,18 +225,33 @@ namespace HairNet.Provider
             {
                 EngineerOpusParameters = new SqlParameter[]{
 
-                    new SqlParameter("@EngineerID",SqlDbType.Int),
-                    new SqlParameter("@OpusName",SqlDbType.NVarChar,64),
-                    new SqlParameter("@FrontSidePic",SqlDbType.NVarChar,64),
-                    new SqlParameter("@FlankSidePic",SqlDbType.NVarChar,64),
-                    new SqlParameter("@BackSidePic",SqlDbType.NVarChar,64),
-                    new SqlParameter("@AssistancePic",SqlDbType.NVarChar,64),
-                    new SqlParameter("@HairStyle",SqlDbType.Int),
-                    new SqlParameter("@FaceStyle",SqlDbType.Int),
-                    new SqlParameter("@HairType",SqlDbType.Int),
-                    new SqlParameter("@HairItem",SqlDbType.Int),
-                    new SqlParameter("@Description",SqlDbType.NVarChar,2048),
-                    new SqlParameter("@ID",SqlDbType.Int)
+                    new SqlParameter("@ID",SqlDbType.Int),
+                    new SqlParameter("@HairName",SqlDbType.VarChar,100),
+                    new SqlParameter("@HairStyle",SqlDbType.SmallInt),
+                    new SqlParameter("@FaceStyle",SqlDbType.SmallInt),
+                    new SqlParameter("@Temperament",SqlDbType.SmallInt),
+                    new SqlParameter("@Occasion",SqlDbType.SmallInt),
+                    new SqlParameter("@Sex",SqlDbType.SmallInt),
+                    new SqlParameter("@BigPic",SqlDbType.VarChar,1024),
+                    new SqlParameter("@SmallPic_F",SqlDbType.VarChar,1024),
+                    new SqlParameter("@SmallPic_B",SqlDbType.VarChar,1024),
+                    new SqlParameter("@SmallPic_S",SqlDbType.VarChar,1024),
+
+                    new SqlParameter("@Pic1",SqlDbType.Text),
+                    new SqlParameter("@Pic2",SqlDbType.Text),
+                    new SqlParameter("@Pic3",SqlDbType.Text),
+                    new SqlParameter("@HairShopID",SqlDbType.Int),
+                    new SqlParameter("@HairEngineerID",SqlDbType.Int),
+                    new SqlParameter("@HairQuantity",SqlDbType.SmallInt),
+                    new SqlParameter("@HairNature",SqlDbType.SmallInt),
+                    new SqlParameter("@Color",SqlDbType.SmallInt),
+                    new SqlParameter("@CreateTime",SqlDbType.DateTime),
+                    new SqlParameter("@BBSURL",SqlDbType.VarChar,1024),
+
+                    new SqlParameter("@Good",SqlDbType.Int),
+                    new SqlParameter("@Normal",SqlDbType.Int),
+                    new SqlParameter("@Bad",SqlDbType.Int),
+                    new SqlParameter("@Tag",SqlDbType.VarChar,1024),
                 };
             }
 

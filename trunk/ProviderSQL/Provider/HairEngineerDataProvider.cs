@@ -29,7 +29,14 @@ namespace HairNet.Provider
         /// </summary>
         /// <param name="engineerOpusInfo">engineerOpusInfo</param>
         /// <param name="action">action</param>
-        void HairEgnineerOpusCreateDeleteUpdate(EngOpusInfo engineerOpusInfo, UserAction action);
+        void HairStyleCreateDeleteUpdate(HairStyleEntity engineerOpusInfo, UserAction action);
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="engineerID"></param>
+        /// <returns></returns>
+        List<HairStyleEntity> GetEngineerOpusByEngineerID(Int32 engineerID);
 
         /// <summary>
         /// 通过美发师ID来获取美发师实体
