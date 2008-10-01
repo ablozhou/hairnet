@@ -110,7 +110,6 @@
     <Compile Include="Utilities\AutoCreateHtmlClass.cs" />
     <Compile Include="Utilities\FileOperate.cs" />
     <Compile Include="Utilities\PicOperate.cs" />
-    <Compile Include="Utilities\SQLHelper.cs" />
     <Compile Include="Utilities\StringHelper.cs" />
     <Compile Include="Utilities\UpLoadClass.cs" />
     <Compile Include="Utilities\WaterSettings.cs" />

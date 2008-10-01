@@ -11,7 +11,7 @@ using System.Web.UI.WebControls;
 using System.Web.UI.WebControls.WebParts;
 using System.Xml.Linq;
 
-using HairNet.Provider.Entry;
+using HairNet.Entry;
 
 namespace Web.Admin
 {
@@ -34,7 +34,7 @@ namespace Web.Admin
         /// <param name="e"></param>
         protected void btnAdd_Click(object sender, EventArgs e)
         {
-            EngOpusInfo engOpusInfo = new EngOpusInfo(Int32.Parse(Request.Params[Parameter]), txtOpusName.Text.Trim(),
+            EngOpusInfo engOpusInfo = new EngOpusInfo(0, Int32.Parse(Request.Params[Parameter]), txtOpusName.Text.Trim(),
                 frontsidePic.FileName, flanksidePic.FileName, backsidePic.FileName, assistancePic.FileName,
                 Int32.Parse(listHairStyle.SelectedValue), Int32.Parse(listFaceType.SelectedValue),
                 Int32.Parse(listHairType.SelectedValue), Int32.Parse(listHairItem.SelectedValue),
