@@ -76,6 +76,7 @@
     <Content Include="Admin\Blue\titlebarMiddle_Head.gif" />
     <Content Include="Admin\Blue\TitlebarRight.gif" />
     <Content Include="Admin\Blue\TitlebarRight_Head.gif" />
+    <Content Include="Admin\EngineerOpusInfo.aspx" />
     <Content Include="Admin\FCKeditor\editor\css\behaviors\disablehandles.htc" />
     <Content Include="Admin\FCKeditor\editor\css\behaviors\hiddenfield.gif" />
     <Content Include="Admin\FCKeditor\editor\css\behaviors\hiddenfield.htc" />
@@ -1018,6 +1019,13 @@
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Admin\EngineerOpusInfo.aspx.cs">
+      <DependentUpon>EngineerOpusInfo.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\EngineerOpusInfo.aspx.designer.cs">
+      <DependentUpon>EngineerOpusInfo.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Admin\HairEngineerAdd.aspx.cs">
       <SubType>ASPXCodeBehind</SubType>
       <DependentUpon>HairEngineerAdd.aspx</DependentUpon>
@@ -1454,7 +1462,6 @@
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v9.0\WebApplications\Microsoft.WebApplication.targets" Condition="'$(Solutions.VSVersion)'=='9.0'" />
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v8.0\WebApplications\Microsoft.WebApplication.targets" Condition="'$(Solutions.VSVersion)'=='8.0'" />
-
   <!--<Import Project="$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v9.0\WebApplications\Microsoft.WebApplication.targets" Condition="" />-->
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
