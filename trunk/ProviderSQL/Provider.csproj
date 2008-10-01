@@ -114,6 +114,7 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="DataHelper2.cs" />
+    <Compile Include="DBUtility\SQLHelper.cs" />
     <Compile Include="Entry\Article.cs" />
     <Compile Include="Base\CommentBase.cs" />
     <Compile Include="Entry\ArticleComment.cs" />

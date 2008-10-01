@@ -25,6 +25,13 @@ namespace HairNet.Provider
         bool HairEngineerRecommandCreateDeleteUpdate(HairEngineerRecommand hairEngineerRecommand, UserAction ua);
 
         /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="engineerOpusInfo">engineerOpusInfo</param>
+        /// <param name="action">action</param>
+        void HairEgnineerOpusCreateDeleteUpdate(EngOpusInfo engineerOpusInfo, UserAction action);
+
+        /// <summary>
         /// 通过美发师ID来获取美发师实体
         /// </summary>
         /// <param name="hairEngineerID"></param>

@@ -2,10 +2,11 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace HairNet.Provider.Entry
+namespace HairNet.Entry
 {
     public class EngOpusInfo
     {
+        private int opusID = -1;
         private int engineerID = -1;
         private string opusName = string.Empty;
         private string frontsidePic = string.Empty;
@@ -20,20 +21,27 @@ namespace HairNet.Provider.Entry
 
         private string opusDesc = string.Empty;
 
-        public EngOpusInfo(int engineerID, string opusName, string frontsidePic, string flanksidePic, string backsidePic,
+        public EngOpusInfo(int opusID, int engineerID, string opusName, string frontsidePic, string flanksidePic, string backsidePic,
             string assistancePic, int hairStyle, int faceStyle, int hairType, int hairItem, string opusDesc)
         {
-            engineerID = engineerID;
-            opusName = opusName;
-            frontsidePic = frontsidePic;
-            flanksidePic = flanksidePic;
-            backsidePic = backsidePic;
-            assistancePic = assistancePic;
-            hairStyle = hairStyle;
-            faceStyle = faceStyle;
-            hairType = hairType;
-            hairItem = hairItem;
-            opusDesc = opusDesc;
+            this.opusID = opusID;
+            this.engineerID = engineerID;
+            this.opusName = opusName;
+            this.frontsidePic = frontsidePic;
+            this.flanksidePic = flanksidePic;
+            this.backsidePic = backsidePic;
+            this.assistancePic = assistancePic;
+            this.hairStyle = hairStyle;
+            this.faceStyle = faceStyle;
+            this.hairType = hairType;
+            this.hairItem = hairItem;
+            this.opusDesc = opusDesc;
+        }
+
+        public Int32 OpusID
+        {
+            set { opusID = value; }
+            get { return opusID; }
         }
 
         public Int32 EngineerID

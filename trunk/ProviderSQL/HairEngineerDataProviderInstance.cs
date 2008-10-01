@@ -2,13 +2,19 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Data.SqlClient;
+using System.Data;
 using HairNet.Entry;
 using HairNet.Enumerations;
 
+using HairNet.DBUtility;
+
 namespace HairNet.Provider
 {
+    
     public class HairEngineerDataProviderInstance : IHairEngineerDataProvider
     {
+        private const string SQL_ENGINEEROPUSPARMCACHE = "ENGINEEROPUSPARMCACHE";
+
         /// <summary>
         /// 美发师
         /// </summary>
@@ -127,6 +133,74 @@ namespace HairNet.Provider
             }
             return result;
         }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="engineerOpusInfo"></param>
+        /// <param name="action"></param>
+        public void HairEgnineerOpusCreateDeleteUpdate(EngOpusInfo engineerOpusInfo, UserAction action)
+        {
+            SqlParameter[] parameters = GetEngineerOpusParameters();
+
+            parameters[0].Value = engineerOpusInfo.EngineerID;
+            parameters[1].Value = engineerOpusInfo.OpusName;
+            parameters[2].Value = engineerOpusInfo.FrontSidePic;
+            parameters[3].Value = engineerOpusInfo.FlankSidePic;
+            parameters[4].Value = engineerOpusInfo.BackSidePic;
+            parameters[5].Value = engineerOpusInfo.AssistancePic;
+            parameters[6].Value = engineerOpusInfo.HairStyle;
+            parameters[7].Value = engineerOpusInfo.FaceStyle;
+            parameters[8].Value = engineerOpusInfo.HairType;
+            parameters[9].Value = engineerOpusInfo.HairItem;
+            parameters[10].Value = engineerOpusInfo.OpusDesc;
+            parameters[11].Value = engineerOpusInfo.OpusID;
+
+            if (action == UserAction.Create)
+                SqlHelper.ExecuteNonQuery(DataHelper2.SqlConnectionString, CommandType.StoredProcedure,
+                    "InsertEngineerOpus", parameters);
+
+            if (action == UserAction.Update)
+                SqlHelper.ExecuteNonQuery(DataHelper2.SqlConnectionString, CommandType.StoredProcedure,
+                    "UpdateEngineerOpus", parameters);
+
+            if (action == UserAction.Delete)
+                SqlHelper.ExecuteNonQuery(DataHelper2.SqlConnectionString, CommandType.StoredProcedure,
+                    "DeleteEngineerOpus", parameters[11]);
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
+        protected virtual SqlParameter[] GetEngineerOpusParameters()
+        {
+            SqlParameter[] EngineerOpusParameters = SqlHelperParameterCache.GetCachedParameterSet(DataHelper2.SqlConnectionString, SQL_ENGINEEROPUSPARMCACHE);
+
+            if (EngineerOpusParameters == null)
+            {
+                EngineerOpusParameters = new SqlParameter[]{
+
+                    new SqlParameter("@EngineerID",SqlDbType.Int),
+                    new SqlParameter("@OpusName",SqlDbType.NVarChar,64),
+                    new SqlParameter("@FrontSidePic",SqlDbType.NVarChar,64),
+                    new SqlParameter("@FlankSidePic",SqlDbType.NVarChar,64),
+                    new SqlParameter("@BackSidePic",SqlDbType.NVarChar,64),
+                    new SqlParameter("@AssistancePic",SqlDbType.NVarChar,64),
+                    new SqlParameter("@HairStyle",SqlDbType.Int),
+                    new SqlParameter("@FaceStyle",SqlDbType.Int),
+                    new SqlParameter("@HairType",SqlDbType.Int),
+                    new SqlParameter("@HairItem",SqlDbType.Int),
+                    new SqlParameter("@Description",SqlDbType.NVarChar,2048),
+                    new SqlParameter("@ID",SqlDbType.Int)
+                };
+            }
+
+            SqlHelperParameterCache.CacheParameterSet(DataHelper2.SqlConnectionString, SQL_ENGINEEROPUSPARMCACHE, EngineerOpusParameters);
+
+            return EngineerOpusParameters;
+        } 
+
         /// <summary>
         /// 通过美发师ID来获取美发师实体
         /// </summary>
