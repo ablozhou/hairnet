@@ -5,6 +5,7 @@ using HairNet.Entry;
 using HairNet.Provider;
 using HairNet.Enumerations;
 using System.Collections;
+using System.Data;
 
 namespace HairNet.Business
 {
@@ -19,6 +20,31 @@ namespace HairNet.Business
         {
             return ProviderFactory.GetHairShopDataProviderInstance().GetHairShops(count, ok);
         }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="Top"></param>
+        /// <param name="orderKey"></param>
+        /// <returns></returns>
+        public static DataTable GetHairShopList(int Top, OrderKey orderKey)
+        {
+            return ProviderFactory.GetHairShopDataProviderInstance().GetHairShopList(Top, orderKey);
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="Top"></param>
+        /// <param name="orderKey"></param>
+        /// <param name="WhereCaused"></param>
+        /// <returns></returns>
+        public static DataTable GetHairShopList(int Top, OrderKey orderKey, String WhereCaused)
+        {
+            return ProviderFactory.GetHairShopDataProviderInstance().GetHairShopList(Top, WhereCaused, orderKey);
+        }
+
+
         /// <summary>
         /// 
         /// </summary>
@@ -523,11 +549,28 @@ namespace HairNet.Business
             return ProviderFactory.GetHairShopDataProviderInstance().GetWorkRanges();
         }
 
+        [Obsolete("Not the latest version, please refet to AddHairShopInfo method")]
         public static int AddHairShop(HairShop hairShop)
         {
             return ProviderFactory.GetHairShopDataProviderInstance().AddHairShop(hairShop);
         }
 
+        public static void AddHairShopInfo(HairShop hairShop)
+        {
+            ProviderFactory.GetHairShopDataProviderInstance().HairShopCreateDeleteUpdate(hairShop, UserAction.Create);
+        }
+
+        public static void UpdateHairShopInfo(HairShop hairShop)
+        {
+            ProviderFactory.GetHairShopDataProviderInstance().HairShopCreateDeleteUpdate(hairShop, UserAction.Update);
+        }
+
+        public static void DeleteHairShopInfo(HairShop hairShop)
+        {
+            ProviderFactory.GetHairShopDataProviderInstance().HairShopCreateDeleteUpdate(hairShop, UserAction.Delete);
+        }
+
+        [Obsolete("Not the latest version, please refet to UpdateHairShopInfo method")]
         public static bool UpdateHairShop(HairShop hairShop)
         {
             return ProviderFactory.GetHairShopDataProviderInstance().HairShopDataPrividerCreateDeleteUpdate(hairShop, UserAction.Update);
@@ -797,5 +840,14 @@ namespace HairNet.Business
             ProviderFactory.GetHairEngineerDataProviderInstance().HairStyleCreateDeleteUpdate(HairStyleEnt, UserAction.Delete);
         }
 
+        public static DataTable GetCouponList()
+        {
+            return ProviderFactory.GetHairShopDataProviderInstance().GetCouponList();
+        }
+
+        public static void DeleteCoupon(String couponID)
+        {
+            ProviderFactory.GetHairShopDataProviderInstance().DeleteCoupon(couponID);
+        }
     }
 }

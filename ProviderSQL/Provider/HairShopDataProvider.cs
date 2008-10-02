@@ -4,11 +4,12 @@ using System.Text;
 using HairNet.Entry;
 using System.Data.SqlClient;
 using HairNet.Enumerations;
+using System.Data;
 
 namespace HairNet.Provider
 {
     public interface IHairShopDataProvider
-    {   
+    {
         /// <summary>
         /// 美发厅 删除，添加，修改
         /// </summary>
@@ -24,6 +25,30 @@ namespace HairNet.Provider
         /// <param name="ua"></param>
         /// <returns></returns>
         bool HairShopRecommandCreateDeleteUpdate(HairShopRecommand hairShopRecommand, UserAction ua);
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="Top"></param>
+        /// <param name="key"></param>
+        /// <returns></returns>
+        DataTable GetHairShopList(int Top, OrderKey Key);
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="Top"></param>
+        /// <param name="WhereCaused"></param>
+        /// <param name="Key"></param>
+        /// <returns></returns>
+        DataTable GetHairShopList(int Top, String WhereCaused, OrderKey Key);
+
+        /// <summary>
+        /// 美发厅 删除，添加，修改(新版本)
+        /// </summary>
+        /// <param name="hairShop"></param>
+        /// <param name="action"></param>
+        void HairShopCreateDeleteUpdate(HairShop hairShop, UserAction action);
 
         /// <summary>
         /// 
@@ -44,7 +69,7 @@ namespace HairNet.Provider
         /// </summary>
         /// <param name="count">0 全部</param>
         /// <returns></returns>
-        List<HairShop> GetHairShops(int count,OrderKey ok);
+        List<HairShop> GetHairShops(int count, OrderKey ok);
 
         /// <summary>
         /// 
@@ -52,7 +77,7 @@ namespace HairNet.Provider
         /// <param name="count"></param>
         /// <param name="ok"></param>
         /// <returns></returns>
-        List<HairShop> GetHairShops(int count, OrderKey ok,string hairShopName);
+        List<HairShop> GetHairShops(int count, OrderKey ok, string hairShopName);
 
         /// <summary>
         /// 通过美发厅推荐ID获得美发厅推荐实体
@@ -125,7 +150,7 @@ namespace HairNet.Provider
         /// <param name="count"></param>
         /// <param name="orderKey">用户排序KEY 例如：时间排序，好评排序，按照用户排序</param>
         /// <returns></returns>
-        List<HairShopComment> GetHairShopCommentsByHairShopID(int hairShopID,int count,OrderKey ok);
+        List<HairShopComment> GetHairShopCommentsByHairShopID(int hairShopID, int count, OrderKey ok);
 
         /// <summary>
         /// 通过USERID获取美发厅的评论列表
@@ -134,7 +159,7 @@ namespace HairNet.Provider
         /// <param name="count"></param>
         /// <param name="orderKey">用户排序KEY 时间排序，好评排序，美发厅排序</param>
         /// <returns></returns>
-        List<HairShopComment> GetHairShopCommentsByUserID(int userID, int count,OrderKey ok);
+        List<HairShopComment> GetHairShopCommentsByUserID(int userID, int count, OrderKey ok);
 
         /// <summary>
         /// 美发厅评论 添加，删除，修改
@@ -158,7 +183,7 @@ namespace HairNet.Provider
         /// <returns></returns>
         List<HairShopComment> GetHairShopCommentsByKeyText(int count, string keyText);
 
-        
+
         /// <summary>
         /// 
         /// </summary>
@@ -180,5 +205,16 @@ namespace HairNet.Provider
         string GetHairShopTagNames(string ids);
 
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
+        DataTable GetCouponList();
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="couponID"></param>
+        void DeleteCoupon(String couponID);
     }
 }

@@ -6,7 +6,7 @@ using HairNet.Provider;
 namespace HairNet.Entry
 {
     [Serializable()]
-    public class HairShop
+    public partial class HairShop
     {
         #region HairShop Fields
 
@@ -279,5 +279,123 @@ namespace HairNet.Entry
         //Todo
 
         #endregion
+    }
+
+    public partial class HairShop
+    {
+        private Decimal hairCutPrice = 0;
+        private Decimal hairMarcelPrice = 0;
+        private Decimal hairDyePrice = 0;
+        private Decimal hairShapePrice = 0;
+        private Decimal hairConservationPrice = 0;
+
+        private Decimal hairCutDiscount = 0;
+        private Decimal hairMarcelDiscount = 0;
+        private Decimal hairDyeDiscount = 0;
+        private Decimal hairShapeDiscount = 0;
+        private Decimal hairConservationDiscount = 0;
+
+        private string locationMapURL = String.Empty;
+        private string square = String.Empty;
+        private bool isServeMarce;
+        private bool isServeDye;
+        private bool isServeHairCut;
+        private bool isChainStore;
+
+        public Decimal HairCutPirce
+        {
+            set { hairCutPrice = value; }
+            get { return hairCutPrice; }
+        }
+
+        public Decimal HairMarcelPrice
+        {
+            set { hairMarcelPrice = value; }
+            get { return hairMarcelPrice; }
+        }
+
+        public Decimal HairDyePrice
+        {
+            set { hairDyePrice = value; }
+            get { return hairDyePrice; }
+        }
+
+        public Decimal HairCutDiscount
+        {
+            set { hairCutDiscount = value; }
+            get { return hairCutDiscount; }
+        }
+
+        public Decimal HairMarcelDiscount
+        {
+            set { hairMarcelDiscount = value; }
+            get { return hairMarcelDiscount; }
+        }
+
+        public Decimal HairDyeDiscount
+        {
+            set { hairDyeDiscount = value; }
+            get { return hairDyeDiscount; }
+        }
+
+        public Decimal HairShapePrice
+        {
+            set { hairShapePrice = value; }
+            get { return hairShapePrice; }
+        }
+
+        public Decimal HairShapeDiscount
+        {
+            set { hairShapeDiscount = value; }
+            get { return hairShapeDiscount; }
+        }
+
+        public Decimal HairConservationPrice
+        {
+            set { hairConservationPrice = value; }
+            get { return hairConservationPrice; }
+        }
+
+        public Decimal HairConservationDiscount
+        {
+            set { hairConservationDiscount = value; }
+            get { return hairConservationDiscount; }
+        }
+
+        public String LocationMapURL
+        {
+            set { locationMapURL = value; }
+            get { return locationMapURL; }
+        }
+
+        public String Square
+        {
+            set { square = value; }
+            get { return square; }
+        }
+
+        public Boolean IsServeMarce
+        {
+            set { isServeMarce = value; }
+            get { return isServeMarce; }
+        }
+
+        public Boolean IsServeDye
+        {
+            set { isServeDye = value; }
+            get { return isServeDye; }
+        }
+
+        public Boolean IsServeHairCut
+        {
+            set { isServeHairCut = value; }
+            get { return isServeHairCut; }
+        }
+
+        public Boolean IsChainStore
+        {
+            set { isChainStore = value; }
+            get { return isChainStore; }
+        }
     }
 }
