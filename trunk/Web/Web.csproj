@@ -77,6 +77,7 @@
     <Content Include="Admin\Blue\titlebarMiddle_Head.gif" />
     <Content Include="Admin\Blue\TitlebarRight.gif" />
     <Content Include="Admin\Blue\TitlebarRight_Head.gif" />
+    <Content Include="Admin\CouponManagement.aspx" />
     <Content Include="Admin\EngineerOpusInfo.aspx" />
     <Content Include="Admin\FCKeditor\editor\css\behaviors\disablehandles.htc" />
     <Content Include="Admin\FCKeditor\editor\css\behaviors\hiddenfield.gif" />
@@ -1009,6 +1010,7 @@
     <Content Include="Admin\ProductEdit3.aspx" />
     <Content Include="Admin\ProductRecommandAdmin.aspx" />
     <Content Include="Admin\ProductRecommandUpdate.aspx" />
+    <Content Include="Admin\ShopDetailInformation.aspx" />
     <Content Include="Admin\Style\Main.css" />
     <Content Include="Admin\TaskMenu.js" />
     <Content Include="Admin\UserInfoAdmin.aspx" />
@@ -1027,6 +1029,13 @@
     </Compile>
     <Compile Include="Admin\AddCoupon.aspx.designer.cs">
       <DependentUpon>AddCoupon.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\CouponManagement.aspx.cs">
+      <DependentUpon>CouponManagement.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\CouponManagement.aspx.designer.cs">
+      <DependentUpon>CouponManagement.aspx</DependentUpon>
     </Compile>
     <Compile Include="Admin\EngineerOpusInfo.aspx.cs">
       <DependentUpon>EngineerOpusInfo.aspx</DependentUpon>
@@ -1279,6 +1288,13 @@
     </Compile>
     <Compile Include="Admin\ProductRecommandUpdate.aspx.designer.cs">
       <DependentUpon>ProductRecommandUpdate.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\ShopDetailInformation.aspx.cs">
+      <DependentUpon>ShopDetailInformation.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\ShopDetailInformation.aspx.designer.cs">
+      <DependentUpon>ShopDetailInformation.aspx</DependentUpon>
     </Compile>
     <Compile Include="Admin\UserInfoAdmin.aspx.cs">
       <SubType>ASPXCodeBehind</SubType>

@@ -66,6 +66,102 @@
                     <asp:TextBox ID="txtHairShopDiscount" runat="server" Width="200" CssClass="TextBox"></asp:TextBox>
                 </td>
             </tr>
+           <tr>
+                <td align="right" class="style1">
+                    剪发价格：
+                </td>
+                <td>
+                    <asp:TextBox ID="tbHairCutPrice" runat="server" Width="200" CssClass="TextBox"></asp:TextBox>
+                </td>
+            </tr>
+            <tr>
+                <td align="right" class="style1">
+                    剪发折扣：
+                </td>
+                <td>
+                    <asp:TextBox ID="tbHairCutDiscount" runat="server" Width="200" CssClass="TextBox"></asp:TextBox>
+                </td>
+            </tr>
+            <tr>
+                <td align="right" class="style1">
+                    烫发价格：
+                </td>
+                <td>
+                    <asp:TextBox ID="tbMarcelPrice" runat="server" Width="200" CssClass="TextBox"></asp:TextBox>
+                </td>
+            </tr>
+            <tr>
+                <td align="right" class="style1">
+                    烫发折扣：
+                </td>
+                <td>
+                    <asp:TextBox ID="tbMarclDiscount" runat="server" Width="200" CssClass="TextBox"></asp:TextBox>
+                </td>
+            </tr>   
+            <tr>
+                <td align="right" class="style1">
+                    染发价格：
+                </td>
+                <td>
+                    <asp:TextBox ID="tbHairDyePrice" runat="server" Width="200" CssClass="TextBox"></asp:TextBox>
+                </td>
+            </tr>
+            <tr>
+                <td align="right" class="style1">
+                    染发折扣：
+                </td>
+                <td>
+                    <asp:TextBox ID="tbHairDyeDiscount" runat="server" Width="200" CssClass="TextBox"></asp:TextBox>
+                </td>
+            </tr>
+            <tr>
+                <td align="right" class="style1">
+                    造型价格：
+                </td>
+                <td>
+                    <asp:TextBox ID="tbShapePrice" runat="server" Width="200" CssClass="TextBox"></asp:TextBox>
+                </td>
+            </tr>
+            <tr>
+                <td align="right" class="style1">
+                    造型折扣：
+                </td>
+                <td>
+                    <asp:TextBox ID="tbShapeDiscount" runat="server" Width="200" CssClass="TextBox"></asp:TextBox>
+                </td>
+            </tr>
+            <tr>
+                <td align="right" class="style1">
+                    护理价格：
+                </td>
+                <td>
+                    <asp:TextBox ID="tbConservationPrice" runat="server" Width="200" CssClass="TextBox"></asp:TextBox>
+                </td>
+            </tr>
+            <tr>
+                <td align="right" class="style1">
+                    护理折扣：
+                </td>
+                <td>
+                    <asp:TextBox ID="tbConservationDiscount" runat="server" Width="200" CssClass="TextBox"></asp:TextBox>
+                </td>
+            </tr>
+            <tr>
+                <td align="right" class="style1">
+                    营业面积：
+                </td>
+                <td>
+                    <asp:TextBox ID="tbSquare" runat="server" Width="200" CssClass="TextBox"></asp:TextBox>
+                </td>
+            </tr>
+            <tr>
+                <td align="right" class="style1">
+                    地图URL：
+                </td>
+                <td>
+                    <asp:TextBox ID="tbLocation" runat="server" Width="200" CssClass="TextBox"></asp:TextBox>
+                </td>
+            </tr>
             <tr>
                 <td width="120" align="right">
                     美发厅LOGO：
@@ -134,11 +230,20 @@
                     运营项目：
                 </td>
                 <td>
+                <!--
                     <asp:CheckBoxList ID="chkListWorkRange" runat="server" RepeatDirection="horizontal">
                         <asp:ListItem>烫</asp:ListItem>
                         <asp:ListItem>染</asp:ListItem>
                         <asp:ListItem>剪</asp:ListItem>
                     </asp:CheckBoxList>
+                 -->
+                 <table cellpadding="0" cellspacing="0" border="0">
+                    <tr>
+                        <td><asp:CheckBox ID="chkMarcel" runat="server" />烫</td>
+                        <td><asp:CheckBox ID="chkDye" runat="server" />染</td>
+                        <td><asp:CheckBox ID="chkCut" runat="server" />剪</td>
+                    </tr>
+                 </table>
                 </td>
             </tr>
             <tr>

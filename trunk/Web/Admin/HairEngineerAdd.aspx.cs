@@ -19,17 +19,26 @@ namespace Web.Admin
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (Session["HairShopInfo"] == null)
-                throw new ArgumentException("参数错误", "无法找到美发厅相关缓存信息");
-
-            HairShop Shop = Session["HairShopInfo"] as HairShop;
-            if(Shop == null)
-                throw new ArgumentException("参数错误", "无法找到美发厅相关缓存信息");
-
             if (!IsPostBack)
             {
                 this.bindClass();
                 this.bindShop();
+            }
+
+            if (!String.IsNullOrEmpty(Request.Params["id"]))
+            {
+                ddlHairShop.SelectedIndex = -1;
+
+                foreach (ListItem item in ddlHairShop.Items)
+                {
+                    if (item.Value == Request.Params["id"])
+                    {
+                        item.Selected = true;
+                        break;
+                    }
+                }
+
+                ddlHairShop.Enabled = false;
             }
         }
 
@@ -78,6 +87,11 @@ namespace Web.Admin
         protected void rBtnListHairEngineerSex_SelectedIndexChanged(object sender, EventArgs e)
         {
 
+        }
+
+        protected void btnAdd_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("EngineerOpusInfo.aspx");
         }
     }
 }

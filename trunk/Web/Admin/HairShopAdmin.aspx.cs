@@ -64,7 +64,7 @@ namespace Web.Admin
         public void btnQuery_OnClick(object sender, EventArgs e)
         {
             //目前只实现名称模糊查询，关键字和时间段具体实现需要确认
-            Session["query"] = this.txtQueryName.Text;
+            Session["query"] = "HairShopName like '%" + txtQueryName.Text.Trim() +"%'";
             this.databind();
         }
         public void btnSelect_OnClick(object sender, EventArgs e)
@@ -123,10 +123,11 @@ namespace Web.Admin
             //添加操作，转向添加页面
             this.Response.Redirect("HairShopAdd.aspx");
         }
+
         public void databind()
         {
-
             List<HairShop> list = new List<HairShop>();
+            DataTable table = null;
 
             if (Session["query"] == null || Session["query"].ToString() == string.Empty)
             {
@@ -135,23 +136,28 @@ namespace Web.Admin
                 {
                     case "1":
                         //发布时间，即ID
-                        list = InfoAdmin.GetHairShops(0, OrderKey.ID);
+                        //list = InfoAdmin.GetHairShops(0, OrderKey.ID);
+                        table = InfoAdmin.GetHairShopList(0, OrderKey.ID);
                         break;
                     case "2":
                         //点击数
-                        list = InfoAdmin.GetHairShops(0, OrderKey.HitNum);
+                        //list = InfoAdmin.GetHairShops(0, OrderKey.HitNum);
+                        table = InfoAdmin.GetHairShopList(0, OrderKey.HitNum);
                         break;
                     case "3":
                         //评论数
-                        list = InfoAdmin.GetHairShops(0, OrderKey.CommentNum);
+                        table = InfoAdmin.GetHairShopList(0, OrderKey.CommentNum);
+                        //list = InfoAdmin.GetHairShops(0, OrderKey.CommentNum);
                         break;
                     case "4":
                         //推荐数
-                        list = InfoAdmin.GetHairShops(0, OrderKey.RecommandNum);
+                        //list = InfoAdmin.GetHairShops(0, OrderKey.RecommandNum);
+                        table = InfoAdmin.GetHairShopList(0, OrderKey.RecommandNum);
                         break;
                     case "5":
                         //预约数
-                        list = InfoAdmin.GetHairShops(0, OrderKey.OrderNum);
+                        //list = InfoAdmin.GetHairShops(0, OrderKey.OrderNum);
+                        table = InfoAdmin.GetHairShopList(0, OrderKey.OrderNum);
                         break;
                 }
             }
@@ -166,23 +172,23 @@ namespace Web.Admin
                         {
                             case "1":
                                 //发布时间，即ID
-                                list = InfoAdmin.GetHairShops(0, OrderKey.ID,Session["query"].ToString());
+                                table = InfoAdmin.GetHairShopList(0, OrderKey.ID, Session["query"].ToString());
                                 break;
                             case "2":
                                 //点击数
-                                list = InfoAdmin.GetHairShops(0, OrderKey.HitNum, Session["query"].ToString());
+                                table = InfoAdmin.GetHairShopList(0, OrderKey.HitNum, Session["query"].ToString());
                                 break;
                             case "3":
                                 //评论数
-                                list = InfoAdmin.GetHairShops(0, OrderKey.CommentNum, Session["query"].ToString());
+                                table = InfoAdmin.GetHairShopList(0, OrderKey.CommentNum, Session["query"].ToString());
                                 break;
                             case "4":
                                 //推荐数
-                                list = InfoAdmin.GetHairShops(0, OrderKey.RecommandNum, Session["query"].ToString());
+                                table = InfoAdmin.GetHairShopList(0, OrderKey.RecommandNum, Session["query"].ToString());
                                 break;
                             case "5":
                                 //预约数
-                                list = InfoAdmin.GetHairShops(0, OrderKey.OrderNum, Session["query"].ToString());
+                                table = InfoAdmin.GetHairShopList(0, OrderKey.OrderNum, Session["query"].ToString());
                                 break;
                         }
                         break;
@@ -197,13 +203,14 @@ namespace Web.Admin
             }
 
             this.dg.DataKeyField = "HairShopID";
-            this.dg.DataSource = list;
+            dg.DataSource = table;
+            //this.dg.DataSource = list;
             this.dg.DataBind();
             //绑定页码
             SetupPage();
             this.Page_nPage.Text = Convert.ToString(this.dg.CurrentPageIndex + 1);
             this.Page_nRecCount.Text = this.dg.PageCount.ToString();
-            this.Page_nRecCount_1.Text = list.Count.ToString();//this.dg.Items.Count.ToString();
+            this.Page_nRecCount_1.Text = table.Rows.Count.ToString();
             ispages.Text = this.Page_nPage.Text;
             IsFirstLastPage(this.dg.PageCount, this.dg.CurrentPageIndex);
             if (this.dg.PageCount == 1)
@@ -215,6 +222,7 @@ namespace Web.Admin
                 this.dg.PagerStyle.Visible = false;
             }
         }
+
         public void dg_OnItemCommand(object sender, DataGridCommandEventArgs e)
         {
             if (e.Item.ItemType == ListItemType.AlternatingItem || e.Item.ItemType == ListItemType.Item)
@@ -245,38 +253,47 @@ namespace Web.Admin
         }
         public void dg_OnItemDataBound(object sender, DataGridItemEventArgs e)
         {
-            if (e.Item.ItemType == ListItemType.AlternatingItem || e.Item.ItemType == ListItemType.Item)
+            if (e.Item.ItemType == ListItemType.Item || e.Item.ItemType == ListItemType.AlternatingItem)
             {
                 e.Item.Attributes.Add("onmouseover", "c=this.style.backgroundColor;this.style.backgroundColor='#ffffff';");
                 e.Item.Attributes.Add("onmouseout", "this.style.backgroundColor=c;");
-                e.Item.Cells[11].Attributes.Add("onclick", "return confirm('确定推荐么?');");
-                e.Item.Cells[12].Attributes.Add("onclick", "return confirm('确定删除么?');");
 
-                HairShop hairShop = e.Item.DataItem as HairShop;
-                Label lblRecommandRate = e.Item.FindControl("lblRecommandRate") as Label;
-                Label lblCommentTotal = e.Item.FindControl("lblCommentTotal") as Label;
-                Label lblCommentRate = e.Item.FindControl("lblCommentRate") as Label;
-
-                //推荐指数（访问数+好评评论数+我要推荐数）
-                int recommandRate = hairShop.HairShopVisitNum + hairShop.HairShopGood + hairShop.HairShopRecommandNum;
-
-                lblRecommandRate.Text = recommandRate.ToString();
-                //评论数（好评+坏评数）
-                int commentTotal = hairShop.HairShopGood + hairShop.HairShopBad;
-
-                lblCommentTotal.Text = commentTotal.ToString();
-                //好评率（好评数/评论数）
-                double commentRate = 0.0;
-                if (commentTotal == 0)
-                {
-                    commentRate = 0;
-                }
-                else
-                {
-                    commentRate = Convert.ToDouble(hairShop.HairShopGood) / Convert.ToDouble(commentTotal);
-                }
-                lblCommentRate.Text = commentRate.ToString();
+                Image pic = e.Item.FindControl("Image1") as Image;
+                DataRowView row = e.Item.DataItem as DataRowView;
+                pic.ImageUrl = @"D:\SourceCode\Web\uploadfiles\logo\2008\10\3\images\2008103353363175164.bmp";
             }
+            //if (e.Item.ItemType == ListItemType.AlternatingItem || e.Item.ItemType == ListItemType.Item)
+            //{
+            //    e.Item.Attributes.Add("onmouseover", "c=this.style.backgroundColor;this.style.backgroundColor='#ffffff';");
+            //    e.Item.Attributes.Add("onmouseout", "this.style.backgroundColor=c;");
+            //    e.Item.Cells[11].Attributes.Add("onclick", "return confirm('确定推荐么?');");
+            //    e.Item.Cells[12].Attributes.Add("onclick", "return confirm('确定删除么?');");
+
+            //    HairShop hairShop = e.Item.DataItem as HairShop;
+            //    Label lblRecommandRate = e.Item.FindControl("lblRecommandRate") as Label;
+            //    Label lblCommentTotal = e.Item.FindControl("lblCommentTotal") as Label;
+            //    Label lblCommentRate = e.Item.FindControl("lblCommentRate") as Label;
+
+            //    //推荐指数（访问数+好评评论数+我要推荐数）
+            //    int recommandRate = hairShop.HairShopVisitNum + hairShop.HairShopGood + hairShop.HairShopRecommandNum;
+
+            //    lblRecommandRate.Text = recommandRate.ToString();
+            //    //评论数（好评+坏评数）
+            //    int commentTotal = hairShop.HairShopGood + hairShop.HairShopBad;
+
+            //    lblCommentTotal.Text = commentTotal.ToString();
+            //    //好评率（好评数/评论数）
+            //    double commentRate = 0.0;
+            //    if (commentTotal == 0)
+            //    {
+            //        commentRate = 0;
+            //    }
+            //    else
+            //    {
+            //        commentRate = Convert.ToDouble(hairShop.HairShopGood) / Convert.ToDouble(commentTotal);
+            //    }
+            //    lblCommentRate.Text = commentRate.ToString();
+            //}
         }
         public void dg_OnPageIndexChanged(object sender, DataGridPageChangedEventArgs e)
         {

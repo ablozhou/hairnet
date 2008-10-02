@@ -12,6 +12,15 @@
             width: 83px;
         }
     </style>
+<script language="javascript" type="text/javascript">
+<!--
+
+function Button1_onclick() {
+window.location.href = "CouponManagement.aspx";
+}
+
+// -->
+</script>
 </head>
 <body>
     <form id="form1" runat="server">
@@ -22,7 +31,10 @@
             </tr>
             <tr>
                 <td align="right" width="85px">优惠券名称：</td>
-                <td><asp:TextBox ID="tbCouponName" runat="server" CssClass="TextBox" Width="200"></asp:TextBox>*</td>
+                <td><asp:TextBox ID="tbCouponName" runat="server" CssClass="TextBox" Width="200"></asp:TextBox>
+                    <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" 
+                        ControlToValidate="tbCouponName" ErrorMessage="*"></asp:RequiredFieldValidator>
+                </td>
             </tr>
             <tr>
                 <td align="right" width="85px">店铺名称：</td>
@@ -58,7 +70,8 @@
             <tr>
                 <td class="style1"></td>
                 <td><asp:Button ID="btnAddCoupon" runat="server" Text="添加优惠券" 
-                        onclick="btnAddCoupon_Click" /></td>
+                        onclick="btnAddCoupon_Click" />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    <input id="Button1" type="button" value="浏览现有的优惠券" onclick="return Button1_onclick()" /></td>
             </tr>
         </table>
     </div>

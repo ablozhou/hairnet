@@ -31,11 +31,6 @@ namespace Web.Admin
 
             if (!IsPostBack)
                 BindControlData();
-
-            if (Request.Params[Type].ToUpper() == "UPDATE")
-            {
-
-            }
         }
 
         /// <summary>

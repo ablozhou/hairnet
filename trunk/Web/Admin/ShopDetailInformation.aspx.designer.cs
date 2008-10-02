@@ -11,16 +11,7 @@
 namespace Web.Admin {
     
     
-    public partial class HairShopEdit {
-        
-        /// <summary>
-        /// Head1 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlHead Head1;
+    public partial class ShopDetailInformation {
         
         /// <summary>
         /// form1 control.
@@ -50,13 +41,13 @@ namespace Web.Admin {
         protected global::System.Web.UI.WebControls.TextBox txtHairShopShortName;
         
         /// <summary>
-        /// ddlTypeTable control.
+        /// tbType control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlTypeTable;
+        protected global::System.Web.UI.WebControls.TextBox tbType;
         
         /// <summary>
         /// txtHairShopWebSite control.
@@ -194,22 +185,13 @@ namespace Web.Admin {
         protected global::System.Web.UI.WebControls.TextBox tbLocation;
         
         /// <summary>
-        /// fileLogo control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputFile fileLogo;
-        
-        /// <summary>
         /// imgLogo control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Image imgLogo;
+        protected global::System.Web.UI.HtmlControls.HtmlImage imgLogo;
         
         /// <summary>
         /// txtHairShopCreateTime control.
@@ -221,31 +203,31 @@ namespace Web.Admin {
         protected global::System.Web.UI.WebControls.TextBox txtHairShopCreateTime;
         
         /// <summary>
-        /// ddlCity control.
+        /// tbCity control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlCity;
+        protected global::System.Web.UI.WebControls.TextBox tbCity;
         
         /// <summary>
-        /// ddlMapZone control.
+        /// tbZone control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlMapZone;
+        protected global::System.Web.UI.WebControls.TextBox tbZone;
         
         /// <summary>
-        /// ddlHotZone control.
+        /// tbArea control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlHotZone;
+        protected global::System.Web.UI.WebControls.TextBox tbArea;
         
         /// <summary>
         /// txtHairShopAddress control.
@@ -284,15 +266,6 @@ namespace Web.Admin {
         protected global::System.Web.UI.WebControls.TextBox txtHairShopTag;
         
         /// <summary>
-        /// chkListWorkRange control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.CheckBoxList chkListWorkRange;
-        
-        /// <summary>
         /// chkMarcel control.
         /// </summary>
         /// <remarks>
@@ -318,15 +291,6 @@ namespace Web.Admin {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.CheckBox chkCut;
-        
-        /// <summary>
-        /// chkIsBest control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.CheckBox chkIsBest;
         
         /// <summary>
         /// chkIsJoin control.
@@ -363,14 +327,5 @@ namespace Web.Admin {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtDescription;
-        
-        /// <summary>
-        /// btnSubmit control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnSubmit;
     }
 }

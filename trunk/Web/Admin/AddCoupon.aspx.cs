@@ -23,6 +23,20 @@ namespace Web.Admin
         {
             if (!IsPostBack)
                 BindControlData();
+
+            if (!String.IsNullOrEmpty(Request.Params["id"]))
+            {
+                ddlShopList.SelectedIndex = -1;
+
+                foreach (ListItem Item in ddlShopList.Items)
+                {
+                    if (Item.Value == Request.Params["id"])
+                    {
+                        Item.Selected = true;
+                        break;
+                    }
+                }
+            }
         }
 
         /// <summary>
@@ -54,7 +68,10 @@ namespace Web.Admin
         /// </summary>
         protected void BindControlData()
         {
-            ddlShopList.Items.Add(new ListItem("审美总店", "1"));
+            foreach (HairShop Item in InfoAdmin.GetHairShops(0, HairNet.Enumerations.OrderKey.ID))
+            {
+                ddlShopList.Items.Add(new ListItem(Item.HairShopName, Item.HairShopID.ToString()));
+            }
         }
 
         protected void ResetControlState()
@@ -66,6 +83,12 @@ namespace Web.Admin
             tbPhone.Text = String.Empty;
             tbTag.Text = String.Empty;
             tbDesc.Text = String.Empty;
+        }
+
+        protected void btnViewAll_Click(object sender, EventArgs e)
+        {
+            this.tbCouponName.Text = "Redirect";
+            Response.Redirect("CouponManagement.aspx");
         }
     }
 }

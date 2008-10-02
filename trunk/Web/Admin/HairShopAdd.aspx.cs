@@ -39,13 +39,13 @@ namespace Web.Admin
             hs.HairShopDiscount = txtHairShopDiscount.Text.Trim();
             //获取上传图片后的路径
             UpLoadClass upload = new UpLoadClass();
-            hs.HairShopLogo = upload.UpLoadImg(fileLogo, "/uploadfiles/logo/");
-            upload = null;
+            hs.HairShopLogo = upload.UploadImageFile(fileLogo, "/uploadfiles/logo/");
 
             hs.HairShopCreateTime = txtHairShopCreateTime.Text.Trim();
             hs.HairShopCityID = int.Parse(ddlCity.SelectedValue);
             hs.HairShopMapZoneID = int.Parse(ddlMapZone.SelectedValue);
             hs.HairShopHotZoneID = int.Parse(ddlHotZone.SelectedValue);
+
             hs.HairShopAddress = txtHairShopAddress.Text.Trim();
             hs.HairShopPhoneNum = txtHairShopPhoneNum.Text.Trim();
             hs.HairShopOpenTime = txtHairShopOpenTime.Text.Trim();
@@ -54,17 +54,17 @@ namespace Web.Admin
             hs.HairShopTagIDs = InfoAdmin.GetHairShopTagIDs(txtHairShopTag.Text.Trim());
 
 
-            List<string> IDs = new List<string>();
-            int chkI = chkListWorkRange.Items.Count;
-            for (int i = 0; i < chkI; i++)
-            {
-                if (chkListWorkRange.Items[i].Selected)
-                {
-                    IDs.Add(chkListWorkRange.Items[i].Value);
-                }
-            }
-            IDs.Sort();
-            hs.WorkRangeIDs = string.Join(",", IDs.ToArray());
+            //List<string> IDs = new List<string>();
+            //int chkI = chkListWorkRange.Items.Count;
+            //for (int i = 0; i < chkI; i++)
+            //{
+            //    if (chkListWorkRange.Items[i].Selected)
+            //    {
+            //        IDs.Add(chkListWorkRange.Items[i].Value);
+            //    }
+            //}
+            //IDs.Sort();
+            //hs.WorkRangeIDs = string.Join(",", IDs.ToArray());
 
 
             //hs.IsBest = chkIsBest.Checked;
@@ -73,7 +73,30 @@ namespace Web.Admin
             hs.IsPostStation = chkIsPostMachine.Checked;
             hs.HairShopDescription = txtDescription.Text.Trim();
 
-            Session["HairShopInfo"] = hs;
+            //Session["HairShopInfo"] = hs;
+
+            hs.HairCutDiscount = Decimal.Parse(tbHairCutDiscount.Text.Trim());
+            hs.HairCutPirce = Decimal.Parse(tbHairCutPrice.Text.Trim());
+            hs.HairMarcelDiscount = Decimal.Parse(tbMarclDiscount.Text.Trim());
+            hs.HairMarcelPrice = Decimal.Parse(tbMarcelPrice.Text.Trim());
+            hs.HairDyeDiscount = Decimal.Parse(tbHairDyeDiscount.Text.Trim());
+            hs.HairDyePrice = Decimal.Parse(tbHairDyePrice.Text.Trim());
+
+            hs.HairShapePrice = Decimal.Parse(tbShapePrice.Text.Trim());
+            hs.HairShapeDiscount = Decimal.Parse(tbShapeDiscount.Text.Trim());
+            hs.HairConservationPrice = Decimal.Parse(tbConservationPrice.Text.Trim());
+            hs.HairConservationDiscount = Decimal.Parse(tbConservationDiscount.Text.Trim());
+
+            hs.LocationMapURL = tbLocation.Text.Trim();
+            hs.Square = TextBox4.Text.Trim();
+
+            hs.IsServeHairCut = chkCut.Checked;
+            hs.IsServeMarce = chkMarcel.Checked;
+            hs.IsServeDye = chkCut.Checked;
+
+            //InfoAdmin.AddHairShop(hs);
+            InfoAdmin.AddHairShopInfo(hs);
+
             this.Response.Redirect("HairEngineerAdd.aspx");
         }
 
