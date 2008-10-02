@@ -60,17 +60,49 @@ line-height:35px;}
 .white12 a:link,.white12 a:visited {color:#ffffff;}
 .white12 a:hover {color:#cc0033;}
 .pic-page {font-size:14px;color:#b3b3b3;line-height:26px;}
+
+.show-pic img {width:600px;height:725px;}
 .fxk-pic-s {
-	background-image: url(../images/fxk-04.gif);
+	background-image: url(../images/fair-zt10.gif);
 	background-repeat: no-repeat;
 	background-position: center top;
-	height: 173px;
-	width: 151px;
+	height: 156px;
+	width: 137px;
 	margin:0 auto;
 	text-align:center;
 }
-.fxk-pic-s img {width:124px;height:144px;margin-top:14px;}
-.fxk-pic-null {width:100%;height:10px;margin:0 auto;clear:both;}
+.fxk-pic-s img {width:112px;height:130px;margin-top:12px;}
+.fxk-pic-null {width:100%;height:10px;margin:0 auto;clear:both;
+line-height:10px;}
+
+.pre {
+	width:139px;
+	height:23px;
+	margin:0 auto;
+	clear:both;
+	background-image: url(../images/fair-zt08.gif);
+	background-repeat: no-repeat;
+	background-position: center top;
+	color:#FFFFFF;
+	line-height:23px;
+	font-size:12px;
+	text-align:center;
+}
+.next {
+	width:139px;
+	height:23px;
+	margin:0 auto;
+	clear:both;
+	background-image: url(../images/fair-zt09.gif);
+	background-repeat: no-repeat;
+	background-position: center top;
+	color:#FFFFFF;
+	line-height:23px;
+	font-size:12px;
+	text-align:center;
+}
+.pre a:link,.pre a:visited,.next a:link,.next a:visited {color:#ffffff;}
+.pre a:hover,.next a:hover {color:#cc0033;}
 
 .main-top-end {width:781px;margin:0 auto;clear:both;}
 /*ÆÀÂÛ¿ªÊ¼*/

@@ -92,7 +92,8 @@ width:124px;
 height:144px;
 margin-top:14px;
 }
-.fxk-pic-null {width:100%;height:10px;margin:0 auto;clear:both;}
+.fxk-pic-null {width:100%;height:10px;margin:0 auto;clear:both;
+line-height:10px;}
 
 .red12-line-c {color:#cc0000;line-height:20px;font-size:12px;text-decoration:underline;}
 .red12-line-c a:link,.red12-line-c a:visited {color:#cc0000;text-decoration:underline;}

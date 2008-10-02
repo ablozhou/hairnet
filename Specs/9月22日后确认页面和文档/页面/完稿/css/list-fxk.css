@@ -1,0 +1,108 @@
+#main {
+	width:980px;
+	margin:15px auto 0px auto;
+	clear:both;
+	background-image: url(../images/fxk-01b.gif);
+	background-repeat: repeat-y;
+	background-position: center top;
+}
+#main-l {width:160px;float:left;}
+#main-r {width:806px;float:left;}
+#fxk-logo {
+width:138px;
+height:138px;
+margin:0 auto;
+clear:both;}
+#dangqian {
+float:right;
+    width:805px;
+	font-size: 12px;
+	line-height: 31px;
+	background-image: url(../images/fxk-02.gif);
+	background-repeat: no-repeat;
+	background-position: right top;
+	font-size:12px;color:#666666;text-align:left;line-height:31px;
+	clear:both;
+}
+#dangqian a:link,#dangqian a:visited {color:#666666;}
+#dangqian a:hover {color:#cc0033;}
+
+.bianhao {
+color:#999999;
+font-size:12px;
+line-height:12px;}
+.bianhao a:link,.bianhao a:visited {color:#999999;}
+.bianhao a:hover {color:#cc0033;}
+
+.nullarea {height:15px;margin:0 auto;width:100%;clear:both;}
+
+
+.fxk-pic-s img {width:124px;height:144px;margin-top:14px;}
+.fxk-pic-null {width:100%;height:10px;margin:0 auto;clear:both;}
+
+.main-top-end {width:980px;margin:0 auto;clear:both;}
+
+.black12 {color:#000000;line-height:24px;font-size:12px;}
+.black12 a:link,.black12 a:visited {color:#000000;}
+.black12 a:hover {color:#cc0033;}
+
+.page-all {
+width:90%;
+height:24px;
+margin:8px auto;
+clear:both;
+text-align:center;
+font-size:12px;line-height:24px;color:#666666;}
+.page-all a:link,.page-all a:visited {color:#666666;}
+.page-all a:hover {color:#cc0033;}
+
+.lanmu-l {
+	width:137px;
+	height:6px;
+	margin:0 auto;
+	clear:both;
+	background-image: url(../images/fxk-14.gif);
+	background-repeat: no-repeat;
+	background-position: center center;
+}
+
+.black12-b {font-size:12px;font-weight:bold;line-height:30px;color:#000000;}
+.black12-b a:link,.black12-b a:visited {color:#000000;}
+.black12-b a:hover {color:#cc0033;}
+
+.lanmu-12 {font-size:12px;line-height:30px;color:#000000;}
+.lanmu-12 a:link,.lanmu-12 a:visited {color:#000000;}
+.lanmu-12 a:hover {color:#cc0033;}
+
+.fxk-search{
+	width: 800px;
+	float: right;
+	background-image: url(../images/star_search_bg.gif);
+	background-repeat: no-repeat;
+	height: 27px;
+	background-position: 1px;
+}
+.fxk-search input {
+width:120px;
+height:18px;
+border:#d9d9d9 1px solid;
+text-align:center;
+color:#898989;
+line-height:18px;}
+.fxk-list {
+text-align:center;}
+.fxk-list img{
+width:120px;
+height:155px;
+	border: 1px solid #CCCCCC;
+	padding: 5px;
+	margin:5px 0px 5px 0px;
+}
+
+
+
+
+
+
+
+
