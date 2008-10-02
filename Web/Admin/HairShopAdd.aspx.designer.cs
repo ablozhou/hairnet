@@ -14,6 +14,15 @@ namespace Web.Admin {
     public partial class HairShopAdd {
         
         /// <summary>
+        /// Head1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlHead Head1;
+        
+        /// <summary>
         /// form1 control.
         /// </summary>
         /// <remarks>
@@ -30,6 +39,15 @@ namespace Web.Admin {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtHairShopName;
+        
+        /// <summary>
+        /// RequiredFieldValidator1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidator1;
         
         /// <summary>
         /// txtHairShopShortName control.
@@ -77,31 +95,94 @@ namespace Web.Admin {
         protected global::System.Web.UI.WebControls.TextBox txtHairShopDiscount;
         
         /// <summary>
-        /// TextBox1 control.
+        /// tbHairCutPrice control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TextBox1;
+        protected global::System.Web.UI.WebControls.TextBox tbHairCutPrice;
         
         /// <summary>
-        /// TextBox2 control.
+        /// tbHairCutDiscount control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TextBox2;
+        protected global::System.Web.UI.WebControls.TextBox tbHairCutDiscount;
         
         /// <summary>
-        /// TextBox3 control.
+        /// tbMarcelPrice control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TextBox3;
+        protected global::System.Web.UI.WebControls.TextBox tbMarcelPrice;
+        
+        /// <summary>
+        /// tbMarclDiscount control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox tbMarclDiscount;
+        
+        /// <summary>
+        /// tbHairDyePrice control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox tbHairDyePrice;
+        
+        /// <summary>
+        /// tbHairDyeDiscount control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox tbHairDyeDiscount;
+        
+        /// <summary>
+        /// tbShapePrice control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox tbShapePrice;
+        
+        /// <summary>
+        /// tbShapeDiscount control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox tbShapeDiscount;
+        
+        /// <summary>
+        /// tbConservationPrice control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox tbConservationPrice;
+        
+        /// <summary>
+        /// tbConservationDiscount control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox tbConservationDiscount;
         
         /// <summary>
         /// TextBox4 control.
@@ -113,13 +194,13 @@ namespace Web.Admin {
         protected global::System.Web.UI.WebControls.TextBox TextBox4;
         
         /// <summary>
-        /// TextBox5 control.
+        /// tbLocation control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TextBox5;
+        protected global::System.Web.UI.WebControls.TextBox tbLocation;
         
         /// <summary>
         /// fileLogo control.
@@ -128,7 +209,7 @@ namespace Web.Admin {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputFile fileLogo;
+        protected global::System.Web.UI.WebControls.FileUpload fileLogo;
         
         /// <summary>
         /// txtHairShopCreateTime control.
@@ -212,31 +293,31 @@ namespace Web.Admin {
         protected global::System.Web.UI.WebControls.CheckBoxList chkListWorkRange;
         
         /// <summary>
-        /// chkItem1 control.
+        /// chkMarcel control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.CheckBox chkItem1;
+        protected global::System.Web.UI.WebControls.CheckBox chkMarcel;
         
         /// <summary>
-        /// chkItem2 control.
+        /// chkDye control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.CheckBox chkItem2;
+        protected global::System.Web.UI.WebControls.CheckBox chkDye;
         
         /// <summary>
-        /// chkItem3 control.
+        /// chkCut control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.CheckBox chkItem3;
+        protected global::System.Web.UI.WebControls.CheckBox chkCut;
         
         /// <summary>
         /// chkIsJoin control.

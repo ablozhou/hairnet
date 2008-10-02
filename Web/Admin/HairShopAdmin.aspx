@@ -61,12 +61,25 @@
                         <asp:Label ID="lblCommentRate" runat="server"></asp:Label>
                     </ItemTemplate>
                 </asp:TemplateColumn>
-                <asp:HyperLinkColumn DataNavigateUrlField="HairShopID" DataNavigateUrlFormatString="HairShopDetails.aspx?id={0}" Target="_blank" Text="预览"></asp:HyperLinkColumn>
+                <asp:TemplateColumn HeaderText="图片">
+                    <ItemTemplate>
+                        <asp:Image ID="Image1" runat="server" />
+                    </ItemTemplate>
+                </asp:TemplateColumn>
                 <asp:HyperLinkColumn DataNavigateUrlField="HairShopID" 
-                    DataNavigateUrlFormatString="HairShopEdit.aspx?id={0}" Target="_self" Text="编辑"></asp:HyperLinkColumn>
-                <asp:ButtonColumn ButtonType="LinkButton" CommandName="recommand" Text="美发师"></asp:ButtonColumn>
-                <asp:ButtonColumn ButtonType="LinkButton" CommandName="recommand" Text="图片"></asp:ButtonColumn>
-                <asp:ButtonColumn ButtonType="LinkButton" CommandName="delete" Text="删除"></asp:ButtonColumn>
+                    DataNavigateUrlFormatString="ShopDetailInformation.aspx?id={0}" Target="_blank" 
+                    Text="预览" HeaderText="预览"></asp:HyperLinkColumn>
+                <asp:HyperLinkColumn DataNavigateUrlField="HairShopID" 
+                    DataNavigateUrlFormatString="HairShopEdit.aspx?id={0}" Target="_self" 
+                    Text="编辑" HeaderText="编辑"></asp:HyperLinkColumn>
+                <asp:HyperLinkColumn DataNavigateUrlField="HairShopID" 
+                    DataNavigateUrlFormatString="HairEngineerAdd.aspx?id={0}" HeaderText="添加美发师" 
+                    Text="添加美发师"></asp:HyperLinkColumn>
+                <asp:HyperLinkColumn DataNavigateUrlField="HairShopID" 
+                    DataNavigateUrlFormatString="AddCoupon.aspx?ID={0}" HeaderText="添加优惠券" 
+                    Text="添加优惠券"></asp:HyperLinkColumn>
+                <asp:ButtonColumn ButtonType="LinkButton" CommandName="delete" Text="删除" 
+                    HeaderText="删除"></asp:ButtonColumn>
             </Columns>
         </asp:DataGrid>
     </div>

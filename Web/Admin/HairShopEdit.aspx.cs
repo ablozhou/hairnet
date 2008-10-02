@@ -34,6 +34,8 @@ namespace Web.Admin
         {
             string id = Request["id"];
             HairShop hs = ProviderFactory.GetHairShopDataProviderInstance().GetHairShopByHairShopID(int.Parse(id));
+
+
             txtDescription.Text = hs.HairShopDescription;
             txtHairShopAddress.Text = hs.HairShopAddress;
             txtHairShopCreateTime.Text = hs.HairShopCreateTime.ToString();
@@ -57,18 +59,24 @@ namespace Web.Admin
             this.bindhotzone();
             ddlHotZone.SelectedValue = hs.HairShopHotZoneID.ToString();
 
-            string[] works = hs.WorkRangeIDs.Split(',');
-            foreach (string workid in works)
-            {
-                for (int i = 0; i < chkListWorkRange.Items.Count; i++)
-                {
-                    if (chkListWorkRange.Items[i].Value == workid)
-                    {
-                        chkListWorkRange.Items[i].Selected = true;
-                        break;
-                    }
-                }
-            }
+
+            tbHairCutPrice.Text = hs.HairCutPirce.ToString();
+            tbHairCutDiscount.Text = hs.HairCutDiscount.ToString();
+            tbMarcelPrice.Text = hs.HairMarcelPrice.ToString();
+            tbMarclDiscount.Text = hs.HairMarcelDiscount.ToString();
+            tbHairDyePrice.Text = hs.HairDyePrice.ToString();
+            tbHairDyeDiscount.Text = hs.HairDyeDiscount.ToString();
+            tbShapePrice.Text = hs.HairShapePrice.ToString();
+            tbShapeDiscount.Text = hs.HairShapeDiscount.ToString();
+            tbConservationPrice.Text = hs.HairConservationPrice.ToString();
+            tbConservationDiscount.Text = hs.HairConservationDiscount.ToString();
+
+            chkCut.Checked = hs.IsServeHairCut;
+            chkMarcel.Checked = hs.IsServeMarce;
+            chkDye.Checked = hs.IsServeDye;
+
+            tbSquare.Text = hs.Square;
+            tbLocation.Text = hs.LocationMapURL;
 
             chkIsBest.Checked = hs.IsBest;
             chkIsJoin.Checked = hs.IsJoin;
@@ -167,17 +175,24 @@ namespace Web.Admin
             hs.HairShopTagIDs = InfoAdmin.GetHairShopTagIDs(txtHairShopTag.Text.Trim());
 
 
-            List<string> IDs = new List<string>();
-            int chkI = chkListWorkRange.Items.Count;
-            for (int i = 0; i < chkI; i++)
-            {
-                if (chkListWorkRange.Items[i].Selected)
-                {
-                    IDs.Add(chkListWorkRange.Items[i].Value);
-                }
-            }
-            IDs.Sort();
-            hs.WorkRangeIDs = string.Join(",", IDs.ToArray());
+            hs.HairCutDiscount = Decimal.Parse(tbHairCutDiscount.Text.Trim());
+            hs.HairCutPirce = Decimal.Parse(tbHairCutPrice.Text.Trim());
+            hs.HairMarcelDiscount = Decimal.Parse(tbMarclDiscount.Text.Trim());
+            hs.HairMarcelPrice = Decimal.Parse(tbMarcelPrice.Text.Trim());
+            hs.HairDyeDiscount = Decimal.Parse(tbHairDyeDiscount.Text.Trim());
+            hs.HairDyePrice = Decimal.Parse(tbHairDyePrice.Text.Trim());
+
+            hs.HairShapePrice = Decimal.Parse(tbShapePrice.Text.Trim());
+            hs.HairShapeDiscount = Decimal.Parse(tbShapeDiscount.Text.Trim());
+            hs.HairConservationPrice = Decimal.Parse(tbConservationPrice.Text.Trim());
+            hs.HairConservationDiscount = Decimal.Parse(tbConservationDiscount.Text.Trim());
+
+            hs.LocationMapURL = tbLocation.Text.Trim();
+            hs.Square = tbSquare.Text.Trim(); 
+
+            hs.IsServeHairCut = chkCut.Checked;
+            hs.IsServeMarce = chkMarcel.Checked;
+            hs.IsServeDye = chkCut.Checked;
 
 
             hs.IsBest = chkIsBest.Checked;
@@ -187,6 +202,7 @@ namespace Web.Admin
             hs.HairShopDescription = txtDescription.Text.Trim();
 
             Session["HairShopInfo"] = hs;
+            InfoAdmin.UpdateHairShop(hs);
             this.Response.Redirect("HairShopEdit2.aspx");
         }
     }
