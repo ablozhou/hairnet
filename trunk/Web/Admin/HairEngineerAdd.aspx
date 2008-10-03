@@ -5,6 +5,15 @@
 <head runat="server">
     <title>美发师添加 -- 基本信息</title>
     <link type="text/css" rel="Stylesheet" href="Style/Main.css" />
+<script language="javascript" type="text/javascript">
+<!--
+
+function Button1_onclick() {
+    location.href = "AddCoupon.aspx";
+}
+
+// -->
+</script>
 </head>
 <body>
     <form id="form1" runat="server">
@@ -20,11 +29,15 @@
         </tr>
          <tr>
             <td width="120px" align="right">姓名：</td>
-            <td><asp:TextBox ID="txtHairEngineerName" runat="server" CssClass="TextBox"></asp:TextBox></td>
+            <td><asp:TextBox ID="txtHairEngineerName" runat="server" CssClass="TextBox"></asp:TextBox>
+                <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" 
+                    ControlToValidate="txtHairEngineerName" ErrorMessage="*"></asp:RequiredFieldValidator>
+                    </td>
         </tr>
         <tr>
             <td width="120px" align="right">年龄：</td>
-            <td><asp:TextBox ID="txtHairEngineerAge" runat="server" CssClass="TextBox"></asp:TextBox></td>
+            <td><asp:TextBox ID="txtHairEngineerAge" runat="server" CssClass="TextBox"></asp:TextBox>
+                    </td>
         </tr>
         <tr>
             <td width="120px" align="right">性别：</td>
@@ -42,7 +55,7 @@
         </tr>
           <tr>
             <td width="120px" align="right">星座：</td>
-            <td><asp:TextBox ID="TextBox1" runat="server" CssClass="TextBox"></asp:TextBox></td>
+            <td><asp:TextBox ID="tbConstellation" runat="server" CssClass="TextBox"></asp:TextBox></td>
         </tr>
         <tr>
             <td width="120px" align="right">头衔：</td>
@@ -73,8 +86,7 @@
         <tr>
             <td width="120px" align="right"><asp:Button ID="btnSubmit" runat="server" Text="下一步" OnClick="btnSubmit_OnClick" /></td>
             <td>
-                <asp:Button ID="btnAdd" runat="server" onclick="btnAdd_Click" Text="添加个人作品" />
-            </td>
+                <input id="Button1" type="button" value="添加个人作品" onclick="return Button1_onclick()" /></td>
         </tr>
     </table>
     </div>
