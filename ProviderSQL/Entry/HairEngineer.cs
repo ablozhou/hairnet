@@ -30,6 +30,7 @@ namespace HairNet.Entry
         private int _hairEngineerBad = 0;
         private int _hairEngineerClassID = 0;
         private string _hairEngineerClassName = string.Empty;
+        private string _hairEngineerConstellation = String.Empty;
 
         #endregion
 
@@ -159,6 +160,13 @@ namespace HairNet.Entry
             set { this._hairEngineerClassName = value; }
             get { return this._hairEngineerClassName; }
         }
+
+        public string HairEngineerConstellation
+        {
+            set { _hairEngineerConstellation = value; }
+            get { return _hairEngineerConstellation; }
+        }
+
         #endregion
 
         #region HairEngineer Methods

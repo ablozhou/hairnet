@@ -79,6 +79,7 @@
     <Content Include="Admin\Blue\TitlebarRight_Head.gif" />
     <Content Include="Admin\CouponManagement.aspx" />
     <Content Include="Admin\EngineerOpusInfo.aspx" />
+    <Content Include="Admin\EngineerPreview.aspx" />
     <Content Include="Admin\FCKeditor\editor\css\behaviors\disablehandles.htc" />
     <Content Include="Admin\FCKeditor\editor\css\behaviors\hiddenfield.gif" />
     <Content Include="Admin\FCKeditor\editor\css\behaviors\hiddenfield.htc" />
@@ -1043,6 +1044,13 @@
     </Compile>
     <Compile Include="Admin\EngineerOpusInfo.aspx.designer.cs">
       <DependentUpon>EngineerOpusInfo.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\EngineerPreview.aspx.cs">
+      <DependentUpon>EngineerPreview.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\EngineerPreview.aspx.designer.cs">
+      <DependentUpon>EngineerPreview.aspx</DependentUpon>
     </Compile>
     <Compile Include="Admin\HairEngineerAdd.aspx.cs">
       <SubType>ASPXCodeBehind</SubType>

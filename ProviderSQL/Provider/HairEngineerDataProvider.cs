@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using HairNet.Entry;
 using HairNet.Enumerations;
+using System.Data;
 
 namespace HairNet.Provider
 {
@@ -160,8 +161,25 @@ namespace HairNet.Provider
         /// <returns></returns>
         bool HairEngineerCommentCreateDeleteUpdate(HairEngineerComment hairEngineerComment, UserAction ua);
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="tagNames"></param>
+        /// <returns></returns>
         string GetHairEngineerTagIDs(string tagNames);
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="tagIDs"></param>
+        /// <returns></returns>
         string GetHairEngineerTagNames(string tagIDs);
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="HairEngineerID"></param>
+        /// <returns></returns>
+        DataTable GetHairEngineerInfoByID(Int32 HairEngineerID);
     }
 }

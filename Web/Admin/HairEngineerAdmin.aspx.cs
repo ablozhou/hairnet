@@ -250,32 +250,28 @@ namespace Web.Admin
             {
                 e.Item.Attributes.Add("onmouseover", "c=this.style.backgroundColor;this.style.backgroundColor='#ffffff';");
                 e.Item.Attributes.Add("onmouseout", "this.style.backgroundColor=c;");
-                e.Item.Cells[12].Attributes.Add("onclick", "return confirm('确定推荐么?');");
-                e.Item.Cells[13].Attributes.Add("onclick", "return confirm('确定删除么?');");
+                //e.Item.Cells[12].Attributes.Add("onclick", "return confirm('确定推荐么?');");
+                e.Item.Cells[9].Attributes.Add("onclick", "return confirm('确定删除么?');");
 
                 HairEngineer hairEngineer = e.Item.DataItem as HairEngineer;
                 Label lblRecommandRate = e.Item.FindControl("lblRecommandRate") as Label;
-                Label lblCommentTotal = e.Item.FindControl("lblCommentTotal") as Label;
+                //Label lblCommentTotal = e.Item.FindControl("lblCommentTotal") as Label;
                 Label lblCommentRate = e.Item.FindControl("lblCommentRate") as Label;
 
-                
-                //推荐指数（点击数+好评评论数+我要推荐数）?美发师的预约数不应该计算在内么?
+
+                ////推荐指数（点击数+好评评论数+我要推荐数）?美发师的预约数不应该计算在内么?
                 int recommandRate = hairEngineer.HairEngineerHits + hairEngineer.HairEngineerGood + hairEngineer.HairEngineerRecommandNum;
-
                 lblRecommandRate.Text = recommandRate.ToString();
-                //评论数（好评+坏评数）
-                int commentTotal = hairEngineer.HairEngineerGood + hairEngineer.HairEngineerBad;
 
-                lblCommentTotal.Text = commentTotal.ToString();
-                //好评率（好评数/评论数）
+                ////好评率（好评数/评论数）
                 double commentRate = 0.0;
-                if(commentTotal==0)
+                if (recommandRate == 0)
                 {
                     commentRate = 0;
                 }
                 else
                 {
-                    commentRate = Convert.ToDouble(hairEngineer.HairEngineerGood)/Convert.ToDouble(commentTotal);
+                    commentRate = Convert.ToDouble(hairEngineer.HairEngineerGood) / Convert.ToDouble(recommandRate);
                 }
                 lblCommentRate.Text = commentRate.ToString();
             }

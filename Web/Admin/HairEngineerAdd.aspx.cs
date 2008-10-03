@@ -69,24 +69,41 @@ namespace Web.Admin
             he.HairEngineerYear = txtHairEngineerYear.Text.Trim();
             he.HairEngineerSkill = txtHairEngineerSkill.Text.Trim();
             he.HairEngineerDescription = txtHairEngineerDescription.Text.Trim();
-
+            he.HairEngineerConstellation = tbConstellation.Text.Trim();
             he.HairEngineerClassID = int.Parse(ddlHairShopClass.SelectedValue);
             he.HairShopID = int.Parse(ddlHairShop.SelectedValue);
             
             UpLoadClass upload = new UpLoadClass();
             he.HairEngineerPhoto = upload.UpLoadImg(fileLogo, "/uploadfiles/pictures/");
-            upload = null;
-
 
             he.HairEngineerTagIDs = InfoAdmin.GetHairEngineerTagIDs(txtHairEngineerTag.Text.Trim());
-
+            
             Session["HairEngineerInfo"] = he;
+            InfoAdmin.AddHairEngineer(he);
+            ResetControlState();
+
             this.Response.Redirect("EngineerOpusInfo.aspx");
         }
 
         protected void rBtnListHairEngineerSex_SelectedIndexChanged(object sender, EventArgs e)
         {
 
+        }
+
+        protected void ResetControlState()
+        {
+            txtHairEngineerName.Text = String.Empty;
+            txtHairEngineerAge.Text = String.Empty;
+            rBtnListHairEngineerSex.SelectedIndex = 0;
+            txtHairEngineerPrice.Text = String.Empty;
+            txtHairEngineerRawPrice.Text = String.Empty;
+            txtHairEngineerYear.Text = String.Empty;
+            txtHairEngineerSkill.Text = String.Empty;
+            txtHairEngineerDescription.Text = String.Empty;
+            tbConstellation.Text = String.Empty;
+            ddlHairShopClass.SelectedIndex = 0;
+            ddlHairShop.SelectedIndex = 0;
+            txtHairEngineerTag.Text = String.Empty;
         }
 
         protected void btnAdd_Click(object sender, EventArgs e)

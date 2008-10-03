@@ -840,14 +840,32 @@ namespace HairNet.Business
             ProviderFactory.GetHairEngineerDataProviderInstance().HairStyleCreateDeleteUpdate(HairStyleEnt, UserAction.Delete);
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
         public static DataTable GetCouponList()
         {
             return ProviderFactory.GetHairShopDataProviderInstance().GetCouponList();
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="couponID"></param>
         public static void DeleteCoupon(String couponID)
         {
             ProviderFactory.GetHairShopDataProviderInstance().DeleteCoupon(couponID);
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="HairEngineerID">HairEngineerID</param>
+        /// <returns></returns>
+        public static DataTable GetHairEngineerInfoByID(String HairEngineerID)
+        {
+            return ProviderFactory.GetHairEngineerDataProviderInstance().GetHairEngineerInfoByID(Int32.Parse(HairEngineerID));
         }
     }
 }
