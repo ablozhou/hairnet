@@ -185,7 +185,57 @@ namespace HairNet.Provider
                 SqlHelper.ExecuteNonQuery(DataHelper2.SqlConnectionString, CommandType.StoredProcedure,
                     "DeleteHairStyle", parameters[0]);
         }
+        /// <summary>
+        /// 获取发型表
+        /// </summary>
+        /// <param name="hairStyleName"></param>
+        /// <returns></returns>
+        /// <author>zhh</author>
+        /// <date>2008.10.5</date>
+       public List<HairStyleEntity> GetHairStyleListByName(string hairStyleName)
+        {
+             SqlParameter parameter = new SqlParameter("@hairname", SqlDbType.Text);
+             parameter.Value = hairStyleName;
 
+             List<HairStyleEntity> valueList = new List<HairStyleEntity>();
+             using (SqlDataReader Reader = SqlHelper.ExecuteReader(DataHelper2.SqlConnectionString, CommandType.StoredProcedure,
+            "QueryHairStyleByName", parameter))
+             {
+                 while (Reader.Read())
+                     valueList.Add(new HairStyleEntity(Reader.GetInt32(0), Reader.GetString(1), Reader.GetByte(2), Reader.GetByte(3),
+                         Reader.GetByte(4), Reader.GetByte(5), Reader.GetByte(6), Reader.GetString(7), Reader.GetString(8), Reader.GetString(9),
+                         Reader.GetString(10), Reader.GetString(11), Reader.GetString(12), Reader.GetString(13), Reader.GetInt32(14),
+                         Reader.GetInt32(15), Reader.GetByte(16), Reader.GetByte(17), Reader.GetByte(18), Reader.GetDateTime(19),
+                         Reader.GetString(20), Reader.GetInt32(21), Reader.GetInt32(22), Reader.GetInt32(23), Reader.GetString(24)));
+             }
+
+             return valueList;
+        }
+
+        /// <summary>
+        /// 获取发型表
+        /// </summary>
+        /// <param name="hairStyleName"></param>
+        /// <returns></returns>
+        /// <author>zhh</author>
+        /// <date>2008.10.5</date>
+        public List<HairStyleEntity> GetHairStyleList()
+        {
+           
+            List<HairStyleEntity> valueList = new List<HairStyleEntity>();
+            using (SqlDataReader Reader = SqlHelper.ExecuteReader(DataHelper2.SqlConnectionString, CommandType.StoredProcedure,
+           "QueryHairStyle", null))
+            {
+                while (Reader.Read())
+                    valueList.Add(new HairStyleEntity(Reader.GetInt32(0), Reader.GetString(1), Reader.GetByte(2), Reader.GetByte(3),
+                        Reader.GetByte(4), Reader.GetByte(5), Reader.GetByte(6), Reader.GetString(7), Reader.GetString(8), Reader.GetString(9),
+                        Reader.GetString(10), Reader.GetString(11), Reader.GetString(12), Reader.GetString(13), Reader.GetInt32(14),
+                        Reader.GetInt32(15), Reader.GetByte(16), Reader.GetByte(17), Reader.GetByte(18), Reader.GetDateTime(19),
+                        Reader.GetString(20), Reader.GetInt32(21), Reader.GetInt32(22), Reader.GetInt32(23), Reader.GetString(24)));
+            }
+
+            return valueList;
+        }
         /// <summary>
         /// 
         /// </summary>
@@ -193,24 +243,49 @@ namespace HairNet.Provider
         /// <returns></returns>
         public List<HairStyleEntity> GetEngineerOpusByEngineerID(Int32 engineerID)
         {
-            SqlParameter parameter = new SqlParameter("@ID", SqlDbType.Int);
+            SqlParameter parameter = new SqlParameter("@EngineerID", SqlDbType.Int);
             parameter.Value = engineerID;
 
             List<HairStyleEntity> valueList = new List<HairStyleEntity>();
 
             using (SqlDataReader Reader = SqlHelper.ExecuteReader(DataHelper2.SqlConnectionString, CommandType.StoredProcedure,
-                "QueryHairStyle", parameter))
+                "QueryHairStyleByEngineerID", parameter))
             {
                 while (Reader.Read())
                     valueList.Add(new HairStyleEntity(Reader.GetInt32(0), Reader.GetString(1), Reader.GetByte(2), Reader.GetByte(3),
                         Reader.GetByte(4), Reader.GetByte(5), Reader.GetByte(6), Reader.GetString(7), Reader.GetString(8), Reader.GetString(9),
                         Reader.GetString(10), Reader.GetString(11), Reader.GetString(12), Reader.GetString(13), Reader.GetInt32(14),
-                        Reader.GetInt32(15), Reader.GetInt32(16), Reader.GetByte(17), Reader.GetByte(18), Reader.GetDateTime(19),
+                        Reader.GetInt32(15), Reader.GetByte(16), Reader.GetByte(17), Reader.GetByte(18), Reader.GetDateTime(19),
                         Reader.GetString(20), Reader.GetInt32(21), Reader.GetInt32(22), Reader.GetInt32(23), Reader.GetString(24)));
             }
 
             return valueList;
-                
+
+        } /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="engineerID"></param>
+        /// <returns></returns>
+        public List<HairStyleEntity> GetHairStyleListByID(Int32 ID)
+        {
+            SqlParameter parameter = new SqlParameter("@ID", SqlDbType.Int);
+            parameter.Value = ID;
+
+            List<HairStyleEntity> valueList = new List<HairStyleEntity>();
+
+            using (SqlDataReader Reader = SqlHelper.ExecuteReader(DataHelper2.SqlConnectionString, CommandType.StoredProcedure,
+                "QueryHairStyleByID", parameter))
+            {
+                while (Reader.Read())
+                    valueList.Add(new HairStyleEntity(Reader.GetInt32(0), Reader.GetString(1), Reader.GetByte(2), Reader.GetByte(3),
+                        Reader.GetByte(4), Reader.GetByte(5), Reader.GetByte(6), Reader.GetString(7), Reader.GetString(8), Reader.GetString(9),
+                        Reader.GetString(10), Reader.GetString(11), Reader.GetString(12), Reader.GetString(13), Reader.GetInt32(14),
+                        Reader.GetInt32(15), Reader.GetByte(16), Reader.GetByte(17), Reader.GetByte(18), Reader.GetDateTime(19),
+                        Reader.GetString(20), Reader.GetInt32(21), Reader.GetInt32(22), Reader.GetInt32(23), Reader.GetString(24)));
+            }
+
+            return valueList;
+
         }
 
         /// <summary>
@@ -1251,5 +1326,7 @@ namespace HairNet.Provider
 
             return result;
         }
+
+
     }
 }
