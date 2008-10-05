@@ -61,11 +61,7 @@
                         <asp:Label ID="lblCommentRate" runat="server"></asp:Label>
                     </ItemTemplate>
                 </asp:TemplateColumn>
-                <asp:TemplateColumn HeaderText="图片">
-                    <ItemTemplate>
-                        <asp:Image ID="Image1" runat="server" />
-                    </ItemTemplate>
-                </asp:TemplateColumn>
+                
                 <asp:HyperLinkColumn DataNavigateUrlField="HairShopID" 
                     DataNavigateUrlFormatString="ShopDetailInformation.aspx?id={0}" Target="_blank" 
                     Text="预览" HeaderText="预览"></asp:HyperLinkColumn>

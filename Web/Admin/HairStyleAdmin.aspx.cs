@@ -16,7 +16,7 @@ using HairNet.Utilities;
 
 namespace Web.Admin
 {
-    public partial class PictureStoreAdmin : System.Web.UI.Page
+    public partial class HairStyleAdmin : System.Web.UI.Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -26,12 +26,7 @@ namespace Web.Admin
 
                 Session["query"] = null;
                 this.txtQueryName.Visible = true;
-                this.txtStartTime.Visible = false;
-                this.txtEndTime.Visible = false;
-                this.lblEndTime.Visible = false;
-                this.lblStartTime.Visible = false;
-                this.lblTimeSpace.Visible = false;
-                this.lblQueryNameSpace.Visible = true;
+                
             }
         }
         public void ddlQuery_OnSelectedIndexChanged(object sender, EventArgs e)
@@ -39,22 +34,12 @@ namespace Web.Admin
             if (this.ddlQuery.SelectedValue != "3")
             {
                 this.txtQueryName.Visible = true;
-                this.lblQueryNameSpace.Visible = true;
-                this.txtStartTime.Visible = false;
-                this.txtEndTime.Visible = false;
-                this.lblEndTime.Visible = false;
-                this.lblStartTime.Visible = false;
-                this.lblTimeSpace.Visible = false;
+               
             }
             else
             {
                 this.txtQueryName.Visible = false;
-                this.lblQueryNameSpace.Visible = false;
-                this.txtStartTime.Visible = true;
-                this.txtEndTime.Visible = true;
-                this.lblStartTime.Visible = true;
-                this.lblEndTime.Visible = true;
-                this.lblTimeSpace.Visible = true;
+               
             }
         }
         public void ddlOrderWay_OnSelectIndexChanged(object sender, EventArgs e)
@@ -64,7 +49,7 @@ namespace Web.Admin
         public void btnQuery_OnClick(object sender, EventArgs e)
         {
             //目前只实现名称模糊查询，关键字和时间段具体实现需要确认
-            Session["query"] = this.txtQueryName.Text;
+            Session["query"] = "HairName like '%" + txtQueryName.Text.Trim() + "%'";
             this.databind();
         }
         public void btnSelect_OnClick(object sender, EventArgs e)
@@ -90,107 +75,81 @@ namespace Web.Admin
                 this.btnSelect.Text = "全选";
             }
         }
-        public void btnRecommand_OnClick(object sender, EventArgs e)
-        {
-            int i = 0;
-            foreach (DataGridItem dgi in this.dg.Items)
-            {
-                CheckBox IsSelect = dgi.FindControl("IsSelect") as CheckBox;
-                if (IsSelect.Checked == true)
-                {
-                    i++;
+        //public void btnRecommand_OnClick(object sender, EventArgs e)
+        //{
+        //    int i = 0;
+        //    foreach (DataGridItem dgi in this.dg.Items)
+        //    {
+        //        CheckBox IsSelect = dgi.FindControl("IsSelect") as CheckBox;
+        //        if (IsSelect.Checked == true)
+        //        {
+        //            i++;
 
-                    int pictureStoreID = int.Parse(this.dg.DataKeys[dgi.ItemIndex].ToString());
-
-                    string pictureStoreRecommandInfo = ConfigurationManager.AppSettings["PictureStoreRecommandInfo"].ToString();
-                    string pictureStoreRecommandEx = string.Empty;
-                    if (!InfoAdmin.RecommandPictureStore(pictureStoreID, 0, pictureStoreRecommandInfo, pictureStoreRecommandEx, UserAction.Create))
-                    {
-                        StringHelper.AlertInfo("推荐失败", this.Page);
-                    }
-                }
-            }
-            if (i == 0)
-            {
-                StringHelper.AlertInfo("请选择要推荐的项", this.Page);
-            }
-            else
-            {
-                this.Response.Redirect("PictureStoreAdmin.aspx");
-            }
-        }
+        //            int hairStyleID = int.Parse(this.dg.DataKeys[dgi.ItemIndex].ToString());
+        //            string hairStyleRecommandInfo = ConfigurationManager.AppSettings["HairStyleRecommandInfo"].ToString();
+        //            string hairStyleRecommandEx = string.Empty;
+        //            if (!InfoAdmin.RecommandHairStyle(hairStyleID, 0, hairStyleRecommandInfo, hairStyleRecommandEx, UserAction.Create))
+        //            {
+        //                StringHelper.AlertInfo("推荐失败", this.Page);
+        //            }
+        //        }
+        //    }
+        //    if (i == 0)
+        //    {
+        //        StringHelper.AlertInfo("请选择要推荐的项", this.Page);
+        //    }
+        //    else
+        //    {
+        //        this.Response.Redirect("HairStyleAdmin.aspx");
+        //    }
+        //}
         public void btnAdd_OnClick(object sender, EventArgs e)
         {
             //添加操作，转向添加页面
-            this.Response.Redirect("PictureStoreAdd.aspx");
+            this.Response.Redirect("EngineerOpusInfo.aspx");
         }
+
         public void databind()
         {
-            List<PictureStore> list = new List<PictureStore>();
+            List<HairStyleEntity> list = new List<HairStyleEntity>();
+            DataTable table = null;
 
-            if (Session["query"] == null || Session["query"].ToString() == string.Empty)
-            {
-                //根据排序绑定,均是倒序
-                switch (this.ddlOrderWay.SelectedValue)
-                {
-                    case "1":
-                        //发布时间，即ID
-                        list = InfoAdmin.GetPictureStores(0, OrderKey.ID);
-                        break;
-                    case "2":
-                        //点击数
-                        list = InfoAdmin.GetPictureStores(0, OrderKey.HitNum);
-                        break;
-                    case "3":
-                        //评论数
-                        //目前未实现评论数排序，目前为对评论数进行预处理，故DESIGN改变后，再实现
-                        //list = InfoAdmin.GetPictureStores(0, OrderKey.CommentNum);
-                        break;
-                }
-            }
-            else
-            {
-                switch (this.ddlQuery.SelectedValue)
-                {
-                    case "1":
-                        //名称
-                        //根据排序绑定,均是倒序
-                        switch (this.ddlOrderWay.SelectedValue)
-                        {
-                            case "1":
-                                //发布时间，即ID
-                                list = InfoAdmin.GetPictureStores(0, OrderKey.ID, Session["query"].ToString());
-                                break;
-                            case "2":
-                                //点击数
-                                list = InfoAdmin.GetPictureStores(0, OrderKey.HitNum, Session["query"].ToString());
-                                break;
-                            case "3":
-                                //评论数
-                                //目前未实现评论数排序，目前为对评论数进行预处理，故DESIGN改变后，再实现
-                                //list = InfoAdmin.GetPictureStores(0, OrderKey.CommentNum, Session["query"].ToString());
-                                break;
-                        }
-                        break;
-                    case "2":
-                        //关键字
-                        break;
-                    case "3":
-                        //时间段
-                        break;
+            //if (Session["query"] == null || Session["query"].ToString() == string.Empty)
+            //{
+            //    //根据排序绑定,均是倒序
+            //    switch (this.ddlOrderWay.SelectedValue)
+            //    {
+            //        case "1":
+            //            //发布时间，即ID
+            //            //list = InfoAdmin.GetHairStyles(0, OrderKey.ID);
+            //            table = InfoAdmin.GetHairStyleList(0, OrderKey.ID);
+            //            break;
+            //        case "2":
+            //            //点击数
+            //            //list = InfoAdmin.GetHairStyles(0, OrderKey.HitNum);
+            //            table = InfoAdmin.GetHairStyleList(0, OrderKey.HitNum);
+            //            break;
+ 
+            //    }
+            //}
+            //else
+            //{
 
-                }
-            }
+              //table = InfoAdmin.GetHairStyleList();
+                       
 
-            this.dg.DataKeyField = "PictureStoreID";
-            this.dg.DataSource = list;
+                 
+             //}
+            List<HairStyleEntity> hl = InfoAdmin.GetHairStyleList();
+            this.dg.DataKeyField = "ID";
+            dg.DataSource = hl;
+            //this.dg.DataSource = list;
             this.dg.DataBind();
-
             //绑定页码
             SetupPage();
             this.Page_nPage.Text = Convert.ToString(this.dg.CurrentPageIndex + 1);
             this.Page_nRecCount.Text = this.dg.PageCount.ToString();
-            this.Page_nRecCount_1.Text = list.Count.ToString();//this.dg.Items.Count.ToString();
+            this.Page_nRecCount_1.Text = hl.Count.ToString();
             ispages.Text = this.Page_nPage.Text;
             IsFirstLastPage(this.dg.PageCount, this.dg.CurrentPageIndex);
             if (this.dg.PageCount == 1)
@@ -202,26 +161,28 @@ namespace Web.Admin
                 this.dg.PagerStyle.Visible = false;
             }
         }
+
         public void dg_OnItemCommand(object sender, DataGridCommandEventArgs e)
         {
             if (e.Item.ItemType == ListItemType.AlternatingItem || e.Item.ItemType == ListItemType.Item)
             {
-                if (e.CommandName == "recommand")
-                {
-                    int pictureStoreID = int.Parse(this.dg.DataKeys[e.Item.ItemIndex].ToString());
+                //if (e.CommandName == "recommand")
+                //{
+                //    int hairStyleID = int.Parse(this.dg.DataKeys[e.Item.ItemIndex].ToString());
 
-                    string redirectUrl = "PictureStoreUpdate.aspx?pictureStoreID=" + pictureStoreID.ToString() + "&pictureStoreRecommandID=0&operateType=" + Convert.ToInt32(UserAction.Create).ToString();
+                //    string redirectUrl = "HairStyleRecommandUpdate.aspx?hairStyleID=" + hairStyleID.ToString() + "&hairStyleRecommandID=0&operateType=" + Convert.ToInt32(UserAction.Create).ToString();
 
-                    this.Response.Redirect(redirectUrl);
-                }
+                //    this.Response.Redirect(redirectUrl);
+                //}
                 if (e.CommandName == "delete")
                 {
-                    int pictureStoreID = int.Parse(this.dg.DataKeys[e.Item.ItemIndex].ToString());
-
-                    if (InfoAdmin.DeletePictureStore(pictureStoreID))
+                    int hairStyleID = int.Parse(this.dg.DataKeys[e.Item.ItemIndex].ToString());
+                    
+                    
+                    if (InfoAdmin.DeleteHairStyle(hairStyleID))
                     {
                         StringHelper.AlertInfo("删除成功", this.Page);
-                        this.Response.Redirect("PictureStoreAdmin.aspx");
+                        this.Response.Redirect("HairStyleAdmin.aspx");
                     }
                     else
                     {
@@ -232,21 +193,49 @@ namespace Web.Admin
         }
         public void dg_OnItemDataBound(object sender, DataGridItemEventArgs e)
         {
-            if (e.Item.ItemType == ListItemType.AlternatingItem || e.Item.ItemType == ListItemType.Item)
+            if (e.Item.ItemType == ListItemType.Item || e.Item.ItemType == ListItemType.AlternatingItem)
             {
                 e.Item.Attributes.Add("onmouseover", "c=this.style.backgroundColor;this.style.backgroundColor='#ffffff';");
                 e.Item.Attributes.Add("onmouseout", "this.style.backgroundColor=c;");
-                e.Item.Cells[5].Attributes.Add("onclick", "return confirm('确定推荐么?');");
-                e.Item.Cells[6].Attributes.Add("onclick", "return confirm('确定删除么?');");
+
+                // Image pic = e.Item.FindControl("Image1") as Image;
+                // DataRowView row = e.Item.DataItem as DataRowView;
+                // pic.ImageUrl = @"D:\SourceCode\Web\uploadfiles\logo\2008\10\3\images\2008103353363175164.bmp";
+            }
+            //if (e.Item.ItemType == ListItemType.AlternatingItem || e.Item.ItemType == ListItemType.Item)
+            //{
+            //    e.Item.Attributes.Add("onmouseover", "c=this.style.backgroundColor;this.style.backgroundColor='#ffffff';");
+            //    e.Item.Attributes.Add("onmouseout", "this.style.backgroundColor=c;");
+            //    e.Item.Cells[11].Attributes.Add("onclick", "return confirm('确定推荐么?');");
+            //    e.Item.Cells[12].Attributes.Add("onclick", "return confirm('确定删除么?');");
+
+               // HairStyleEntity hairStyle = e.Item.DataItem as HairStyleEntity;
+               //// Label lblRecommandRate = e.Item.FindControl("lblRecommandRate") as Label;
+               // //Label lblCommentTotal = e.Item.FindControl("lblCommentTotal") as Label;
+               // Label lblCommentRate = e.Item.FindControl("lblCommentRate") as Label;
+
+               // //推荐指数（访问数+好评评论数+我要推荐数）
+               //// int recommandRate = hairStyle.HairStyleVisitNum + hairStyle.HairStyleGood + hairStyle.HairStyleRecommandNum;
+
+               //// lblRecommandRate.Text = recommandRate.ToString();
+               // //评论数（好评+坏评数）
+               // int commentTotal = 0;
+               // if(hairStyle != null)
+               //     commentTotal = hairStyle.Good + hairStyle.Bad + hairStyle.Normal;
 
                 
-
-                PictureStore pictureStore = e.Item.DataItem as PictureStore;
-                Label lblPictureUrl = e.Item.FindControl("lblPictureUrl") as Label;
-
-                //lblPictureUrl.Text = "<a href='" + pictureStore.PictureStoreRawUrl.ToString() + "'target='_blank'><img src='" + pictureStore.PictureStoreLittleUrl.ToString() + "' width='40' height='20' alt='点击查看大图' /></a>";
-
-            }
+               // //好评率（好评数/评论数）
+               // double commentRate = 0.0;
+               // if (commentTotal == 0)
+               // {
+               //     commentRate = 0;
+               // }
+               // else
+               // {
+               //     commentRate = Convert.ToDouble(hairStyle.Good) / Convert.ToDouble(commentTotal);
+               // }
+               // lblCommentRate.Text = commentRate.ToString();
+           
         }
         public void dg_OnPageIndexChanged(object sender, DataGridPageChangedEventArgs e)
         {

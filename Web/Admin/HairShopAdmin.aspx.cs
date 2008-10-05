@@ -258,9 +258,9 @@ namespace Web.Admin
                 e.Item.Attributes.Add("onmouseover", "c=this.style.backgroundColor;this.style.backgroundColor='#ffffff';");
                 e.Item.Attributes.Add("onmouseout", "this.style.backgroundColor=c;");
 
-                Image pic = e.Item.FindControl("Image1") as Image;
-                DataRowView row = e.Item.DataItem as DataRowView;
-                pic.ImageUrl = @"D:\SourceCode\Web\uploadfiles\logo\2008\10\3\images\2008103353363175164.bmp";
+               // Image pic = e.Item.FindControl("Image1") as Image;
+               // DataRowView row = e.Item.DataItem as DataRowView;
+               // pic.ImageUrl = @"D:\SourceCode\Web\uploadfiles\logo\2008\10\3\images\2008103353363175164.bmp";
             }
             //if (e.Item.ItemType == ListItemType.AlternatingItem || e.Item.ItemType == ListItemType.Item)
             //{

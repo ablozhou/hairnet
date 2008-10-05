@@ -11,12 +11,6 @@
 namespace Web.Admin {
     
     
-    /// <summary>
-    /// UserInfoAdmin 类。
-    /// </summary>
-    /// <remarks>
-    /// 自动生成的类。
-    /// </remarks>
     public partial class UserInfoAdmin {
         
         /// <summary>
@@ -24,7 +18,7 @@ namespace Web.Admin {
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
-        /// 要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlForm form1;
         
@@ -33,7 +27,7 @@ namespace Web.Admin {
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
-        /// 要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtQueryName;
         
@@ -42,7 +36,7 @@ namespace Web.Admin {
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
-        /// 要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnQuery;
         
@@ -51,25 +45,16 @@ namespace Web.Admin {
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
-        /// 要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnSelectAll;
-        
-        /// <summary>
-        /// btnSend 控件。
-        /// </summary>
-        /// <remarks>
-        /// 自动生成的字段。
-        /// 要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnSend;
         
         /// <summary>
         /// btnDelete 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
-        /// 要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnDelete;
         
@@ -78,7 +63,7 @@ namespace Web.Admin {
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
-        /// 要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
         protected global::System.Web.UI.WebControls.DataGrid dg;
         
@@ -87,7 +72,7 @@ namespace Web.Admin {
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
-        /// 要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
         protected global::System.Web.UI.WebControls.LinkButton PageFirst;
         
@@ -96,7 +81,7 @@ namespace Web.Admin {
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
-        /// 要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
         protected global::System.Web.UI.WebControls.LinkButton PagePrev;
         
@@ -105,7 +90,7 @@ namespace Web.Admin {
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
-        /// 要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
         protected global::System.Web.UI.WebControls.LinkButton PageNext;
         
@@ -114,7 +99,7 @@ namespace Web.Admin {
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
-        /// 要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
         protected global::System.Web.UI.WebControls.LinkButton PageLast;
         
@@ -123,7 +108,7 @@ namespace Web.Admin {
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
-        /// 要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label CountPage;
         
@@ -132,7 +117,7 @@ namespace Web.Admin {
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
-        /// 要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox ispages;
         
@@ -141,7 +126,7 @@ namespace Web.Admin {
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
-        /// 要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList thispages;
         
@@ -150,7 +135,7 @@ namespace Web.Admin {
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
-        /// 要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label Page_nPage;
         
@@ -159,7 +144,7 @@ namespace Web.Admin {
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
-        /// 要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label Page_nRecCount;
         
@@ -168,7 +153,7 @@ namespace Web.Admin {
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
-        /// 要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label Page_nRecCount_1;
         
@@ -177,7 +162,7 @@ namespace Web.Admin {
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
-        /// 要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label Page_strSQL;
     }

@@ -30,8 +30,6 @@ function Button1_onclick() {
          <tr>
             <td width="120px" align="right">姓名：</td>
             <td><asp:TextBox ID="txtHairEngineerName" runat="server" CssClass="TextBox"></asp:TextBox>
-                <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" 
-                    ControlToValidate="txtHairEngineerName" ErrorMessage="*"></asp:RequiredFieldValidator>
                     </td>
         </tr>
         <tr>
@@ -84,9 +82,9 @@ function Button1_onclick() {
             <td><asp:TextBox runat="server" Width="98%" Rows="15" TextMode="MultiLine" 
                     ID="txtHairEngineerDescription" Height="110px"></asp:TextBox></td></tr>
         <tr>
-            <td width="120px" align="right"><asp:Button ID="btnSubmit" runat="server" Text="下一步" OnClick="btnSubmit_OnClick" /></td>
+            <td width="120px" align="right"><asp:Button ID="btnSubmit" runat="server" Text="添加作品" OnClick="btnSubmit_OnClick" /></td>
             <td>
-                <input id="Button1" type="button" value="添加个人作品" onclick="return Button1_onclick()" /></td>
+                <asp:Button ID="btnHairEngineerAdd" runat="server" OnClick="btnHairEngineerAdd_Click" Text="添加美发师" /></td>
         </tr>
     </table>
     </div>

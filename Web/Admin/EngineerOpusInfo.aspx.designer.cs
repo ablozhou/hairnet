@@ -11,7 +11,7 @@
 namespace Web.Admin {
     
     
-    public partial class EngineerOpusInfo {
+    public partial class HairStyleAdd1 {
         
         /// <summary>
         /// form1 control.
