@@ -841,6 +841,40 @@ namespace HairNet.Business
         }
 
         /// <summary>
+        /// 获取发型表
+        /// </summary>
+        /// <param name="hairStyleName">发型名字</param>
+        /// <returns></returns>
+        public static List<HairStyleEntity> GetHairStyleListByName(string hairStyleName)
+        {
+            return ProviderFactory.GetHairEngineerDataProviderInstance().GetHairStyleListByName( hairStyleName);    
+        }
+
+        /// <summary>
+        /// 获取发型表
+        /// </summary>
+        /// <param name="hairStyleName"></param>
+        /// <returns></returns>
+        /// <author>zhh</author>
+        /// <date>2008.10.5</date>
+        public static List<HairStyleEntity> GetHairStyleList()
+        {
+            return ProviderFactory.GetHairEngineerDataProviderInstance().GetHairStyleList();
+
+        }  
+        /// <summary>
+        /// 获取发型表
+        /// </summary>
+        /// <param name="hairStyleName"></param>
+        /// <returns></returns>
+        /// <author>zhh</author>
+        /// <date>2008.10.5</date>
+        public static List<HairStyleEntity> GetHairStyleListByID(int ID)
+        {
+            return ProviderFactory.GetHairEngineerDataProviderInstance().GetHairStyleListByID( ID);
+
+        }
+        /// <summary>
         /// 
         /// </summary>
         /// <returns></returns>
@@ -866,6 +900,11 @@ namespace HairNet.Business
         public static DataTable GetHairEngineerInfoByID(String HairEngineerID)
         {
             return ProviderFactory.GetHairEngineerDataProviderInstance().GetHairEngineerInfoByID(Int32.Parse(HairEngineerID));
+        }
+
+        public static bool DeleteHairStyle(int hairStyleID)
+        {
+            throw new NotImplementedException();
         }
     }
 }

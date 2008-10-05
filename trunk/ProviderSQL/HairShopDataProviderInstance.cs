@@ -166,9 +166,9 @@ namespace HairNet.Provider
                 cmdBuilder.Append(hairShop.HairConservationDiscount.ToString() + "','");
 
                 cmdBuilder.Append(hairShop.LocationMapURL + "','");
-                cmdBuilder.Append(hairShop.IsServeMarce.ToString() + "','");
-                cmdBuilder.Append(hairShop.IsServeDye.ToString() + "','");
-                cmdBuilder.Append(hairShop.IsServeHairCut.ToString() + " ','");
+                cmdBuilder.Append(hairShop.IsServeMarce.CompareTo(false).ToString() + "','");
+                cmdBuilder.Append(hairShop.IsServeDye.CompareTo(false).ToString() + "','");
+                cmdBuilder.Append(hairShop.IsServeHairCut.CompareTo(false).ToString() + " ','");
                 cmdBuilder.Append(hairShop.Square + "' )");
 
                 SqlHelper.ExecuteNonQuery(DataHelper2.SqlConnectionString, CommandType.Text, cmdBuilder.ToString());

@@ -181,5 +181,12 @@ namespace HairNet.Provider
         /// <param name="HairEngineerID"></param>
         /// <returns></returns>
         DataTable GetHairEngineerInfoByID(Int32 HairEngineerID);
+
+
+        List<HairStyleEntity> GetHairStyleListByName(string hairStyleName);
+
+        List<HairStyleEntity> GetHairStyleList();
+
+        List<HairStyleEntity> GetHairStyleListByID(Int32 ID);
     }
 }
