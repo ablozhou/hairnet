@@ -11,195 +11,177 @@
 namespace Web.Admin {
     
     
-    public partial class PictureStoreAdd {
+    public partial class HairStyleAdmin {
         
         /// <summary>
-        /// form1 控件。
+        /// formHairStyle 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlForm form1;
+        protected global::System.Web.UI.HtmlControls.HtmlForm formHairStyle;
         
         /// <summary>
-        /// txtPictureStoreName 控件。
+        /// ddlQuery 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtPictureStoreName;
+        protected global::System.Web.UI.WebControls.DropDownList ddlQuery;
         
         /// <summary>
-        /// txtPictureStoreTag 控件。
+        /// txtQueryName 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtPictureStoreTag;
+        protected global::System.Web.UI.WebControls.TextBox txtQueryName;
         
         /// <summary>
-        /// ddlPictureStoreGroup 控件。
+        /// lblTimeSpace 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlPictureStoreGroup;
+        protected global::System.Web.UI.WebControls.Label lblTimeSpace;
         
         /// <summary>
-        /// txtPictureStoreDescription 控件。
+        /// btnQuery 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtPictureStoreDescription;
+        protected global::System.Web.UI.WebControls.Button btnQuery;
         
         /// <summary>
-        /// uploadpic1 控件。
+        /// btnSelect 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputFile uploadpic1;
+        protected global::System.Web.UI.WebControls.Button btnSelect;
         
         /// <summary>
-        /// btnPicUpload 控件。
+        /// btnAdd 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnPicUpload;
+        protected global::System.Web.UI.WebControls.Button btnAdd;
         
         /// <summary>
-        /// uploadpic2 控件。
+        /// dg 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputFile uploadpic2;
+        protected global::System.Web.UI.WebControls.DataGrid dg;
         
         /// <summary>
-        /// Button1 控件。
+        /// PageFirst 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button Button1;
+        protected global::System.Web.UI.WebControls.LinkButton PageFirst;
         
         /// <summary>
-        /// uploadpic3 控件。
+        /// PagePrev 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputFile uploadpic3;
+        protected global::System.Web.UI.WebControls.LinkButton PagePrev;
         
         /// <summary>
-        /// Button2 控件。
+        /// PageNext 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button Button2;
+        protected global::System.Web.UI.WebControls.LinkButton PageNext;
         
         /// <summary>
-        /// uploadpic4 控件。
+        /// PageLast 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputFile uploadpic4;
+        protected global::System.Web.UI.WebControls.LinkButton PageLast;
         
         /// <summary>
-        /// Button3 控件。
+        /// CountPage 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button Button3;
+        protected global::System.Web.UI.WebControls.Label CountPage;
         
         /// <summary>
-        /// uploadpic5 控件。
+        /// ispages 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputFile uploadpic5;
+        protected global::System.Web.UI.WebControls.TextBox ispages;
         
         /// <summary>
-        /// Button4 控件。
+        /// thispages 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button Button4;
+        protected global::System.Web.UI.WebControls.DropDownList thispages;
         
         /// <summary>
-        /// btnSubmit 控件。
+        /// Page_nPage 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnSubmit;
+        protected global::System.Web.UI.WebControls.Label Page_nPage;
         
         /// <summary>
-        /// img1 控件。
+        /// Page_nRecCount 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Image img1;
+        protected global::System.Web.UI.WebControls.Label Page_nRecCount;
         
         /// <summary>
-        /// img2 控件。
+        /// Page_nRecCount_1 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Image img2;
+        protected global::System.Web.UI.WebControls.Label Page_nRecCount_1;
         
         /// <summary>
-        /// img3 控件。
+        /// Page_strSQL 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Image img3;
-        
-        /// <summary>
-        /// img4 控件。
-        /// </summary>
-        /// <remarks>
-        /// 自动生成的字段。
-        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Image img4;
-        
-        /// <summary>
-        /// img5 控件。
-        /// </summary>
-        /// <remarks>
-        /// 自动生成的字段。
-        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Image img5;
+        protected global::System.Web.UI.WebControls.Label Page_strSQL;
     }
 }

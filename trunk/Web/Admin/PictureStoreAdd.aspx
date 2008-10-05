@@ -50,15 +50,46 @@
                 </td>
             </tr>
             <tr>
-                <td width="120" align="right">地址：
+                <td width="120" align="right">图片1：
                 </td>
-                <td><input id="uploadpic" type="file" runat="server" />
+                <td><input id="uploadpic1" type="file" runat="server" />&nbsp;&nbsp;<asp:Button ID="btnPicUpload" runat="server" OnClick="btnPicUpload1_OnClick" Text="上传图片1" />
+                </td>
+            </tr>
+            <tr>
+                <td width="120" align="right">图片2：
+                </td>
+                <td><input id="uploadpic2" type="file" runat="server" />&nbsp;&nbsp;<asp:Button ID="Button1" runat="server" OnClick="btnPicUpload2_OnClick" Text="上传图片2" />
+                </td>
+            </tr>
+            <tr>
+                <td width="120" align="right">图片3：
+                </td>
+                <td><input id="uploadpic3" type="file" runat="server" />&nbsp;&nbsp;<asp:Button ID="Button2" runat="server" OnClick="btnPicUpload3_OnClick" Text="上传图片3" />
+                </td>
+            </tr>
+            <tr>
+                <td width="120" align="right">图片4：
+                </td>
+                <td><input id="uploadpic4" type="file" runat="server" />&nbsp;&nbsp;<asp:Button ID="Button3" runat="server" OnClick="btnPicUpload4_OnClick" Text="上传图片4" />
+                </td>
+            </tr>
+            <tr>
+                <td width="120" align="right">图片5：
+                </td>
+                <td><input id="uploadpic5" type="file" runat="server" />&nbsp;&nbsp;<asp:Button ID="Button4" runat="server" OnClick="btnPicUpload5_OnClick" Text="上传图片5" />
                 </td>
             </tr>
         </table>
     </div>
     <div>
         <asp:Button ID="btnSubmit" Text="提交图片信息" runat="server" OnClick="btnSubmit_OnClick" />
+    </div>
+    <div>
+        <asp:Image ID="img1" runat="server" Visible="false" Width="200" Height="100" />&nbsp;&nbsp;
+        <asp:Image ID="img2" runat="server" Visible="false" Width="200" Height="100" />&nbsp;&nbsp;
+        <asp:Image ID="img3" runat="server" Visible="false" Width="200" Height="100" />&nbsp;&nbsp;
+        <asp:Image ID="img4" runat="server" Visible="false" Width="200" Height="100" />&nbsp;&nbsp;
+        <asp:Image ID="img5" runat="server" Visible="false" Width="200" Height="100" />&nbsp;&nbsp;
     </div>
     </form>
 </body>

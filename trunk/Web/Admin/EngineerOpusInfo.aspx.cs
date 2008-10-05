@@ -87,10 +87,10 @@ namespace Web.Admin
             listFaceType.Items.Add(new ListItem("方形", "5"));
 
             //
-            listHairType.Items.Add(new ListItem("测试", "1"));
+            listHairType.Items.Add(new ListItem("油性", "1"));
 
             //
-            listHairItem.Items.Add(new ListItem("测试", "1"));
+            listHairItem.Items.Add(new ListItem("烫发", "1"));
         }
 
         protected void Validation()

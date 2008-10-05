@@ -24,13 +24,12 @@
                      输入用户名<asp:TextBox ID="txtQueryName" runat="server" CssClass="TextBox"></asp:TextBox>&nbsp;
                      <asp:Button ID="btnQuery" runat="server" CssClass="btn"  Text="查询" OnClick="btnQuery_OnClick" />&nbsp;&nbsp;&nbsp;&nbsp;
                     <asp:Button ID="btnSelectAll" runat="server" CssClass="btn" OnClick="btnSelectAll_OnClick"  Text="全选" />&nbsp;&nbsp;
-                    <asp:Button ID="btnSend" runat="server" CssClass="btn"  Text="发送邮件" OnClick="btnSend_OnClick" />&nbsp;&nbsp;
                     <asp:Button ID="btnDelete" runat="server" CssClass="btn" Text="删除" OnClick="btnDelete_OnClick"/>
                 </td>
             </tr>
         </table>
         <div style="text-align: center">
-        <asp:DataGrid ID ="dg" runat = "server" PageSize="30" AllowPaging="true" AutoGenerateColumns="false" BackColor="White" BorderColor="White" BorderStyle="Ridge" BorderWidth="2px" CellPadding="3" Width="98%" CellSpacing="1" GridLines="None" OnItemDataBound="dg_OnItemDataBound" OnItemCommand="dg_OnItemCommand" OnPageIndexChanged="dg_OnPageIndexChanged">
+        <asp:DataGrid ID ="dg" runat = "server" PageSize="10" AllowPaging="true" AutoGenerateColumns="false" BackColor="White" BorderColor="White" BorderStyle="Ridge" BorderWidth="2px" CellPadding="3" Width="98%" CellSpacing="1" GridLines="None" OnItemDataBound="dg_OnItemDataBound" OnItemCommand="dg_OnItemCommand" OnPageIndexChanged="dg_OnPageIndexChanged">
             <FooterStyle BackColor="#C6C3C6" ForeColor="Black" />
             <SelectedItemStyle BackColor="#9471DE" Font-Bold="True" ForeColor="White" />
             <PagerStyle BackColor="#C6C3C6" ForeColor="Black" HorizontalAlign="Right" NextPageText="下一页"
@@ -44,12 +43,12 @@
                     </ItemTemplate>
                 </asp:TemplateColumn>
                 <asp:BoundColumn DataField="UserName" HeaderText="用户名"></asp:BoundColumn>
-                <asp:BoundColumn DataField="Sex" HeaderText="性别"></asp:BoundColumn>
+                <asp:BoundColumn DataField="Password" HeaderText="密码"></asp:BoundColumn>
+                
+                
                 <asp:BoundColumn DataField="Email" HeaderText="邮箱"></asp:BoundColumn>
                 <asp:BoundColumn DataField="UserRoleName" HeaderText="身份"></asp:BoundColumn>
-                <asp:BoundColumn DataField="Integral" HeaderText="积分"></asp:BoundColumn>
-                <asp:HyperLinkColumn DataNavigateUrlField="UserID" DataNavigateUrlFormatString="HistoryInfoAdmin.aspx?id={0}" Target="_blank" Text="轨迹跟踪"></asp:HyperLinkColumn>
-                <asp:HyperLinkColumn DataNavigateUrlField="UserID" DataNavigateUrlFormatString="UserDetails.aspx?id={0}" Target="_blank" Text="详细"></asp:HyperLinkColumn>
+                
                 <asp:HyperLinkColumn DataNavigateUrlField="UserID" DataNavigateUrlFormatString="UserEdit.aspx?id={0}" Target="_blank" Text="编辑"></asp:HyperLinkColumn>
                 <asp:ButtonColumn ButtonType="LinkButton" CommandName="delete" Text="删除"></asp:ButtonColumn>
             </Columns>

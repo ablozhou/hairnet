@@ -35,8 +35,13 @@ namespace Web.Admin
             if (ViewState["PicList"] == null)
             {
                 List<PictureStore> list = new List<PictureStore>();
+              
+                //edit engineer there is a bug
                 HairEngineer he = (HairEngineer)Session["HairEngineerInfo"];
+
+                //error
                 string[] ids = he.HairEngineerPictureStoreIDs.Split(',');
+                
                 foreach (string pid in ids)
                 {
                     list.Add(InfoAdmin.GetPictureStoreByPictureStoreID(int.Parse(pid)));
@@ -51,6 +56,7 @@ namespace Web.Admin
                 gvPicList.DataSource = list;
                 gvPicList.DataBind();
             }
+           
         }
 
         private void bindPicGroup()
