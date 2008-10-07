@@ -1,0 +1,266 @@
+/*搜美发厅开始*/
+#main-top {background-image: url(../images/fair-mft01.gif);background-repeat: no-repeat;width:980px;height:174px;
+margin:15px auto 0px auto;}
+#main-top div {width:930px;margin:0 auto;clear:both;} 
+.top-r-div {width:408px;margin:10px auto 0px auto;clear:both;}
+.top-r-div input {border:#ddded8 1px solid;width:175px;height:18px;background-color:##fcfcfc;}
+
+.red12-line-c {color:#cc0000;line-height:20px;font-size:12px;text-decoration:underline;}
+.red12-line-c a:link,.red12-line-c a:visited {color:#cc0000;text-decoration:underline;}
+.red12-line-c a:hover {color:#cc0033;text-decoration:underline;}
+
+.gundong {float:right;padding-top:8px;
+WIDTH: 600px; HEIGHT: 54px; BACKGROUND-COLOR: transparent; OVERFLOW-x: hidder;OVERFLOW-y: scroll; scrollbar-face-color: #FFFFFF; scrollbar-shadow-color: #D2E5F4; scrollbar-highlight-color: #D2E5F4; scrollbar-3dlight-color: #FFFFFF; scrollbar-darkshadow-color: #FFFFFF; scrollbar-track-color: #FFFFFF; scrollbar-arrow-color: #D2E5F4;
+}
+.right-line {border-right:#cbcbcb 1px solid;text-align:center;}
+.search-input {border:0px;background-image: url(../images/sg-meifa_input-bg.gif);background-repeat: repeat-x;background-position: center;font-size:12px;color:#666666;line-height:20px;width:240px;height:20px;text-align:center;}
+
+.gray-search {font-size:14px;font-weight:bold;color:#666666;text-align:center;line-height:25px;}
+.gray-search a:link,.gray-search a:visited {color:#666666;}
+.gray-search a:hover {color:#cc0033;}
+.search-txt {border:#e5e5e5 1px solid;background-color:#f9f9f9;font-size:12px;color:#666666;line-height:24px;height:50px;text-align:left;}
+
+.search-bg {background-image: url(../images/sg-meifa_12.gif);background-repeat: repeat-x;background-position: top;}
+
+.search-txt a:link,.search-txt a:visited {color:#666666;}
+.search-txt a:hover {line-height:16px;background-color:#FF0000;color:#FFFFFF;}
+.search {font-size:14px;font-weight:bold;line-height:25px;color:#cc0033;text-align:center;}
+.search a:link,.search a:visited,.search a:hover {color:#cc0033;}
+/*搜美发厅结束*/
+#main-top2 {width:980px;margin:0 auto;background-color:#f8f8f8;clear:both;}
+#area-1 {width:572px;float:left;text-align:right;
+padding-top:10px;}
+#area-1 img {width:563px;height:290px;}
+#area-2 {
+	width:408px;
+	height:310px;
+	float:right;
+	background-image: url(../images/fair-mft02.gif);
+	background-repeat: no-repeat;
+	background-position: center top;
+}
+
+#main {
+	background-image: url(../images/fair-mft-bg.gif);
+	background-repeat: repeat-y;
+	background-position: center;
+	width:980px;
+	margin:0 auto;
+	clear:both;
+}
+
+#main-l{
+width:715px;
+float:left;}
+#main-r {
+width:258px;
+float:left;}
+.main-r-box {
+	width:258px;
+	float:right;
+	background-image: url(../images/fair-mft-bg-2.gif);
+	background-repeat: repeat-y;
+	background-position: center top;
+	clear:both;
+}
+.main-r-box2 {
+	width:258px;
+	float:right;
+	clear:both;
+}
+
+
+#main-rr {
+width:5px;
+float:right;}
+
+#mft-area {
+	width:706px;
+	height:186px;
+	margin:0 auto;
+	clear:both;
+	background-image: url(../images/fair-mft03.gif);
+	background-repeat: no-repeat;
+	background-position: center top;
+}
+#mfs-tj {
+	background-image: url(../images/fair-mft04-b.gif);
+	background-repeat: repeat-y;
+	background-position: center top;
+	width: 706px;
+	margin:0 auto;
+	clear:both;
+}
+#jczp {
+	width:706px;
+	height:191px;
+	margin:0 auto;
+	clear:both;
+	background-image: url(../images/fair-mft05.gif);
+	background-repeat: no-repeat;
+	background-position: center top;
+}
+.null-box {
+	width:710px;
+	height:6px;
+	clear:both;
+	margin:0 auto;
+	background-color: #f7f7f7;
+}
+/*评论开始*/
+.pinglun {
+width:706px;
+margin:0 auto;
+clear:both;}
+
+.pass {
+border:#adadad 1px solid;
+width:125px;
+height:14px;
+background-color:#f4f4f4;}
+
+.pinglun-box { 
+margin:10px auto 10px auto;
+clear:both;
+text-align:center;
+}
+.pl-box {WIDTH: 640px; HEIGHT: 120px;border:#e5e5e5 1px solid;background-color:#fbfbfb;font-size:12px;color:#666666;line-height:24px;text-align:left;}
+.submit {float:right;clear:both;margin-bottom:15px;width:120px;text-align:left;}
+
+.message-1 {
+    width:704px;
+	float:right;
+	clear:both;
+	background-image: url(../images/fair-mft13.gif);
+	background-repeat: repeat-y;
+	background-position: center top;}
+.message-2 {	
+    width:704px;
+	float:right;
+	clear:both;
+	background-image: url(../images/fair-mft13b.gif);
+	background-repeat: repeat-y;
+	background-position: center top;}
+.touxiang {
+width:110px;
+height:110px;
+float:left;}	
+.touxiang-2 {
+width:68px;
+height:68px;
+margin:20px auto 0px auto;
+border:#bbbbbb 1px solid;}	
+.touxiang img {
+width:66px;
+height:66px;
+border:#ffffff 1px solid;}
+.mes-content {
+width:560px;
+float:left;
+margin:20px 0px 15px 0px;}
+/*评论结束*/
+.red12b {font-size:12px;font-weight:bold;line-height:24px;color:#cc0033;}
+.red12b a:link,.red12b a:visited,.red12b a:hover {color:#cc0033;}
+.black12 {color:#000000;line-height:24px;font-size:12px;}
+.black12 a:link,.black12 a:visited {color:#000000;}
+.black12 a:hover {color:#cc0033;}
+.point {
+	width:100%;
+	height:25px;
+	background-image: url(../images/fair-point.gif);
+	background-repeat: repeat-x;
+	background-position: center center;
+	margin:5px auto 0px auto;
+	clear:both;
+}
+.pic-1 {text-align:center;margin:0px auto;background-image: url(../images/sg-meifa_picbg.gif);background-repeat: no-repeat;background-position: center top;color:#818181;font-size:12px;line-height:16px;width:100px;}
+.pic-1 img {width:80px;height:100px;margin-top:5px;margin-bottom:10px;}
+.pic-1 a:link,.pic-1 a:visited {color:#818181;}
+.pic-1 a:hover {color:#cc0033;}
+
+.pic-2 {text-align:center;margin:15px auto 0px auto;background-image: url(../images/fair-mft17.gif);background-repeat: no-repeat;background-position: center top;color:#818181;font-size:12px;line-height:16px;width:104px;}
+.pic-2 img {width:94px;height:94px;margin-top:5px;margin-bottom:10px;}
+.pic-2 a:link,.pic-2 a:visited {color:#818181;}
+.pic-2 a:hover {color:#cc0033;}
+
+.pic-3 {text-align:center;margin:15px auto 0px auto;background-image: url(../images/fair-mft17.gif);background-repeat: no-repeat;background-position: center top;color:#666666;font-size:12px;line-height:16px;width:104px;
+font-weight:bold;}
+.pic-3 img {width:94px;height:94px;margin-top:5px;margin-bottom:10px;}
+.pic-3 a:link,.pic-3 a:visited {color:#666666;}
+.pic-3 a:hover {color:#cc0033;}
+
+.pic-4 {
+width:96px;
+height:96px;
+border:#d3d3d3 1px solid;
+margin:5px auto 5px auto;}
+.pic-4 img {width:94px;height:94px;margin-top:1px;margin-bottom:1px;}
+
+.pic-5 {text-align:center;margin:0px auto;width:57px;height:57px;border:#d0d0d0 1px solid;}
+.pic-5 img {width:55px;height:55px;margin-top:1px;}
+.pic-5-title {width:57px;margin:0 auto;clear:both;color:#121212;font-size:12px;line-height:26px;}
+.pic-5-title a:link,.pic-5-title a:visited {color:#121212;}
+.pic-5-title a:hover {color:#cc0033;}
+
+.pic-6 {
+width:112px;
+height:112px;
+border:#d3d3d3 1px solid;
+margin:5px auto 5px auto;}
+.pic-6 img {width:110px;height:110px;margin-top:1px;margin-bottom:1px;}
+
+.gray12-f {font-size:12px;line-height:22px;color:#666666;}
+.gray12-f a:link,.gray12-f a:visited {color:#666666;}
+.gray12-f a:hover {color:#cc0033;}
+
+.sitemap {
+width:240px;
+height:150px;
+margin:10px auto;
+clear:both;
+border:#dedede 1px solid;
+text-align:center;}
+.sitemap img {
+width:230px;
+height:140px;
+margin-top:5px;}
+.red14-line {color:#f40418;line-height:20px;font-size:14px;text-decoration:underline;}
+.red14-line a:link,.red14-line a:visited {color:#f40418;text-decoration:underline;}
+.red14-line a:hover {color:#cc0033;text-decoration:underline;}
+
+.page-all {
+width:90%;
+height:24px;
+margin:8px auto;
+clear:both;
+text-align:center;
+font-size:12px;line-height:24px;color:#666666;}
+.page-all a:link,.page-all a:visited {color:#666666;}
+.page-all a:hover {color:#cc0033;}
+
+#page1,#page2 {display:none;}
+.overbtn{width:105px;
+	height:25px;
+	text-align:center;
+	float:left;
+	color:#cc0000;
+	font-size:12px;
+	font-weight:bold;
+	line-height:25px;
+	background-color:#fafafa;
+	cursor:pointer;}
+.outbtn{width:105px;
+	height:25px;
+	text-align:center;
+	float:left;
+	color:#6f6f6f;
+	font-size:12px;
+	line-height:25px;
+	background-color:#ffffff;
+	cursor:pointer;}
+
+
+
+
+
+
