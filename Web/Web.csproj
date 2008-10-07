@@ -1797,6 +1797,69 @@
     <Compile Include="Admin\UserLogin.aspx.designer.cs">
       <DependentUpon>UserLogin.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Chaoliu.aspx.cs">
+      <SubType>ASPXCodeBehind</SubType>
+      <DependentUpon>Chaoliu.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Chaoliu.aspx.designer.cs">
+      <DependentUpon>Chaoliu.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="CouponList.aspx.cs">
+      <SubType>ASPXCodeBehind</SubType>
+      <DependentUpon>CouponList.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="CouponList.aspx.designer.cs">
+      <DependentUpon>CouponList.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="FxkContent.aspx.cs">
+      <SubType>ASPXCodeBehind</SubType>
+      <DependentUpon>FxkContent.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="FxkContent.aspx.designer.cs">
+      <DependentUpon>FxkContent.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="FxkList.aspx.cs">
+      <SubType>ASPXCodeBehind</SubType>
+      <DependentUpon>FxkList.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="FxkList.aspx.designer.cs">
+      <DependentUpon>FxkList.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="HairEngineerContent.aspx.cs">
+      <SubType>ASPXCodeBehind</SubType>
+      <DependentUpon>HairEngineerContent.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="HairEngineerContent.aspx.designer.cs">
+      <DependentUpon>HairEngineerContent.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="HairEngineerList.aspx.cs">
+      <SubType>ASPXCodeBehind</SubType>
+      <DependentUpon>HairEngineerList.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="HairEngineerList.aspx.designer.cs">
+      <DependentUpon>HairEngineerList.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="HairShopContent.aspx.cs">
+      <SubType>ASPXCodeBehind</SubType>
+      <DependentUpon>HairShopContent.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="HairShopContent.aspx.designer.cs">
+      <DependentUpon>HairShopContent.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="HairShopList.aspx.cs">
+      <SubType>ASPXCodeBehind</SubType>
+      <DependentUpon>HairShopList.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="HairShopList.aspx.designer.cs">
+      <DependentUpon>HairShopList.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="HairStarList.aspx.cs">
+      <SubType>ASPXCodeBehind</SubType>
+      <DependentUpon>HairStarList.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="HairStarList.aspx.designer.cs">
+      <DependentUpon>HairStarList.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Home.Master.cs">
       <DependentUpon>Home.Master</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -1810,6 +1873,13 @@
     </Compile>
     <Compile Include="Index.aspx.designer.cs">
       <DependentUpon>Index.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="JiepaiList.aspx.cs">
+      <SubType>ASPXCodeBehind</SubType>
+      <DependentUpon>JiepaiList.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="JiepaiList.aspx.designer.cs">
+      <DependentUpon>JiepaiList.aspx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="test.aspx.cs">
@@ -1832,6 +1902,20 @@
     </Compile>
     <Compile Include="UserControls\Head.ascx.designer.cs">
       <DependentUpon>Head.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="ZTContent.aspx.cs">
+      <SubType>ASPXCodeBehind</SubType>
+      <DependentUpon>ZTContent.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ZTContent.aspx.designer.cs">
+      <DependentUpon>ZTContent.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ZTList.aspx.cs">
+      <SubType>ASPXCodeBehind</SubType>
+      <DependentUpon>ZTList.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ZTList.aspx.designer.cs">
+      <DependentUpon>ZTList.aspx</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
@@ -2005,8 +2089,20 @@
     <None Include="Admin\images\_notes\tab_bg.gif.mno" />
     <None Include="Admin\images\_notes\tab_page_01.gif.mno" />
     <None Include="Admin\images\_notes\tab_page_02.gif.mno" />
+    <Content Include="Chaoliu.aspx" />
+    <Content Include="CouponList.aspx" />
+    <Content Include="FxkContent.aspx" />
+    <Content Include="FxkList.aspx" />
+    <Content Include="HairEngineerContent.aspx" />
+    <Content Include="HairEngineerList.aspx" />
+    <Content Include="HairShopContent.aspx" />
+    <Content Include="HairShopList.aspx" />
+    <Content Include="HairStarList.aspx" />
     <Content Include="Home.Master" />
+    <Content Include="JiepaiList.aspx" />
     <Content Include="test.aspx" />
+    <Content Include="ZTContent.aspx" />
+    <Content Include="ZTList.aspx" />
     <None Include="Theme\Images\search-fxs.psd" />
   </ItemGroup>
   <ItemGroup>
