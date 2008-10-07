@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Web.UI;
+using System.Web.UI.HtmlControls;
 
 namespace HairNet.Utilities
 {
@@ -48,6 +50,14 @@ namespace HairNet.Utilities
         public static void AlertInfo(string info,System.Web.UI.Page page)
         {
             page.Response.Write("<script>alert('"+info+"')</script>");
+        }
+        public static void AddStyleSheet(Page page, string cssPath)
+        {
+            HtmlLink link = new HtmlLink();
+            link.Href = cssPath;
+            link.Attributes["rel"] = "stylesheet";
+            link.Attributes["type"] = "text/css";
+            page.Header.Controls.Add(link);
         }
     }
 }
