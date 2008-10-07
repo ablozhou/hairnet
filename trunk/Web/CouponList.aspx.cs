@@ -11,7 +11,7 @@ using System.Web.UI.HtmlControls;
 
 namespace Web
 {
-    public partial class Home : System.Web.UI.MasterPage
+    public partial class CouponList : System.Web.UI.Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {
