@@ -1094,7 +1094,6 @@
     <Content Include="Admin\UserLogin.aspx" />
     <Content Include="Admin\welcome.aspx" />
     <Content Include="Index.aspx" />
-    <Content Include="test\HairShopTest.aspx" />
     <Content Include="Theme\Images\bbs-blog_01.gif" />
     <Content Include="Theme\Images\bbs-blog_02.gif" />
     <Content Include="Theme\Images\bbs-blog_04.gif" />
@@ -1464,6 +1463,8 @@
     <Content Include="Theme\Style\star.css" />
     <Content Include="Theme\Style\youhuiquan.css" />
     <Content Include="Theme\Style\zhuanti.css" />
+    <Content Include="UserControls\Foot.ascx" />
+    <Content Include="UserControls\Head.ascx" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
@@ -1796,6 +1797,13 @@
     <Compile Include="Admin\UserLogin.aspx.designer.cs">
       <DependentUpon>UserLogin.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Home.Master.cs">
+      <DependentUpon>Home.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Home.Master.designer.cs">
+      <DependentUpon>Home.Master</DependentUpon>
+    </Compile>
     <Compile Include="Index.aspx.cs">
       <SubType>ASPXCodeBehind</SubType>
       <DependentUpon>Index.aspx</DependentUpon>
@@ -1804,12 +1812,26 @@
       <DependentUpon>Index.aspx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="test\HairShopTest.aspx.cs">
+    <Compile Include="test.aspx.cs">
       <SubType>ASPXCodeBehind</SubType>
-      <DependentUpon>HairShopTest.aspx</DependentUpon>
+      <DependentUpon>test.aspx</DependentUpon>
     </Compile>
-    <Compile Include="test\HairShopTest.aspx.designer.cs">
-      <DependentUpon>HairShopTest.aspx</DependentUpon>
+    <Compile Include="test.aspx.designer.cs">
+      <DependentUpon>test.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\Foot.ascx.cs">
+      <DependentUpon>Foot.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UserControls\Foot.ascx.designer.cs">
+      <DependentUpon>Foot.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\Head.ascx.cs">
+      <DependentUpon>Head.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UserControls\Head.ascx.designer.cs">
+      <DependentUpon>Head.ascx</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
@@ -1983,13 +2005,14 @@
     <None Include="Admin\images\_notes\tab_bg.gif.mno" />
     <None Include="Admin\images\_notes\tab_page_01.gif.mno" />
     <None Include="Admin\images\_notes\tab_page_02.gif.mno" />
+    <Content Include="Home.Master" />
+    <Content Include="test.aspx" />
     <None Include="Theme\Images\search-fxs.psd" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Admin\FCKeditor\FCKeditor\editor\filemanager\browser\default\connectors\perl\temp\" />
     <Folder Include="AjaxHandle\" />
     <Folder Include="UploadFiles\" />
-    <Folder Include="UserControls\" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v9.0\WebApplications\Microsoft.WebApplication.targets" Condition="'$(Solutions.VSVersion)'=='9.0'" />

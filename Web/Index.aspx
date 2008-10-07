@@ -1,72 +1,39 @@
-<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Index.aspx.cs" Inherits="Web.Index" %>
+<%@ Page Language="C#" AutoEventWireup="true" MasterPageFile="Home.Master" CodeBehind="Index.aspx.cs" Inherits="Web.Index" %>
 
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head runat="server">
-<meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
-<title>美发频道</title>
-<link href="Theme/Style/daohang-end-08.css" rel="stylesheet" type="text/css" />
-<link href="Theme/Style/hair-main.css" rel="stylesheet" type="text/css" />
-<link href="Theme/Style/hair-index.css" rel="stylesheet" type="text/css" />
-<script language="javascript">
-function showTab(id) {
-var c=["serTabC1","serTabC2","serTabC3"];
-var x=["seatchTab1","seatchTab2","seatchTab3"];
-for (var i=0;i<c.length;i++){
-	if((i+1)==id){
-		document.getElementById(c[i]).style.display="";
-		document.getElementById(x[i]).style.display="";
-	}
-	else{
-		document.getElementById(c[i]).style.display="none";
-		document.getElementById(x[i]).style.display="none";
-	}
-}
-}
-</script>
-
-
-<script type="text/javascript">
-function ChangeBackPic(id,name)
-{
-  document.getElementById(id).className=name;
-}
-</script>
-<script type="text/javascript" src="Theme/js/chrome.js">
-</script>
-</head>
-
-<body>
-<table width="980" height="31" border="0" align="center" cellpadding="0" cellspacing="0">
-  <tr>
-    <td width="131" align="center" valign="top" background="Theme/Images/bbs-blog_02.gif"><img src="Theme/Images/bbs-blog_01.gif" width="106" height="30" /></td>
-    <td width="70" align="left" valign="top" background="Theme/Images/bbs-blog_02.gif" class="daohang">旗下网站</td>
-    <td width="779" align="right" valign="top" background="Theme/Images/bbs-blog_02.gif" class="daohang"><a href="http://www.sg.com.cn/" target="_blank">首页</a> | <a href="http://fashion.sg.com.cn/" target="_blank">时尚</a> | <a href="http://ent.sg.com.cn/" target="_blank">娱乐</a> | <a href="http://life.sg.com.cn/" target="_blank">休闲</a> | <a href="http://sg.gootrip.com/" target="_blank">旅游</a> | <a href="http://health.sg.com.cn/" target="_blank">健康</a> | <a href="http://city.sg.com.cn/" target="_blank">北京</a> | <a href="http://hr.sg.com.cn/" target="_blank">财智</a> | <a href="http://auto.sg.com.cn/" target="_blank">汽车</a> | <a href="http://home.sg.com.cn/" target="_blank">家居</a> | <a href="http://house.sg.com.cn/" target="_blank">房产</a> | <a href="http://tech.sg.com.cn/" target="_blank">数码</a> | <a href="http://photo.sg.com.cn/" target="_blank">图库</a> | <a href="http://blog.sg.com.cn/" target="_blank">博客</a> | <a href="http://bbs.sg.com.cn/" target="_blank">社区</a> | <a href="http://dzb.sg.com.cn/" target="_blank">电子版</a> | <a href="http://www.sg.com.cn/2008sg_xlzw.shtml" target="_blank">精品子网</a>&nbsp;&nbsp; </td>
-  </tr>
-</table>
-<div id="top">
-  <div id="logo"><a href="#"><img src="Theme/Images/fair-logo.gif" alt="美发频道" border="0" /></a>
-  </div>
-  <div class="logo-ad"><a href="#" target="_blank"><img src="Theme/Images/fair-logoad.gif" border="0" /></a></div>
-</div>
-
-<div id="menu-box"><div class="chromestyle" id="chromemenu">
-  <div class="menu"><a href="#" rel="dropmenu1"><img src="Theme/Images/fair-menu_01.gif" border="0" /></a></div><div class="menu-line"></div>
-  <div class="menu"><a href="#" rel="dropmenu2"><img src="Theme/Images/fair-menu_02.gif" border="0" /></a></div><div class="menu-line"></div>
-  <div class="menu"><a href="#" rel="dropmenu3"><img src="Theme/Images/fair-menu_03.gif" border="0" /></a></div><div class="menu-line"></div>
-  <div class="menu"><a href="#" rel="dropmenu4"><img src="Theme/Images/fair-menu_04.gif" border="0" /></a></div><div class="menu-line"></div>
-  <div class="menu"><a href="#" rel="dropmenu5"><img src="Theme/Images/fair-menu_05.gif" border="0" /></a></div><div class="menu-line"></div>
-  <div class="menu"><a href="#" rel="dropmenu6"><img src="Theme/Images/fair-menu_06.gif" border="0" /></a></div><div class="menu-line"></div>  
-  
-  <div class="reg"><a href="#" target="_blank"><img src="Theme/Images/fair-reg03.gif" border="0" /></a>&nbsp;&nbsp;<a href="#" target="_blank"><img src="Theme/Images/fair-reg02.gif" border="0" /></a></div>
-  <div class="clear"></div>
-</div></div>
-
+<asp:Content ContentPlaceHolderID="BodyContentPosition" ID="BodyContent" runat="server">
+<!-- 大标福开始 -->
 <div id="top-flash"><img src="Theme/Images/flash.jpg" /></div>
+<!-- 大标福结束 -->
+
 <div id="main">
   <div class="main-m">
     <div class="clear"></div>	
 	<!--主体部分开始 -->
+	<script language="javascript">
+    function showTab(id) {
+    var c=["serTabC1","serTabC2","serTabC3"];
+    var x=["seatchTab1","seatchTab2","seatchTab3"];
+    for (var i=0;i<c.length;i++){
+	    if((i+1)==id){
+		    document.getElementById(c[i]).style.display="";
+		    document.getElementById(x[i]).style.display="";
+	    }
+	    else{
+		    document.getElementById(c[i]).style.display="none";
+		    document.getElementById(x[i]).style.display="none";
+	    }
+    }
+    }
+    </script>
+
+
+    <script type="text/javascript">
+    function ChangeBackPic(id,name)
+    {
+      document.getElementById(id).className=name;
+    }
+    </script>
+	
 	<div id="main-3">
 	  <div id="main-3-l">
 	    <div id="s-mft"><table width="100%" border="0" cellspacing="0" cellpadding="0">
@@ -330,7 +297,30 @@ function ChangeBackPic(id,name)
   </tr>
 </table>
 </div>
-	    
+	    <script language="javascript">
+            var num=8; //总共有几个小窗口
+            var stopTime=100000000; //停留时间
+            var curNum=1;
+            var ii=0;
+            function getObj(objName){return(document.getElementById(objName));}
+            function showPage(id){
+	            getObj('container').innerHTML=getObj("page"+id).innerHTML;
+	            for(var i=1;i<=num;i++){
+		            if(i==id) getObj("box"+i).className="overbtn";
+		            else getObj("box"+i).className="outbtn";
+	            }
+	            clearTimeout(timer1);
+	            timer1=setTimeout(autoTurn,stopTime);
+            }
+            function autoTurn(){
+            if(ii<4){
+	            ii++;
+	            showPage(curNum++);
+	            if(curNum>num) curNum=1;
+            }
+            }
+            timer1=setTimeout(autoTurn);
+            </script>
         <div id="city-ss">
           <table width="701" height="32" border="0" cellpadding="0" cellspacing="0">
             <tr>
@@ -1073,91 +1063,4 @@ function ChangeBackPic(id,name)
   </div>
   </div>
 </div>
-<table width="980" border="0" align="center" cellpadding="0" cellspacing="0">
-  <tr>
-    <td height="30" colspan="3" align="center" valign="middle" bgcolor="#c00014" class="end-white12"><a href="http://www.sg.com.cn/other2004/about.shtml" target="_blank">关于我们</a> | <a href="http://www.sg.com.cn/include/index_hezuo.shtml" target="_blank">合作伙伴</a> | <a href="http://www.sg.com.cn/jingpinmenhu/cpyc/index.shtml" target="_blank">诚聘英才</a> | <a href="http://www.sg.com.cn/other2004/guanggao.shtml" target="_blank">广告刊例</a> | <a href="http://www.sg.com.cn/other2004/xunqiu.shtml" target="_blank">寻求合作</a> | <a href="http://www.sg.com.cn/other2004/yinsi.shtml" target="_blank">保护隐私权</a> | <a href="http://www.sg.com.cn/other2004/chanquan.shtml" target="_blank">电子版知识产权声明</a> | <a href="http://www.sg.com.cn/other2004/xieyi.shtml" target="_blank">服务协议</a> | <a href="http://webmail.sg.com.cn/" target="_blank">精品邮箱</a></td>
-  </tr>
-  <tr>
-    <td width="209" height="70" bgcolor="#FFFFFF">&nbsp;</td>
-    <td width="559" align="center" valign="middle" bgcolor="#FFFFFF" class="end-black12"> Copyright&copy;1996-2008 北京精品卓越科技发展有限公司版权所有 未经授权禁止复制或建立镜像<br />
-      京ICP许可证031001号　广告经营许可证 京海工商广字第190号</td>
-    <td width="212" align="left" valign="middle" bgcolor="#FFFFFF"><img src="Theme/Images/sg-gongshang-biao.gif" width="34" height="43" /></td>
-  </tr>
-</table>
-	<script type="text/javascript">
-cssdropdown.startchrome("chromemenu")
-</script>
-<div id="dropmenu1" class="dropmenudiv">
-<div><img src="Theme/Images/fair-menu_11.gif" /></div>
-<a href="#">&nbsp;四个字的</a>
-<a href="#">三个字</a>
-<a href="#">什&nbsp;&nbsp;么</a>
-<a href="#">什&nbsp;&nbsp;么</a>
-<div><img src="Theme/Images/fair-menu_10.gif" /></div>
-</div>	
-<div id="dropmenu2" class="dropmenudiv">
-<div><img src="Theme/Images/fair-menu_11.gif" /></div>
-<a href="#">&nbsp;四个字的</a>
-<a href="#">三个字</a>
-<a href="#">什&nbsp;&nbsp;么</a>
-<a href="#">什&nbsp;&nbsp;么</a>
-<div><img src="Theme/Images/fair-menu_10.gif" /></div>
-</div>	
-<div id="dropmenu3" class="dropmenudiv">
-<div><img src="Theme/Images/fair-menu_11.gif" /></div>
-<a href="#">&nbsp;四个字的</a>
-<a href="#">三个字</a>
-<a href="#">什&nbsp;&nbsp;么</a>
-<a href="#">什&nbsp;&nbsp;么</a>
-<div><img src="Theme/Images/fair-menu_10.gif" /></div>
-</div>	
-<div id="dropmenu4" class="dropmenudiv">
-<div><img src="Theme/Images/fair-menu_11.gif" /></div>
-<a href="#">&nbsp;四个字的</a>
-<a href="#">三个字</a>
-<a href="#">什&nbsp;&nbsp;么</a>
-<a href="#">什&nbsp;&nbsp;么</a>
-<div><img src="Theme/Images/fair-menu_10.gif" /></div>
-</div>		
-<div id="dropmenu5" class="dropmenudiv">
-<div><img src="Theme/Images/fair-menu_11.gif" /></div>
-<a href="#">&nbsp;四个字的</a>
-<a href="#">三个字</a>
-<a href="#">什&nbsp;&nbsp;么</a>
-<a href="#">什&nbsp;&nbsp;么</a>
-<div><img src="Theme/Images/fair-menu_10.gif" /></div>
-</div>	
-<div id="dropmenu6" class="dropmenudiv">
-<div><img src="Theme/Images/fair-menu_11.gif" /></div>
-<a href="#">&nbsp;四个字的</a>
-<a href="#">三个字</a>
-<a href="#">什&nbsp;&nbsp;么</a>
-<a href="#">什&nbsp;&nbsp;么</a>
-<div><img src="Theme/Images/fair-menu_10.gif" /></div>
-</div>	
-</body>
-</html>
-<script language="javascript">
-var num=8; //总共有几个小窗口
-var stopTime=100000000; //停留时间
-var curNum=1;
-var ii=0;
-function getObj(objName){return(document.getElementById(objName));}
-function showPage(id){
-	getObj('container').innerHTML=getObj("page"+id).innerHTML;
-	for(var i=1;i<=num;i++){
-		if(i==id) getObj("box"+i).className="overbtn";
-		else getObj("box"+i).className="outbtn";
-	}
-	clearTimeout(timer1);
-	timer1=setTimeout(autoTurn,stopTime);
-}
-function autoTurn(){
-if(ii<4){
-	ii++;
-	showPage(curNum++);
-	if(curNum>num) curNum=1;
-}
-}
-timer1=setTimeout(autoTurn);
-</script>
+</asp:Content>
