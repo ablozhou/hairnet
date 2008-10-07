@@ -157,6 +157,11 @@ namespace Web.Admin
             this.bindhotzone();
         }
 
+        protected void btnSubmit_OnClick(object sender, EventArgs e)
+        {
+            
+        }
+
         protected void btnAddCoupon_Click(object sender, EventArgs e)
         {
             Response.Redirect("AddCoupon.aspx");

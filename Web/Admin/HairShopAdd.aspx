@@ -162,7 +162,7 @@
             </tr>
             <tr>
                 <td align="right" class="style1">
-                    地图URL：
+                    交通路线：
                 </td>
                 <td>
                     <asp:TextBox ID="tbLocation" runat="server" Width="200" CssClass="TextBox"></asp:TextBox>
@@ -260,6 +260,14 @@
                 </td>
                 <td>
                     <asp:CheckBox ID="chkIsJoin" runat="server" />
+                </td>
+            </tr>
+            <tr>
+                <td align="right" class="style1">
+                    加盟详细信息：
+                </td>
+                <td>
+                    <asp:TextBox ID="txtMemberInfo" runat="server" />
                 </td>
             </tr>
             <tr>
