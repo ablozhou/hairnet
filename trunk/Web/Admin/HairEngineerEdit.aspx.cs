@@ -12,6 +12,7 @@ using HairNet.Entry;
 using HairNet.Business;
 using HairNet.Utilities;
 using HairNet.Enumerations;
+using System.Data.SqlClient;
 
 namespace Web.Admin
 {
@@ -47,7 +48,7 @@ namespace Web.Admin
         {
             int hairEngineerID = int.Parse(Request["id"]);
             HairEngineer he = InfoAdmin.GetHairEngineerByHairEngineerID(hairEngineerID);
-            txtHairEngineerAge.Text = he.HairEngineerAge;
+            //txtHairEngineerAge.Text = he.HairEngineerAge;
             txtHairEngineerDescription.Text = he.HairEngineerDescription;
             txtHairEngineerName.Text = he.HairEngineerName;
             txtHairEngineerPrice.Text = he.HairEngineerPrice;
@@ -62,7 +63,41 @@ namespace Web.Admin
             rBtnListHairEngineerSex.SelectedValue = he.HairEngineerSex.ToString();
             this.chkIsImportant.Checked = he.IsImportant;
 
-            imgPhoto.ImageUrl = he.HairEngineerPhoto;
+            //imgPhoto.ImageUrl = he.HairEngineerPhoto;
+            int num = 0;
+            string picString = string.Empty;
+            string pic = string.Empty;
+            using (SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["MSSqlServer"].ConnectionString))
+            {
+                string commString = "select * from enginpics where ownerid="+hairEngineerID.ToString();
+                using (SqlCommand comm = new SqlCommand())
+                {
+                    comm.CommandText = commString;
+                    comm.Connection = conn;
+                    conn.Open();
+                    using (SqlDataReader sdr = comm.ExecuteReader())
+                    {
+                        while (sdr.Read())
+                        {
+                            num++;
+
+                            if (num == 1)
+                            {
+                                picString = sdr["picurl"].ToString();
+                                pic = "<img width=200 heigth=100 src='" + sdr["picurl"].ToString() + "' />&nbsp;&nbsp;<a href='hairengineeroperate.aspx?id="+sdr["id"].ToString()+"&hid="+hairEngineerID.ToString()+"'>删除</a>";
+                            }
+                            else
+                            {
+                                picString += ";"+sdr["picurl"].ToString();
+                                pic += "&nbsp;&nbsp;<img width=200 heigth=100 src='" + sdr["picurl"].ToString() + "' />&nbsp;&nbsp;<a href='hairengineeroperate.aspx?id=" + sdr["id"].ToString() + "&hid=" + hairEngineerID.ToString() + "'>删除</a>";
+                            }
+                           
+                        }
+                    }
+                }
+            }
+            this.lblpicSring.Text = picString;
+            this.lblPic.Text = pic; 
 
             ViewState["HairEngineerInfo"] = he;
         }
@@ -71,7 +106,7 @@ namespace Web.Admin
         {
             HairEngineer he = (HairEngineer)ViewState["HairEngineerInfo"];
             he.HairEngineerName = txtHairEngineerName.Text.Trim();
-            he.HairEngineerAge = txtHairEngineerAge.Text.Trim();
+            //he.HairEngineerAge = txtHairEngineerAge.Text.Trim();
             he.HairEngineerSex = int.Parse(rBtnListHairEngineerSex.SelectedValue);
             he.HairEngineerPrice = txtHairEngineerPrice.Text.Trim();
             he.HairEngineerRawPrice = txtHairEngineerRawPrice.Text.Trim();
@@ -82,22 +117,38 @@ namespace Web.Admin
             he.HairEngineerClassID = int.Parse(ddlHairShopClass.SelectedValue);
             he.HairShopID = int.Parse(ddlHairShop.SelectedValue);
 
-            if (fileLogo.Value != "")
-            {
-                UpLoadClass upload = new UpLoadClass();
-                he.HairEngineerPhoto = upload.UpLoadImg(fileLogo, "/uploadfiles/pictures/");
-                upload = null;
-            }
-            else
-            {
-                he.HairEngineerPhoto = imgPhoto.ImageUrl;
-            }
+            //if (fileLogo.Value != "")
+            //{
+            //    UpLoadClass upload = new UpLoadClass();
+            //    he.HairEngineerPhoto = upload.UpLoadImg(fileLogo, "/uploadfiles/pictures/");
+            //    upload = null;
+            //}
+            //else
+            //{
+            //    he.HairEngineerPhoto = imgPhoto.ImageUrl;
+            //}
 
             he.IsImportant = this.chkIsImportant.Checked;
             he.HairEngineerTagIDs = InfoAdmin.GetHairEngineerTagIDs(txtHairEngineerTag.Text.Trim());
 
             Session["HairEngineerInfo"] = he;
             this.Response.Redirect("HairEngineerEdit2.aspx");
+        }
+        public void btnPicSubmit_OnClick(object sender, EventArgs e)
+        {
+            UpLoadClass upload = new UpLoadClass();
+            string picPath = upload.UpLoadImg(fileLogo, "/uploadfiles/pictures/");
+            if (this.lblpicSring.Text == string.Empty)
+            {
+                lblpicSring.Text = picPath;
+                lblPic.Text = "<img width=200 heigth=100 src=" + picPath + "></img>";
+            }
+            else
+            {
+                lblpicSring.Text = lblpicSring.Text + ";" + picPath;
+
+                lblPic.Text += "&nbsp;&nbsp;<img width=200 heigth=100 src=" + picPath + "></img>";
+            }
         }
     }
 }
