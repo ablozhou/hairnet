@@ -58,7 +58,22 @@ function Button1_onclick() {
         </tr>
           <tr>
             <td width="120px" align="right">星座：</td>
-            <td><asp:TextBox ID="tbConstellation" runat="server" CssClass="TextBox"></asp:TextBox></td>
+            <td><asp:TextBox ID="tbConstellation" runat="server" CssClass="TextBox"></asp:TextBox>
+                <asp:DropDownList ID="ddlConstellation" runat="server">
+                <asp:ListItem Value="1" Text="白羊座"></asp:ListItem>
+                <asp:ListItem Value="2" Text="金牛座"></asp:ListItem>
+                <asp:ListItem Value="3" Text="双子座"></asp:ListItem>
+                <asp:ListItem Value="4" Text="巨蟹座"></asp:ListItem>
+                <asp:ListItem Value="5" Text="狮子座"></asp:ListItem>
+                <asp:ListItem Value="6" Text="处女座"></asp:ListItem>
+                <asp:ListItem Value="7" Text="天秤座"></asp:ListItem>
+                <asp:ListItem Value="8" Text="天蝎座"></asp:ListItem>
+                <asp:ListItem Value="9" Text="射手座"></asp:ListItem>
+                <asp:ListItem Value="10" Text="摩羯座"></asp:ListItem>
+                <asp:ListItem Value="11" Text="水瓶座"></asp:ListItem>
+                <asp:ListItem Value="12" Text="双鱼座"></asp:ListItem>
+                </asp:DropDownList>
+            </td>
         </tr>
         <tr>
             <td width="120px" align="right">职位：</td>
