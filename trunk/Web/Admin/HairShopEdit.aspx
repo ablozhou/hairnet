@@ -156,7 +156,7 @@
             </tr>
             <tr>
                 <td align="right" class="style1">
-                    地图URL：
+                    交通路线：
                 </td>
                 <td>
                     <asp:TextBox ID="tbLocation" runat="server" Width="200" CssClass="TextBox"></asp:TextBox>
@@ -263,6 +263,14 @@
                 </td>
             </tr>
             <tr>
+                <td align="right" class="style1">
+                    加盟详细信息：
+                </td>
+                <td>
+                    <asp:TextBox ID="txtMemberInfo" runat="server" />
+                </td>
+            </tr>
+            <tr>
                 <td width="120" align="right">
                     是否停车：
                 </td>
@@ -278,6 +286,7 @@
                     <asp:CheckBox ID="chkIsPostMachine" runat="server" />
                 </td>
             </tr>
+            
             <tr>
                 <td width="120" align="right">
                     描述：
@@ -285,6 +294,15 @@
                 <td>
                     <asp:TextBox ID="txtDescription" runat="server" Height="200px" TextMode="MultiLine"
                         Width="900px"></asp:TextBox>
+                </td>
+            </tr>
+            <tr>
+                <td align="right" class="style1" valign="top">
+                    产品添加：
+                </td>
+                <td>
+                    <asp:Label ID="lblProductInfo" ForeColor="red" runat="server"></asp:Label>
+                    <asp:CheckBoxList ID="chkList" runat="server" RepeatColumns="10" RepeatDirection="Horizontal" RepeatLayout="Flow"></asp:CheckBoxList>
                 </td>
             </tr>
             <tr>

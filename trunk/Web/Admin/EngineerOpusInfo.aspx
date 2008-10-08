@@ -20,23 +20,23 @@
         </tr>
          <tr>
             <td align="right">正面图片: </td>
-            <td><asp:FileUpload ID="frontsidePic" runat="server" Width="300px" /></td>
-            <td><asp:Label ID="lbFPic" Width="300px" runat=server></asp:Label></td>
+            <td><asp:FileUpload ID="frontsidePic" runat="server" Width="300" /></td>
+            <td><asp:Label ID="lbFPic" Width="300" runat="server"></asp:Label></td>
         </tr>
          <tr>
             <td align="right">侧面图片: </td>
-            <td><asp:FileUpload ID="flanksidePic" runat="server" Width="300px" /></td>
-            <td><asp:Label ID="lbFlPic" Width="300px" runat=server></asp:Label></td>
+            <td><asp:FileUpload ID="flanksidePic" runat="server" Width="300" /></td>
+            <td><asp:Label ID="lbFlPic" Width="300" runat="server"></asp:Label></td>
         </tr>
          <tr>
             <td align="right">背面图片: </td>
             <td><asp:FileUpload ID="backsidePic" runat="server" Width="300px" /></td>
-            <td><asp:Label ID="lbBPic" Width="300px" runat=server></asp:Label></td>
+            <td><asp:Label ID="lbBPic" Width="300px" runat="server"></asp:Label></td>
         </tr>
          <tr>
             <td align="right">辅助图片: </td>
             <td><asp:FileUpload ID="assistancePic" runat="server" Width="300px" /></td>
-            <td><asp:Label ID="lbAPic" Width="300px" runat=server></asp:Label></td>
+            <td><asp:Label ID="lbAPic" Width="300px" runat="server"></asp:Label></td>
         </tr>
     </table>
     <table width="98%" border="0" cellpadding="0" cellspacing="0">
@@ -55,7 +55,7 @@
     <table width="98%" border="0" cellpadding="2" cellspacing="2">
         <tr>
             <td width="120" align="right" valign="top">介绍: </td>
-            <td><asp:TextBox ID="txtDesc" runat=server CssClass="TextBox" Width="420px" Height="140"
+            <td><asp:TextBox ID="txtDesc" runat="server" CssClass="TextBox" Width="420px" Height="140"
                     TextMode="MultiLine"></asp:TextBox></td>
         </tr>
     </table>

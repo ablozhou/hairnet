@@ -295,10 +295,19 @@
                         Width="900px"></asp:TextBox>
                 </td>
             </tr>
+            <tr>
+                <td align="right" class="style1" valign="top">
+                    产品添加：
+                </td>
+                <td>
+                    <asp:Label ID="lblProductInfo" ForeColor="red" runat="server"></asp:Label>
+                    <asp:CheckBoxList ID="chkList" runat="server" RepeatColumns="10" RepeatDirection="Horizontal" RepeatLayout="Flow"></asp:CheckBoxList>
+                </td>
+            </tr>
             <tr><td class="style1"></td><td>
                 <asp:Button ID="btnSubmit" runat="server" Text="下一步"  OnClick="btnSubmit_OnClick" Width="98px"  />
-                <asp:Button ID="btnAddCoupon" runat="server" Text="添加优惠券" Width="100px" 
-                    onclick="btnAddCoupon_Click"  />
+                <%--<asp:Button ID="btnAddCoupon" runat="server" Text="添加优惠券" Width="100px" 
+                    onclick="btnAddCoupon_Click"  />--%>
                 </tr>
         </table>
     </div>

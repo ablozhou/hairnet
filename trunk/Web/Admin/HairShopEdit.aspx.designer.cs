@@ -10,367 +10,49 @@
 
 namespace Web.Admin {
     
-    
     public partial class HairShopEdit {
-        
-        /// <summary>
-        /// Head1 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlHead Head1;
-        
-        /// <summary>
-        /// form1 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlForm form1;
-        
-        /// <summary>
-        /// txtHairShopName control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtHairShopName;
-        
-        /// <summary>
-        /// txtHairShopShortName control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtHairShopShortName;
-        
-        /// <summary>
-        /// ddlTypeTable control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlTypeTable;
-        
-        /// <summary>
-        /// txtHairShopWebSite control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtHairShopWebSite;
-        
-        /// <summary>
-        /// txtHairShopEmail control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtHairShopEmail;
-        
-        /// <summary>
-        /// txtHairShopDiscount control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtHairShopDiscount;
-        
-        /// <summary>
-        /// tbHairCutPrice control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox tbHairCutPrice;
-        
-        /// <summary>
-        /// tbHairCutDiscount control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox tbHairCutDiscount;
-        
-        /// <summary>
-        /// tbMarcelPrice control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox tbMarcelPrice;
-        
-        /// <summary>
-        /// tbMarclDiscount control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox tbMarclDiscount;
-        
-        /// <summary>
-        /// tbHairDyePrice control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox tbHairDyePrice;
-        
-        /// <summary>
-        /// tbHairDyeDiscount control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox tbHairDyeDiscount;
-        
-        /// <summary>
-        /// tbShapePrice control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox tbShapePrice;
-        
-        /// <summary>
-        /// tbShapeDiscount control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox tbShapeDiscount;
-        
-        /// <summary>
-        /// tbConservationPrice control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox tbConservationPrice;
-        
-        /// <summary>
-        /// tbConservationDiscount control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox tbConservationDiscount;
-        
-        /// <summary>
-        /// tbSquare control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox tbSquare;
-        
-        /// <summary>
-        /// tbLocation control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox tbLocation;
-        
-        /// <summary>
-        /// fileLogo control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputFile fileLogo;
-        
-        /// <summary>
-        /// imgLogo control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Image imgLogo;
-        
-        /// <summary>
-        /// txtHairShopCreateTime control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtHairShopCreateTime;
-        
-        /// <summary>
-        /// ddlCity control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlCity;
-        
-        /// <summary>
-        /// ddlMapZone control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlMapZone;
-        
-        /// <summary>
-        /// ddlHotZone control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlHotZone;
-        
-        /// <summary>
-        /// txtHairShopAddress control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtHairShopAddress;
-        
-        /// <summary>
-        /// txtHairShopPhoneNum control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtHairShopPhoneNum;
-        
-        /// <summary>
-        /// txtHairShopOpenTime control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtHairShopOpenTime;
-        
-        /// <summary>
-        /// txtHairShopTag control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtHairShopTag;
-        
-        /// <summary>
-        /// chkListWorkRange control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.CheckBoxList chkListWorkRange;
-        
-        /// <summary>
-        /// chkMarcel control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.CheckBox chkMarcel;
-        
-        /// <summary>
-        /// chkDye control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.CheckBox chkDye;
-        
-        /// <summary>
-        /// chkCut control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.CheckBox chkCut;
-        
-        /// <summary>
-        /// chkIsBest control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.CheckBox chkIsBest;
-        
-        /// <summary>
-        /// chkIsJoin control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.CheckBox chkIsJoin;
-        
-        /// <summary>
-        /// chkIsPostStation control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.CheckBox chkIsPostStation;
-        
-        /// <summary>
-        /// chkIsPostMachine control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.CheckBox chkIsPostMachine;
-        
-        /// <summary>
-        /// txtDescription control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtDescription;
-        
-        /// <summary>
-        /// btnSubmit control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnSubmit;
+        protected System.Web.UI.HtmlControls.HtmlHead Head1;
+        protected System.Web.UI.HtmlControls.HtmlForm form1;
+        protected System.Web.UI.WebControls.TextBox txtHairShopName;
+        protected System.Web.UI.WebControls.TextBox txtHairShopShortName;
+        protected System.Web.UI.WebControls.DropDownList ddlTypeTable;
+        protected System.Web.UI.WebControls.TextBox txtHairShopWebSite;
+        protected System.Web.UI.WebControls.TextBox txtHairShopEmail;
+        protected System.Web.UI.WebControls.TextBox txtHairShopDiscount;
+        protected System.Web.UI.WebControls.TextBox tbHairCutPrice;
+        protected System.Web.UI.WebControls.TextBox tbHairCutDiscount;
+        protected System.Web.UI.WebControls.TextBox tbMarcelPrice;
+        protected System.Web.UI.WebControls.TextBox tbMarclDiscount;
+        protected System.Web.UI.WebControls.TextBox tbHairDyePrice;
+        protected System.Web.UI.WebControls.TextBox tbHairDyeDiscount;
+        protected System.Web.UI.WebControls.TextBox tbShapePrice;
+        protected System.Web.UI.WebControls.TextBox tbShapeDiscount;
+        protected System.Web.UI.WebControls.TextBox tbConservationPrice;
+        protected System.Web.UI.WebControls.TextBox tbConservationDiscount;
+        protected System.Web.UI.WebControls.TextBox tbSquare;
+        protected System.Web.UI.WebControls.TextBox tbLocation;
+        protected System.Web.UI.HtmlControls.HtmlInputFile fileLogo;
+        protected System.Web.UI.WebControls.Image imgLogo;
+        protected System.Web.UI.WebControls.TextBox txtHairShopCreateTime;
+        protected System.Web.UI.WebControls.DropDownList ddlCity;
+        protected System.Web.UI.WebControls.DropDownList ddlMapZone;
+        protected System.Web.UI.WebControls.DropDownList ddlHotZone;
+        protected System.Web.UI.WebControls.TextBox txtHairShopAddress;
+        protected System.Web.UI.WebControls.TextBox txtHairShopPhoneNum;
+        protected System.Web.UI.WebControls.TextBox txtHairShopOpenTime;
+        protected System.Web.UI.WebControls.TextBox txtHairShopTag;
+        protected System.Web.UI.WebControls.CheckBoxList chkListWorkRange;
+        protected System.Web.UI.WebControls.CheckBox chkMarcel;
+        protected System.Web.UI.WebControls.CheckBox chkDye;
+        protected System.Web.UI.WebControls.CheckBox chkCut;
+        protected System.Web.UI.WebControls.CheckBox chkIsBest;
+        protected System.Web.UI.WebControls.CheckBox chkIsJoin;
+        protected System.Web.UI.WebControls.TextBox txtMemberInfo;
+        protected System.Web.UI.WebControls.CheckBox chkIsPostStation;
+        protected System.Web.UI.WebControls.CheckBox chkIsPostMachine;
+        protected System.Web.UI.WebControls.TextBox txtDescription;
+        protected System.Web.UI.WebControls.Label lblProductInfo;
+        protected System.Web.UI.WebControls.CheckBoxList chkList;
+        protected System.Web.UI.WebControls.Button btnSubmit;
     }
 }

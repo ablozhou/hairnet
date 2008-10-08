@@ -124,6 +124,7 @@ namespace Web.Admin
             he.HairEngineerConstellation = tbConstellation.Text.Trim();
             he.HairEngineerClassID = int.Parse(ddlHairShopClass.SelectedValue);
             he.HairShopID = int.Parse(ddlHairShop.SelectedValue);
+            he.IsImportant = this.chkIsImportant.Checked;
 
             UpLoadClass upload = new UpLoadClass();
             he.HairEngineerPhoto = upload.UpLoadImg(fileLogo, "/uploadfiles/pictures/");
