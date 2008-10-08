@@ -28,6 +28,7 @@ namespace Web.Admin {
         protected System.Web.UI.WebControls.TextBox txtHairEngineerSkill;
         protected System.Web.UI.WebControls.TextBox txtHairEngineerTag;
         protected System.Web.UI.WebControls.TextBox txtHairEngineerDescription;
+        protected System.Web.UI.WebControls.Button btnAddWork;
         protected System.Web.UI.WebControls.Button btnSubmit;
     }
 }

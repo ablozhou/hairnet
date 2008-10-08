@@ -101,7 +101,11 @@ namespace Web.Admin
 
             ViewState["HairEngineerInfo"] = he;
         }
-
+        public void btnAddWork_OnClick(object sender, EventArgs e)
+        {
+            HairEngineer he = (HairEngineer)ViewState["HairEngineerInfo"];
+            this.Response.Redirect("EngineerOpusInfo.aspx?ENGINEERID=" + he.HairEngineerID.ToString());
+        }
         protected void btnSubmit_OnClick(object sender, EventArgs e)
         {
             HairEngineer he = (HairEngineer)ViewState["HairEngineerInfo"];
@@ -132,7 +136,7 @@ namespace Web.Admin
             he.HairEngineerTagIDs = InfoAdmin.GetHairEngineerTagIDs(txtHairEngineerTag.Text.Trim());
 
             Session["HairEngineerInfo"] = he;
-            this.Response.Redirect("HairEngineerEdit2.aspx");
+            this.Response.Redirect("HairEngineerAdmin.aspx");
         }
         public void btnPicSubmit_OnClick(object sender, EventArgs e)
         {
