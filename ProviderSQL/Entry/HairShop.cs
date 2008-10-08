@@ -301,6 +301,13 @@ namespace HairNet.Entry
         private bool isServeDye;
         private bool isServeHairCut;
         private bool isChainStore;
+        private string memberInfo;
+
+        public string MemberInfo
+        {
+            set { memberInfo = value; }
+            get { return this.memberInfo; }
+        }
 
         public Decimal HairCutPirce
         {

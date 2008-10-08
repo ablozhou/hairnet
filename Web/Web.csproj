@@ -1580,6 +1580,13 @@
     <Compile Include="Admin\HairShopAdd3.aspx.designer.cs">
       <DependentUpon>HairShopAdd3.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Admin\HairShopAddNext1.aspx.cs">
+      <SubType>ASPXCodeBehind</SubType>
+      <DependentUpon>HairShopAddNext1.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\HairShopAddNext1.aspx.designer.cs">
+      <DependentUpon>HairShopAddNext1.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Admin\HairShopAdmin.aspx.cs">
       <DependentUpon>HairShopAdmin.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -2089,6 +2096,7 @@
     <None Include="Admin\images\_notes\tab_bg.gif.mno" />
     <None Include="Admin\images\_notes\tab_page_01.gif.mno" />
     <None Include="Admin\images\_notes\tab_page_02.gif.mno" />
+    <Content Include="Admin\HairShopAddNext1.aspx" />
     <Content Include="Chaoliu.aspx" />
     <Content Include="CouponList.aspx" />
     <Content Include="FxkContent.aspx" />

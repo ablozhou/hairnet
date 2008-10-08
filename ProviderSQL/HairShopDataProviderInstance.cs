@@ -122,7 +122,7 @@ namespace HairNet.Provider
                 cmdBuilder.Append("insert into HairShop(HairShopName,HairShopCityID,HairShopMapZoneID,HairShopHotZoneID,HairShopAddress,HairShopPhoneNum,HairShopPictureStoreIDs,HairShopMainIDs,HairShopPartialIDs,HairShopEngineerNum,HairShopOpenTime,WorkRangeIDs,HairShopWebSite,HairShopEmail,HairShopDiscount,HairShopLogo,HairShopCreateTime,HairShopDescription,ProductIDs,HairShopTagIDs,HairShopShortName,IsBest,IsJoin,TypeID,IsPostStation,IsPostMachine,");
                 cmdBuilder.Append("HairCutPrice, HairMarcelPrice, HairDyePrice, HairCutDiscount, HairMarcelDiscount, HairDyeDiscount,");
                 cmdBuilder.Append("HairShapePrice, HairShapeDiscount, HairConservationPrice, HairConservationDiscount,");
-                cmdBuilder.Append("LocationMapURL, IsServeMarcel, IsServeDye, IsServeHairCut, [Square]) ");
+                cmdBuilder.Append("LocationMapURL, IsServeMarcel, IsServeDye, IsServeHairCut, [Square],MemberInfo) ");
                 cmdBuilder.Append(" VALUES(' ");
 
                 #region
@@ -168,8 +168,8 @@ namespace HairNet.Provider
                 cmdBuilder.Append(hairShop.LocationMapURL + "','");
                 cmdBuilder.Append(hairShop.IsServeMarce.CompareTo(false).ToString() + "','");
                 cmdBuilder.Append(hairShop.IsServeDye.CompareTo(false).ToString() + "','");
-                cmdBuilder.Append(hairShop.IsServeHairCut.CompareTo(false).ToString() + " ','");
-                cmdBuilder.Append(hairShop.Square + "' )");
+                cmdBuilder.Append(hairShop.IsServeHairCut.CompareTo(false).ToString() + " ',");
+                cmdBuilder.Append(hairShop.Square.ToString() + ",'"+hairShop.MemberInfo+"' )");
 
                 SqlHelper.ExecuteNonQuery(DataHelper2.SqlConnectionString, CommandType.Text, cmdBuilder.ToString());
             }
@@ -191,7 +191,8 @@ namespace HairNet.Provider
                 cmdBuilder.Append(",IsServeMarcel = " + hairShop.IsServeMarce.ToString());
                 cmdBuilder.Append(",IsServeDye = " + hairShop.IsServeDye.ToString());
                 cmdBuilder.Append(",IsServeHairCut = " + hairShop.IsServeHairCut.ToString());
-                cmdBuilder.Append(",Square = " + hairShop.Square);
+                cmdBuilder.Append(",Square = " + hairShop.Square.ToString());
+                cmdBuilder.Append(",MemberInfo='"+hairShop.MemberInfo+"'");
 
                 cmdBuilder.Append(" where HairShopID = " + hairShop.HairShopID.ToString());
 
@@ -306,6 +307,7 @@ namespace HairNet.Provider
                             hairShop.IsPostMachine = bool.Parse(sdr["IsPostMachine"].ToString());
                             hairShop.HairShopGood = int.Parse(sdr["HairShopGood"].ToString());
                             hairShop.HairShopBad = int.Parse(sdr["HairShopBad"].ToString());
+                            hairShop.MemberInfo = sdr["MemberInfo"].ToString();
 
                             Decimal parseValue;
 
