@@ -15,6 +15,7 @@ using HairNet.Entry;
 using HairNet.Utilities;
 using HairNet.Business;
 using HairNet.Components.Utilities;
+using System.Data.SqlClient;
 
 namespace Web.Admin
 {
@@ -72,22 +73,86 @@ namespace Web.Admin
         /// </summary>
         protected void BindControlData()
         {
+            using (SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["MSSqlServer"].ToString()))
+            {
+                string commString = "select * from hairstyleclassname";
+                using (SqlCommand comm = new SqlCommand())
+                {
+                    comm.Connection = conn;
+                    comm.CommandText = commString;
+                    conn.Open();
 
-            listHairStyle.Items.Add(new ListItem("长发", "1"));
-            listHairStyle.Items.Add(new ListItem("中发", "2"));
-            listHairStyle.Items.Add(new ListItem("短发", "3"));
-            listHairStyle.Items.Add(new ListItem("卷发", "4"));
-            listHairStyle.Items.Add(new ListItem("直发", "5"));
+                    using (SqlDataReader sdr = comm.ExecuteReader())
+                    {
+                        while (sdr.Read())
+                        {
+                            ListItem li = new ListItem();
+                            li.Value = sdr["id"].ToString();
+                            li.Text = sdr["hairstyleclassname"].ToString();
 
+                            this.listHairStyle.Items.Add(li);
+                        }
+                    }
+                }
+            }
+            //listHairStyle.Items.Add(new ListItem("长发", "1"));
+            //listHairStyle.Items.Add(new ListItem("中发", "2"));
+            //listHairStyle.Items.Add(new ListItem("短发", "3"));
+            //listHairStyle.Items.Add(new ListItem("卷发", "4"));
+            //listHairStyle.Items.Add(new ListItem("直发", "5"));
+
+            using (SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["MSSqlServer"].ToString()))
+            {
+                string commString = "select * from facestyle";
+                using (SqlCommand comm = new SqlCommand())
+                {
+                    comm.Connection = conn;
+                    comm.CommandText = commString;
+                    conn.Open();
+
+                    using (SqlDataReader sdr = comm.ExecuteReader())
+                    {
+                        while (sdr.Read())
+                        {
+                            ListItem li = new ListItem();
+                            li.Value = sdr["id"].ToString();
+                            li.Text = sdr["facestylename"].ToString();
+
+                            this.listFaceType.Items.Add(li);
+                        }
+                    }
+                }
+            }
             //
-            listFaceType.Items.Add(new ListItem("瓜子脸", "1"));
-            listFaceType.Items.Add(new ListItem("鹅蛋脸", "2"));
-            listFaceType.Items.Add(new ListItem("长形", "3"));
-            listFaceType.Items.Add(new ListItem("圆形", "4"));
-            listFaceType.Items.Add(new ListItem("方形", "5"));
+            //listFaceType.Items.Add(new ListItem("瓜子脸", "1"));
+            //listFaceType.Items.Add(new ListItem("鹅蛋脸", "2"));
+            //listFaceType.Items.Add(new ListItem("长形", "3"));
+            //listFaceType.Items.Add(new ListItem("圆形", "4"));
+            //listFaceType.Items.Add(new ListItem("方形", "5"));
+            using (SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["MSSqlServer"].ToString()))
+            {
+                string commString = "select * from hairnature";
+                using (SqlCommand comm = new SqlCommand())
+                {
+                    comm.Connection = conn;
+                    comm.CommandText = commString;
+                    conn.Open();
 
+                    using (SqlDataReader sdr = comm.ExecuteReader())
+                    {
+                        while (sdr.Read())
+                        {
+                            ListItem li = new ListItem();
+                            li.Value = sdr["id"].ToString();
+                            li.Text = sdr["hairnature"].ToString();
+
+                            this.listHairType.Items.Add(li);
+                        }
+                    }
+                }
+            }
             //
-            listHairType.Items.Add(new ListItem("油性", "1"));
+            //listHairType.Items.Add(new ListItem("油性", "1"));
 
             //
             listHairItem.Items.Add(new ListItem("烫发", "1"));
