@@ -75,7 +75,7 @@
     </table>
     </div>
     <div>
-        <asp:Button ID="btnSubmit" runat="server" Text="提交 <<基本信息>>" OnClick="btnSubmit_OnClick" />
+        <asp:Button ID="btnAddWork" runat="server" Text="添加作品" OnClick="btnAddWork_OnClick" />&nbsp;&nbsp;&nbsp;&nbsp;<asp:Button ID="btnSubmit" runat="server" Text="提交 <<基本信息>>" OnClick="btnSubmit_OnClick" />
     </div>
     </form>
 </body>
