@@ -22,6 +22,18 @@ namespace HairNet.Utilities
         {
             
         }
+        public static bool isPermission(string typeName)
+        {
+            string[] typeCollection = ConfigurationManager.AppSettings["TypeConfiguration"].ToString().Split(";".ToCharArray());
+            foreach (string s in typeCollection)
+            {
+                if (s.ToLower() == typeName.ToLower())
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
         /// <summary>
         /// 生成图片缩略图
         /// </summary>

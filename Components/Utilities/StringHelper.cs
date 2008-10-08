@@ -59,5 +59,10 @@ namespace HairNet.Utilities
             link.Attributes["type"] = "text/css";
             page.Header.Controls.Add(link);
         }
+        public static string GetExtraType(string path)
+        {
+            int start = path.LastIndexOf(".")+1;
+            return path.Substring(start);
+        }
     }
 }
