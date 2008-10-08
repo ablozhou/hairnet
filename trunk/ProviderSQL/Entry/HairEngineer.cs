@@ -31,10 +31,22 @@ namespace HairNet.Entry
         private int _hairEngineerClassID = 0;
         private string _hairEngineerClassName = string.Empty;
         private string _hairEngineerConstellation = String.Empty;
+        private bool _isImportant = false;
+        private string _hairEngineerPhotoIDs = string.Empty;
 
         #endregion
 
         #region HairEngineer Properties
+        public bool IsImportant
+        {
+            set { this._isImportant = value; }
+            get { return this._isImportant; }
+        }
+        public string HairEngineerPhotoIDs
+        {
+            set { this._hairEngineerPhotoIDs = value; }
+            get { return this._hairEngineerPhotoIDs; }
+        }
         public int HairEngineerID
         {
             set { this._hairEngineerID = value; }
