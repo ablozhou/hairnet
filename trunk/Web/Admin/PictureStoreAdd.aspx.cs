@@ -25,6 +25,7 @@ namespace Web.Admin
             if (!IsPostBack)
             {
                 this.bindPicGroup();
+                ViewState["num"] = 0;
             }
         }
 
@@ -63,109 +64,28 @@ namespace Web.Admin
 
             ps.PictureStoreID = InfoAdmin.AddPictureStore(ps);
 
-            if (img1.Visible == true)
+            string[] ppicString = this.pic.Text.Split(";".ToCharArray());
+            if (ppicString[0] != string.Empty)
             {
-                using(SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["MSSqlServer"].ToString()))
+                foreach (string pps in ppicString)
                 {
-                    string commString = "insert into PictureStoreSet(PictureStoreId,PictureStoreURL) values("+ps.PictureStoreID.ToString()+",'"+this.img1.ImageUrl.ToString()+"')";
-                    using (SqlCommand comm = new SqlCommand())
+                    using (SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["MSSqlServer"].ToString()))
                     {
-                        comm.Connection = conn;
-                        comm.CommandText = commString;
-                        conn.Open();
-
-                        try
+                        string commString = "insert into PictureStoreSet(PictureStoreId,PictureStoreURL) values(" + ps.PictureStoreID.ToString() + ",'" + pps + "')";
+                        using (SqlCommand comm = new SqlCommand())
                         {
-                            comm.ExecuteNonQuery();
+                            comm.Connection = conn;
+                            comm.CommandText = commString;
+                            conn.Open();
+
+                            try
+                            {
+                                comm.ExecuteNonQuery();
+                            }
+                            catch (Exception ex)
+                            { }
                         }
-                        catch(Exception ex)
-                        { }
                     }
-                    
-                }
-            }
-            if (img2.Visible == true)
-            {
-                using (SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["MSSqlServer"].ToString()))
-                {
-                    string commString = "insert into PictureStoreSet(PictureStoreId,PictureStoreURL) values(" + ps.PictureStoreID.ToString() + ",'" + this.img2.ImageUrl.ToString() + "')";
-                    using (SqlCommand comm = new SqlCommand())
-                    {
-                        comm.Connection = conn;
-                        comm.CommandText = commString;
-                        conn.Open();
-
-                        try
-                        {
-                            comm.ExecuteNonQuery();
-                        }
-                        catch (Exception ex)
-                        { }
-                    }
-
-                }
-            }
-            if (img3.Visible == true)
-            {
-                using (SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["MSSqlServer"].ToString()))
-                {
-                    string commString = "insert into PictureStoreSet(PictureStoreId,PictureStoreURL) values(" + ps.PictureStoreID.ToString() + ",'" + this.img3.ImageUrl.ToString() + "')";
-                    using (SqlCommand comm = new SqlCommand())
-                    {
-                        comm.Connection = conn;
-                        comm.CommandText = commString;
-                        conn.Open();
-
-                        try
-                        {
-                            comm.ExecuteNonQuery();
-                        }
-                        catch (Exception ex)
-                        { }
-                    }
-
-                }
-            }
-            if (img4.Visible == true)
-            {
-                using (SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["MSSqlServer"].ToString()))
-                {
-                    string commString = "insert into PictureStoreSet(PictureStoreId,PictureStoreURL) values(" + ps.PictureStoreID.ToString() + ",'" + this.img4.ImageUrl.ToString() + "')";
-                    using (SqlCommand comm = new SqlCommand())
-                    {
-                        comm.Connection = conn;
-                        comm.CommandText = commString;
-                        conn.Open();
-
-                        try
-                        {
-                            comm.ExecuteNonQuery();
-                        }
-                        catch (Exception ex)
-                        { }
-                    }
-
-                }
-            }
-            if (img5.Visible == true)
-            {
-                using (SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["MSSqlServer"].ToString()))
-                {
-                    string commString = "insert into PictureStoreSet(PictureStoreId,PictureStoreURL) values(" + ps.PictureStoreID.ToString() + ",'" + this.img5.ImageUrl.ToString() + "')";
-                    using (SqlCommand comm = new SqlCommand())
-                    {
-                        comm.Connection = conn;
-                        comm.CommandText = commString;
-                        conn.Open();
-
-                        try
-                        {
-                            comm.ExecuteNonQuery();
-                        }
-                        catch (Exception ex)
-                        { }
-                    }
-
                 }
             }
 
@@ -177,43 +97,25 @@ namespace Web.Admin
         }
         protected void btnPicUpload1_OnClick(object sender, EventArgs e)
         {
+            
             UpLoadClass upload = new UpLoadClass();
             string filepath = upload.UpLoadImg(uploadpic1, "/uploadfiles/pictures/");
-
-            this.img1.Visible = true;
-            this.img1.ImageUrl = filepath;
-        }
-        protected void btnPicUpload2_OnClick(object sender, EventArgs e)
-        {
-            UpLoadClass upload = new UpLoadClass();
-            string filepath = upload.UpLoadImg(uploadpic2, "/uploadfiles/pictures/");
-
-            this.img2.Visible = true;
-            this.img2.ImageUrl = filepath;
-        }
-        protected void btnPicUpload3_OnClick(object sender, EventArgs e)
-        {
-            UpLoadClass upload = new UpLoadClass();
-            string filepath = upload.UpLoadImg(uploadpic3, "/uploadfiles/pictures/");
-
-            this.img3.Visible = true;
-            this.img3.ImageUrl = filepath;
-        }
-        protected void btnPicUpload4_OnClick(object sender, EventArgs e)
-        {
-            UpLoadClass upload = new UpLoadClass();
-            string filepath = upload.UpLoadImg(uploadpic4, "/uploadfiles/pictures/");
-
-            this.img4.Visible = true;
-            this.img4.ImageUrl = filepath;
-        }
-        protected void btnPicUpload5_OnClick(object sender, EventArgs e)
-        {
-            UpLoadClass upload = new UpLoadClass();
-            string filepath = upload.UpLoadImg(uploadpic5, "/uploadfiles/pictures/");
-
-            this.img5.Visible = true;
-            this.img5.ImageUrl = filepath;
+            if (filepath != string.Empty)
+            {
+                int num = Convert.ToInt32(ViewState["num"].ToString());
+                num++;
+                ViewState["num"] = num;
+                if (num == 1)
+                {
+                    this.picString.Text = "<img width=200 heigth=100 src='" + filepath + "' />";
+                    this.pic.Text = filepath;
+                }
+                else
+                {
+                    this.picString.Text += "&nbsp;&nbsp;<img width=200 heigth=100 src='" + filepath + "' />";
+                    this.pic.Text += ";" + filepath;
+                }
+            }
         }
     }
 }

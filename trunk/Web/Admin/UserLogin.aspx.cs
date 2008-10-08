@@ -20,8 +20,12 @@ namespace Web.Admin55
 
         }
         protected void btnLogin_OnClick(object sender, EventArgs e)
-        { }
+        {
+ 
+        }
         protected void btnReset_OnClick(object sender, EventArgs e)
-        { }
+        {
+ 
+        }
     }
 }

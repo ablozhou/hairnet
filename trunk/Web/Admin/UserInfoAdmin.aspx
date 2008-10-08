@@ -23,6 +23,7 @@
                 <td align="right" bgcolor="#F5F5F5">
                      输入用户名<asp:TextBox ID="txtQueryName" runat="server" CssClass="TextBox"></asp:TextBox>&nbsp;
                      <asp:Button ID="btnQuery" runat="server" CssClass="btn"  Text="查询" OnClick="btnQuery_OnClick" />&nbsp;&nbsp;&nbsp;&nbsp;
+                     <asp:Button ID="btnAdd" runat="server" CssClass="btn"  Text="添加" OnClick="btnAdd_OnClick" />&nbsp;&nbsp;&nbsp;&nbsp;
                     <asp:Button ID="btnSelectAll" runat="server" CssClass="btn" OnClick="btnSelectAll_OnClick"  Text="全选" />&nbsp;&nbsp;
                     <asp:Button ID="btnDelete" runat="server" CssClass="btn" Text="删除" OnClick="btnDelete_OnClick"/>
                 </td>
@@ -49,7 +50,7 @@
                 <asp:BoundColumn DataField="Email" HeaderText="邮箱"></asp:BoundColumn>
                 <asp:BoundColumn DataField="UserRoleName" HeaderText="身份"></asp:BoundColumn>
                 
-                <asp:HyperLinkColumn DataNavigateUrlField="UserID" DataNavigateUrlFormatString="UserEdit.aspx?id={0}" Target="_blank" Text="编辑"></asp:HyperLinkColumn>
+                <asp:HyperLinkColumn DataNavigateUrlField="UserID" DataNavigateUrlFormatString="UserEdit.aspx?id={0}" Target="_self" Text="编辑"></asp:HyperLinkColumn>
                 <asp:ButtonColumn ButtonType="LinkButton" CommandName="delete" Text="删除"></asp:ButtonColumn>
             </Columns>
         </asp:DataGrid>

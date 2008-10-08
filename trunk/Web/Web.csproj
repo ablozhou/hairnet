@@ -1804,6 +1804,20 @@
     <Compile Include="Admin\ShopDetailInformation.aspx.designer.cs">
       <DependentUpon>ShopDetailInformation.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Admin\UserCreate.aspx.cs">
+      <SubType>ASPXCodeBehind</SubType>
+      <DependentUpon>UserCreate.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\UserCreate.aspx.designer.cs">
+      <DependentUpon>UserCreate.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\UserEdit.aspx.cs">
+      <SubType>ASPXCodeBehind</SubType>
+      <DependentUpon>UserEdit.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\UserEdit.aspx.designer.cs">
+      <DependentUpon>UserEdit.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Admin\UserInfoAdmin.aspx.cs">
       <DependentUpon>UserInfoAdmin.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -2113,6 +2127,8 @@
     <Content Include="Admin\hairEngineerOperate.aspx" />
     <Content Include="Admin\HairShopAddNext1.aspx" />
     <Content Include="Admin\HairShopPicOperate.aspx" />
+    <Content Include="Admin\UserCreate.aspx" />
+    <Content Include="Admin\UserEdit.aspx" />
     <Content Include="Chaoliu.aspx" />
     <Content Include="CouponList.aspx" />
     <Content Include="FxkContent.aspx" />

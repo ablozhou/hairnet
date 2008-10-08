@@ -13,6 +13,7 @@ using HairNet.Entry;
 using HairNet.Business;
 using HairNet.Utilities;
 using HairNet.Enumerations;
+using System.Data.SqlClient;
 
 namespace Web.Admin
 {
@@ -22,7 +23,35 @@ namespace Web.Admin
         {
             if (!this.IsPostBack)
             {
-                List<UserEntry> list = UserAdmin.GetUsers(0);
+                List<UserEntry> list = new List<UserEntry>();//UserAdmin.GetUsers(0);
+
+                using (SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["MSSqlServer"].ConnectionString))
+                {
+                    string commandText = "select * from UserBasicInfo ubi inner join UserRole ur on ubi.UserRoleID = ur.UserRoleID order by UserID desc";
+                    using (SqlCommand comm = new SqlCommand())
+                    {
+                        comm.CommandText = commandText;
+                        comm.Connection = conn;
+                        conn.Open();
+
+                        using (SqlDataReader reader = comm.ExecuteReader())
+                        {
+                            while (reader.Read())
+                            {
+                                UserEntry ue = new UserEntry();
+
+                                ue.UserID = int.Parse(reader["UserID"].ToString());
+                                ue.UserName = reader["UserName"].ToString();
+                                ue.UserRoleID = int.Parse(reader["UserRoleID"].ToString());
+                                ue.UserRoleName = reader["UserRoleName"].ToString();
+                                ue.Password = reader["Password"].ToString();
+                                ue.Email = reader["Email"].ToString();
+
+                                list.Add(ue);
+                            }
+                        }
+                    }
+                }
                 Session["list"] = list;
                 this.databind();
             }
@@ -75,6 +104,10 @@ namespace Web.Admin
             }
             this.Response.Redirect("UserInfoAdmin.aspx");
         }
+        public void btnAdd_OnClick(object sender, EventArgs e)
+        {
+            this.Response.Redirect("UserCreate.aspx");
+        }
         public void btnDelete_OnClick(object sender, EventArgs e)
         {
             foreach (DataGridItem dgi in this.dg.Items)
@@ -126,7 +159,7 @@ namespace Web.Admin
             {
                 e.Item.Attributes.Add("onmouseover", "c=this.style.backgroundColor;this.style.backgroundColor='#ffffff';");
                 e.Item.Attributes.Add("onmouseout", "this.style.backgroundColor=c;");
-                e.Item.Cells[9].Attributes.Add("onclick", "return confirm('确定删除么?')");
+                e.Item.Cells[6].Attributes.Add("onclick", "return confirm('确定删除么?')");
 
                 //UserEntry userEntry = e.Item.DataItem as UserEntry;
                 //CheckBox chkIsSend = e.Item.FindControl("chkIsSend") as CheckBox;

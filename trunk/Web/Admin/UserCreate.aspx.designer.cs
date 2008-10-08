@@ -12,21 +12,12 @@ namespace Web.Admin {
     
     
     /// <summary>
-    /// PictureStoreEdit 类。
+    /// UserCreate 类。
     /// </summary>
     /// <remarks>
     /// 自动生成的类。
     /// </remarks>
-    public partial class PictureStoreEdit {
-        
-        /// <summary>
-        /// Head1 控件。
-        /// </summary>
-        /// <remarks>
-        /// 自动生成的字段。
-        /// 要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlHead Head1;
+    public partial class UserCreate {
         
         /// <summary>
         /// form1 控件。
@@ -38,58 +29,58 @@ namespace Web.Admin {
         protected global::System.Web.UI.HtmlControls.HtmlForm form1;
         
         /// <summary>
-        /// txtPictureStoreName 控件。
+        /// txtUserName 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtPictureStoreName;
+        protected global::System.Web.UI.WebControls.TextBox txtUserName;
         
         /// <summary>
-        /// txtPictureStoreTag 控件。
+        /// txtPwd 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtPictureStoreTag;
+        protected global::System.Web.UI.WebControls.TextBox txtPwd;
         
         /// <summary>
-        /// ddlPictureStoreGroup 控件。
+        /// txtPwdAgain 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlPictureStoreGroup;
+        protected global::System.Web.UI.WebControls.TextBox txtPwdAgain;
         
         /// <summary>
-        /// txtPictureStoreDescription 控件。
+        /// txtEmail 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtPictureStoreDescription;
+        protected global::System.Web.UI.WebControls.TextBox txtEmail;
         
         /// <summary>
-        /// uploadpic1 控件。
+        /// ddlUserRole 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputFile uploadpic1;
+        protected global::System.Web.UI.WebControls.DropDownList ddlUserRole;
         
         /// <summary>
-        /// btnPicUpload 控件。
+        /// lblInfo 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnPicUpload;
+        protected global::System.Web.UI.WebControls.Label lblInfo;
         
         /// <summary>
         /// btnSubmit 控件。
@@ -99,32 +90,5 @@ namespace Web.Admin {
         /// 要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnSubmit;
-        
-        /// <summary>
-        /// picString 控件。
-        /// </summary>
-        /// <remarks>
-        /// 自动生成的字段。
-        /// 要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label picString;
-        
-        /// <summary>
-        /// pic 控件。
-        /// </summary>
-        /// <remarks>
-        /// 自动生成的字段。
-        /// 要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label pic;
-        
-        /// <summary>
-        /// lblImg 控件。
-        /// </summary>
-        /// <remarks>
-        /// 自动生成的字段。
-        /// 要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblImg;
     }
 }
