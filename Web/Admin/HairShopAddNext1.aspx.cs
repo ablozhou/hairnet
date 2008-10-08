@@ -17,23 +17,97 @@ namespace Web.Admin
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            if (!this.IsPostBack)
+            {   
+                string id = this.Request.QueryString["id"].ToString();
+                Session["oo"] = string.Empty;
 
+                try
+                {
+                    string oo = this.Request.QueryString["update"].ToString();
+                    Session["oo"] = oo;
+                }
+                catch (Exception ex)
+                {
+                    //throw new Exception(ex.Message);
+                }
+                if (Session["oo"] != null && Session["oo"].ToString() != string.Empty)
+                {
+                    this.btnSubmit.Text = "返回美发厅管理";
+                }
+                string outString = string.Empty;
+                string innerString = string.Empty;
+
+                using (SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["MSSqlServer"].ConnectionString))
+                {
+                    string commString = "select * from shoppics where hairshopID=" + id + " and classid=2 order by id desc";
+                    using (SqlCommand comm = new SqlCommand())
+                    {
+                        comm.CommandText = commString;
+                        comm.Connection = conn;
+                        conn.Open();
+
+                        int num = 0;
+
+                        using (SqlDataReader sdr = comm.ExecuteReader())
+                        {
+                            while (sdr.Read())
+                            {
+                                num++;
+                                if (num == 1)
+                                {   
+                                    outString = "<img width=200 heigth=100 src='" + sdr["picurl"].ToString() + "' />&nbsp;&nbsp;<a href='hairshoppicoperate.aspx?id=" + sdr["id"].ToString() + "&hid=" + id.ToString() + "'>删除</a>";
+                                }
+                                else
+                                {
+                                    outString += "&nbsp;&nbsp;<img width=200 heigth=100 src='" + sdr["picurl"].ToString() + "' />&nbsp;&nbsp;<a href='hairshoppicoperate.aspx?id=" + sdr["id"].ToString() + "&hid=" + id.ToString() + "'>删除</a>";
+                                }
+                            }
+                        }
+                    }
+                }
+                using (SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["MSSqlServer"].ConnectionString))
+                {
+                    string commString = "select * from shoppics where hairshopID=" + id + " and classid=1 order by id desc";
+                    using (SqlCommand comm = new SqlCommand())
+                    {
+                        comm.CommandText = commString;
+                        comm.Connection = conn;
+                        conn.Open();
+
+                        int num = 0;
+
+                        using (SqlDataReader sdr = comm.ExecuteReader())
+                        {
+                            while (sdr.Read())
+                            {
+                                num++;
+                                if (num == 1)
+                                {
+                                    innerString = "<img width=200 heigth=100 src='" + sdr["picurl"].ToString() + "' />&nbsp;&nbsp;<a href='hairshoppicoperate.aspx?id=" + sdr["id"].ToString() + "&hid=" + id.ToString() + "'>删除</a>";
+                                }
+                                else
+                                {
+                                    innerString += "&nbsp;&nbsp;<img width=200 heigth=100 src='" + sdr["picurl"].ToString() + "' />&nbsp;&nbsp;<a href='hairshoppicoperate.aspx?id=" + sdr["id"].ToString() + "&hid=" + id.ToString() + "'>删除</a>";
+                                }
+                            }
+                        }
+                    }
+                }
+
+                this.lblInnerString.Text = innerString;
+                this.lblOutString.Text = outString;
+            }
         }
-        public void btnSubmit_OnClick(object sender,EventArgs e)
+        public void btnSubmitOut_OnClick(object sender, EventArgs e)
         {
-            string id = this.Request.QueryString["id"].ToString();
             UpLoadClass upload = new UpLoadClass();
+            string id = this.Request.QueryString["id"].ToString();
             string out1 = upload.UpLoadImg(out1c, "/uploadfiles/pictures/");
-            string out2 = upload.UpLoadImg(out2c, "/uploadfiles/pictures/");
-            string out3 = upload.UpLoadImg(out3c, "/uploadfiles/pictures/");
-            string inner1 = upload.UpLoadImg(inner1c, "/uploadfiles/pictures/");
-            string inner2 = upload.UpLoadImg(inner2c, "/uploadfiles/pictures/");
-            string inner3 = upload.UpLoadImg(inner3c, "/uploadfiles/pictures/");
-
             //厅外是2,厅内是1
             using (SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["MSSqlServer"].ConnectionString))
             {
-                string commString = "insert into shoppics(picurl,hairshopID,classid) values('"+out1+"',"+id.ToString()+",2)";
+                string commString = "insert into shoppics(picurl,hairshopID,classid) values('" + out1 + "'," + id.ToString() + ",2)";
                 using (SqlCommand comm = new SqlCommand())
                 {
                     comm.CommandText = commString;
@@ -49,42 +123,15 @@ namespace Web.Admin
                     }
                 }
             }
-            using (SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["MSSqlServer"].ConnectionString))
-            {
-                string commString = "insert into shoppics(picurl,hairshopID,classid) values('" + out2 + "'," + id.ToString() + ",2)";
-                using (SqlCommand comm = new SqlCommand())
-                {
-                    comm.CommandText = commString;
-                    comm.Connection = conn;
-                    conn.Open();
-                    try
-                    {
-                        comm.ExecuteNonQuery();
-                    }
-                    catch (Exception ex)
-                    {
-                        throw new Exception(ex.Message);
-                    }
-                }
-            }
-            using (SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["MSSqlServer"].ConnectionString))
-            {
-                string commString = "insert into shoppics(picurl,hairshopID,classid) values('" + out3 + "'," + id.ToString() + ",2)";
-                using (SqlCommand comm = new SqlCommand())
-                {
-                    comm.CommandText = commString;
-                    comm.Connection = conn;
-                    conn.Open();
-                    try
-                    {
-                        comm.ExecuteNonQuery();
-                    }
-                    catch (Exception ex)
-                    {
-                        throw new Exception(ex.Message);
-                    }
-                }
-            }
+
+            this.Response.Redirect("HairShopAddNext1.aspx?id="+id.ToString());
+        }
+        public void btnSubmitInner_OnClick(object sender, EventArgs e)
+        {
+            UpLoadClass upload = new UpLoadClass();
+            string id = this.Request.QueryString["id"].ToString();
+            string inner1 = upload.UpLoadImg(inner1c, "/uploadfiles/pictures/");
+            //厅外是2,厅内是1
             using (SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["MSSqlServer"].ConnectionString))
             {
                 string commString = "insert into shoppics(picurl,hairshopID,classid) values('" + inner1 + "'," + id.ToString() + ",1)";
@@ -103,43 +150,21 @@ namespace Web.Admin
                     }
                 }
             }
-            using (SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["MSSqlServer"].ConnectionString))
+
+            this.Response.Redirect("HairShopAddNext1.aspx?id=" + id.ToString());
+        }
+
+        public void btnSubmit_OnClick(object sender,EventArgs e)
+        {
+            if (Session["oo"] == null || Session["oo"].ToString() == string.Empty)
             {
-                string commString = "insert into shoppics(picurl,hairshopID,classid) values('" + inner2 + "'," + id.ToString() + ",1)";
-                using (SqlCommand comm = new SqlCommand())
-                {
-                    comm.CommandText = commString;
-                    comm.Connection = conn;
-                    conn.Open();
-                    try
-                    {
-                        comm.ExecuteNonQuery();
-                    }
-                    catch (Exception ex)
-                    {
-                        throw new Exception(ex.Message);
-                    }
-                }
+                this.Response.Redirect("HairEngineerAdd.aspx");
             }
-            using (SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["MSSqlServer"].ConnectionString))
+            else
             {
-                string commString = "insert into shoppics(picurl,hairshopID,classid) values('" + inner3 + "'," + id.ToString() + ",1)";
-                using (SqlCommand comm = new SqlCommand())
-                {
-                    comm.CommandText = commString;
-                    comm.Connection = conn;
-                    conn.Open();
-                    try
-                    {
-                        comm.ExecuteNonQuery();
-                    }
-                    catch (Exception ex)
-                    {
-                        throw new Exception(ex.Message);
-                    }
-                }
+                Session["oo"] = string.Empty;
+                this.Response.Redirect("HairShopAdmin.aspx");
             }
-            this.Response.Redirect("HairEngineerAdd.aspx");
         }
     }
 }

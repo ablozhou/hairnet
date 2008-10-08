@@ -49,7 +49,7 @@
                     </ItemTemplate>
                 </asp:TemplateColumn>
                 <asp:BoundColumn DataField="HairShopName" HeaderText="名称"></asp:BoundColumn>
-                <asp:BoundColumn DataField="HairShopVisitNum" HeaderText="访问数"></asp:BoundColumn>
+                <%--<asp:BoundColumn DataField="HairShopVisitNum" HeaderText="访问数"></asp:BoundColumn>
                 <asp:TemplateColumn HeaderText="推荐指数">
                     <ItemTemplate>
                         <asp:Label ID="lblRecommandRate" runat="server"></asp:Label>
@@ -60,7 +60,7 @@
                     <ItemTemplate>
                         <asp:Label ID="lblCommentRate" runat="server"></asp:Label>
                     </ItemTemplate>
-                </asp:TemplateColumn>
+                </asp:TemplateColumn>--%>
                 
                 <asp:HyperLinkColumn DataNavigateUrlField="HairShopID" 
                     DataNavigateUrlFormatString="../HairShopContent.aspx?id={0}" Target="_blank" 
@@ -68,6 +68,9 @@
                 <asp:HyperLinkColumn DataNavigateUrlField="HairShopID" 
                     DataNavigateUrlFormatString="HairShopEdit.aspx?id={0}" Target="_self" 
                     Text="编辑" HeaderText="编辑"></asp:HyperLinkColumn>
+                <asp:HyperLinkColumn DataNavigateUrlField="HairShopID" 
+                    DataNavigateUrlFormatString="HairShopAddNext1.aspx?id={0}&update=update" HeaderText="图片编辑" 
+                    Text="图片编辑"></asp:HyperLinkColumn>
                 <asp:HyperLinkColumn DataNavigateUrlField="HairShopID" 
                     DataNavigateUrlFormatString="HairEngineerAdd.aspx?id={0}" HeaderText="添加美发师" 
                     Text="添加美发师"></asp:HyperLinkColumn>

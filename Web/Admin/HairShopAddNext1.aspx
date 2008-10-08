@@ -18,44 +18,31 @@
     <div>
         <table width="98%" border="0" cellpadding="2" cellspacing="2">
         <tr>
-            <th colspan="2">厅外图片添加</th>
+            <th colspan="2">厅外图片</th>
         </tr>
          <tr>
-            <td align="right">图片1: </td>
+            <td align="right">厅外图片: </td>
             <td><input type="file" id="out1c" runat="server" /></td>
-            <td><asp:Label ID="lbFPic" Width="300" runat="server"></asp:Label></td>
+            <td align="left"><asp:Button ID="btnSubmitOut" runat="server" OnClick="btnSubmitOut_OnClick" Text="上传厅外图片" /></td>
         </tr>
-         <tr>
-            <td align="right">图片2: </td>
-            <td><input type="file" id="out2c" runat="server" /></td>
-            <td><asp:Label ID="lbFlPic" Width="300" runat="server"></asp:Label></td>
-        </tr>
-         <tr>
-            <td align="right">图片3: </td>
-            <td><input type="file" id="out3c" runat="server" /></td>
-            <td><asp:Label ID="lbBPic" Width="300px" runat="server"></asp:Label></td>
+        <tr>
+            <td colspan="3"><asp:Label ID="lblOutString" runat="server"></asp:Label></td>
         </tr>
         <br />
         <tr>
-            <th colspan="2">厅内图片添加</th>
+            <th colspan="2">厅内图片</th>
         </tr>
          <tr>
-            <td align="right">图片1: </td>
+            <td align="right">厅内图片: </td>
             <td><input type="file" id="inner1c" runat="server" /></td>
-            <td><asp:Label ID="Label1" Width="300" runat="server"></asp:Label></td>
+            <td align="left"><asp:Button ID="btnSubmitInner" runat="server" Text="上传厅外照片" OnClick="btnSubmitInner_OnClick" /></td>
         </tr>
-         <tr>
-            <td align="right">图片2: </td>
-            <td><input type="file" id="inner2c" runat="server" /></td>
-            <td><asp:Label ID="Label2" Width="300" runat="server"></asp:Label></td>
-        </tr>
-         <tr>
-            <td align="right">图片3: </td>
-            <td><input type="file" id="inner3c" runat="server" /></td>
-            <td><asp:Label ID="Label3" Width="300px" runat="server"></asp:Label></td>
+        <tr>
+            <td colspan="3"><asp:Label ID="lblInnerString" runat="server"></asp:Label></td>
         </tr>
     </table>
-    <asp:Button ID="btnSubmit" runat="server" OnClick="btnSubmit_OnClick" Text="提交美发厅图片信息" />
+    <br /><br />
+    <asp:Button ID="btnSubmit" runat="server" OnClick="btnSubmit_OnClick" Text="下一步" />
     </div>
     </form>
 </body>
