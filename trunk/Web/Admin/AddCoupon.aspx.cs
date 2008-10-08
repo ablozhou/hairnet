@@ -38,6 +38,17 @@ namespace Web.Admin
                 }
             }
         }
+        public void btnSubmitPic_OnClick(object sender, EventArgs e)
+        {
+            UpLoadClass upload = new UpLoadClass();
+
+            string pName = upload.UpLoadImg(pic, "/uploadfiles/pictures/");
+            if (pName != string.Empty)
+            {
+                this.img.Visible = true;
+                this.img.ImageUrl = pName;
+            }
+        }
 
         /// <summary>
         /// 
@@ -49,7 +60,7 @@ namespace Web.Admin
             try
             {
                 Coupon CouponEntity = new Coupon(0, tbCouponName.Text.Trim(), Int32.Parse(ddlShopList.SelectedValue), tbDiscount.Text.Trim(),
-                    tbExpired.Text.Trim(), tbPhone.Text.Trim(), tbTag.Text.Trim(), tbDesc.Text.Trim());
+                    tbExpired.Text.Trim(), tbPhone.Text.Trim(), tbTag.Text.Trim(), tbDesc.Text.Trim(),this.img.ImageUrl.ToString());
 
                 InfoAdmin.AddCoupon(CouponEntity);
                 MessageObject.Show("数据添加成功!");
