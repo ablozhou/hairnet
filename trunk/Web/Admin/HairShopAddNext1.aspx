@@ -17,6 +17,7 @@
     <form id="form1" runat="server">
     <div>
         <table width="98%" border="0" cellpadding="2" cellspacing="2">
+        <asp:Label ID="lblInfo" runat="server" ForeColor="red" Visible="false"></asp:Label>
         <tr>
             <th colspan="2">Ã¸Õ‚Õº∆¨</th>
         </tr>

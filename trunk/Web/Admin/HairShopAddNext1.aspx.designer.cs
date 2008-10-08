@@ -12,6 +12,7 @@ namespace Web.Admin {
     
     public partial class HairShopAddNext1 {
         protected System.Web.UI.HtmlControls.HtmlForm form1;
+        protected System.Web.UI.WebControls.Label lblInfo;
         protected System.Web.UI.HtmlControls.HtmlInputFile out1c;
         protected System.Web.UI.WebControls.Button btnSubmitOut;
         protected System.Web.UI.WebControls.Label lblOutString;

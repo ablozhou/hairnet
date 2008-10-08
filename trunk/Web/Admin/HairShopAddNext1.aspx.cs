@@ -103,6 +103,15 @@ namespace Web.Admin
         {
             UpLoadClass upload = new UpLoadClass();
             string id = this.Request.QueryString["id"].ToString();
+            this.lblInfo.Visible = false;
+
+            if (!PicOperate.isPermission(StringHelper.GetExtraType(out1c.Value)))
+            {
+                this.lblInfo.Text = "上传图片格式不对";
+                this.lblInfo.Visible = true;
+                return;
+            }   
+
             string out1 = upload.UpLoadImg(out1c, "/uploadfiles/pictures/");
             //厅外是2,厅内是1
             using (SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["MSSqlServer"].ConnectionString))
@@ -130,6 +139,15 @@ namespace Web.Admin
         {
             UpLoadClass upload = new UpLoadClass();
             string id = this.Request.QueryString["id"].ToString();
+            this.lblInfo.Visible = false;
+
+            if (!PicOperate.isPermission(StringHelper.GetExtraType(inner1c.Value)))
+            {
+                this.lblInfo.Text = "上传图片格式不对";
+                this.lblInfo.Visible = true;
+                return;
+            } 
+
             string inner1 = upload.UpLoadImg(inner1c, "/uploadfiles/pictures/");
             //厅外是2,厅内是1
             using (SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["MSSqlServer"].ConnectionString))
