@@ -15,6 +15,7 @@ using HairNet.Entry;
 using HairNet.Business;
 using HairNet.Utilities;
 using System.Collections.Generic;
+using System.Data.SqlClient;
 
 namespace Web.Admin
 {
@@ -26,10 +27,41 @@ namespace Web.Admin
             {
                 this.bindtype();
                 this.bindworkranges();
+                this.bindProductChklist();
                 this.bindBaseInfo();
             }
         }
+        protected void bindProductChklist()
+        {
+            int num = 0;
+            using (SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["MSSqlServer"].ConnectionString))
+            {
+                string commString = "select * from Product";
+                using (SqlCommand comm = new SqlCommand())
+                {
+                    comm.CommandText = commString;
+                    comm.Connection = conn;
+                    conn.Open();
+                    using (SqlDataReader sdr = comm.ExecuteReader())
+                    {
+                        while (sdr.Read())
+                        {
+                            num++;
 
+                            ListItem li = new ListItem();
+                            li.Text = sdr["ProductName"].ToString();
+                            li.Value = sdr["ProductID"].ToString();
+
+                            this.chkList.Items.Add(li);
+                        }
+                    }
+                }
+            }
+            if (num == 0)
+            {
+                this.lblProductInfo.Text = "当前数据库里面没有产品，请先添加产品！";
+            }
+        }
         private void bindBaseInfo()
         {
             string id = Request["id"];
@@ -82,9 +114,30 @@ namespace Web.Admin
             chkIsJoin.Checked = hs.IsJoin;
             chkIsPostMachine.Checked = hs.IsPostMachine;
             chkIsPostStation.Checked = hs.IsPostStation;
+
+            string[] productids = hs.ProductIDs.Split(",".ToCharArray());
+            foreach (ListItem li in chkList.Items)
+            {
+                if (isExistID(li.Value, productids))
+                {
+                    li.Selected = true;
+                }
+            }
+            this.txtMemberInfo.Text = hs.MemberInfo;
+
             ViewState["HairShop"] = hs;
         }
-
+        public bool isExistID(string id, string[] productIDs)
+        {
+            for (int i = 0; i < productIDs.Length; i++)
+            {
+                if (productIDs[i] == id.ToString())
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
         private void bindtype()
         {
             ddlTypeTable.DataSource = InfoAdmin.GetTypeTable();
@@ -200,6 +253,28 @@ namespace Web.Admin
             hs.IsPostMachine = chkIsPostStation.Checked;
             hs.IsPostStation = chkIsPostMachine.Checked;
             hs.HairShopDescription = txtDescription.Text.Trim();
+
+            hs.MemberInfo = txtMemberInfo.Text.Trim();
+
+            string productIDs = "";
+            int num = 0;
+            foreach (ListItem li in this.chkList.Items)
+            {
+                if (li.Selected)
+                {
+                    num++;
+                    if (num == 1)
+                    {
+                        productIDs = li.Value;
+                    }
+                    else
+                    {
+                        productIDs += "," + li.Value;
+                    }
+                }
+            }
+            hs.ProductIDs = productIDs;
+
 
             Session["HairShopInfo"] = hs;
             InfoAdmin.UpdateHairShop(hs);

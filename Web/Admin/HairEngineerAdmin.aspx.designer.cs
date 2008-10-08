@@ -10,241 +10,32 @@
 
 namespace Web.Admin {
     
-    
     public partial class HairEngineerAdmin {
-        
-        /// <summary>
-        /// form1 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlForm form1;
-        
-        /// <summary>
-        /// ddlQuery control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlQuery;
-        
-        /// <summary>
-        /// txtQueryName control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtQueryName;
-        
-        /// <summary>
-        /// lblQueryNameSpace control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblQueryNameSpace;
-        
-        /// <summary>
-        /// lblStartTime control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblStartTime;
-        
-        /// <summary>
-        /// txtStartTime control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::DMSTime.DMSTimeControl txtStartTime;
-        
-        /// <summary>
-        /// lblEndTime control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblEndTime;
-        
-        /// <summary>
-        /// txtEndTime control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::DMSTime.DMSTimeControl txtEndTime;
-        
-        /// <summary>
-        /// lblTimeSpace control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblTimeSpace;
-        
-        /// <summary>
-        /// btnQuery control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnQuery;
-        
-        /// <summary>
-        /// ddlOrderWay control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlOrderWay;
-        
-        /// <summary>
-        /// btnSelect control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnSelect;
-        
-        /// <summary>
-        /// btnAdd control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnAdd;
-        
-        /// <summary>
-        /// btnRecommand control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnRecommand;
-        
-        /// <summary>
-        /// dg control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.DataGrid dg;
-        
-        /// <summary>
-        /// PageFirst control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton PageFirst;
-        
-        /// <summary>
-        /// PagePrev control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton PagePrev;
-        
-        /// <summary>
-        /// PageNext control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton PageNext;
-        
-        /// <summary>
-        /// PageLast control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton PageLast;
-        
-        /// <summary>
-        /// CountPage control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label CountPage;
-        
-        /// <summary>
-        /// ispages control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox ispages;
-        
-        /// <summary>
-        /// thispages control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList thispages;
-        
-        /// <summary>
-        /// Page_nPage control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Page_nPage;
-        
-        /// <summary>
-        /// Page_nRecCount control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Page_nRecCount;
-        
-        /// <summary>
-        /// Page_nRecCount_1 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Page_nRecCount_1;
-        
-        /// <summary>
-        /// Page_strSQL control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Page_strSQL;
+        protected System.Web.UI.HtmlControls.HtmlForm form1;
+        protected System.Web.UI.WebControls.DropDownList ddlQuery;
+        protected System.Web.UI.WebControls.TextBox txtQueryName;
+        protected System.Web.UI.WebControls.Label lblQueryNameSpace;
+        protected System.Web.UI.WebControls.Label lblStartTime;
+        protected DMSTime.DMSTimeControl txtStartTime;
+        protected System.Web.UI.WebControls.Label lblEndTime;
+        protected DMSTime.DMSTimeControl txtEndTime;
+        protected System.Web.UI.WebControls.Label lblTimeSpace;
+        protected System.Web.UI.WebControls.Button btnQuery;
+        protected System.Web.UI.WebControls.DropDownList ddlOrderWay;
+        protected System.Web.UI.WebControls.Button btnSelect;
+        protected System.Web.UI.WebControls.Button btnAdd;
+        protected System.Web.UI.WebControls.Button btnRecommand;
+        protected System.Web.UI.WebControls.DataGrid dg;
+        protected System.Web.UI.WebControls.LinkButton PageFirst;
+        protected System.Web.UI.WebControls.LinkButton PagePrev;
+        protected System.Web.UI.WebControls.LinkButton PageNext;
+        protected System.Web.UI.WebControls.LinkButton PageLast;
+        protected System.Web.UI.WebControls.Label CountPage;
+        protected System.Web.UI.WebControls.TextBox ispages;
+        protected System.Web.UI.WebControls.DropDownList thispages;
+        protected System.Web.UI.WebControls.Label Page_nPage;
+        protected System.Web.UI.WebControls.Label Page_nRecCount;
+        protected System.Web.UI.WebControls.Label Page_nRecCount_1;
+        protected System.Web.UI.WebControls.Label Page_strSQL;
     }
 }

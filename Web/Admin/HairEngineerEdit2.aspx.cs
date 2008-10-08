@@ -41,10 +41,13 @@ namespace Web.Admin
 
                 //error
                 string[] ids = he.HairEngineerPictureStoreIDs.Split(',');
-                
-                foreach (string pid in ids)
+
+                if (!(ids[0] == string.Empty))
                 {
-                    list.Add(InfoAdmin.GetPictureStoreByPictureStoreID(int.Parse(pid)));
+                    foreach (string pid in ids)
+                    {
+                        list.Add(InfoAdmin.GetPictureStoreByPictureStoreID(int.Parse(pid)));
+                    }
                 }
                 ViewState["PicList"] = list;
                 gvPicList.DataSource = list;

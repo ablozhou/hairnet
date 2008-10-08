@@ -68,7 +68,7 @@
                     DataNavigateUrlFormatString="HairEngineerEdit.aspx?id={0}" Target="_self" 
                     Text="编辑" HeaderText="编辑"></asp:HyperLinkColumn>
                 <asp:HyperLinkColumn DataNavigateUrlField="HairEngineerID" 
-                    DataNavigateUrlFormatString="EngineerOpusInfo.aspx" DataTextField="" Target="_blank"
+                    DataNavigateUrlFormatString="EngineerOpusInfo.aspx?ENGINEERID={0}" DataTextField="" Target="_self"
                     Text="添加作品" HeaderText="添加作品"></asp:HyperLinkColumn>
                 <asp:ButtonColumn ButtonType="LinkButton" CommandName="delete" Text="删除" 
                     HeaderText="删除"></asp:ButtonColumn>

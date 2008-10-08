@@ -59,8 +59,6 @@ namespace Web.Admin
             {
                 throw new ArgumentException("位置错误", sqlEx.Message);
             }
-
-            
         }
 
         /// <summary>

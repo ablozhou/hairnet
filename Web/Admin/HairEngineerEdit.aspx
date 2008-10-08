@@ -19,6 +19,11 @@
             <td><asp:TextBox ID="txtHairEngineerName" runat="server" CssClass="TextBox"></asp:TextBox></td>
         </tr>
         <tr>
+            <td width="120px" align="right">领军人物：</td>
+            <td><asp:CheckBox ID="chkIsImportant" runat="server" />
+                    </td>
+        </tr>
+        <tr>
             <td width="120" align="right">年龄：</td>
             <td><asp:TextBox ID="txtHairEngineerAge" runat="server" CssClass="TextBox"></asp:TextBox></td>
         </tr>

@@ -12,6 +12,7 @@ using System.Collections.Generic;
 using HairNet.Entry;
 using HairNet.Business;
 using HairNet.Utilities;
+using System.Data.SqlClient;
 
 namespace Web.Admin
 {
@@ -26,6 +27,38 @@ namespace Web.Admin
                 this.bindhotzone();
                 this.bindtype();
                 this.bindworkranges();
+                this.bindProductChklist();
+            }
+        }
+        protected void bindProductChklist()
+        {
+            int num = 0;
+            using (SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["MSSqlServer"].ConnectionString))
+            {
+                string commString = "select * from Product";
+                using (SqlCommand comm = new SqlCommand())
+                {
+                    comm.CommandText = commString;
+                    comm.Connection = conn;
+                    conn.Open();
+                    using (SqlDataReader sdr = comm.ExecuteReader())
+                    {
+                        while (sdr.Read())
+                        {
+                            num++;
+
+                            ListItem li = new ListItem();
+                            li.Text = sdr["ProductName"].ToString();
+                            li.Value = sdr["ProductID"].ToString();
+
+                            this.chkList.Items.Add(li);
+                        }
+                    }
+                }
+            }
+            if (num == 0)
+            {
+                this.lblProductInfo.Text = "当前数据库里面没有产品，请先添加产品！";
             }
         }
         protected void btnSubmit_OnClick(object sender, EventArgs e)
@@ -94,10 +127,51 @@ namespace Web.Admin
             hs.IsServeMarce = chkMarcel.Checked;
             hs.IsServeDye = chkCut.Checked;
 
+            hs.MemberInfo = txtMemberInfo.Text.Trim();
+
+            string productIDs = "";
+            int num = 0;
+            foreach (ListItem li in this.chkList.Items)
+            {   
+                if (li.Selected)
+                {
+                    num++;
+                    if (num == 1)
+                    {
+                        productIDs = li.Value;
+                    }
+                    else
+                    {
+                        productIDs += ","+li.Value;
+                    }
+                }
+            }
+            hs.ProductIDs = productIDs;
             //InfoAdmin.AddHairShop(hs);
             InfoAdmin.AddHairShopInfo(hs);
 
-            this.Response.Redirect("HairEngineerAdd.aspx");
+            string id = "";
+            using (SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["MSSqlServer"].ConnectionString))
+            {
+                string commString = "select top 1 * from HairShop order by HairShopID desc";
+                using (SqlCommand comm = new SqlCommand())
+                {
+                    comm.CommandText = commString;
+                    comm.Connection = conn;
+                    conn.Open();
+                    using (SqlDataReader sdr = comm.ExecuteReader())
+                    {
+                        if (sdr.Read())
+                        {
+                            id = sdr["HairShopID"].ToString();
+                        }
+                    }
+                }
+            }
+
+            this.Response.Redirect("HairShopAddNext1.aspx?id="+id.ToString());
+
+            //this.Response.Redirect("HairEngineerAdd.aspx");
         }
 
         private void bindtype()
@@ -157,14 +231,9 @@ namespace Web.Admin
             this.bindhotzone();
         }
 
-        protected void btnSubmit_OnClick(object sender, EventArgs e)
-        {
-            
-        }
-
-        protected void btnAddCoupon_Click(object sender, EventArgs e)
-        {
-            Response.Redirect("AddCoupon.aspx");
-        }
+        //protected void btnAddCoupon_Click(object sender, EventArgs e)
+        //{
+        //    Response.Redirect("AddCoupon.aspx");
+        //}
     }
 }

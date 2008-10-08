@@ -60,6 +60,7 @@ namespace Web.Admin
             ddlHairShop.SelectedValue = he.HairShopID.ToString();
             ddlHairShopClass.SelectedValue = he.HairEngineerClassID.ToString();
             rBtnListHairEngineerSex.SelectedValue = he.HairEngineerSex.ToString();
+            this.chkIsImportant.Checked = he.IsImportant;
 
             imgPhoto.ImageUrl = he.HairEngineerPhoto;
 
@@ -92,7 +93,7 @@ namespace Web.Admin
                 he.HairEngineerPhoto = imgPhoto.ImageUrl;
             }
 
-
+            he.IsImportant = this.chkIsImportant.Checked;
             he.HairEngineerTagIDs = InfoAdmin.GetHairEngineerTagIDs(txtHairEngineerTag.Text.Trim());
 
             Session["HairEngineerInfo"] = he;
