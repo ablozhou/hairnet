@@ -23,10 +23,10 @@
             <td><asp:CheckBox ID="chkIsImportant" runat="server" />
                     </td>
         </tr>
-        <tr>
+        <%--<tr>
             <td width="120" align="right">年龄：</td>
             <td><asp:TextBox ID="txtHairEngineerAge" runat="server" CssClass="TextBox"></asp:TextBox></td>
-        </tr>
+        </tr>--%>
         <tr>
             <td width="120" align="right">性别：</td>
             <td><asp:RadioButtonList ID="rBtnListHairEngineerSex" runat="server"><asp:ListItem Value="1" Selected="True">男</asp:ListItem><asp:ListItem Value="2">女</asp:ListItem></asp:RadioButtonList></td>
@@ -40,7 +40,7 @@
             <td><asp:TextBox ID="txtHairEngineerPrice" runat="server" CssClass="TextBox"></asp:TextBox></td>
         </tr>
         <tr>
-            <td width="120" align="right">所属级别：</td>
+            <td width="120" align="right">职位：</td>
             <td><asp:DropDownList ID="ddlHairShopClass" runat="server"></asp:DropDownList></td>
         </tr>
         <tr>
@@ -55,7 +55,7 @@
             <td><asp:DropDownList ID="ddlHairShop" runat="server"></asp:DropDownList></td>
         </tr>
         <tr>
-            <td width="120" align="right">工作年限：</td>
+            <td width="120" align="right">工作资历：</td>
             <td><asp:TextBox ID="txtHairEngineerYear" runat="server" CssClass="TextBox"></asp:TextBox></td>
         </tr>
         <tr>

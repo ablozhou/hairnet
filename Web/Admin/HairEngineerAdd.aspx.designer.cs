@@ -15,7 +15,6 @@ namespace Web.Admin {
         protected System.Web.UI.WebControls.DropDownList ddlHairShop;
         protected System.Web.UI.WebControls.TextBox txtHairEngineerName;
         protected System.Web.UI.WebControls.CheckBox chkIsImportant;
-        protected System.Web.UI.WebControls.TextBox txtHairEngineerAge;
         protected System.Web.UI.WebControls.RadioButtonList rBtnListHairEngineerSex;
         protected System.Web.UI.WebControls.TextBox txtHairEngineerRawPrice;
         protected System.Web.UI.WebControls.TextBox txtHairEngineerPrice;

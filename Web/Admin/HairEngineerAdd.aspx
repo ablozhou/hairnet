@@ -37,11 +37,11 @@ function Button1_onclick() {
             <td><asp:CheckBox ID="chkIsImportant" runat="server" />
                     </td>
         </tr>
-        <tr>
+        <%--<tr>
             <td width="120px" align="right">年龄：</td>
             <td><asp:TextBox ID="txtHairEngineerAge" runat="server" CssClass="TextBox"></asp:TextBox>
                     </td>
-        </tr>
+        </tr>--%>
         <tr>
             <td width="120px" align="right">性别：</td>
             <td width="120px"><asp:RadioButtonList ID="rBtnListHairEngineerSex" runat="server" Height="16px" 
@@ -61,7 +61,7 @@ function Button1_onclick() {
             <td><asp:TextBox ID="tbConstellation" runat="server" CssClass="TextBox"></asp:TextBox></td>
         </tr>
         <tr>
-            <td width="120px" align="right">头衔：</td>
+            <td width="120px" align="right">职位：</td>
             <td><asp:DropDownList ID="ddlHairShopClass" runat="server"></asp:DropDownList></td>
         </tr>
         <tr>
@@ -71,7 +71,7 @@ function Button1_onclick() {
         </tr>
      
         <tr>
-            <td width="120px" align="right">工作年限：</td>
+            <td width="120px" align="right">工作资历：</td>
             <td><asp:TextBox ID="txtHairEngineerYear" runat="server" CssClass="TextBox"></asp:TextBox></td>
         </tr>
         <tr>
