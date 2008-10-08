@@ -20,7 +20,9 @@ namespace Web.Admin {
         protected System.Web.UI.WebControls.TextBox txtHairEngineerPrice;
         protected System.Web.UI.WebControls.DropDownList ddlHairShopClass;
         protected System.Web.UI.HtmlControls.HtmlInputFile fileLogo;
-        protected System.Web.UI.WebControls.Image imgPhoto;
+        protected System.Web.UI.WebControls.Button btnPicSubmit;
+        protected System.Web.UI.WebControls.Label lblpicSring;
+        protected System.Web.UI.WebControls.Label lblPic;
         protected System.Web.UI.WebControls.DropDownList ddlHairShop;
         protected System.Web.UI.WebControls.TextBox txtHairEngineerYear;
         protected System.Web.UI.WebControls.TextBox txtHairEngineerSkill;

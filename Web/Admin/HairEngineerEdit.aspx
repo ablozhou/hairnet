@@ -44,12 +44,14 @@
             <td><asp:DropDownList ID="ddlHairShopClass" runat="server"></asp:DropDownList></td>
         </tr>
         <tr>
-            <td width="120" align="right">个人照片：</td>
+            <td width="120px" align="right">个人照片：</td>
             <td>
-                <input id="fileLogo" type="file" runat="server"/><asp:Image ID="imgPhoto" 
-                    runat="server" />
-                    </td>
+                <input id="fileLogo" type="file" runat="server"/><asp:Button ID="btnPicSubmit" runat="server" OnClick="btnPicSubmit_OnClick" Text="上传照片" /><asp:Label ID="lblpicSring" runat="server" Visible="false"></asp:Label></td>
         </tr>
+        <tr>
+            <td width="100%" colspan="2"><asp:Label ID="lblPic" runat="server"></asp:Label></td>
+        </tr>
+        
         <tr>
             <td width="120" align="right">所属美发厅：</td>
             <td><asp:DropDownList ID="ddlHairShop" runat="server"></asp:DropDownList></td>

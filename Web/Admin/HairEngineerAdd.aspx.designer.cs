@@ -18,10 +18,12 @@ namespace Web.Admin {
         protected System.Web.UI.WebControls.RadioButtonList rBtnListHairEngineerSex;
         protected System.Web.UI.WebControls.TextBox txtHairEngineerRawPrice;
         protected System.Web.UI.WebControls.TextBox txtHairEngineerPrice;
-        protected System.Web.UI.WebControls.TextBox tbConstellation;
         protected System.Web.UI.WebControls.DropDownList ddlConstellation;
         protected System.Web.UI.WebControls.DropDownList ddlHairShopClass;
         protected System.Web.UI.HtmlControls.HtmlInputFile fileLogo;
+        protected System.Web.UI.WebControls.Button btnPicSubmit;
+        protected System.Web.UI.WebControls.Label lblpicSring;
+        protected System.Web.UI.WebControls.Label lblPic;
         protected System.Web.UI.WebControls.TextBox txtHairEngineerYear;
         protected System.Web.UI.WebControls.TextBox txtHairEngineerSkill;
         protected System.Web.UI.WebControls.TextBox txtHairEngineerTag;

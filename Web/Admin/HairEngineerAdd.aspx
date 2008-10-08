@@ -58,7 +58,7 @@ function Button1_onclick() {
         </tr>
           <tr>
             <td width="120px" align="right">星座：</td>
-            <td><asp:TextBox ID="tbConstellation" runat="server" CssClass="TextBox"></asp:TextBox>
+            <td><%--asp:TextBox ID="tbConstellation" runat="server" CssClass="TextBox"></asp:TextBox>--%>
                 <asp:DropDownList ID="ddlConstellation" runat="server">
                 <asp:ListItem Value="1" Text="白羊座"></asp:ListItem>
                 <asp:ListItem Value="2" Text="金牛座"></asp:ListItem>
@@ -82,7 +82,10 @@ function Button1_onclick() {
         <tr>
             <td width="120px" align="right">个人照片：</td>
             <td>
-                <input id="fileLogo" type="file" runat="server"/></td>
+                <input id="fileLogo" type="file" runat="server"/><asp:Button ID="btnPicSubmit" runat="server" OnClick="btnPicSubmit_OnClick" Text="上传照片" /><asp:Label ID="lblpicSring" runat="server" Visible="false"></asp:Label></td>
+        </tr>
+        <tr>
+            <td width="100%" colspan="2"><asp:Label ID="lblPic" runat="server"></asp:Label></td>
         </tr>
      
         <tr>

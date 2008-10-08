@@ -62,7 +62,7 @@
                     </ItemTemplate>
                 </asp:TemplateColumn>
                 <asp:HyperLinkColumn DataNavigateUrlField="HairEngineerID" 
-                    DataNavigateUrlFormatString="EngineerPreview.aspx?id={0}" Target="_blank" 
+                    DataNavigateUrlFormatString="../HairEngineerContent.aspx?id={0}" Target="_blank" 
                     Text="预览" HeaderText="预览"></asp:HyperLinkColumn>
                 <asp:HyperLinkColumn DataNavigateUrlField="HairEngineerID" 
                     DataNavigateUrlFormatString="HairEngineerEdit.aspx?id={0}" Target="_self" 
