@@ -168,7 +168,7 @@
                 </td>
                 <td>
                     <input type="file" id="fileLogo" runat="server" />
-                    <asp:Image ID="imgLogo" runat="server" />
+                    <asp:Image ID="imgLogo" runat="server" Width="200" Height="100" />
                 </td>
             </tr>
             <tr>

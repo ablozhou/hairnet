@@ -13,17 +13,11 @@ namespace Web.Admin {
     public partial class HairShopAddNext1 {
         protected System.Web.UI.HtmlControls.HtmlForm form1;
         protected System.Web.UI.HtmlControls.HtmlInputFile out1c;
-        protected System.Web.UI.WebControls.Label lbFPic;
-        protected System.Web.UI.HtmlControls.HtmlInputFile out2c;
-        protected System.Web.UI.WebControls.Label lbFlPic;
-        protected System.Web.UI.HtmlControls.HtmlInputFile out3c;
-        protected System.Web.UI.WebControls.Label lbBPic;
+        protected System.Web.UI.WebControls.Button btnSubmitOut;
+        protected System.Web.UI.WebControls.Label lblOutString;
         protected System.Web.UI.HtmlControls.HtmlInputFile inner1c;
-        protected System.Web.UI.WebControls.Label Label1;
-        protected System.Web.UI.HtmlControls.HtmlInputFile inner2c;
-        protected System.Web.UI.WebControls.Label Label2;
-        protected System.Web.UI.HtmlControls.HtmlInputFile inner3c;
-        protected System.Web.UI.WebControls.Label Label3;
+        protected System.Web.UI.WebControls.Button btnSubmitInner;
+        protected System.Web.UI.WebControls.Label lblInnerString;
         protected System.Web.UI.WebControls.Button btnSubmit;
     }
 }
