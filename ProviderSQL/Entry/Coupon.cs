@@ -14,6 +14,7 @@ namespace HairNet.Entry
         private string phoneNumber = string.Empty;
         private string couponTag = string.Empty;
         private string description = string.Empty;
+        private string imageUrl = string.Empty;
 
         public Coupon(int id, string name, int hairShopID, string discount, string expiredDate, string phoneNumber, string couponTag,
             string description)
@@ -27,7 +28,24 @@ namespace HairNet.Entry
             this.couponTag = couponTag;
             this.description = description;
         }
-
+        public Coupon(int id, string name, int hairShopID, string discount, string expiredDate, string phoneNumber, string couponTag,
+            string description,string url)
+        {
+            this.id = id;
+            this.name = name;
+            this.hairShopID = hairShopID;
+            this.discount = discount;
+            this.expiredDate = expiredDate;
+            this.phoneNumber = phoneNumber;
+            this.couponTag = couponTag;
+            this.description = description;
+            this.imageUrl = url; 
+        }
+        public string ImageUrl
+        {
+            set { this.imageUrl = value; }
+            get { return this.imageUrl; }
+        }
         public Int32 ID
         {
             set { id = value; }

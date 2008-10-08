@@ -1688,6 +1688,7 @@ namespace HairNet.Provider
             Parameters[5].Value = coupon.PhoneNumber;
             Parameters[6].Value = coupon.CouponTag;
             Parameters[7].Value = coupon.Description;
+            Parameters[8].Value = coupon.ImageUrl;
 
             if (action == UserAction.Create)
                 SqlHelper.ExecuteNonQuery(DataHelper2.SqlConnectionString, CommandType.StoredProcedure, "InsertCoupon", Parameters);
@@ -1718,7 +1719,8 @@ namespace HairNet.Provider
                 new SqlParameter("@ExpiredDate",SqlDbType.NVarChar,64),
                 new SqlParameter("@PhoneNumber",SqlDbType.NVarChar,32),
                 new SqlParameter("@CouponTag",SqlDbType.NVarChar,1024),
-                new SqlParameter("@Description",SqlDbType.NVarChar,1024)
+                new SqlParameter("@Description",SqlDbType.NVarChar,1024),
+                new SqlParameter("@ImageUrl",SqlDbType.VarChar,1024)    
                 };
             }
 
