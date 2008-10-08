@@ -1,12 +1,32 @@
-就把属性大全的，都整合到图片属性里面,包括发量
+美发师有个字段 HairEngineerPrice，需修改为HairEngineerTel,并增加一个中评字段
+0	HairEngineerNormal	int	4	1	中评数
+hair-mfs-content_b.htm
+有评价他的服务，评价他的水平，评价他的形象
+这样导致我们美发师的评价有多个方面，所以评价不得不单独成表。 
+comment
+ 1	id	int	4	0
+0	good	int	4	-1
+0	normal	int	4	-1
+0	bad	int	4	-1
+0	other	int	4	-1
+0	ownerid	int	4	-1
+0	classname	varchar	50	-1
+0	commentobject	varchar	200	-1
+0	description	varchar	200	-1
+ 
+
+添加美发厅时把剪烫染的运营项目缺省选上
+
+就把属性大全的，都整合到图片属性里面,包括发量，增加缺失的表，并添加到数据字典中dict.xls
 
 把发型和普通图片，都需要所有图片属性，把普通图和发型要想办法统一起来管理
 以便统一搜索
 
-推荐保证正确，推荐信息也根据前台来
+
 
 增加专题管理
 
 图片按分类有入口，见meifa.vsd
 
+推荐部分，保证能用（发现并把错误去掉），但还需要确认到底用不用，暂不处理
 
