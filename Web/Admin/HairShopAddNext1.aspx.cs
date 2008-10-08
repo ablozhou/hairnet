@@ -113,27 +113,30 @@ namespace Web.Admin
             }   
 
             string out1 = upload.UpLoadImg(out1c, "/uploadfiles/pictures/");
-            //厅外是2,厅内是1
-            using (SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["MSSqlServer"].ConnectionString))
+            if (out1 == string.Empty)
             {
-                string commString = "insert into shoppics(picurl,hairshopID,classid) values('" + out1 + "'," + id.ToString() + ",2)";
-                using (SqlCommand comm = new SqlCommand())
+                //厅外是2,厅内是1
+                using (SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["MSSqlServer"].ConnectionString))
                 {
-                    comm.CommandText = commString;
-                    comm.Connection = conn;
-                    conn.Open();
-                    try
+                    string commString = "insert into shoppics(picurl,hairshopID,classid) values('" + out1 + "'," + id.ToString() + ",2)";
+                    using (SqlCommand comm = new SqlCommand())
                     {
-                        comm.ExecuteNonQuery();
-                    }
-                    catch (Exception ex)
-                    {
-                        throw new Exception(ex.Message);
+                        comm.CommandText = commString;
+                        comm.Connection = conn;
+                        conn.Open();
+                        try
+                        {
+                            comm.ExecuteNonQuery();
+                        }
+                        catch (Exception ex)
+                        {
+                            throw new Exception(ex.Message);
+                        }
                     }
                 }
-            }
 
-            this.Response.Redirect("HairShopAddNext1.aspx?id="+id.ToString());
+                this.Response.Redirect("HairShopAddNext1.aspx?id=" + id.ToString());
+            }
         }
         public void btnSubmitInner_OnClick(object sender, EventArgs e)
         {
@@ -149,27 +152,31 @@ namespace Web.Admin
             } 
 
             string inner1 = upload.UpLoadImg(inner1c, "/uploadfiles/pictures/");
-            //厅外是2,厅内是1
-            using (SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["MSSqlServer"].ConnectionString))
+
+            if (inner1 != string.Empty)
             {
-                string commString = "insert into shoppics(picurl,hairshopID,classid) values('" + inner1 + "'," + id.ToString() + ",1)";
-                using (SqlCommand comm = new SqlCommand())
+                //厅外是2,厅内是1
+                using (SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["MSSqlServer"].ConnectionString))
                 {
-                    comm.CommandText = commString;
-                    comm.Connection = conn;
-                    conn.Open();
-                    try
+                    string commString = "insert into shoppics(picurl,hairshopID,classid) values('" + inner1 + "'," + id.ToString() + ",1)";
+                    using (SqlCommand comm = new SqlCommand())
                     {
-                        comm.ExecuteNonQuery();
-                    }
-                    catch (Exception ex)
-                    {
-                        throw new Exception(ex.Message);
+                        comm.CommandText = commString;
+                        comm.Connection = conn;
+                        conn.Open();
+                        try
+                        {
+                            comm.ExecuteNonQuery();
+                        }
+                        catch (Exception ex)
+                        {
+                            throw new Exception(ex.Message);
+                        }
                     }
                 }
-            }
 
-            this.Response.Redirect("HairShopAddNext1.aspx?id=" + id.ToString());
+                this.Response.Redirect("HairShopAddNext1.aspx?id=" + id.ToString());
+            }
         }
 
         public void btnSubmit_OnClick(object sender,EventArgs e)

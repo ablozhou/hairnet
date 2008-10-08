@@ -187,16 +187,19 @@ namespace Web.Admin
         {
             UpLoadClass upload = new UpLoadClass();
             string picPath = upload.UpLoadImg(fileLogo, "/uploadfiles/pictures/");
-            if (this.lblpicSring.Text == string.Empty)
+            if (picPath != string.Empty)
             {
-                lblpicSring.Text = picPath;
-                lblPic.Text = "<img width=200 heigth=100 src="+picPath+"></img>";
-            }
-            else
-            {
-                lblpicSring.Text = lblpicSring.Text + ";" + picPath;
+                if (this.lblpicSring.Text == string.Empty)
+                {
+                    lblpicSring.Text = picPath;
+                    lblPic.Text = "<img width=200 heigth=100 src=" + picPath + "></img>";
+                }
+                else
+                {
+                    lblpicSring.Text = lblpicSring.Text + ";" + picPath;
 
-                lblPic.Text += "&nbsp;&nbsp;<img width=200 heigth=100 src=" + picPath + "></img>";
+                    lblPic.Text += "&nbsp;&nbsp;<img width=200 heigth=100 src=" + picPath + "></img>";
+                }
             }
         }
     }

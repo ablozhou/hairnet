@@ -153,9 +153,9 @@ namespace HairNet.Utilities
             }
             else
             {
-                if (upload_img.PostedFile.ContentLength > 10240000)
+                if (upload_img.PostedFile.ContentLength > Convert.ToInt32(ConfigurationManager.AppSettings["UploadSize"].ToString()) * 1000)
                 {
-                    HttpContext.Current.Response.Write("<script>alert('文件大约10M，不能上传。');</script>");
+                    HttpContext.Current.Response.Write("<script>alert('文件大于" + ConfigurationManager.AppSettings["UploadSize"].ToString() + "K，不能上传。');</script>");
                     error = 1;
                 }
             }
