@@ -33,6 +33,19 @@ namespace HairNet.Entry
         private int normal = 0;
         private int bad = 0;
         private string tag = string.Empty;
+        private string description = string.Empty;
+        private int picturestoreid = 0;
+
+        public string Description
+        {
+            set { this.description = value; }
+            get { return this.description; }
+        }
+        public int PictureStoreId
+        {
+            set { this.picturestoreid = value; }
+            get { return this.picturestoreid; }
+        }
 
         /// <summary>
         /// 
@@ -107,8 +120,23 @@ namespace HairNet.Entry
         /// <param name="hairQuantity">hairQuantity</param>
         /// <param name="hairNature">hairNature</param>
         /// <param name="tag">tag</param>
+        public HairStyleEntity(string hairName,int hairShopID, int hairEngineerID, Byte hairStyle, Byte faceStyle, Byte temperament, Byte occasion, Byte sex, Byte hairNature, string idesc)
+        {
+            this.hairName = hairName;
+            this.hairShopID = hairShopID;
+            this.hairEngineerID = hairEngineerID;
+            this.hairStyle = hairStyle;
+            this.faceStyle = faceStyle;
+            this.hairQuantity = hairQuantity;
+            this.hairNature = hairNature;
+            this.temperament = temperament;
+            this.occasion = occasion;
+            this.sex = sex;
+            this.description = idesc;
+        }
+
         public HairStyleEntity(string hairName, string bigPic, string smallPic_F, string smallPic_B, string smallPic_S, Byte hairStyle,
-            Byte faceStyle, Byte hairQuantity, Byte hairNature, string tag)
+            Byte faceStyle, Byte hairQuantity, Byte hairNature, string tag,string desc,int pictureid)
         {
             this.hairName = hairName;
             this.bigPic = bigPic;
@@ -120,6 +148,8 @@ namespace HairNet.Entry
             this.hairQuantity = hairQuantity;
             this.hairNature = hairNature;
             this.tag = tag;
+            this.description = desc;
+            this.picturestoreid = pictureid;
         }
 
         public Int32 ID
