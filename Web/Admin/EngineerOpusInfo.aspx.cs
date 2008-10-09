@@ -106,7 +106,7 @@ namespace Web.Admin
 
             this.lbl4.Text = GetPath(assistanceFilePath);
             this.lbl4new.Text = GetPath(newAssistanceFilePath);
-            i4.ImageUrl = this.lbl4new.Text;
+            i4.ImageUrl = this.lbl4.Text;
             i4.Visible = true;
         }
         public string GetPath(string path)
