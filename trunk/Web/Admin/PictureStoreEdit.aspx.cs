@@ -27,6 +27,7 @@ namespace Web.Admin
         {
             if (!IsPostBack)
             {
+                BindControlData();
                 this.SetInfo();
                 ViewState["num"] = 0;
             }
@@ -72,6 +73,33 @@ namespace Web.Admin
             txtPictureStoreName.Text = ps.PictureStoreName;
             txtPictureStoreDescription.Text = ps.PictureStoreDescription;
             txtPictureStoreTag.Text = InfoAdmin.GetPictureStoreTagNames(ps.PictureStoreTagIDs);
+
+
+            using (SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["MSSqlServer"].ToString()))
+            {
+                string commString = "select * from HairStyle where PictureStoreId=" + ps.PictureStoreID.ToString();
+                using (SqlCommand comm = new SqlCommand())
+                {
+                    comm.Connection = conn;
+                    comm.CommandText = commString;
+                    conn.Open();
+
+                    using (SqlDataReader sdr = comm.ExecuteReader())
+                    {
+                        if (sdr.Read())
+                        {
+                            this.ddlFaceStyle.SelectedValue = sdr["facestyle"].ToString();
+                            this.ddlHairNature.SelectedValue = sdr["hairnature"].ToString();
+                            this.ddlHairQuantity.SelectedValue = sdr["hairquantity"].ToString();
+                            this.ddlHairStyleClassName.SelectedValue = sdr["hairstyle"].ToString();
+                            this.ddlOccasion.SelectedValue = sdr["occasion"].ToString();
+                            this.ddlSex.SelectedValue = sdr["sex"].ToString();
+                            this.ddlTemperament.SelectedValue = sdr["temperament"].ToString();
+                        }
+                    }
+                }
+            }
+
 
             int i = 0;
             string imgString = string.Empty;
@@ -159,6 +187,35 @@ namespace Web.Admin
 
             InfoAdmin.UpdatePictureStore(ps);
 
+            string iHairNature = this.ddlHairNature.SelectedItem.Value;
+            string iHairQuantity = this.ddlHairQuantity.SelectedItem.Value;
+            string iFaceStyle = this.ddlFaceStyle.SelectedItem.Value;
+            string iSex = this.ddlSex.SelectedItem.Value;
+            string iHairStyleClassName = this.ddlHairStyleClassName.SelectedItem.Value;
+            string iTemperament = this.ddlTemperament.SelectedItem.Value;
+            string iOccasion = this.ddlOccasion.SelectedItem.Value;
+
+            int hairShopID = 0;
+            int hairEngineerID = 0;
+
+            using (SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["MSSqlServer"].ToString()))
+            {
+                string commString = "update HairStyle set hairname='"+ps.PictureStoreName+"',hairShopID="+hairShopID.ToString()+",hairEngineerID="+hairEngineerID.ToString()+",hairnature="+iHairNature+",hairquantity="+iHairQuantity+",facestyle="+iFaceStyle+",sex="+iSex+",hairstyle="+iHairStyleClassName+",temperament="+iTemperament+",occasion="+iOccasion+",descr='"+ps.PictureStoreDescription+"' where picturestoreid="+ps.PictureStoreID.ToString();
+                using (SqlCommand comm = new SqlCommand())
+                {
+                    comm.Connection = conn;
+                    comm.CommandText = commString;
+                    conn.Open();
+
+                    try
+                    {
+                        comm.ExecuteNonQuery();
+                    }
+                    catch (Exception ex)
+                    { }
+                }
+            }
+
             foreach (string tagid in ps.PictureStoreTagIDs.Split(','))
             {
                 InfoAdmin.SetPictureStoreTag(ps.PictureStoreID, int.Parse(tagid));
@@ -211,6 +268,146 @@ namespace Web.Admin
                 }
 
                 this.lblImg.Text = "<a href='" + filepath + "' target='_blank'><img src='" + filepath + "' width=200 height=100 /></a>&nbsp;&nbsp;<a href='PictureStoreOperate.aspx?id=" + pssid + "&pid=" + ps.PictureStoreID.ToString() + "'>删除</a>" + "&nbsp;&nbsp;" + this.lblImg.Text;
+            }
+        }
+        protected void BindControlData()
+        {
+            using (SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["MSSqlServer"].ToString()))
+            {
+                string commString = "select * from hairnature";
+                using (SqlCommand comm = new SqlCommand())
+                {
+                    comm.Connection = conn;
+                    comm.CommandText = commString;
+                    conn.Open();
+
+                    using (SqlDataReader sdr = comm.ExecuteReader())
+                    {
+                        while (sdr.Read())
+                        {
+                            ListItem li = new ListItem();
+                            li.Value = sdr["id"].ToString();
+                            li.Text = sdr["hairnature"].ToString();
+
+                            this.ddlHairNature.Items.Add(li);
+                        }
+                    }
+                }
+            }
+
+            using (SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["MSSqlServer"].ToString()))
+            {
+                string commString = "select * from facestyle";
+                using (SqlCommand comm = new SqlCommand())
+                {
+                    comm.Connection = conn;
+                    comm.CommandText = commString;
+                    conn.Open();
+
+                    using (SqlDataReader sdr = comm.ExecuteReader())
+                    {
+                        while (sdr.Read())
+                        {
+                            ListItem li = new ListItem();
+                            li.Value = sdr["id"].ToString();
+                            li.Text = sdr["facestylename"].ToString();
+
+                            this.ddlFaceStyle.Items.Add(li);
+                        }
+                    }
+                }
+            }
+
+            using (SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["MSSqlServer"].ToString()))
+            {
+                string commString = "select * from hairquantity";
+                using (SqlCommand comm = new SqlCommand())
+                {
+                    comm.Connection = conn;
+                    comm.CommandText = commString;
+                    conn.Open();
+
+                    using (SqlDataReader sdr = comm.ExecuteReader())
+                    {
+                        while (sdr.Read())
+                        {
+                            ListItem li = new ListItem();
+                            li.Value = sdr["id"].ToString();
+                            li.Text = sdr["hairquantity"].ToString();
+
+                            this.ddlHairQuantity.Items.Add(li);
+                        }
+                    }
+                }
+            }
+
+
+            using (SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["MSSqlServer"].ToString()))
+            {
+                string commString = "select * from hairstyleclassname";
+                using (SqlCommand comm = new SqlCommand())
+                {
+                    comm.Connection = conn;
+                    comm.CommandText = commString;
+                    conn.Open();
+
+                    using (SqlDataReader sdr = comm.ExecuteReader())
+                    {
+                        while (sdr.Read())
+                        {
+                            ListItem li = new ListItem();
+                            li.Value = sdr["id"].ToString();
+                            li.Text = sdr["hairstyleclassname"].ToString();
+
+                            this.ddlHairStyleClassName.Items.Add(li);
+                        }
+                    }
+                }
+            }
+
+            using (SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["MSSqlServer"].ToString()))
+            {
+                string commString = "select * from temperament";
+                using (SqlCommand comm = new SqlCommand())
+                {
+                    comm.Connection = conn;
+                    comm.CommandText = commString;
+                    conn.Open();
+
+                    using (SqlDataReader sdr = comm.ExecuteReader())
+                    {
+                        while (sdr.Read())
+                        {
+                            ListItem li = new ListItem();
+                            li.Value = sdr["id"].ToString();
+                            li.Text = sdr["temperament"].ToString();
+
+                            this.ddlTemperament.Items.Add(li);
+                        }
+                    }
+                }
+            }
+            using (SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["MSSqlServer"].ToString()))
+            {
+                string commString = "select * from occasion";
+                using (SqlCommand comm = new SqlCommand())
+                {
+                    comm.Connection = conn;
+                    comm.CommandText = commString;
+                    conn.Open();
+
+                    using (SqlDataReader sdr = comm.ExecuteReader())
+                    {
+                        while (sdr.Read())
+                        {
+                            ListItem li = new ListItem();
+                            li.Value = sdr["id"].ToString();
+                            li.Text = sdr["occasion"].ToString();
+
+                            this.ddlOccasion.Items.Add(li);
+                        }
+                    }
+                }
             }
         }
     }

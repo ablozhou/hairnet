@@ -74,6 +74,69 @@ namespace Web.Admin {
         protected global::System.Web.UI.WebControls.DropDownList ddlPictureStoreGroup;
         
         /// <summary>
+        /// ddlHairNature 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddlHairNature;
+        
+        /// <summary>
+        /// ddlHairQuantity 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddlHairQuantity;
+        
+        /// <summary>
+        /// ddlFaceStyle 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddlFaceStyle;
+        
+        /// <summary>
+        /// ddlSex 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddlSex;
+        
+        /// <summary>
+        /// ddlHairStyleClassName 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddlHairStyleClassName;
+        
+        /// <summary>
+        /// ddlTemperament 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddlTemperament;
+        
+        /// <summary>
+        /// ddlOccasion 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddlOccasion;
+        
+        /// <summary>
         /// txtPictureStoreDescription 控件。
         /// </summary>
         /// <remarks>
