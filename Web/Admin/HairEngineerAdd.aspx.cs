@@ -65,7 +65,7 @@ namespace Web.Admin
             he.HairEngineerName = txtHairEngineerName.Text.Trim();
             //he.HairEngineerAge = txtHairEngineerAge.Text.Trim();
             he.HairEngineerSex = int.Parse(rBtnListHairEngineerSex.SelectedValue);
-            he.HairEngineerPrice = txtHairEngineerPrice.Text.Trim();
+            he.HairEngineerTel = txtHairEngineerTel.Text.Trim();
             he.HairEngineerRawPrice = txtHairEngineerRawPrice.Text.Trim();
             he.HairEngineerYear = txtHairEngineerYear.Text.Trim();
             he.HairEngineerSkill = txtHairEngineerSkill.Text.Trim();
@@ -119,7 +119,7 @@ namespace Web.Admin
             txtHairEngineerName.Text = String.Empty;
             //txtHairEngineerAge.Text = String.Empty;
             rBtnListHairEngineerSex.SelectedIndex = 0;
-            txtHairEngineerPrice.Text = String.Empty;
+            txtHairEngineerTel.Text = String.Empty;
             txtHairEngineerRawPrice.Text = String.Empty;
             txtHairEngineerYear.Text = String.Empty;
             txtHairEngineerSkill.Text = String.Empty;
@@ -140,7 +140,7 @@ namespace Web.Admin
             he.HairEngineerName = txtHairEngineerName.Text.Trim();
             //he.HairEngineerAge = txtHairEngineerAge.Text.Trim();
             he.HairEngineerSex = int.Parse(rBtnListHairEngineerSex.SelectedValue);
-            he.HairEngineerPrice = txtHairEngineerPrice.Text.Trim();
+            he.HairEngineerTel = txtHairEngineerTel.Text.Trim();
             he.HairEngineerRawPrice = txtHairEngineerRawPrice.Text.Trim();
             he.HairEngineerYear = txtHairEngineerYear.Text.Trim();
             he.HairEngineerSkill = txtHairEngineerSkill.Text.Trim();

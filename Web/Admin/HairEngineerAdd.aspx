@@ -54,7 +54,7 @@ function Button1_onclick() {
         </tr>
         <tr>
             <td width="120px" align="right">预约电话：</td>
-            <td><asp:TextBox ID="txtHairEngineerPrice" runat="server" CssClass="TextBox"></asp:TextBox></td>
+            <td><asp:TextBox ID="txtHairEngineerTel" runat="server" CssClass="TextBox"></asp:TextBox></td>
         </tr>
           <tr>
             <td width="120px" align="right">星座：</td>
