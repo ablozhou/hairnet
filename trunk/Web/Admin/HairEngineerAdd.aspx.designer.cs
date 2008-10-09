@@ -17,7 +17,7 @@ namespace Web.Admin {
         protected System.Web.UI.WebControls.CheckBox chkIsImportant;
         protected System.Web.UI.WebControls.RadioButtonList rBtnListHairEngineerSex;
         protected System.Web.UI.WebControls.TextBox txtHairEngineerRawPrice;
-        protected System.Web.UI.WebControls.TextBox txtHairEngineerPrice;
+        protected System.Web.UI.WebControls.TextBox txtHairEngineerTel;
         protected System.Web.UI.WebControls.DropDownList ddlConstellation;
         protected System.Web.UI.WebControls.DropDownList ddlHairShopClass;
         protected System.Web.UI.HtmlControls.HtmlInputFile fileLogo;

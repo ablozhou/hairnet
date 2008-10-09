@@ -28,14 +28,14 @@ namespace HairNet.Provider
             switch (ua)
             {
                 case UserAction.Create:
-                    commandText = "insert into HairEngineer(HairEngineerAge,HairEngineerName,HairEngineerSex,HairEngineerPhoto,HairShopID,HairEngineerYear,HairEngineerSkill,HairEngineerTagIDs,HairEngineerPictureStoreIDs,HairEngineerDescription,HairEngineerRawPrice,HairEngineerPrice,HairEngineerClassID,HairEngineerConstellation,isimportant,hairengineerphotoids) values('" + hairEngineer.HairEngineerAge + "','" + hairEngineer.HairEngineerName + "'," + hairEngineer.HairEngineerSex.ToString() + ",'" + hairEngineer.HairEngineerPhoto + "'," + hairEngineer.HairShopID.ToString() + ",'" + hairEngineer.HairEngineerYear + "','" + hairEngineer.HairEngineerSkill + "','" + hairEngineer.HairEngineerTagIDs + "','" + hairEngineer.HairEngineerPictureStoreIDs + "','" + hairEngineer.HairEngineerDescription + "','" + hairEngineer.HairEngineerRawPrice + "','" + hairEngineer.HairEngineerPrice + "'," + hairEngineer.HairEngineerClassID.ToString() + ",'" + hairEngineer.HairEngineerConstellation + "','"+hairEngineer.IsImportant.CompareTo(false).ToString()+"','"+hairEngineer.HairEngineerPhotoIDs+"')";
+                    commandText = "insert into HairEngineer(HairEngineerAge,HairEngineerName,HairEngineerSex,HairEngineerPhoto,HairShopID,HairEngineerYear,HairEngineerSkill,HairEngineerTagIDs,HairEngineerPictureStoreIDs,HairEngineerDescription,HairEngineerRawPrice,HairEngineerTel,HairEngineerClassID,HairEngineerConstellation,isimportant,hairengineerphotoids) values('" + hairEngineer.HairEngineerAge + "','" + hairEngineer.HairEngineerName + "'," + hairEngineer.HairEngineerSex.ToString() + ",'" + hairEngineer.HairEngineerPhoto + "'," + hairEngineer.HairShopID.ToString() + ",'" + hairEngineer.HairEngineerYear + "','" + hairEngineer.HairEngineerSkill + "','" + hairEngineer.HairEngineerTagIDs + "','" + hairEngineer.HairEngineerPictureStoreIDs + "','" + hairEngineer.HairEngineerDescription + "','" + hairEngineer.HairEngineerRawPrice + "','" + hairEngineer.HairEngineerTel + "'," + hairEngineer.HairEngineerClassID.ToString() + ",'" + hairEngineer.HairEngineerConstellation + "','"+hairEngineer.IsImportant.CompareTo(false).ToString()+"','"+hairEngineer.HairEngineerPhotoIDs+"')";
                     commandText += ";select @@identity;";
                     break;
                 case UserAction.Delete:
                     commandText = "delete from HairEngineer where HairEngineerID="+hairEngineer.HairEngineerID.ToString();
                     break;
                 case UserAction.Update:
-                    commandText = "update HairEngineer set HairEngineerAge='" + hairEngineer.HairEngineerAge + "',HairEngineerName='" + hairEngineer.HairEngineerName + "',HairEngineerSex=" + hairEngineer.HairEngineerSex.ToString() + ",HairEngineerPhoto='" + hairEngineer.HairEngineerPhoto + "',HairShopID=" + hairEngineer.HairShopID.ToString() + ",HairEngineerYear='" + hairEngineer.HairEngineerYear + "',HairEngineerSkill='" + hairEngineer.HairEngineerSkill + "',HairEngineerTagIDs='" + hairEngineer.HairEngineerTagIDs + "',HairEngineerPictureStoreIDs='" + hairEngineer.HairEngineerPictureStoreIDs + "',HairEngineerDescription='" + hairEngineer.HairEngineerDescription + "',HairEngineerRawPrice='" + hairEngineer.HairEngineerRawPrice + "',HairEngineerPrice='" + hairEngineer.HairEngineerPrice + "',HairEngineerClassID=" + hairEngineer.HairEngineerClassID.ToString() + ",HairEngineerConstellation ='" + hairEngineer.HairEngineerConstellation + "',IsImportant='"+hairEngineer.IsImportant.CompareTo(false).ToString()+"',HairEngineerPhotoIDs='"+hairEngineer.HairEngineerPhotoIDs+"' where HairEngineerID = " + hairEngineer.HairEngineerID.ToString();
+                    commandText = "update HairEngineer set HairEngineerAge='" + hairEngineer.HairEngineerAge + "',HairEngineerName='" + hairEngineer.HairEngineerName + "',HairEngineerSex=" + hairEngineer.HairEngineerSex.ToString() + ",HairEngineerPhoto='" + hairEngineer.HairEngineerPhoto + "',HairShopID=" + hairEngineer.HairShopID.ToString() + ",HairEngineerYear='" + hairEngineer.HairEngineerYear + "',HairEngineerSkill='" + hairEngineer.HairEngineerSkill + "',HairEngineerTagIDs='" + hairEngineer.HairEngineerTagIDs + "',HairEngineerPictureStoreIDs='" + hairEngineer.HairEngineerPictureStoreIDs + "',HairEngineerDescription='" + hairEngineer.HairEngineerDescription + "',HairEngineerRawPrice='" + hairEngineer.HairEngineerRawPrice + "',HairEngineerTel='" + hairEngineer.HairEngineerTel + "',HairEngineerClassID=" + hairEngineer.HairEngineerClassID.ToString() + ",HairEngineerConstellation ='" + hairEngineer.HairEngineerConstellation + "',IsImportant='"+hairEngineer.IsImportant.CompareTo(false).ToString()+"',HairEngineerPhotoIDs='"+hairEngineer.HairEngineerPhotoIDs+"' where HairEngineerID = " + hairEngineer.HairEngineerID.ToString();
                     break;
             } 
             using (SqlConnection conn = new SqlConnection(DataHelper2.SqlConnectionString))
@@ -365,7 +365,7 @@ namespace HairNet.Provider
                     hairEngineer.HairEngineerOrderNum = int.Parse(sdr["HairEngineerOrderNum"].ToString());
                     hairEngineer.HairEngineerRecommandNum = int.Parse(sdr["HairEngineerRecommandNum"].ToString());
                     hairEngineer.HairEngineerRawPrice = sdr["HairEngineerRawPrice"].ToString();
-                    hairEngineer.HairEngineerPrice = sdr["HairEngineerPrice"].ToString();
+                    hairEngineer.HairEngineerTel = sdr["HairEngineerTel"].ToString();
                     hairEngineer.HairEngineerGood = int.Parse(sdr["HairEngineerGood"].ToString());
                     hairEngineer.HairEngineerBad = int.Parse(sdr["HairEngineerBad"].ToString());
                     hairEngineer.HairEngineerClassID = int.Parse(sdr["HairEngineerClassID"].ToString());
@@ -465,7 +465,7 @@ namespace HairNet.Provider
                                 hairEngineer.HairEngineerOrderNum = int.Parse(sdr["HairEngineerOrderNum"].ToString());
                                 hairEngineer.HairEngineerRecommandNum = int.Parse(sdr["HairEngineerRecommandNum"].ToString());
                                 hairEngineer.HairEngineerRawPrice = sdr["HairEngineerRawPrice"].ToString();
-                                hairEngineer.HairEngineerPrice = sdr["HairEngineerPrice"].ToString();
+                                hairEngineer.HairEngineerTel = sdr["HairEngineerTel"].ToString();
                                 hairEngineer.HairEngineerGood = int.Parse(sdr["HairEngineerGood"].ToString());
                                 hairEngineer.HairEngineerBad = int.Parse(sdr["HairEngineerBad"].ToString());
                                 hairEngineer.HairEngineerClassID = int.Parse(sdr["HairEngineerClassID"].ToString());
@@ -559,7 +559,7 @@ namespace HairNet.Provider
                                 hairEngineer.HairEngineerOrderNum = int.Parse(sdr["HairEngineerOrderNum"].ToString());
                                 hairEngineer.HairEngineerRecommandNum = int.Parse(sdr["HairEngineerRecommandNum"].ToString());
                                 hairEngineer.HairEngineerRawPrice = sdr["HairEngineerRawPrice"].ToString();
-                                hairEngineer.HairEngineerPrice = sdr["HairEngineerPrice"].ToString();
+                                hairEngineer.HairEngineerTel = sdr["HairEngineerTel"].ToString();
                                 hairEngineer.HairEngineerGood = int.Parse(sdr["HairEngineerGood"].ToString());
                                 hairEngineer.HairEngineerBad = int.Parse(sdr["HairEngineerBad"].ToString());
                                 hairEngineer.HairEngineerClassID = int.Parse(sdr["HairEngineerClassID"].ToString());

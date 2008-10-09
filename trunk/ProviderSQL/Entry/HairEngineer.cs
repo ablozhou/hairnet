@@ -25,7 +25,7 @@ namespace HairNet.Entry
         private int _hairEngineerOrderNum = 0;
         private int _hairEngineerRecommandNum = 0;
         private string _hairEngineerRawPrice = string.Empty;
-        private string _hairEngineerPrice = string.Empty;
+        private string _hairEngineerTel = string.Empty;
         private int _hairEngineerGood = 0;
         private int _hairEngineerBad = 0;
         private int _hairEngineerClassID = 0;
@@ -143,10 +143,10 @@ namespace HairNet.Entry
             get { return this._hairEngineerRawPrice; }
         }
 
-        public string HairEngineerPrice
+        public string HairEngineerTel
         {
-            set { this._hairEngineerPrice = value; }
-            get { return this._hairEngineerPrice; }
+            set { this._hairEngineerTel = value; }
+            get { return this._hairEngineerTel; }
         }
 
         public int HairEngineerGood

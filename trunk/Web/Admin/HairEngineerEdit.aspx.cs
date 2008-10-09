@@ -51,7 +51,7 @@ namespace Web.Admin
             //txtHairEngineerAge.Text = he.HairEngineerAge;
             txtHairEngineerDescription.Text = he.HairEngineerDescription;
             txtHairEngineerName.Text = he.HairEngineerName;
-            txtHairEngineerPrice.Text = he.HairEngineerPrice;
+            txtHairEngineerTel.Text = he.HairEngineerTel;
             txtHairEngineerRawPrice.Text = he.HairEngineerRawPrice;
             txtHairEngineerSkill.Text = he.HairEngineerSkill;
             txtHairEngineerYear.Text = he.HairEngineerYear;
@@ -61,7 +61,17 @@ namespace Web.Admin
             ddlHairShop.SelectedValue = he.HairShopID.ToString();
             ddlHairShopClass.SelectedValue = he.HairEngineerClassID.ToString();
             rBtnListHairEngineerSex.SelectedValue = he.HairEngineerSex.ToString();
+            
             this.chkIsImportant.Checked = he.IsImportant;
+
+            foreach (ListItem lli in this.ddlConstellation.Items)
+            {
+                if (lli.Text == he.HairEngineerConstellation)
+                {
+                    lli.Selected = true;
+                    break;
+                }
+            }
 
             //imgPhoto.ImageUrl = he.HairEngineerPhoto;
             int num = 0;
@@ -112,7 +122,7 @@ namespace Web.Admin
             he.HairEngineerName = txtHairEngineerName.Text.Trim();
             //he.HairEngineerAge = txtHairEngineerAge.Text.Trim();
             he.HairEngineerSex = int.Parse(rBtnListHairEngineerSex.SelectedValue);
-            he.HairEngineerPrice = txtHairEngineerPrice.Text.Trim();
+            he.HairEngineerTel = txtHairEngineerTel.Text.Trim();
             he.HairEngineerRawPrice = txtHairEngineerRawPrice.Text.Trim();
             he.HairEngineerYear = txtHairEngineerYear.Text.Trim();
             he.HairEngineerSkill = txtHairEngineerSkill.Text.Trim();
@@ -120,6 +130,7 @@ namespace Web.Admin
 
             he.HairEngineerClassID = int.Parse(ddlHairShopClass.SelectedValue);
             he.HairShopID = int.Parse(ddlHairShop.SelectedValue);
+            he.HairEngineerConstellation = this.ddlConstellation.SelectedItem.Text;
 
             //if (fileLogo.Value != "")
             //{
@@ -133,10 +144,18 @@ namespace Web.Admin
             //}
 
             he.IsImportant = this.chkIsImportant.Checked;
+
             he.HairEngineerTagIDs = InfoAdmin.GetHairEngineerTagIDs(txtHairEngineerTag.Text.Trim());
 
-            Session["HairEngineerInfo"] = he;
-            this.Response.Redirect("HairEngineerAdmin.aspx");
+            if (InfoAdmin.UpdateHairEngineer(he))
+            {
+                Session["HairEngineerInfo"] = he;
+                this.Response.Redirect("HairEngineerAdmin.aspx");
+            }
+            else
+            {
+                this.Response.Write("更新失败！");
+            }
         }
         public void btnPicSubmit_OnClick(object sender, EventArgs e)
         {
