@@ -7,7 +7,7 @@ picturestoreset表：
 0	PictureStoreId	int	4	0   外键，HairStyle的ID
 0	PictureStoreURL	varchar	1024	1   
 0	IsHairStyle	bit	1	1   是否发型 1.是发型
-0	HairStylePos	int	4	1  1,2,3，4：正面侧面背面镂空大图，5，6，7,8对应正面侧面背面镂空小图，添加发型页面也增加相应的上传，允许为空
+0	HairStylePos	int	4	1  1,2,3，4：正面侧面背面镂空大图，5，6，7,8对应正面侧面背面镂空小图，添加发型页面也增加 正面大图，正面小图，侧，背，辅助5个上传。其余空
 
 将 
 1	bigpic	varchar	1024	0
