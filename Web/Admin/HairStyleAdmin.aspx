@@ -62,7 +62,7 @@
                     DataNavigateUrlFormatString="HairShop.aspx?id={0}" Target="_self" 
                      HeaderText="美发厅"></asp:HyperLinkColumn>
  <asp:HyperLinkColumn DataNavigateUrlField="ID" 
-                    DataNavigateUrlFormatString="HairStyleDetailInformation.aspx?id={0}" Target="_blank" 
+                    DataNavigateUrlFormatString="../FxkContent.aspx?id={0}" Target="_blank" 
                     Text="预览" HeaderText="预览"></asp:HyperLinkColumn>
                 <asp:HyperLinkColumn DataNavigateUrlField="ID" 
                     DataNavigateUrlFormatString="HairStyleEdit.aspx?id={0}" Target="_self" 
