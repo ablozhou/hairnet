@@ -27,6 +27,35 @@ namespace Web.Admin
             {
                 ViewState["num"] = 0;
                 BindControlData();
+                if (Session["pspg1"] == null || Session["pspg1"].ToString()==string.Empty)
+                {
+
+                }
+                else
+                {
+                    this.ddlPictureStoreParentGroup.SelectedValue = Session["pspg1"].ToString();
+                    this.ddlPictureStoreGroup.Items.Clear();
+                    List<PictureStoreGroup> list = ProviderFactory.GetPictureStoreDataProviderInstance().GetPictureStoreGroupsByParentID(int.Parse(this.ddlPictureStoreParentGroup.SelectedItem.Value), 0);
+                    ListItem li = new ListItem();
+                    li.Value = "0";
+                    li.Text = "请选择小类";
+                    this.ddlPictureStoreGroup.Items.Add(li);
+                    for (int i = 0; i < list.Count; i++)
+                    {
+                        ListItem lli = new ListItem();
+                        lli.Value = list[i].ID.ToString();
+                        lli.Text = list[i].Name.ToString();
+                        this.ddlPictureStoreGroup.Items.Add(lli);
+                    }
+                    if (Session["psg1"] == null || Session["psg1"].ToString() == string.Empty)
+                    {
+
+                    }
+                    else
+                    {
+                        this.ddlPictureStoreGroup.SelectedValue = Session["psg1"].ToString(); 
+                    }
+                }
             }
         }
         public void ddlPictureStoreParentGroup_OnSelectedIndexChanged(object sender, EventArgs e)
