@@ -246,9 +246,9 @@
                  -->
                  <table cellpadding="0" cellspacing="0" border="0">
                     <tr>
-                        <td><asp:CheckBox ID="chkMarcel" runat="server" />烫</td>
-                        <td><asp:CheckBox ID="chkDye" runat="server" />染</td>
-                        <td><asp:CheckBox ID="chkCut" runat="server" />剪</td>
+                        <td><asp:CheckBox ID="chkMarcel" runat="server" Checked="true" />烫</td>
+                        <td><asp:CheckBox ID="chkDye" runat="server" Checked="true" />染</td>
+                        <td><asp:CheckBox ID="chkCut" runat="server" Checked="true" />剪</td>
                     </tr>
                  </table>
                 </td>
