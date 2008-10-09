@@ -13,9 +13,11 @@ comment
 0	classname	varchar	50	-1
 0	commentobject	varchar	200	-1
 0	description	varchar	200	-1
+
+(          ok         )
  
 
-添加美发厅时把剪烫染的运营项目缺省选上
+添加美发厅时把剪烫染的运营项目缺省选上(OK)
 
 就把属性大全的，都整合到图片属性里面,包括发量，增加缺失的表，并添加到数据字典中dict.xls
 
@@ -39,6 +41,10 @@ id，picurl，sex，descrpt
 美发厅图片管理，厅外图片上传失败
 美发厅编辑页面的提交没有修改
 
-所有编辑页面和添加页面还是分开，因为行为方式不一样。只需拷贝一下做少量修改
 
+
+添加模特表，包含id，图片地址，性别，描述
+model 表：(OK)
+
+id，picurl，sex，descrpt(ok)
 
