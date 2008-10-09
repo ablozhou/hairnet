@@ -34,6 +34,8 @@
                     分类：
                 </td>
                 <td>
+                   <asp:DropDownList ID="ddlPictureStoreParentGroup" runat="server" AutoPostBack="true" OnSelectedIndexChanged="ddlPictureStoreParentGroup_OnSelectedIndexChanged">
+                    <asp:ListItem Value="0" Selected="true">请选择大类</asp:ListItem><asp:ListItem Value="1">街拍</asp:ListItem><asp:ListItem Value="2" >明星</asp:ListItem></asp:DropDownList>&nbsp;&nbsp;
                     <asp:DropDownList ID="ddlPictureStoreGroup" runat="server">
                     </asp:DropDownList>
                 </td>
@@ -47,7 +49,7 @@
                 </td>
             </tr>
             <tr>
-                <td width="120" align="right">图片1：
+                <td width="120" align="right">图片：
                 </td>
                 <td><input id="uploadpic1" type="file" runat="server" />&nbsp;&nbsp;<asp:Button ID="btnPicUpload" runat="server" OnClick="btnPicUpload1_OnClick" Text="上传图片1" />
                 </td>

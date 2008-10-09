@@ -15,6 +15,7 @@ using HairNet.Business;
 using System.IO;
 using HairNet.Components.Utilities;
 using System.Data.SqlClient;
+using HairNet.Provider;
 
 namespace Web.Admin
 {
@@ -24,43 +25,37 @@ namespace Web.Admin
         {
             if (!IsPostBack)
             {
-                this.bindPicGroup();
                 ViewState["num"] = 0;
             }
         }
-
-        private void bindPicGroup()
+        public void ddlPictureStoreParentGroup_OnSelectedIndexChanged(object sender, EventArgs e)
         {
-            ddlPictureStoreGroup.DataSource = InfoAdmin.GetPictureStoreGroups(0);
-            ddlPictureStoreGroup.DataTextField = "Name";
-            ddlPictureStoreGroup.DataValueField = "ID";
-            ddlPictureStoreGroup.DataBind();
+            this.ddlPictureStoreGroup.Items.Clear();
+            List<PictureStoreGroup> list = ProviderFactory.GetPictureStoreDataProviderInstance().GetPictureStoreGroupsByParentID(int.Parse(this.ddlPictureStoreParentGroup.SelectedItem.Value), 0);
+            ListItem li = new ListItem();
+            li.Value = "0";
+            li.Text = "请选择小类";
+            this.ddlPictureStoreGroup.Items.Add(li);
+            for (int i = 0; i < list.Count; i++)
+            {
+                ListItem lli = new ListItem();
+                lli.Value = list[i].ID.ToString();
+                lli.Text = list[i].Name.ToString();
+                this.ddlPictureStoreGroup.Items.Add(lli);
+            }
         }
 
         protected void btnSubmit_OnClick(object sender,EventArgs e)
         {
             PictureStore ps = new PictureStore();
             ps.PictureStoreName = txtPictureStoreName.Text.Trim();
-            ps.PictureStoreGroupIDs = ddlPictureStoreGroup.SelectedValue;
+            ps.PictureStoreGroupIDs = ddlPictureStoreGroup.SelectedItem.Value;
             ps.PictureStoreDescription = txtPictureStoreDescription.Text.Trim();
             ps.PictureStoreTagIDs = InfoAdmin.GetPictureStoreTagIDs(txtPictureStoreTag.Text.Trim());
             ps.PictureStoreHits = 0;
             ps.PictureStoreCreateTime = DateTime.Now;
             ps.PictureStoreRawUrl = "";
             ps.PictureStoreLittleUrl = "";
-            //if (uploadpic.Value != "")
-            //{
-            //    UpLoadClass upload = new UpLoadClass();
-            //    string filepath = upload.UpLoadImg(uploadpic, "/uploadfiles/pictures/");
-            //    upload = null;
-            //    //处理图片
-            //    PicOperate po = new PicOperate();
-            //    string newfilepath = filepath.Substring(0, filepath.LastIndexOf(".")) + "_new" + Path.GetExtension(filepath);
-            //    po.AddWaterMarkOperate(Server.MapPath(filepath), Server.MapPath(WaterSettings.WaterMarkPath), Server.MapPath(newfilepath), WaterSettings.CopyrightText);
-            //    ps.PictureStoreRawUrl = newfilepath;
-            //    ps.PictureStoreLittleUrl = po.CreateMicroPic(newfilepath, "", WaterSettings.PictureScaleSize[0], WaterSettings.PictureScaleSize[1]);
-            //    po = null;
-            //}
 
             ps.PictureStoreID = InfoAdmin.AddPictureStore(ps);
 
@@ -71,7 +66,7 @@ namespace Web.Admin
                 {
                     using (SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["MSSqlServer"].ToString()))
                     {
-                        string commString = "insert into PictureStoreSet(PictureStoreId,PictureStoreURL) values(" + ps.PictureStoreID.ToString() + ",'" + pps + "')";
+                        string commString = "insert into PictureStoreSet(PictureStoreId,PictureStoreURL,IsHairStyle,HairStylePos) values(" + ps.PictureStoreID.ToString() + ",'" + pps + "',0,0)";
                         using (SqlCommand comm = new SqlCommand())
                         {
                             comm.Connection = conn;
