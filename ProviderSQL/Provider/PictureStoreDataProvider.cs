@@ -12,6 +12,7 @@ namespace HairNet.Provider
         bool PictureStoreRecommandCreateDeleteUpdate(PictureStoreRecommand pictureStoreRecommand, UserAction ua);
 
         PictureStore GetPictureStoreByPictureStoreID(int pictureStoreID);
+        List<PictureStore> GetPictureStores(int count, string pictureStoreGroupID);
         List<PictureStore> GetPictureStores(int count,OrderKey ok);
         List<PictureStore> GetPictureStores(int count, OrderKey ok,string pictureStoreName);
 

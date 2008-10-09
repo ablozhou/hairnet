@@ -192,6 +192,58 @@ namespace HairNet.Provider
 
             return list;
         }
+        public List<PictureStore> GetPictureStores(int count, string pictureStoreGroupID)
+        {
+            List<PictureStore> list = new List<PictureStore>();
+
+
+            string commText = "";
+            switch (count)
+            {
+                case 0:
+                    commText = "select * from PictureStore where PictureStoreGroupIDs ='"+pictureStoreGroupID+"' order by PictureStoreID Desc";
+                    break;
+                default:
+                    commText = "select top " + count.ToString() + " * from PictureStore where PictureStoreGroupIDs ='" + pictureStoreGroupID + "' order by PictureStoreID desc";
+                    break;
+            }
+
+            using (SqlConnection conn = new SqlConnection(DataHelper2.SqlConnectionString))
+            {
+                {
+                    using (SqlCommand comm = new SqlCommand())
+                    {
+                        comm.Connection = conn;
+                        comm.CommandText = commText;
+                        conn.Open();
+
+                        using (SqlDataReader sdr = comm.ExecuteReader())
+                        {
+                            while (sdr.Read())
+                            {
+                                PictureStore pictureStore = new PictureStore();
+
+                                pictureStore.PictureStoreID = int.Parse(sdr["PictureStoreID"].ToString());
+                                pictureStore.PictureStoreName = sdr["PictureStoreName"].ToString();
+                                pictureStore.PictureStoreRawUrl = sdr["PictureStoreRawUrl"].ToString();
+                                pictureStore.PictureStoreLittleUrl = sdr["PictureStoreLittleUrl"].ToString();
+                                pictureStore.PictureStoreTagIDs = sdr["PictureStoreTagIDs"].ToString();
+                                pictureStore.PictureStoreHits = int.Parse(sdr["PictureStoreHits"].ToString());
+                                pictureStore.PictureStoreDescription = sdr["PictureStoreDescription"].ToString();
+                                pictureStore.PictureStoreHairEngineerIDs = sdr["HairEngineerIDs"].ToString();
+                                pictureStore.PictureStoreHairShopIDs = sdr["HairShopIDs"].ToString();
+                                pictureStore.PictureStoreCreateTime = Convert.ToDateTime(sdr["PictureStoreCreateTime"].ToString());
+                                pictureStore.PictureStoreGroupIDs = sdr["PictureStoreGroupIDs"].ToString();
+
+                                list.Add(pictureStore);
+                            }
+                        }
+                    }
+                }
+            }
+
+            return list;
+        }
 
         public List<PictureStore> GetPictureStores(int count, OrderKey ok, string pictureStoreName)
         {

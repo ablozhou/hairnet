@@ -34,9 +34,6 @@ namespace Web.Admin
                     case "3":
                         this.lblGroupName.Text = "发型";
                         break;
-                    case "4":
-                        this.lblGroupName.Text = "专题";
-                        break;
                 }
             }
         }
