@@ -1706,6 +1706,27 @@
     <Compile Include="Admin\PictureStoreEdit.aspx.designer.cs">
       <DependentUpon>PictureStoreEdit.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Admin\PictureStoreGroupAdd.aspx.cs">
+      <SubType>ASPXCodeBehind</SubType>
+      <DependentUpon>PictureStoreGroupAdd.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\PictureStoreGroupAdd.aspx.designer.cs">
+      <DependentUpon>PictureStoreGroupAdd.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\PictureStoreGroupAdmin.aspx.cs">
+      <SubType>ASPXCodeBehind</SubType>
+      <DependentUpon>PictureStoreGroupAdmin.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\PictureStoreGroupAdmin.aspx.designer.cs">
+      <DependentUpon>PictureStoreGroupAdmin.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\PictureStoreGroupEdit.aspx.cs">
+      <SubType>ASPXCodeBehind</SubType>
+      <DependentUpon>PictureStoreGroupEdit.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\PictureStoreGroupEdit.aspx.designer.cs">
+      <DependentUpon>PictureStoreGroupEdit.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Admin\PictureStoreOperate.aspx.cs">
       <DependentUpon>PictureStoreOperate.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -2127,6 +2148,9 @@
     <Content Include="Admin\hairEngineerOperate.aspx" />
     <Content Include="Admin\HairShopAddNext1.aspx" />
     <Content Include="Admin\HairShopPicOperate.aspx" />
+    <Content Include="Admin\PictureStoreGroupAdd.aspx" />
+    <Content Include="Admin\PictureStoreGroupAdmin.aspx" />
+    <Content Include="Admin\PictureStoreGroupEdit.aspx" />
     <Content Include="Admin\UserCreate.aspx" />
     <Content Include="Admin\UserEdit.aspx" />
     <Content Include="Chaoliu.aspx" />
