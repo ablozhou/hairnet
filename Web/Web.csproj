@@ -1671,6 +1671,13 @@
     <Compile Include="Admin\HistoryInfoAdmin.aspx.designer.cs">
       <DependentUpon>HistoryInfoAdmin.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Admin\ModelAdd.aspx.cs">
+      <SubType>ASPXCodeBehind</SubType>
+      <DependentUpon>ModelAdd.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\ModelAdd.aspx.designer.cs">
+      <DependentUpon>ModelAdd.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Admin\OrderInfoAdmin.aspx.cs">
       <DependentUpon>OrderInfoAdmin.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -2156,6 +2163,7 @@
     <Content Include="Admin\HairShopAddNext1.aspx" />
     <Content Include="Admin\HairShopPicOperate.aspx" />
     <Content Include="Admin\HairStyleEdit.aspx" />
+    <Content Include="Admin\ModelAdd.aspx" />
     <Content Include="Admin\PictureStoreGroupAdd.aspx" />
     <Content Include="Admin\PictureStoreGroupAdmin.aspx" />
     <Content Include="Admin\PictureStoreGroupEdit.aspx" />
