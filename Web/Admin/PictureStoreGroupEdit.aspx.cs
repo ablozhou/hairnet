@@ -33,6 +33,9 @@ namespace Web.Admin
                         this.lblGroupName.Text = "明星";
                         break;
                     case "3":
+                        this.lblGroupName.Text = "发型";
+                        break;
+                    case "4":
                         this.lblGroupName.Text = "专题";
                         break;
                 }

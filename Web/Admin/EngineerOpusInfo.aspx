@@ -4,7 +4,7 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml" >
 <head runat="server">
-    <title>美发师添加 -- 添加作品</title>
+    <title>发型添加</title>
     <link type="text/css" rel="Stylesheet" href="Style/Main.css" />
 </head>
 <body>
@@ -12,7 +12,7 @@
     <div>
     <table width="98%" border="0" cellpadding="2" cellspacing="2">
         <tr>
-            <th colspan="2">美发师作品添加</th>
+            <th colspan="2">添加</th>
         </tr>
           <tr>
             <td width="120px" align="right">名称: </td>
@@ -20,35 +20,48 @@
         </tr>
          <tr>
             <td align="right">正面图片: </td>
-            <td><asp:FileUpload ID="frontsidePic" runat="server" Width="300" /></td>
-            <td><asp:Label ID="lbFPic" Width="300" runat="server"></asp:Label></td>
+            <td><asp:FileUpload ID="frontsidePic" runat="server" Width="300" /><asp:Button ID="btn1" runat="server" OnClick="btn1_OnClick" Text="上传" /><asp:Label ID="lbl1" runat="server" Visible="false"></asp:Label><asp:Label ID="lbl1new" runat="server" Visible="false"></asp:Label></td>
+            <td><asp:Image ID="i1" Width="200" Height="100" runat="Server" Visible="false" /></td>
         </tr>
          <tr>
             <td align="right">侧面图片: </td>
-            <td><asp:FileUpload ID="flanksidePic" runat="server" Width="300" /></td>
-            <td><asp:Label ID="lbFlPic" Width="300" runat="server"></asp:Label></td>
+            <td><asp:FileUpload ID="flanksidePic" runat="server" Width="300" /><asp:Button ID="btn2" runat="server" OnClick="btn2_OnClick" Text="上传" /><asp:Label ID="lbl2" runat="server" Visible="false"></asp:Label><asp:Label ID="lbl2new" runat="server" Visible="false"></asp:Label></td>
+            <td><asp:Image ID="i2" Width="200" Height="100" runat="Server" Visible="false" /></td>
         </tr>
          <tr>
             <td align="right">背面图片: </td>
-            <td><asp:FileUpload ID="backsidePic" runat="server" Width="300px" /></td>
-            <td><asp:Label ID="lbBPic" Width="300px" runat="server"></asp:Label></td>
+            <td><asp:FileUpload ID="backsidePic" runat="server" Width="300px" /><asp:Button ID="btn3" runat="server" OnClick="btn3_OnClick" Text="上传" /><asp:Label ID="lbl3" runat="server" Visible="false"></asp:Label><asp:Label ID="lbl3new" runat="server" Visible="false"></asp:Label></td>
+            <td><asp:Image ID="i3" Width="200" Height="100" runat="Server" Visible="false" /></td>
         </tr>
          <tr>
             <td align="right">辅助图片: </td>
-            <td><asp:FileUpload ID="assistancePic" runat="server" Width="300px" /></td>
-            <td><asp:Label ID="lbAPic" Width="300px" runat="server"></asp:Label></td>
+            <td><asp:FileUpload ID="assistancePic" runat="server" Width="300px" /><asp:Button ID="btn4" runat="server" OnClick="btn4_OnClick" Text="上传" /><asp:Label ID="lbl4" runat="server" Visible="false"></asp:Label><asp:Label ID="lbl4new" runat="server" Visible="false"></asp:Label></td>
+            <td><asp:Image ID="i4" Width="200" Height="100" runat="Server" Visible="false" /></td>
+        </tr>
+    </table>
+    <table width="98%" border="0" cellpadding="0" cellspacing="0">
+        <tr>
+            <td width=120px align="right">发质: </td>
+            <td width=120px align="left"><asp:DropDownList ID="ddlHairNature" runat="server" Width="120px"></asp:DropDownList></td>
+            <td width=120px align="right">发量: </td>
+            <td width=120px align="left"><asp:DropDownList ID="ddlHairQuantity" runat="server" Width="120px"></asp:DropDownList></td>
+            <td width=120px align="right">脸型: </td>
+            <td width=120px align="left"><asp:DropDownList ID="ddlFaceStyle" runat="server" Width="120px"></asp:DropDownList></td>
+            <td width=120px align="right">性别: </td>
+            <td width=120px align="left"><asp:DropDownList ID="ddlSex" runat="server" Width="120px"><asp:ListItem Value="1">男</asp:ListItem><asp:ListItem Value="2">女</asp:ListItem></asp:DropDownList></td>
+            <td width="15%"></td>
         </tr>
     </table>
     <table width="98%" border="0" cellpadding="0" cellspacing="0">
         <tr>
             <td width=120px align="right">发型: </td>
-            <td width=120px align="left"><asp:DropDownList ID="listHairStyle" runat="server" Width="120px"></asp:DropDownList></td>
-            <td width=120px align="right">脸型: </td>
-            <td width=120px align="left"><asp:DropDownList ID="listFaceType" runat="server" Width="120px"></asp:DropDownList></td>
-            <td width=120px align="right">发质: </td>
-            <td width=120px align="left"><asp:DropDownList ID="listHairType" runat="server" Width="120px"></asp:DropDownList></td>
-            <td width=120px align="right">美发项目: </td>
-            <td width=120px align="left"><asp:DropDownList ID="listHairItem" runat="server" Width="120px"></asp:DropDownList></td>
+            <td width=120px align="left"><asp:DropDownList ID="ddlHairStyleClassName" runat="server" Width="120px"></asp:DropDownList></td>
+            <td width=120px align="right">气质: </td>
+            <td width=120px align="left"><asp:DropDownList ID="ddlTemperament" runat="server" Width="120px"></asp:DropDownList></td>
+            <td width=120px align="right">场合: </td>
+            <td width=120px align="left"><asp:DropDownList ID="ddlOccasion" runat="server" Width="120px"></asp:DropDownList></td>
+            <td width=120px align="right"> </td>
+            <td width=120px align="left"></td>
             <td width="15%"></td>
         </tr>
     </table>
