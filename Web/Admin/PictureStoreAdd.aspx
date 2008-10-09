@@ -44,6 +44,34 @@
                 </td>
             </tr>
             <tr>
+                <table width="98%" border="0" cellpadding="0" cellspacing="0">
+        <tr>
+            <td width=120px align="right">发质: </td>
+            <td width=120px align="left"><asp:DropDownList ID="ddlHairNature" runat="server" Width="120px"></asp:DropDownList></td>
+            <td width=120px align="right">发量: </td>
+            <td width=120px align="left"><asp:DropDownList ID="ddlHairQuantity" runat="server" Width="120px"></asp:DropDownList></td>
+            <td width=120px align="right">脸型: </td>
+            <td width=120px align="left"><asp:DropDownList ID="ddlFaceStyle" runat="server" Width="120px"></asp:DropDownList></td>
+            <td width=120px align="right">性别: </td>
+            <td width=120px align="left"><asp:DropDownList ID="ddlSex" runat="server" Width="120px"><asp:ListItem Value="1">男</asp:ListItem><asp:ListItem Value="2">女</asp:ListItem></asp:DropDownList></td>
+            <td width="15%"></td>
+        </tr>
+    </table>
+    <table width="98%" border="0" cellpadding="0" cellspacing="0">
+        <tr>
+            <td width=120px align="right">发型: </td>
+            <td width=120px align="left"><asp:DropDownList ID="ddlHairStyleClassName" runat="server" Width="120px"></asp:DropDownList></td>
+            <td width=120px align="right">气质: </td>
+            <td width=120px align="left"><asp:DropDownList ID="ddlTemperament" runat="server" Width="120px"></asp:DropDownList></td>
+            <td width=120px align="right">场合: </td>
+            <td width=120px align="left"><asp:DropDownList ID="ddlOccasion" runat="server" Width="120px"></asp:DropDownList></td>
+            <td width=120px align="right"> </td>
+            <td width=120px align="left"></td>
+            <td width="15%"></td>
+        </tr>
+    </table>
+            </tr>
+            <tr>
                 <td width="120" align="right">
                     描述：
                 </td>
@@ -58,6 +86,7 @@
                 </td>
             </tr>
         </table>
+        
     </div>
     <div>
         <asp:Button ID="btnSubmit" Text="提交图片信息" runat="server" OnClick="btnSubmit_OnClick" />

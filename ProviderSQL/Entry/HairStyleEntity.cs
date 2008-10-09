@@ -135,6 +135,22 @@ namespace HairNet.Entry
             this.description = idesc;
         }
 
+        public HairStyleEntity(string hairName, int hairShopID, int hairEngineerID, Byte hairStyle, Byte faceStyle, Byte temperament, Byte occasion, Byte sex, Byte hairNature,int picsid, string idesc)
+        {
+            this.hairName = hairName;
+            this.hairShopID = hairShopID;
+            this.hairEngineerID = hairEngineerID;
+            this.hairStyle = hairStyle;
+            this.faceStyle = faceStyle;
+            this.hairQuantity = hairQuantity;
+            this.hairNature = hairNature;
+            this.temperament = temperament;
+            this.occasion = occasion;
+            this.sex = sex;
+            this.description = idesc;
+            this.picturestoreid = picsid;
+        }
+
         public HairStyleEntity(string hairName, string bigPic, string smallPic_F, string smallPic_B, string smallPic_S, Byte hairStyle,
             Byte faceStyle, Byte hairQuantity, Byte hairNature, string tag,string desc,int pictureid)
         {
