@@ -13,6 +13,7 @@ using HairNet.Entry;
 using HairNet.Business;
 using HairNet.Enumerations;
 using HairNet.Utilities;
+using HairNet.Provider;
 
 namespace Web.Admin
 {
@@ -32,6 +33,22 @@ namespace Web.Admin
                 this.lblStartTime.Visible = false;
                 this.lblTimeSpace.Visible = false;
                 this.lblQueryNameSpace.Visible = true;
+            }
+        }
+        public void ddlPictureStoreParentGroup_OnSelectedIndexChanged(object sender, EventArgs e)
+        {
+            this.ddlPictureStoreGroup.Items.Clear();
+            List<PictureStoreGroup> list = ProviderFactory.GetPictureStoreDataProviderInstance().GetPictureStoreGroupsByParentID(int.Parse(this.ddlPictureStoreParentGroup.SelectedItem.Value), 0);
+            ListItem li = new ListItem();
+            li.Value = "0";
+            li.Text = "请选择小类";
+            this.ddlPictureStoreGroup.Items.Add(li);
+            for (int i = 0; i < list.Count; i++)
+            {
+                ListItem lli = new ListItem();
+                lli.Value = list[i].ID.ToString();
+                lli.Text = list[i].Name.ToString();
+                this.ddlPictureStoreGroup.Items.Add(lli);
             }
         }
         public void ddlQuery_OnSelectedIndexChanged(object sender, EventArgs e)

@@ -35,7 +35,7 @@
                 </td>
                 <td>
                    <asp:DropDownList ID="ddlPictureStoreParentGroup" runat="server" AutoPostBack="true" OnSelectedIndexChanged="ddlPictureStoreParentGroup_OnSelectedIndexChanged">
-                    <asp:ListItem Value="0" Selected="true">请选择大类</asp:ListItem><asp:ListItem Value="1">街拍</asp:ListItem><asp:ListItem Value="2" >明星</asp:ListItem></asp:DropDownList>&nbsp;&nbsp;
+                    <asp:ListItem Value="0" Selected="true">请选择大类</asp:ListItem><asp:ListItem Value="1">街拍</asp:ListItem><asp:ListItem Value="2" >明星</asp:ListItem><asp:ListItem Value="3" >发型</asp:ListItem><asp:ListItem Value="4" >专题</asp:ListItem></asp:DropDownList>&nbsp;&nbsp;
                     <asp:DropDownList ID="ddlPictureStoreGroup" runat="server">
                     </asp:DropDownList>
                 </td>
