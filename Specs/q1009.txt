@@ -35,16 +35,10 @@ comment
 添加模特表，包含id，图片地址，性别，描述
 model 表：
 
-id，picurl，sex，descrpt
+id，picurl，sex，descrpt (OK)
 
 可能的bug：
 美发厅图片管理，厅外图片上传失败
 美发厅编辑页面的提交没有修改
 
-
-
-添加模特表，包含id，图片地址，性别，描述
-model 表：(OK)
-
-id，picurl，sex，descrpt(ok)
 
