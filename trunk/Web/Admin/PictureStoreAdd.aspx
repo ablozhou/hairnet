@@ -34,13 +34,26 @@
             </tr>
             <tr>
                 <td width="120" align="right">
-                    分类：
+                    街拍：
                 </td>
                 <td>
-                <asp:DropDownList ID="ddlPictureStoreParentGroup" runat="server" AutoPostBack="true" OnSelectedIndexChanged="ddlPictureStoreParentGroup_OnSelectedIndexChanged">
-                    <asp:ListItem Value="0" Selected="true">请选择大类</asp:ListItem><asp:ListItem Value="1">街拍</asp:ListItem><asp:ListItem Value="2" >明星</asp:ListItem><asp:ListItem Value="3" >发型</asp:ListItem></asp:DropDownList>&nbsp;&nbsp;
-                    <asp:DropDownList ID="ddlPictureStoreGroup" runat="server">
-                    </asp:DropDownList>
+                <asp:CheckBoxList ID="chkJPList" RepeatColumns="8" RepeatDirection="Horizontal" runat="server"></asp:CheckBoxList>
+                </td>
+            </tr>
+            <tr>
+                <td width="120" align="right">
+                    明星：
+                </td>
+                <td>
+                <asp:CheckBoxList ID="chkMXList" RepeatColumns="8" RepeatDirection="Horizontal" runat="server"></asp:CheckBoxList>
+                </td>
+            </tr>
+            <tr>
+                <td width="120" align="right">
+                    发型：
+                </td>
+                <td>
+                <asp:CheckBoxList ID="chkFXList" RepeatColumns="8" RepeatDirection="Horizontal" runat="server"></asp:CheckBoxList>
                 </td>
             </tr>
             <tr>
