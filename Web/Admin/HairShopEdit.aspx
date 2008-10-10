@@ -37,8 +37,9 @@
                 </td>
                 <td>
                     <asp:DropDownList ID="ddlTypeTable" runat="server">
-                        <asp:ListItem>炫酷</asp:ListItem>
-                        <asp:ListItem>超酷</asp:ListItem>
+                        <asp:ListItem>日韩</asp:ListItem>
+                        <asp:ListItem>港台</asp:ListItem>
+                         <asp:ListItem>欧美</asp:ListItem>
                     </asp:DropDownList>
                 </td>
             </tr>

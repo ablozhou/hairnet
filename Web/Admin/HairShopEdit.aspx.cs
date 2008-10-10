@@ -278,7 +278,7 @@ namespace Web.Admin
 
             Session["HairShopInfo"] = hs;
             InfoAdmin.UpdateHairShop(hs);
-            this.Response.Redirect("HairShopEdit2.aspx");
+            this.Response.Redirect("HairShopAdmin.aspx");
         }
     }
 }

@@ -34,8 +34,9 @@ namespace Web.Admin
             product.ProductTagIDs = InfoAdmin.GetProductTagIDs(txtProductTag.Text.Trim());
 
             Session["ProductInfo"] = product;
-
-            this.Response.Redirect("ProductAdd2.aspx");
+            //添加美发产品并返回新的ID
+            product.ProductID = InfoAdmin.AddProduct(product);
+            this.Response.Redirect("ProductAdmin.aspx");
         }
     }
 }
