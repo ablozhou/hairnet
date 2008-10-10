@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Data;
 using System.Configuration;
 using System.Collections;
@@ -15,21 +15,15 @@ using System.Collections.Generic;
 using HairNet.Enumerations;
 using HairNet.Utilities;
 
+
 namespace Web.Admin
 {
-    public partial class PictureStoreGroupAdmin : System.Web.UI.Page
+    public partial class PictureStoreGroupClassAdmin : System.Web.UI.Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!this.IsPostBack)
             {
-                try
-                {
-                    string id = this.Request.QueryString["id"].ToString();
-                    this.ddlPictureStoreGroup.SelectedValue = id;
-                }
-                catch
-                { }
                 this.databind();
             }
         }
@@ -45,21 +39,40 @@ namespace Web.Admin
                 CheckBox chkIsSend = dgi.FindControl("chkIsSend") as CheckBox;
                 if (chkIsSend.Checked)
                 {
-                    int pictureStoreGroupID = int.Parse(this.dg.DataKeys[dgi.ItemIndex].ToString());
-                    PictureStoreGroup psg = new PictureStoreGroup();
-                    psg.ID = pictureStoreGroupID;
+                    string hstyleid = this.dg.DataKeys[dgi.ItemIndex].ToString();
+                    PictureStoreGroup psg = ProviderFactory.GetPictureStoreDataProviderInstance().GetPictureStoreGroupByPictureStoreGroupID(int.Parse(this.Request.QueryString["id"].ToString()));
 
-                    if (ProviderFactory.GetPictureStoreDataProviderInstance().PictureStoreGroupCreateDeleteUpdate(psg, UserAction.Delete))
+                    string ids = psg.PictureStoreIDs;
+                    
+                    string[] iids = ids.Split(",".ToCharArray());
+                    ids = string.Empty;
+                    for (int i = 1; i < iids.Length; i++)
                     {
-                        //this.Response.Redirect("PictureStoreGroupAdmin.aspx");
+                        if (iids[i] != hstyleid)
+                        {
+                            ids += "," + iids[i];
+                        }
                     }
-                    else
+                    using (SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["MSSqlServer"].ToString()))
                     {
-                        StringHelper.AlertInfo("删除失败", this.Page);
+                        string commString = "update picturestoregroup set picturestoreids = '" + ids + "' where picturestoregroupid=" + psg.ID.ToString();
+                        using (SqlCommand comm = new SqlCommand())
+                        {
+                            comm.Connection = conn;
+                            comm.CommandText = commString;
+                            conn.Open();
+
+                            try
+                            {
+                                comm.ExecuteNonQuery();
+                            }
+                            catch
+                            { }
+                        }
                     }
                 }
             }
-            this.Response.Redirect("PictureStoreGroupAdmin.aspx?id="+this.ddlPictureStoreGroup.SelectedItem.Value);
+            this.databind();
         }
 
         public void btnSelect_OnClick(object sender, EventArgs e)
@@ -67,7 +80,7 @@ namespace Web.Admin
             foreach (DataGridItem dgi in this.dg.Items)
             {
                 CheckBox IsSelect = dgi.FindControl("IsSelect") as CheckBox;
-                if (this.btnSelect.Text == "全选")
+                if (this.btnSelect.Text == "ȫѡ")
                 {
                     IsSelect.Checked = true;
                 }
@@ -76,37 +89,62 @@ namespace Web.Admin
                     IsSelect.Checked = false;
                 }
             }
-            if (this.btnSelect.Text == "全选")
+            if (this.btnSelect.Text == "ȫѡ")
             {
-                this.btnSelect.Text = "全不选";
+                this.btnSelect.Text = "ȫ��ѡ";
             }
             else
             {
-                this.btnSelect.Text = "全选";
-            }
-        }
-        
-        public void btnAdd_OnClick(object sender, EventArgs e)
-        {
-            //添加操作，转向添加页面
-            if (this.ddlPictureStoreGroup.SelectedItem.Value != "0")
-            {
-                this.Response.Redirect("PictureStoreGroupAdd.aspx?id=" + this.ddlPictureStoreGroup.SelectedItem.Value);
+                this.btnSelect.Text = "ȫѡ";
             }
         }
 
         public void databind()
         {
-            List<PictureStoreGroup> list = ProviderFactory.GetPictureStoreDataProviderInstance().GetPictureStoreGroupsByParentID(int.Parse(this.ddlPictureStoreGroup.SelectedItem.Value),0);
+            PictureStoreGroup psg = ProviderFactory.GetPictureStoreDataProviderInstance().GetPictureStoreGroupByPictureStoreGroupID(int.Parse(this.Request.QueryString["id"].ToString()));
 
-            this.dg.DataKeyField = "ID";
-            dg.DataSource = list;
+            DataTable dt = new DataTable("dt");
+            dt.Columns.Add("id", typeof(int));
+            dt.Columns.Add("hairname", typeof(string));
+            dt.Columns.Add("picturestoreid", typeof(string));
+
+            string[] psgc = psg.PictureStoreIDs.Split(",".ToCharArray());
+            for(int i=1;i<psgc.Length;i++)
+            {
+                string id = psgc[i];
+                using (SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["MSSqlServer"].ToString()))
+                {
+                    string commString = "select * from hairstyle where id="+id;
+                    using (SqlCommand comm = new SqlCommand())
+                    {
+                        comm.Connection = conn;
+                        comm.CommandText = commString;
+                        conn.Open();
+
+                        using (SqlDataReader sdr = comm.ExecuteReader())
+                        {
+                            if (sdr.Read())
+                            {
+                                DataRow dr = dt.NewRow();
+                                dr["id"] = sdr["id"].ToString();
+                                dr["hairname"] = sdr["hairname"].ToString();
+                                dr["picturestoreid"] = sdr["picturestoreid"].ToString();
+
+                                dt.Rows.Add(dr);
+                            }
+                        }
+                    }
+                }
+            }
+
+            this.dg.DataKeyField = "id";
+            dg.DataSource = dt.DefaultView;
             this.dg.DataBind();
-            //绑定页码
+            //��ҳ��
             SetupPage();
             this.Page_nPage.Text = Convert.ToString(this.dg.CurrentPageIndex + 1);
             this.Page_nRecCount.Text = this.dg.PageCount.ToString();
-            this.Page_nRecCount_1.Text = list.Count.ToString();
+            this.Page_nRecCount_1.Text = dt.Rows.Count.ToString();
             ispages.Text = this.Page_nPage.Text;
             IsFirstLastPage(this.dg.PageCount, this.dg.CurrentPageIndex);
             if (this.dg.PageCount == 1)
@@ -125,19 +163,38 @@ namespace Web.Admin
             {
                 if (e.CommandName == "delete")
                 {
-                    int pictureStoreGroupID = int.Parse(this.dg.DataKeys[e.Item.ItemIndex].ToString());
-                    PictureStoreGroup psg = new PictureStoreGroup();
-                    psg.ID = pictureStoreGroupID;
-                    
-                    if (ProviderFactory.GetPictureStoreDataProviderInstance().PictureStoreGroupCreateDeleteUpdate(psg,UserAction.Delete))
+                    string hstyleid = this.dg.DataKeys[e.Item.ItemIndex].ToString();
+                    PictureStoreGroup psg = ProviderFactory.GetPictureStoreDataProviderInstance().GetPictureStoreGroupByPictureStoreGroupID(int.Parse(this.Request.QueryString["id"].ToString()));
+
+                    string ids = psg.PictureStoreIDs;
+
+                    string[] iids = ids.Split(",".ToCharArray());
+                    ids = string.Empty;
+                    for (int i = 1; i < iids.Length; i++)
                     {
-                        StringHelper.AlertInfo("删除成功", this.Page);
-                        this.Response.Redirect("PictureStoreGroupAdmin.aspx?id=" + this.ddlPictureStoreGroup.SelectedItem.Value);
+                        if (iids[i] != hstyleid)
+                        {
+                            ids += "," + iids[i];
+                        }
                     }
-                    else
+                    using (SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["MSSqlServer"].ToString()))
                     {
-                        StringHelper.AlertInfo("删除失败", this.Page);
+                        string commString = "update picturestoregroup set picturestoreids = '" + ids + "' where picturestoregroupid=" + psg.ID.ToString();
+                        using (SqlCommand comm = new SqlCommand())
+                        {
+                            comm.Connection = conn;
+                            comm.CommandText = commString;
+                            conn.Open();
+
+                            try
+                            {
+                                comm.ExecuteNonQuery();
+                            }
+                            catch
+                            { }
+                        }
                     }
+                    this.databind();
                 }
             }
         }
@@ -148,14 +205,21 @@ namespace Web.Admin
                 e.Item.Attributes.Add("onmouseover", "c=this.style.backgroundColor;this.style.backgroundColor='#ffffff';");
                 e.Item.Attributes.Add("onmouseout", "this.style.backgroundColor=c;");
 
-                e.Item.Cells[4].Attributes.Add("onclick", "return confirm('确定删除么?');");
+                e.Item.Cells[4].Attributes.Add("onclick", "return confirm('ȷ��ɾ��ô?');");
 
                 Label lblEdit = e.Item.FindControl("lblEdit") as Label;
                 Label lblAdmin = e.Item.FindControl("lblAdmin") as Label;
-                PictureStoreGroup psg = e.Item.DataItem as PictureStoreGroup;
-
-                lblAdmin.Text = "<a href='PictureStoreGroupClassAdmin.aspx?id=" + psg.ID.ToString() + "' target='_self'>管理</a>";
-                lblEdit.Text = "<a href='PictureStoreGroupEdit.aspx?id="+psg.PictureStoreGroupParentID.ToString()+"&pid="+psg.ID.ToString()+"' target='_self'>编辑</a>";
+                DataRowView drv = e.Item.DataItem as DataRowView;
+                if (drv["picturestoreid"].ToString() == "0")
+                {
+                    lblAdmin.Text = "����";
+                    lblEdit.Text = "<a href='HairStyleEdit.aspx?id=" +drv["id"].ToString() +"' target='_self'>�༭</a>";
+                }
+                else
+                {
+                    lblAdmin.Text = "ͼƬ";
+                    lblEdit.Text = "<a href='PictureStoreEdit.aspx?id=" + drv["picturestoreid"].ToString() + "' target='_self'>�༭</a>";
+                }
             }
         }
         public void dg_OnPageIndexChanged(object sender, DataGridPageChangedEventArgs e)
@@ -173,22 +237,22 @@ namespace Web.Admin
 
             switch (commangArg)
             {
-                case "First": //如果点首页
+                case "First": //�������ҳ
                     {
                         nPage = 0;
                         break;
                     }
-                case "Prev": //上一页
+                case "Prev": //��һҳ
                     {
                         nPage = nPage - 1;
                         break;
                     }
-                case "Next":  //下一页
+                case "Next":  //��һҳ
                     {
                         nPage = nPage + 1;
                         break;
                     }
-                case "Last": //尾页
+                case "Last": //βҳ
                     {
                         nPage = this.dg.PageCount - 1;
                         break;
@@ -231,7 +295,7 @@ namespace Web.Admin
                 PageFirst.Enabled = false; PagePrev.Enabled = false; PageNext.Enabled = false; PageLast.Enabled = false;
             }
         }
-        //设置分页列表框
+        //���÷�ҳ�б���
         protected void SetupPage()
         {
             thispages.Items.Clear();

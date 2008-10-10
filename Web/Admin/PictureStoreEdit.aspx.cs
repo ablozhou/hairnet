@@ -27,53 +27,77 @@ namespace Web.Admin
         {
             if (!IsPostBack)
             {
+                List<PictureStoreGroup> list1 = ProviderFactory.GetPictureStoreDataProviderInstance().GetPictureStoreGroupsByParentID(1, 0);
+
+                for (int i = 0; i < list1.Count; i++)
+                {
+                    ListItem lli = new ListItem();
+                    lli.Value = list1[i].ID.ToString();
+                    lli.Text = list1[i].Name.ToString();
+                    this.chkJPList.Items.Add(lli);
+                }
+                List<PictureStoreGroup> list2 = ProviderFactory.GetPictureStoreDataProviderInstance().GetPictureStoreGroupsByParentID(2, 0);
+
+                for (int i = 0; i < list2.Count; i++)
+                {
+                    ListItem lli = new ListItem();
+                    lli.Value = list2[i].ID.ToString();
+                    lli.Text = list2[i].Name.ToString();
+                    this.chkMXList.Items.Add(lli);
+                }
+                List<PictureStoreGroup> list3 = ProviderFactory.GetPictureStoreDataProviderInstance().GetPictureStoreGroupsByParentID(3, 0);
+
+                for (int i = 0; i < list3.Count; i++)
+                {
+                    ListItem lli = new ListItem();
+                    lli.Value = list3[i].ID.ToString();
+                    lli.Text = list3[i].Name.ToString();
+                    this.chkFXList.Items.Add(lli);
+                }
+
                 BindControlData();
                 this.SetInfo();
                 ViewState["num"] = 0;
-            }
-        }
-        public void ddlPictureStoreParentGroup_OnSelectedIndexChanged(object sender, EventArgs e)
-        {
-            this.ddlPictureStoreGroup.Items.Clear();
-            List<PictureStoreGroup> list = ProviderFactory.GetPictureStoreDataProviderInstance().GetPictureStoreGroupsByParentID(int.Parse(this.ddlPictureStoreParentGroup.SelectedItem.Value), 0);
-            ListItem li = new ListItem();
-            li.Value = "0";
-            li.Text = "请选择小类";
-            this.ddlPictureStoreGroup.Items.Add(li);
-            for (int i = 0; i < list.Count; i++)
-            {
-                ListItem lli = new ListItem();
-                lli.Value = list[i].ID.ToString();
-                lli.Text = list[i].Name.ToString();
-                this.ddlPictureStoreGroup.Items.Add(lli);
             }
         }
         private void SetInfo()
         {
             string id = Request["id"];
             PictureStore ps = InfoAdmin.GetPictureStoreByPictureStoreID(int.Parse(id));
-
-            PictureStoreGroup psg = ProviderFactory.GetPictureStoreDataProviderInstance().GetPictureStoreGroupByPictureStoreGroupID(int.Parse(ps.PictureStoreGroupIDs));
-            List<PictureStoreGroup> list = ProviderFactory.GetPictureStoreDataProviderInstance().GetPictureStoreGroupsByParentID(psg.PictureStoreGroupParentID, 0);
-            this.ddlPictureStoreGroup.Items.Clear();
-            ListItem li = new ListItem();
-            li.Value = "0";
-            li.Text = "请选择小类";
-            this.ddlPictureStoreGroup.Items.Add(li);
-            for (int k = 0; k < list.Count; k++)
-            {
-                ListItem lli = new ListItem();
-                lli.Value = list[k].ID.ToString();
-                lli.Text = list[k].Name.ToString();
-                this.ddlPictureStoreGroup.Items.Add(lli);
-            }
-            this.ddlPictureStoreParentGroup.SelectedValue = psg.PictureStoreGroupParentID.ToString();
-            this.ddlPictureStoreGroup.SelectedValue = psg.ID.ToString();
+            
 
             txtPictureStoreName.Text = ps.PictureStoreName;
             txtPictureStoreDescription.Text = ps.PictureStoreDescription;
             txtPictureStoreTag.Text = InfoAdmin.GetPictureStoreTagNames(ps.PictureStoreTagIDs);
 
+            string[] PSGIDSCollection = ps.PictureStoreGroupIDs.Split(",".ToCharArray());
+            foreach (string ss in PSGIDSCollection)
+            {
+                foreach (ListItem llli in this.chkJPList.Items)
+                {
+                    if (llli.Value == ss)
+                    {
+                        llli.Selected = true;
+                        break;
+                    }
+                }
+                foreach (ListItem llli in this.chkMXList.Items)
+                {
+                    if (llli.Value == ss)
+                    {
+                        llli.Selected = true;
+                        break;
+                    }
+                }
+                foreach (ListItem llli in this.chkFXList.Items)
+                {
+                    if (llli.Value == ss)
+                    {
+                        llli.Selected = true;
+                        break;
+                    }
+                }
+            }
 
             using (SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["MSSqlServer"].ToString()))
             {
@@ -133,12 +157,127 @@ namespace Web.Admin
             this.lblImg.Text = imgString;
             ViewState["PictureStoreInfo"] = ps;
         }
-
+        public string GetPSGIDs()
+        {
+            string result = "";
+            int i = 0;
+            foreach (ListItem li in this.chkJPList.Items)
+            {
+                if (li.Selected == true)
+                {
+                    i++;
+                    if (i == 1)
+                    {
+                        result = li.Value;
+                    }
+                    else
+                    {
+                        result += "," + li.Value;
+                    }
+                }
+            }
+            foreach (ListItem li in this.chkMXList.Items)
+            {
+                if (li.Selected == true)
+                {
+                    i++;
+                    if (i == 1)
+                    {
+                        result = li.Value;
+                    }
+                    else
+                    {
+                        result += "," + li.Value;
+                    }
+                }
+            }
+            foreach (ListItem li in this.chkFXList.Items)
+            {
+                if (li.Selected == true)
+                {
+                    i++;
+                    if (i == 1)
+                    {
+                        result = li.Value;
+                    }
+                    else
+                    {
+                        result += "," + li.Value;
+                    }
+                }
+            }
+            return result;
+        }
         protected void btnSubmit_OnClick(object sender, EventArgs e)
         {
+            string PSGIDS = this.GetPSGIDs();
             PictureStore ps = (PictureStore)ViewState["PictureStoreInfo"];
+
+            //先删除
+            string hstyleid = string.Empty;
+
+            using (SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["MSSqlServer"].ToString()))
+            {
+                string commString = "select id from hairstyle where picturestoreid =" + ps.PictureStoreID.ToString();
+                using (SqlCommand comm = new SqlCommand())
+                {
+                    comm.Connection = conn;
+                    comm.CommandText = commString;
+                    conn.Open();
+
+                    hstyleid = comm.ExecuteScalar().ToString();
+                }
+            }
+
+            string[] PSGIDSCollection1 = ps.PictureStoreGroupIDs.Split(",".ToCharArray());
+            foreach (string sso in PSGIDSCollection1)
+            {
+                string ids = "";
+                using (SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["MSSqlServer"].ToString()))
+                {
+                    string commString = "select picturestoreids from picturestoregroup where picturestoregroupid="+sso;
+                    using (SqlCommand comm = new SqlCommand())
+                    {
+                        comm.Connection = conn;
+                        comm.CommandText = commString;
+                        conn.Open();
+
+                        ids = comm.ExecuteScalar().ToString();
+                    }
+                }
+                string[] iids = ids.Split(",".ToCharArray());
+                ids = string.Empty;
+                for (int i = 1; i < iids.Length; i++)
+                {
+                    if (iids[i] != hstyleid)
+                    {
+                        ids += "," + iids[i];
+                    }
+                }
+                using (SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["MSSqlServer"].ToString()))
+                {
+                    string commString = "update picturestoregroup set picturestoreids = '"+ids+"' where picturestoregroupid=" + sso;
+                    using (SqlCommand comm = new SqlCommand())
+                    {
+                        comm.Connection = conn;
+                        comm.CommandText = commString;
+                        conn.Open();
+
+                        try
+                        {
+                            comm.ExecuteNonQuery();
+                        }
+                        catch
+                        { }
+                    }
+                }
+            }
+
+
+
+
             ps.PictureStoreName = txtPictureStoreName.Text.Trim();
-            ps.PictureStoreGroupIDs = ddlPictureStoreGroup.SelectedValue;
+            ps.PictureStoreGroupIDs = PSGIDS;
             ps.PictureStoreDescription = txtPictureStoreDescription.Text.Trim();
             ps.PictureStoreTagIDs = InfoAdmin.GetPictureStoreTagIDs(txtPictureStoreTag.Text.Trim());
             ps.PictureStoreHits = 0;
@@ -200,7 +339,7 @@ namespace Web.Admin
 
             using (SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["MSSqlServer"].ToString()))
             {
-                string commString = "update HairStyle set hairname='"+ps.PictureStoreName+"',hairShopID="+hairShopID.ToString()+",hairEngineerID="+hairEngineerID.ToString()+",hairnature="+iHairNature+",hairquantity="+iHairQuantity+",facestyle="+iFaceStyle+",sex="+iSex+",hairstyle="+iHairStyleClassName+",temperament="+iTemperament+",occasion="+iOccasion+",descr='"+ps.PictureStoreDescription+"' where picturestoreid="+ps.PictureStoreID.ToString();
+                string commString = "update HairStyle set hairname='" + ps.PictureStoreName + "',hairShopID=" + hairShopID.ToString() + ",hairEngineerID=" + hairEngineerID.ToString() + ",hairnature=" + iHairNature + ",hairquantity=" + iHairQuantity + ",facestyle=" + iFaceStyle + ",sex=" + iSex + ",hairstyle=" + iHairStyleClassName + ",temperament=" + iTemperament + ",occasion=" + iOccasion + ",descr='" + ps.PictureStoreDescription + "', psgids='" + PSGIDS + "' where picturestoreid=" + ps.PictureStoreID.ToString();
                 using (SqlCommand comm = new SqlCommand())
                 {
                     comm.Connection = conn;
@@ -213,6 +352,30 @@ namespace Web.Admin
                     }
                     catch (Exception ex)
                     { }
+                }
+            }
+
+            
+
+            string[] PPSGCollection = PSGIDS.Split(",".ToCharArray());
+            foreach (string s in PPSGCollection)
+            {
+                using (SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["MSSqlServer"].ToString()))
+                {
+                    string commString = "update PictureStoreGroup set PictureStoreIDs = PictureStoreIDs+'," + hstyleid + "' where PictureStoreGroupID=" + s;
+                    using (SqlCommand comm = new SqlCommand())
+                    {
+                        comm.Connection = conn;
+                        comm.CommandText = commString;
+                        conn.Open();
+
+                        try
+                        {
+                            comm.ExecuteNonQuery();
+                        }
+                        catch (Exception ex)
+                        { }
+                    }
                 }
             }
 

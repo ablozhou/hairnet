@@ -27,59 +27,93 @@ namespace Web.Admin
             {
                 ViewState["num"] = 0;
                 BindControlData();
-                if (Session["pspg1"] == null || Session["pspg1"].ToString()==string.Empty)
+                    
+                List<PictureStoreGroup> list1 = ProviderFactory.GetPictureStoreDataProviderInstance().GetPictureStoreGroupsByParentID(1, 0);
+                
+                for (int i = 0; i < list1.Count; i++)
                 {
-
+                    ListItem lli = new ListItem();
+                    lli.Value = list1[i].ID.ToString();
+                    lli.Text = list1[i].Name.ToString();
+                    this.chkJPList.Items.Add(lli);
                 }
-                else
-                {
-                    this.ddlPictureStoreParentGroup.SelectedValue = Session["pspg1"].ToString();
-                    this.ddlPictureStoreGroup.Items.Clear();
-                    List<PictureStoreGroup> list = ProviderFactory.GetPictureStoreDataProviderInstance().GetPictureStoreGroupsByParentID(int.Parse(this.ddlPictureStoreParentGroup.SelectedItem.Value), 0);
-                    ListItem li = new ListItem();
-                    li.Value = "0";
-                    li.Text = "请选择小类";
-                    this.ddlPictureStoreGroup.Items.Add(li);
-                    for (int i = 0; i < list.Count; i++)
-                    {
-                        ListItem lli = new ListItem();
-                        lli.Value = list[i].ID.ToString();
-                        lli.Text = list[i].Name.ToString();
-                        this.ddlPictureStoreGroup.Items.Add(lli);
-                    }
-                    if (Session["psg1"] == null || Session["psg1"].ToString() == string.Empty)
-                    {
+                List<PictureStoreGroup> list2 = ProviderFactory.GetPictureStoreDataProviderInstance().GetPictureStoreGroupsByParentID(2, 0);
 
+                for (int i = 0; i < list2.Count; i++)
+                {
+                    ListItem lli = new ListItem();
+                    lli.Value = list2[i].ID.ToString();
+                    lli.Text = list2[i].Name.ToString();
+                    this.chkMXList.Items.Add(lli);
+                }
+                List<PictureStoreGroup> list3 = ProviderFactory.GetPictureStoreDataProviderInstance().GetPictureStoreGroupsByParentID(3, 0);
+
+                for (int i = 0; i < list3.Count; i++)
+                {
+                    ListItem lli = new ListItem();
+                    lli.Value = list3[i].ID.ToString();
+                    lli.Text = list3[i].Name.ToString();
+                    this.chkFXList.Items.Add(lli);
+                }
+            }
+        }
+        public string GetPSGIDs()
+        {
+            string result = "";
+            int i =0;
+            foreach (ListItem li in this.chkJPList.Items)
+            {
+                if (li.Selected == true)
+                {
+                    i++;
+                    if (i == 1)
+                    {
+                        result = li.Value;
                     }
                     else
                     {
-                        this.ddlPictureStoreGroup.SelectedValue = Session["psg1"].ToString(); 
+                        result += ","+li.Value;
                     }
                 }
             }
-        }
-        public void ddlPictureStoreParentGroup_OnSelectedIndexChanged(object sender, EventArgs e)
-        {
-            this.ddlPictureStoreGroup.Items.Clear();
-            List<PictureStoreGroup> list = ProviderFactory.GetPictureStoreDataProviderInstance().GetPictureStoreGroupsByParentID(int.Parse(this.ddlPictureStoreParentGroup.SelectedItem.Value), 0);
-            ListItem li = new ListItem();
-            li.Value = "0";
-            li.Text = "请选择小类";
-            this.ddlPictureStoreGroup.Items.Add(li);
-            for (int i = 0; i < list.Count; i++)
+            foreach (ListItem li in this.chkMXList.Items)
             {
-                ListItem lli = new ListItem();
-                lli.Value = list[i].ID.ToString();
-                lli.Text = list[i].Name.ToString();
-                this.ddlPictureStoreGroup.Items.Add(lli);
+                if (li.Selected == true)
+                {
+                    i++;
+                    if (i == 1)
+                    {
+                        result = li.Value;
+                    }
+                    else
+                    {
+                        result += "," + li.Value;
+                    }
+                }
             }
+            foreach (ListItem li in this.chkFXList.Items)
+            {
+                if (li.Selected == true)
+                {
+                    i++;
+                    if (i == 1)
+                    {
+                        result = li.Value;
+                    }
+                    else
+                    {
+                        result += "," + li.Value;
+                    }
+                }
+            }
+            return result;
         }
-
         protected void btnSubmit_OnClick(object sender,EventArgs e)
         {
+            string PSGIDS = this.GetPSGIDs();
             PictureStore ps = new PictureStore();
             ps.PictureStoreName = txtPictureStoreName.Text.Trim();
-            ps.PictureStoreGroupIDs = ddlPictureStoreGroup.SelectedItem.Value;
+            ps.PictureStoreGroupIDs = PSGIDS;
             ps.PictureStoreDescription = txtPictureStoreDescription.Text.Trim();
             ps.PictureStoreTagIDs = InfoAdmin.GetPictureStoreTagIDs(txtPictureStoreTag.Text.Trim());
             ps.PictureStoreHits = 0;
@@ -100,9 +134,47 @@ namespace Web.Admin
             int hairShopID = 0;
             int hairEngineerID = 0;
 
-            HairStyleEntity HairStyle = new HairStyleEntity(this.txtPictureStoreName.Text.Trim(), hairShopID, hairEngineerID, iHairStyleClassName, iFaceStyle, iTemperament, iOccasion, iSex, iHairNature,ps.PictureStoreID, this.txtPictureStoreDescription.Text.Trim());
+            HairStyleEntity HairStyle = new HairStyleEntity(this.txtPictureStoreName.Text.Trim(), hairShopID, hairEngineerID, iHairStyleClassName, iFaceStyle, iTemperament, iOccasion, iSex, iHairNature,ps.PictureStoreID, this.txtPictureStoreDescription.Text.Trim(),PSGIDS);
 
             InfoAdmin.AddHairStyle(HairStyle);
+
+            string hstyleid = string.Empty;
+
+            using (SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["MSSqlServer"].ToString()))
+            {
+                string commString = "select id from hairstyle order by id desc";
+                using (SqlCommand comm = new SqlCommand())
+                {
+                    comm.Connection = conn;
+                    comm.CommandText = commString;
+                    conn.Open();
+
+                    hstyleid = comm.ExecuteScalar().ToString();
+                }
+            }
+
+            string[] PPSGCollection = PSGIDS.Split(",".ToCharArray());
+            foreach (string s in PPSGCollection)
+            {
+                using (SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["MSSqlServer"].ToString()))
+                {
+                    string commString = "update PictureStoreGroup set PictureStoreIDs = PictureStoreIDs+',"+hstyleid+"' where PictureStoreGroupID="+s;
+                    using (SqlCommand comm = new SqlCommand())
+                    {
+                        comm.Connection = conn;
+                        comm.CommandText = commString;
+                        conn.Open();
+
+                        try
+                        {
+                            comm.ExecuteNonQuery();
+                        }
+                        catch (Exception ex)
+                        { }
+                    }
+                }
+            }
+
 
             string[] ppicString = this.pic.Text.Split(";".ToCharArray());
             if (ppicString[0] != string.Empty)

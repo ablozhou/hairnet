@@ -23,36 +23,6 @@ namespace Web.Admin
         {
             if (!this.IsPostBack)
             {
-                if (Session["pspg1"] == null || Session["pspg1"].ToString() == string.Empty)
-                {
-
-                }
-                else
-                {
-                    this.ddlPictureStoreParentGroup.SelectedValue = Session["pspg1"].ToString();
-                    this.ddlPictureStoreGroup.Items.Clear();
-                    List<PictureStoreGroup> list = ProviderFactory.GetPictureStoreDataProviderInstance().GetPictureStoreGroupsByParentID(int.Parse(this.ddlPictureStoreParentGroup.SelectedItem.Value), 0);
-                    ListItem li = new ListItem();
-                    li.Value = "0";
-                    li.Text = "请选择小类";
-                    this.ddlPictureStoreGroup.Items.Add(li);
-                    for (int i = 0; i < list.Count; i++)
-                    {
-                        ListItem lli = new ListItem();
-                        lli.Value = list[i].ID.ToString();
-                        lli.Text = list[i].Name.ToString();
-                        this.ddlPictureStoreGroup.Items.Add(lli);
-                    }
-                    if (Session["psg1"] == null || Session["psg1"].ToString() == string.Empty)
-                    {
-
-                    }
-                    else
-                    {
-                        this.ddlPictureStoreGroup.SelectedValue = Session["psg1"].ToString();
-                    }
-                }
-
                 this.databind();
 
                 Session["query"] = null;
@@ -64,29 +34,6 @@ namespace Web.Admin
                 this.lblTimeSpace.Visible = false;
                 this.lblQueryNameSpace.Visible = true;
             }
-        }
-        public void ddlPictureStoreGroup_OnSelectedIndexChanged(object sender, EventArgs e)
-        {
-            Session["psg1"] = this.ddlPictureStoreGroup.SelectedItem.Value;
-            this.databind();
-        }
-        public void ddlPictureStoreParentGroup_OnSelectedIndexChanged(object sender, EventArgs e)
-        {
-            this.ddlPictureStoreGroup.Items.Clear();
-            List<PictureStoreGroup> list = ProviderFactory.GetPictureStoreDataProviderInstance().GetPictureStoreGroupsByParentID(int.Parse(this.ddlPictureStoreParentGroup.SelectedItem.Value), 0);
-            ListItem li = new ListItem();
-            li.Value = "0";
-            li.Text = "请选择小类";
-            this.ddlPictureStoreGroup.Items.Add(li);
-            for (int i = 0; i < list.Count; i++)
-            {
-                ListItem lli = new ListItem();
-                lli.Value = list[i].ID.ToString();
-                lli.Text = list[i].Name.ToString();
-                this.ddlPictureStoreGroup.Items.Add(lli);
-            }
-            Session["pspg1"] = this.ddlPictureStoreParentGroup.SelectedItem.Value;
-            Session["psg1"] = string.Empty;
         }
         public void ddlQuery_OnSelectedIndexChanged(object sender, EventArgs e)
         {
@@ -182,66 +129,58 @@ namespace Web.Admin
         {
             List<PictureStore> list = new List<PictureStore>();
 
-            if (Session["psg1"] == null || Session["psg1"].ToString() == string.Empty)
+            if (Session["query"] == null || Session["query"].ToString() == string.Empty)
             {
-
-                if (Session["query"] == null || Session["query"].ToString() == string.Empty)
+                //根据排序绑定,均是倒序
+                switch (this.ddlOrderWay.SelectedValue)
                 {
-                    //根据排序绑定,均是倒序
-                    switch (this.ddlOrderWay.SelectedValue)
-                    {
-                        case "1":
-                            //发布时间，即ID
-                            list = InfoAdmin.GetPictureStores(0, OrderKey.ID);
-                            break;
-                        case "2":
-                            //点击数
-                            list = InfoAdmin.GetPictureStores(0, OrderKey.HitNum);
-                            break;
-                        case "3":
-                            //评论数
-                            //目前未实现评论数排序，目前为对评论数进行预处理，故DESIGN改变后，再实现
-                            //list = InfoAdmin.GetPictureStores(0, OrderKey.CommentNum);
-                            break;
-                    }
-                }
-                else
-                {
-                    switch (this.ddlQuery.SelectedValue)
-                    {
-                        case "1":
-                            //名称
-                            //根据排序绑定,均是倒序
-                            switch (this.ddlOrderWay.SelectedValue)
-                            {
-                                case "1":
-                                    //发布时间，即ID
-                                    list = InfoAdmin.GetPictureStores(0, OrderKey.ID, Session["query"].ToString());
-                                    break;
-                                case "2":
-                                    //点击数
-                                    list = InfoAdmin.GetPictureStores(0, OrderKey.HitNum, Session["query"].ToString());
-                                    break;
-                                case "3":
-                                    //评论数
-                                    //目前未实现评论数排序，目前为对评论数进行预处理，故DESIGN改变后，再实现
-                                    //list = InfoAdmin.GetPictureStores(0, OrderKey.CommentNum, Session["query"].ToString());
-                                    break;
-                            }
-                            break;
-                        case "2":
-                            //关键字
-                            break;
-                        case "3":
-                            //时间段
-                            break;
-
-                    }
+                    case "1":
+                        //发布时间，即ID
+                        list = InfoAdmin.GetPictureStores(0, OrderKey.ID);
+                        break;
+                    case "2":
+                        //点击数
+                        list = InfoAdmin.GetPictureStores(0, OrderKey.HitNum);
+                        break;
+                    case "3":
+                        //评论数
+                        //目前未实现评论数排序，目前为对评论数进行预处理，故DESIGN改变后，再实现
+                        //list = InfoAdmin.GetPictureStores(0, OrderKey.CommentNum);
+                        break;
                 }
             }
             else
             {
-                list = ProviderFactory.GetPictureStoreDataProviderInstance().GetPictureStores(0, Session["psg1"].ToString());
+                switch (this.ddlQuery.SelectedValue)
+                {
+                    case "1":
+                        //名称
+                        //根据排序绑定,均是倒序
+                        switch (this.ddlOrderWay.SelectedValue)
+                        {
+                            case "1":
+                                //发布时间，即ID
+                                list = InfoAdmin.GetPictureStores(0, OrderKey.ID, Session["query"].ToString());
+                                break;
+                            case "2":
+                                //点击数
+                                list = InfoAdmin.GetPictureStores(0, OrderKey.HitNum, Session["query"].ToString());
+                                break;
+                            case "3":
+                                //评论数
+                                //目前未实现评论数排序，目前为对评论数进行预处理，故DESIGN改变后，再实现
+                                //list = InfoAdmin.GetPictureStores(0, OrderKey.CommentNum, Session["query"].ToString());
+                                break;
+                        }
+                        break;
+                    case "2":
+                        //关键字
+                        break;
+                    case "3":
+                        //时间段
+                        break;
+
+                }
             }
 
             this.dg.DataKeyField = "PictureStoreID";
