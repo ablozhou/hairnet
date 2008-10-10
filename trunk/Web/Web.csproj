@@ -1734,6 +1734,20 @@
     <Compile Include="Admin\PictureStoreGroupAdmin.aspx.designer.cs">
       <DependentUpon>PictureStoreGroupAdmin.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Admin\PictureStoreGroupClassAdd.aspx.cs">
+      <SubType>ASPXCodeBehind</SubType>
+      <DependentUpon>PictureStoreGroupClassAdd.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\PictureStoreGroupClassAdd.aspx.designer.cs">
+      <DependentUpon>PictureStoreGroupClassAdd.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\PictureStoreGroupClassAdmin.aspx.cs">
+      <SubType>ASPXCodeBehind</SubType>
+      <DependentUpon>PictureStoreGroupClassAdmin.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\PictureStoreGroupClassAdmin.aspx.designer.cs">
+      <DependentUpon>PictureStoreGroupClassAdmin.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Admin\PictureStoreGroupEdit.aspx.cs">
       <SubType>ASPXCodeBehind</SubType>
       <DependentUpon>PictureStoreGroupEdit.aspx</DependentUpon>
@@ -2166,6 +2180,8 @@
     <Content Include="Admin\ModelAdd.aspx" />
     <Content Include="Admin\PictureStoreGroupAdd.aspx" />
     <Content Include="Admin\PictureStoreGroupAdmin.aspx" />
+    <Content Include="Admin\PictureStoreGroupClassAdd.aspx" />
+    <Content Include="Admin\PictureStoreGroupClassAdmin.aspx" />
     <Content Include="Admin\PictureStoreGroupEdit.aspx" />
     <Content Include="Admin\UserCreate.aspx" />
     <Content Include="Admin\UserEdit.aspx" />

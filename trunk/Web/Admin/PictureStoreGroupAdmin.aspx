@@ -41,7 +41,7 @@
             <Columns>
                 <asp:TemplateColumn>
                     <ItemTemplate>
-                        <asp:CheckBox ID="chkIsSend" runat="server" />
+                        <asp:CheckBox ID="IsSelect" runat="server" />
                     </ItemTemplate>
                 </asp:TemplateColumn>
                 <asp:BoundColumn DataField="Name" HeaderText="小类名称"></asp:BoundColumn>

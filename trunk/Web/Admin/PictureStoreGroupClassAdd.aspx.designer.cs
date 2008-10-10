@@ -10,11 +10,10 @@
 
 namespace Web.Admin {
     
-    public partial class PictureStoreGroupClassAdmin {
+    public partial class PictureStoreGroupClassAdd {
         protected System.Web.UI.HtmlControls.HtmlForm form1;
-        protected System.Web.UI.WebControls.Button btnAdd;
         protected System.Web.UI.WebControls.Button btnSelect;
-        protected System.Web.UI.WebControls.Button btnDelete;
+        protected System.Web.UI.WebControls.Button btnAdd;
         protected System.Web.UI.WebControls.DataGrid dg;
         protected System.Web.UI.WebControls.LinkButton PageFirst;
         protected System.Web.UI.WebControls.LinkButton PagePrev;

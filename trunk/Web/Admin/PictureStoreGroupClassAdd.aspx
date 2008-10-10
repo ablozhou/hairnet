@@ -1,10 +1,10 @@
-<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="PictureStoreGroupClassAdmin.aspx.cs" Inherits="Web.Admin.PictureStoreGroupClassAdmin" %>
+<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="PictureStoreGroupClassAdd.aspx.cs" Inherits="Web.Admin.PictureStoreGroupClassAdd" %>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
 <html xmlns="http://www.w3.org/1999/xhtml" >
 <head runat="server">
-    <title>专题管理</title>
+   <title>专题添加</title>
     <link type="text/css" rel="Stylesheet" href="Style/Main.css" />
 </head>
 <body>
@@ -14,14 +14,12 @@
      <table width="98%" border="0" cellpadding="2" cellspacing="1" bgcolor="#CCCCCC">
             <tr>
                 <td bgcolor="#FFFFFF" align="left">
-                    当前页面:<b>专题管理</b></td>
+                    当前页面:<b>专题添加</b></td>
             </tr>
             <tr>
                 <td align="right" bgcolor="#F5F5F5">
-                <asp:Button ID="btnAdd" runat="server" CssClass="btn" Text="进入添加页面" OnClick="btnAdd_OnClick"/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                 <asp:Button ID="btnSelect" runat="server" CssClass="btn" Text="全选" OnClick="btnSelect_OnClick"/>&nbsp;&nbsp;
-                
-                    <asp:Button ID="btnDelete" runat="server" CssClass="btn" Text="删除" OnClick="btnDelete_OnClick"/>&nbsp;&nbsp;
+                <asp:Button ID="btnAdd" runat="server" CssClass="btn" Text="添加" OnClick="btnAdd_OnClick"/>&nbsp;&nbsp;
                     </td>
             </tr>
         </table>
@@ -44,18 +42,18 @@
                     </ItemTemplate>
                 </asp:TemplateColumn>
                 <asp:BoundColumn DataField="hairname" HeaderText="名称"></asp:BoundColumn>
-                <asp:HyperLinkColumn DataNavigateUrlField="id" DataNavigateUrlFormatString="../FxkContent.aspx?id={0}" Target="_blank" Text="预览"></asp:HyperLinkColumn>
                 <asp:TemplateColumn HeaderText="类型">
                     <ItemTemplate>
                         <asp:Label ID="lblAdmin" runat="server"></asp:Label>
                     </ItemTemplate>
                 </asp:TemplateColumn>
+                <asp:HyperLinkColumn DataNavigateUrlField="id" DataNavigateUrlFormatString="../FxkContent.aspx?id={0}" Target="_blank" Text="预览"></asp:HyperLinkColumn>
                 <asp:TemplateColumn>
                     <ItemTemplate>
                         <asp:Label ID="lblEdit" runat="server"></asp:Label>
                     </ItemTemplate>
                 </asp:TemplateColumn>
-                 <asp:ButtonColumn ButtonType="LinkButton" CommandName="delete" Text="删除"></asp:ButtonColumn>
+                 <asp:ButtonColumn ButtonType="LinkButton" CommandName="add" Text="添加"></asp:ButtonColumn>
             </Columns>
         </asp:DataGrid>
  </div>

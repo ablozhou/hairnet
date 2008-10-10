@@ -14,11 +14,11 @@ using HairNet.Provider;
 using System.Collections.Generic;
 using HairNet.Enumerations;
 using HairNet.Utilities;
-
+using HairNet.DBUtility;
 
 namespace Web.Admin
 {
-    public partial class PictureStoreGroupClassAdmin : System.Web.UI.Page
+    public partial class PictureStoreGroupClassAdd : System.Web.UI.Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -31,12 +31,7 @@ namespace Web.Admin
         {
             this.databind();
         }
-        public void btnAdd_OnClick(object sender,EventArgs e)
-        {
-            this.Response.Redirect("PictureStoreGroupClassAdd.aspx?id="+this.Request.QueryString["id"].ToString());
-        }
-
-        public void btnDelete_OnClick(object sender, EventArgs e)
+        public void btnAdd_OnClick(object sender, EventArgs e)
         {
             foreach (DataGridItem dgi in this.dg.Items)
             {
@@ -44,22 +39,12 @@ namespace Web.Admin
                 if (chkIsSend.Checked)
                 {
                     string hstyleid = this.dg.DataKeys[dgi.ItemIndex].ToString();
-                    PictureStoreGroup psg = ProviderFactory.GetPictureStoreDataProviderInstance().GetPictureStoreGroupByPictureStoreGroupID(int.Parse(this.Request.QueryString["id"].ToString()));
+                    string id = this.Request.QueryString["id"].ToString();
 
-                    string ids = psg.PictureStoreIDs;
-                    
-                    string[] iids = ids.Split(",".ToCharArray());
-                    ids = string.Empty;
-                    for (int i = 1; i < iids.Length; i++)
-                    {
-                        if (iids[i] != hstyleid)
-                        {
-                            ids += "," + iids[i];
-                        }
-                    }
+
                     using (SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["MSSqlServer"].ToString()))
                     {
-                        string commString = "update picturestoregroup set picturestoreids = '" + ids + "' where picturestoregroupid=" + psg.ID.ToString();
+                        string commString = "update PictureStoreGroup set PictureStoreIDs = PictureStoreIDs+'," + hstyleid + "' where PictureStoreGroupID=" + id;
                         using (SqlCommand comm = new SqlCommand())
                         {
                             comm.Connection = conn;
@@ -70,10 +55,11 @@ namespace Web.Admin
                             {
                                 comm.ExecuteNonQuery();
                             }
-                            catch
+                            catch (Exception ex)
                             { }
                         }
                     }
+                    
                 }
             }
             this.databind();
@@ -105,50 +91,26 @@ namespace Web.Admin
 
         public void databind()
         {
-            PictureStoreGroup psg = ProviderFactory.GetPictureStoreDataProviderInstance().GetPictureStoreGroupByPictureStoreGroupID(int.Parse(this.Request.QueryString["id"].ToString()));
-
-            DataTable dt = new DataTable("dt");
-            dt.Columns.Add("id", typeof(int));
-            dt.Columns.Add("hairname", typeof(string));
-            dt.Columns.Add("picturestoreid", typeof(string));
-
-            string[] psgc = psg.PictureStoreIDs.Split(",".ToCharArray());
-            for(int i=1;i<psgc.Length;i++)
+            List<HairStyleEntity> valueList = new List<HairStyleEntity>();
+            using (SqlDataReader Reader = SqlHelper.ExecuteReader(DataHelper2.SqlConnectionString, CommandType.StoredProcedure,
+           "QueryHairStyle1", null))
             {
-                string id = psgc[i];
-                using (SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["MSSqlServer"].ToString()))
-                {
-                    string commString = "select * from hairstyle where id="+id;
-                    using (SqlCommand comm = new SqlCommand())
-                    {
-                        comm.Connection = conn;
-                        comm.CommandText = commString;
-                        conn.Open();
-
-                        using (SqlDataReader sdr = comm.ExecuteReader())
-                        {
-                            if (sdr.Read())
-                            {
-                                DataRow dr = dt.NewRow();
-                                dr["id"] = sdr["id"].ToString();
-                                dr["hairname"] = sdr["hairname"].ToString();
-                                dr["picturestoreid"] = sdr["picturestoreid"].ToString();
-
-                                dt.Rows.Add(dr);
-                            }
-                        }
-                    }
-                }
+                while (Reader.Read())
+                    valueList.Add(new HairStyleEntity(Reader.GetInt32(0), Reader.GetString(1), Reader.GetByte(2), Reader.GetByte(3),
+                        Reader.GetByte(4), Reader.GetByte(5), Reader.GetByte(6), Reader.GetString(7), Reader.GetString(8), Reader.GetString(9),
+                        Reader.GetString(10), Reader.GetString(11), Reader.GetString(12), Reader.GetString(13), Reader.GetInt32(14),
+                        Reader.GetInt32(15), Reader.GetByte(16), Reader.GetByte(17), Reader.GetByte(18), Reader.GetDateTime(19),
+                        Reader.GetString(20), Reader.GetInt32(21), Reader.GetInt32(22), Reader.GetInt32(23), Reader.GetString(24)));
             }
 
             this.dg.DataKeyField = "id";
-            dg.DataSource = dt.DefaultView;
+            dg.DataSource = valueList;
             this.dg.DataBind();
             //°ó¶¨Ò³Âë
             SetupPage();
             this.Page_nPage.Text = Convert.ToString(this.dg.CurrentPageIndex + 1);
             this.Page_nRecCount.Text = this.dg.PageCount.ToString();
-            this.Page_nRecCount_1.Text = dt.Rows.Count.ToString();
+            this.Page_nRecCount_1.Text = valueList.Count.ToString();
             ispages.Text = this.Page_nPage.Text;
             IsFirstLastPage(this.dg.PageCount, this.dg.CurrentPageIndex);
             if (this.dg.PageCount == 1)
@@ -165,25 +127,15 @@ namespace Web.Admin
         {
             if (e.Item.ItemType == ListItemType.AlternatingItem || e.Item.ItemType == ListItemType.Item)
             {
-                if (e.CommandName == "delete")
+                if (e.CommandName == "add")
                 {
                     string hstyleid = this.dg.DataKeys[e.Item.ItemIndex].ToString();
-                    PictureStoreGroup psg = ProviderFactory.GetPictureStoreDataProviderInstance().GetPictureStoreGroupByPictureStoreGroupID(int.Parse(this.Request.QueryString["id"].ToString()));
+                    string id = this.Request.QueryString["id"].ToString();
 
-                    string ids = psg.PictureStoreIDs;
 
-                    string[] iids = ids.Split(",".ToCharArray());
-                    ids = string.Empty;
-                    for (int i = 1; i < iids.Length; i++)
-                    {
-                        if (iids[i] != hstyleid)
-                        {
-                            ids += "," + iids[i];
-                        }
-                    }
                     using (SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["MSSqlServer"].ToString()))
                     {
-                        string commString = "update picturestoregroup set picturestoreids = '" + ids + "' where picturestoregroupid=" + psg.ID.ToString();
+                        string commString = "update PictureStoreGroup set PictureStoreIDs = PictureStoreIDs+'," + hstyleid + "' where PictureStoreGroupID=" + id;
                         using (SqlCommand comm = new SqlCommand())
                         {
                             comm.Connection = conn;
@@ -194,7 +146,7 @@ namespace Web.Admin
                             {
                                 comm.ExecuteNonQuery();
                             }
-                            catch
+                            catch (Exception ex)
                             { }
                         }
                     }
@@ -213,16 +165,15 @@ namespace Web.Admin
 
                 Label lblEdit = e.Item.FindControl("lblEdit") as Label;
                 Label lblAdmin = e.Item.FindControl("lblAdmin") as Label;
-                DataRowView drv = e.Item.DataItem as DataRowView;
-                if (drv["picturestoreid"].ToString() == "0")
+                HairStyleEntity hse = e.Item.DataItem as HairStyleEntity;
+
+                if (hse.PictureStoreId.ToString() == "0")
                 {
                     lblAdmin.Text = "·¢ÐÍ";
-                    lblEdit.Text = "<a href='HairStyleEdit.aspx?id=" +drv["id"].ToString() +"' target='_self'>±à¼­</a>";
                 }
                 else
                 {
                     lblAdmin.Text = "Í¼Æ¬";
-                    lblEdit.Text = "<a href='PictureStoreEdit.aspx?id=" + drv["picturestoreid"].ToString() + "' target='_self'>±à¼­</a>";
                 }
             }
         }
