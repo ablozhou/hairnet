@@ -42,7 +42,7 @@ namespace Web.Admin
         {
             foreach (DataGridItem dgi in this.dg.Items)
             {
-                CheckBox chkIsSend = dgi.FindControl("chkIsSend") as CheckBox;
+                CheckBox chkIsSend = dgi.FindControl("IsSelect") as CheckBox;
                 if (chkIsSend.Checked)
                 {
                     int pictureStoreGroupID = int.Parse(this.dg.DataKeys[dgi.ItemIndex].ToString());
