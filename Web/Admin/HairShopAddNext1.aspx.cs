@@ -113,7 +113,7 @@ namespace Web.Admin
             }   
 
             string out1 = upload.UpLoadImg(out1c, "/uploadfiles/pictures/");
-            if (out1 == string.Empty)
+            if (out1 != string.Empty)
             {
                 //厅外是2,厅内是1
                 using (SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["MSSqlServer"].ConnectionString))
