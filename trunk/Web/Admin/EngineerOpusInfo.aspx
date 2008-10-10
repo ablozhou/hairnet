@@ -39,6 +39,32 @@
             <td><asp:Image ID="i4" Width="200" Height="100" runat="Server" Visible="false" /></td>
         </tr>
     </table>
+    <table width="98%" border="0" cellpadding="2" cellspacing="2">
+        <tr>
+                <td width="120" align="right">
+                    街拍：
+                </td>
+                <td>
+                <asp:CheckBoxList ID="chkJPList" RepeatColumns="8" RepeatDirection="Horizontal" runat="server"></asp:CheckBoxList>
+                </td>
+            </tr>
+            <tr>
+                <td width="120" align="right">
+                    明星：
+                </td>
+                <td>
+                <asp:CheckBoxList ID="chkMXList" RepeatColumns="8" RepeatDirection="Horizontal" runat="server"></asp:CheckBoxList>
+                </td>
+            </tr>
+            <tr>
+                <td width="120" align="right">
+                    发型：
+                </td>
+                <td>
+                <asp:CheckBoxList ID="chkFXList" RepeatColumns="8" RepeatDirection="Horizontal" runat="server"></asp:CheckBoxList>
+                </td>
+            </tr>
+    </table>
     <table width="98%" border="0" cellpadding="0" cellspacing="0">
         <tr>
             <td width=120px align="right">发质: </td>

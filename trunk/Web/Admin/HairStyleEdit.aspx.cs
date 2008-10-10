@@ -18,6 +18,7 @@ using HairNet.Components.Utilities;
 using System.Data.SqlClient;
 using HairNet.Provider;
 using HairNet.Enumerations;
+using System.Collections.Generic;
 
 namespace Web.Admin
 {
@@ -33,6 +34,7 @@ namespace Web.Admin
             {
                 BindControlData();
                 string id = this.Request.QueryString["id"].ToString();
+                string picturestoregroupids = string.Empty;
                 using (SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["MSSqlServer"].ToString()))
                 {
                     string commString = "select * from hairstyle where id="+id;
@@ -55,7 +57,37 @@ namespace Web.Admin
                                 this.ddlTemperament.SelectedValue = sdr["temperament"].ToString();
                                 this.txtOpusName.Text = sdr["hairname"].ToString();
                                 this.txtDesc.Text = sdr["descr"].ToString();
+                                picturestoregroupids = sdr["psgids"].ToString();
                             }
+                        }
+                    }
+                }
+                ViewState["psgids"] = picturestoregroupids;
+                string[] PSGIDSCollection = picturestoregroupids.Split(",".ToCharArray());
+                foreach (string ss in PSGIDSCollection)
+                {
+                    foreach (ListItem llli in this.chkJPList.Items)
+                    {
+                        if (llli.Value == ss)
+                        {
+                            llli.Selected = true;
+                            break;
+                        }
+                    }
+                    foreach (ListItem llli in this.chkMXList.Items)
+                    {
+                        if (llli.Value == ss)
+                        {
+                            llli.Selected = true;
+                            break;
+                        }
+                    }
+                    foreach (ListItem llli in this.chkFXList.Items)
+                    {
+                        if (llli.Value == ss)
+                        {
+                            llli.Selected = true;
+                            break;
                         }
                     }
                 }
@@ -120,6 +152,57 @@ namespace Web.Admin
                     }
                 }
             }
+        }
+        public string GetPSGIDs()
+        {
+            string result = "";
+            int i = 0;
+            foreach (ListItem li in this.chkJPList.Items)
+            {
+                if (li.Selected == true)
+                {
+                    i++;
+                    if (i == 1)
+                    {
+                        result = li.Value;
+                    }
+                    else
+                    {
+                        result += "," + li.Value;
+                    }
+                }
+            }
+            foreach (ListItem li in this.chkMXList.Items)
+            {
+                if (li.Selected == true)
+                {
+                    i++;
+                    if (i == 1)
+                    {
+                        result = li.Value;
+                    }
+                    else
+                    {
+                        result += "," + li.Value;
+                    }
+                }
+            }
+            foreach (ListItem li in this.chkFXList.Items)
+            {
+                if (li.Selected == true)
+                {
+                    i++;
+                    if (i == 1)
+                    {
+                        result = li.Value;
+                    }
+                    else
+                    {
+                        result += "," + li.Value;
+                    }
+                }
+            }
+            return result;
         }
         public void btn1_OnClick(object sender, EventArgs e)
         {
@@ -233,7 +316,55 @@ namespace Web.Admin
             //WaterMark.AddWaterMarkOperate(backFilePath, Server.MapPath(WaterSettings.WaterMarkPath), newBackFilePath, WaterSettings.CopyrightText);
             //WaterMark.AddWaterMarkOperate(assistanceFilePath, Server.MapPath(WaterSettings.WaterMarkPath), newAssistanceFilePath, WaterSettings.CopyrightText);
 
+            string PSGIDS = this.GetPSGIDs();
             int id = int.Parse(this.Request.QueryString["id"].ToString());
+
+            string hstyleid = id.ToString();
+
+            string[] PSGIDSCollection1 = ViewState["psgids"].ToString().Split(",".ToCharArray());
+            foreach (string sso in PSGIDSCollection1)
+            {
+                string ids = "";
+                using (SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["MSSqlServer"].ToString()))
+                {
+                    string commString = "select picturestoreids from picturestoregroup where picturestoregroupid=" + sso;
+                    using (SqlCommand comm = new SqlCommand())
+                    {
+                        comm.Connection = conn;
+                        comm.CommandText = commString;
+                        conn.Open();
+
+                        ids = comm.ExecuteScalar().ToString();
+                    }
+                }
+                string[] iids = ids.Split(",".ToCharArray());
+                ids = string.Empty;
+                for (int i = 1; i < iids.Length; i++)
+                {
+                    if (iids[i] != hstyleid)
+                    {
+                        ids += "," + iids[i];
+                    }
+                }
+                using (SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["MSSqlServer"].ToString()))
+                {
+                    string commString = "update picturestoregroup set picturestoreids = '" + ids + "' where picturestoregroupid=" + sso;
+                    using (SqlCommand comm = new SqlCommand())
+                    {
+                        comm.Connection = conn;
+                        comm.CommandText = commString;
+                        conn.Open();
+
+                        try
+                        {
+                            comm.ExecuteNonQuery();
+                        }
+                        catch
+                        { }
+                    }
+                }
+            }
+
 
             String frontFilePath = this.lbl1.Text;
             String flankFilePath = this.lbl2.Text;
@@ -275,10 +406,31 @@ namespace Web.Admin
             //    newBackFilePath, newAssistanceFilePath, Byte.Parse(listHairStyle.SelectedValue), Byte.Parse(listFaceType.SelectedValue),
             //    Byte.Parse(listHairType.SelectedValue), Byte.Parse(listHairItem.SelectedValue), txtDesc.Text.Trim());
 
-            HairStyleEntity HairStyle = new HairStyleEntity(id,txtOpusName.Text.Trim(), hairShopID, hairEngineerID, iHairStyleClassName, iFaceStyle, iTemperament, iOccasion, iSex, iHairNature, txtDesc.Text.Trim());
+            HairStyleEntity HairStyle = new HairStyleEntity(id,txtOpusName.Text.Trim(), hairShopID, hairEngineerID, iHairStyleClassName, iFaceStyle, iTemperament, iOccasion, iSex, iHairNature, txtDesc.Text.Trim(),PSGIDS);
 
             ProviderFactory.GetHairEngineerDataProviderInstance().HairStyleCreateDeleteUpdate(HairStyle,UserAction.Update);
 
+            string[] PPSGCollection = PSGIDS.Split(",".ToCharArray());
+            foreach (string s in PPSGCollection)
+            {
+                using (SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["MSSqlServer"].ToString()))
+                {
+                    string commString = "update PictureStoreGroup set PictureStoreIDs = PictureStoreIDs+'," + id + "' where PictureStoreGroupID=" + s;
+                    using (SqlCommand comm = new SqlCommand())
+                    {
+                        comm.Connection = conn;
+                        comm.CommandText = commString;
+                        conn.Open();
+
+                        try
+                        {
+                            comm.ExecuteNonQuery();
+                        }
+                        catch (Exception ex)
+                        { }
+                    }
+                }
+            }
             
             //大图
             using (SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["MSSqlServer"].ToString()))
@@ -569,6 +721,34 @@ namespace Web.Admin
                             this.ddlOccasion.Items.Add(li);
                         }
                     }
+                }
+
+                List<PictureStoreGroup> list1 = ProviderFactory.GetPictureStoreDataProviderInstance().GetPictureStoreGroupsByParentID(1, 0);
+
+                for (int i = 0; i < list1.Count; i++)
+                {
+                    ListItem lli = new ListItem();
+                    lli.Value = list1[i].ID.ToString();
+                    lli.Text = list1[i].Name.ToString();
+                    this.chkJPList.Items.Add(lli);
+                }
+                List<PictureStoreGroup> list2 = ProviderFactory.GetPictureStoreDataProviderInstance().GetPictureStoreGroupsByParentID(2, 0);
+
+                for (int i = 0; i < list2.Count; i++)
+                {
+                    ListItem lli = new ListItem();
+                    lli.Value = list2[i].ID.ToString();
+                    lli.Text = list2[i].Name.ToString();
+                    this.chkMXList.Items.Add(lli);
+                }
+                List<PictureStoreGroup> list3 = ProviderFactory.GetPictureStoreDataProviderInstance().GetPictureStoreGroupsByParentID(3, 0);
+
+                for (int i = 0; i < list3.Count; i++)
+                {
+                    ListItem lli = new ListItem();
+                    lli.Value = list3[i].ID.ToString();
+                    lli.Text = list3[i].Name.ToString();
+                    this.chkFXList.Items.Add(lli);
                 }
             }
         }
