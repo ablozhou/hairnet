@@ -58,7 +58,7 @@
             </tr>
             <tr>
                 <td width="120" align="right">
-                    发型：
+                    专题：
                 </td>
                 <td>
                 <asp:CheckBoxList ID="chkFXList" RepeatColumns="8" RepeatDirection="Horizontal" runat="server"></asp:CheckBoxList>

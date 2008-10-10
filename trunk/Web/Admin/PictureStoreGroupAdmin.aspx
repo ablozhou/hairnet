@@ -18,7 +18,7 @@
             </tr>
             <tr>
                 <td align="right" bgcolor="#F5F5F5">
-                大类条目:<asp:DropDownList ID="ddlPictureStoreGroup" AutoPostBack="true" runat="server" OnSelectedIndexChanged="ddlQuery_OnSelectedIndexChanged"><asp:ListItem Value="0" Selected="true">请选择大类</asp:ListItem><asp:ListItem Value="1">街拍</asp:ListItem><asp:ListItem Value="2" >明星</asp:ListItem><asp:ListItem Value="3" >发型</asp:ListItem></asp:DropDownList>&nbsp;&nbsp;
+                大类条目:<asp:DropDownList ID="ddlPictureStoreGroup" AutoPostBack="true" runat="server" OnSelectedIndexChanged="ddlQuery_OnSelectedIndexChanged"><asp:ListItem Value="0" Selected="true">请选择大类</asp:ListItem><asp:ListItem Value="1">街拍</asp:ListItem><asp:ListItem Value="2" >明星</asp:ListItem><asp:ListItem Value="3" >专题</asp:ListItem></asp:DropDownList>&nbsp;&nbsp;
                     &nbsp;&nbsp;
                 <asp:Button ID="btnSelect" runat="server" CssClass="btn" Text="全选" OnClick="btnSelect_OnClick"/>&nbsp;&nbsp;
                     <asp:Button ID="btnAdd" runat="server" CssClass="btn" Text="添加" OnClick="btnAdd_OnClick"/>&nbsp;&nbsp;

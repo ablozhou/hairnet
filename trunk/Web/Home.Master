@@ -8,9 +8,9 @@
 <head runat="server">
     <meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
     <title>美发频道</title>
-    <link href="Theme/Style/daohang-end-08.css" rel="stylesheet" type="text/css" />
-    <link href="Theme/Style/hair-main.css" rel="stylesheet" type="text/css" />
-    <script type="text/javascript" src="Theme/js/chrome.js"></script>
+    <link href="./Theme/Style/daohang-end-08.css" rel="stylesheet" type="text/css" />
+    <link href="./Theme/Style/hair-main.css" rel="stylesheet" type="text/css" />
+    <script type="text/javascript" src="./Theme/js/chrome.js"></script>
 </head>
 <body>
     <form id="form1" runat="server">

@@ -31,7 +31,7 @@
             </tr>
     </table>
     <div style="text-align: center">
-        <asp:DataGrid ID ="dg" runat = "server" PageSize="3" AllowPaging="True" 
+        <asp:DataGrid ID ="dg" runat = "server" PageSize="30" AllowPaging="True" 
             AutoGenerateColumns="False" BackColor="White" BorderColor="White" 
             BorderStyle="Ridge" BorderWidth="2px" CellPadding="3" Width="98%" 
             CellSpacing="1" GridLines="None" OnItemDataBound="dg_OnItemDataBound" 
