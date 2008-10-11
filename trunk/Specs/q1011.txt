@@ -1,0 +1,13 @@
+添加图片后，picturestoregroup, ids没有填
+添加美发师后，再添加多个作品，或继续添加美发师
+每个图片都要有对应的缩略图上传（美发师，美发厅，优惠券，作品包括正面大，镂空大，正面侧面背面小五张，而且可能只有正面+某几张），已经修改了picturestoreset,增加了smallpic字段。
+美发厅添加报错
+页面返回就过期了
+美发厅，美发师，优惠券编辑修改的逻辑检查一下有的有问题。
+美发师职位变成文本输入框（因为每个公司职位不一样）
+搜索很多不能用，而且点搜索后再点左边的普通图库索引出错。
+
+数据库修改，增加了：
+1 PictureStoreGroup 添加 AddTime
+2 PictureStoreSet   添加 SmallPic
+3 HairStyle         添加 IsHairStyle
