@@ -18,7 +18,21 @@
     <form id="form1" runat="server">
     <div>
         <table width="98%" border="0" cellpadding="2" cellspacing="2">
-           
+   <tr>
+                <td align="right" class="style1">
+                    城市：
+                </td>
+                <td>
+                    <asp:DropDownList ID="ddlCity" runat="server" AutoPostBack="True" 
+                        OnSelectedIndexChanged="ddlCity_SelectedIndexChanged" Width="88px"><asp:ListItem Value="1">普通</asp:ListItem>
+                    </asp:DropDownList>
+                    &nbsp;&nbsp; 区域：
+                    <asp:DropDownList ID="ddlMapZone" runat="server" AutoPostBack="True" OnSelectedIndexChanged="ddlMapZone_SelectedIndexChanged">
+                    <asp:ListItem Value="1">普通</asp:ListItem></asp:DropDownList>
+                    &nbsp;&nbsp; 商圈：<asp:DropDownList ID="ddlHotZone" runat="server"><asp:ListItem Value="1">普通</asp:ListItem>
+                    </asp:DropDownList>
+                </td>
+            </tr>         
             <tr>
                 <td align="right" class="style1">
                     名称：
@@ -184,21 +198,7 @@
                     <asp:TextBox ID="txtHairShopCreateTime" runat="server" Width="200" CssClass="TextBox"></asp:TextBox>
                 </td>
             </tr>
-            <tr>
-                <td align="right" class="style1">
-                    城市：
-                </td>
-                <td>
-                    <asp:DropDownList ID="ddlCity" runat="server" AutoPostBack="True" 
-                        OnSelectedIndexChanged="ddlCity_SelectedIndexChanged" Width="88px"><asp:ListItem Value="1">普通</asp:ListItem>
-                    </asp:DropDownList>
-                    &nbsp;&nbsp; 区域：
-                    <asp:DropDownList ID="ddlMapZone" runat="server" AutoPostBack="True" OnSelectedIndexChanged="ddlMapZone_SelectedIndexChanged">
-                    <asp:ListItem Value="1">普通</asp:ListItem></asp:DropDownList>
-                    &nbsp;&nbsp; 商圈：<asp:DropDownList ID="ddlHotZone" runat="server"><asp:ListItem Value="1">普通</asp:ListItem>
-                    </asp:DropDownList>
-                </td>
-            </tr>
+           
             <tr>
                 <td align="right" class="style1">
                     详细地址：
@@ -228,7 +228,7 @@
                     关键字：
                 </td>
                 <td>
-                    <asp:TextBox ID="txtHairShopTag" runat="server" Width="200" CssClass="TextBox"></asp:TextBox>
+                    <asp:TextBox ID="txtHairShopTag" runat="server" Width="500" CssClass="TextBox"></asp:TextBox>
                 </td>
             </tr>
             <tr>
@@ -253,24 +253,7 @@
                  </table>
                 </td>
             </tr>
-        
-            <tr>
-                <td align="right" class="style1">
-                    加盟连锁：
-                </td>
-                <td>
-                    <asp:CheckBox ID="chkIsJoin" runat="server" />
-                </td>
-            </tr>
-            <tr>
-                <td align="right" class="style1">
-                    加盟详细信息：
-                </td>
-                <td>
-                    <asp:TextBox ID="txtMemberInfo" runat="server" />
-                </td>
-            </tr>
-            <tr>
+         <tr>
                 <td align="right" class="style1">
                     是否停车：
                 </td>
@@ -286,6 +269,24 @@
                     <asp:CheckBox ID="chkIsPostMachine" runat="server" Checked="True" />
                 </td>
             </tr>
+            <tr>
+                <td align="right" class="style1">
+                    加盟连锁：
+                </td>
+                <td>
+                    <asp:CheckBox ID="chkIsJoin" runat="server" />
+                </td>
+            </tr>
+            <tr>
+                <td align="right" class="style1">
+                    加盟详细信息：
+                </td>
+                <td>
+                    <asp:TextBox ID="txtMemberInfo" runat="server" Height="200px" TextMode="MultiLine"
+                        Width="900px"/>
+                </td>
+            </tr>
+           
             <tr>
                 <td align="right" class="style1" valign="top">
                     描述：

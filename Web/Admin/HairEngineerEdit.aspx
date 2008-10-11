@@ -77,7 +77,7 @@
         
         
         <tr>
-            <td width="120" align="right">工作资历：</td>
+            <td width="120" align="right">工作年限：</td>
             <td><asp:TextBox ID="txtHairEngineerYear" runat="server" CssClass="TextBox"></asp:TextBox></td>
         </tr>
         <tr>
