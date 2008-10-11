@@ -29,3 +29,5 @@
 3 HairStyle         添加 IsHairStyle，postid，与Picturestoreset表的IsHairStyle一致，作为冗余便于搜索，表示是发型，在增加发型时需要填写
 4 HairShop 	添加postid
 5 coupon	添加postid
+
+最新数据库放在svn的datasql目录下。
