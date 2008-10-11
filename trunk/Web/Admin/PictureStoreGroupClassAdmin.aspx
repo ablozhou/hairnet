@@ -4,7 +4,7 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml" >
 <head runat="server">
-    <title>专题管理</title>
+    <title>组图管理</title>
     <link type="text/css" rel="Stylesheet" href="Style/Main.css" />
 </head>
 <body>
@@ -14,7 +14,7 @@
      <table width="98%" border="0" cellpadding="2" cellspacing="1" bgcolor="#CCCCCC">
             <tr>
                 <td bgcolor="#FFFFFF" align="left">
-                    当前页面:<b>专题管理</b></td>
+                    当前页面:<b>组图管理</b></td>
             </tr>
             <tr>
                 <td align="right" bgcolor="#F5F5F5">
