@@ -76,10 +76,13 @@ namespace Web.Admin
             //imgPhoto.ImageUrl = he.HairEngineerPhoto;
             int num = 0;
             string picString = string.Empty;
+            string smallString = string.Empty;
+
             string pic = string.Empty;
+            string small = string.Empty;
             using (SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["MSSqlServer"].ConnectionString))
             {
-                string commString = "select * from enginpics where ownerid="+hairEngineerID.ToString();
+                string commString = "select * from enginpics where classid=1 and ownerid="+hairEngineerID.ToString();
                 using (SqlCommand comm = new SqlCommand())
                 {
                     comm.CommandText = commString;
@@ -106,8 +109,40 @@ namespace Web.Admin
                     }
                 }
             }
+            num = 0;
+            using (SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["MSSqlServer"].ConnectionString))
+            {
+                string commString = "select * from enginpics where classid=2 and ownerid=" + hairEngineerID.ToString();
+                using (SqlCommand comm = new SqlCommand())
+                {
+                    comm.CommandText = commString;
+                    comm.Connection = conn;
+                    conn.Open();
+                    using (SqlDataReader sdr = comm.ExecuteReader())
+                    {
+                        while (sdr.Read())
+                        {
+                            num++;
+
+                            if (num == 1)
+                            {
+                                smallString = sdr["picurl"].ToString();
+                                small = "<img width=200 heigth=100 src='" + sdr["picurl"].ToString() + "' />&nbsp;&nbsp;<a href='hairengineeroperate.aspx?id=" + sdr["id"].ToString() + "&hid=" + hairEngineerID.ToString() + "'>删除</a>";
+                            }
+                            else
+                            {
+                                smallString += ";" + sdr["picurl"].ToString();
+                                small += "&nbsp;&nbsp;<img width=200 heigth=100 src='" + sdr["picurl"].ToString() + "' />&nbsp;&nbsp;<a href='hairengineeroperate.aspx?id=" + sdr["id"].ToString() + "&hid=" + hairEngineerID.ToString() + "'>删除</a>";
+                            }
+
+                        }
+                    }
+                }
+            }
             this.lblpicSring.Text = picString;
-            this.lblPic.Text = pic; 
+            this.lblPic.Text = pic;
+            this.lblsmallSring.Text = smallString;
+            this.lblSmall.Text = small;
 
             ViewState["HairEngineerInfo"] = he;
         }
@@ -150,6 +185,7 @@ namespace Web.Admin
             if (InfoAdmin.UpdateHairEngineer(he))
             {
                 Session["HairEngineerInfo"] = he;
+
                 this.Response.Redirect("HairEngineerAdmin.aspx");
             }
             else
@@ -157,23 +193,61 @@ namespace Web.Admin
                 this.Response.Write("更新失败！");
             }
         }
+        public void btnSmallSubmit_OnClick(object sender, EventArgs e)
+        {
+            string hairEngineerID = this.Request.QueryString["id"].ToString();
+            UpLoadClass upload = new UpLoadClass();
+            string picPath = upload.UpLoadImg(smallLogo, "/uploadfiles/pictures/");
+
+            if (picPath != string.Empty)
+            {
+                using (SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["MSSqlServer"].ConnectionString))
+                {
+                    string commString = "insert into enginpics(picurl,ownerid,classid) values('" + picPath + "'," + hairEngineerID + ",2)";
+                    using (SqlCommand comm = new SqlCommand())
+                    {
+                        comm.CommandText = commString;
+                        comm.Connection = conn;
+                        conn.Open();
+                        try
+                        {
+                            comm.ExecuteNonQuery();
+                        }
+                        catch (Exception ex)
+                        {
+                            throw new Exception(ex.Message);
+                        }
+                    }
+                }
+                this.Response.Redirect("HairEngineerEdit.aspx?id="+hairEngineerID);
+            }
+        }
         public void btnPicSubmit_OnClick(object sender, EventArgs e)
         {
+            string hairEngineerID = this.Request.QueryString["id"].ToString();
             UpLoadClass upload = new UpLoadClass();
             string picPath = upload.UpLoadImg(fileLogo, "/uploadfiles/pictures/");
             if (picPath != string.Empty)
             {
-                if (this.lblpicSring.Text == string.Empty)
+                using (SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["MSSqlServer"].ConnectionString))
                 {
-                    lblpicSring.Text = picPath;
-                    lblPic.Text = "<img width=200 heigth=100 src=" + picPath + "></img>";
+                    string commString = "insert into enginpics(picurl,ownerid,classid) values('" + picPath + "'," + hairEngineerID + ",1)";
+                    using (SqlCommand comm = new SqlCommand())
+                    {
+                        comm.CommandText = commString;
+                        comm.Connection = conn;
+                        conn.Open();
+                        try
+                        {
+                            comm.ExecuteNonQuery();
+                        }
+                        catch (Exception ex)
+                        {
+                            throw new Exception(ex.Message);
+                        }
+                    }
                 }
-                else
-                {
-                    lblpicSring.Text = lblpicSring.Text + ";" + picPath;
-
-                    lblPic.Text += "&nbsp;&nbsp;<img width=200 heigth=100 src=" + picPath + "></img>";
-                }
+                this.Response.Redirect("HairEngineerEdit.aspx?id=" + hairEngineerID);
             }
         }
     }

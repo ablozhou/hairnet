@@ -179,9 +179,52 @@ namespace Web.Admin
                     }
                 }
             }
+
+            string[] photoSmallString = lblsmallSring.Text.Split(";".ToCharArray());
+            foreach (string ps in photoSmallString)
+            {
+                using (SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["MSSqlServer"].ConnectionString))
+                {
+                    string commString = "insert into enginpics(picurl,ownerid,classid) values('" + ps + "'," + id.ToString() + ",2)";
+                    using (SqlCommand comm = new SqlCommand())
+                    {
+                        comm.CommandText = commString;
+                        comm.Connection = conn;
+                        conn.Open();
+                        try
+                        {
+                            comm.ExecuteNonQuery();
+                        }
+                        catch (Exception ex)
+                        {
+                            throw new Exception(ex.Message);
+                        }
+                    }
+                }
+            }
+
             ResetControlState();
 
             this.Response.Redirect("HairEngineerAddSwitch.aspx");
+        }
+        public void btnSmallSubmit_OnClick(object sender, EventArgs e)
+        {
+            UpLoadClass upload = new UpLoadClass();
+            string picPath = upload.UpLoadImg(smallLogo, "/uploadfiles/pictures/");
+            if (picPath != string.Empty)
+            {
+                if (this.lblsmallSring.Text == string.Empty)
+                {
+                    lblsmallSring.Text = picPath;
+                    lblSmall.Text = "<img width=200 heigth=100 src=" + picPath + "></img>";
+                }
+                else
+                {
+                    lblsmallSring.Text = lblsmallSring.Text + ";" + picPath;
+
+                    lblSmall.Text += "&nbsp;&nbsp;<img width=200 heigth=100 src=" + picPath + "></img>";
+                }
+            }
         }
         public void btnPicSubmit_OnClick(object sender, EventArgs e)
         {

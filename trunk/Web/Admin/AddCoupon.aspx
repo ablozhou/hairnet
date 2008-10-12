@@ -66,6 +66,13 @@ window.location.href = "CouponManagement.aspx";
                         TextMode="MultiLine" Height="110px" Width="480px"></asp:TextBox></td>
             </tr>
             <tr>
+                <td align="right" width="85px" valign="top">优惠券小图片：</td>
+                <td><input type="file" id="picSmall" runat="server" /><asp:Button ID="btnSubmitPicSmall" runat="server" OnClick="btnSubmitPicSmall_OnClick" Text="上传图片" /></td>
+            </tr>
+            <tr>
+                <td colspan="2"><asp:Image ID="imgSmall" Visible="false" runat="server" /></td>
+            </tr>
+            <tr>
                 <td align="right" width="85px" valign="top">优惠券图片：</td>
                 <td><input type="file" id="pic" runat="server" /><asp:Button ID="btnSubmitPic" runat="server" OnClick="btnSubmitPic_OnClick" Text="上传图片" /></td>
             </tr>
