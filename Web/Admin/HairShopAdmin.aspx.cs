@@ -64,7 +64,15 @@ namespace Web.Admin
         public void btnQuery_OnClick(object sender, EventArgs e)
         {
             //目前只实现名称模糊查询，关键字和时间段具体实现需要确认
-            Session["query"] = "HairShopName like '%" + txtQueryName.Text.Trim() +"%'";
+            switch (this.ddlQuery.SelectedValue)
+            {
+                case "1":
+                    Session["query"] = "HairShopName like '%" + txtQueryName.Text.Trim() + "%'";
+                    break;
+                case "2":
+                    Session["query"] = "HairShopDescription like '%" + txtQueryName.Text.Trim() + "%'";
+                    break;
+            }
             this.databind();
         }
         public void btnSelect_OnClick(object sender, EventArgs e)
@@ -149,16 +157,16 @@ namespace Web.Admin
                         table = InfoAdmin.GetHairShopList(0, OrderKey.CommentNum);
                         //list = InfoAdmin.GetHairShops(0, OrderKey.CommentNum);
                         break;
-                    case "4":
-                        //推荐数
-                        //list = InfoAdmin.GetHairShops(0, OrderKey.RecommandNum);
-                        table = InfoAdmin.GetHairShopList(0, OrderKey.RecommandNum);
-                        break;
-                    case "5":
-                        //预约数
-                        //list = InfoAdmin.GetHairShops(0, OrderKey.OrderNum);
-                        table = InfoAdmin.GetHairShopList(0, OrderKey.OrderNum);
-                        break;
+                    //case "4":
+                    //    //推荐数
+                    //    //list = InfoAdmin.GetHairShops(0, OrderKey.RecommandNum);
+                    //    table = InfoAdmin.GetHairShopList(0, OrderKey.RecommandNum);
+                    //    break;
+                    //case "5":
+                    //    //预约数
+                    //    //list = InfoAdmin.GetHairShops(0, OrderKey.OrderNum);
+                    //    table = InfoAdmin.GetHairShopList(0, OrderKey.OrderNum);
+                    //    break;
                 }
             }
             else
@@ -182,14 +190,14 @@ namespace Web.Admin
                                 //评论数
                                 table = InfoAdmin.GetHairShopList(0, OrderKey.CommentNum, Session["query"].ToString());
                                 break;
-                            case "4":
-                                //推荐数
-                                table = InfoAdmin.GetHairShopList(0, OrderKey.RecommandNum, Session["query"].ToString());
-                                break;
-                            case "5":
-                                //预约数
-                                table = InfoAdmin.GetHairShopList(0, OrderKey.OrderNum, Session["query"].ToString());
-                                break;
+                            //case "4":
+                            //    //推荐数
+                            //    table = InfoAdmin.GetHairShopList(0, OrderKey.RecommandNum, Session["query"].ToString());
+                            //    break;
+                            //case "5":
+                            //    //预约数
+                            //    table = InfoAdmin.GetHairShopList(0, OrderKey.OrderNum, Session["query"].ToString());
+                            //    break;
                         }
                         break;
                     case "2":
@@ -210,7 +218,7 @@ namespace Web.Admin
             SetupPage();
             this.Page_nPage.Text = Convert.ToString(this.dg.CurrentPageIndex + 1);
             this.Page_nRecCount.Text = this.dg.PageCount.ToString();
-            this.Page_nRecCount_1.Text = table.Rows.Count.ToString();
+            this.Page_nRecCount_1.Text = list.Count.ToString();
             ispages.Text = this.Page_nPage.Text;
             IsFirstLastPage(this.dg.PageCount, this.dg.CurrentPageIndex);
             if (this.dg.PageCount == 1)
