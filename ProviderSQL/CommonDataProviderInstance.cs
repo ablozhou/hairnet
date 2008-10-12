@@ -211,7 +211,7 @@ namespace HairNet.Provider
         public List<HotZone> GetHotZonesByMapZoneID(int MapZoneID)
         {
             List<HotZone> list = new List<HotZone>();
-            string commText = "select * from HotZone where MapZoneID = " + MapZoneID;
+            string commText = "select * from HotZone";
             using (SqlConnection conn = new SqlConnection(DataHelper2.SqlConnectionString))
             {
                 {
