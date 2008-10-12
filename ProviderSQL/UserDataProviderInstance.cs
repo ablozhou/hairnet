@@ -542,10 +542,13 @@ namespace HairNet.Provider
         public List<UserEntry> GetUsersByName(string strUserName)
         {
             List<UserEntry> li = new List<UserEntry>();
-            string commandText = "select * FROM UserBasicInfo Inner join UserRole ur on UserBasicInfo.UserRoleID = ur.UserRoleID INNER JOIN " +
-                " UserBusinessInfo ON UserBasicInfo.UserID = UserBusinessInfo.UserID INNER JOIN " +
-                " UserContactInfo ON UserBasicInfo.UserID = UserContactInfo.UserID INNER JOIN " +
-                " UserPersonalInfo ON UserBasicInfo.UserID = UserPersonalInfo.UserID WHERE (UserBasicInfo.UserName LIKE '%"+strUserName+"%') ";
+            //string commandText = "select * FROM UserBasicInfo Inner join UserRole ur on UserBasicInfo.UserRoleID = ur.UserRoleID INNER JOIN " +
+            //    " UserBusinessInfo ON UserBasicInfo.UserID = UserBusinessInfo.UserID INNER JOIN " +
+            //    " UserContactInfo ON UserBasicInfo.UserID = UserContactInfo.UserID INNER JOIN " +
+            //    " UserPersonalInfo ON UserBasicInfo.UserID = UserPersonalInfo.UserID WHERE (UserBasicInfo.UserName LIKE '%"+strUserName+"%') ";
+
+            string commandText = "select * FROM UserBasicInfo  WHERE (UserBasicInfo.UserName LIKE '%" + strUserName + "%') ";
+
             using (SqlConnection conn = new SqlConnection(DataHelper2.SqlConnectionString))
             {
                 using (SqlCommand comm = new SqlCommand())
@@ -566,11 +569,11 @@ namespace HairNet.Provider
                             ue.FindPassAsw = reader["FindPassAsw"].ToString();
                             ue.ActivatedIDS = reader["ActivatedIDS"].ToString();
                             ue.Email = reader["Email"].ToString();
-                            ue.Integral = int.Parse(reader["Integral"].ToString());
+                            ue.Integral = 1;//0int.Parse(reader["Integral"].ToString());
                             ue.UserRoleID = int.Parse(reader["UserRoleID"].ToString());
                             ue.UserRoleName = reader["UserRoleName"].ToString();
                             ue.IsActive = Convert.ToBoolean(reader["IsActive"].ToString());
-                            ue.Duty = reader["Duty"].ToString();
+                            /*ue.Duty = reader["Duty"].ToString();
                             ue.Company = reader["Company"].ToString();
                             ue.CompanyCountry = reader["CompanyCountry"].ToString();
                             ue.CompanyCity = reader["CompanyCity"].ToString();
@@ -604,7 +607,7 @@ namespace HairNet.Provider
                             ue.Vocational = reader["Vocational"].ToString();
                             ue.Location = reader["Location"].ToString();
                             ue.Interest = reader["Interest"].ToString();
-
+                            */
                             li.Add(ue);
                         }
                     }

@@ -15,7 +15,7 @@
         <br />
         性别:<asp:DropDownList ID="ddlSex" runat="server"><asp:ListItem Value="female">女</asp:ListItem><asp:ListItem Value="male">男</asp:ListItem></asp:DropDownList>
         <br />
-        发型:<asp:DropDownList ID="ddlFaceStyle" runat="server"></asp:DropDownList>
+        脸型:<asp:DropDownList ID="ddlFaceStyle" runat="server"></asp:DropDownList>
         <br />
         模特小图:<input type="file" id="small" runat="server" /><asp:Label ID="lblSmall" runat="server" Visible="false"></asp:Label>
   <br />模特大图:<input type="file" id="big" runat="server" /><asp:Label ID="lblBig" runat="server" Visible="false"></asp:Label>

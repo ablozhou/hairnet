@@ -24,7 +24,7 @@
                 <td><asp:TextBox ID="txtProductRawPrice" runat="server" CssClass="TextBox" Width="200"></asp:TextBox>&nbsp;<asp:RegularExpressionValidator 
                         ID="RegularExpressionValidator1" runat="server" 
                         ControlToValidate="txtProductRawPrice" ErrorMessage="值不对" 
-                        ValidationExpression="\d"></asp:RegularExpressionValidator>
+                        ValidationExpression="\d*"></asp:RegularExpressionValidator>
                 </td>
             </tr>
             <tr>
@@ -32,7 +32,7 @@
                 <td><asp:TextBox ID="txtProductPrice" runat="server" CssClass="TextBox" Width="200"></asp:TextBox>
                     <asp:RegularExpressionValidator ID="RegularExpressionValidator2" runat="server" 
                         ControlToValidate="txtProductPrice" ErrorMessage="值不对" 
-                        ValidationExpression="\d"></asp:RegularExpressionValidator>
+                        ValidationExpression="\d*"></asp:RegularExpressionValidator>
                 </td>
             </tr>
             <tr>
@@ -40,7 +40,7 @@
                 <td><asp:TextBox ID="txtProductDiscount" runat="server" CssClass="TextBox" Width="200"></asp:TextBox>
                     <asp:RegularExpressionValidator ID="RegularExpressionValidator3" runat="server" 
                         ControlToValidate="txtProductDiscount" ErrorMessage="值不对" 
-                        ValidationExpression="\d"></asp:RegularExpressionValidator>
+                        ValidationExpression="\d*"></asp:RegularExpressionValidator>
                 </td>
             </tr>
             <tr>
