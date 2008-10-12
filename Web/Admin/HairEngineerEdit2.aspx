@@ -27,6 +27,8 @@
             名称：         </td>
         <td>
         <asp:TextBox ID="txtPictureStoreName" runat="server" CssClass="TextBox" Width="200"></asp:TextBox>
+            *<asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" 
+                ControlToValidate="txtPictureStoreName" ErrorMessage="必填项"></asp:RequiredFieldValidator>
         </td>
      </tr>
      <tr>

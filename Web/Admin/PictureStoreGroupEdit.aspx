@@ -17,6 +17,7 @@
     <asp:Label ID="lblInfo" runat="server" ForeColor="red"></asp:Label>
     <br />
     <asp:Button ID="btnSubmit" runat="server" Text="更新" OnClick="btnSubmit_OnClick" />
+    &nbsp;<asp:Button ID="btnBack" runat="server" onclick="btnBack_Click" Text="取消" />
     </div>
     </form>
 </body>

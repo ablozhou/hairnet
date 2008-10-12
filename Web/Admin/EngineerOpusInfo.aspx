@@ -16,7 +16,10 @@
         </tr>
           <tr>
             <td width="120px" align="right">名称: </td>
-            <td><asp:TextBox ID="txtOpusName" runat=server CssClass="TextBox" Width="300px"></asp:TextBox></td>
+            <td><asp:TextBox ID="txtOpusName" runat=server CssClass="TextBox" Width="300px"></asp:TextBox>
+                <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" 
+                    ControlToValidate="txtOpusName" ErrorMessage="必填项"></asp:RequiredFieldValidator>
+                    </td>
         </tr>
         <tr>
             <td align="right">正面小图片: </td>

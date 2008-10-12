@@ -30,6 +30,9 @@ function Button1_onclick() {
          <tr>
             <td width="120px" align="right">姓名：</td>
             <td><asp:TextBox ID="txtHairEngineerName" runat="server" CssClass="TextBox"></asp:TextBox>
+                    *
+                <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" 
+                    ControlToValidate="txtHairEngineerName" ErrorMessage="必填项"></asp:RequiredFieldValidator>
                     </td>
         </tr>
         <tr>
@@ -50,11 +53,19 @@ function Button1_onclick() {
         </tr>
         <tr>
             <td width="120px" align="right">剪发价格：</td>
-            <td><asp:TextBox ID="txtHairEngineerRawPrice" runat="server" CssClass="TextBox"></asp:TextBox></td>
+            <td><asp:TextBox ID="txtHairEngineerRawPrice" runat="server" CssClass="TextBox"></asp:TextBox>
+                <asp:RegularExpressionValidator ID="RegularExpressionValidator1" runat="server" 
+                    ControlToValidate="txtHairEngineerRawPrice" ErrorMessage="值不对" 
+                    ValidationExpression="\d"></asp:RegularExpressionValidator>
+                    </td>
         </tr>
         <tr>
             <td width="120px" align="right">预约电话：</td>
-            <td><asp:TextBox ID="txtHairEngineerTel" runat="server" CssClass="TextBox"></asp:TextBox></td>
+            <td><asp:TextBox ID="txtHairEngineerTel" runat="server" CssClass="TextBox"></asp:TextBox>
+                <asp:RegularExpressionValidator ID="RegularExpressionValidator3" runat="server" 
+                    ControlToValidate="txtHairEngineerTel" ErrorMessage="值不对" 
+                    ValidationExpression="(\(\d{3}\)|\d{3}-)?\d{8}"></asp:RegularExpressionValidator>
+                    </td>
         </tr>
           <tr>
             <td width="120px" align="right">星座：</td>
@@ -95,7 +106,11 @@ function Button1_onclick() {
      
         <tr>
             <td width="120px" align="right">工作年限：</td>
-            <td><asp:TextBox ID="txtHairEngineerYear" runat="server" CssClass="TextBox"></asp:TextBox></td>
+            <td><asp:TextBox ID="txtHairEngineerYear" runat="server" CssClass="TextBox"></asp:TextBox>
+                <asp:RegularExpressionValidator ID="RegularExpressionValidator2" runat="server" 
+                    ControlToValidate="txtHairEngineerYear" ErrorMessage="值不对" 
+                    ValidationExpression="\d"></asp:RegularExpressionValidator>
+                    </td>
         </tr>
         <tr>
             <td width="120px" align="right">擅长：</td>

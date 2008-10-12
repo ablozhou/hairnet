@@ -32,6 +32,15 @@ namespace Web.Admin {
         protected global::System.Web.UI.WebControls.TextBox txtProductName;
         
         /// <summary>
+        /// RequiredFieldValidator1 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidator1;
+        
+        /// <summary>
         /// txtProductRawPrice 控件。
         /// </summary>
         /// <remarks>
@@ -39,6 +48,15 @@ namespace Web.Admin {
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtProductRawPrice;
+        
+        /// <summary>
+        /// RegularExpressionValidator1 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RegularExpressionValidator RegularExpressionValidator1;
         
         /// <summary>
         /// txtProductPrice 控件。
@@ -50,6 +68,15 @@ namespace Web.Admin {
         protected global::System.Web.UI.WebControls.TextBox txtProductPrice;
         
         /// <summary>
+        /// RegularExpressionValidator2 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RegularExpressionValidator RegularExpressionValidator2;
+        
+        /// <summary>
         /// txtProductDiscount 控件。
         /// </summary>
         /// <remarks>
@@ -57,6 +84,15 @@ namespace Web.Admin {
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtProductDiscount;
+        
+        /// <summary>
+        /// RegularExpressionValidator3 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RegularExpressionValidator RegularExpressionValidator3;
         
         /// <summary>
         /// txtProductTag 控件。
