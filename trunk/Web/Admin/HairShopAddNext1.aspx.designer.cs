@@ -47,24 +47,6 @@ namespace Web.Admin {
         protected global::System.Web.UI.HtmlControls.HtmlInputFile outSmall;
         
         /// <summary>
-        /// btnSubmitOutSmall 控件。
-        /// </summary>
-        /// <remarks>
-        /// 自动生成的字段。
-        /// 要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnSubmitOutSmall;
-        
-        /// <summary>
-        /// lblOutSmallString 控件。
-        /// </summary>
-        /// <remarks>
-        /// 自动生成的字段。
-        /// 要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblOutSmallString;
-        
-        /// <summary>
         /// out1c 控件。
         /// </summary>
         /// <remarks>
@@ -99,24 +81,6 @@ namespace Web.Admin {
         /// 要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlInputFile innerSmall;
-        
-        /// <summary>
-        /// btnSubmitInnerSmall 控件。
-        /// </summary>
-        /// <remarks>
-        /// 自动生成的字段。
-        /// 要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnSubmitInnerSmall;
-        
-        /// <summary>
-        /// lblInnerSmallString 控件。
-        /// </summary>
-        /// <remarks>
-        /// 自动生成的字段。
-        /// 要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblInnerSmallString;
         
         /// <summary>
         /// inner1c 控件。

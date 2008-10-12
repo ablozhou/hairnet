@@ -69,15 +69,12 @@
         <tr>
             <td width="120px" align="right">个人小照片：</td>
             <td>
-                <input id="smallLogo" type="file" runat="server"/><asp:Button ID="btnSmallSubmit" runat="server" OnClick="btnSmallSubmit_OnClick" Text="上传小照片" /><asp:Label ID="lblsmallSring" runat="server" Visible="false"></asp:Label></td>
-        </tr>
-        <tr>
-            <td width="100%" colspan="2"><asp:Label ID="lblSmall" runat="server"></asp:Label></td>
+                <input id="smallLogo" type="file" runat="server"/></td>
         </tr>
         <tr>
             <td width="120px" align="right">个人照片：</td>
             <td>
-                <input id="fileLogo" type="file" runat="server"/><asp:Button ID="btnPicSubmit" runat="server" OnClick="btnPicSubmit_OnClick" Text="上传照片" /><asp:Label ID="lblpicSring" runat="server" Visible="false"></asp:Label></td>
+                <input id="fileLogo" type="file" runat="server"/><asp:Button ID="btnPicSubmit" runat="server" OnClick="btnPicSubmit_OnClick" Text="上传照片" /><asp:Label ID="lblpicSring" runat="server" Visible="false"></asp:Label><asp:Label ID="lblpicsmallString" runat="server" Visible="false"></asp:Label></td>
         </tr>
         <tr>
             <td width="100%" colspan="2"><asp:Label ID="lblPic" runat="server"></asp:Label></td>
