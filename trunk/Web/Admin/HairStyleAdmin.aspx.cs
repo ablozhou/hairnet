@@ -25,33 +25,33 @@ namespace Web.Admin
                 this.databind();
 
                 Session["query"] = null;
-                this.txtQueryName.Visible = true;
+                //this.txtQueryName.Visible = true;
                 
             }
         }
-        public void ddlQuery_OnSelectedIndexChanged(object sender, EventArgs e)
-        {
-            if (this.ddlQuery.SelectedValue != "3")
-            {
-                this.txtQueryName.Visible = true;
+        //public void ddlQuery_OnSelectedIndexChanged(object sender, EventArgs e)
+        //{
+        //    if (this.ddlQuery.SelectedValue != "3")
+        //    {
+        //        this.txtQueryName.Visible = true;
                
-            }
-            else
-            {
-                this.txtQueryName.Visible = false;
+        //    }
+        //    else
+        //    {
+        //        this.txtQueryName.Visible = false;
                
-            }
-        }
+        //    }
+        //}
         public void ddlOrderWay_OnSelectIndexChanged(object sender, EventArgs e)
         {
             this.databind();
         }
-        public void btnQuery_OnClick(object sender, EventArgs e)
-        {
-            //目前只实现名称模糊查询，关键字和时间段具体实现需要确认
-            Session["query"] = "HairName like '%" + txtQueryName.Text.Trim() + "%'";
-            this.databind();
-        }
+        //public void btnQuery_OnClick(object sender, EventArgs e)
+        //{
+        //    //目前只实现名称模糊查询，关键字和时间段具体实现需要确认
+        //    Session["query"] = "HairName like '%" + txtQueryName.Text.Trim() + "%'";
+        //    this.databind();
+        //}
         public void btnSelect_OnClick(object sender, EventArgs e)
         {
             foreach (DataGridItem dgi in this.dg.Items)
