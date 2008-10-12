@@ -106,45 +106,49 @@ namespace Web.Admin
                             {
                                 switch (sdr["HairStylePos"].ToString())
                                 {
-                                    case "5":
+                                    case "1":
                                         this.lbl1.Text = sdr["PictureStoreUrl"].ToString();
+                                        this.lbl1Small.Text = sdr["SmallPic"].ToString();
+
+                                        i1Small.ImageUrl = sdr["SmallPic"].ToString();
+                                        i1Small.Visible = true;
+
                                         i1.ImageUrl = sdr["PictureStoreUrl"].ToString();
                                         i1.Visible = true;
                                         this.l1.Text = sdr["ID"].ToString();
                                         break;
-                                    case "6":
+                                    case "2":
                                         this.lbl2.Text = sdr["PictureStoreUrl"].ToString();
+                                        this.lbl2Small.Text = sdr["SmallPic"].ToString();
+
+                                        i2Small.ImageUrl = sdr["SmallPic"].ToString();
+                                        i2Small.Visible = true;
+
                                         i2.ImageUrl = sdr["PictureStoreUrl"].ToString();
                                         i2.Visible = true;
                                         this.l2.Text = sdr["ID"].ToString();
                                         break;
-                                    case "7":
+                                    case "3":
                                         this.lbl3.Text = sdr["PictureStoreUrl"].ToString();
+                                        this.lbl3Small.Text = sdr["SmallPic"].ToString();
+
+                                        i3Small.ImageUrl = sdr["SmallPic"].ToString();
+                                        i3Small.Visible = true;
+
                                         i3.ImageUrl = sdr["PictureStoreUrl"].ToString();
                                         i3.Visible = true;
                                         this.l3.Text = sdr["ID"].ToString();
                                         break;
-                                    case "8":
+                                    case "4":
                                         this.lbl4.Text = sdr["PictureStoreUrl"].ToString();
+                                        this.lbl4Small.Text = sdr["SmallPic"].ToString();
+
+                                        i4Small.ImageUrl = sdr["SmallPic"].ToString();
+                                        i4Small.Visible = true;
+
                                         i4.ImageUrl = sdr["PictureStoreUrl"].ToString();
                                         i4.Visible = true;
                                         this.l4.Text = sdr["ID"].ToString();
-                                        break;
-                                    case "1":
-                                        this.lbl1new.Text = sdr["PictureStoreUrl"].ToString();
-                                        this.l5.Text = sdr["ID"].ToString();
-                                        break;
-                                    case "2":
-                                        this.lbl2new.Text = sdr["PictureStoreUrl"].ToString();
-                                        this.l6.Text = sdr["ID"].ToString();
-                                        break;
-                                    case "3":
-                                        this.lbl3new.Text = sdr["PictureStoreUrl"].ToString();
-                                        this.l7.Text = sdr["ID"].ToString();
-                                        break;
-                                    case "4":
-                                        this.lbl4new.Text = sdr["PictureStoreUrl"].ToString();
-                                        this.l8.Text = sdr["ID"].ToString();
                                         break;
                                 }
                             }
@@ -217,10 +221,7 @@ namespace Web.Admin
 
             WaterMark.AddWaterMarkOperate(frontFilePath, Server.MapPath(WaterSettings.WaterMarkPath), newFrontFilePath, WaterSettings.CopyrightText);
 
-            string path1 = frontFilePath.Substring(frontFilePath.IndexOf("uploadfiles"));
-
-            this.lbl1.Text = GetPath(frontFilePath);
-            this.lbl1new.Text = GetPath(newFrontFilePath);
+            this.lbl1.Text = GetPath(newFrontFilePath);
             i1.ImageUrl = this.lbl1.Text;
             i1.Visible = true;
         }
@@ -236,10 +237,7 @@ namespace Web.Admin
             string newFlankFilePath = flankFilePath.Substring(0, flankFilePath.LastIndexOf(".")) + "_new" + System.IO.Path.GetExtension(flankFilePath);
             WaterMark.AddWaterMarkOperate(flankFilePath, Server.MapPath(WaterSettings.WaterMarkPath), newFlankFilePath, WaterSettings.CopyrightText);
 
-            string path1 = flankFilePath.Substring(flankFilePath.IndexOf("uploadfiles"));
-
-            this.lbl2.Text = GetPath(flankFilePath);
-            this.lbl2new.Text = GetPath(newFlankFilePath);
+            this.lbl2.Text = GetPath(newFlankFilePath);
             i2.ImageUrl = this.lbl2.Text;
             i2.Visible = true;
         }
@@ -256,10 +254,7 @@ namespace Web.Admin
 
             WaterMark.AddWaterMarkOperate(backFilePath, Server.MapPath(WaterSettings.WaterMarkPath), newBackFilePath, WaterSettings.CopyrightText);
 
-            string path1 = backFilePath.Substring(backFilePath.IndexOf("uploadfiles"));
-
-            this.lbl3.Text = GetPath(backFilePath);
-            this.lbl3new.Text = GetPath(newBackFilePath);
+            this.lbl3.Text = GetPath(newBackFilePath);
             i3.ImageUrl = this.lbl3.Text;
             i3.Visible = true;
         }
@@ -276,12 +271,52 @@ namespace Web.Admin
 
             WaterMark.AddWaterMarkOperate(assistanceFilePath, Server.MapPath(WaterSettings.WaterMarkPath), newAssistanceFilePath, WaterSettings.CopyrightText);
 
-            string path1 = assistanceFilePath.Substring(assistanceFilePath.IndexOf("uploadfiles"));
-
-            this.lbl4.Text = GetPath(assistanceFilePath);
-            this.lbl4new.Text = GetPath(newAssistanceFilePath);
+            this.lbl4.Text = GetPath(newAssistanceFilePath);
             i4.ImageUrl = this.lbl4.Text;
             i4.Visible = true;
+        }
+
+        public void btn1Small_OnClick(object sender, EventArgs e)
+        {
+            UpLoadClass upload = new UpLoadClass();
+            String frontFilePath = upload.UploadImageFile(frontsidePicSmall, PATH);
+
+            this.lbl1Small.Text = GetPath(frontFilePath);
+
+            i1Small.ImageUrl = this.lbl1Small.Text;
+            i1Small.Visible = true;
+        }
+        public void btn2Small_OnClick(object sender, EventArgs e)
+        {
+            UpLoadClass upload = new UpLoadClass();
+            String flankFilePath = upload.UploadImageFile(flanksidePicSmall, PATH);
+
+
+            this.lbl2Small.Text = GetPath(flankFilePath);
+
+            i2Small.ImageUrl = this.lbl2Small.Text;
+            i2Small.Visible = true;
+        }
+        public void btn3Small_OnClick(object sender, EventArgs e)
+        {
+            UpLoadClass upload = new UpLoadClass();
+            String backFilePath = upload.UploadImageFile(backsidePicSmall, PATH);
+
+            this.lbl3Small.Text = GetPath(backFilePath);
+
+            i3Small.ImageUrl = this.lbl3Small.Text;
+            i3Small.Visible = true;
+        }
+        public void btn4Small_OnClick(object sender, EventArgs e)
+        {
+            UpLoadClass upload = new UpLoadClass();
+            String assistanceFilePath = upload.UploadImageFile(assistancePicSmall, PATH);
+
+
+            this.lbl4Small.Text = GetPath(assistanceFilePath);
+
+            i4Small.ImageUrl = this.lbl4Small.Text;
+            i4Small.Visible = true;
         }
         public string GetPath(string path)
         {
@@ -365,16 +400,15 @@ namespace Web.Admin
                 }
             }
 
+            String frontFilePath = this.lbl1Small.Text;
+            String flankFilePath = this.lbl2Small.Text;
+            String backFilePath = this.lbl3Small.Text;
+            String assistanceFilePath = this.lbl4Small.Text;
 
-            String frontFilePath = this.lbl1.Text;
-            String flankFilePath = this.lbl2.Text;
-            String backFilePath = this.lbl3.Text;
-            String assistanceFilePath = this.lbl4.Text;
-
-            string newFrontFilePath = this.lbl1new.Text;
-            string newFlankFilePath = this.lbl2new.Text;
-            string newBackFilePath = this.lbl3new.Text;
-            string newAssistanceFilePath = this.lbl4new.Text;
+            string newFrontFilePath = this.lbl1.Text;
+            string newFlankFilePath = this.lbl2.Text;
+            string newBackFilePath = this.lbl3.Text;
+            string newAssistanceFilePath = this.lbl4.Text;
 
 
             Byte iHairNature = Byte.Parse(this.ddlHairNature.SelectedItem.Value);
@@ -435,7 +469,7 @@ namespace Web.Admin
             //大图
             using (SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["MSSqlServer"].ToString()))
             {
-                string commString = "update PictureStoreSet set PictureStoreURL = '"+newFrontFilePath+"' where ID=" + this.l5.Text.ToString();
+                string commString = "update PictureStoreSet set SmallPic='"+frontFilePath+"', PictureStoreURL = '"+newFrontFilePath+"' where ID=" + this.l1.Text.ToString();
                 using (SqlCommand comm = new SqlCommand())
                 {
                     comm.Connection = conn;
@@ -452,7 +486,7 @@ namespace Web.Admin
             }
             using (SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["MSSqlServer"].ToString()))
             {
-                string commString = "update PictureStoreSet set PictureStoreURL = '"+newFlankFilePath+"' where ID=" + this.l6.Text.ToString();
+                string commString = "update PictureStoreSet set SmallPic='"+flankFilePath+"', PictureStoreURL = '"+newFlankFilePath+"' where ID=" + this.l2.Text.ToString();
                 using (SqlCommand comm = new SqlCommand())
                 {
                     comm.Connection = conn;
@@ -469,7 +503,7 @@ namespace Web.Admin
             }
             using (SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["MSSqlServer"].ToString()))
             {
-                string commString = "update PictureStoreSet set PictureStoreURL = '"+newBackFilePath+"' where ID=" + this.l7.Text.ToString();
+                string commString = "update PictureStoreSet set SmallPic='"+backFilePath+"', PictureStoreURL = '"+newBackFilePath+"' where ID=" + this.l3.Text.ToString();
                 using (SqlCommand comm = new SqlCommand())
                 {
                     comm.Connection = conn;
@@ -486,7 +520,7 @@ namespace Web.Admin
             }
             using (SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["MSSqlServer"].ToString()))
             {
-                string commString = "update PictureStoreSet set PictureStoreURL = '"+newAssistanceFilePath+"' where ID=" + this.l8.Text.ToString();
+                string commString = "update PictureStoreSet set SmallPic='"+assistanceFilePath+"', PictureStoreURL = '"+newAssistanceFilePath+"' where ID=" + this.l4.Text.ToString();
                 using (SqlCommand comm = new SqlCommand())
                 {
                     comm.Connection = conn;
@@ -501,75 +535,7 @@ namespace Web.Admin
                     { }
                 }
             }
-            //小图
-            using (SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["MSSqlServer"].ToString()))
-            {
-                string commString = "update PictureStoreSet set PictureStoreURL = '"+frontFilePath+"' where ID=" + this.l1.Text.ToString();
-                using (SqlCommand comm = new SqlCommand())
-                {
-                    comm.Connection = conn;
-                    comm.CommandText = commString;
-                    conn.Open();
-
-                    try
-                    {
-                        comm.ExecuteNonQuery();
-                    }
-                    catch (Exception ex)
-                    { }
-                }
-            }
-            using (SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["MSSqlServer"].ToString()))
-            {
-                string commString = "update PictureStoreSet set PictureStoreURL = '"+flankFilePath+"' where ID=" + this.l2.Text.ToString();
-                using (SqlCommand comm = new SqlCommand())
-                {
-                    comm.Connection = conn;
-                    comm.CommandText = commString;
-                    conn.Open();
-
-                    try
-                    {
-                        comm.ExecuteNonQuery();
-                    }
-                    catch (Exception ex)
-                    { }
-                }
-            }
-            using (SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["MSSqlServer"].ToString()))
-            {
-                string commString = "update PictureStoreSet set PictureStoreURL = '"+backFilePath+"' where ID=" + this.l3.Text.ToString();
-                using (SqlCommand comm = new SqlCommand())
-                {
-                    comm.Connection = conn;
-                    comm.CommandText = commString;
-                    conn.Open();
-
-                    try
-                    {
-                        comm.ExecuteNonQuery();
-                    }
-                    catch (Exception ex)
-                    { }
-                }
-            }
-            using (SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["MSSqlServer"].ToString()))
-            {
-                string commString = "update PictureStoreSet set PictureStoreURL = '" + assistanceFilePath + "' where ID=" + this.l4.Text.ToString();
-                using (SqlCommand comm = new SqlCommand())
-                {
-                    comm.Connection = conn;
-                    comm.CommandText = commString;
-                    conn.Open();
-
-                    try
-                    {
-                        comm.ExecuteNonQuery();
-                    }
-                    catch (Exception ex)
-                    { }
-                }
-            }
+            
             if (hairEngineerID != 0)
             {
                 this.Response.Redirect("HairEngineerAdmin.aspx");

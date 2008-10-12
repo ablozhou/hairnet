@@ -19,23 +19,43 @@
             <td><asp:TextBox ID="txtOpusName" runat=server CssClass="TextBox" Width="300px"></asp:TextBox></td>
         </tr>
          <tr>
-            <td align="right">正面图片: </td>
-            <td><asp:FileUpload ID="frontsidePic" runat="server" Width="300" /><asp:Button ID="btn1" runat="server" OnClick="btn1_OnClick" Text="上传" /><asp:Label ID="lbl1" runat="server" Visible="false"></asp:Label><asp:Label ID="lbl1new" runat="server" Visible="false"></asp:Label></td>
+            <td align="right">正面小图片: </td>
+            <td><asp:FileUpload ID="frontsidePicSmall" runat="server" Width="300" /><asp:Button ID="btn1Small" runat="server" OnClick="btn1Small_OnClick" Text="上传" /><asp:Label ID="lbl1Small" runat="server" Visible="false"></asp:Label></td>
+            <td><asp:Image ID="i1Small" Width="200" Height="100" runat="Server" Visible="false" /></td>
+        </tr>
+         <tr>
+            <td align="right">正面大图片: </td>
+            <td><asp:FileUpload ID="frontsidePic" runat="server" Width="300" /><asp:Button ID="btn1" runat="server" OnClick="btn1_OnClick" Text="上传" /><asp:Label ID="lbl1" runat="server" Visible="false"></asp:Label></td>
             <td><asp:Image ID="i1" Width="200" Height="100" runat="Server" Visible="false" /></td>
         </tr>
+        <tr>
+            <td align="right">侧面小图片: </td>
+            <td><asp:FileUpload ID="flanksidePicSmall" runat="server" Width="300" /><asp:Button ID="btn2Small" runat="server" OnClick="btn2Small_OnClick" Text="上传" /><asp:Label ID="lbl2Small" runat="server" Visible="false"></asp:Label></td>
+            <td><asp:Image ID="i2Small" Width="200" Height="100" runat="Server" Visible="false" /></td>
+        </tr>
          <tr>
-            <td align="right">侧面图片: </td>
-            <td><asp:FileUpload ID="flanksidePic" runat="server" Width="300" /><asp:Button ID="btn2" runat="server" OnClick="btn2_OnClick" Text="上传" /><asp:Label ID="lbl2" runat="server" Visible="false"></asp:Label><asp:Label ID="lbl2new" runat="server" Visible="false"></asp:Label></td>
+            <td align="right">侧面大图片: </td>
+            <td><asp:FileUpload ID="flanksidePic" runat="server" Width="300" /><asp:Button ID="btn2" runat="server" OnClick="btn2_OnClick" Text="上传" /><asp:Label ID="lbl2" runat="server" Visible="false"></asp:Label></td>
             <td><asp:Image ID="i2" Width="200" Height="100" runat="Server" Visible="false" /></td>
         </tr>
-         <tr>
-            <td align="right">背面图片: </td>
-            <td><asp:FileUpload ID="backsidePic" runat="server" Width="300px" /><asp:Button ID="btn3" runat="server" OnClick="btn3_OnClick" Text="上传" /><asp:Label ID="lbl3" runat="server" Visible="false"></asp:Label><asp:Label ID="lbl3new" runat="server" Visible="false"></asp:Label></td>
-            <td><asp:Image ID="i3" Width="200" Height="100" runat="Server" Visible="false" /></td>
+        <tr>
+            <td align="right">背面小图片: </td>
+            <td><asp:FileUpload ID="backsidePicSmall" runat="server" Width="300px" /><asp:Button ID="btn3Small" runat="server" OnClick="btn3Small_OnClick" Text="上传" /><asp:Label ID="lbl3Small" runat="server" Visible="false"></asp:Label></td>
+            <td><asp:Image ID="i3Small" Width="200" Height="100" runat="Server" Visible="false" /></td>
         </tr>
          <tr>
-            <td align="right">辅助图片: </td>
-            <td><asp:FileUpload ID="assistancePic" runat="server" Width="300px" /><asp:Button ID="btn4" runat="server" OnClick="btn4_OnClick" Text="上传" /><asp:Label ID="lbl4" runat="server" Visible="false"></asp:Label><asp:Label ID="lbl4new" runat="server" Visible="false"></asp:Label></td>
+            <td align="right">背面大图片: </td>
+            <td><asp:FileUpload ID="backsidePic" runat="server" Width="300px" /><asp:Button ID="btn3" runat="server" OnClick="btn3_OnClick" Text="上传" /><asp:Label ID="lbl3" runat="server" Visible="false"></asp:Label></td>
+            <td><asp:Image ID="i3" Width="200" Height="100" runat="Server" Visible="false" /></td>
+        </tr>
+        <tr>
+            <td align="right">辅助小图片: </td>
+            <td><asp:FileUpload ID="assistancePicSmall" runat="server" Width="300px" /><asp:Button ID="btn4Small" runat="server" OnClick="btn4Small_OnClick" Text="上传" /><asp:Label ID="lbl4Small" runat="server" Visible="false"></asp:Label></td>
+            <td><asp:Image ID="i4Small" Width="200" Height="100" runat="Server" Visible="false" /></td>
+        </tr>
+         <tr>
+            <td align="right">辅助大图片: </td>
+            <td><asp:FileUpload ID="assistancePic" runat="server" Width="300px" /><asp:Button ID="btn4" runat="server" OnClick="btn4_OnClick" Text="上传" /><asp:Label ID="lbl4" runat="server" Visible="false"></asp:Label></td>
             <td><asp:Image ID="i4" Width="200" Height="100" runat="Server" Visible="false" /></td>
         </tr>
     </table>
@@ -108,10 +128,6 @@
     <asp:Label ID="l2" runat="server" Visible="false"></asp:Label>
     <asp:Label ID="l3" runat="server" Visible="false"></asp:Label>
     <asp:Label ID="l4" runat="server" Visible="false"></asp:Label>
-    <asp:Label ID="l5" runat="server" Visible="false"></asp:Label>
-    <asp:Label ID="l6" runat="server" Visible="false"></asp:Label>
-    <asp:Label ID="l7" runat="server" Visible="false"></asp:Label>
-    <asp:Label ID="l8" runat="server" Visible="false"></asp:Label>
     </div>
     </form>
 </body>
