@@ -15,6 +15,20 @@ namespace HairNet.Entry
         private string couponTag = string.Empty;
         private string description = string.Empty;
         private string imageUrl = string.Empty;
+        private int _postID = 0;
+        private string _imageSmallUrl = string.Empty;
+
+        public int PostID
+        {
+            set { this._postID = value; }
+            get { return this._postID; }
+        }
+
+        public string ImageSmallUrl
+        {
+            set { this._imageSmallUrl = value; }
+            get { return this._imageSmallUrl; }
+        }        
 
         public Coupon(int id, string name, int hairShopID, string discount, string expiredDate, string phoneNumber, string couponTag,
             string description)
@@ -29,7 +43,7 @@ namespace HairNet.Entry
             this.description = description;
         }
         public Coupon(int id, string name, int hairShopID, string discount, string expiredDate, string phoneNumber, string couponTag,
-            string description,string url)
+            string description,string url,int postID,string imageSmallUrl)
         {
             this.id = id;
             this.name = name;
@@ -39,7 +53,9 @@ namespace HairNet.Entry
             this.phoneNumber = phoneNumber;
             this.couponTag = couponTag;
             this.description = description;
-            this.imageUrl = url; 
+            this.imageUrl = url;
+            this.PostID = postID;
+            this.ImageSmallUrl = imageSmallUrl;
         }
         public string ImageUrl
         {

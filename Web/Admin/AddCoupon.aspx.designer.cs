@@ -101,6 +101,33 @@ namespace Web.Admin {
         protected global::System.Web.UI.WebControls.TextBox tbPhone;
         
         /// <summary>
+        /// picSmall 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlInputFile picSmall;
+        
+        /// <summary>
+        /// btnSubmitPicSmall 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnSubmitPicSmall;
+        
+        /// <summary>
+        /// imgSmall 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Image imgSmall;
+        
+        /// <summary>
         /// pic 控件。
         /// </summary>
         /// <remarks>
