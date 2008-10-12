@@ -18,26 +18,19 @@
     <div>
         <table width="98%" border="0" cellpadding="2" cellspacing="2">
         <asp:Label ID="lblInfo" runat="server" ForeColor="red" Visible="false"></asp:Label>
-        <tr>
-            <th colspan="2">厅外小图片</th>
-        </tr>
-         <tr>
-            <td align="right">厅外小图片: </td>
-            <td><input type="file" id="outSmall" runat="server" /></td>
-            <td align="left"><asp:Button ID="btnSubmitOutSmall" runat="server" OnClick="btnSubmitOutSmall_OnClick" Text="上传厅外小图片" /></td>
-        </tr>
-        <tr>
-            <td colspan="3"><asp:Label ID="lblOutSmallString" runat="server"></asp:Label></td>
-        </tr>
-        <tr>
-            <td colspan="3"><hr style="width:98%" /></td>
-        </tr>
         
         <tr>
             <th colspan="2">厅外图片</th>
         </tr>
          <tr>
-            <td align="right">厅外图片: </td>
+            <td align="right">厅外小图片: </td>
+            <td><input type="file" id="outSmall" runat="server" /></td>
+            <td align="left"></td>
+        </tr>
+
+
+         <tr>
+            <td align="right">厅外大图片: </td>
             <td><input type="file" id="out1c" runat="server" /></td>
             <td align="left"><asp:Button ID="btnSubmitOut" runat="server" OnClick="btnSubmitOut_OnClick" Text="上传厅外图片" /></td>
         </tr>
@@ -48,24 +41,16 @@
             <td colspan="3"><hr style="width:98%" /></td>
         </tr>
         <tr>
-            <th colspan="2">厅内小图片</th>
+            <th colspan="2">厅内图片</th>
         </tr>
          <tr>
             <td align="right">厅内小图片: </td>
             <td><input type="file" id="innerSmall" runat="server" /></td>
-            <td align="left"><asp:Button ID="btnSubmitInnerSmall" runat="server" OnClick="btnSubmitInnerSmall_OnClick" Text="上传厅内小图片" /></td>
+            <td align="left"></td>
         </tr>
-        <tr>
-            <td colspan="3"><asp:Label ID="lblInnerSmallString" runat="server"></asp:Label></td>
-        </tr>
-        <tr>
-            <td colspan="3"><hr style="width:98%" /></td>
-        </tr>
-        <tr>
-            <th colspan="2">厅内图片</th>
-        </tr>
+        
          <tr>
-            <td align="right">厅内图片: </td>
+            <td align="right">厅内大图片: </td>
             <td><input type="file" id="inner1c" runat="server" /></td>
             <td align="left"><asp:Button ID="btnSubmitInner" runat="server" Text="上传厅外照片" OnClick="btnSubmitInner_OnClick" /></td>
         </tr>

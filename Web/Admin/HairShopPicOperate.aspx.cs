@@ -37,8 +37,14 @@ namespace Web.Admin
                     }
                 }
             }
-
-            this.Response.Redirect("HairShopAddNext1.aspx?id=" + hid.ToString());
+            if (Session["oo"] != null && Session["oo"].ToString() != string.Empty)
+            {
+                this.Response.Redirect("HairShopAddNext1.aspx?id=" + hid.ToString()+"&update=update");
+            }
+            else
+            {
+                this.Response.Redirect("HairShopAddNext1.aspx?id=" + hid.ToString());
+            }
         }
     }
 }
