@@ -12,6 +12,15 @@
         {
             width: 175px;
         }
+        .style2
+        {
+            width: 175px;
+            height: 23px;
+        }
+        .style3
+        {
+            height: 23px;
+        }
     </style>
 </head>
 <body>
@@ -175,10 +184,10 @@
                 </td>
             </tr>
             <tr>
-                <td align="right" class="style1">
+                <td align="right" class="style2">
                     交通路线：
                 </td>
-                <td>
+                <td class="style3">
                     <asp:TextBox ID="tbLocation" runat="server" Width="200" CssClass="TextBox"></asp:TextBox>
                 </td>
             </tr>
@@ -187,7 +196,8 @@
                     美发厅LOGO：
                 </td>
                 <td>
-                    <asp:FileUpload ID="fileLogo" runat=server />
+                <input id="fileLogo" type="file" runat="server"  /><asp:Label ID="lblInfo" 
+                        runat="server" Visible="False"></asp:Label>
                 </td>
             </tr>
             <tr>

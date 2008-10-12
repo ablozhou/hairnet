@@ -72,7 +72,13 @@ namespace Web.Admin
             hs.HairShopDiscount = txtHairShopDiscount.Text.Trim();
             //获取上传图片后的路径
             UpLoadClass upload = new UpLoadClass();
-            hs.HairShopLogo = upload.UploadImageFile(fileLogo, "/uploadfiles/logo/");
+            if (!PicOperate.isPermission(StringHelper.GetExtraType(fileLogo.Value)))
+            {
+                this.lblInfo.Text = "上传图片格式不对";
+                this.lblInfo.Visible = true;
+                return;
+            } 
+            hs.HairShopLogo = upload.UpLoadImg(fileLogo, "/uploadfiles/logo/");
 
             hs.HairShopCreateTime = txtHairShopCreateTime.Text.Trim();
             hs.HairShopCityID = int.Parse(ddlCity.SelectedValue);
