@@ -83,6 +83,8 @@ namespace Web.Admin
             }
             return result;
         }
+        
+        
         public void btn1_OnClick(object sender, EventArgs e)
         {
             UpLoadClass upload = new UpLoadClass();
@@ -96,10 +98,7 @@ namespace Web.Admin
             
             WaterMark.AddWaterMarkOperate(frontFilePath, Server.MapPath(WaterSettings.WaterMarkPath), newFrontFilePath, WaterSettings.CopyrightText);
 
-            string path1 = frontFilePath.Substring(frontFilePath.IndexOf("uploadfiles"));
-
-            this.lbl1.Text = GetPath(frontFilePath);
-            this.lbl1new.Text = GetPath(newFrontFilePath);
+            this.lbl1.Text = GetPath(newFrontFilePath);
             i1.ImageUrl = this.lbl1.Text;
             i1.Visible = true;
         }
@@ -115,10 +114,7 @@ namespace Web.Admin
             string newFlankFilePath = flankFilePath.Substring(0, flankFilePath.LastIndexOf(".")) + "_new" + System.IO.Path.GetExtension(flankFilePath);
             WaterMark.AddWaterMarkOperate(flankFilePath, Server.MapPath(WaterSettings.WaterMarkPath), newFlankFilePath, WaterSettings.CopyrightText);
 
-            string path1 = flankFilePath.Substring(flankFilePath.IndexOf("uploadfiles"));
-
-            this.lbl2.Text = GetPath(flankFilePath);
-            this.lbl2new.Text = GetPath(newFlankFilePath);
+            this.lbl2.Text = GetPath(newFlankFilePath);
             i2.ImageUrl = this.lbl2.Text;
             i2.Visible = true;
         }
@@ -135,10 +131,7 @@ namespace Web.Admin
 
             WaterMark.AddWaterMarkOperate(backFilePath, Server.MapPath(WaterSettings.WaterMarkPath), newBackFilePath, WaterSettings.CopyrightText);
 
-            string path1 = backFilePath.Substring(backFilePath.IndexOf("uploadfiles"));
-
-            this.lbl3.Text = GetPath(backFilePath);
-            this.lbl3new.Text = GetPath(newBackFilePath);
+            this.lbl3.Text = GetPath(newBackFilePath);
             i3.ImageUrl = this.lbl3.Text;
             i3.Visible = true;
         }
@@ -155,13 +148,54 @@ namespace Web.Admin
 
             WaterMark.AddWaterMarkOperate(assistanceFilePath, Server.MapPath(WaterSettings.WaterMarkPath), newAssistanceFilePath, WaterSettings.CopyrightText);
 
-            string path1 = assistanceFilePath.Substring(assistanceFilePath.IndexOf("uploadfiles"));
-
-            this.lbl4.Text = GetPath(assistanceFilePath);
-            this.lbl4new.Text = GetPath(newAssistanceFilePath);
+            this.lbl4.Text = GetPath(newAssistanceFilePath);
             i4.ImageUrl = this.lbl4.Text;
             i4.Visible = true;
         }
+
+        public void btn1Small_OnClick(object sender, EventArgs e)
+        {
+            UpLoadClass upload = new UpLoadClass();
+            String frontFilePath = upload.UploadImageFile(frontsidePicSmall, PATH);
+
+            this.lbl1Small.Text = GetPath(frontFilePath);
+
+            i1Small.ImageUrl = this.lbl1Small.Text;
+            i1Small.Visible = true;
+        }
+        public void btn2Small_OnClick(object sender, EventArgs e)
+        {
+            UpLoadClass upload = new UpLoadClass();
+            String flankFilePath = upload.UploadImageFile(flanksidePicSmall, PATH);
+
+
+            this.lbl2Small.Text = GetPath(flankFilePath);
+
+            i2Small.ImageUrl = this.lbl2Small.Text;
+            i2Small.Visible = true;
+        }
+        public void btn3Small_OnClick(object sender, EventArgs e)
+        {
+            UpLoadClass upload = new UpLoadClass();
+            String backFilePath = upload.UploadImageFile(backsidePicSmall, PATH);
+
+            this.lbl3Small.Text = GetPath(backFilePath);
+
+            i3Small.ImageUrl = this.lbl3Small.Text;
+            i3Small.Visible = true;
+        }
+        public void btn4Small_OnClick(object sender, EventArgs e)
+        {
+            UpLoadClass upload = new UpLoadClass();
+            String assistanceFilePath = upload.UploadImageFile(assistancePicSmall, PATH);
+
+
+            this.lbl4Small.Text = GetPath(assistanceFilePath);
+
+            i4Small.ImageUrl = this.lbl4Small.Text;
+            i4Small.Visible = true;
+        }
+
         public string GetPath(string path)
         {
             string result = string.Empty;
@@ -195,16 +229,15 @@ namespace Web.Admin
             //WaterMark.AddWaterMarkOperate(backFilePath, Server.MapPath(WaterSettings.WaterMarkPath), newBackFilePath, WaterSettings.CopyrightText);
             //WaterMark.AddWaterMarkOperate(assistanceFilePath, Server.MapPath(WaterSettings.WaterMarkPath), newAssistanceFilePath, WaterSettings.CopyrightText);
             string PSGIDS = this.GetPSGIDs();
-            String frontFilePath = this.lbl1.Text;
-            String flankFilePath = this.lbl2.Text;
-            String backFilePath = this.lbl3.Text;
-            String assistanceFilePath = this.lbl4.Text;
+            String frontFilePath = this.lbl1Small.Text;
+            String flankFilePath = this.lbl2Small.Text;
+            String backFilePath = this.lbl3Small.Text;
+            String assistanceFilePath = this.lbl4Small.Text;
 
-            string newFrontFilePath = this.lbl1new.Text;
-            string newFlankFilePath = this.lbl2new.Text;
-            string newBackFilePath = this.lbl3new.Text;
-            string newAssistanceFilePath = this.lbl4new.Text;
-
+            string newFrontFilePath = this.lbl1.Text;
+            string newFlankFilePath = this.lbl2.Text;
+            string newBackFilePath = this.lbl3.Text;
+            string newAssistanceFilePath = this.lbl4.Text;
 
             Byte iHairNature = Byte.Parse(this.ddlHairNature.SelectedItem.Value);
             Byte iHairQuantity = Byte.Parse(this.ddlHairQuantity.SelectedItem.Value);
@@ -277,7 +310,7 @@ namespace Web.Admin
             //大图
             using (SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["MSSqlServer"].ToString()))
             {
-                string commString = "insert into PictureStoreSet(PictureStoreId,PictureStoreURL,IsHairStyle,HairStylePos) values(" + id + ",'" + newFrontFilePath + "',1,1)";
+                string commString = "insert into PictureStoreSet(PictureStoreId,PictureStoreURL,IsHairStyle,HairStylePos,SmallPic) values(" + id + ",'" + newFrontFilePath + "',1,1,'"+frontFilePath+"')";
                 using (SqlCommand comm = new SqlCommand())
                 {
                     comm.Connection = conn;
@@ -294,7 +327,7 @@ namespace Web.Admin
             }
             using (SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["MSSqlServer"].ToString()))
             {
-                string commString = "insert into PictureStoreSet(PictureStoreId,PictureStoreURL,IsHairStyle,HairStylePos) values(" + id + ",'" + newFlankFilePath + "',1,2)";
+                string commString = "insert into PictureStoreSet(PictureStoreId,PictureStoreURL,IsHairStyle,HairStylePos,SmallPic) values(" + id + ",'" + newFlankFilePath + "',1,2,'"+flankFilePath+"')";
                 using (SqlCommand comm = new SqlCommand())
                 {
                     comm.Connection = conn;
@@ -311,7 +344,7 @@ namespace Web.Admin
             }
             using (SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["MSSqlServer"].ToString()))
             {
-                string commString = "insert into PictureStoreSet(PictureStoreId,PictureStoreURL,IsHairStyle,HairStylePos) values(" + id + ",'" + newBackFilePath + "',1,3)";
+                string commString = "insert into PictureStoreSet(PictureStoreId,PictureStoreURL,IsHairStyle,HairStylePos,SmallPic) values(" + id + ",'" + newBackFilePath + "',1,3,'"+backFilePath+"')";
                 using (SqlCommand comm = new SqlCommand())
                 {
                     comm.Connection = conn;
@@ -328,7 +361,7 @@ namespace Web.Admin
             }
             using (SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["MSSqlServer"].ToString()))
             {
-                string commString = "insert into PictureStoreSet(PictureStoreId,PictureStoreURL,IsHairStyle,HairStylePos) values(" + id + ",'" + newAssistanceFilePath + "',1,4)";
+                string commString = "insert into PictureStoreSet(PictureStoreId,PictureStoreURL,IsHairStyle,HairStylePos,SmallPic) values(" + id + ",'" + newAssistanceFilePath + "',1,4,'"+assistanceFilePath+"')";
                 using (SqlCommand comm = new SqlCommand())
                 {
                     comm.Connection = conn;
@@ -343,75 +376,7 @@ namespace Web.Admin
                     { }
                 }
             }
-            //小图
-            using (SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["MSSqlServer"].ToString()))
-            {
-                string commString = "insert into PictureStoreSet(PictureStoreId,PictureStoreURL,IsHairStyle,HairStylePos) values(" + id + ",'" + frontFilePath + "',1,5)";
-                using (SqlCommand comm = new SqlCommand())
-                {
-                    comm.Connection = conn;
-                    comm.CommandText = commString;
-                    conn.Open();
-
-                    try
-                    {
-                        comm.ExecuteNonQuery();
-                    }
-                    catch (Exception ex)
-                    { }
-                }
-            }
-            using (SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["MSSqlServer"].ToString()))
-            {
-                string commString = "insert into PictureStoreSet(PictureStoreId,PictureStoreURL,IsHairStyle,HairStylePos) values(" + id + ",'" + flankFilePath + "',1,6)";
-                using (SqlCommand comm = new SqlCommand())
-                {
-                    comm.Connection = conn;
-                    comm.CommandText = commString;
-                    conn.Open();
-
-                    try
-                    {
-                        comm.ExecuteNonQuery();
-                    }
-                    catch (Exception ex)
-                    { }
-                }
-            }
-            using (SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["MSSqlServer"].ToString()))
-            {
-                string commString = "insert into PictureStoreSet(PictureStoreId,PictureStoreURL,IsHairStyle,HairStylePos) values(" + id + ",'" + backFilePath + "',1,7)";
-                using (SqlCommand comm = new SqlCommand())
-                {
-                    comm.Connection = conn;
-                    comm.CommandText = commString;
-                    conn.Open();
-
-                    try
-                    {
-                        comm.ExecuteNonQuery();
-                    }
-                    catch (Exception ex)
-                    { }
-                }
-            }
-            using (SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["MSSqlServer"].ToString()))
-            {
-                string commString = "insert into PictureStoreSet(PictureStoreId,PictureStoreURL,IsHairStyle,HairStylePos) values(" + id + ",'" + assistanceFilePath + "',1,8)";
-                using (SqlCommand comm = new SqlCommand())
-                {
-                    comm.Connection = conn;
-                    comm.CommandText = commString;
-                    conn.Open();
-
-                    try
-                    {
-                        comm.ExecuteNonQuery();
-                    }
-                    catch (Exception ex)
-                    { }
-                }
-            }
+            
             if (hairEngineerID != 0)
             {
                 this.Response.Redirect("HairEngineerAdmin.aspx");
