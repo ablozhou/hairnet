@@ -176,14 +176,14 @@ namespace Web.Admin
                                 //评论数
                                 list = InfoAdmin.GetHairEngineers(0, OrderKey.CommentNum, Session["query"].ToString());
                                 break;
-                            case "4":
-                                //推荐数
-                                list = InfoAdmin.GetHairEngineers(0, OrderKey.RecommandNum, Session["query"].ToString());
-                                break;
-                            case "5":
-                                //预约数
-                                list = InfoAdmin.GetHairEngineers(0, OrderKey.OrderNum, Session["query"].ToString());
-                                break;
+                            //case "4":
+                            //    //推荐数
+                            //    list = InfoAdmin.GetHairEngineers(0, OrderKey.RecommandNum, Session["query"].ToString());
+                            //    break;
+                            //case "5":
+                            //    //预约数
+                            //    list = InfoAdmin.GetHairEngineers(0, OrderKey.OrderNum, Session["query"].ToString());
+                            //    break;
                         }
                         break;
                     case "2":

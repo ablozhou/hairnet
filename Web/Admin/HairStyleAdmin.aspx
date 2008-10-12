@@ -18,11 +18,11 @@
             </tr>
             <tr>
                 <td align="right" bgcolor="#F5F5F5">
-                搜索方式<asp:DropDownList ID="ddlQuery" AutoPostBack="true" runat="server" OnSelectedIndexChanged="ddlQuery_OnSelectedIndexChanged"><asp:ListItem Value="1" Selected="true">发型名字</asp:ListItem><asp:ListItem Value="2" >工程师ID</asp:ListItem><asp:ListItem Value="3" >发型ID</asp:ListItem></asp:DropDownList>&nbsp;&nbsp;
+                <%--搜索方式<asp:DropDownList ID="ddlQuery" AutoPostBack="true" runat="server" OnSelectedIndexChanged="ddlQuery_OnSelectedIndexChanged"><asp:ListItem Value="1" Selected="true">发型名字</asp:ListItem><asp:ListItem Value="2" >工程师名称</asp:ListItem></asp:DropDownList>&nbsp;&nbsp;
                     <asp:TextBox ID="txtQueryName" runat="server" CssClass="TextBox"></asp:TextBox>
                      <asp:Label ID="lblTimeSpace" runat="server" Text="&nbsp;&nbsp;"></asp:Label>
                      <asp:Button ID="btnQuery" runat="server" CssClass="btn"  Text="查询" OnClick="btnQuery_OnClick" />
-                    &nbsp;&nbsp;
+                    &nbsp;&nbsp;--%>
                 <asp:Button ID="btnSelect" runat="server" CssClass="btn" Text="全选" OnClick="btnSelect_OnClick"/>&nbsp;&nbsp;
                     <asp:Button ID="btnAdd" runat="server" CssClass="btn" Text="添加" OnClick="btnAdd_OnClick"/>&nbsp;&nbsp;
                     </td>
