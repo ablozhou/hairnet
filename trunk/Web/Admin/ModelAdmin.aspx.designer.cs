@@ -12,12 +12,12 @@ namespace Web.Admin {
     
     
     /// <summary>
-    /// ModelAdd 类。
+    /// ModelAdmin 类。
     /// </summary>
     /// <remarks>
     /// 自动生成的类。
     /// </remarks>
-    public partial class ModelAdd {
+    public partial class ModelAdmin {
         
         /// <summary>
         /// form1 控件。
@@ -29,93 +29,138 @@ namespace Web.Admin {
         protected global::System.Web.UI.HtmlControls.HtmlForm form1;
         
         /// <summary>
-        /// txtModelName 控件。
+        /// btnAdd 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtModelName;
+        protected global::System.Web.UI.WebControls.Button btnAdd;
         
         /// <summary>
-        /// ddlSex 控件。
+        /// btnSelect 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlSex;
+        protected global::System.Web.UI.WebControls.Button btnSelect;
         
         /// <summary>
-        /// ddlFaceStyle 控件。
+        /// btnDelete 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlFaceStyle;
+        protected global::System.Web.UI.WebControls.Button btnDelete;
         
         /// <summary>
-        /// small 控件。
+        /// dg 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputFile small;
+        protected global::System.Web.UI.WebControls.DataGrid dg;
         
         /// <summary>
-        /// lblSmall 控件。
+        /// PageFirst 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblSmall;
+        protected global::System.Web.UI.WebControls.LinkButton PageFirst;
         
         /// <summary>
-        /// big 控件。
+        /// PagePrev 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputFile big;
+        protected global::System.Web.UI.WebControls.LinkButton PagePrev;
         
         /// <summary>
-        /// lblBig 控件。
+        /// PageNext 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblBig;
+        protected global::System.Web.UI.WebControls.LinkButton PageNext;
         
         /// <summary>
-        /// btnUpload 控件。
+        /// PageLast 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnUpload;
+        protected global::System.Web.UI.WebControls.LinkButton PageLast;
         
         /// <summary>
-        /// lblInfo 控件。
+        /// CountPage 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblInfo;
+        protected global::System.Web.UI.WebControls.Label CountPage;
         
         /// <summary>
-        /// btnSubmit 控件。
+        /// ispages 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnSubmit;
+        protected global::System.Web.UI.WebControls.TextBox ispages;
+        
+        /// <summary>
+        /// thispages 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList thispages;
+        
+        /// <summary>
+        /// Page_nPage 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label Page_nPage;
+        
+        /// <summary>
+        /// Page_nRecCount 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label Page_nRecCount;
+        
+        /// <summary>
+        /// Page_nRecCount_1 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label Page_nRecCount_1;
+        
+        /// <summary>
+        /// Page_strSQL 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label Page_strSQL;
     }
 }
