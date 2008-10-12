@@ -93,6 +93,12 @@
                 </td>
             </tr>
             <tr>
+                <td width="120" align="right">小图片：
+                </td>
+                <td><input id="uploadpicsmall" type="file" runat="server" />
+                </td>
+            </tr>
+            <tr>
                 <td width="120" align="right">图片：
                 </td>
                 <td><input id="uploadpic1" type="file" runat="server" />&nbsp;&nbsp;<asp:Button ID="btnPicUpload" runat="server" OnClick="btnPicUpload1_OnClick" Text="上传图片" />
@@ -105,7 +111,7 @@
         <asp:Button ID="btnSubmit" Text="提交图片信息" runat="server" OnClick="btnSubmit_OnClick" />
     </div>
     <div>
-        <asp:Label ID="picString" runat="server"></asp:Label><asp:Label ID="pic" runat="server" Visible="false"></asp:Label>
+        <asp:Label ID="picString" runat="server"></asp:Label><asp:Label ID="pic" runat="server" Visible="false"></asp:Label><asp:Label ID="picsmall" runat="server" Visible="false"></asp:Label>
     </div>
     </form>
 </body>

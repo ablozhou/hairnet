@@ -90,6 +90,12 @@
                 </td>
             </tr>
             <tr>
+                <td width="120" align="right">小图片：
+                </td>
+                <td><input id="uploadpicsmall" type="file" runat="server" />
+                </td>
+            </tr>
+            <tr>
                 <td width="120" align="right">图片：
                 </td>
                 <td><input id="uploadpic1" type="file" runat="server" />&nbsp;&nbsp;<asp:Button ID="btnPicUpload" runat="server" OnClick="btnPicUpload1_OnClick" Text="上传图片1" />
