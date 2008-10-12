@@ -22,18 +22,9 @@ namespace Web.Admin
         {
             if (!IsPostBack)
             {
-                this.bindClass();
                 this.bindShop();
                 this.bindBaseInfo();
             }
-        }
-
-        private void bindClass()
-        {
-            ddlHairShopClass.DataSource = InfoAdmin.GetHairEngineerClasses();
-            ddlHairShopClass.DataTextField = "Name";
-            ddlHairShopClass.DataValueField = "ID";
-            ddlHairShopClass.DataBind();
         }
 
         private void bindShop()
@@ -59,7 +50,7 @@ namespace Web.Admin
             txtHairEngineerTag.Text = InfoAdmin.GetHairEngineerTagNames(he.HairEngineerTagIDs);
 
             ddlHairShop.SelectedValue = he.HairShopID.ToString();
-            ddlHairShopClass.SelectedValue = he.HairEngineerClassID.ToString();
+            txtHairEngineerClass.Text = he.HairEngineerClassID.ToString();
             rBtnListHairEngineerSex.SelectedValue = he.HairEngineerSex.ToString();
             
             this.chkIsImportant.Checked = he.IsImportant;
@@ -128,7 +119,7 @@ namespace Web.Admin
             he.HairEngineerSkill = txtHairEngineerSkill.Text.Trim();
             he.HairEngineerDescription = txtHairEngineerDescription.Text.Trim();
 
-            he.HairEngineerClassID = int.Parse(ddlHairShopClass.SelectedValue);
+            he.HairEngineerClassID = txtHairEngineerClass.Text.Trim();
             he.HairShopID = int.Parse(ddlHairShop.SelectedValue);
             he.HairEngineerConstellation = this.ddlConstellation.SelectedItem.Text;
 

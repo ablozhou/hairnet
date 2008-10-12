@@ -379,7 +379,7 @@ namespace Web.Admin
             
             if (hairEngineerID != 0)
             {
-                this.Response.Redirect("HairEngineerAdmin.aspx");
+                this.Response.Redirect("HairEngineerAddSwitch.aspx?id="+this.Request.QueryString["ENGINEERID"].ToString()+"&shopid="+this.Request.QueryString["shopid"].ToString());
             }
             else
             {

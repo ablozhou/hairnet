@@ -101,13 +101,13 @@ namespace Web.Admin {
         protected global::System.Web.UI.WebControls.DropDownList ddlConstellation;
         
         /// <summary>
-        /// ddlHairShopClass 控件。
+        /// txtHairEngineerClass 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlHairShopClass;
+        protected global::System.Web.UI.WebControls.TextBox txtHairEngineerClass;
         
         /// <summary>
         /// smallLogo 控件。
@@ -198,15 +198,6 @@ namespace Web.Admin {
         /// 要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtHairEngineerDescription;
-        
-        /// <summary>
-        /// btnAddWork 控件。
-        /// </summary>
-        /// <remarks>
-        /// 自动生成的字段。
-        /// 要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnAddWork;
         
         /// <summary>
         /// btnSubmit 控件。

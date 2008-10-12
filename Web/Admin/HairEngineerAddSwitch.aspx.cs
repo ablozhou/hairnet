@@ -19,11 +19,17 @@ namespace Web.Admin55
         }
         protected void btnHairEngineerContinue_Click(object sender, EventArgs e)
         {
-            this.Response.Redirect("HairEngineerAdd.aspx");
+            string id = this.Request.QueryString["shopid"].ToString();
+            this.Response.Redirect("HairEngineerAdd.aspx?id="+id);
         }
         protected void btnBack_Click(object sender, EventArgs e)
-        {
+        {   
             this.Response.Redirect("HairEngineerAdmin.aspx");
+        }
+        protected void btnAddOupusInfo_Click(object sender, EventArgs e)
+        {
+            string id = this.Request.QueryString["id"].ToString();
+            this.Response.Redirect("EngineerOpusInfo.aspx?ENGINEERID=" + id+"&shopid="+this.Request.QueryString["shopid"].ToString());
         }
     }
 }

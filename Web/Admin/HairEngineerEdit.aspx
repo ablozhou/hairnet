@@ -64,7 +64,7 @@
         </tr>
         <tr>
             <td width="120" align="right">职位：</td>
-            <td><asp:DropDownList ID="ddlHairShopClass" runat="server"></asp:DropDownList></td>
+            <td><asp:TextBox ID="txtHairEngineerClass" runat="server" CssClass="TextBox"></asp:TextBox></td>
         </tr>
         <tr>
             <td width="120px" align="right">个人小照片：</td>
@@ -100,7 +100,7 @@
     </table>
     </div>
     <div>
-        <asp:Button ID="btnAddWork" runat="server" Text="添加作品" OnClick="btnAddWork_OnClick" />&nbsp;&nbsp;&nbsp;&nbsp;<asp:Button ID="btnSubmit" runat="server" Text="提交 <<基本信息>>" OnClick="btnSubmit_OnClick" />
+        <asp:Button ID="btnSubmit" runat="server" Text="提交 <<基本信息>>" OnClick="btnSubmit_OnClick" />
     </div>
     </form>
 </body>
