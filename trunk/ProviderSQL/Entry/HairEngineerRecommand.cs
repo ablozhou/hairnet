@@ -24,7 +24,7 @@ namespace HairNet.Entry
         private string _hairEngineerRawPrice = string.Empty;
         private string _hairEngineerPrice = string.Empty;
 
-        private int _hairEngineerClassID = 0;
+        private string _hairEngineerClassID = "";
         private string _hairEngineerClassName = string.Empty;
         private string _hairEngineerRecommandEx = string.Empty;
         private string _hairEngineerRecommandInfo = string.Empty;
@@ -123,7 +123,7 @@ namespace HairNet.Entry
             get { return this._hairEngineerPrice; }
         }
 
-        public int HairEngineerClassID
+        public string HairEngineerClassID
         {
             set { this._hairEngineerClassID = value; }
             get { return this._hairEngineerClassID; }

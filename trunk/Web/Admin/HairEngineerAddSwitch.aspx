@@ -9,7 +9,9 @@
 <body>
     <form id="form1" runat="server">
     <div>
-    <asp:Button ID="btnAddHairEngineerContinue" runat="server" OnClick="btnHairEngineerContinue_Click" Text="继续添加美发师" />&nbsp;&nbsp;<asp:Button ID="btnBack" runat="server" OnClick="btnBack_Click" Text="返回列表" />
+    <asp:Button ID="btnAddHairEngineerContinue" runat="server" OnClick="btnHairEngineerContinue_Click" Text="继续添加美发师" />
+    <br /><asp:Button ID="btnAddOupusInfo" runat="server" OnClick="btnAddOupusInfo_Click" Text="添加美发师作品" />
+    <br /><asp:Button ID="btnBack" runat="server" OnClick="btnBack_Click" Text="返回美发师管理列表" />
     </div>
     </form>
 </body>

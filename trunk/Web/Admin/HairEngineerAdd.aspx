@@ -77,7 +77,7 @@ function Button1_onclick() {
         </tr>
         <tr>
             <td width="120px" align="right">职位：</td>
-            <td><asp:DropDownList ID="ddlHairShopClass" runat="server"></asp:DropDownList></td>
+            <td><asp:TextBox ID="txtHairEngineerClass" runat="server" CssClass="TextBox"></asp:TextBox></td>
         </tr>
         <tr>
             <td width="120px" align="right">个人小照片：</td>
@@ -110,7 +110,7 @@ function Button1_onclick() {
             <td><asp:TextBox runat="server" Width="98%" Rows="15" TextMode="MultiLine" 
                     ID="txtHairEngineerDescription" Height="110px"></asp:TextBox></td></tr>
         <tr>
-            <td width="120px" align="right"><asp:Button ID="btnSubmit" runat="server" Text="添加作品" OnClick="btnSubmit_OnClick" /></td>
+            <td width="120px" align="right"></td>
             <td>
                 <asp:Button ID="btnHairEngineerAdd" runat="server" OnClick="btnHairEngineerAdd_Click" Text="添加美发师" /></td>
         </tr>
