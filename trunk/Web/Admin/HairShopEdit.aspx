@@ -17,6 +17,19 @@
             </tr>
             <tr>
                 <td width="120" align="right">
+                    城市：
+                </td>
+                <td>
+                    <asp:DropDownList ID="ddlCity" runat="server" AutoPostBack="True" OnSelectedIndexChanged="ddlCity_SelectedIndexChanged">
+                    </asp:DropDownList>
+                    &nbsp;&nbsp; 区域：
+                    <asp:DropDownList ID="ddlMapZone" runat="server" AutoPostBack="True" OnSelectedIndexChanged="ddlMapZone_SelectedIndexChanged">
+                    </asp:DropDownList>
+                    &nbsp;&nbsp; 地段：<asp:DropDownList ID="ddlHotZone" runat="server">
+                    </asp:DropDownList>
+                </td>
+            </tr>           <tr>
+                <td width="120" align="right">
                     名称：
                 </td>
                 <td>
@@ -180,20 +193,7 @@
                     <asp:TextBox ID="txtHairShopCreateTime" runat="server" Width="200" CssClass="TextBox"></asp:TextBox>
                 </td>
             </tr>
-            <tr>
-                <td width="120" align="right">
-                    城市：
-                </td>
-                <td>
-                    <asp:DropDownList ID="ddlCity" runat="server" AutoPostBack="True" OnSelectedIndexChanged="ddlCity_SelectedIndexChanged">
-                    </asp:DropDownList>
-                    &nbsp;&nbsp; 区域：
-                    <asp:DropDownList ID="ddlMapZone" runat="server" AutoPostBack="True" OnSelectedIndexChanged="ddlMapZone_SelectedIndexChanged">
-                    </asp:DropDownList>
-                    &nbsp;&nbsp; 地段：<asp:DropDownList ID="ddlHotZone" runat="server">
-                    </asp:DropDownList>
-                </td>
-            </tr>
+ 
             <tr>
                 <td width="120" align="right">
                     详细地址：
