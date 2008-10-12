@@ -47,7 +47,7 @@ window.location.href = "CouponManagement.aspx";
                 <td><asp:TextBox ID="tbDiscount" runat="server" CssClass="TextBox" 
                         Width="200"></asp:TextBox>
                     <asp:RegularExpressionValidator ID="RegularExpressionValidator1" runat="server" 
-                        ControlToValidate="tbDiscount" ErrorMessage="值不对" ValidationExpression="\d"></asp:RegularExpressionValidator>
+                        ControlToValidate="tbDiscount" ErrorMessage="值不对" ValidationExpression="\d{1,3}"></asp:RegularExpressionValidator>
                 </td>
             </tr>
             <tr>

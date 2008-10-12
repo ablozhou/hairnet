@@ -43,7 +43,7 @@
             <td><asp:TextBox ID="txtHairEngineerRawPrice" runat="server" CssClass="TextBox"></asp:TextBox>
                 <asp:RegularExpressionValidator ID="RegularExpressionValidator1" runat="server" 
                     ControlToValidate="txtHairEngineerRawPrice" ErrorMessage="值不对" 
-                    ValidationExpression="\d"></asp:RegularExpressionValidator>
+                    ValidationExpression="\d*"></asp:RegularExpressionValidator>
                     </td>
         </tr>
         <tr>
@@ -51,7 +51,7 @@
             <td><asp:TextBox ID="txtHairEngineerTel" runat="server" CssClass="TextBox"></asp:TextBox>
                 <asp:RegularExpressionValidator ID="RegularExpressionValidator2" runat="server" 
                     ControlToValidate="txtHairEngineerTel" ErrorMessage="值不对" 
-                    ValidationExpression="(\(\d{3}\)|\d{3}-)?\d{8}"></asp:RegularExpressionValidator>
+                    ValidationExpression="(\d{3}|\d{3}-)?\d{8}"></asp:RegularExpressionValidator>
                     </td>
         </tr>
         <tr>
@@ -97,7 +97,7 @@
             <td><asp:TextBox ID="txtHairEngineerYear" runat="server" CssClass="TextBox"></asp:TextBox>
                 <asp:RegularExpressionValidator ID="RegularExpressionValidator3" runat="server" 
                     ControlToValidate="txtHairEngineerYear" ErrorMessage="值不对" 
-                    ValidationExpression="\d"></asp:RegularExpressionValidator>
+                    ValidationExpression="\d*"></asp:RegularExpressionValidator>
                     </td>
         </tr>
         <tr>
