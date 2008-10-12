@@ -547,7 +547,7 @@ namespace HairNet.Provider
             //    " UserContactInfo ON UserBasicInfo.UserID = UserContactInfo.UserID INNER JOIN " +
             //    " UserPersonalInfo ON UserBasicInfo.UserID = UserPersonalInfo.UserID WHERE (UserBasicInfo.UserName LIKE '%"+strUserName+"%') ";
 
-            string commandText = "select * FROM UserBasicInfo  WHERE (UserBasicInfo.UserName LIKE '%" + strUserName + "%') ";
+            string commandText = "select * FROM UserBasicInfo  Inner join UserRole ur on UserBasicInfo.UserRoleID = ur.UserRoleID WHERE (UserBasicInfo.UserName LIKE '%" + strUserName + "%') ";
 
             using (SqlConnection conn = new SqlConnection(DataHelper2.SqlConnectionString))
             {
