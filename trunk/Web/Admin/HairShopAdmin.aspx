@@ -18,12 +18,12 @@
             </tr>
             <tr>
                 <td align="right" bgcolor="#F5F5F5">
-                     搜索方式<asp:DropDownList ID="ddlQuery" AutoPostBack="true" runat="server" OnSelectedIndexChanged="ddlQuery_OnSelectedIndexChanged"><asp:ListItem Value="1" Selected="true">名称</asp:ListItem><asp:ListItem Value="2">关键字</asp:ListItem><asp:ListItem Value="3">时间段</asp:ListItem></asp:DropDownList>&nbsp;&nbsp;
+                     搜索方式<asp:DropDownList ID="ddlQuery" AutoPostBack="true" runat="server" OnSelectedIndexChanged="ddlQuery_OnSelectedIndexChanged"><asp:ListItem Value="1" Selected="true">名称</asp:ListItem><asp:ListItem Value="2">关键字</asp:ListItem></asp:DropDownList>&nbsp;&nbsp;
                      <asp:TextBox ID="txtQueryName" runat="server" CssClass="TextBox"></asp:TextBox><asp:Label ID="lblQueryNameSpace" Text="&nbsp;&nbsp;&nbsp;" runat="server"></asp:Label>
                      <asp:Label ID="lblStartTime" Text="S:" runat="server"></asp:Label> <cc1:DMSTimeControl ID="txtStartTime" runat="server" />
                      <asp:Label ID="lblEndTime" Text="&nbsp;&nbsp;E:" runat="server"></asp:Label><cc1:DMSTimeControl ID="txtEndTime" runat="server" /><asp:Label ID="lblTimeSpace" runat="server" Text="&nbsp;&nbsp;"></asp:Label>
                      <asp:Button ID="btnQuery" runat="server" CssClass="btn"  Text="查询" OnClick="btnQuery_OnClick" />&nbsp;&nbsp;
-                    排序方式:<asp:DropDownList ID="ddlOrderWay" runat="server" AutoPostBack="true" OnSelectedIndexChanged="ddlOrderWay_OnSelectIndexChanged"><asp:ListItem Value="1" Selected="true">发布时间</asp:ListItem><asp:ListItem Value="2">点击数</asp:ListItem><asp:ListItem Value="3">评论数</asp:ListItem><asp:ListItem Value="4">推荐数</asp:ListItem><asp:ListItem Value="5">预约数</asp:ListItem></asp:DropDownList>&nbsp;&nbsp;
+                    排序方式:<asp:DropDownList ID="ddlOrderWay" runat="server" AutoPostBack="true" OnSelectedIndexChanged="ddlOrderWay_OnSelectIndexChanged"><asp:ListItem Value="1" Selected="true">发布时间</asp:ListItem><asp:ListItem Value="2">点击数</asp:ListItem><asp:ListItem Value="3">评论数</asp:ListItem></asp:DropDownList>&nbsp;&nbsp;
                 <asp:Button ID="btnSelect" runat="server" CssClass="btn" Text="全选" OnClick="btnSelect_OnClick"/>&nbsp;&nbsp;
                     <asp:Button ID="btnAdd" runat="server" CssClass="btn" Text="添加" OnClick="btnAdd_OnClick"/>&nbsp;&nbsp;
                     <asp:Button ID="btnRecommand" runat="server" CssClass="btn" Text="推荐" OnClick="btnRecommand_OnClick"/>
