@@ -143,11 +143,11 @@ namespace Web.Admin
                             i++;
                             if (i == 1)
                             {
-                                imgString = "<a href='"+sdr["PictureStoreURL"].ToString()+"' target='_blank'><img src='"+sdr["PictureStoreURL"].ToString()+"' width=200 height=100 /></a>&nbsp;&nbsp;<a href='PictureStoreOperate.aspx?id="+sdr["id"].ToString()+"&pid="+sdr["PictureStoreID"].ToString()+"'>删除</a>";
+                                imgString = "<img src='" + sdr["SmallPic"].ToString() + "' width=100 height=50 /><a href='" + sdr["PictureStoreURL"].ToString() + "' target='_blank'><img src='" + sdr["PictureStoreURL"].ToString() + "' width=200 height=100 /></a>&nbsp;&nbsp;<a href='PictureStoreOperate.aspx?id=" + sdr["id"].ToString() + "&pid=" + sdr["PictureStoreID"].ToString() + "'>删除</a>";
                             }
                             else
                             {
-                                imgString += "<a href='" + sdr["PictureStoreURL"].ToString() + "' target='_blank'><img src='" + sdr["PictureStoreURL"].ToString() + "' width=200 height=100 /></a>&nbsp;&nbsp;<a href='PictureStoreOperate.aspx?id=" + sdr["id"].ToString() + "&pid=" + sdr["PictureStoreID"].ToString() + "'>删除</a>";
+                                imgString += "<img src='" + sdr["SmallPic"].ToString() + "' width=100 height=50 /><a href='" + sdr["PictureStoreURL"].ToString() + "' target='_blank'><img src='" + sdr["PictureStoreURL"].ToString() + "' width=200 height=100 /></a>&nbsp;&nbsp;<a href='PictureStoreOperate.aspx?id=" + sdr["id"].ToString() + "&pid=" + sdr["PictureStoreID"].ToString() + "'>删除</a>";
                             }
                         }
                     }
@@ -392,11 +392,13 @@ namespace Web.Admin
 
             UpLoadClass upload = new UpLoadClass();
             string filepath = upload.UpLoadImg(uploadpic1, "/uploadfiles/pictures/");
+            string filepathSmall = upload.UpLoadImg(uploadpicsmall, "/uploadfiles/pictures/");
+
             if (filepath != string.Empty)
             {
                 using (SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["MSSqlServer"].ToString()))
                 {
-                    string commString = "insert into PictureStoreSet(PictureStoreId,PictureStoreURL,IsHairStyle,HairStylePos) values(" + ps.PictureStoreID.ToString() + ",'" + filepath + "',0,0)";
+                    string commString = "insert into PictureStoreSet(PictureStoreId,PictureStoreURL,SmallPic,IsHairStyle,HairStylePos) values(" + ps.PictureStoreID.ToString() + ",'" + filepath + "','"+filepathSmall+"',0,0)";
                     using (SqlCommand comm = new SqlCommand())
                     {
                         comm.Connection = conn;
@@ -431,7 +433,7 @@ namespace Web.Admin
                     }
                 }
 
-                this.lblImg.Text = "<a href='" + filepath + "' target='_blank'><img src='" + filepath + "' width=200 height=100 /></a>&nbsp;&nbsp;<a href='PictureStoreOperate.aspx?id=" + pssid + "&pid=" + ps.PictureStoreID.ToString() + "'>删除</a>" + "&nbsp;&nbsp;" + this.lblImg.Text;
+                this.lblImg.Text = "<img src='" + filepathSmall + "' width=100 height=50 /><a href='" + filepath + "' target='_blank'><img src='" + filepath + "' width=200 height=100 /></a>&nbsp;&nbsp;<a href='PictureStoreOperate.aspx?id=" + pssid + "&pid=" + ps.PictureStoreID.ToString() + "'>删除</a>" + "&nbsp;&nbsp;" + this.lblImg.Text;
             }
         }
         protected void BindControlData()

@@ -177,13 +177,15 @@ namespace Web.Admin
 
 
             string[] ppicString = this.pic.Text.Split(";".ToCharArray());
+            string[] ppicSmallString = this.picsmall.Text.Split(";".ToCharArray());
+
             if (ppicString[0] != string.Empty)
             {
-                foreach (string pps in ppicString)
+                for(int k=0;k<ppicString.Length;k++)
                 {
                     using (SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["MSSqlServer"].ToString()))
                     {
-                        string commString = "insert into PictureStoreSet(PictureStoreId,PictureStoreURL,IsHairStyle,HairStylePos) values(" + ps.PictureStoreID.ToString() + ",'" + pps + "',0,0)";
+                        string commString = "insert into PictureStoreSet(PictureStoreId,PictureStoreURL,SmallPic,IsHairStyle,HairStylePos) values(" + ps.PictureStoreID.ToString() + ",'" + ppicString[k] + "','"+ppicSmallString[k]+"',0,0)";
                         using (SqlCommand comm = new SqlCommand())
                         {
                             comm.Connection = conn;
@@ -208,10 +210,11 @@ namespace Web.Admin
             this.Response.Redirect("PictureStoreAdmin.aspx");
         }
         protected void btnPicUpload1_OnClick(object sender, EventArgs e)
-        {
-            
+        {   
             UpLoadClass upload = new UpLoadClass();
             string filepath = upload.UpLoadImg(uploadpic1, "/uploadfiles/pictures/");
+            string filepathSmall = upload.UpLoadImg(uploadpicsmall, "/uploadfiles/pictures/");
+
             if (filepath != string.Empty)
             {
                 int num = Convert.ToInt32(ViewState["num"].ToString());
@@ -219,13 +222,15 @@ namespace Web.Admin
                 ViewState["num"] = num;
                 if (num == 1)
                 {
-                    this.picString.Text = "<img width=200 heigth=100 src='" + filepath + "' />";
+                    this.picString.Text = "<img width=100 heigth=50 src='" + filepathSmall + "' />&nbsp;&nbsp;<img width=200 heigth=100 src='" + filepath + "' />";
                     this.pic.Text = filepath;
+                    this.picsmall.Text = filepathSmall; 
                 }
                 else
                 {
-                    this.picString.Text += "&nbsp;&nbsp;<img width=200 heigth=100 src='" + filepath + "' />";
+                    this.picString.Text += "&nbsp;&nbsp;<img width=100 heigth=50 src='" + filepathSmall + "' />&nbsp;&nbsp;<img width=200 heigth=100 src='" + filepath + "' />";
                     this.pic.Text += ";" + filepath;
+                    this.picsmall.Text += ";" + filepathSmall;
                 }
             }
         }
