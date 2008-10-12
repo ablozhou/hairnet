@@ -36,6 +36,20 @@ namespace HairNet.Entry
         private string description = string.Empty;
         private int picturestoreid = 0;
         private string psgids = string.Empty;
+        private bool _isHairStyle = false;
+        private int _postID = 0;
+
+        public bool IsHairStyle
+        {
+            set { this._isHairStyle = value; }
+            get { return this._isHairStyle; }
+        }
+
+        public int PostID
+        {
+            set { this._postID = value; }
+            get { return this._postID; }
+        }
 
         public string PSGIDS
         {
@@ -127,7 +141,7 @@ namespace HairNet.Entry
         /// <param name="hairQuantity">hairQuantity</param>
         /// <param name="hairNature">hairNature</param>
         /// <param name="tag">tag</param>
-        public HairStyleEntity(string hairName, int hairShopID, int hairEngineerID, Byte hairStyle, Byte faceStyle, Byte temperament, Byte occasion, Byte sex, Byte hairNature, string idesc, string ppsgids)
+        public HairStyleEntity(string hairName, int hairShopID, int hairEngineerID, Byte hairStyle, Byte faceStyle, Byte temperament, Byte occasion, Byte sex, Byte hairNature, string idesc, string ppsgids,bool isHairStyle,int postID)
         {
             this.hairName = hairName;
             this.hairShopID = hairShopID;
@@ -141,8 +155,10 @@ namespace HairNet.Entry
             this.sex = sex;
             this.description = idesc;
             this.PSGIDS = ppsgids;
+            this.IsHairStyle = isHairStyle;
+            this.PostID = postID;
         }
-        public HairStyleEntity(int hsid, string hairName, int hairShopID, int hairEngineerID, Byte hairStyle, Byte faceStyle, Byte temperament, Byte occasion, Byte sex, Byte hairNature, string idesc, string ppsgids)
+        public HairStyleEntity(int hsid, string hairName, int hairShopID, int hairEngineerID, Byte hairStyle, Byte faceStyle, Byte temperament, Byte occasion, Byte sex, Byte hairNature, string idesc, string ppsgids,bool isHairStyle,int postID)
         {
             this.id = hsid;
             this.hairName = hairName;
@@ -157,8 +173,10 @@ namespace HairNet.Entry
             this.sex = sex;
             this.description = idesc;
             this.PSGIDS = ppsgids;
+            this.IsHairStyle = isHairStyle;
+            this.PostID = postID;
         }
-        public HairStyleEntity(string hairName, int hairShopID, int hairEngineerID, Byte hairStyle, Byte faceStyle, Byte temperament, Byte occasion, Byte sex, Byte hairNature,int picsid, string idesc,string ppsgids)
+        public HairStyleEntity(string hairName, int hairShopID, int hairEngineerID, Byte hairStyle, Byte faceStyle, Byte temperament, Byte occasion, Byte sex, Byte hairNature, int picsid, string idesc, string ppsgids, bool isHairStyle, int postID)
         {
             this.hairName = hairName;
             this.hairShopID = hairShopID;
@@ -173,10 +191,12 @@ namespace HairNet.Entry
             this.description = idesc;
             this.picturestoreid = picsid;
             this.PSGIDS = ppsgids;
+            this.IsHairStyle = isHairStyle;
+            this.PostID = postID;
         }
 
         public HairStyleEntity(string hairName, string bigPic, string smallPic_F, string smallPic_B, string smallPic_S, Byte hairStyle,
-            Byte faceStyle, Byte hairQuantity, Byte hairNature, string tag,string desc,int pictureid)
+            Byte faceStyle, Byte hairQuantity, Byte hairNature, string tag, string desc, int pictureid, bool isHairStyle, int postID)
         {
             this.hairName = hairName;
             this.bigPic = bigPic;
@@ -190,6 +210,8 @@ namespace HairNet.Entry
             this.tag = tag;
             this.description = desc;
             this.picturestoreid = pictureid;
+            this.IsHairStyle = isHairStyle;
+            this.PostID = postID;
         }
 
         public Int32 ID

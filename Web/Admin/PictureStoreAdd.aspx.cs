@@ -134,7 +134,7 @@ namespace Web.Admin
             int hairShopID = 0;
             int hairEngineerID = 0;
 
-            HairStyleEntity HairStyle = new HairStyleEntity(this.txtPictureStoreName.Text.Trim(), hairShopID, hairEngineerID, iHairStyleClassName, iFaceStyle, iTemperament, iOccasion, iSex, iHairNature,ps.PictureStoreID, this.txtPictureStoreDescription.Text.Trim(),PSGIDS);
+            HairStyleEntity HairStyle = new HairStyleEntity(this.txtPictureStoreName.Text.Trim(), hairShopID, hairEngineerID, iHairStyleClassName, iFaceStyle, iTemperament, iOccasion, iSex, iHairNature,ps.PictureStoreID, this.txtPictureStoreDescription.Text.Trim(),PSGIDS,false,0);
 
             InfoAdmin.AddHairStyle(HairStyle);
 

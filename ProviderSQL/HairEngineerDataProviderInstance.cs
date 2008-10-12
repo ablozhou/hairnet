@@ -174,6 +174,9 @@ namespace HairNet.Provider
             parameters[25].Value = hairStyle.Description;
             parameters[26].Value = hairStyle.PictureStoreId;
             parameters[27].Value = hairStyle.PSGIDS;
+            parameters[28].Value = hairStyle.IsHairStyle;
+            parameters[29].Value = hairStyle.PostID;
+            
 
             if (action == UserAction.Create)
                 SqlHelper.ExecuteNonQuery(DataHelper2.SqlConnectionString, CommandType.StoredProcedure,
@@ -332,6 +335,8 @@ namespace HairNet.Provider
                     new SqlParameter("@Description",SqlDbType.VarChar,1024),
                     new SqlParameter("@Picturestoreid",SqlDbType.Int,4),
                     new SqlParameter("@psgids",SqlDbType.VarChar,1024),
+                    new SqlParameter("@IsHairStyle",SqlDbType.Bit,1),
+                    new SqlParameter("@PostID",SqlDbType.Int,4),
                 };
             }
 

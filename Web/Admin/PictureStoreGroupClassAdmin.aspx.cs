@@ -74,6 +74,88 @@ namespace Web.Admin
                             { }
                         }
                     }
+                    string psgids = "";
+                    bool isHairStyle = false;
+                    string pictureStoreId = "";
+                    //处理hairstyle逻辑
+                    using (SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["MSSqlServer"].ToString()))
+                    {
+                        string commString = "select * from HairStyle where id="+hstyleid;
+                        using (SqlCommand comm = new SqlCommand())
+                        {
+                            comm.Connection = conn;
+                            comm.CommandText = commString;
+                            conn.Open();
+
+                            using (SqlDataReader sdr = comm.ExecuteReader())
+                            {
+                                if (sdr.Read())
+                                {
+                                    psgids = sdr["psgids"].ToString();
+                                    isHairStyle = Convert.ToBoolean(sdr["IsHairStyle"].ToString());
+                                    pictureStoreId = sdr["pictureStoreID"].ToString();
+                                }
+                            }
+                        }
+                    }
+                    string[] psgCollection = psgids.Split(",".ToCharArray());
+                    psgids = "";
+                    int num = 0;
+                    foreach (string s in psgCollection)
+                    {   
+                        if (s != psg.ID.ToString())
+                        {
+                            num++;
+
+                            if (num == 1)
+                            {
+                                psgids = s;
+                            }
+                            else
+                            {
+                                psgids += ","+s;
+                            }
+                        }
+                    }
+                    using (SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["MSSqlServer"].ToString()))
+                    {
+                        string commString = "update hairStyle set psgids = '" + psgids + "' where id=" + hstyleid;
+                        using (SqlCommand comm = new SqlCommand())
+                        {
+                            comm.Connection = conn;
+                            comm.CommandText = commString;
+                            conn.Open();
+
+                            try
+                            {
+                                comm.ExecuteNonQuery();
+                            }
+                            catch
+                            { }
+                        }
+                    }
+
+                    if (isHairStyle == false)
+                    {
+                        using (SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["MSSqlServer"].ToString()))
+                        {
+                            string commString = "update PictureStore set PictureStoreGroupIDs = '" + psgids + "' where PictureStoreID=" + pictureStoreId;
+                            using (SqlCommand comm = new SqlCommand())
+                            {
+                                comm.Connection = conn;
+                                comm.CommandText = commString;
+                                conn.Open();
+
+                                try
+                                {
+                                    comm.ExecuteNonQuery();
+                                }
+                                catch
+                                { }
+                            }
+                        }
+                    }
+                     
                 }
             }
             this.databind();
@@ -198,6 +280,89 @@ namespace Web.Admin
                             { }
                         }
                     }
+
+                    string psgids = "";
+                    bool isHairStyle = false;
+                    string pictureStoreId = "";
+                    //处理hairstyle逻辑
+                    using (SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["MSSqlServer"].ToString()))
+                    {
+                        string commString = "select * from HairStyle where id=" + hstyleid;
+                        using (SqlCommand comm = new SqlCommand())
+                        {
+                            comm.Connection = conn;
+                            comm.CommandText = commString;
+                            conn.Open();
+
+                            using (SqlDataReader sdr = comm.ExecuteReader())
+                            {
+                                if (sdr.Read())
+                                {
+                                    psgids = sdr["psgids"].ToString();
+                                    isHairStyle = Convert.ToBoolean(sdr["IsHairStyle"].ToString());
+                                    pictureStoreId = sdr["pictureStoreID"].ToString();
+                                }
+                            }
+                        }
+                    }
+                    string[] psgCollection = psgids.Split(",".ToCharArray());
+                    psgids = "";
+                    int num = 0;
+                    foreach (string s in psgCollection)
+                    {
+                        if (s != psg.ID.ToString())
+                        {
+                            num++;
+
+                            if (num == 1)
+                            {
+                                psgids = s;
+                            }
+                            else
+                            {
+                                psgids += "," + s;
+                            }
+                        }
+                    }
+                    using (SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["MSSqlServer"].ToString()))
+                    {
+                        string commString = "update hairStyle set psgids = '" + psgids + "' where id=" + hstyleid;
+                        using (SqlCommand comm = new SqlCommand())
+                        {
+                            comm.Connection = conn;
+                            comm.CommandText = commString;
+                            conn.Open();
+
+                            try
+                            {
+                                comm.ExecuteNonQuery();
+                            }
+                            catch
+                            { }
+                        }
+                    }
+
+                    if (isHairStyle == false)
+                    {
+                        using (SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["MSSqlServer"].ToString()))
+                        {
+                            string commString = "update PictureStore set PictureStoreGroupIDs = '" + psgids + "' where PictureStoreID=" + pictureStoreId;
+                            using (SqlCommand comm = new SqlCommand())
+                            {
+                                comm.Connection = conn;
+                                comm.CommandText = commString;
+                                conn.Open();
+
+                                try
+                                {
+                                    comm.ExecuteNonQuery();
+                                }
+                                catch
+                                { }
+                            }
+                        }
+                    }
+
                     this.databind();
                 }
             }
