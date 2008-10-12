@@ -38,7 +38,7 @@ tag为空，图库和发型添加缺一个tag输入
 
 修改后，HairEngineerid也为0 了。
 
-添加优惠券，增加完后图片还在。
+添加优惠券，增加完后图片还在。（OK）
 
 美发厅：
 HairShopPictureStoreIDs 空

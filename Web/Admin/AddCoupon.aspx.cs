@@ -81,6 +81,7 @@ namespace Web.Admin
             {
                 throw new ArgumentException("位置错误", sqlEx.Message);
             }
+            this.Response.Redirect("CouponAddSwitch.aspx?id="+this.Request.QueryString["id"].ToString());
         }
 
         /// <summary>

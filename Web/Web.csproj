@@ -1472,6 +1472,13 @@
     <Compile Include="Admin\AddCoupon.aspx.designer.cs">
       <DependentUpon>AddCoupon.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Admin\CouponAddSwitch.aspx.cs">
+      <SubType>ASPXCodeBehind</SubType>
+      <DependentUpon>CouponAddSwitch.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\CouponAddSwitch.aspx.designer.cs">
+      <DependentUpon>CouponAddSwitch.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Admin\CouponManagement.aspx.cs">
       <DependentUpon>CouponManagement.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -2170,6 +2177,7 @@
     <None Include="Admin\images\_notes\tab_bg.gif.mno" />
     <None Include="Admin\images\_notes\tab_page_01.gif.mno" />
     <None Include="Admin\images\_notes\tab_page_02.gif.mno" />
+    <Content Include="Admin\CouponAddSwitch.aspx" />
     <Content Include="Admin\hairEngineerOperate.aspx" />
     <Content Include="Admin\HairShopAddNext1.aspx" />
     <Content Include="Admin\HairShopPicOperate.aspx" />
