@@ -14,19 +14,34 @@
             </tr>
             <tr>
                 <td width="120" align="right">产品名称：</td>
-                <td><asp:TextBox ID="txtProductName" runat="server" CssClass="TextBox" Width="200"></asp:TextBox></td>
+                <td><asp:TextBox ID="txtProductName" runat="server" CssClass="TextBox" Width="200"></asp:TextBox>
+                    *<asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" 
+                        ControlToValidate="txtProductName" ErrorMessage="必填项"></asp:RequiredFieldValidator>
+                </td>
             </tr>
             <tr>
                 <td width="120" align="right">价格：</td>
-                <td><asp:TextBox ID="txtProductRawPrice" runat="server" CssClass="TextBox" Width="200"></asp:TextBox></td>
+                <td><asp:TextBox ID="txtProductRawPrice" runat="server" CssClass="TextBox" Width="200"></asp:TextBox>&nbsp;<asp:RegularExpressionValidator 
+                        ID="RegularExpressionValidator1" runat="server" 
+                        ControlToValidate="txtProductRawPrice" ErrorMessage="值不对" 
+                        ValidationExpression="\d"></asp:RegularExpressionValidator>
+                </td>
             </tr>
             <tr>
                 <td width="120" align="right">优惠价格：</td>
-                <td><asp:TextBox ID="txtProductPrice" runat="server" CssClass="TextBox" Width="200"></asp:TextBox></td>
+                <td><asp:TextBox ID="txtProductPrice" runat="server" CssClass="TextBox" Width="200"></asp:TextBox>
+                    <asp:RegularExpressionValidator ID="RegularExpressionValidator2" runat="server" 
+                        ControlToValidate="txtProductPrice" ErrorMessage="值不对" 
+                        ValidationExpression="\d"></asp:RegularExpressionValidator>
+                </td>
             </tr>
             <tr>
                 <td width="120" align="right">折扣：</td>
-                <td><asp:TextBox ID="txtProductDiscount" runat="server" CssClass="TextBox" Width="200"></asp:TextBox></td>
+                <td><asp:TextBox ID="txtProductDiscount" runat="server" CssClass="TextBox" Width="200"></asp:TextBox>
+                    <asp:RegularExpressionValidator ID="RegularExpressionValidator3" runat="server" 
+                        ControlToValidate="txtProductDiscount" ErrorMessage="值不对" 
+                        ValidationExpression="\d"></asp:RegularExpressionValidator>
+                </td>
             </tr>
             <tr>
                 <td width="120" align="right">关键字：</td>

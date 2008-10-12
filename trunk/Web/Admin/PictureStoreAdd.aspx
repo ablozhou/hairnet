@@ -22,6 +22,8 @@
                 </td>
                 <td>
                     <asp:TextBox ID="txtPictureStoreName" runat="server" CssClass="TextBox" Width="200"></asp:TextBox>
+                    *<asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" 
+                        ControlToValidate="txtPictureStoreName" ErrorMessage="必填项"></asp:RequiredFieldValidator>
                 </td>
             </tr>
             <tr>
@@ -56,7 +58,6 @@
                 <asp:CheckBoxList ID="chkFXList" RepeatColumns="8" RepeatDirection="Horizontal" runat="server"></asp:CheckBoxList>
                 </td>
             </tr>
-            <tr>
                 <table width="98%" border="0" cellpadding="0" cellspacing="0">
         <tr>
             <td width=120px align="right">发质: </td>

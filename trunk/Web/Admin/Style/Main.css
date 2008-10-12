@@ -34,16 +34,13 @@ a:active {
 }
 .TextBox
 {
-	width:100px; 
+	width:300px; 
 	height:18px; 
 	border:1px solid #999999; 
 	background-color:#ffffff; 
 	font-family:"宋体"; 
 	font-size:9pt; 
 	padding:2px 2px 0px 2px;
-}
-.btn {
- BORDER-RIGHT: #7b9ebd 1px solid; PADDING-RIGHT: 2px; BORDER-TOP: #7b9ebd 1px solid; PADDING-LEFT: 2px; FONT-SIZE: 12px; FILTER: progid:DXImageTransform.Microsoft.Gradient(GradientType=0, StartColorStr=#ffffff, EndColorStr=#cecfde); BORDER-LEFT: #7b9ebd 1px solid; CURSOR: hand; COLOR: black; PADDING-TOP: 2px; BORDER-BOTTOM: #7b9ebd 1px solid
 }
 .LogDiv
 {

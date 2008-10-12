@@ -61,5 +61,11 @@ namespace Web.Admin
                 StringHelper.AlertInfo("添加失败", this.Page);
             }
         }
+
+        protected void btnBack_Click(object sender, EventArgs e)
+        {
+            string id = this.Request.QueryString["id"].ToString();
+            Response.Redirect("PictureStoreGroupAdmin.aspx?id="+id,true);
+        }
     }
 }

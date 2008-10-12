@@ -34,6 +34,8 @@ window.location.href = "CouponManagement.aspx";
                 <td><asp:TextBox ID="tbCouponName" runat="server" CssClass="TextBox" Width="200"></asp:TextBox>
                     <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" 
                         ControlToValidate="tbCouponName" ErrorMessage="*"></asp:RequiredFieldValidator>
+                    <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" 
+                        ControlToValidate="tbCouponName" ErrorMessage="必填"></asp:RequiredFieldValidator>
                 </td>
             </tr>
             <tr>
@@ -43,7 +45,10 @@ window.location.href = "CouponManagement.aspx";
             <tr>
                 <td align="right" width="85px">优惠券折扣：</td>
                 <td><asp:TextBox ID="tbDiscount" runat="server" CssClass="TextBox" 
-                        Width="200"></asp:TextBox></td>
+                        Width="200"></asp:TextBox>
+                    <asp:RegularExpressionValidator ID="RegularExpressionValidator1" runat="server" 
+                        ControlToValidate="tbDiscount" ErrorMessage="值不对" ValidationExpression="\d"></asp:RegularExpressionValidator>
+                </td>
             </tr>
             <tr>
                 <td align="right" width="85px">优惠券有效期：</td>
