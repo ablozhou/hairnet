@@ -38,7 +38,6 @@
                     </ItemTemplate>
                 </asp:TemplateColumn>
                 <asp:BoundColumn DataField="PictureStoreHits" HeaderText="点击数"></asp:BoundColumn>
-                <asp:HyperLinkColumn DataNavigateUrlField="PictureStoreRawID" DataNavigateUrlFormatString="PictureStoreComments.aspx?id={0}" Target="_blank" Text="浏览评论"></asp:HyperLinkColumn>
                 <asp:HyperLinkColumn DataNavigateUrlField="PictureStoreRawID" DataNavigateUrlFormatString="PictureStoreDetails.aspx?id={0}" Target="_blank" Text="详细"></asp:HyperLinkColumn>
                 <asp:TemplateColumn>
                     <ItemTemplate>
