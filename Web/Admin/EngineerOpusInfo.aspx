@@ -21,6 +21,16 @@
                     ControlToValidate="txtOpusName" ErrorMessage="必填项"></asp:RequiredFieldValidator>
                     </td>
         </tr>
+            <tr>
+            <td width="120px" align="right">关键字: </td>
+            <td><asp:TextBox ID="txtKeywords" runat=server CssClass="TextBox" Width="300px"></asp:TextBox>
+                    </td>
+        </tr>
+            <tr>
+            <td width="120px" align="right">美发圈: </td>
+            <td><asp:TextBox ID="txtBbsurl" runat=server CssClass="TextBox" Width="300px"></asp:TextBox>
+                    </td>
+        </tr>
         <tr>
             <td align="right">正面小图片: </td>
             <td><asp:FileUpload ID="frontsidePicSmall" runat="server" Width="300" /><asp:Button ID="btn1Small" runat="server" OnClick="btn1Small_OnClick" Text="上传" /><asp:Label ID="lbl1Small" runat="server" Visible="false"></asp:Label></td>

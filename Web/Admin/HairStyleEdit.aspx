@@ -17,6 +17,15 @@
           <tr>
             <td width="120px" align="right">名称: </td>
             <td><asp:TextBox ID="txtOpusName" runat=server CssClass="TextBox" Width="300px"></asp:TextBox></td>
+        </tr>      <tr>
+            <td width="120px" align="right">关键字: </td>
+            <td><asp:TextBox ID="txtKeywords" runat=server CssClass="TextBox" Width="300px"></asp:TextBox>
+                    </td>
+        </tr>
+            <tr>
+            <td width="120px" align="right">美发圈: </td>
+            <td><asp:TextBox ID="txtBbsurl" runat=server CssClass="TextBox" Width="300px"></asp:TextBox>
+                    </td>
         </tr>
          <tr>
             <td align="right">正面小图片: </td>

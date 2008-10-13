@@ -130,11 +130,11 @@ namespace Web.Admin
             Byte iHairStyleClassName = Byte.Parse(this.ddlHairStyleClassName.SelectedItem.Value);
             Byte iTemperament = Byte.Parse(this.ddlTemperament.SelectedItem.Value);
             Byte iOccasion = Byte.Parse(this.ddlOccasion.SelectedItem.Value);
-
+            string bbsUrl = txtBbsurl.Text.Trim();
             int hairShopID = 0;
             int hairEngineerID = 0;
 
-            HairStyleEntity HairStyle = new HairStyleEntity(this.txtPictureStoreName.Text.Trim(), hairShopID, hairEngineerID, iHairStyleClassName, iFaceStyle, iTemperament, iOccasion, iSex, iHairNature,ps.PictureStoreID, this.txtPictureStoreDescription.Text.Trim(),PSGIDS,false,0);
+            HairStyleEntity HairStyle = new HairStyleEntity(this.txtPictureStoreName.Text.Trim(),iHairQuantity,bbsUrl, hairShopID, hairEngineerID, iHairStyleClassName, iFaceStyle, iTemperament, iOccasion, iSex, iHairNature,ps.PictureStoreID, this.txtPictureStoreDescription.Text.Trim(),PSGIDS,false,0);
 
             InfoAdmin.AddHairStyle(HairStyle);
 
