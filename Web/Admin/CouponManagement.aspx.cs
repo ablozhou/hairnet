@@ -12,6 +12,7 @@ using System.Web.UI.WebControls.WebParts;
 
 
 using HairNet.Business;
+using System.Data.SqlClient;
 
 namespace Web.Admin
 {
@@ -41,7 +42,46 @@ namespace Web.Admin
 
         protected void dg_DeleteCommand(object source, DataGridCommandEventArgs e)
         {
-            InfoAdmin.DeleteCoupon(dg.DataKeys[e.Item.ItemIndex].ToString());
+            string id = dg.DataKeys[e.Item.ItemIndex].ToString();
+            string hairshopid = "";
+
+            using (SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["MSSqlServer"].ToString()))
+            {
+                string commString = "select HairShopID from Coupon where ID=" + id;
+                using (SqlCommand comm = new SqlCommand())
+                {
+                    comm.Connection = conn;
+                    comm.CommandText = commString;
+                    conn.Open();
+
+                    try
+                    {
+                        hairshopid = comm.ExecuteScalar().ToString();
+                    }
+                    catch (Exception ex)
+                    { }
+                }
+            }
+
+            using (SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["MSSqlServer"].ToString()))
+            {
+                string commString = "update HairShop set CouponNum=CouponNum-1 where HairShopID="+hairshopid;
+                using (SqlCommand comm = new SqlCommand())
+                {
+                    comm.Connection = conn;
+                    comm.CommandText = commString;
+                    conn.Open();
+
+                    try
+                    {
+                        comm.ExecuteNonQuery(); 
+                    }
+                    catch (Exception ex)
+                    { }
+                }
+            }
+
+            InfoAdmin.DeleteCoupon(id);
             this.BindGridData();
         }
 

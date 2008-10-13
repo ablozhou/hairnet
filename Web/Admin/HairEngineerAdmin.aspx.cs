@@ -13,6 +13,8 @@ using HairNet.Entry;
 using HairNet.Business;
 using HairNet.Enumerations;
 using HairNet.Utilities;
+using HairNet.Provider;
+using System.Data.SqlClient;
 
 namespace Web.Admin
 {
@@ -231,6 +233,27 @@ namespace Web.Admin
                 if (e.CommandName == "delete")
                 {
                     int hairEngineerID = int.Parse(this.dg.DataKeys[e.Item.ItemIndex].ToString());
+
+                    HairEngineer he = ProviderFactory.GetHairEngineerDataProviderInstance().GetHairEngineerByHairEngineerID(hairEngineerID);
+
+                    using (SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["MSSqlServer"].ConnectionString))
+                    {
+                        string commString = "update HairShop set HairShopEngineerNum = HairShopEngineerNum-1 where HairShopID=" + he.HairShopID.ToString();
+                        using (SqlCommand comm = new SqlCommand())
+                        {
+                            comm.CommandText = commString;
+                            comm.Connection = conn;
+                            conn.Open();
+                            try
+                            {
+                                comm.ExecuteNonQuery();
+                            }
+                            catch (Exception ex)
+                            {
+                                throw new Exception(ex.Message);
+                            }
+                        }
+                    }
 
                     if (InfoAdmin.DeleteHairEngineer(hairEngineerID))
                     {

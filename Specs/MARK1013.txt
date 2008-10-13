@@ -1,19 +1,19 @@
 美发厅：（添加的时候）
-1.outLogs InnerLogs 上面两个什么意思（outlogs和innerlogs是为了存店内外图片id的）在添加图片的时候，要添加
+1.outLogs InnerLogs 上面两个什么意思（outlogs和innerlogs是为了存店内外图片id的）在添加图片的时候，要添加（OK）
 
-2.ConponNum我一会会修改添加优惠券的时候，更改这里
+2.ConponNum我一会会修改添加优惠券的时候，更改这里（OK）
 
-3.那个POSTID这个东西，需要知道康盛公司的数据库，具体往那里填写
+3.那个POSTID这个东西，需要知道康盛公司的数据库，具体往那里填写（等待接口）
 
 4. IsChainStore这个需要数据库里面做改动，回家用2000，默认是FALSE?(废弃字段)(OK)
 
 5. HairShopPictureStoreIDs,HairShopMainIDs,HairShopPartialIDs这三个，是废弃字段么？因为，现在美发师添加那里没有体现出，谁是谁的加盟，谁是谁的分店，这个是不是去掉了？(废弃字段)(OK)
 
-6. HairShopEngineerNum 这个数字显示不对，需要再添加美发师的时候，给相关的美发厅这个数字+1
+6. HairShopEngineerNum 这个数字显示不对，需要再添加美发师的时候，给相关的美发厅这个数字+1（OK）
 
-7. WorkRangeIDs 这个工作范围，也变了，WORKRANGE表已经废弃，我看了下页面，也没发现相关显示项
+7. WorkRangeIDs 这个工作范围，也变了，WORKRANGE表已经废弃，我看了下页面，也没发现相关显示项（废弃）（OK）
 
-8.TAG逻辑不对
+8.TAG逻辑不对（TAG问题，一起解决）
 
 美发厅修改（同上）
 
