@@ -141,7 +141,7 @@ namespace HairNet.Entry
         /// <param name="hairQuantity">hairQuantity</param>
         /// <param name="hairNature">hairNature</param>
         /// <param name="tag">tag</param>
-        public HairStyleEntity(string hairName, int hairShopID, int hairEngineerID, Byte hairStyle, Byte faceStyle, Byte temperament, Byte occasion, Byte sex, Byte hairNature, string idesc, string ppsgids,bool isHairStyle,int postID)
+        public HairStyleEntity(string hairName, int hairShopID, int hairEngineerID, Byte hairStyle, Byte faceStyle, Byte temperament, Byte occasion, Byte sex, Byte hairNature, Byte hq, string idesc, string ppsgids, bool isHairStyle, int postID)
         {
             this.hairName = hairName;
             this.hairShopID = hairShopID;
@@ -149,7 +149,7 @@ namespace HairNet.Entry
             this.hairStyle = hairStyle;
             this.faceStyle = faceStyle;
             this.hairQuantity = hairQuantity;
-            this.hairNature = hairNature;
+            this.hairNature = hq;
             this.temperament = temperament;
             this.occasion = occasion;
             this.sex = sex;

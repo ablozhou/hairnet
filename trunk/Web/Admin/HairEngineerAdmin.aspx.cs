@@ -257,7 +257,9 @@ namespace Web.Admin
                 Label lblRecommandRate = e.Item.FindControl("lblRecommandRate") as Label;
                 //Label lblCommentTotal = e.Item.FindControl("lblCommentTotal") as Label;
                 Label lblCommentRate = e.Item.FindControl("lblCommentRate") as Label;
+                Label lblAddOupsInfo = e.Item.FindControl("lblAddOupsInfo") as Label;
 
+                lblAddOupsInfo.Text = "<a href='EngineerOpusInfo.aspx?ENGINEERID="+hairEngineer.HairEngineerID.ToString()+"&shopid="+hairEngineer.HairShopID.ToString()+"' target='_self'>添加作品</a>";
 
                 ////推荐指数（点击数+好评评论数+我要推荐数）?美发师的预约数不应该计算在内么?
                 int recommandRate = hairEngineer.HairEngineerHits + hairEngineer.HairEngineerGood + hairEngineer.HairEngineerRecommandNum;

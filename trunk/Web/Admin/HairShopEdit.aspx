@@ -206,7 +206,7 @@
                     <asp:TextBox ID="tbSquare" runat="server" Width="200" CssClass="TextBox"></asp:TextBox>
                     平方米
                     <asp:RegularExpressionValidator ID="RegularExpressionValidator14" 
-                        runat="server" ControlToValidate="TextBox4" ErrorMessage="值不对" 
+                        runat="server" ControlToValidate="tbSquare" ErrorMessage="值不对" 
                         ValidationExpression="\d*"></asp:RegularExpressionValidator>
                 </td>
             </tr>
