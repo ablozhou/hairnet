@@ -19,7 +19,7 @@
 
 美发师: (添加的时候)
 1. HairEngineerPhoto这个字段已经废了
-2. HairEngineerPictureStoreIDs 美发师的作品ID集合，需要在添加作品的时候，注意+上ID
+2. HairEngineerPictureStoreIDs 美发师的作品ID集合，需要在添加作品的时候，注意+上ID(这个字段废弃)
 3. HairEngineerPhotoIDs 是添加用户个人照片的时候，的ID集合，需要添加照片的时候修改
 4. HairEngineerNormal这个中评字段，需要调整数据库的初始值0
 5. TAG的逻辑

@@ -159,9 +159,47 @@ namespace Web.Admin
 
             if (picPath != string.Empty)
             {
+                string photoIDs = "";
                 using (SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["MSSqlServer"].ConnectionString))
                 {
-                    string commString = "insert into enginpics(picurl,picsmallurl,ownerid,classid) values('" + picPath + "','"+picSmallPath+"'," + hairEngineerID + ",1)";
+                    string commString = "select HairEngineerPhotoIDs from HairEngineer where HairEngineerID="+hairEngineerID;
+                    using (SqlCommand comm = new SqlCommand())
+                    {
+                        comm.CommandText = commString;
+                        comm.Connection = conn;
+                        conn.Open();
+                        try
+                        {
+                            photoIDs =comm.ExecuteScalar().ToString();
+                        }
+                        catch (Exception ex)
+                        {
+                            throw new Exception(ex.Message);
+                        }
+                    }
+                }
+
+                using (SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["MSSqlServer"].ConnectionString))
+                {
+                    string commString = "insert into enginpics(picurl,picsmallurl,ownerid,classid) values('" + picPath + "','"+picSmallPath+"'," + hairEngineerID + ",1);select @@identity;";
+                    using (SqlCommand comm = new SqlCommand())
+                    {
+                        comm.CommandText = commString;
+                        comm.Connection = conn;
+                        conn.Open();
+                        try
+                        {
+                            photoIDs += "," + comm.ExecuteScalar().ToString();
+                        }
+                        catch (Exception ex)
+                        {
+                            throw new Exception(ex.Message);
+                        }
+                    }
+                }
+                using (SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["MSSqlServer"].ConnectionString))
+                {
+                    string commString = "update HairEngineer set HairEngineerPhotoIDs = '" + photoIDs + "' where HairEngineerID=" + hairEngineerID;
                     using (SqlCommand comm = new SqlCommand())
                     {
                         comm.CommandText = commString;
