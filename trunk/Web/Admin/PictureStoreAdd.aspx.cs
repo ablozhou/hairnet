@@ -185,7 +185,7 @@ namespace Web.Admin
                 {
                     using (SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["MSSqlServer"].ToString()))
                     {
-                        string commString = "insert into PictureStoreSet(PictureStoreId,PictureStoreURL,SmallPic,IsHairStyle,HairStylePos) values(" + ps.PictureStoreID.ToString() + ",'" + ppicString[k] + "','"+ppicSmallString[k]+"',0,0)";
+                        string commString = "insert into PictureStoreSet(PictureStoreId,PictureStoreURL,SmallPictureUrl,IsHairStyle,HairStylePos) values(" + ps.PictureStoreID.ToString() + ",'" + ppicString[k] + "','"+ppicSmallString[k]+"',0,0)";
                         using (SqlCommand comm = new SqlCommand())
                         {
                             comm.Connection = conn;

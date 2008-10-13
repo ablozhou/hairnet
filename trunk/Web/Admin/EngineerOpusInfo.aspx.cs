@@ -310,7 +310,7 @@ namespace Web.Admin
             //大图
             using (SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["MSSqlServer"].ToString()))
             {
-                string commString = "insert into PictureStoreSet(PictureStoreId,PictureStoreURL,IsHairStyle,HairStylePos,SmallPic) values(" + id + ",'" + newFrontFilePath + "',1,1,'"+frontFilePath+"')";
+                string commString = "insert into PictureStoreSet(PictureStoreId,PictureStoreURL,IsHairStyle,HairStylePos,SmallPictureUrl) values(" + id + ",'" + newFrontFilePath + "',1,1,'"+frontFilePath+"')";
                 using (SqlCommand comm = new SqlCommand())
                 {
                     comm.Connection = conn;
@@ -327,7 +327,7 @@ namespace Web.Admin
             }
             using (SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["MSSqlServer"].ToString()))
             {
-                string commString = "insert into PictureStoreSet(PictureStoreId,PictureStoreURL,IsHairStyle,HairStylePos,SmallPic) values(" + id + ",'" + newFlankFilePath + "',1,2,'"+flankFilePath+"')";
+                string commString = "insert into PictureStoreSet(PictureStoreId,PictureStoreURL,IsHairStyle,HairStylePos,SmallPictureUrl) values(" + id + ",'" + newFlankFilePath + "',1,2,'"+flankFilePath+"')";
                 using (SqlCommand comm = new SqlCommand())
                 {
                     comm.Connection = conn;
@@ -344,7 +344,7 @@ namespace Web.Admin
             }
             using (SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["MSSqlServer"].ToString()))
             {
-                string commString = "insert into PictureStoreSet(PictureStoreId,PictureStoreURL,IsHairStyle,HairStylePos,SmallPic) values(" + id + ",'" + newBackFilePath + "',1,3,'"+backFilePath+"')";
+                string commString = "insert into PictureStoreSet(PictureStoreId,PictureStoreURL,IsHairStyle,HairStylePos,SmallPictureUrl) values(" + id + ",'" + newBackFilePath + "',1,3,'"+backFilePath+"')";
                 using (SqlCommand comm = new SqlCommand())
                 {
                     comm.Connection = conn;
@@ -361,7 +361,7 @@ namespace Web.Admin
             }
             using (SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["MSSqlServer"].ToString()))
             {
-                string commString = "insert into PictureStoreSet(PictureStoreId,PictureStoreURL,IsHairStyle,HairStylePos,SmallPic) values(" + id + ",'" + newAssistanceFilePath + "',1,4,'"+assistanceFilePath+"')";
+                string commString = "insert into PictureStoreSet(PictureStoreId,PictureStoreURL,IsHairStyle,HairStylePos,SmallPictureUrl) values(" + id + ",'" + newAssistanceFilePath + "',1,4,'"+assistanceFilePath+"')";
                 using (SqlCommand comm = new SqlCommand())
                 {
                     comm.Connection = conn;
