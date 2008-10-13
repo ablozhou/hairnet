@@ -145,13 +145,14 @@ namespace Web.Admin
 
             Session["HairEngineerInfo"] = he;
             int id = InfoAdmin.AddHairEngineer(he);
+            string photoIDs = "";
             string[] photoSmallString = lblpicsmallString.Text.Split(";".ToCharArray());
             string[] photoString = lblpicSring.Text.Split(";".ToCharArray());
             for(int k=0;k<photoString.Length;k++)
             {
                 using (SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["MSSqlServer"].ConnectionString))
                 {
-                    string commString = "insert into enginpics(picurl,picsmallurl,ownerid,classid) values('" + photoString[k] + "','"+photoSmallString[k]+"'," + id.ToString() + ",1)";
+                    string commString = "insert into enginpics(picurl,picsmallurl,ownerid,classid) values('" + photoString[k] + "','"+photoSmallString[k]+"'," + id.ToString() + ",1);select @@identity;";
                     using (SqlCommand comm = new SqlCommand())
                     {
                         comm.CommandText = commString;
@@ -159,12 +160,30 @@ namespace Web.Admin
                         conn.Open();
                         try
                         {
-                            comm.ExecuteNonQuery();
+                            photoIDs += "," + comm.ExecuteScalar().ToString();
                         }
                         catch (Exception ex)
                         {
                             throw new Exception(ex.Message);
                         }
+                    }
+                }
+            }
+            using (SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["MSSqlServer"].ConnectionString))
+            {
+                string commString = "update HairEngineer set HairEngineerPhotoIDs = '"+photoIDs+"' where HairEngineerID=" + id.ToString();
+                using (SqlCommand comm = new SqlCommand())
+                {
+                    comm.CommandText = commString;
+                    comm.Connection = conn;
+                    conn.Open();
+                    try
+                    {
+                        comm.ExecuteNonQuery();
+                    }
+                    catch (Exception ex)
+                    {
+                        throw new Exception(ex.Message);
                     }
                 }
             }
