@@ -255,16 +255,14 @@ namespace Web.Admin
             try
             {
                 hairEngineerID = int.Parse(this.Request.QueryString["ENGINEERID"].ToString());
-            }
-            catch
-            { }
 
-            try
-            {
-                hairShopID = int.Parse(this.Request.QueryString["SHOPID"].ToString());
+                HairEngineer he = ProviderFactory.GetHairEngineerDataProviderInstance().GetHairEngineerByHairEngineerID(hairEngineerID);
+
+                hairShopID = he.HairShopID;
             }
             catch
             { }
+            
 
             //HairStyleEntity HairStyle = new HairStyleEntity(txtOpusName.Text.Trim(), newFrontFilePath, newFlankFilePath,
             //    newBackFilePath, newAssistanceFilePath, Byte.Parse(listHairStyle.SelectedValue), Byte.Parse(listFaceType.SelectedValue),

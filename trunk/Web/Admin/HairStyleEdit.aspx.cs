@@ -58,6 +58,7 @@ namespace Web.Admin
                                 this.txtOpusName.Text = sdr["hairname"].ToString();
                                 this.txtDesc.Text = sdr["descr"].ToString();
                                 picturestoregroupids = sdr["psgids"].ToString();
+                                this.lblEngineerID.Text = sdr["hairEngineerID"].ToString();
                             }
                         }
                     }
@@ -424,19 +425,14 @@ namespace Web.Admin
             int hairShopID = 0;
             int hairEngineerID = 0;
 
-            try
+            if(this.lblEngineerID.Text != "0")
             {
-                hairEngineerID = int.Parse(this.Request.QueryString["ENGINEERID"].ToString());
-            }
-            catch
-            { }
+                hairEngineerID = int.Parse(this.lblEngineerID.Text.ToString());
 
-            try
-            {
-                hairShopID = int.Parse(this.Request.QueryString["SHOPID"].ToString());
+                HairEngineer he = ProviderFactory.GetHairEngineerDataProviderInstance().GetHairEngineerByHairEngineerID(hairEngineerID);
+
+                hairShopID = he.HairShopID;
             }
-            catch
-            { }
 
             //HairStyleEntity HairStyle = new HairStyleEntity(txtOpusName.Text.Trim(), newFrontFilePath, newFlankFilePath,
             //    newBackFilePath, newAssistanceFilePath, Byte.Parse(listHairStyle.SelectedValue), Byte.Parse(listFaceType.SelectedValue),
