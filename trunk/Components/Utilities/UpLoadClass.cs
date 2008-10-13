@@ -192,40 +192,45 @@ namespace HairNet.Utilities
         public String UploadImageFile(FileUpload fileUpload, string path)
         {
             string FN = String.Empty;
-
+            int error = 0;
             try
             {
                 if (!fileUpload.HasFile || fileUpload.FileName.Length < 3)
                 {
                     HttpContext.Current.Response.Write("<script>alert('请先选择一个文件再点上传。');</script>");
+                    error = 1;
                 }
 
                 if (fileUpload.PostedFile.InputStream.Length > 10240000)
                 {
                     HttpContext.Current.Response.Write("<script>alert('文件大约10M，不能上传。');</script>");
+                    error = 1;
                 }
 
-                string name = fileUpload.PostedFile.FileName.Substring(fileUpload.PostedFile.FileName.LastIndexOf(@"\") + 1);
-                string pathSave = System.Web.HttpContext.Current.Server.MapPath(path); ;
+                if (error == 0)
+                {
+                    string name = fileUpload.PostedFile.FileName.Substring(fileUpload.PostedFile.FileName.LastIndexOf(@"\") + 1);
+                    string pathSave = System.Web.HttpContext.Current.Server.MapPath(path); ;
 
-                string y = DateTime.Now.Year.ToString();
-                string m = DateTime.Now.Month.ToString();
-                string d = DateTime.Now.Day.ToString();
-                string h = DateTime.Now.Hour.ToString();
-                string n = DateTime.Now.Minute.ToString();
-                string s = DateTime.Now.Second.ToString();
+                    string y = DateTime.Now.Year.ToString();
+                    string m = DateTime.Now.Month.ToString();
+                    string d = DateTime.Now.Day.ToString();
+                    string h = DateTime.Now.Hour.ToString();
+                    string n = DateTime.Now.Minute.ToString();
+                    string s = DateTime.Now.Second.ToString();
 
-                string filename = y + m + d + h + n + s;
-                FileOperate fileOpeater = new FileOperate();
-                fileOpeater.NewDirectory(pathSave, y, m, d);
+                    string filename = y + m + d + h + n + s;
+                    FileOperate fileOpeater = new FileOperate();
+                    fileOpeater.NewDirectory(pathSave, y, m, d);
 
-                Random r = new Random();
-                filename = y + "\\" + m + "\\" + d + "\\" + "images" + "\\" + filename + r.Next(100000000);
-                filename = filename + "." + name.Substring(name.Length - 3);
-                FN = pathSave + filename;
-                filename = pathSave + "\\" + filename;
+                    Random r = new Random();
+                    filename = y + "\\" + m + "\\" + d + "\\" + "images" + "\\" + filename + r.Next(100000000);
+                    filename = filename + "." + name.Substring(name.Length - 3);
+                    FN = pathSave + filename;
+                    filename = pathSave + "\\" + filename;
 
-                fileUpload.PostedFile.SaveAs(filename);
+                    fileUpload.PostedFile.SaveAs(filename);
+                }
             }
             catch (IOException ioEx)
             { throw ioEx; }
