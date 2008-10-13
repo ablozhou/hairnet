@@ -246,6 +246,8 @@ namespace Web.Admin
             Byte iHairStyleClassName = Byte.Parse(this.ddlHairStyleClassName.SelectedItem.Value);
             Byte iTemperament = Byte.Parse(this.ddlTemperament.SelectedItem.Value);
             Byte iOccasion = Byte.Parse(this.ddlOccasion.SelectedItem.Value);
+            string bbsUrl = txtBbsurl.Text.Trim();
+            string keywords = txtKeywords.Text.Trim();
 
             int hairShopID = 0;
             int hairEngineerID = 0;
@@ -268,7 +270,8 @@ namespace Web.Admin
             //    newBackFilePath, newAssistanceFilePath, Byte.Parse(listHairStyle.SelectedValue), Byte.Parse(listFaceType.SelectedValue),
             //    Byte.Parse(listHairType.SelectedValue), Byte.Parse(listHairItem.SelectedValue), txtDesc.Text.Trim());
 
-            HairStyleEntity HairStyle = new HairStyleEntity(txtOpusName.Text.Trim(),hairShopID,hairEngineerID, iHairStyleClassName,iFaceStyle,iTemperament,iOccasion,iSex,iHairNature,iHairQuantity, txtDesc.Text.Trim(),PSGIDS,true,0);
+            HairStyleEntity HairStyle = new HairStyleEntity(txtOpusName.Text.Trim(),iHairQuantity, bbsUrl,hairShopID, hairEngineerID, iHairStyleClassName, iFaceStyle, iTemperament, iOccasion, iSex, iHairNature, txtDesc.Text.Trim(), PSGIDS, true, 0);
+
 
             InfoAdmin.AddHairStyle(HairStyle);
             string id = "";
