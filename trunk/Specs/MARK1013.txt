@@ -18,15 +18,15 @@
 美发厅修改（同上）
 
 美发师: (添加的时候)
-1. HairEngineerPhoto这个字段已经废了
-2. HairEngineerPictureStoreIDs 美发师的作品ID集合，需要在添加作品的时候，注意+上ID(这个字段废弃)
-3. HairEngineerPhotoIDs 是添加用户个人照片的时候，的ID集合，需要添加照片的时候修改
-4. HairEngineerNormal这个中评字段，需要调整数据库的初始值0
+1. HairEngineerPhoto这个字段已经废了（OK）
+2. HairEngineerPictureStoreIDs 美发师的作品ID集合，需要在添加作品的时候，注意+上ID(这个字段废弃)(ok)
+3. HairEngineerPhotoIDs 是添加用户个人照片的时候，的ID集合，需要添加照片的时候修改(OK)
+4. HairEngineerNormal这个中评字段，需要调整数据库的初始值0(OK)
 5. TAG的逻辑
 
 美发师修改：(同上)
 
 添加作品
 1.hairShopid需要加上
-2.hairquantity需要加上
+2.hairquantity需要加上(OK)
 3.TAG的逻辑
