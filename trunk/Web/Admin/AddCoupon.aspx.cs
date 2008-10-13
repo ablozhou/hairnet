@@ -14,6 +14,7 @@ using System.Web.UI.WebControls.WebParts;
 using HairNet.Business;
 using HairNet.Entry;
 using HairNet.Utilities;
+using System.Data.SqlClient;
 
 namespace Web.Admin
 {
@@ -70,10 +71,32 @@ namespace Web.Admin
         {
             try
             {
-                Coupon CouponEntity = new Coupon(0, tbCouponName.Text.Trim(), Int32.Parse(ddlShopList.SelectedValue), tbDiscount.Text.Trim(),
+                Coupon CouponEntity = new Coupon(0, tbCouponName.Text.Trim(), Int32.Parse(ddlShopList.SelectedItem.Value), tbDiscount.Text.Trim(),
                     tbExpired.Text.Trim(), tbPhone.Text.Trim(), tbTag.Text.Trim(), tbDesc.Text.Trim(),this.img.ImageUrl.ToString(),0,this.imgSmall.ImageUrl.ToString());
 
                 InfoAdmin.AddCoupon(CouponEntity);
+
+                string couponID = "";
+
+                using (SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["MSSqlServer"].ConnectionString))
+                {
+                    string commString = "update HairShop set couponNum = couponNum +1 where HairShopID=" + this.ddlShopList.SelectedItem.Value;
+                    using (SqlCommand comm = new SqlCommand())
+                    {
+                        comm.CommandText = commString;
+                        comm.Connection = conn;
+                        conn.Open();
+                        try
+                        {
+                            comm.ExecuteNonQuery();
+                        }
+                        catch (Exception ex)
+                        {
+                            throw new Exception(ex.Message);
+                        }
+                    }
+                }
+
                 MessageObject.Show("数据添加成功!");
                 ResetControlState();
             }

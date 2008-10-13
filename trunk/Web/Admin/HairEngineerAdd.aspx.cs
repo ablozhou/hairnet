@@ -168,7 +168,24 @@ namespace Web.Admin
                     }
                 }
             }
-
+            using (SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["MSSqlServer"].ConnectionString))
+            {
+                string commString = "update HairShop set HairShopEngineerNum = HairShopEngineerNum+1 where HairShopID="+he.HairShopID.ToString();
+                using (SqlCommand comm = new SqlCommand())
+                {
+                    comm.CommandText = commString;
+                    comm.Connection = conn;
+                    conn.Open();
+                    try
+                    {
+                        comm.ExecuteNonQuery();
+                    }
+                    catch (Exception ex)
+                    {
+                        throw new Exception(ex.Message);
+                    }
+                }
+            }
             ResetControlState();
 
             this.Response.Redirect("HairEngineerAddSwitch.aspx?id="+id.ToString()+"&shopid="+this.ddlHairShop.SelectedItem.Value);

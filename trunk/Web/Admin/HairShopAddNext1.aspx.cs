@@ -56,11 +56,11 @@ namespace Web.Admin
                                 num++;
                                 if (num == 1)
                                 {
-                                    outString = "<img width=100 heigth=50 src='" + sdr["picsmallurl"].ToString() + "' />&nbsp;&nbsp;<img width=200 heigth=100 src='" + sdr["picurl"].ToString() + "' />&nbsp;&nbsp;<a href='hairshoppicoperate.aspx?id=" + sdr["id"].ToString() + "&hid=" + id.ToString() + "'>É¾³ý</a>";
+                                    outString = "<img width=100 heigth=50 src='" + sdr["picsmallurl"].ToString() + "' />&nbsp;&nbsp;<img width=200 heigth=100 src='" + sdr["picurl"].ToString() + "' />&nbsp;&nbsp;<a href='hairshoppicoperate.aspx?type=out&id=" + sdr["id"].ToString() + "&hid=" + id.ToString() + "'>É¾³ý</a>";
                                 }
                                 else
                                 {
-                                    outString += "&nbsp;&nbsp;<img width=100 heigth=50 src='" + sdr["picsmallurl"].ToString() + "' />&nbsp;&nbsp;<img width=200 heigth=100 src='" + sdr["picurl"].ToString() + "' />&nbsp;&nbsp;<a href='hairshoppicoperate.aspx?id=" + sdr["id"].ToString() + "&hid=" + id.ToString() + "'>É¾³ý</a>";
+                                    outString += "&nbsp;&nbsp;<img width=100 heigth=50 src='" + sdr["picsmallurl"].ToString() + "' />&nbsp;&nbsp;<img width=200 heigth=100 src='" + sdr["picurl"].ToString() + "' />&nbsp;&nbsp;<a href='hairshoppicoperate.aspx?type=out&id=" + sdr["id"].ToString() + "&hid=" + id.ToString() + "'>É¾³ý</a>";
                                 }
                             }
                         }
@@ -84,11 +84,11 @@ namespace Web.Admin
                                 num++;
                                 if (num == 1)
                                 {
-                                    innerString = "<img width=100 heigth=50 src='" + sdr["picsmallurl"].ToString() + "' />&nbsp;&nbsp;<img width=200 heigth=100 src='" + sdr["picurl"].ToString() + "' />&nbsp;&nbsp;<a href='hairshoppicoperate.aspx?id=" + sdr["id"].ToString() + "&hid=" + id.ToString() + "'>É¾³ý</a>";
+                                    innerString = "<img width=100 heigth=50 src='" + sdr["picsmallurl"].ToString() + "' />&nbsp;&nbsp;<img width=200 heigth=100 src='" + sdr["picurl"].ToString() + "' />&nbsp;&nbsp;<a href='hairshoppicoperate.aspx?type=inner&id=" + sdr["id"].ToString() + "&hid=" + id.ToString() + "'>É¾³ý</a>";
                                 }
                                 else
                                 {
-                                    innerString += "&nbsp;&nbsp;<img width=100 heigth=50 src='" + sdr["picsmallurl"].ToString() + "' />&nbsp;&nbsp;<img width=200 heigth=100 src='" + sdr["picurl"].ToString() + "' />&nbsp;&nbsp;<a href='hairshoppicoperate.aspx?id=" + sdr["id"].ToString() + "&hid=" + id.ToString() + "'>É¾³ý</a>";
+                                    innerString += "&nbsp;&nbsp;<img width=100 heigth=50 src='" + sdr["picsmallurl"].ToString() + "' />&nbsp;&nbsp;<img width=200 heigth=100 src='" + sdr["picurl"].ToString() + "' />&nbsp;&nbsp;<a href='hairshoppicoperate.aspx?type=inner&id=" + sdr["id"].ToString() + "&hid=" + id.ToString() + "'>É¾³ý</a>";
                                 }
                             }
                         }
@@ -118,10 +118,29 @@ namespace Web.Admin
             string outsmall1 = upload.UpLoadImg(outSmall, "/uploadfiles/pictures/");
             if (out1 != string.Empty)
             {
+                string outid = "";
                 //ÌüÍâÊÇ2,ÌüÄÚÊÇ1
                 using (SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["MSSqlServer"].ConnectionString))
                 {
-                    string commString = "insert into shoppics(picurl,picsmallurl,hairshopID,classid) values('" + out1 + "','"+outsmall1+"'," + id.ToString() + ",2)";
+                    string commString = "insert into shoppics(picurl,picsmallurl,hairshopID,classid) values('" + out1 + "','"+outsmall1+"'," + id.ToString() + ",2);select @@identity;";
+                    using (SqlCommand comm = new SqlCommand())
+                    {
+                        comm.CommandText = commString;
+                        comm.Connection = conn;
+                        conn.Open();
+                        try
+                        {
+                            outid = comm.ExecuteScalar().ToString(); 
+                        }
+                        catch (Exception ex)
+                        {
+                            throw new Exception(ex.Message);
+                        }
+                    }
+                }
+                using (SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["MSSqlServer"].ConnectionString))
+                {
+                    string commString = "update HairShop set OutLogs=OutLogs+'," + outid + "' where HairShopID=" + id;
                     using (SqlCommand comm = new SqlCommand())
                     {
                         comm.CommandText = commString;
@@ -137,7 +156,6 @@ namespace Web.Admin
                         }
                     }
                 }
-
                 if (Session["oo"] != null && Session["oo"].ToString() != string.Empty)
                 {
                     this.Response.Redirect("HairShopAddNext1.aspx?id=" + id.ToString()+"&update=update");
@@ -166,10 +184,29 @@ namespace Web.Admin
 
             if (inner1 != string.Empty)
             {
+                string innerid = "";
                 //ÌüÍâÊÇ2,ÌüÄÚÊÇ1
                 using (SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["MSSqlServer"].ConnectionString))
                 {
-                    string commString = "insert into shoppics(picurl,picsmallurl,hairshopID,classid) values('" + inner1 + "','"+innersmall1+"'," + id.ToString() + ",1)";
+                    string commString = "insert into shoppics(picurl,picsmallurl,hairshopID,classid) values('" + inner1 + "','"+innersmall1+"'," + id.ToString() + ",1);select @@identity;";
+                    using (SqlCommand comm = new SqlCommand())
+                    {
+                        comm.CommandText = commString;
+                        comm.Connection = conn;
+                        conn.Open();
+                        try
+                        {
+                            innerid = comm.ExecuteScalar().ToString();
+                        }
+                        catch (Exception ex)
+                        {
+                            throw new Exception(ex.Message);
+                        }
+                    }
+                }
+                using (SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["MSSqlServer"].ConnectionString))
+                {
+                    string commString = "update HairShop set innerLogs=innerLogs+'," + innerid + "' where HairShopID=" + this.Request.QueryString["id"].ToString();
                     using (SqlCommand comm = new SqlCommand())
                     {
                         comm.CommandText = commString;
