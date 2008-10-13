@@ -108,9 +108,9 @@ namespace Web.Admin
                                 {
                                     case "1":
                                         this.lbl1.Text = sdr["PictureStoreUrl"].ToString();
-                                        this.lbl1Small.Text = sdr["SmallPic"].ToString();
+                                        this.lbl1Small.Text = sdr["SmallPictureUrl"].ToString();
 
-                                        i1Small.ImageUrl = sdr["SmallPic"].ToString();
+                                        i1Small.ImageUrl = sdr["SmallPictureUrl"].ToString();
                                         i1Small.Visible = true;
 
                                         i1.ImageUrl = sdr["PictureStoreUrl"].ToString();
@@ -119,9 +119,9 @@ namespace Web.Admin
                                         break;
                                     case "2":
                                         this.lbl2.Text = sdr["PictureStoreUrl"].ToString();
-                                        this.lbl2Small.Text = sdr["SmallPic"].ToString();
+                                        this.lbl2Small.Text = sdr["SmallPictureUrl"].ToString();
 
-                                        i2Small.ImageUrl = sdr["SmallPic"].ToString();
+                                        i2Small.ImageUrl = sdr["SmallPictureUrl"].ToString();
                                         i2Small.Visible = true;
 
                                         i2.ImageUrl = sdr["PictureStoreUrl"].ToString();
@@ -130,9 +130,9 @@ namespace Web.Admin
                                         break;
                                     case "3":
                                         this.lbl3.Text = sdr["PictureStoreUrl"].ToString();
-                                        this.lbl3Small.Text = sdr["SmallPic"].ToString();
+                                        this.lbl3Small.Text = sdr["SmallPictureUrl"].ToString();
 
-                                        i3Small.ImageUrl = sdr["SmallPic"].ToString();
+                                        i3Small.ImageUrl = sdr["SmallPictureUrl"].ToString();
                                         i3Small.Visible = true;
 
                                         i3.ImageUrl = sdr["PictureStoreUrl"].ToString();
@@ -141,9 +141,9 @@ namespace Web.Admin
                                         break;
                                     case "4":
                                         this.lbl4.Text = sdr["PictureStoreUrl"].ToString();
-                                        this.lbl4Small.Text = sdr["SmallPic"].ToString();
+                                        this.lbl4Small.Text = sdr["SmallPictureUrl"].ToString();
 
-                                        i4Small.ImageUrl = sdr["SmallPic"].ToString();
+                                        i4Small.ImageUrl = sdr["SmallPictureUrl"].ToString();
                                         i4Small.Visible = true;
 
                                         i4.ImageUrl = sdr["PictureStoreUrl"].ToString();
@@ -469,7 +469,7 @@ namespace Web.Admin
             //大图
             using (SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["MSSqlServer"].ToString()))
             {
-                string commString = "update PictureStoreSet set SmallPic='"+frontFilePath+"', PictureStoreURL = '"+newFrontFilePath+"' where ID=" + this.l1.Text.ToString();
+                string commString = "update PictureStoreSet set SmallPictureUrl='"+frontFilePath+"', PictureStoreURL = '"+newFrontFilePath+"' where ID=" + this.l1.Text.ToString();
                 using (SqlCommand comm = new SqlCommand())
                 {
                     comm.Connection = conn;
@@ -486,7 +486,7 @@ namespace Web.Admin
             }
             using (SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["MSSqlServer"].ToString()))
             {
-                string commString = "update PictureStoreSet set SmallPic='"+flankFilePath+"', PictureStoreURL = '"+newFlankFilePath+"' where ID=" + this.l2.Text.ToString();
+                string commString = "update PictureStoreSet set SmallPictureUrl='"+flankFilePath+"', PictureStoreURL = '"+newFlankFilePath+"' where ID=" + this.l2.Text.ToString();
                 using (SqlCommand comm = new SqlCommand())
                 {
                     comm.Connection = conn;
@@ -503,7 +503,7 @@ namespace Web.Admin
             }
             using (SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["MSSqlServer"].ToString()))
             {
-                string commString = "update PictureStoreSet set SmallPic='"+backFilePath+"', PictureStoreURL = '"+newBackFilePath+"' where ID=" + this.l3.Text.ToString();
+                string commString = "update PictureStoreSet set SmallPictureUrl='"+backFilePath+"', PictureStoreURL = '"+newBackFilePath+"' where ID=" + this.l3.Text.ToString();
                 using (SqlCommand comm = new SqlCommand())
                 {
                     comm.Connection = conn;
@@ -520,7 +520,7 @@ namespace Web.Admin
             }
             using (SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["MSSqlServer"].ToString()))
             {
-                string commString = "update PictureStoreSet set SmallPic='"+assistanceFilePath+"', PictureStoreURL = '"+newAssistanceFilePath+"' where ID=" + this.l4.Text.ToString();
+                string commString = "update PictureStoreSet set SmallPictureUrl='"+assistanceFilePath+"', PictureStoreURL = '"+newAssistanceFilePath+"' where ID=" + this.l4.Text.ToString();
                 using (SqlCommand comm = new SqlCommand())
                 {
                     comm.Connection = conn;
