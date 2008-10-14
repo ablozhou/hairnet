@@ -16,7 +16,7 @@ namespace HairNet.Provider
         private const string SQL_COUPONPARMCACHE = "COUPONPARMCACHE";
 
         /// <summary>
-        /// 美发厅
+        /// 美发厅,老的，废弃了
         /// </summary>
         /// <param name="hairShop"></param>
         /// <param name="ua"></param>
@@ -28,7 +28,10 @@ namespace HairNet.Provider
             switch (ua)
             {
                 case UserAction.Create:
-                    commandText = "insert into HairShop(HairShopName,HairShopCityID,HairShopMapZoneID,HairShopHotZoneID,HairShopAddress,HairShopPhoneNum,HairShopPictureStoreIDs,HairShopMainIDs,HairShopPartialIDs,HairShopEngineerNum,HairShopOpenTime,WorkRangeIDs,HairShopWebSite,HairShopEmail,HairShopDiscount,HairShopLogo,HairShopCreateTime,HairShopDescription,ProductIDs,HairShopTagIDs,HairShopShortName,IsBest,IsJoin,TypeID,IsPostStation,IsPostMachine) values('" 
+                    commandText = "insert into HairShop(HairShopName,HairShopCityID,HairShopMapZoneID,HairShopHotZoneID,HairShopAddress,HairShopPhoneNum,HairShopPictureStoreIDs,"+
+                        "HairShopMainIDs,HairShopPartialIDs,HairShopEngineerNum,HairShopOpenTime,WorkRangeIDs,HairShopWebSite,HairShopEmail,"+
+                        "HairShopDiscount,HairShopLogo,HairShopCreateTime,HairShopDescription,ProductIDs,HairShopTagIDs,HairShopShortName,"+
+                        "IsBest,IsJoin,TypeID,IsPostStation,IsPostMachine) values('" 
                         + hairShop.HairShopName + 
                         "'," + hairShop.HairShopCityID.ToString() + 
                         "," + hairShop.HairShopMapZoneID.ToString() + 
@@ -60,7 +63,16 @@ namespace HairNet.Provider
                     commandText = "delete from HairShop where HairShopID="+hairShop.HairShopID.ToString();
                     break;
                 case UserAction.Update:
-                    commandText = "update HairShop set HairShopName='" + hairShop.HairShopName + "',HairShopCityID=" + hairShop.HairShopCityID.ToString() + ",HairShopMapZoneID=" + hairShop.HairShopMapZoneID.ToString() + ",HairShopHotZoneID=" + hairShop.HairShopHotZoneID.ToString() + ",HairShopAddress='" + hairShop.HairShopAddress + "',HairShopPhoneNum='" + hairShop.HairShopPhoneNum + "',HairShopPictureStoreIDs='" + hairShop.HairShopPictureStoreIDs + "',HairShopMainIDs='" + hairShop.HairShopMainIDs + "',HairShopPartialIDs='" + hairShop.HairShopPartialIDs + "',HairShopEngineerNum=" + hairShop.HairShopEngineerNum.ToString() + ",HairShopOpenTime='" + hairShop.HairShopOpenTime + "',WorkRangeIDs='" + hairShop.WorkRangeIDs + "',HairShopWebSite='" + hairShop.HairShopWebSite + "',HairShopEmail='" + hairShop.HairShopEmail + "',HairShopDiscount='" + hairShop.HairShopDiscount + "',HairShopLogo='" + hairShop.HairShopLogo + "',HairShopCreateTime='" + hairShop.HairShopCreateTime + "',HairShopDescription='" + hairShop.HairShopDescription + "',ProductIDs='" + hairShop.ProductIDs + "',HairShopTagIDs='" + hairShop.HairShopTagIDs + "',HairShopShortName='" + hairShop.HairShopShortName + "',IsBest=" + hairShop.IsBest.CompareTo(false).ToString() + ",IsJoin=" + hairShop.IsJoin.CompareTo(false).ToString() + ",TypeID=" + hairShop.TypeID.ToString() + ",IsPostStation=" + hairShop.IsPostStation.CompareTo(false).ToString() + ",IsPostMachine=" + hairShop.IsPostMachine.CompareTo(false).ToString() + " where HairShopID = " + hairShop.HairShopID.ToString();
+                    commandText = "update HairShop set HairShopName='" + hairShop.HairShopName + "',HairShopCityID=" + hairShop.HairShopCityID.ToString() +
+                        ",HairShopMapZoneID=" + hairShop.HairShopMapZoneID.ToString() + ",HairShopHotZoneID=" + hairShop.HairShopHotZoneID.ToString() + 
+                        ",HairShopAddress='" + hairShop.HairShopAddress + "',HairShopPhoneNum='" + hairShop.HairShopPhoneNum + "',HairShopPictureStoreIDs='" + 
+                        hairShop.HairShopPictureStoreIDs + "',HairShopMainIDs='" + hairShop.HairShopMainIDs + "',HairShopPartialIDs='" + hairShop.HairShopPartialIDs +
+                        "',HairShopEngineerNum=" + hairShop.HairShopEngineerNum.ToString() + ",HairShopOpenTime='" + hairShop.HairShopOpenTime + 
+                        "',WorkRangeIDs='" + hairShop.WorkRangeIDs + "',HairShopWebSite='" + hairShop.HairShopWebSite + "',HairShopEmail='" + 
+                        hairShop.HairShopEmail + "',HairShopDiscount='" + hairShop.HairShopDiscount + "',HairShopLogo='" + hairShop.HairShopLogo + 
+                        "',HairShopCreateTime='" + hairShop.HairShopCreateTime + "',HairShopDescription='" + hairShop.HairShopDescription +
+                        "',ProductIDs='" + hairShop.ProductIDs + "',HairShopTagIDs='" + hairShop.HairShopTagIDs + "',HairShopShortName='" +
+                        hairShop.HairShopShortName + "',IsBest=" + hairShop.IsBest.CompareTo(false).ToString() + ",IsJoin=" + hairShop.IsJoin.CompareTo(false).ToString() + ",TypeID=" + hairShop.TypeID.ToString() + ",IsPostStation=" + hairShop.IsPostStation.CompareTo(false).ToString() + ",IsPostMachine=" + hairShop.IsPostMachine.CompareTo(false).ToString() + " where HairShopID = " + hairShop.HairShopID.ToString();
                     break;
             }
             using (SqlConnection conn = new SqlConnection(DataHelper2.SqlConnectionString))
