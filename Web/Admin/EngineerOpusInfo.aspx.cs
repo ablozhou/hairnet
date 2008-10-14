@@ -286,6 +286,111 @@ namespace Web.Admin
                 }
             }
 
+            //TAG逻辑
+
+            string tagIDs = "";
+            string[] tagCollection = txtKeywords.Text.Split(";".ToCharArray());
+            for (int k = 0; k < tagCollection.Length; k++)
+            {
+                string tagID = "";
+                bool isExist = false;
+                PictureStoreTag hst = new PictureStoreTag();
+                using (SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["MSSqlServer"].ConnectionString))
+                {
+                    string commString = "select * from PictureStoreTag where PictureStoreTagName='" + tagCollection[k] + "'";
+                    using (SqlCommand comm = new SqlCommand())
+                    {
+                        comm.CommandText = commString;
+                        comm.Connection = conn;
+                        conn.Open();
+                        using (SqlDataReader sdr = comm.ExecuteReader())
+                        {
+                            if (sdr.Read())
+                            {
+                                try
+                                {
+                                    hst.TagID = int.Parse(sdr["PictureStoreTagID"].ToString());
+                                    hst.TagName = sdr["PictureStoreTagName"].ToString();
+                                    hst.PictureStoreIDs = sdr["PictureStoreIDs"].ToString();
+                                }
+                                catch
+                                { }
+                            }
+                        }
+                    }
+                }
+                if (hst.TagID == 0)
+                {
+                    using (SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["MSSqlServer"].ConnectionString))
+                    {
+                        string commString = "insert PictureStoreTag(PictureStoreTagName,PictureStoreIDs) values('" + tagCollection[k] + "','" + id + "');select @@identity;";
+                        using (SqlCommand comm = new SqlCommand())
+                        {
+                            comm.CommandText = commString;
+                            comm.Connection = conn;
+                            conn.Open();
+
+                            tagID = comm.ExecuteScalar().ToString();
+                        }
+                    }
+                }
+                else
+                {
+                    tagID = hst.TagID.ToString();
+                    if (hst.PictureStoreIDs == string.Empty)
+                    {
+                        using (SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["MSSqlServer"].ConnectionString))
+                        {
+                            string commString = "update PictureStoreTag set PictureStoreIDs='" + id + "' where PictureStoreTagID=" + hst.TagID.ToString();
+                            using (SqlCommand comm = new SqlCommand())
+                            {
+                                comm.CommandText = commString;
+                                comm.Connection = conn;
+                                conn.Open();
+                                try
+                                {
+                                    comm.ExecuteNonQuery();
+                                }
+                                catch
+                                { }
+                            }
+                        }
+                    }
+                    else
+                    {
+                        using (SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["MSSqlServer"].ConnectionString))
+                        {
+                            string commString = "update PictureStoreTag set PictureStoreIDs=PictureStoreIDs+'," + id + "' where PictureStoreTagID=" + hst.TagID.ToString();
+                            using (SqlCommand comm = new SqlCommand())
+                            {
+                                comm.CommandText = commString;
+                                comm.Connection = conn;
+                                conn.Open();
+                                try
+                                {
+                                    comm.ExecuteNonQuery();
+                                }
+                                catch
+                                { }
+                            }
+                        }
+                    }
+                }
+                if (k == 0)
+                {
+                    tagIDs = tagID;
+                }
+                else
+                {
+                    tagIDs += "," + tagID;
+                }
+            }
+            HairStyleEntity HairStyle1 = new HairStyleEntity(int.Parse(id),tagIDs,txtOpusName.Text.Trim(), iHairQuantity, bbsUrl, hairShopID, hairEngineerID, iHairStyleClassName, iFaceStyle, iTemperament, iOccasion, iSex, iHairNature, txtDesc.Text.Trim(), PSGIDS, true, 0);
+
+            InfoAdmin.UpdateHairStyle(HairStyle1);
+
+            //
+
             string[] PPSGCollection = PSGIDS.Split(",".ToCharArray());
             foreach (string s in PPSGCollection)
             {

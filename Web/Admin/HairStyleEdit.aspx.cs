@@ -35,6 +35,7 @@ namespace Web.Admin
                 BindControlData();
                 string id = this.Request.QueryString["id"].ToString();
                 string picturestoregroupids = string.Empty;
+                string hairStyleTagIDs = "";
                 using (SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["MSSqlServer"].ToString()))
                 {
                     string commString = "select * from hairstyle where id="+id;
@@ -48,6 +49,7 @@ namespace Web.Admin
                         {
                             if (sdr.Read())
                             {
+                                hairStyleTagIDs = sdr["tag"].ToString();
                                 this.ddlFaceStyle.SelectedValue = sdr["facestyle"].ToString();
                                 this.ddlHairNature.SelectedValue = sdr["hairnature"].ToString();
                                 this.ddlHairQuantity.SelectedValue = sdr["hairquantity"].ToString();
@@ -63,6 +65,52 @@ namespace Web.Admin
                         }
                     }
                 }
+                //tag逻辑
+                if (hairStyleTagIDs != string.Empty)
+                {
+                    string[] tempTagC = hairStyleTagIDs.Split(",".ToCharArray());
+                    for (int k = 0; k < tempTagC.Length; k++)
+                    {
+                        PictureStoreTag hst = new PictureStoreTag();
+                        using (SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["MSSqlServer"].ConnectionString))
+                        {
+                            string commString = "select * from PictureStoreTag where PictureStoreTagID=" + tempTagC[k];
+                            using (SqlCommand comm = new SqlCommand())
+                            {
+                                comm.CommandText = commString;
+                                comm.Connection = conn;
+                                conn.Open();
+                                using (SqlDataReader sdr = comm.ExecuteReader())
+                                {
+                                    if (sdr.Read())
+                                    {
+                                        try
+                                        {
+                                            hst.TagID = int.Parse(sdr["PictureStoreTagID"].ToString());
+                                            hst.TagName = sdr["PictureStoreTagName"].ToString();
+                                            hst.PictureStoreIDs = sdr["PictureStoreIDs"].ToString();
+                                        }
+                                        catch
+                                        { }
+                                    }
+                                }
+                            }
+                        }
+
+                        if (k == 0)
+                        {
+                            this.txtKeywords.Text = hst.TagName;
+                        }
+                        else
+                        {
+                            this.txtKeywords.Text += ";" + hst.TagName;
+                        }
+                    }
+                }
+
+
+                //
+
                 ViewState["psgids"] = picturestoregroupids;
                 string[] PSGIDSCollection = picturestoregroupids.Split(",".ToCharArray());
                 foreach (string ss in PSGIDSCollection)
@@ -357,6 +405,96 @@ namespace Web.Admin
 
             string hstyleid = id.ToString();
 
+            //tag
+            string hairStyleTagIDs = "";
+            using (SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["MSSqlServer"].ToString()))
+            {
+                string commString = "select id,tag from hairstyle where id =" + hstyleid;
+                using (SqlCommand comm = new SqlCommand())
+                {
+                    comm.Connection = conn;
+                    comm.CommandText = commString;
+                    conn.Open();
+                    using (SqlDataReader sdr = comm.ExecuteReader())
+                    {
+                        if (sdr.Read())
+                        {
+                            hairStyleTagIDs = sdr["tag"].ToString();
+                        }
+                    }
+                }
+            }
+            //先处理TAG逻辑，先删除HS所对应的所有TAG
+            if (hairStyleTagIDs != string.Empty)
+            {
+                string[] tempTagC = hairStyleTagIDs.Split(",".ToCharArray());
+                for (int k = 0; k < tempTagC.Length; k++)
+                {
+                    PictureStoreTag hst = new PictureStoreTag();
+                    using (SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["MSSqlServer"].ConnectionString))
+                    {
+                        string commString = "select * from PictureStoreTag where PictureStoreTagID=" + tempTagC[k];
+                        using (SqlCommand comm = new SqlCommand())
+                        {
+                            comm.CommandText = commString;
+                            comm.Connection = conn;
+                            conn.Open();
+                            using (SqlDataReader sdr = comm.ExecuteReader())
+                            {
+                                if (sdr.Read())
+                                {
+                                    try
+                                    {
+                                        hst.TagID = int.Parse(sdr["PictureStoreTagID"].ToString());
+                                        hst.TagName = sdr["PictureStoreTagName"].ToString();
+                                        hst.PictureStoreIDs = sdr["PictureStoreIDs"].ToString();
+                                    }
+                                    catch
+                                    { }
+                                }
+                            }
+                        }
+                    }
+                    string[] tempPictureStoreIDC = hst.PictureStoreIDs.Split(",".ToCharArray());
+                    string pictureStoreIDs = "";
+
+                    int tempNum = 0;
+                    for (int i = 0; i < tempPictureStoreIDC.Length; i++)
+                    {
+                        if (tempPictureStoreIDC[i] != hstyleid.ToString())
+                        {
+                            tempNum++;
+                            if (tempNum == 1)
+                            {
+                                pictureStoreIDs = tempPictureStoreIDC[i];
+                            }
+                            else
+                            {
+                                pictureStoreIDs += "," + tempPictureStoreIDC[i];
+                            }
+                        }
+                    }
+                    using (SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["MSSqlServer"].ConnectionString))
+                    {
+                        string commString = "update PictureStoreTag set PictureStoreIDs='" + pictureStoreIDs + "' where PictureStoreTagID=" + hst.TagID.ToString();
+                        using (SqlCommand comm = new SqlCommand())
+                        {
+                            comm.CommandText = commString;
+                            comm.Connection = conn;
+                            conn.Open();
+                            try
+                            {
+                                comm.ExecuteNonQuery();
+                            }
+                            catch
+                            { }
+                        }
+                    }
+                }
+            }
+
+            //
+
             string[] PSGIDSCollection1 = ViewState["psgids"].ToString().Split(",".ToCharArray());
             foreach (string sso in PSGIDSCollection1)
             {
@@ -434,11 +572,115 @@ namespace Web.Admin
                 hairShopID = he.HairShopID;
             }
 
+            //tag逻辑
+
+            //tag逻辑
+            string tagIDs = "";
+            string[] tagCollection = txtKeywords.Text.Split(";".ToCharArray());
+            for (int k = 0; k < tagCollection.Length; k++)
+            {
+                string tagID = "";
+                bool isExist = false;
+                PictureStoreTag hst = new PictureStoreTag();
+                using (SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["MSSqlServer"].ConnectionString))
+                {
+                    string commString = "select * from PictureStoreTag where PictureStoreTagName='" + tagCollection[k] + "'";
+                    using (SqlCommand comm = new SqlCommand())
+                    {
+                        comm.CommandText = commString;
+                        comm.Connection = conn;
+                        conn.Open();
+                        using (SqlDataReader sdr = comm.ExecuteReader())
+                        {
+                            if (sdr.Read())
+                            {
+                                try
+                                {
+                                    hst.TagID = int.Parse(sdr["PictureStoreTagID"].ToString());
+                                    hst.TagName = sdr["PictureStoreTagName"].ToString();
+                                    hst.PictureStoreIDs = sdr["PictureStoreIDs"].ToString();
+                                }
+                                catch
+                                { }
+                            }
+                        }
+                    }
+                }
+                if (hst.TagID == 0)
+                {
+                    using (SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["MSSqlServer"].ConnectionString))
+                    {
+                        string commString = "insert PictureStoreTag(PictureStoreTagName,PictureStoreIDs) values('" + tagCollection[k] + "','" + hstyleid.ToString() + "');select @@identity;";
+                        using (SqlCommand comm = new SqlCommand())
+                        {
+                            comm.CommandText = commString;
+                            comm.Connection = conn;
+                            conn.Open();
+
+                            tagID = comm.ExecuteScalar().ToString();
+                        }
+                    }
+                }
+                else
+                {
+                    tagID = hst.TagID.ToString();
+                    if (hst.PictureStoreIDs == string.Empty)
+                    {
+                        using (SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["MSSqlServer"].ConnectionString))
+                        {
+                            string commString = "update PictureStoreTag set PictureStoreIDs='" + hstyleid.ToString() + "' where PictureStoreTagID=" + hst.TagID.ToString();
+                            using (SqlCommand comm = new SqlCommand())
+                            {
+                                comm.CommandText = commString;
+                                comm.Connection = conn;
+                                conn.Open();
+                                try
+                                {
+                                    comm.ExecuteNonQuery();
+                                }
+                                catch
+                                { }
+                            }
+                        }
+                    }
+                    else
+                    {
+                        using (SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["MSSqlServer"].ConnectionString))
+                        {
+                            string commString = "update PictureStoreTag set PictureStoreIDs=PictureStoreIDs+'," + hstyleid.ToString() + "' where PictureStoreTagID=" + hst.TagID.ToString();
+                            using (SqlCommand comm = new SqlCommand())
+                            {
+                                comm.CommandText = commString;
+                                comm.Connection = conn;
+                                conn.Open();
+                                try
+                                {
+                                    comm.ExecuteNonQuery();
+                                }
+                                catch
+                                { }
+                            }
+                        }
+                    }
+                }
+                if (k == 0)
+                {
+                    tagIDs = tagID;
+                }
+                else
+                {
+                    tagIDs += "," + tagID;
+                }
+            }
+            //
+
+            //
+
             //HairStyleEntity HairStyle = new HairStyleEntity(txtOpusName.Text.Trim(), newFrontFilePath, newFlankFilePath,
             //    newBackFilePath, newAssistanceFilePath, Byte.Parse(listHairStyle.SelectedValue), Byte.Parse(listFaceType.SelectedValue),
             //    Byte.Parse(listHairType.SelectedValue), Byte.Parse(listHairItem.SelectedValue), txtDesc.Text.Trim());
 
-            HairStyleEntity HairStyle = new HairStyleEntity(id,iHairQuantity,bbsUrl,txtOpusName.Text.Trim(), hairShopID, hairEngineerID, iHairStyleClassName, iFaceStyle, iTemperament, iOccasion, iSex, iHairNature, txtDesc.Text.Trim(),PSGIDS,true,0);
+            HairStyleEntity HairStyle = new HairStyleEntity(tagIDs,id,iHairQuantity,bbsUrl,txtOpusName.Text.Trim(), hairShopID, hairEngineerID, iHairStyleClassName, iFaceStyle, iTemperament, iOccasion, iSex, iHairNature, txtDesc.Text.Trim(),PSGIDS,true,0);
 
             ProviderFactory.GetHairEngineerDataProviderInstance().HairStyleCreateDeleteUpdate(HairStyle,UserAction.Update);
 
