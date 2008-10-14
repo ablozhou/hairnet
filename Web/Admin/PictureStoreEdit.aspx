@@ -31,7 +31,15 @@
                     <asp:TextBox ID="txtPictureStoreTag" runat="server" CssClass="TextBox" Width="200"></asp:TextBox>
                 </td>
             </tr>
-            <tr>
+             <tr>
+                <td width="120" align="right">
+                    美发圈：
+                </td>
+                <td>
+                    <asp:TextBox ID="txtBbsurl" runat="server" CssClass="TextBox" Width="200"></asp:TextBox>
+                </td>
+            </tr>
+              <tr>
                 <td width="120" align="right">
                     街拍：
                 </td>
