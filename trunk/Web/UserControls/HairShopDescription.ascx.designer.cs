@@ -18,5 +18,41 @@ namespace Web.UserControls {
     /// 自动生成的类。
     /// </remarks>
     public partial class HairShopDescription {
+        
+        /// <summary>
+        /// lblHairShopName 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblHairShopName;
+        
+        /// <summary>
+        /// lblHairShopDescription 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblHairShopDescription;
+        
+        /// <summary>
+        /// lblHairEngineerDescription 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblHairEngineerDescription;
+        
+        /// <summary>
+        /// lblMemberInfo 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblMemberInfo;
     }
 }

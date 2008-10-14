@@ -102,7 +102,7 @@ namespace Web.UserControls
             }
             using (SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["MSSqlServer"].ConnectionString))
             {
-                string commString = "insert into subsemail(email,shopid,classid,descr) values('"+email+"',"+this.HairShopID.ToString()+",1,'订阅')";
+                string commString = "insert into subsemail(email,shopid,classid,descr) values('" + email + "'," + this.HairShopID.ToString() + ",1,'订阅')";
                 using (SqlCommand comm = new SqlCommand())
                 {
                     comm.CommandText = commString;
@@ -119,7 +119,6 @@ namespace Web.UserControls
                 }
             }
             StringHelper.AlertInfo("订购成功", this.Page);
-            return;
         }
     }
 }

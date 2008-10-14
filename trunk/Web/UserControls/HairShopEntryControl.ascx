@@ -77,7 +77,7 @@
 	  <table width="360" border="0" align="center" cellpadding="0" cellspacing="0">
         <tr>
           <td width="53%" align="left"><input type="text" runat="server" id="txtCouponEmail" /></td>
-          <td width="47%" align="left"><asp:ImageButton ID="imgBtnCouponSubmit" OnClick="imgBtnCouponSubmit_OnClick" runat="server" Width="38" Height="21"  ImageUrl="../Theme/images/fair-mft24.gif" /></td>
+          <td width="47%" align="left"><asp:ImageButton style="z-index: 1002;" ID="imgBtnCouponSubmit" OnClick="imgBtnCouponSubmit_OnClick" runat="server" Width="38" Height="21"  ImageUrl="../Theme/images/fair-mft24.gif" /></td>
         </tr>
       </table>
       </asp:Panel>
