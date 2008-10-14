@@ -79,7 +79,7 @@ namespace Web.Admin
                     }
                     else
                     {
-                        this.txtHairEngineerTag.Text += ";" + hst.TagName;
+                        this.txtHairEngineerTag.Text += "," + hst.TagName;
                     }
                 }
             }
@@ -255,7 +255,7 @@ namespace Web.Admin
             //tag逻辑
             string id = he.HairEngineerID.ToString();
             string tagIDs = "";
-            string[] tagCollection = txtHairEngineerTag.Text.Split(";".ToCharArray());
+            string[] tagCollection = txtHairEngineerTag.Text.Split(",".ToCharArray());
             for (int k = 0; k < tagCollection.Length; k++)
             {
                 string tagID = "";

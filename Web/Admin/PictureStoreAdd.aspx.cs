@@ -154,7 +154,7 @@ namespace Web.Admin
 
             //tag逻辑
             string tagIDs = "";
-            string[] tagCollection = txtPictureStoreTag.Text.Split(";".ToCharArray());
+            string[] tagCollection = txtPictureStoreTag.Text.Split(",".ToCharArray());
             for (int k = 0; k < tagCollection.Length; k++)
             {
                 string tagID = "";

@@ -105,7 +105,7 @@ namespace Web.Admin
                     }
                     else
                     {
-                        this.txtHairShopTag.Text += ";" + hst.TagName;
+                        this.txtHairShopTag.Text += "," + hst.TagName;
                     }
                 }
             }
@@ -390,7 +390,7 @@ namespace Web.Admin
             //TAG逻辑
             string tagIDs = "";
             string id = hs.HairShopID.ToString();
-            string[] tagCollection = txtHairShopTag.Text.Split(";".ToCharArray());
+            string[] tagCollection = txtHairShopTag.Text.Split(",".ToCharArray());
             for (int k = 0; k < tagCollection.Length; k++)
             {
                 string tagID = "";

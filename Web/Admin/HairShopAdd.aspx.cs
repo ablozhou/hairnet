@@ -177,7 +177,7 @@ namespace Web.Admin
                 }
             }
             string tagIDs = "";
-            string[] tagCollection = txtHairShopTag.Text.Split(";".ToCharArray());
+            string[] tagCollection = txtHairShopTag.Text.Split(",".ToCharArray());
             for (int k = 0; k < tagCollection.Length; k++)
             {
                 string tagID = "";
