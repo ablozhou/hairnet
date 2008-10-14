@@ -68,7 +68,7 @@ namespace Web.Admin
 
             txtPictureStoreName.Text = ps.PictureStoreName;
             txtPictureStoreDescription.Text = ps.PictureStoreDescription;
-            txtPictureStoreTag.Text = InfoAdmin.GetPictureStoreTagNames(ps.PictureStoreTagIDs);
+            //txtPictureStoreTag.Text = InfoAdmin.GetPictureStoreTagNames(ps.PictureStoreTagIDs);
 
             string[] PSGIDSCollection = ps.PictureStoreGroupIDs.Split(",".ToCharArray());
             foreach (string ss in PSGIDSCollection)

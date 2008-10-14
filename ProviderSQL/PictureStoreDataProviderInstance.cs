@@ -834,13 +834,13 @@ namespace HairNet.Provider
 
         public string GetPictureStoreTagNames(string tagIDs)
         {
-            string[] IDs = tagIDs.Split(',');
-            List<string> list = new List<string>();
-            foreach (string id in IDs)
-            {
-                list.Add(this.GetPictureStoreTagByPictureStoreTagID(int.Parse(id)).TagName);
-            }
-            return string.Join(",", list.ToArray());
+            //string[] IDs = tagIDs.Split(',');
+            //List<string> list = new List<string>();
+            //foreach (string id in IDs)
+            //{
+            //    list.Add(this.GetPictureStoreTagByPictureStoreTagID(int.Parse(id)).TagName);
+            //}
+            return "";
         }
 
         private int AddPictureStoreTag(string name)

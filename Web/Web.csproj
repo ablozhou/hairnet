@@ -1773,6 +1773,13 @@
     <Compile Include="Admin\PictureStoreOperate.aspx.designer.cs">
       <DependentUpon>PictureStoreOperate.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Admin\PictureStoreOperate2.aspx.cs">
+      <SubType>ASPXCodeBehind</SubType>
+      <DependentUpon>PictureStoreOperate2.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\PictureStoreOperate2.aspx.designer.cs">
+      <DependentUpon>PictureStoreOperate2.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Admin\PictureStoreRecommandAdmin.aspx.cs">
       <DependentUpon>PictureStoreRecommandAdmin.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -2196,6 +2203,7 @@
     <Content Include="Admin\PictureStoreGroupClassAdd.aspx" />
     <Content Include="Admin\PictureStoreGroupClassAdmin.aspx" />
     <Content Include="Admin\PictureStoreGroupEdit.aspx" />
+    <Content Include="Admin\PictureStoreOperate2.aspx" />
     <Content Include="Admin\UserCreate.aspx" />
     <Content Include="Admin\UserEdit.aspx" />
     <Content Include="Chaoliu.aspx" />
