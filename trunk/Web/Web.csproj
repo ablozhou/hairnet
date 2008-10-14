@@ -2,7 +2,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProductVersion>9.0.21022</ProductVersion>
+    <ProductVersion>8.0.50727</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{AA67A172-FF0F-4C2B-B68A-10E02F9D12AD}</ProjectGuid>
     <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
@@ -1998,6 +1998,13 @@
     <Compile Include="UserControls\Foot.ascx.designer.cs">
       <DependentUpon>Foot.ascx</DependentUpon>
     </Compile>
+    <Compile Include="UserControls\HairShopEntryControl.ascx.cs">
+      <DependentUpon>HairShopEntryControl.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UserControls\HairShopEntryControl.ascx.designer.cs">
+      <DependentUpon>HairShopEntryControl.ascx</DependentUpon>
+    </Compile>
     <Compile Include="UserControls\Head.ascx.cs">
       <DependentUpon>Head.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -2218,6 +2225,7 @@
     <Content Include="Home.Master" />
     <Content Include="JiepaiList.aspx" />
     <Content Include="test.aspx" />
+    <Content Include="UserControls\HairShopEntryControl.ascx" />
     <Content Include="ZTContent.aspx" />
     <Content Include="ZTList.aspx" />
     <None Include="Theme\Images\search-fxs.psd" />
@@ -2249,7 +2257,6 @@
           <IISUrl>
           </IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
-          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
         </WebProjectProperties>
       </FlavorProperties>
     </VisualStudio>

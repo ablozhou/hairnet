@@ -1,4 +1,5 @@
 <%@ Page Language="C#" AutoEventWireup="true" MasterPageFile="Home.Master" CodeBehind="HairShopContent.aspx.cs" Inherits="Web.HairShopContent" %>
+<%@ Register Src="UserControls/HairShopEntryControl.ascx" TagName="HairShopEntryControl" TagPrefix="HN" %>
 <asp:Content ContentPlaceHolderID="BodyContentPosition" ID="BodyContent" runat="server">
 <!--搜美发厅开始 -->
 <div id="main-top"><table width="960" border="0" align="center" cellpadding="0" cellspacing="0">
@@ -190,116 +191,7 @@
 </table>					
 </div>
 <!--搜美发厅结束 -->
-<div id="main-top2">
-  <div id="area-1"><img src="Theme/Images/sg-meifa-ad2.jpg" /></div>
-  <div id="area-2">
-    <table width="378" border="0" align="center" cellpadding="0" cellspacing="0">
-      <tr>
-        <td height="15" colspan="2">&nbsp;</td>
-      </tr>
-      <tr>
-        <td width="179" height="25" align="left" class="red14b">&nbsp;&nbsp;影博莎</td>
-        <td width="201" align="right" valign="bottom"><table width="141" height="25" border="0" align="right" cellpadding="0" cellspacing="0" background="Theme/Images/fair-mft-tab1.gif" id="seatchTab21">
-            <tr>
-              <td width="70" onclick="showTab2(1);" style="cursor:hand;">&nbsp;</td>
-              <td width="71" onclick="showTab2(2);" style="cursor:hand;">&nbsp;</td>
-            </tr>
-          </table>
-            <table width="141" height="25" border="0" align="right" cellpadding="0" cellspacing="0" background="Theme/Images/fair-mft-tab2.gif" id="seatchTab22"  style="display:none;">
-              <tr>
-                <td width="70" onclick="showTab2(1);" style="cursor:hand;">&nbsp;</td>
-                <td width="71" onclick="showTab2(2);" style="cursor:hand;">&nbsp;</td>
-              </tr>
-          </table></td>
-      </tr>
-    </table>
-    <div class="top-r-div" id="serTabC21">
-	  <table width="360" border="0" align="center" cellpadding="0" cellspacing="0">
-        <tr>
-          <td align="left" class="gray12-d"><span class="red12-c">[地 址]</span> 东城区安定门东大街56号【<span class="red12-c">地图</span>】 <br />
-            <span class="red12-c">[交 通]</span> 地铁雍和宫站东南出口往西400米即到，5号线A出口</td>
-        </tr>
-      </table>
-	  <table width="360" border="0" align="center" cellpadding="0" cellspacing="0">
-        <tr>
-          <td width="39%" align="left" class="gray12-d"><span class="red12-c">[面 积] </span>580</td>
-          <td width="61%" align="left" class="gray12-d"><span class="red12-c">[停车位]</span> 有</td>
-        </tr>
-        <tr>
-          <td align="left" class="gray12-d"><span class="red12-c">[可否刷卡]</span> 是</td>
-          <td align="left" class="gray12-d"><span class="red12-c">[营业时间]</span>  10：30-22：00</td>
-        </tr>
-        <tr>
-          <td align="left" class="gray12-d"><span class="red12-c">[风 格]</span> 日韩 </td>
-          <td align="left" class="gray12-d"><span class="red12-c">[主打产品]</span> 欧莱雅</td>
-        </tr>
-      </table>
-	  <table width="360" border="0" align="center" cellpadding="0" cellspacing="0" style="margin-top:5px">
-        <tr>
-          <td width="39%" align="left"><img src="Theme/Images/fair-yhq.gif" width="122" height="73" /></td>
-          <td width="61%" align="left" valign="middle" class="gray12-d">已打印：<span class="red12-c">123次</span><br />
-          <span class="red12-line-c"><a href="#">打印此优惠券</a></span></td>
-        </tr>
-      </table>
-	  <table width="400" border="0" align="center" cellpadding="0" cellspacing="0" style="margin-top:23px">
-  <tr>
-    <td width="3%"></td>
-    <td width="94%" height="26" style="border:#ddddda 1px solid"><table width="95%" border="0" align="center" cellpadding="0" cellspacing="0">
-      <tr>
-        <td width="43%" align="left" class="gray12-d"><span class="red12b">预约电话：</span>12345678</td>
-        <td width="28%" align="left" class="gray12-d">折扣：<span class="red12-c">88折</span></td>
-        <td width="29%" align="right" class="gray12-d"><a href="#" target="_blank">[评 论]</a>  <a href="#">[收 藏]</a></td>
-      </tr>
-    </table></td>
-    <td width="3%"></td>
-  </tr>
-</table>
-	</div>
-<div class="top-r-div" id="serTabC22" style="display:none">
-	  <table width="360" border="0" align="center" cellpadding="0" cellspacing="0">
-        <tr>
-          <td align="left" class="gray12-d"><span class="red12-c">[地 址]</span> 东城区安定门东2222222【<span class="red12-c">地图</span>】 <br />
-            <span class="red12-c">[交 通]</span> 地铁雍和宫站东南出口往西400米即到，5号线A出口</td>
-        </tr>
-      </table>
-	  <table width="360" border="0" align="center" cellpadding="0" cellspacing="0">
-        <tr>
-          <td width="39%" align="left" class="gray12-d"><span class="red12-c">[面 积] </span>580</td>
-          <td width="61%" align="left" class="gray12-d"><span class="red12-c">[停车位]</span> 有</td>
-        </tr>
-        <tr>
-          <td align="left" class="gray12-d"><span class="red12-c">[可否刷卡]</span> 是</td>
-          <td align="left" class="gray12-d"><span class="red12-c">[营业时间]</span>  10：30-22：00</td>
-        </tr>
-        <tr>
-          <td align="left" class="gray12-d"><span class="red12-c">[风 格]</span> 日韩 </td>
-          <td align="left" class="gray12-d"><span class="red12-c">[主打产品]</span> 欧莱雅</td>
-        </tr>
-      </table>
-	  <table width="360" border="0" align="center" cellpadding="0" cellspacing="0" style="margin-top:5px">
-        <tr>
-          <td width="39%" align="left"><img src="Theme/Images/fair-yhq.gif" width="122" height="73" /></td>
-          <td width="61%" align="left" valign="middle" class="gray12-d">已打印：<span class="red12-c">123次</span><br />
-          <span class="red12-line-c"><a href="#">打印此优惠券</a></span></td>
-        </tr>
-      </table>
-	  <table width="400" border="0" align="center" cellpadding="0" cellspacing="0" style="margin-top:23px">
-  <tr>
-    <td width="3%"></td>
-    <td width="94%" height="26" style="border:#ddddda 1px solid"><table width="95%" border="0" align="center" cellpadding="0" cellspacing="0">
-      <tr>
-        <td width="43%" align="left" class="gray12-d"><span class="red12b">预约电话：</span>12345678</td>
-        <td width="28%" align="left" class="gray12-d">折扣：<span class="red12-c">88折</span></td>
-        <td width="29%" align="right" class="gray12-d"><a href="#" target="_blank">[评 论]</a>  <a href="#">[收 藏]</a></td>
-      </tr>
-    </table></td>
-    <td width="3%"></td>
-  </tr>
-</table>
-	</div>	
-	
-  </div>
-</div>
+<HN:HairShopEntryControl ID="hairShopEntryControl" runat="server" />
 <script language="javascript">
         function showTab(id) {
         var c=["serTabC1","serTabC2","serTabC3"];
