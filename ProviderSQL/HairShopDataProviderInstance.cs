@@ -308,7 +308,9 @@ namespace HairNet.Provider
                             hairShop.HairShopGood = int.Parse(sdr["HairShopGood"].ToString());
                             hairShop.HairShopBad = int.Parse(sdr["HairShopBad"].ToString());
                             hairShop.MemberInfo = sdr["MemberInfo"].ToString();
-
+                            hairShop.CouponNum = int.Parse(sdr["CouponNum"].ToString());
+                            hairShop.OutLogs = sdr["outLogs"].ToString();
+                            hairShop.InnerLogs = sdr["InnerLogs"].ToString();
                             Decimal parseValue;
 
                             Decimal.TryParse(sdr["HairCutPrice"].ToString(), out parseValue);

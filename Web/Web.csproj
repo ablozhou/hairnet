@@ -1998,6 +1998,13 @@
     <Compile Include="UserControls\Foot.ascx.designer.cs">
       <DependentUpon>Foot.ascx</DependentUpon>
     </Compile>
+    <Compile Include="UserControls\HairShopDescription.ascx.cs">
+      <DependentUpon>HairShopDescription.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UserControls\HairShopDescription.ascx.designer.cs">
+      <DependentUpon>HairShopDescription.ascx</DependentUpon>
+    </Compile>
     <Compile Include="UserControls\HairShopEntryControl.ascx.cs">
       <DependentUpon>HairShopEntryControl.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -2225,6 +2232,7 @@
     <Content Include="Home.Master" />
     <Content Include="JiepaiList.aspx" />
     <Content Include="test.aspx" />
+    <Content Include="UserControls\HairShopDescription.ascx" />
     <Content Include="UserControls\HairShopEntryControl.ascx" />
     <Content Include="ZTContent.aspx" />
     <Content Include="ZTList.aspx" />
