@@ -148,7 +148,7 @@ namespace Web.Admin
             int id = InfoAdmin.AddHairEngineer(he);
             //TAG逻辑
             string tagIDs = "";
-            string[] tagCollection = txtHairEngineerTag.Text.Split(";".ToCharArray());
+            string[] tagCollection = txtHairEngineerTag.Text.Split(",".ToCharArray());
             for (int k = 0; k < tagCollection.Length; k++)
             {
                 string tagID = "";

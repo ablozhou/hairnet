@@ -289,7 +289,7 @@ namespace Web.Admin
             //TAG逻辑
 
             string tagIDs = "";
-            string[] tagCollection = txtKeywords.Text.Split(";".ToCharArray());
+            string[] tagCollection = txtKeywords.Text.Split(",".ToCharArray());
             for (int k = 0; k < tagCollection.Length; k++)
             {
                 string tagID = "";

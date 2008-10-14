@@ -103,7 +103,7 @@ namespace Web.Admin
                         }
                         else
                         {
-                            this.txtKeywords.Text += ";" + hst.TagName;
+                            this.txtKeywords.Text += "," + hst.TagName;
                         }
                     }
                 }
@@ -576,7 +576,7 @@ namespace Web.Admin
 
             //tag逻辑
             string tagIDs = "";
-            string[] tagCollection = txtKeywords.Text.Split(";".ToCharArray());
+            string[] tagCollection = txtKeywords.Text.Split(",".ToCharArray());
             for (int k = 0; k < tagCollection.Length; k++)
             {
                 string tagID = "";

@@ -41,7 +41,7 @@ namespace Web.Admin
             //TAG逻辑
             int id = product.ProductID;
             string tagIDs = "";
-            string[] tagCollection = txtProductTag.Text.Split(";".ToCharArray());
+            string[] tagCollection = txtProductTag.Text.Split(",".ToCharArray());
             for (int k = 0; k < tagCollection.Length; k++)
             {
                 string tagID = "";
