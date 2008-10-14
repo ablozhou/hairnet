@@ -12,6 +12,7 @@ using System.Web.UI.WebControls.WebParts;
 
 using HairNet.Entry;
 using HairNet.Business;
+using System.Data.SqlClient;
 
 namespace Web.Admin
 {
@@ -29,6 +30,49 @@ namespace Web.Admin
         {
             string id = Request["id"];
             Product product = InfoAdmin.GetProductByProductID(id);
+            //TAG逻辑
+            if (product.ProductTagIDs != string.Empty)
+            {
+                string[] tempTagC = product.ProductTagIDs.Split(",".ToCharArray());
+                for (int k = 0; k < tempTagC.Length; k++)
+                {
+                    ProductTag hst = new ProductTag();
+                    using (SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["MSSqlServer"].ConnectionString))
+                    {
+                        string commString = "select * from ProductTag where ProductTagID=" + tempTagC[k];
+                        using (SqlCommand comm = new SqlCommand())
+                        {
+                            comm.CommandText = commString;
+                            comm.Connection = conn;
+                            conn.Open();
+                            using (SqlDataReader sdr = comm.ExecuteReader())
+                            {
+                                if (sdr.Read())
+                                {
+                                    try
+                                    {
+                                        hst.TagID = int.Parse(sdr["ProductTagID"].ToString());
+                                        hst.TagName = sdr["ProductTagName"].ToString();
+                                        hst.ProductIDs = sdr["ProductIDs"].ToString();
+                                    }
+                                    catch
+                                    { }
+                                }
+                            }
+                        }
+                    }
+
+                    if (k == 0)
+                    {
+                        this.txtProductTag.Text = hst.TagName;
+                    }
+                    else
+                    {
+                        this.txtProductTag.Text += ";" + hst.TagName;
+                    }
+                }
+            }
+            //
             txtCompany.Text = product.ProductCompany;
             txtCompanyDescription.Text = product.ProductCompanyDescription;
             txtProductDescription.Text = product.ProductDescription;
@@ -36,13 +80,83 @@ namespace Web.Admin
             txtProductName.Text = product.ProductName;
             txtProductPrice.Text = product.ProductPrice;
             txtProductRawPrice.Text = product.ProductRawPrice;
-            txtProductTag.Text = InfoAdmin.GetProductTagNames(product.ProductTagIDs);
             ViewState["ProductInfo"] = product;
         }
 
         protected void btnSubmit_OnClick(object sender, EventArgs e)
         {
             Product product = (Product)ViewState["ProductInfo"];
+            //tag逻辑
+
+            if (product.ProductTagIDs != string.Empty)
+            {
+                string[] tempTagC = product.ProductTagIDs.Split(",".ToCharArray());
+                for (int k = 0; k < tempTagC.Length; k++)
+                {
+                    ProductTag hst = new ProductTag();
+                    using (SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["MSSqlServer"].ConnectionString))
+                    {
+                        string commString = "select * from ProductTag where ProductTagID=" + tempTagC[k];
+                        using (SqlCommand comm = new SqlCommand())
+                        {
+                            comm.CommandText = commString;
+                            comm.Connection = conn;
+                            conn.Open();
+                            using (SqlDataReader sdr = comm.ExecuteReader())
+                            {
+                                if (sdr.Read())
+                                {
+                                    try
+                                    {
+                                        hst.TagID = int.Parse(sdr["ProductTagID"].ToString());
+                                        hst.TagName = sdr["ProductTagName"].ToString();
+                                        hst.ProductIDs = sdr["ProductIDs"].ToString();
+                                    }
+                                    catch
+                                    { }
+                                }
+                            }
+                        }
+                    }
+                    string[] tempProductIDC = hst.ProductIDs.Split(",".ToCharArray());
+                    string ProductIDs = "";
+
+                    int tempNum = 0;
+                    for (int i = 0; i < tempProductIDC.Length; i++)
+                    {
+                        if (tempProductIDC[i] != product.ProductID.ToString())
+                        {
+                            tempNum++;
+                            if (tempNum == 1)
+                            {
+                                ProductIDs = tempProductIDC[i];
+                            }
+                            else
+                            {
+                                ProductIDs += "," + tempProductIDC[i];
+                            }
+                        }
+                    }
+                    using (SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["MSSqlServer"].ConnectionString))
+                    {
+                        string commString = "update ProductTag set ProductIDs='" + ProductIDs + "' where ProductTagID=" + hst.TagID.ToString();
+                        using (SqlCommand comm = new SqlCommand())
+                        {
+                            comm.CommandText = commString;
+                            comm.Connection = conn;
+                            conn.Open();
+                            try
+                            {
+                                comm.ExecuteNonQuery();
+                            }
+                            catch
+                            { }
+                        }
+                    }
+                }
+            }
+
+            //
             product.ProductName = txtProductName.Text.Trim();
             product.ProductPrice = txtProductPrice.Text.Trim();
             product.ProductRawPrice = txtProductRawPrice.Text.Trim();
@@ -50,8 +164,108 @@ namespace Web.Admin
             product.ProductDescription = txtProductDescription.Text.Trim();
             product.ProductCompanyDescription = txtCompanyDescription.Text.Trim();
             product.ProductCompany = txtCompany.Text.Trim();
+            
+            //tag逻辑
+            int id = product.ProductID;
+            string tagIDs = "";
+            string[] tagCollection = txtProductTag.Text.Split(";".ToCharArray());
+            for (int k = 0; k < tagCollection.Length; k++)
+            {
+                string tagID = "";
+                bool isExist = false;
+                ProductTag hst = new ProductTag();
+                using (SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["MSSqlServer"].ConnectionString))
+                {
+                    string commString = "select * from ProductTag where ProductTagName='" + tagCollection[k] + "'";
+                    using (SqlCommand comm = new SqlCommand())
+                    {
+                        comm.CommandText = commString;
+                        comm.Connection = conn;
+                        conn.Open();
+                        using (SqlDataReader sdr = comm.ExecuteReader())
+                        {
+                            if (sdr.Read())
+                            {
+                                try
+                                {
+                                    hst.TagID = int.Parse(sdr["ProductTagID"].ToString());
+                                    hst.TagName = sdr["ProductTagName"].ToString();
+                                    hst.ProductIDs = sdr["ProductIDs"].ToString();
+                                }
+                                catch
+                                { }
+                            }
+                        }
+                    }
+                }
+                if (hst.TagID == 0)
+                {
+                    using (SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["MSSqlServer"].ConnectionString))
+                    {
+                        string commString = "insert ProductTag(ProductTagName,ProductIDs) values('" + tagCollection[k] + "','" + id.ToString() + "');select @@identity;";
+                        using (SqlCommand comm = new SqlCommand())
+                        {
+                            comm.CommandText = commString;
+                            comm.Connection = conn;
+                            conn.Open();
 
-            product.ProductTagIDs = InfoAdmin.GetProductTagIDs(txtProductTag.Text.Trim());
+                            tagID = comm.ExecuteScalar().ToString();
+                        }
+                    }
+                }
+                else
+                {
+                    tagID = hst.TagID.ToString();
+                    if (hst.ProductIDs == string.Empty)
+                    {
+                        using (SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["MSSqlServer"].ConnectionString))
+                        {
+                            string commString = "update ProductTag set ProductIDs='" + id.ToString() + "' where ProductTagID=" + hst.TagID.ToString();
+                            using (SqlCommand comm = new SqlCommand())
+                            {
+                                comm.CommandText = commString;
+                                comm.Connection = conn;
+                                conn.Open();
+                                try
+                                {
+                                    comm.ExecuteNonQuery();
+                                }
+                                catch
+                                { }
+                            }
+                        }
+                    }
+                    else
+                    {
+                        using (SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["MSSqlServer"].ConnectionString))
+                        {
+                            string commString = "update ProductTag set ProductIDs=ProductIDs+'," + id.ToString() + "' where ProductTagID=" + hst.TagID.ToString();
+                            using (SqlCommand comm = new SqlCommand())
+                            {
+                                comm.CommandText = commString;
+                                comm.Connection = conn;
+                                conn.Open();
+                                try
+                                {
+                                    comm.ExecuteNonQuery();
+                                }
+                                catch
+                                { }
+                            }
+                        }
+                    }
+                }
+                if (k == 0)
+                {
+                    tagIDs = tagID;
+                }
+                else
+                {
+                    tagIDs += "," + tagID;
+                }
+            }
+            product.ProductTagIDs = tagIDs;
+            //
 
             Session["ProductInfo"] = product;
             //更新美发产品
