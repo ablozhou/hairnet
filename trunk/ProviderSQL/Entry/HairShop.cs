@@ -302,6 +302,27 @@ namespace HairNet.Entry
         private bool isServeHairCut;
         private bool isChainStore;
         private string memberInfo;
+        private int _couponNum = 0;
+        private string _outLogs = string.Empty;
+        private string _innerLogs = string.Empty;
+
+        public int CouponNum
+        {
+            set { this._couponNum = value; }
+            get { return this._couponNum; }
+        }
+        public string OutLogs
+        {
+            set { this._outLogs = value; }
+            get { return this._outLogs; }
+        }
+
+        public string InnerLogs
+        {
+            set { this._innerLogs = value; }
+            get { return this._innerLogs; }
+        }
+
 
         public string MemberInfo
         {

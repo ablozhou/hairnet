@@ -247,7 +247,7 @@ namespace Web.Admin
             he.HairEngineerTagIDs = tagIDs;
             he.HairEngineerID = id;
             ProviderFactory.GetHairEngineerDataProviderInstance().HairEngineerCreateDeleteUpdate(he, UserAction.Update,out id);
-
+            id = he.HairEngineerID;
 
             //个人图片逻辑
             string photoIDs = "";
