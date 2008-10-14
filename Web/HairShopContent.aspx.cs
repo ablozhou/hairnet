@@ -17,6 +17,11 @@ namespace Web
         protected void Page_Load(object sender, EventArgs e)
         {
             StringHelper.AddStyleSheet(this.Page, "Theme/Style/meifating.css");
+            if (!this.IsPostBack)
+            {
+                this.hairShopEntryControl.HairShopID = 8;
+
+            }
         }
     }
 }
