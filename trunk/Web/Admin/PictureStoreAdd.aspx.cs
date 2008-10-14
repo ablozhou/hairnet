@@ -24,8 +24,7 @@ namespace Web.Admin
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
-            {
-                ViewState["num"] = 0;
+            {   
                 BindControlData();
                     
                 List<PictureStoreGroup> list1 = ProviderFactory.GetPictureStoreDataProviderInstance().GetPictureStoreGroupsByParentID(1, 0);
@@ -54,6 +53,62 @@ namespace Web.Admin
                     lli.Value = list3[i].ID.ToString();
                     lli.Text = list3[i].Name.ToString();
                     this.chkFXList.Items.Add(lli);
+                }
+
+                if (Session["num"] == null || Session["num"].ToString() == string.Empty)
+                {
+                    Session["num"] = 0;
+                }
+                if (Session["picNum"] == null || Session["picNum"].ToString() == string.Empty)
+                {
+                    Session["picNum"] = 0;
+                }
+                else
+                {
+                     txtPictureStoreName.Text =Session["PictureStoreName"].ToString();
+                     txtPictureStoreDescription.Text = Session["PictureStoreDescription"].ToString();
+                     txtPictureStoreTag.Text = Session["PictureTags"].ToString();
+                     this.ddlHairNature.SelectedValue = Session["iHairNature"].ToString();
+                     this.ddlHairQuantity.SelectedValue = Session["iHairQuantity"].ToString();
+                     this.ddlFaceStyle.SelectedValue = Session["iFaceStyle"].ToString();
+                     this.ddlSex.SelectedValue = Session["iSex"].ToString();
+                     this.ddlHairStyleClassName.SelectedValue = Session["iHairStyleClassName"].ToString();
+                     this.ddlTemperament.SelectedValue = Session["iTemperament"].ToString();
+                     this.ddlOccasion.SelectedValue = Session["iOccasion"].ToString();
+                     txtBbsurl.Text = Session["bbsUrl"].ToString();
+
+                     picString.Text = Session["picString"].ToString();
+                     pic.Text = Session["pic"].ToString();
+                     picsmall.Text = Session["picSmall"].ToString();
+
+                     string[] PSGIDSCollection = Session["PSGIDS"].ToString().Split(",".ToCharArray());
+                     foreach (string ss in PSGIDSCollection)
+                     {
+                         foreach (ListItem llli in this.chkJPList.Items)
+                         {
+                             if (llli.Value == ss)
+                             {
+                                 llli.Selected = true;
+                                 break;
+                             }
+                         }
+                         foreach (ListItem llli in this.chkMXList.Items)
+                         {
+                             if (llli.Value == ss)
+                             {
+                                 llli.Selected = true;
+                                 break;
+                             }
+                         }
+                         foreach (ListItem llli in this.chkFXList.Items)
+                         {
+                             if (llli.Value == ss)
+                             {
+                                 llli.Selected = true;
+                                 break;
+                             }
+                         }
+                     }
                 }
             }
         }
@@ -110,12 +165,30 @@ namespace Web.Admin
         }
         protected void btnSubmit_OnClick(object sender,EventArgs e)
         {
+            Session["num"] = "";
+            Session["picNum"] = "";
+            Session["PictureStoreName"] = "";
+            Session["PictureStoreDescription"] = "";
+            Session["PictureTags"] = "";
+            Session["iHairNature"] = "";
+            Session["iHairQuantity"] = "";
+            Session["iFaceStyle"] = "";
+            Session["iSex"] = "";
+            Session["iHairStyleClassName"] = "";
+            Session["iTemperament"] = "";
+            Session["iOccasion"] = "";
+            Session["bbsUrl"] = "";
+            Session["picString"] = "";
+            Session["pic"] = "";
+            Session["picSmall"] = "";
+            Session["PSGIDS"] = "";
+
             string PSGIDS = this.GetPSGIDs();
             PictureStore ps = new PictureStore();
             ps.PictureStoreName = txtPictureStoreName.Text.Trim();
             ps.PictureStoreGroupIDs = PSGIDS;
             ps.PictureStoreDescription = txtPictureStoreDescription.Text.Trim();
-            ps.PictureStoreTagIDs = InfoAdmin.GetPictureStoreTagIDs(txtPictureStoreTag.Text.Trim());
+            
             ps.PictureStoreHits = 0;
             ps.PictureStoreCreateTime = DateTime.Now;
             ps.PictureStoreRawUrl = "";
@@ -313,25 +386,55 @@ namespace Web.Admin
         {   
             UpLoadClass upload = new UpLoadClass();
             string filepath = upload.UpLoadImg(uploadpic1, "/uploadfiles/pictures/");
+            System.Threading.Thread.Sleep(1000);
             string filepathSmall = upload.UpLoadImg(uploadpicsmall, "/uploadfiles/pictures/");
 
             if (filepath != string.Empty)
             {
-                int num = Convert.ToInt32(ViewState["num"].ToString());
+                int num = Convert.ToInt32(Session["num"].ToString());
                 num++;
-                ViewState["num"] = num;
-                if (num == 1)
-                {
-                    this.picString.Text = "<img width=100 heigth=50 src='" + filepathSmall + "' />&nbsp;&nbsp;<img width=200 heigth=100 src='" + filepath + "' />";
+                Session["num"] = num;
+                int picNum = int.Parse(Session["picNum"].ToString());
+                picNum++;
+
+                if (picNum == 1)
+                {   
+                    Session["pic" + num.ToString()] = filepath;
+                    Session["picSmall" + num.ToString()] = filepathSmall;
+
+                    this.picString.Text = "<img width=100 heigth=50 src='" + filepathSmall + "' />&nbsp;&nbsp;<img width=200 heigth=100 src='" + filepath + "' />&nbsp;&nbsp;<a href='PictureStoreOperate2.aspx?num="+num.ToString()+"'>删除</a>";
                     this.pic.Text = filepath;
                     this.picsmall.Text = filepathSmall; 
                 }
                 else
-                {
-                    this.picString.Text += "&nbsp;&nbsp;<img width=100 heigth=50 src='" + filepathSmall + "' />&nbsp;&nbsp;<img width=200 heigth=100 src='" + filepath + "' />";
+                {   
+                    
+
+                    this.picString.Text += "&nbsp;&nbsp;<img width=100 heigth=50 src='" + filepathSmall + "' />&nbsp;&nbsp;<img width=200 heigth=100 src='" + filepath + "' />&nbsp;&nbsp;<a href='PictureStoreOperate2.aspx?num=" + num.ToString() + "'>删除</a>";
                     this.pic.Text += ";" + filepath;
                     this.picsmall.Text += ";" + filepathSmall;
                 }
+                Session["pic" + num.ToString()] = filepath;
+                Session["picSmall" + num.ToString()] = filepathSmall;
+
+                Session["picString"] = this.picString.Text;
+                Session["pic"] = this.pic.Text;
+                Session["picSmall"] = this.picsmall.Text;
+
+                Session["picNum"] = picNum;
+
+                Session["PSGIDS"] = this.GetPSGIDs();
+                Session["PictureStoreName"] = txtPictureStoreName.Text.Trim();
+                Session["PictureStoreDescription"] = txtPictureStoreDescription.Text.Trim();
+                Session["PictureTags"] = txtPictureStoreTag.Text.Trim();
+                Session["iHairNature"] = this.ddlHairNature.SelectedItem.Value;
+                Session["iHairQuantity"] = this.ddlHairQuantity.SelectedItem.Value;
+                Session["iFaceStyle"] = this.ddlFaceStyle.SelectedItem.Value;
+                Session["iSex"] = this.ddlSex.SelectedItem.Value;
+                Session["iHairStyleClassName"] = this.ddlHairStyleClassName.SelectedItem.Value;
+                Session["iTemperament"] = this.ddlTemperament.SelectedItem.Value;
+                Session["iOccasion"] = this.ddlOccasion.SelectedItem.Value;
+                Session["bbsUrl"] = txtBbsurl.Text.Trim();
             }
         }
         protected void BindControlData()
