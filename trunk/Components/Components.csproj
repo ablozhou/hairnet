@@ -83,6 +83,18 @@
     <ErrorReport>prompt</ErrorReport>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="BusinessFacade, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Web\bin\BusinessFacade.dll</HintPath>
+    </Reference>
+    <Reference Include="HWCommon, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Web\bin\HWCommon.dll</HintPath>
+    </Reference>
+    <Reference Include="HWKEY, Version=1.0.1460.35494, Culture=neutral">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Web\bin\HWKEY.dll</HintPath>
+    </Reference>
     <Reference Include="ImageQuantization, Version=1.0.2439.19937, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\Assembly\ImageQuantization.dll</HintPath>
@@ -104,6 +116,7 @@
     <Compile Include="AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="BackendBusiness\bbspost.cs" />
     <Compile Include="BackendBusiness\InfoAdmin.cs" />
     <Compile Include="BackendBusiness\OrderAdmin.cs" />
     <Compile Include="BackendBusiness\UserAdmin.cs" />

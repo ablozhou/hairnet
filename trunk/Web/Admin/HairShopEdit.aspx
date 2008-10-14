@@ -252,7 +252,7 @@
                     <asp:TextBox ID="txtHairShopPhoneNum" runat="server" Width="200" CssClass="TextBox"></asp:TextBox>
                     <asp:RegularExpressionValidator ID="RegularExpressionValidator15" 
                         runat="server" ControlToValidate="txtHairShopPhoneNum" ErrorMessage="值不对" 
-                        ValidationExpression="(\(\d{3}\)|\d{3}-)?\d{8}"></asp:RegularExpressionValidator>
+                        ValidationExpression="(\d{3}|\d{3}-)?\d{8}"></asp:RegularExpressionValidator>
                 </td>
             </tr>
             <tr>
