@@ -488,7 +488,7 @@ namespace Web.Admin
             }
             hs.HairShopTagIDs = tagIDs;
             Session["HairShopInfo"] = hs;
-            InfoAdmin.UpdateHairShop(hs);
+            InfoAdmin.UpdateHairShopInfo(hs);
             this.Response.Redirect("HairShopAdmin.aspx");
         }
     }
