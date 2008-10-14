@@ -1,0 +1,40 @@
+我爱秀发  http://bbs.sg.com.cn/forum-75-1.html
+发型发秀  http://bbs.sg.com.cn/forum-69-1.html
+产品评测  http://bbs.sg.com.cn/forum-70-1.html
+问吧      http://bbs.sg.com.cn/forum-71-1.html
+美发厅   http://bbs.sg.com.cn/forum-72-1.html
+美发师   http://bbs.sg.com.cn/forum-73-1.html
+组图专题  http://bbs.sg.com.cn/forum-74-1.html
+
+
+
+ /// 向论坛写帖子数据
+forumId：
+美发厅：72
+美发师：73
+图库（普通）：74
+图库（发型）：69
+
+articleType：
+0-普通帖，1-投票帖，3-悬赏帖
+
+
+title：
+帖子标题：
+美发厅：名称
+美发师：名称
+图库（普通）：名称
+图库（发型）：名称
+
+
+content：
+详见word
+
+postUserId：
+61195
+postUserName：
+sgmf
+connStr：
+web.config 添加
+<add key="Discuz_ConnectionString" value="server=localhost;user id=root; password=123456; database=discuz; pooling=false;charset=gb2312"/>
+将链接字符串意string形式传 

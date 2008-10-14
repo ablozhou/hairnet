@@ -187,8 +187,8 @@ namespace HairNet.Provider
                 cmdBuilder.Append(",HairCutDiscount = " + hairShop.HairCutDiscount.ToString());
                 cmdBuilder.Append(",HairMarcelDiscount = " + hairShop.HairMarcelDiscount.ToString());
                 cmdBuilder.Append(",HairDyeDiscount = " + hairShop.HairDyeDiscount.ToString());
-                cmdBuilder.Append(",LocationMapURL = " + hairShop.LocationMapURL.ToString()); 
-                cmdBuilder.Append(",IsServeMarcel = " + hairShop.IsServeMarce.CompareTo(false).ToString());
+                cmdBuilder.Append(",LocationMapURL = '" + hairShop.LocationMapURL.ToString()); 
+                cmdBuilder.Append("',IsServeMarcel = " + hairShop.IsServeMarce.CompareTo(false).ToString());
                 cmdBuilder.Append(",IsServeDye = " + hairShop.IsServeDye.CompareTo(false).ToString());
                 cmdBuilder.Append(",IsServeHairCut = " + hairShop.IsServeHairCut.CompareTo(false).ToString());
                 cmdBuilder.Append(",Square = " + hairShop.Square.ToString());

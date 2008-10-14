@@ -116,7 +116,6 @@
     <Compile Include="AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="BackendBusiness\bbspost.cs" />
     <Compile Include="BackendBusiness\InfoAdmin.cs" />
     <Compile Include="BackendBusiness\OrderAdmin.cs" />
     <Compile Include="BackendBusiness\UserAdmin.cs" />
