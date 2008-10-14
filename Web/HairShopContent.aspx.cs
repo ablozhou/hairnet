@@ -20,7 +20,8 @@ namespace Web
             if (!this.IsPostBack)
             {
                 this.hairShopEntryControl.HairShopID = 8;
-
+                this.hairShopEntryDescription.HairShopID = 8;
+                this.hairShopEngineerList.HairShopID = 8;
             }
         }
         protected void btn_OnClick(object sender, EventArgs e)

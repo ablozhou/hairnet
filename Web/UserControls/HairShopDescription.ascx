@@ -54,7 +54,7 @@
       </tr>
     </table>    
     <img src="Theme/Images/sg-meifa_02.gif" /></td>
-    <td width="15%" align="left" valign="middle" class="red14b">影博莎美发厅</td>
+    <td width="15%" align="left" valign="middle" class="red14b"><asp:Label ID="lblHairShopName" runat="server"></asp:Label></td>
     <td width="22%" align="left" valign="middle"><img src="Theme/Images/fair-mft28.gif" width="52" height="24" /></td>
     <td width="58%" align="right" valign="top"><table width="402" height="26" border="0" cellpadding="0" cellspacing="0" background="Theme/Images/mft-tab-1.gif" id="seatchTab31" >
       <tr>
@@ -84,10 +84,7 @@
             <td width="19%" align="left" valign="top"><div class="pic-4"><a href="#"><img src="Theme/Images/sg-meifa_ls02.gif" /></a></div></td>
             <td width="81%" valign="top"><table width="100%" border="0" cellspacing="0" cellpadding="0">
               <tr>
-                <td class="gray12-f"> &nbsp;&nbsp;&nbsp;&nbsp;恋恋红尘冲好评元/ML法国香料精品纯正香水恋恋红尘冲好评元/ML法国香料精品纯正香水<br />
-                  红尘冲好评元/ML法国香料精品纯正香水恋恋红尘冲好评元/ML法国香恋恋红尘冲好评元法国香<br />
-                  料精品纯正香水恋恋红尘冲好评元/ML法国香料精品纯正香水恋恋红尘冲好评元/ML法国香料精<br />
-                品纯正香水恋恋红尘冲好评元/ML法国香</td>
+                <td class="gray12-f"> &nbsp;&nbsp;&nbsp;&nbsp;<asp:Label ID="lblHairShopDescription" runat="server"></asp:Label></td>
               </tr>
               <tr>
                 <td height="30" align="right"><img src="Theme/Images/fair-mft25.gif" />&nbsp;<img src="Theme/Images/fair-mft26.gif" />&nbsp;<img src="Theme/Images/fair-mft27.gif" /></td>
@@ -100,10 +97,7 @@
             <td width="19%" align="left" valign="top"><div class="pic-4"><a href="#"><img src="Theme/Images/sg-meifa_ls02.gif" /></a></div></td>
             <td width="81%" valign="top"><table width="100%" border="0" cellspacing="0" cellpadding="0">
               <tr>
-                <td class="gray12-f"> &nbsp;&nbsp;&nbsp;&nbsp;22222恋恋红尘冲好评元/ML法国香料精品纯正香水恋恋红尘冲好评元/ML法国香料精品纯正香水<br />
-                  红尘冲好评元/ML法国香料精品纯正香水恋恋红尘冲好评元/ML法国香恋恋红尘冲好评元法国香<br />
-                  料精品纯正香水恋恋红尘冲好评元/ML法国香料精品纯正香水恋恋红尘冲好评元/ML法国香料精<br />
-                品纯正香水恋恋红尘冲好评元/ML法国香</td>
+                <td class="gray12-f"> &nbsp;&nbsp;&nbsp;&nbsp;<asp:Label ID="lblHairEngineerDescription" runat="server"></asp:Label></td>
               </tr>
               <tr>
                 <td height="30" align="right"><img src="Theme/Images/fair-mft25.gif" />&nbsp;<img src="Theme/Images/fair-mft26.gif" />&nbsp;<img src="Theme/Images/fair-mft27.gif" /></td>
@@ -116,10 +110,7 @@
             <td width="19%" align="left" valign="top"><div class="pic-4"><a href="#"><img src="Theme/Images/sg-meifa_ls02.gif" /></a></div></td>
             <td width="81%" valign="top"><table width="100%" border="0" cellspacing="0" cellpadding="0">
               <tr>
-                <td class="gray12-f"> &nbsp;&nbsp;&nbsp;&nbsp;3333恋恋红尘冲好评元/ML法国香料精品纯正香水恋恋红尘冲好评元/ML法国香料精品纯正香水<br />
-                  红尘冲好评元/ML法国香料精品纯正香水恋恋红尘冲好评元/ML法国香恋恋红尘冲好评元法国香<br />
-                  料精品纯正香水恋恋红尘冲好评元/ML法国香料精品纯正香水恋恋红尘冲好评元/ML法国香料精<br />
-                品纯正香水恋恋红尘冲好评元/ML法国香</td>
+                <td class="gray12-f" style="height:40"> &nbsp;&nbsp;&nbsp;&nbsp;<asp:Label ID="lblMemberInfo" runat="server"></asp:Label></td>
               </tr>
               <tr>
                 <td height="30" align="right"><img src="Theme/Images/fair-mft25.gif" />&nbsp;<img src="Theme/Images/fair-mft26.gif" />&nbsp;<img src="Theme/Images/fair-mft27.gif" /></td>
