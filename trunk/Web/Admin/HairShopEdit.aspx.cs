@@ -67,6 +67,48 @@ namespace Web.Admin
             string id = Request["id"];
             HairShop hs = ProviderFactory.GetHairShopDataProviderInstance().GetHairShopByHairShopID(int.Parse(id));
 
+            //绑定TAG
+            if (hs.HairShopTagIDs != string.Empty)
+            {
+                string[] tempTagC = hs.HairShopTagIDs.Split(",".ToCharArray());
+                for (int k = 0; k < tempTagC.Length; k++)
+                {
+                    HairShopTag hst = new HairShopTag();
+                    using (SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["MSSqlServer"].ConnectionString))
+                    {
+                        string commString = "select * from HairShopTag where HairShopTagID=" + tempTagC[k];
+                        using (SqlCommand comm = new SqlCommand())
+                        {
+                            comm.CommandText = commString;
+                            comm.Connection = conn;
+                            conn.Open();
+                            using (SqlDataReader sdr = comm.ExecuteReader())
+                            {
+                                if (sdr.Read())
+                                {
+                                    try
+                                    {
+                                        hst.TagID = int.Parse(sdr["HairShopTagID"].ToString());
+                                        hst.TagName = sdr["HairShopTagName"].ToString();
+                                        hst.HairShopIDs = sdr["HairShopIDs"].ToString();
+                                    }
+                                    catch
+                                    { }
+                                }
+                            }
+                        }
+                    }
+
+                    if (k == 0)
+                    {
+                        this.txtHairShopTag.Text = hst.TagName;
+                    }
+                    else
+                    {
+                        this.txtHairShopTag.Text += ";" + hst.TagName;
+                    }
+                }
+            }
 
             txtDescription.Text = hs.HairShopDescription;
             txtHairShopAddress.Text = hs.HairShopAddress;
@@ -78,7 +120,7 @@ namespace Web.Admin
             txtHairShopPhoneNum.Text = hs.HairShopPhoneNum;
             txtHairShopShortName.Text = hs.HairShopShortName;
             txtHairShopWebSite.Text = hs.HairShopWebSite;
-            txtHairShopTag.Text = InfoAdmin.GetHairShopTagNames(hs.HairShopTagIDs);
+            
 
             imgLogo.ImageUrl = hs.HairShopLogo;
 
@@ -198,6 +240,76 @@ namespace Web.Admin
         protected void btnSubmit_OnClick(object sender, EventArgs e)
         {
             HairShop hs = (HairShop)ViewState["HairShop"];
+            //先处理TAG逻辑，先删除HS所对应的所有TAG
+            if (hs.HairShopTagIDs != string.Empty)
+            {
+                string[] tempTagC = hs.HairShopTagIDs.Split(",".ToCharArray());
+                for (int k = 0; k < tempTagC.Length; k++)
+                {
+                    HairShopTag hst = new HairShopTag();
+                    using (SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["MSSqlServer"].ConnectionString))
+                    {
+                        string commString = "select * from HairShopTag where HairShopTagID=" + tempTagC[k];
+                        using (SqlCommand comm = new SqlCommand())
+                        {
+                            comm.CommandText = commString;
+                            comm.Connection = conn;
+                            conn.Open();
+                            using (SqlDataReader sdr = comm.ExecuteReader())
+                            {
+                                if (sdr.Read())
+                                {
+                                    try
+                                    {
+                                        hst.TagID = int.Parse(sdr["HairShopTagID"].ToString());
+                                        hst.TagName = sdr["HairShopTagName"].ToString();
+                                        hst.HairShopIDs = sdr["HairShopIDs"].ToString();
+                                    }
+                                    catch
+                                    { }
+                                }
+                            }
+                        }
+                    }
+                    string[] tempHairShopIDC = hst.HairShopIDs.Split(",".ToCharArray());
+                    string hairShopIDs = "";
+
+                    int tempNum = 0;
+                    for (int i = 0; i < tempHairShopIDC.Length; i++)
+                    {
+                        if (tempHairShopIDC[i] != hs.HairShopID.ToString())
+                        {
+                            tempNum++;
+                            if (tempNum == 1)
+                            {
+                                hairShopIDs = tempHairShopIDC[i];
+                            }
+                            else
+                            {
+                                hairShopIDs += "," + tempHairShopIDC[i];
+                            }
+                        }
+                    }
+                    using (SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["MSSqlServer"].ConnectionString))
+                    {
+                        string commString = "update HairShopTag set HairShopIDs='" + hairShopIDs + "' where HairShopTagID=" + hst.TagID.ToString();
+                        using (SqlCommand comm = new SqlCommand())
+                        {
+                            comm.CommandText = commString;
+                            comm.Connection = conn;
+                            conn.Open();
+                            try
+                            {
+                                comm.ExecuteNonQuery();
+                            }
+                            catch
+                            { }
+                        }
+                    }
+                }
+            }
+
+            //
             hs.HairShopName = txtHairShopName.Text.Trim();
             hs.HairShopShortName = txtHairShopShortName.Text.Trim();
             hs.TypeID = int.Parse(ddlTypeTable.SelectedValue);
@@ -225,7 +337,7 @@ namespace Web.Admin
             hs.HairShopOpenTime = txtHairShopOpenTime.Text.Trim();
 
 
-            hs.HairShopTagIDs = InfoAdmin.GetHairShopTagIDs(txtHairShopTag.Text.Trim());
+            hs.HairShopTagIDs = "";
 
 
             hs.HairCutDiscount = Decimal.Parse(tbHairCutDiscount.Text.Trim());
@@ -275,7 +387,106 @@ namespace Web.Admin
             }
             hs.ProductIDs = productIDs;
 
+            //TAG逻辑
+            string tagIDs = "";
+            string id = hs.HairShopID.ToString();
+            string[] tagCollection = txtHairShopTag.Text.Split(";".ToCharArray());
+            for (int k = 0; k < tagCollection.Length; k++)
+            {
+                string tagID = "";
+                bool isExist = false;
+                HairShopTag hst = new HairShopTag();
+                using (SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["MSSqlServer"].ConnectionString))
+                {
+                    string commString = "select * from HairShopTag where HairShopTagName='" + tagCollection[k] + "'";
+                    using (SqlCommand comm = new SqlCommand())
+                    {
+                        comm.CommandText = commString;
+                        comm.Connection = conn;
+                        conn.Open();
+                        using (SqlDataReader sdr = comm.ExecuteReader())
+                        {
+                            if (sdr.Read())
+                            {
+                                try
+                                {
+                                    hst.TagID = int.Parse(sdr["HairShopTagID"].ToString());
+                                    hst.TagName = sdr["HairShopTagName"].ToString();
+                                    hst.HairShopIDs = sdr["HairShopIDs"].ToString();
+                                }
+                                catch
+                                { }
+                            }
+                        }
+                    }
+                }
+                if (hst.TagID == 0)
+                {
+                    using (SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["MSSqlServer"].ConnectionString))
+                    {
+                        string commString = "insert HairShopTag(HairShopTagName,HairShopIDs) values('" + tagCollection[k] + "','" + id.ToString() + "');select @@identity;";
+                        using (SqlCommand comm = new SqlCommand())
+                        {
+                            comm.CommandText = commString;
+                            comm.Connection = conn;
+                            conn.Open();
 
+                            tagID = comm.ExecuteScalar().ToString();
+                        }
+                    }
+                }
+                else
+                {
+                    tagID = hst.TagID.ToString();
+                    if (hst.HairShopIDs == string.Empty)
+                    {
+                        using (SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["MSSqlServer"].ConnectionString))
+                        {
+                            string commString = "update HairShopTag set HairShopIDs='" + id.ToString() + "' where HairShopTagID=" + hst.TagID.ToString();
+                            using (SqlCommand comm = new SqlCommand())
+                            {
+                                comm.CommandText = commString;
+                                comm.Connection = conn;
+                                conn.Open();
+                                try
+                                {
+                                    comm.ExecuteNonQuery();
+                                }
+                                catch
+                                { }
+                            }
+                        }
+                    }
+                    else
+                    {
+                        using (SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["MSSqlServer"].ConnectionString))
+                        {
+                            string commString = "update HairShopTag set HairShopIDs=HairShopIDs+'," + id.ToString() + "' where HairShopTagID=" + hst.TagID.ToString();
+                            using (SqlCommand comm = new SqlCommand())
+                            {
+                                comm.CommandText = commString;
+                                comm.Connection = conn;
+                                conn.Open();
+                                try
+                                {
+                                    comm.ExecuteNonQuery();
+                                }
+                                catch
+                                { }
+                            }
+                        }
+                    }
+                }
+                if (k == 0)
+                {
+                    tagIDs = tagID;
+                }
+                else
+                {
+                    tagIDs += "," + tagID;
+                }
+            }
+            hs.HairShopTagIDs = tagIDs;
             Session["HairShopInfo"] = hs;
             InfoAdmin.UpdateHairShop(hs);
             this.Response.Redirect("HairShopAdmin.aspx");
