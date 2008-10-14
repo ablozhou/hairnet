@@ -48,11 +48,8 @@
                   <td height="10" align="center" valign="top"><img src="Theme/Images/sg-meifa_46.gif" width="240" height="2" /></td>
                 </tr>
           </table>
-		<table width="86%" border="0" align="center" cellpadding="0" cellspacing="0">
-          <tr>
-            <td align="left" class="gray12"><a href="#" target="_blank">BOBO头</a>、<a href="#" target="_blank">挑染</a>、<a href="#" target="_blank">水烫</a>、<a href="#" target="_blank">电烫</a>、<a href="#" target="_blank">冷烫</a>、<a href="#">离子烫</a>、<a href="#" target="_blank">陶瓷烫</a>、<a href="#" target="_blank">数码烫</a>、<a href="#" target="_blank">热能烫</a>、<a href="#" target="_blank">绒绳烫</a></td>
-          </tr>
-        </table></td>
+          <!--#include   file="coupontags.htm"-->
+		</td>
       </tr>
       <tr>
         <td valign="top"><img src="Theme/Images/fair-yhq-03.gif" /></td>

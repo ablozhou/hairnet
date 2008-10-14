@@ -68,8 +68,8 @@
         </tr>
       </table>
       </asp:Panel>
-      <asp:Panel ID="p2" runat="server" Visible="false">
-      <table width="360" height="40" border="0" align="center" cellpadding="0" cellspacing="0" style="margin-top:10px;margin-bottom:5px">
+      <asp:Panel ID="p2" runat="server" Visible="true">
+      <table width="360" height="20" border="0" align="center" cellpadding="0" cellspacing="0" style="margin-top:10px;margin-bottom:5px">
         <tr>
           <td align="left" valign="bottom" class="gray12-d">订阅优惠券，请填写您的Email地址</td>
         </tr>
