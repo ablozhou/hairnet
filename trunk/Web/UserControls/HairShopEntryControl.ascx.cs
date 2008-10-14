@@ -120,5 +120,10 @@ namespace Web.UserControls
             }
             StringHelper.AlertInfo("订购成功", this.Page);
         }
+
+        protected void imgBtnCouponSubmit_OnClick(object sender, ImageClickEventArgs e)
+        {
+            StringHelper.AlertInfo("邮件地址不能为空", this.Page);
+        }
     }
 }
