@@ -62,6 +62,22 @@ namespace Web.Admin
                 if (Session["picNum"] == null || Session["picNum"].ToString() == string.Empty)
                 {
                     Session["picNum"] = 0;
+
+                    Session["PictureStoreName"] = "";
+                    Session["PictureStoreDescription"] = "";
+                    Session["PictureTags"] = "";
+                    Session["iHairNature"] = "";
+                    Session["iHairQuantity"] = "";
+                    Session["iFaceStyle"] = "";
+                    Session["iSex"] = "";
+                    Session["iHairStyleClassName"] = "";
+                    Session["iTemperament"] = "";
+                    Session["iOccasion"] = "";
+                    Session["bbsUrl"] = "";
+                    Session["picString"] = "";
+                    Session["pic"] = "";
+                    Session["picSmall"] = "";
+                    Session["PSGIDS"] = "";
                 }
                 else
                 {
