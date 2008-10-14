@@ -39,6 +39,52 @@ namespace Web.Admin
         {
             int hairEngineerID = int.Parse(Request["id"]);
             HairEngineer he = InfoAdmin.GetHairEngineerByHairEngineerID(hairEngineerID);
+
+            //TAG逻辑
+
+            if (he.HairEngineerTagIDs != string.Empty)
+            {
+                string[] tempTagC = he.HairEngineerTagIDs.Split(",".ToCharArray());
+                for (int k = 0; k < tempTagC.Length; k++)
+                {
+                    HairEngineerTag hst = new HairEngineerTag();
+                    using (SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["MSSqlServer"].ConnectionString))
+                    {
+                        string commString = "select * from HairEngineerTag where HairEngineerTagID=" + tempTagC[k];
+                        using (SqlCommand comm = new SqlCommand())
+                        {
+                            comm.CommandText = commString;
+                            comm.Connection = conn;
+                            conn.Open();
+                            using (SqlDataReader sdr = comm.ExecuteReader())
+                            {
+                                if (sdr.Read())
+                                {
+                                    try
+                                    {
+                                        hst.TagID = int.Parse(sdr["HairEngineerTagID"].ToString());
+                                        hst.TagName = sdr["HairEngineerTagName"].ToString();
+                                        hst.HairEngineerIDs = sdr["HairEngineerIDs"].ToString();
+                                    }
+                                    catch
+                                    { }
+                                }
+                            }
+                        }
+                    }
+
+                    if (k == 0)
+                    {
+                        this.txtHairEngineerTag.Text = hst.TagName;
+                    }
+                    else
+                    {
+                        this.txtHairEngineerTag.Text += ";" + hst.TagName;
+                    }
+                }
+            }
+
+            //tag逻辑结束
             //txtHairEngineerAge.Text = he.HairEngineerAge;
             txtHairEngineerDescription.Text = he.HairEngineerDescription;
             txtHairEngineerName.Text = he.HairEngineerName;
@@ -46,8 +92,6 @@ namespace Web.Admin
             txtHairEngineerRawPrice.Text = he.HairEngineerRawPrice;
             txtHairEngineerSkill.Text = he.HairEngineerSkill;
             txtHairEngineerYear.Text = he.HairEngineerYear;
-
-            txtHairEngineerTag.Text = InfoAdmin.GetHairEngineerTagNames(he.HairEngineerTagIDs);
 
             ddlHairShop.SelectedValue = he.HairShopID.ToString();
             txtHairEngineerClass.Text = he.HairEngineerClassID.ToString();
@@ -110,6 +154,78 @@ namespace Web.Admin
         protected void btnSubmit_OnClick(object sender, EventArgs e)
         {
             HairEngineer he = (HairEngineer)ViewState["HairEngineerInfo"];
+
+            //tag逻辑
+            //先处理TAG逻辑，先删除HS所对应的所有TAG
+            if (he.HairEngineerTagIDs != string.Empty)
+            {
+                string[] tempTagC = he.HairEngineerTagIDs.Split(",".ToCharArray());
+                for (int k = 0; k < tempTagC.Length; k++)
+                {
+                    HairEngineerTag hst = new HairEngineerTag();
+                    using (SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["MSSqlServer"].ConnectionString))
+                    {
+                        string commString = "select * from HairEngineerTag where HairEngineerTagID=" + tempTagC[k];
+                        using (SqlCommand comm = new SqlCommand())
+                        {
+                            comm.CommandText = commString;
+                            comm.Connection = conn;
+                            conn.Open();
+                            using (SqlDataReader sdr = comm.ExecuteReader())
+                            {
+                                if (sdr.Read())
+                                {
+                                    try
+                                    {
+                                        hst.TagID = int.Parse(sdr["HairEngineerTagID"].ToString());
+                                        hst.TagName = sdr["HairEngineerTagName"].ToString();
+                                        hst.HairEngineerIDs = sdr["HairEngineerIDs"].ToString();
+                                    }
+                                    catch
+                                    { }
+                                }
+                            }
+                        }
+                    }
+                    string[] tempHairEngineerIDC = hst.HairEngineerIDs.Split(",".ToCharArray());
+                    string hairEngineerIDs = "";
+
+                    int tempNum = 0;
+                    for (int i = 0; i < tempHairEngineerIDC.Length; i++)
+                    {
+                        if (tempHairEngineerIDC[i] != he.HairEngineerID.ToString())
+                        {
+                            tempNum++;
+                            if (tempNum == 1)
+                            {
+                                hairEngineerIDs = tempHairEngineerIDC[i];
+                            }
+                            else
+                            {
+                                hairEngineerIDs += "," + tempHairEngineerIDC[i];
+                            }
+                        }
+                    }
+                    using (SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["MSSqlServer"].ConnectionString))
+                    {
+                        string commString = "update HairEngineerTag set HairEngineerIDs='" + hairEngineerIDs + "' where HairEngineerTagID=" + hst.TagID.ToString();
+                        using (SqlCommand comm = new SqlCommand())
+                        {
+                            comm.CommandText = commString;
+                            comm.Connection = conn;
+                            conn.Open();
+                            try
+                            {
+                                comm.ExecuteNonQuery();
+                            }
+                            catch
+                            { }
+                        }
+                    }
+                }
+            }
+            //
+
             he.HairEngineerName = txtHairEngineerName.Text.Trim();
             //he.HairEngineerAge = txtHairEngineerAge.Text.Trim();
             he.HairEngineerSex = int.Parse(rBtnListHairEngineerSex.SelectedValue);
@@ -136,7 +252,108 @@ namespace Web.Admin
 
             he.IsImportant = this.chkIsImportant.Checked;
 
-            he.HairEngineerTagIDs = InfoAdmin.GetHairEngineerTagIDs(txtHairEngineerTag.Text.Trim());
+            //tag逻辑
+            string id = he.HairEngineerID.ToString();
+            string tagIDs = "";
+            string[] tagCollection = txtHairEngineerTag.Text.Split(";".ToCharArray());
+            for (int k = 0; k < tagCollection.Length; k++)
+            {
+                string tagID = "";
+                bool isExist = false;
+                HairEngineerTag hst = new HairEngineerTag();
+                using (SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["MSSqlServer"].ConnectionString))
+                {
+                    string commString = "select * from HairEngineerTag where HairEngineerTagName='" + tagCollection[k] + "'";
+                    using (SqlCommand comm = new SqlCommand())
+                    {
+                        comm.CommandText = commString;
+                        comm.Connection = conn;
+                        conn.Open();
+                        using (SqlDataReader sdr = comm.ExecuteReader())
+                        {
+                            if (sdr.Read())
+                            {
+                                try
+                                {
+                                    hst.TagID = int.Parse(sdr["HairEngineerTagID"].ToString());
+                                    hst.TagName = sdr["HairEngineerTagName"].ToString();
+                                    hst.HairEngineerIDs = sdr["HairEngineerIDs"].ToString();
+                                }
+                                catch
+                                { }
+                            }
+                        }
+                    }
+                }
+                if (hst.TagID == 0)
+                {
+                    using (SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["MSSqlServer"].ConnectionString))
+                    {
+                        string commString = "insert HairEngineerTag(HairEngineerTagName,HairEngineerIDs) values('" + tagCollection[k] + "','" + id.ToString() + "');select @@identity;";
+                        using (SqlCommand comm = new SqlCommand())
+                        {
+                            comm.CommandText = commString;
+                            comm.Connection = conn;
+                            conn.Open();
+
+                            tagID = comm.ExecuteScalar().ToString();
+                        }
+                    }
+                }
+                else
+                {
+                    tagID = hst.TagID.ToString();
+                    if (hst.HairEngineerIDs == string.Empty)
+                    {
+                        using (SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["MSSqlServer"].ConnectionString))
+                        {
+                            string commString = "update HairEngineerTag set HairEngineerIDs='" + id.ToString() + "' where HairEngineerTagID=" + hst.TagID.ToString();
+                            using (SqlCommand comm = new SqlCommand())
+                            {
+                                comm.CommandText = commString;
+                                comm.Connection = conn;
+                                conn.Open();
+                                try
+                                {
+                                    comm.ExecuteNonQuery();
+                                }
+                                catch
+                                { }
+                            }
+                        }
+                    }
+                    else
+                    {
+                        using (SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["MSSqlServer"].ConnectionString))
+                        {
+                            string commString = "update HairEngineerTag set HairEngineerIDs=HairEngineerIDs+'," + id.ToString() + "' where HairEngineerTagID=" + hst.TagID.ToString();
+                            using (SqlCommand comm = new SqlCommand())
+                            {
+                                comm.CommandText = commString;
+                                comm.Connection = conn;
+                                conn.Open();
+                                try
+                                {
+                                    comm.ExecuteNonQuery();
+                                }
+                                catch
+                                { }
+                            }
+                        }
+                    }
+                }
+                if (k == 0)
+                {
+                    tagIDs = tagID;
+                }
+                else
+                {
+                    tagIDs += "," + tagID;
+                }
+            }
+            he.HairEngineerTagIDs = tagIDs;
+
+            //tag结束
 
             if (InfoAdmin.UpdateHairEngineer(he))
             {
