@@ -428,7 +428,7 @@ namespace Web.Admin
                 {
                     using (SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["MSSqlServer"].ToString()))
                     {
-                        string commString = "insert into PictureStoreSet(PictureStoreId,PictureStoreURL,IsHairStyle,HairStylePos) values(" + ps.PictureStoreID.ToString() + ",'" + pps + "',0,0)";
+                        string commString = "insert into PictureStoreSet(PictureStoreId,PictureStoreURL,IsHairStyle,HairStylePos) values(" + hstyleid + ",'" + pps + "',0,0)";
                         using (SqlCommand comm = new SqlCommand())
                         {
                             comm.Connection = conn;

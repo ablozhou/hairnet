@@ -3,7 +3,7 @@
 margin:15px auto 0px auto;}
 #main-top div {width:930px;margin:0 auto;clear:both;} 
 .top-r-div {width:408px;margin:10px auto 0px auto;clear:both;}
-.top-r-div input {border:#ddded8 1px solid;width:175px;height:18px;background-color:#fcfcfc;}
+.top-r-div input {border:#ddded8 1px solid;width:175px;height:18px;background-color:##fcfcfc;}
 
 .red12-line-c {color:#cc0000;line-height:20px;font-size:12px;text-decoration:underline;}
 .red12-line-c a:link,.red12-line-c a:visited {color:#cc0000;text-decoration:underline;}
@@ -93,7 +93,7 @@ float:right;}
 }
 #jczp {
 	width:706px;
-	height:191px;
+	height:210px;
 	margin:0 auto;
 	clear:both;
 	background-image: url(../images/fair-mft05.gif);
@@ -174,7 +174,7 @@ margin:20px 0px 15px 0px;}
 	clear:both;
 }
 .pic-1 {text-align:center;margin:0px auto;background-image: url(../images/sg-meifa_picbg.gif);background-repeat: no-repeat;background-position: center top;color:#818181;font-size:12px;line-height:16px;width:100px;}
-.pic-1 img {width:80px;height:100px;margin-top:5px;margin-bottom:10px;}
+.pic-1 img {width:90px;height:120px;margin-top:5px;margin-bottom:10px;}
 .pic-1 a:link,.pic-1 a:visited {color:#818181;}
 .pic-1 a:hover {color:#cc0033;}
 
@@ -189,12 +189,11 @@ font-weight:bold;}
 .pic-3 a:link,.pic-3 a:visited {color:#666666;}
 .pic-3 a:hover {color:#cc0033;}
 
-.pic-4 {
-width:96px;
-height:96px;
-border:#d3d3d3 1px solid;
-margin:5px auto 5px auto;}
-.pic-4 img {width:94px;height:94px;margin-top:1px;margin-bottom:1px;}
+.pic-4 {margin:5px auto 5px auto;}
+.pic-4 img {width:90px;height:120px;border:#d3d3d3 1px solid;padding:2px 2px 2px 2px;}
+
+.pic-7 {margin:5px auto 5px auto;}
+.pic-7 img {width:94px;height:94px;border:#d3d3d3 1px solid;padding:2px 2px 2px 2px;}
 
 .pic-5 {text-align:center;margin:0px auto;width:57px;height:57px;border:#d0d0d0 1px solid;}
 .pic-5 img {width:55px;height:55px;margin-top:1px;}
@@ -259,8 +258,17 @@ font-size:12px;line-height:24px;color:#666666;}
 	background-color:#ffffff;
 	cursor:pointer;}
 
-
-
+.hj-gundong {
+margin:0 auto;padding-top:8px;
+WIDTH: 350px; HEIGHT: 112px; BACKGROUND-COLOR: transparent; OVERFLOW-x: hidder;OVERFLOW-y: scroll; scrollbar-face-color: #FFFFFF; scrollbar-shadow-color: #D2E5F4; scrollbar-highlight-color: #D2E5F4; scrollbar-3dlight-color: #FFFFFF; scrollbar-darkshadow-color: #FFFFFF; scrollbar-track-color: #FFFFFF; scrollbar-arrow-color: #D2E5F4;
+text-align:left;
+}
+.hj-gundong img{
+width:80px;
+height:80px;
+padding:3px 3px 3px 3px;
+border:#cccccc 1px solid;
+margin:5px 10px 10px 10px}
 
 
 
