@@ -79,7 +79,8 @@ namespace Web.UserControls
                                     sb.Append("<tr>");
                                 }
 
-                                sb.Append("<td align=\"center\"><div class=\"pic-2\"><a href=\"#\" target=\"_blank\"><img src=\""+hairEngineerPic+"\" alt=\""+hairEngineerDescription+"\" /></a><br /><a href=\"#\" target=\"_blank\">"+hairEngineerName+"&nbsp;&nbsp;"+hairEngineerPosition+"&nbsp;&nbsp;剪发价格&nbsp;&nbsp;"+hairEngineerRawPrice+"&nbsp;元</a></div></td>");
+                                sb.Append("<td width=\"20%\" align=\"center\"><div class=\"pic-2\"><a href=\"#\" target=\"_blank\"><img src=\"" + hairEngineerPic + "\" alt=\"" + hairEngineerDescription + "\" /></a><br /><a href=\"#\" target=\"_blank\">" + hairEngineerName + "&nbsp;&nbsp;" + hairEngineerPosition + "<br />剪发价格&nbsp;&nbsp;&nbsp;&nbsp;" + hairEngineerRawPrice + "</a></div></td>");
+
                                 if (num % 6 == 0)
                                 {
                                     sb.Append("</tr>");

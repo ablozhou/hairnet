@@ -18,10 +18,12 @@ namespace Web
         {
             StringHelper.AddStyleSheet(this.Page, "Theme/Style/meifating.css");
 
-            //this.hairShopEntryControl.HairShopID = 9;
-            //this.hairShopEntryDescription.HairShopID = 9;
-            //this.hairShopEngineerList.HairShopID = 9;
-            //this.hairShopWorkList.HairShopID = 9;
+            int hairShopID = 8;
+            this.hairShopEntryControl.HairShopID = hairShopID;
+            this.hairShopEntryDescription.HairShopID = hairShopID;
+            this.hairShopEngineerList.HairShopID = hairShopID;
+            this.hairShopWorkList.HairShopID = hairShopID;
+            this.sameHairShopList.HairShopID = hairShopID;
         }
         protected void btn_OnClick(object sender, EventArgs e)
         {

@@ -12,20 +12,29 @@ namespace Web.UserControls {
     
     
     /// <summary>
-    /// HairShopEngineerList 类。
+    /// SameHotZoneHairShopList 类。
     /// </summary>
     /// <remarks>
     /// 自动生成的类。
     /// </remarks>
-    public partial class HairShopEngineerList {
+    public partial class SameHotZoneHairShopList {
         
         /// <summary>
-        /// lblEngineerList 控件。
+        /// lbl1 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblEngineerList;
+        protected global::System.Web.UI.WebControls.Label lbl1;
+        
+        /// <summary>
+        /// lbl2 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbl2;
     }
 }
