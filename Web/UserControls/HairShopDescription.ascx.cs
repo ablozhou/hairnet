@@ -56,7 +56,7 @@ namespace Web.UserControls
 
             if (hairShop.HairShopEngineerNum == 0)
             {
-                this.lblHairEngineerDescription.Text = "当前此美发厅没有美发师";
+                this.lblHairEngineerDescription.Text = "当前此美发厅没有领军人物";
             }
             else
             {
