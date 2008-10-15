@@ -30,7 +30,7 @@ WIDTH: 600px; HEIGHT: 54px; BACKGROUND-COLOR: transparent; OVERFLOW-x: hidder;OV
 /*搜美发厅结束*/
 #showhair {background-image: url(../images/sg-meifa_26.gif);background-repeat: no-repeat;width:971px;height:183px;margin:5px auto 10px auto;}
 .pic-1 {text-align:center;margin:0px auto;background-image: url(../images/sg-meifa_picbg.gif);background-repeat: no-repeat;background-position: center top;color:#818181;font-size:12px;line-height:16px;width:100px;}
-.pic-1 img {width:80px;height:100px;margin-top:5px;margin-bottom:10px;}
+.pic-1 img {width:90px;height:120px;margin-top:5px;margin-bottom:10px;}
 .pic-1 a:link,.pic-1 a:visited {color:#818181;}
 .pic-1 a:hover {color:#cc0033;}
 
@@ -72,7 +72,7 @@ padding-top:10px;}
 #main-3-r {width:260px;	float:right;text-align:center;background-image: url(../images/sg-meifa_39.gif);background-repeat: repeat-y;background-position: center top;}
 
 /*近期精彩作品*/
-#rmfx-bg {width:703px;height:255px;background-image: url(../images/fair-jczp_bg.gif);background-repeat: no-repeat;background-position: center top;margin:6px auto 6px auto;clear:both;}
+#rmfx-bg {width:703px;height:270px;background-image: url(../images/fair-jczp_bg.gif);background-repeat: no-repeat;background-position: center top;margin:6px auto 6px auto;clear:both;}
 
 /*崇尚美发店*/
 #mfd-bg {width:703px;height:275px;background-image: url(../images/fair-mfd_bg.gif);background-repeat: no-repeat;background-position: center top;margin:6px auto 6px auto;clear:both;}

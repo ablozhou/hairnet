@@ -21,12 +21,12 @@
 .title-list li a:link,.title-list a:visited {color:#666666;}
 .title-list li a:hover {color:#cc0033;}
 
-.pic-1 {text-align:center;margin:0px auto;width:120px;height:150px;border:#dfdfdf 1px solid;}
-.pic-1 img {width:110px;height:140px;margin-top:5px;}
+.pic-1 {text-align:center;margin:0px auto;width:115px;height:150px;border:#dfdfdf 1px solid;}
+.pic-1 img {width:105px;height:140px;margin-top:5px;}
 .pic-1 a:link,.pic-1 a:visited {color:#818181;}
 .pic-1 a:hover {color:#cc0033;}
 
-.pic-2 img {width:110px;height:140px;border:#dfdfdf 1px solid;}
+.pic-2 img {width:105px;height:140px;border:#dfdfdf 1px solid;}
 
 .pic-5 {text-align:center;margin:0px auto;width:57px;height:57px;border:#d0d0d0 1px solid;}
 .pic-5 img {width:55px;height:55px;margin-top:1px;}
