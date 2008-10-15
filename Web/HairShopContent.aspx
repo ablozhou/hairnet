@@ -10,6 +10,9 @@
 <%@ Register Src="UserControls/NewWorkList.ascx" TagName="NewWorkList" TagPrefix="HN" %>
 
 <asp:Content ContentPlaceHolderID="BodyContentPosition" ID="BodyContent" runat="server">
+<!-- sou head -->
+<HN:SearchHead ID="searchHead" runat="server" />
+<!-- sou head end -->
 
 <!-- 美发厅基本信息 -->
 <HN:HairShopEntryControl ID="hairShopEntryControl" runat="server" />
