@@ -292,17 +292,10 @@
                  </table>
                 </td>
             </tr>
+          
             <tr>
                 <td width="120" align="right">
-                    是否旗舰店：
-                </td>
-                <td>
-                    <asp:CheckBox ID="chkIsBest" runat="server" />
-                </td>
-            </tr>
-            <tr>
-                <td width="120" align="right">
-                    是否加盟店：
+                    加盟连锁：
                 </td>
                 <td>
                     <asp:CheckBox ID="chkIsJoin" runat="server" />

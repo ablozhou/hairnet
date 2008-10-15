@@ -102,7 +102,7 @@
                 </td>
             </tr>
             <tr>
-                <td width="120" align="right">小图片：
+                <td width="120" align="right">    &nbsp;&nbsp;  小图片：
                 </td>
                 <td><input id="uploadpicsmall" type="file" runat="server" />
                 </td>

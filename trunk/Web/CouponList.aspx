@@ -17,7 +17,7 @@
             <td align="left"><table width="100%" border="0" cellspacing="0" cellpadding="0">
 			<form method=post action=# target=_blank>
               <tr>
-                <td width="66%" class="search-bg" style="border-left:#cbcbcb 1px solid;"><input name="textfield" type="text" class="search-input" value="输入关键词" onclick="javascript:if(this.value.substring(0,4)=='输入关键') this.value='';" /></td>
+                <td width="66%" class="search-bg" style="border-left:#cbcbcb 1px solid;"><input name="txtBuzizone" type="text" class="search-input" value="输入关键词" onclick="javascript:if(this.value.substring(0,4)=='输入关键') this.value='';" /></td>
                 <td width="11%" align="left" class="search-bg"><img src="Theme/Images/sg-meifa_17.gif" width="26" height="23" /></td>
                 <td width="21%" align="center" class="search-bg"><span class="search"><a href="#" target="_blank">
                     <asp:Button ID="btnBusiZoneSearch" runat="server" Text="搜&nbsp;索" onclick="btnBusiZoneSearch_Click" 
@@ -33,7 +33,7 @@
             <td align="left"><table width="100%" border="0" cellspacing="0" cellpadding="0">
               <form method="post" action="#" target="_blank">
                 <tr>
-                  <td width="66%" class="search-bg" style="border-left:#cbcbcb 1px solid;"><input name="textfield2" type="text" class="search-input" value="输入关键词" onclick="javascript:if(this.value.substring(0,4)=='输入关键') this.value='';" /></td>
+                  <td width="66%" class="search-bg" style="border-left:#cbcbcb 1px solid;"><input name="txtShopName" type="text" class="search-input" value="输入关键词" onclick="javascript:if(this.value.substring(0,4)=='输入关键') this.value='';" /></td>
                   <td width="11%" align="left" class="search-bg"><img src="Theme/Images/sg-meifa_17.gif" width="26" height="23" /></td>
                   <td width="21%" align="center" class="search-bg"><span class="search"><a href="#" target="_blank">
                       <asp:Button ID="btnKeySearch" runat="server" Text="搜&nbsp;索" 
@@ -142,22 +142,29 @@
     <div class="clear"></div>
   </div>
   <div id="main-r">
-    <table width="100%" height="34" border="0" cellpadding="0" cellspacing="0" background="Theme/Images/fair-yhq-04.gif">
+    
+      <asp:Repeater ID="reptCoupon" runat="server">
+      <HeaderTemplate>
+      <table width="100%" height="34" border="0" cellpadding="0" cellspacing="0" background="Theme/Images/fair-yhq-04.gif">
       <tr>
         <td width="22%" align="center" valign="middle"><a href="#" target="_blank"><img src="Theme/Images/fair-yhq-09.gif" alt="打印优惠券" width="111" height="19" border="0" /></a></td>
         <td width="46%" align="center" valign="middle" class="gray12">优惠名称</td>
         <td width="32%" align="left" valign="middle" class="gray12">商圈</td>
       </tr>
     </table>
-    <table width="99%" border="0" align="center" cellpadding="0" cellspacing="0">
+      </HeaderTemplate>
+      <ItemTemplate> <table width="99%" border="0" align="center" cellpadding="0" cellspacing="0">
       <tr>
         <td width="6%" align="right" valign="middle"><input type="checkbox" name="checkbox" value="checkbox" /></td>
         <td width="30%" align="center" valign="middle"><table width="100%" border="0" cellspacing="0" cellpadding="0" style="margin-top:25px;">
           <tr>
-            <td align="center" class="yhq-pic"><img src="Theme/Images/fair-yhq-temp1.gif" width="160" height="95" /></td>
+            <td align="center" class="yhq-pic">
+                <asp:Image ID="imgCoupon"  Height="95" width = "160" runat="server" /></td>
           </tr>
           <tr>
-            <td height="50" align="center" valign="middle"><a href="#"><img src="Theme/Images/fair-yhq-07.gif" width="59" height="19" border="0" /></a>&nbsp;&nbsp;<a href="#"><img src="Theme/Images/fair-yhq-08.gif" width="59" height="19" border="0" /></a></td>
+            <td height="50" align="center" valign="middle">
+                <asp:ImageButton ID="btnPrint" ImageUrl = "Theme/Images/fair-yhq-07.gif" width="59" height="19"  runat="server" />&nbsp;&nbsp;<asp:ImageButton
+                    ID="btnSendTo" ImageUrl="Theme/Images/fair-yhq-08.gif" width="59" height="19" runat="server" /></td>
           </tr>
         </table></td>
         <td width="64%" align="left" valign="top"><table width="95%" border="0" cellspacing="0" cellpadding="0" style="margin-top:20px;">
@@ -180,174 +187,13 @@
           </tr>
         </table></td>
       </tr>
-    </table>	
-    <div class="point">&nbsp;</div>
-	<table width="99%" border="0" align="center" cellpadding="0" cellspacing="0" bgcolor="#f7f7f7">
-      <tr>
-        <td width="6%" align="right" valign="middle"><input type="checkbox" name="checkbox" value="checkbox" /></td>
-        <td width="30%" align="center" valign="middle"><table width="100%" border="0" cellspacing="0" cellpadding="0" style="margin-top:25px;">
-          <tr>
-            <td align="center" class="yhq-pic"><img src="Theme/Images/fair-yhq-temp1.gif" width="160" height="95" /></td>
-          </tr>
-          <tr>
-            <td height="50" align="center" valign="middle"><a href="#"><img src="Theme/Images/fair-yhq-07.gif" width="59" height="19" border="0" /></a>&nbsp;&nbsp;<a href="#"><img src="Theme/Images/fair-yhq-08.gif" width="59" height="19" border="0" /></a></td>
-          </tr>
-        </table></td>
-        <td width="64%" align="left" valign="top"><table width="95%" border="0" cellspacing="0" cellpadding="0" style="margin-top:20px;">
-          <tr>
-            <td height="35" colspan="3" align="left" valign="middle" class="red14b" style="border-bottom:#e8e8e8 1px solid">&nbsp;审美总店8.5折优惠券</td>
-            </tr>
-			<tr>
-            <td height="8" colspan="3" align="left"></td>
-            </tr>
-          <tr>
-            <td width="46%" height="65" valign="top" class="gray12-d"> &nbsp;&nbsp;&nbsp;&nbsp;凭此券可享受烫染8.5折，剪发除外，购买产品除外</td>
-            <td width="22%" align="center" valign="top" class="gray14">国贸</td>
-            <td width="32%" valign="top" class="gray12-d">有 效 期&nbsp;&nbsp;至2009年<br />
-              联系方式   &nbsp;&nbsp;5999999999</td>
-          </tr>
-          <tr>
-            <td align="center" class="gray12-bg"><a href="#" target="_blank">发表评论</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#" target="_blank">更多评论&gt;&gt;</a></td>
-            <td>&nbsp;</td>
-            <td>&nbsp;</td>
-          </tr>
-        </table></td>
-      </tr>
-    </table>	
-    <div class="point">&nbsp;</div>
-	<table width="99%" border="0" align="center" cellpadding="0" cellspacing="0">
-      <tr>
-        <td width="6%" align="right" valign="middle"><input type="checkbox" name="checkbox" value="checkbox" /></td>
-        <td width="30%" align="center" valign="middle"><table width="100%" border="0" cellspacing="0" cellpadding="0" style="margin-top:25px;">
-          <tr>
-            <td align="center" class="yhq-pic"><img src="Theme/Images/fair-yhq-temp1.gif" width="160" height="95" /></td>
-          </tr>
-          <tr>
-            <td height="50" align="center" valign="middle"><a href="#"><img src="Theme/Images/fair-yhq-07.gif" width="59" height="19" border="0" /></a>&nbsp;&nbsp;<a href="#"><img src="Theme/Images/fair-yhq-08.gif" width="59" height="19" border="0" /></a></td>
-          </tr>
-        </table></td>
-        <td width="64%" align="left" valign="top"><table width="95%" border="0" cellspacing="0" cellpadding="0" style="margin-top:20px;">
-          <tr>
-            <td height="35" colspan="3" align="left" valign="middle" class="red14b" style="border-bottom:#e8e8e8 1px solid">&nbsp;审美总店8.5折优惠券</td>
-            </tr>
-			<tr>
-            <td height="8" colspan="3" align="left"></td>
-            </tr>
-          <tr>
-            <td width="46%" height="65" valign="top" class="gray12-d"> &nbsp;&nbsp;&nbsp;&nbsp;凭此券可享受烫染8.5折，剪发除外，购买产品除外</td>
-            <td width="22%" align="center" valign="top" class="gray14">国贸</td>
-            <td width="32%" valign="top" class="gray12-d">有 效 期&nbsp;&nbsp;至2009年<br />
-              联系方式   &nbsp;&nbsp;5999999999</td>
-          </tr>
-          <tr>
-            <td align="center" class="gray12-bg"><a href="#" target="_blank">发表评论</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#" target="_blank">更多评论&gt;&gt;</a></td>
-            <td>&nbsp;</td>
-            <td>&nbsp;</td>
-          </tr>
-        </table></td>
-      </tr>
-    </table>	
-    <div class="point">&nbsp;</div>
-	<table width="99%" border="0" align="center" cellpadding="0" cellspacing="0" bgcolor="#f7f7f7">
-      <tr>
-        <td width="6%" align="right" valign="middle"><input type="checkbox" name="checkbox" value="checkbox" /></td>
-        <td width="30%" align="center" valign="middle"><table width="100%" border="0" cellspacing="0" cellpadding="0" style="margin-top:25px;">
-          <tr>
-            <td align="center" class="yhq-pic"><img src="Theme/Images/fair-yhq-temp1.gif" width="160" height="95" /></td>
-          </tr>
-          <tr>
-            <td height="50" align="center" valign="middle"><a href="#"><img src="Theme/Images/fair-yhq-07.gif" width="59" height="19" border="0" /></a>&nbsp;&nbsp;<a href="#"><img src="Theme/Images/fair-yhq-08.gif" width="59" height="19" border="0" /></a></td>
-          </tr>
-        </table></td>
-        <td width="64%" align="left" valign="top"><table width="95%" border="0" cellspacing="0" cellpadding="0" style="margin-top:20px;">
-          <tr>
-            <td height="35" colspan="3" align="left" valign="middle" class="red14b" style="border-bottom:#e8e8e8 1px solid">&nbsp;审美总店8.5折优惠券</td>
-            </tr>
-			<tr>
-            <td height="8" colspan="3" align="left"></td>
-            </tr>
-          <tr>
-            <td width="46%" height="65" valign="top" class="gray12-d"> &nbsp;&nbsp;&nbsp;&nbsp;凭此券可享受烫染8.5折，剪发除外，购买产品除外</td>
-            <td width="22%" align="center" valign="top" class="gray14">国贸</td>
-            <td width="32%" valign="top" class="gray12-d">有 效 期&nbsp;&nbsp;至2009年<br />
-              联系方式   &nbsp;&nbsp;5999999999</td>
-          </tr>
-          <tr>
-            <td align="center" class="gray12-bg"><a href="#" target="_blank">发表评论</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#" target="_blank">更多评论&gt;&gt;</a></td>
-            <td>&nbsp;</td>
-            <td>&nbsp;</td>
-          </tr>
-        </table></td>
-      </tr>
-    </table>
-	<div class="point">&nbsp;</div>
-	<table width="99%" border="0" align="center" cellpadding="0" cellspacing="0">
-      <tr>
-        <td width="6%" align="right" valign="middle"><input type="checkbox" name="checkbox" value="checkbox" /></td>
-        <td width="30%" align="center" valign="middle"><table width="100%" border="0" cellspacing="0" cellpadding="0" style="margin-top:25px;">
-          <tr>
-            <td align="center" class="yhq-pic"><img src="Theme/Images/fair-yhq-temp1.gif" width="160" height="95" /></td>
-          </tr>
-          <tr>
-            <td height="50" align="center" valign="middle"><a href="#"><img src="Theme/Images/fair-yhq-07.gif" width="59" height="19" border="0" /></a>&nbsp;&nbsp;<a href="#"><img src="Theme/Images/fair-yhq-08.gif" width="59" height="19" border="0" /></a></td>
-          </tr>
-        </table></td>
-        <td width="64%" align="left" valign="top"><table width="95%" border="0" cellspacing="0" cellpadding="0" style="margin-top:20px;">
-          <tr>
-            <td height="35" colspan="3" align="left" valign="middle" class="red14b" style="border-bottom:#e8e8e8 1px solid">&nbsp;审美总店8.5折优惠券</td>
-            </tr>
-			<tr>
-            <td height="8" colspan="3" align="left"></td>
-            </tr>
-          <tr>
-            <td width="46%" height="65" valign="top" class="gray12-d"> &nbsp;&nbsp;&nbsp;&nbsp;凭此券可享受烫染8.5折，剪发除外，购买产品除外</td>
-            <td width="22%" align="center" valign="top" class="gray14">国贸</td>
-            <td width="32%" valign="top" class="gray12-d">有 效 期&nbsp;&nbsp;至2009年<br />
-              联系方式   &nbsp;&nbsp;5999999999</td>
-          </tr>
-          <tr>
-            <td align="center" class="gray12-bg"><a href="#" target="_blank">发表评论</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#" target="_blank">更多评论&gt;&gt;</a></td>
-            <td>&nbsp;</td>
-            <td>&nbsp;</td>
-          </tr>
-        </table></td>
-      </tr>
-    </table>	
-    <div class="point">&nbsp;</div>
-	<table width="99%" border="0" align="center" cellpadding="0" cellspacing="0" bgcolor="#f7f7f7">
-      <tr>
-        <td width="6%" align="right" valign="middle"><input type="checkbox" name="checkbox" value="checkbox" /></td>
-        <td width="30%" align="center" valign="middle"><table width="100%" border="0" cellspacing="0" cellpadding="0" style="margin-top:25px;">
-          <tr>
-            <td align="center" class="yhq-pic"><img src="Theme/Images/fair-yhq-temp1.gif" width="160" height="95" /></td>
-          </tr>
-          <tr>
-            <td height="50" align="center" valign="middle"><a href="#"><img src="Theme/Images/fair-yhq-07.gif" width="59" height="19" border="0" /></a>&nbsp;&nbsp;<a href="#"><img src="Theme/Images/fair-yhq-08.gif" width="59" height="19" border="0" /></a></td>
-          </tr>
-        </table></td>
-        <td width="64%" align="left" valign="top"><table width="95%" border="0" cellspacing="0" cellpadding="0" style="margin-top:20px;">
-          <tr>
-            <td height="35" colspan="3" align="left" valign="middle" class="red14b" style="border-bottom:#e8e8e8 1px solid">&nbsp;审美总店8.5折优惠券</td>
-            </tr>
-			<tr>
-            <td height="8" colspan="3" align="left"></td>
-            </tr>
-          <tr>
-            <td width="46%" height="65" valign="top" class="gray12-d"> &nbsp;&nbsp;&nbsp;&nbsp;凭此券可享受烫染8.5折，剪发除外，购买产品除外</td>
-            <td width="22%" align="center" valign="top" class="gray14">国贸</td>
-            <td width="32%" valign="top" class="gray12-d">有 效 期&nbsp;&nbsp;至2009年<br />
-              联系方式   &nbsp;&nbsp;5999999999</td>
-          </tr>
-          <tr>
-            <td align="center" class="gray12-bg"><a href="#" target="_blank">发表评论</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#" target="_blank">更多评论&gt;&gt;</a></td>
-            <td>&nbsp;</td>
-            <td>&nbsp;</td>
-          </tr>
-        </table></td>
-      </tr>
-    </table>
-	 <div class="point">&nbsp;</div>
-	<div class="page-all"><a href="#">第一页</a>  <a href="#">上一页</a>  <a href="#">1</a> <span class="red12">2</span> <a href="#">3</a> <a href="#">4</a> <a href="#">5</a> <a href="#">6</a>  &nbsp;<a href="#">下一页</a>&nbsp;&nbsp;<a href="#">最后一页</a>&nbsp;&nbsp;共8页</div>
+    </table><div class="point">&nbsp;</div></ItemTemplate>
+      </asp:Repeater>
+    	
+   
+	 <div class="point">&nbsp;<a href="#">第一页</a> <a href="#">上一页</a> <a href="#">1</a>
+         <span class="red12">2</span> <a href="#">3</a> <a href="#">4</a> <a href="#">5</a>
+         <a href="#">6</a>  &nbsp;<a href="#">下一页</a>&nbsp;&nbsp;<a href="#">最后一页</a>&nbsp;&nbsp;共8页</div>
 	<table width="100%" border="0" align="center" cellpadding="0" cellspacing="0">
   <tr>
     <td valign="bottom"><img src="Theme/Images/fair-yhq-06.gif" /></td>

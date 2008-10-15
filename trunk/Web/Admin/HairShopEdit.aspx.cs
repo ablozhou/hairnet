@@ -152,7 +152,7 @@ namespace Web.Admin
             tbSquare.Text = hs.Square;
             tbLocation.Text = hs.LocationMapURL;
 
-            chkIsBest.Checked = hs.IsBest;
+           
             chkIsJoin.Checked = hs.IsJoin;
             chkIsPostMachine.Checked = hs.IsPostMachine;
             chkIsPostStation.Checked = hs.IsPostStation;
@@ -360,7 +360,7 @@ namespace Web.Admin
             hs.IsServeDye = chkCut.Checked;
 
 
-            hs.IsBest = chkIsBest.Checked;
+           
             hs.IsJoin = chkIsJoin.Checked;
             hs.IsPostMachine = chkIsPostStation.Checked;
             hs.IsPostStation = chkIsPostMachine.Checked;

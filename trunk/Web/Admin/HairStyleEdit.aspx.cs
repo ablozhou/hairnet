@@ -61,6 +61,7 @@ namespace Web.Admin
                                 this.txtDesc.Text = sdr["descr"].ToString();
                                 picturestoregroupids = sdr["psgids"].ToString();
                                 this.lblEngineerID.Text = sdr["hairEngineerID"].ToString();
+                                txtBbsurl.Text = sdr["bbsurl"].ToString();
                             }
                         }
                     }
@@ -171,9 +172,12 @@ namespace Web.Admin
                                         this.lbl2Small.Text = sdr["SmallPictureUrl"].ToString();
 
                                         i2Small.ImageUrl = sdr["SmallPictureUrl"].ToString();
+
+                                        if(i2Small.ImageUrl != string.Empty)
                                         i2Small.Visible = true;
 
                                         i2.ImageUrl = sdr["PictureStoreUrl"].ToString();
+                                        if (i2.ImageUrl != string.Empty)
                                         i2.Visible = true;
                                         this.l2.Text = sdr["ID"].ToString();
                                         break;
@@ -182,9 +186,11 @@ namespace Web.Admin
                                         this.lbl3Small.Text = sdr["SmallPictureUrl"].ToString();
 
                                         i3Small.ImageUrl = sdr["SmallPictureUrl"].ToString();
+                                        if (i3Small.ImageUrl != string.Empty)
                                         i3Small.Visible = true;
 
                                         i3.ImageUrl = sdr["PictureStoreUrl"].ToString();
+                                        if (i3.ImageUrl != string.Empty)
                                         i3.Visible = true;
                                         this.l3.Text = sdr["ID"].ToString();
                                         break;
@@ -193,9 +199,11 @@ namespace Web.Admin
                                         this.lbl4Small.Text = sdr["SmallPictureUrl"].ToString();
 
                                         i4Small.ImageUrl = sdr["SmallPictureUrl"].ToString();
+                                        if (i4Small.ImageUrl != string.Empty)
                                         i4Small.Visible = true;
 
                                         i4.ImageUrl = sdr["PictureStoreUrl"].ToString();
+                                        if (i4.ImageUrl != string.Empty)
                                         i4.Visible = true;
                                         this.l4.Text = sdr["ID"].ToString();
                                         break;
