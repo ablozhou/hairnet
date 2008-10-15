@@ -99,6 +99,7 @@ namespace Web.Admin
                 }
             }
             string hairStyleTagIDs = "";
+            string hairStyleID = "";
             using (SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["MSSqlServer"].ToString()))
             {
                 string commString = "select * from HairStyle where PictureStoreId=" + ps.PictureStoreID.ToString();
@@ -113,6 +114,7 @@ namespace Web.Admin
                         if (sdr.Read())
                         {
                             hairStyleTagIDs = sdr["tag"].ToString();
+                            hairStyleID = sdr["id"].ToString();
                             this.ddlFaceStyle.SelectedValue = sdr["facestyle"].ToString();
                             this.ddlHairNature.SelectedValue = sdr["hairnature"].ToString();
                             this.ddlHairQuantity.SelectedValue = sdr["hairquantity"].ToString();
@@ -175,7 +177,7 @@ namespace Web.Admin
             string imgString = string.Empty;
             using (SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["MSSqlServer"].ToString()))
             {
-                string commString = "select * from PictureStoreSet where PictureStoreId=" + ps.PictureStoreID.ToString();
+                string commString = "select * from PictureStoreSet where PictureStoreId=" + hairStyleID;
                 using (SqlCommand comm = new SqlCommand())
                 {
                     comm.Connection = conn;
@@ -189,11 +191,11 @@ namespace Web.Admin
                             i++;
                             if (i == 1)
                             {
-                                imgString = "<img src='" + sdr["SmallPictureUrl"].ToString() + "' width=100 height=50 /><a href='" + sdr["PictureStoreURL"].ToString() + "' target='_blank'><img src='" + sdr["PictureStoreURL"].ToString() + "' width=200 height=100 /></a>&nbsp;&nbsp;<a href='PictureStoreOperate.aspx?id=" + sdr["id"].ToString() + "&pid=" + sdr["PictureStoreID"].ToString() + "'>删除</a>";
+                                imgString = "<img src='" + sdr["SmallPictureUrl"].ToString() + "' width=100 height=50 /><a href='" + sdr["PictureStoreURL"].ToString() + "' target='_blank'><img src='" + sdr["PictureStoreURL"].ToString() + "' width=200 height=100 /></a>&nbsp;&nbsp;<a href='PictureStoreOperate.aspx?id=" + sdr["id"].ToString() + "&pid=" + ps.PictureStoreID.ToString() + "'>删除</a>";
                             }
                             else
                             {
-                                imgString += "<img src='" + sdr["SmallPictureUrl"].ToString() + "' width=100 height=50 /><a href='" + sdr["PictureStoreURL"].ToString() + "' target='_blank'><img src='" + sdr["PictureStoreURL"].ToString() + "' width=200 height=100 /></a>&nbsp;&nbsp;<a href='PictureStoreOperate.aspx?id=" + sdr["id"].ToString() + "&pid=" + sdr["PictureStoreID"].ToString() + "'>删除</a>";
+                                imgString += "<img src='" + sdr["SmallPictureUrl"].ToString() + "' width=100 height=50 /><a href='" + sdr["PictureStoreURL"].ToString() + "' target='_blank'><img src='" + sdr["PictureStoreURL"].ToString() + "' width=200 height=100 /></a>&nbsp;&nbsp;<a href='PictureStoreOperate.aspx?id=" + sdr["id"].ToString() + "&pid=" + ps.PictureStoreID.ToString() + "'>删除</a>";
                             }
                         }
                     }
