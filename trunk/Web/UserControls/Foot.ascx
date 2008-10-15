@@ -7,7 +7,32 @@
     <td width="209" height="70" bgcolor="#FFFFFF">&nbsp;</td>
     <td width="559" align="center" valign="middle" bgcolor="#FFFFFF" class="end-black12"> Copyright&copy;1996-2008 北京精品卓越科技发展有限公司版权所有 未经授权禁止复制或建立镜像<br />
       京ICP许可证031001号　广告经营许可证 京海工商广字第190号</td>
-    <td width="212" align="left" valign="middle" bgcolor="#FFFFFF"><img src="Theme/Images/sg-gongshang-biao.gif" width="34" height="43" /></td>
+    <td width="212" align="left" valign="middle" bgcolor="#FFFFFF"><img src="Theme/images/sg-gongshang-biao.gif" width="34" height="43" /></td>
   </tr>
 </table>
-
+</body>
+</html>
+<script language="javascript">
+var num=2; //总共有几个小窗口
+var stopTime=100000000; //停留时间
+var curNum=1;
+var ii=0;
+function getObj(objName){return(document.getElementById(objName));}
+function showPage(id){
+	getObj('container').innerHTML=getObj("page"+id).innerHTML;
+	for(var i=1;i<=num;i++){
+		if(i==id) getObj("box"+i).className="overbtn";
+		else getObj("box"+i).className="outbtn";
+	}
+	clearTimeout(timer1);
+	timer1=setTimeout(autoTurn,stopTime);
+}
+function autoTurn(){
+if(ii<2){
+	ii++;
+	showPage(curNum++);
+	if(curNum>num) curNum=1;
+}
+}
+timer1=setTimeout(autoTurn);
+</script>

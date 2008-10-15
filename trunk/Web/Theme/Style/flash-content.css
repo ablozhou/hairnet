@@ -1,5 +1,15 @@
 /* CSS Document */
 .zzstable01 { border-bottom:#c1c1c1 1px solid; border-top:#c1c1c1 1px solid; }
+.zzpic {
+text-align:center;}
+.zzpic img {width:160px;height:95px;
+border:#ffffff 2px solid;
+margin:10px 0px 10px 0px;}
 
-.zzpic {text-align:center;margin:0px auto 0px auto;width:162px;height:97px;border:#d0d0d0 1px solid;}
-.zzpic img {width:158px;height:93px;margin-top:2px;}
+
+.bg {
+	background-image: url(../images/flash-bg.jpg);
+	background-repeat: no-repeat;
+	background-position: center bottom;
+	height:575px;
+}

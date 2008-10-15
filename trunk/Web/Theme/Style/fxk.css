@@ -36,7 +36,6 @@ float:right;
 #show-area {
 	width:790px;
 	float:right;
-
 	background-image: url(../images/fxk-03.gif);
 	background-repeat: no-repeat;
 	background-position: center top;
@@ -47,24 +46,17 @@ height:781px;
 float:right;
 width:8px;
 background-color:#FFFFFF;}
+.pic-bg {background-image: url(../images/fxk2-02.gif);background-repeat: repeat-x;background-position: top;background-color:#ffffff;}
+.pic-bg2 {background-image: url(../images/fxk2-03.gif);background-repeat: no-repeat;background-position: right top;}
 
-
-h1 {
-color:#df0001;
-font-size:22px;
-line-height:45px;
-height:45px;
-margin:0 auto;
-padding:0px;}
-.dateandtime {
-color:#818181;
-font-size:12px;
-line-height:35px;}
+h1 {color:#1c1c1c;font-size:22px;line-height:39px;height:39px;float:left;text-align:left;padding:0px;
+margin:0px;}
+.dateandtime {color:#818181;font-size:12px;line-height:39px;float:left;text-align:left;height:39px;margin-left:20px;}
 
 .nullarea {
 height:15px;
 margin:0 auto;
-width:100%;
+width:99%;
 clear:both;
 background-color:#ffffff;}
 .nullarea-2 {
@@ -78,20 +70,9 @@ background-color:#ffffff;}
 .white12 a:link,.white12 a:visited {color:#ffffff;}
 .white12 a:hover {color:#cc0033;}
 .pic-page {font-size:14px;color:#b3b3b3;line-height:26px;}
-.fxk-pic-s {
-	background-image: url(../images/fxk-04.gif);
-	background-repeat: no-repeat;
-	background-position: center top;
-	height: 173px;
-	width: 151px;
-	margin:0 auto;
-	text-align:center;
-}
-.fxk-pic-s img {
-width:124px;
-height:144px;
-margin-top:14px;
-}
+.fxk-pic-b img {border:#b2b2b2 1px solid;}
+.fxk-pic-s2 img {width:105px;height:140px;border-right:#cfcfcf 1px solid;border-bottom:#cfcfcf 1px solid;}
+.fxk-pic-s img {width:105px;height:140px;border-right:#cfcfcf 1px solid;border-bottom:#cfcfcf 1px solid;border-top:#cfcfcf 1px solid;}
 .fxk-pic-null {width:100%;height:10px;margin:0 auto;clear:both;
 line-height:10px;}
 
@@ -191,13 +172,7 @@ font-size:12px;line-height:24px;color:#666666;}
 .page-all a:link,.page-all a:visited {color:#666666;}
 .page-all a:hover {color:#cc0033;}
 /*ÆÀÂÛ½áÊø*/
-
-.pic-4 {
-width:96px;
-height:96px;
-border:#d3d3d3 1px solid;
-margin:5px auto 5px auto;}
-.pic-4 img {width:94px;height:94px;margin-top:1px;margin-bottom:1px;}
+.pic-4 img {width:105px;height:140px;margin-top:10px;}
 
 .dq-fx {color:#0096ff;line-height:22px;font-size:12px;font-weight:bold;}
 .dq-fx a:link,.dq-fx a:visited {color:#0096ff;}
