@@ -25,7 +25,7 @@ namespace Web.UserControls
             {
                 HairShop hairShop = ProviderFactory.GetHairShopDataProviderInstance().GetHairShopByHairShopID(this.HairShopID);
 
-                
+                this.Page.Header.Title = "美发频道 - "+hairShop.HairShopName;
                 this.lblHairShopName.Text = hairShop.HairShopName;
                 this.lblHairShopAddress.Text = hairShop.HairShopAddress+"【<span class=\"red12-c\">地图</span>】";
                 this.lblHairShopDiscount.Text = hairShop.HairShopDiscount+"折";
