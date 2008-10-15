@@ -244,6 +244,7 @@ namespace Web.Admin
                 
 
                 PictureStore pictureStore = e.Item.DataItem as PictureStore;
+                Label lblPreview = e.Item.FindControl("lblPreview") as Label;
                 Label lblPictureUrl = e.Item.FindControl("lblPictureUrl") as Label;
                 string hairStyleID = "";
                 using (SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["MSSqlServer"].ToString()))
@@ -286,7 +287,7 @@ namespace Web.Admin
                     }
                 }
             }
-
+            lblPreview.Text = "<a href='../HairLastPage.aspx?id="+hairStyleID+"'>预览</a>";
             lblPictureUrl.Text = imgString;//"<a href='" + pictureStore.PictureStoreRawUrl.ToString() + "'target='_blank'><img src='" + pictureStore.PictureStoreLittleUrl.ToString() + "' width='40' height='20' alt='点击查看大图' /></a>";
 
             }

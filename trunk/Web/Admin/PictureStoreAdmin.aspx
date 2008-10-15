@@ -51,8 +51,11 @@
                     </ItemTemplate>
                 </asp:TemplateColumn>
                 <asp:BoundColumn DataField="PictureStoreHits" HeaderText="点击数"></asp:BoundColumn>
-                <asp:HyperLinkColumn DataNavigateUrlField="PictureStoreID" DataNavigateUrlFormatString="../HairLastPage.aspx?id={0}"
-                    Target="_blank" Text="预览"></asp:HyperLinkColumn>
+                <asp:TemplateColumn HeaderText="预览">
+                    <ItemTemplate>
+                        <asp:Label ID="lblPreview" runat="server"></asp:Label>
+                    </ItemTemplate>
+                </asp:TemplateColumn>
                 <asp:HyperLinkColumn DataNavigateUrlField="PictureStoreID" DataNavigateUrlFormatString="PictureStoreEdit.aspx?id={0}"
                     Target="_self" Text="编辑"></asp:HyperLinkColumn>
                 <asp:ButtonColumn ButtonType="LinkButton" CommandName="recommand" Text="推荐"></asp:ButtonColumn>
