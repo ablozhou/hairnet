@@ -31,5 +31,17 @@ namespace Web.UserControls {
         protected System.Web.UI.WebControls.Label lblHairShopDiscount;
         protected System.Web.UI.WebControls.Label lblComment;
         protected System.Web.UI.WebControls.Label lblStore;
+        protected System.Web.UI.WebControls.Label lblHairShopPicList;
+        protected System.Web.UI.WebControls.Panel Panel1;
+        protected System.Web.UI.WebControls.Label lblCouponPic2;
+        protected System.Web.UI.WebControls.Label lblPrintNum2;
+        protected System.Web.UI.WebControls.Label lblPrintCoupon2;
+        protected System.Web.UI.WebControls.Panel Panel2;
+        protected System.Web.UI.HtmlControls.HtmlInputText txtCouponEmail2;
+        protected System.Web.UI.WebControls.ImageButton ImageButton1;
+        protected System.Web.UI.WebControls.Label lblHairShopPhoneNum2;
+        protected System.Web.UI.WebControls.Label lblHairShopDiscount2;
+        protected System.Web.UI.WebControls.Label lblComment2;
+        protected System.Web.UI.WebControls.Label lblStore2;
     }
 }

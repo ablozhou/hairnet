@@ -80,12 +80,43 @@
   </tr>
 </table>
 	</div>
-	<div class="top-r-div" id="serTabC22" style="display:none">
-	  <table width="360" border="0" align="center" cellpadding="0" cellspacing="0">
-        <tr>
-          <td align="left" class="gray12-d">具体内容，等待SG切片</td>
-        </tr>
-      </table>
+	<div class="top-r-div" id="serTabC22">
+	<div class="hj-gundong"><asp:Label ID="lblHairShopPicList" runat="server"></asp:Label></div>
+	      <asp:Panel ID="Panel1" runat="server" Visible="false">
+	      <table width="360" border="0" align="center" cellpadding="0" cellspacing="0" style="margin-top:5px">
+            <tr>
+              <td width="39%" align="left"><asp:Label ID="lblCouponPic2" runat="server"></asp:Label></td>
+              <td width="61%" align="left" valign="middle" class="gray12-d">已打印：<span class="red12-c"><asp:Label ID="lblPrintNum2" runat="server"></asp:Label></span><br />
+              <span class="red12-line-c"><asp:Label ID="lblPrintCoupon2" runat="server"></asp:Label></span></td>
+            </tr>
+          </table>
+          </asp:Panel>
+          <asp:Panel ID="Panel2" runat="server" Visible="true">
+          <table width="360" height="20" border="0" align="center" cellpadding="0" cellspacing="0" style="margin-top:10px;margin-bottom:5px">
+            <tr>
+              <td align="left" valign="bottom" class="gray12-d">订阅优惠券，请填写您的Email地址</td>
+            </tr>
+          </table>
+	      <table width="360" border="0" align="center" cellpadding="0" cellspacing="0">
+            <tr>
+              <td width="53%" align="left"><input type="text" runat="server" id="txtCouponEmail2" /></td>
+              <td width="47%" align="left"><asp:ImageButton style="z-index: 1002;" ID="ImageButton1" OnClick="imgBtnCouponSubmit2_OnClick" runat="server" Width="38" Height="21"  ImageUrl="../Theme/images/fair-mft24.gif" /></td>
+            </tr>
+          </table>
+          </asp:Panel>
+	      <table width="400" border="0" align="center" cellpadding="0" cellspacing="0" style="margin-top:23px">
+      <tr>
+        <td width="3%"></td>
+        <td width="94%" height="26" style="border:#ddddda 1px solid"><table width="95%" border="0" align="center" cellpadding="0" cellspacing="0">
+          <tr>
+            <td width="43%" align="left" class="gray12-d"><span class="red12b">预约电话：</span><asp:Label ID="lblHairShopPhoneNum2" runat="server"></asp:Label></td>
+            <td width="28%" align="left" class="gray12-d">折扣：<span class="red12-c"><asp:Label ID="lblHairShopDiscount2" runat="server"></asp:Label></span></td>
+            <td width="29%" align="right" class="gray12-d"><asp:Label ID="lblComment2" runat="server"></asp:Label>&nbsp;&nbsp;  <asp:Label ID="lblStore2" runat="server"></asp:Label></td>
+          </tr>
+        </table></td>
+        <td width="3%"></td>
+      </tr>
+    </table>
 	</div>
   </div>
-</div>
+  </div>
