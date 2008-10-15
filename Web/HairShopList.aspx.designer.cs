@@ -18,5 +18,50 @@ namespace Web {
     /// 自动生成的类。
     /// </remarks>
     public partial class HairShopList {
+        
+        /// <summary>
+        /// searchHead 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::Web.UserControls.SearchHead searchHead;
+        
+        /// <summary>
+        /// recommandHairShopList 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::Web.UserControls.RecommandHairShopList recommandHairShopList;
+        
+        /// <summary>
+        /// hairShopListControl 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::Web.UserControls.HairShopListControl hairShopListControl;
+        
+        /// <summary>
+        /// hotHairShopList 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::Web.UserControls.HotHairShopList hotHairShopList;
+        
+        /// <summary>
+        /// hotCouponList 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::Web.UserControls.HotCouponList2 hotCouponList;
     }
 }

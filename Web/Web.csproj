@@ -2019,6 +2019,13 @@
     <Compile Include="UserControls\HairShopEntryControl.ascx.designer.cs">
       <DependentUpon>HairShopEntryControl.ascx</DependentUpon>
     </Compile>
+    <Compile Include="UserControls\HairShopListControl.ascx.cs">
+      <DependentUpon>HairShopListControl.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UserControls\HairShopListControl.ascx.designer.cs">
+      <DependentUpon>HairShopListControl.ascx</DependentUpon>
+    </Compile>
     <Compile Include="UserControls\HairShopWorkList.ascx.cs">
       <DependentUpon>HairShopWorkList.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -2040,6 +2047,13 @@
     <Compile Include="UserControls\HotCouponList.ascx.designer.cs">
       <DependentUpon>HotCouponList.ascx</DependentUpon>
     </Compile>
+    <Compile Include="UserControls\HotCouponList2.ascx.cs">
+      <DependentUpon>HotCouponList2.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UserControls\HotCouponList2.ascx.designer.cs">
+      <DependentUpon>HotCouponList2.ascx</DependentUpon>
+    </Compile>
     <Compile Include="UserControls\HotHairEngineerList.ascx.cs">
       <DependentUpon>HotHairEngineerList.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -2047,12 +2061,26 @@
     <Compile Include="UserControls\HotHairEngineerList.ascx.designer.cs">
       <DependentUpon>HotHairEngineerList.ascx</DependentUpon>
     </Compile>
+    <Compile Include="UserControls\HotHairShopList.ascx.cs">
+      <DependentUpon>HotHairShopList.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UserControls\HotHairShopList.ascx.designer.cs">
+      <DependentUpon>HotHairShopList.ascx</DependentUpon>
+    </Compile>
     <Compile Include="UserControls\NewWorkList.ascx.cs">
       <DependentUpon>NewWorkList.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="UserControls\NewWorkList.ascx.designer.cs">
       <DependentUpon>NewWorkList.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\RecommandHairShopList.ascx.cs">
+      <DependentUpon>RecommandHairShopList.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UserControls\RecommandHairShopList.ascx.designer.cs">
+      <DependentUpon>RecommandHairShopList.ascx</DependentUpon>
     </Compile>
     <Compile Include="UserControls\SameHotZoneHairShopList.ascx.cs">
       <DependentUpon>SameHotZoneHairShopList.ascx</DependentUpon>
@@ -2337,10 +2365,14 @@
     <Content Include="UserControls\HairShopDescription.ascx" />
     <Content Include="UserControls\HairShopEngineerList.ascx" />
     <Content Include="UserControls\HairShopEntryControl.ascx" />
+    <Content Include="UserControls\HairShopListControl.ascx" />
     <Content Include="UserControls\HairShopWorkList.ascx" />
     <Content Include="UserControls\HotCouponList.ascx" />
+    <Content Include="UserControls\HotCouponList2.ascx" />
     <Content Include="UserControls\HotHairEngineerList.ascx" />
+    <Content Include="UserControls\HotHairShopList.ascx" />
     <Content Include="UserControls\NewWorkList.ascx" />
+    <Content Include="UserControls\RecommandHairShopList.ascx" />
     <Content Include="UserControls\SameHotZoneHairShopList.ascx" />
     <Content Include="UserControls\SearchHead.ascx" />
     <Content Include="ZTContent.aspx" />

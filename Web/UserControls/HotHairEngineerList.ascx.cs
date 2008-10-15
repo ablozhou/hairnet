@@ -107,7 +107,7 @@ namespace Web.UserControls
                                         break;
                                     default:
                                         sb.Append("<tr>");
-                                        sb.Append("<td align=\"center\"><img src=\"Theme/images/sg-08bbs_4.gif\" /></td>");
+                                        sb.Append("<td align=\"center\"><img src=\"Theme/images/sg-08bbs_"+num.ToString()+".gif\" /></td>");
                                         sb.Append("<td align=\"left\" class=\"gray14-e\"><a href=\"#\" target=\"_blank\">" + hairEngineerName + "&nbsp;&nbsp;ÍÆ¼öÖ¸Êý:" + hitNum + "</a></td>");
                                         sb.Append("</tr>");
                                         break;

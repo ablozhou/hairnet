@@ -17,6 +17,18 @@ namespace Web
         protected void Page_Load(object sender, EventArgs e)
         {
             StringHelper.AddStyleSheet(this.Page, "Theme/Style/meifating_list.css");
+
+            int pageNum = 1;
+            try
+            {
+                pageNum = int.Parse(this.Request.QueryString["pageNum"].ToString());
+            }
+            catch
+            {
+                pageNum = 1;
+            }
+            this.hairShopListControl.PageSize = 6;
+            this.hairShopListControl.CurrentPage = pageNum;
         }
     }
 }
