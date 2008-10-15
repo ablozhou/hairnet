@@ -18,5 +18,77 @@ namespace Web {
     /// 自动生成的类。
     /// </remarks>
     public partial class HairShopContent {
+        
+        /// <summary>
+        /// hairShopEntryControl 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::Web.UserControls.HairShopEntryControl hairShopEntryControl;
+        
+        /// <summary>
+        /// hairShopEntryDescription 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::Web.UserControls.HairShopDescription hairShopEntryDescription;
+        
+        /// <summary>
+        /// hairShopEngineerList 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::Web.UserControls.HairShopEngineerList hairShopEngineerList;
+        
+        /// <summary>
+        /// hairShopWorkList 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::Web.UserControls.HairShopWorkList hairShopWorkList;
+        
+        /// <summary>
+        /// hotHairEngineerList 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::Web.UserControls.HotHairEngineerList hotHairEngineerList;
+        
+        /// <summary>
+        /// hotCouponList 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::Web.UserControls.HotCouponList hotCouponList;
+        
+        /// <summary>
+        /// sameHairShopList 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::Web.UserControls.SameHotZoneHairShopList sameHairShopList;
+        
+        /// <summary>
+        /// newWorkList 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::Web.UserControls.NewWorkList newWorkList;
     }
 }

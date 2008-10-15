@@ -2047,6 +2047,20 @@
     <Compile Include="UserControls\HotHairEngineerList.ascx.designer.cs">
       <DependentUpon>HotHairEngineerList.ascx</DependentUpon>
     </Compile>
+    <Compile Include="UserControls\NewWorkList.ascx.cs">
+      <DependentUpon>NewWorkList.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UserControls\NewWorkList.ascx.designer.cs">
+      <DependentUpon>NewWorkList.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\SameHotZoneHairShopList.ascx.cs">
+      <DependentUpon>SameHotZoneHairShopList.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UserControls\SameHotZoneHairShopList.ascx.designer.cs">
+      <DependentUpon>SameHotZoneHairShopList.ascx</DependentUpon>
+    </Compile>
     <Compile Include="UserControls\SearchHead.ascx.cs">
       <DependentUpon>SearchHead.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -2326,6 +2340,8 @@
     <Content Include="UserControls\HairShopWorkList.ascx" />
     <Content Include="UserControls\HotCouponList.ascx" />
     <Content Include="UserControls\HotHairEngineerList.ascx" />
+    <Content Include="UserControls\NewWorkList.ascx" />
+    <Content Include="UserControls\SameHotZoneHairShopList.ascx" />
     <Content Include="UserControls\SearchHead.ascx" />
     <Content Include="ZTContent.aspx" />
     <Content Include="ZTList.aspx" />
