@@ -9,41 +9,7 @@
           </tr>
       </table>
 	  <table width="100%" border="0" align="center" cellpadding="0" cellspacing="0" style="margin-top:10px">
-              <tr>
-                <td width="20%" align="center"><div class="pic-2"><a href="#" target="_blank"><img src="Theme/Images/sg-meifa_ls10.gif" alt="图片说明" /></a><br />
-                    <a href="#" target="_blank">此区块可随意扩充图片行数
-                    <br />
-                    </a></div></td>
-                <td width="20%" align="center"><div class="pic-2"><a href="#" target="_blank"><img src="Theme/Images/sg-meifa_ls01.gif" alt="图片说明" /></a><br />
-                <a href="#" target="_blank">付 军&nbsp;&nbsp;设计总监
-                    剪发价格&nbsp;&nbsp;&nbsp;&nbsp;130</a></div></td>
-                <td width="20%" align="center"><div class="pic-2"><a href="#" target="_blank"><img src="Theme/Images/sg-meifa_ls01.gif" alt="图片说明" /></a><br />
-                <a href="#" target="_blank">付 军&nbsp;&nbsp;设计总监
-                    剪发价格&nbsp;&nbsp;&nbsp;&nbsp;130</a></div></td>
-                <td width="20%" align="center"><div class="pic-2"><a href="#" target="_blank"><img src="Theme/Images/sg-meifa_ls10.gif" alt="图片说明" /></a><br />
-                <a href="#" target="_blank">付 军&nbsp;&nbsp;设计总监
-                    剪发价格&nbsp;&nbsp;&nbsp;&nbsp;130</a></div></td>
-                <td width="20%" align="center"><div class="pic-2"><a href="#" target="_blank"><img src="Theme/Images/sg-meifa_ls01.gif" alt="图片说明" /></a><br />
-                <a href="#" target="_blank">付 军&nbsp;&nbsp;设计总监
-                    剪发价格&nbsp;&nbsp;&nbsp;&nbsp;130</a></div></td>
-        </tr>
-              <tr>
-                <td align="center"><div class="pic-2"><a href="#" target="_blank"><img src="Theme/Images/sg-meifa_ls01.gif" alt="图片说明" /></a><br />
-                        <a href="#" target="_blank">付 军&nbsp;&nbsp;设计总监
-                          剪发价格&nbsp;&nbsp;&nbsp;&nbsp;130</a></div></td>
-                <td align="center"><div class="pic-2"><a href="#" target="_blank"><img src="Theme/Images/sg-meifa_ls01.gif" alt="图片说明" /></a><br />
-                        <a href="#" target="_blank">付 军&nbsp;&nbsp;设计总监
-                          剪发价格&nbsp;&nbsp;&nbsp;&nbsp;130</a></div></td>
-                <td align="center"><div class="pic-2"><a href="#" target="_blank"><img src="Theme/Images/sg-meifa_ls10.gif" alt="图片说明" /></a><br />
-                        <a href="#" target="_blank">付 军&nbsp;&nbsp;设计总监
-                          剪发价格&nbsp;&nbsp;&nbsp;&nbsp;130</a></div></td>
-                <td align="center"><div class="pic-2"><a href="#" target="_blank"><img src="Theme/Images/sg-meifa_ls01.gif" alt="图片说明" /></a><br />
-                        <a href="#" target="_blank">付 军&nbsp;&nbsp;设计总监
-                          剪发价格&nbsp;&nbsp;&nbsp;&nbsp;130</a></div></td>
-                <td align="center"><div class="pic-2"><a href="#" target="_blank"><img src="Theme/Images/sg-meifa_ls10.gif" alt="图片说明" /></a><br />
-                        <a href="#" target="_blank">付 军&nbsp;&nbsp;设计总监
-                          剪发价格&nbsp;&nbsp;&nbsp;&nbsp;130</a></div></td>
-              </tr>
+              <asp:Label ID="lblEngineerList" runat="server"></asp:Label>
               
       </table>
       <table width="706" border="0" align="center" cellpadding="0" cellspacing="0">
