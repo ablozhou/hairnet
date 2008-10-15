@@ -199,12 +199,8 @@ font-weight:bold;}
 .pic-3 a:link,.pic-3 a:visited {color:#666666;}
 .pic-3 a:hover {color:#cc0033;}
 
-.pic-4 {
-width:96px;
-height:96px;
-border:#d3d3d3 1px solid;
-margin:5px auto 5px auto;}
-.pic-4 img {width:94px;height:94px;margin-top:1px;margin-bottom:1px;}
+.pic-4 {margin:5px auto 5px auto;}
+.pic-4 img {width:90px;height:120px;border:#d3d3d3 1px solid;padding:2px 2px 2px 2px;}
 
 .pic-5 {text-align:center;margin:0px auto;width:57px;height:57px;border:#d0d0d0 1px solid;}
 .pic-5 img {width:55px;height:55px;margin-top:1px;}
