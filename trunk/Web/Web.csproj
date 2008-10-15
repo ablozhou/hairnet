@@ -2019,12 +2019,26 @@
     <Compile Include="UserControls\HairShopEntryControl.ascx.designer.cs">
       <DependentUpon>HairShopEntryControl.ascx</DependentUpon>
     </Compile>
+    <Compile Include="UserControls\HairShopWorkList.ascx.cs">
+      <DependentUpon>HairShopWorkList.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UserControls\HairShopWorkList.ascx.designer.cs">
+      <DependentUpon>HairShopWorkList.ascx</DependentUpon>
+    </Compile>
     <Compile Include="UserControls\Head.ascx.cs">
       <DependentUpon>Head.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="UserControls\Head.ascx.designer.cs">
       <DependentUpon>Head.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\SearchHead.ascx.cs">
+      <DependentUpon>SearchHead.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UserControls\SearchHead.ascx.designer.cs">
+      <DependentUpon>SearchHead.ascx</DependentUpon>
     </Compile>
     <Compile Include="ZTContent.aspx.cs">
       <SubType>ASPXCodeBehind</SubType>
@@ -2242,6 +2256,8 @@
     <Content Include="UserControls\HairShopDescription.ascx" />
     <Content Include="UserControls\HairShopEngineerList.ascx" />
     <Content Include="UserControls\HairShopEntryControl.ascx" />
+    <Content Include="UserControls\HairShopWorkList.ascx" />
+    <Content Include="UserControls\SearchHead.ascx" />
     <Content Include="ZTContent.aspx" />
     <Content Include="ZTList.aspx" />
     <None Include="Theme\Images\search-fxs.psd" />
