@@ -1,0 +1,242 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+<title>半通栏通用</title>
+<style type="text/css">
+<!--
+body {
+	margin-left: 0px;
+	margin-top: 0px;
+	margin-right: 0px;
+	margin-bottom: 0px;
+}
+a:link {text-decoration: none;}
+a:visited {text-decoration: none;}
+a:hover {text-decoration: underline;}
+a:active {text-decoration: none;}
+.right-line {border-right:#cbcbcb 1px solid;text-align:center;}
+#s-mft {background-image: url(images/fair-01.gif);background-repeat: no-repeat;width:703px;height:164px;clear:both;}
+#s-mft div {width:670px;margin:0 auto;clear:both;} 
+.gundong {float:right;padding-top:8px;
+WIDTH: 600px; HEIGHT: 54px; BACKGROUND-COLOR: transparent; OVERFLOW-x: hidder;OVERFLOW-y: scroll; scrollbar-face-color: #FFFFFF; scrollbar-shadow-color: #D2E5F4; scrollbar-highlight-color: #D2E5F4; scrollbar-3dlight-color: #FFFFFF; scrollbar-darkshadow-color: #FFFFFF; scrollbar-track-color: #FFFFFF; scrollbar-arrow-color: #D2E5F4;}
+.search-input {border:0px;background-image: url(images/sg-meifa_input-bg.gif);background-repeat: repeat-x;background-position: center;font-size:12px;color:#666666;line-height:20px;width:100%;height:20px;text-align:center;}
+.search-bg {background-image: url(images/sg-meifa_12.gif);background-repeat: repeat-x;background-position: top;}
+.search {font-size:14px;font-weight:bold;line-height:25px;color:#cc0033;text-align:center;}
+.search a:link,.search a:visited,.search a:hover {color:#cc0033;}
+
+.search-txt {border:#e5e5e5 1px solid;background-color:#f9f9f9;font-size:12px;color:#666666;line-height:24px;height:50px;text-align:left;}
+
+.search-txt a:link,.search-txt a:visited {color:#666666;}
+.search-txt a:hover {line-height:16px;background-color:#FF0000;color:#FFFFFF;}
+
+.gray12-c {font-size:12px;line-height:24px;color:#666666;}
+..gray12-c a:link,.gray12-c a:visited {color:#666666;}
+.gray12-c a:hover{color:#cc0033;text-decoration:underline;}
+
+-->
+</style>
+<script language="javascript">
+function showTab(id) {
+var c=["serTabC1","serTabC2","serTabC3"];
+var x=["seatchTab1","seatchTab2","seatchTab3"];
+for (var i=0;i<c.length;i++){
+	if((i+1)==id){
+		document.getElementById(c[i]).style.display="";
+		document.getElementById(x[i]).style.display="";
+	}
+	else{
+		document.getElementById(c[i]).style.display="none";
+		document.getElementById(x[i]).style.display="none";
+	}
+}
+}
+</script>
+</head>
+
+<body>
+<div id="s-mft"><table width="100%" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td width="84%" height="32" align="left" valign="bottom"><table width="523" height="32" border="0" cellpadding="0" cellspacing="0" background="images/tab1_2.gif" id="seatchTab2" style="display:none;">
+      <tr>
+        <td width="133" onClick="showTab(1);" style="cursor:hand;">&nbsp;</td>
+        <td width="141" onClick="showTab(2);" style="cursor:hand;">&nbsp;</td>
+        <td width="126" onClick="showTab(3);" style="cursor:hand;">&nbsp;</td>
+		<td width="123">&nbsp;</td>
+      </tr>
+    </table><table width="523" height="32" border="0" cellpadding="0" cellspacing="0" background="images/tab1_3.gif" id="seatchTab3" style="display:none;">
+      <tr>
+        <td width="141" onClick="showTab(1);" style="cursor:hand;">&nbsp;</td>
+        <td width="115" onClick="showTab(2);" style="cursor:hand;">&nbsp;</td>
+        <td width="144" onClick="showTab(3);" style="cursor:hand;">&nbsp;</td>
+		<td width="123">&nbsp;</td>
+      </tr>
+    </table>
+    <table width="523" height="32" border="0" cellpadding="0" cellspacing="0" background="images/tab1_1.gif" id="seatchTab1" >
+      <tr>
+        <td width="141" onClick="showTab(1);" style="cursor:hand;">&nbsp;</td>
+        <td width="133" onClick="showTab(2);" style="cursor:hand;">&nbsp;</td>
+        <td width="126" onClick="showTab(3);" style="cursor:hand;">&nbsp;</td>
+        <td width="123">&nbsp;</td>
+      </tr>
+    </table></td>
+    <td width="16%" align="left" valign="bottom">&nbsp;</td>
+  </tr>
+</table>
+
+<table width="670" border="0" align="center" cellspacing="0" cellpadding="0" id="serTabC1">
+  <tr>
+    <td><table width="100%" border="0" cellspacing="0" cellpadding="0"  style="margin-top:15px;margin-bottom:8px">
+                <tr>
+                  <td width="1%" align="left" class="search-bg"><img src="images/sg-meifa_11.gif" width="5" height="25" /></td>
+                  <td width="98%" class="search-bg"><table width="100%" border="0" cellspacing="0" cellpadding="0">
+                    <tr>
+                      <form method=post action=# target=_blank>
+                      <td width="19%" class="gray-search"><select name="select" style="border:0px 0px 0px 0px;">
+                        <option selected="selected">选&nbsp;择&nbsp;城&nbsp;区</option>
+                        <option>东城区</option>
+                        <option>朝阳区</option>
+                        <option>西城区</option>
+                      </select></td>
+                      <td width="17%" class="gray-search"><select name="select2">
+                        <option selected="selected">选&nbsp;择&nbsp;商&nbsp;圈</option>
+                        <option>某商圈1</option>
+                        <option>某商圈2</option>
+                        <option>某商圈3</option>
+                        </select></td>
+                      <td width="17%" class="gray-search">
+					  <select name="select3">
+                        <option selected="selected">主&nbsp;打&nbsp;品&nbsp;牌</option>
+                        <option>不限</option>
+                        <option>欧莱雅</option>
+                        <option>威娜</option>
+                        <option>施华蔻</option>
+                        </select></td>
+                      <td width="17%" class="right-line"><select name="select3">
+                        <option>营&nbsp;业&nbsp;面&nbsp;积</option>
+                        <option>200平米</option>
+                        <option>400平米</option>
+
+                                                                                                                                                          </select></td>
+					  <td width="17%"><input name="textfield" type="text" class="search-input" value="输入关键词" onClick="javascript:if(this.value.substring(0,4)=='输入关键') this.value='';" /></td></form>
+                      <td width="5%" align="left"><img src="images/sg-meifa_17.gif" width="26" height="23" /></td>
+                      <td width="8%" class="search"><a href="#" target="_blank">搜&nbsp;索</a></td>
+                    </tr>
+                  </table></td>
+                  <td width="1%" align="right" class="search-bg"><img src="images/sg-meifa_14.gif" width="4" height="25" /></td>
+                </tr>
+              </table>
+			  
+              </td>
+  </tr>
+</table>
+<table width="670" border="0" align="center" cellspacing="0" cellpadding="0" id="serTabC2" style="display:none">
+  <tr>
+    <td><table width="100%" border="0" cellspacing="0" cellpadding="0"  style="margin-top:15px;margin-bottom:8px">
+                <tr>
+                  <td width="1%" align="left" class="search-bg"><img src="images/sg-meifa_11.gif" width="5" height="25" /></td>
+                  <td width="98%" class="search-bg"><table width="100%" border="0" cellspacing="0" cellpadding="0">
+                    <tr>
+                      <form method=post action=# target=_blank>
+                        <td width="20%" class="gray-search"><select name="select4">
+                          <option>选择头发长度</option>
+                          <option>长</option>
+                          <option>中</option>
+                          <option>短</option>
+                          <option>卷</option>
+                          <option>直</option>
+                        </select></td>
+                        <td width="16%" class="gray-search"><span class="right-line">
+                          <select name="select5">
+                            <option>选择脸型</option>
+                            <option>瓜子脸</option>
+                            <option>蛋型脸</option>
+                            <option>长脸</option>
+                            <option>圆脸</option>
+                            <option>方脸</option>
+                          </select>
+                        </span></td>
+                        <td width="17%" class="gray-search"><span class="right-line">
+                          <select name="select6">
+                            <option selected="selected">按气质搜索</option>
+                            <option>某某某气质</option>
+                            <option>某某某气质2</option>
+                            <option>某某某气质3</option>
+                              </select>
+                        </span></td>
+                        <td width="17%" class="right-line"><select name="select7">
+                          <option selected="selected">按场合搜索</option>
+                          <option>场合一</option>
+                          <option>场合二</option>
+                          <option>场合三</option>
+                                                                        </select></td>
+                        <td width="17%"><input name="textfield" type="text" class="search-input" value="输入关键字" onClick="javascript:if(this.value.substring(0,4)=='输入关键') this.value='';" /></td></form>
+                      <td width="5%" align="left"><img src="images/sg-meifa_17.gif" width="26" height="23" /></td>
+                      <td width="8%" class="search"><a href="#" target="_blank">搜&nbsp;索</a></td>
+                    </tr>
+                  </table></td>
+                  <td width="1%" align="right" class="search-bg"><img src="images/sg-meifa_14.gif" width="4" height="25" /></td>
+                </tr>
+              </table>
+			  
+              </td>
+  </tr>
+</table>
+<table width="670" border="0" align="center" cellspacing="0" cellpadding="0" id="serTabC3" style="display:none">
+  <tr>
+    <td><table width="100%" border="0" cellspacing="0" cellpadding="0"  style="margin-top:15px;margin-bottom:8px">
+                <tr>
+                  <td width="1%" align="left" class="search-bg"><img src="images/sg-meifa_11.gif" width="5" height="25" /></td>
+                  <td width="98%" class="search-bg"><table width="100%" border="0" cellspacing="0" cellpadding="0">
+                    <tr>
+                      <form method=post action=# target=_blank>
+                        <td width="20%" align="center" class="gray12-c">按剪发价格搜索:</td>
+                        <td width="18%" class="gray-search"><select name="select2">
+                          <option selected="selected">&nbsp;&nbsp;不&nbsp;&nbsp;限&nbsp;&nbsp;</option>
+                          <option>1000元以上</option>
+                          <option>800-1000</option>
+                          <option>600-800</option>
+                          <option>400-600</option>
+                          <option>200-400</option>
+                          <option>100-200</option>
+                          <option>100元以下</option>
+                        </select></td>
+                      <td width="14%" align="center" class="gray12-c">按星座搜索:</td>
+                      <td width="18%" class="right-line"><select name="select3">
+                        <option selected="selected">&nbsp;&nbsp;不&nbsp;&nbsp;限&nbsp;&nbsp;</option>
+						<option>白 羊 座</option>
+                        <option>金 牛 座 </option>
+                        <option>双 子 座</option>
+                        <option>巨 蟹 座 </option>
+                        <option>狮 子 座 </option>
+                        <option>处 女 座</option>
+                        <option>天 秤 座 </option>
+                        <option>天 蝎 座 </option>
+                        <option>射 手 座 </option>
+                        <option>摩 羯 座</option>
+                        <option>水 瓶 座</option>
+                        <option>双 鱼 座 </option>
+
+                            </select></td>
+					  <td width="17%"><input name="textfield" type="text" class="search-input" value="输入发型师姓名" onClick="javascript:if(this.value.substring(0,4)=='输入关键') this.value='';" /></td></form>
+                      <td width="5%" align="left"><img src="images/sg-meifa_17.gif" width="26" height="23" /></td>
+                      <td width="8%" class="search"><a href="#" target="_blank">搜&nbsp;索</a></td>
+                    </tr>
+                  </table></td>
+                  <td width="1%" align="right" class="search-bg"><img src="images/sg-meifa_14.gif" width="4" height="25" /></td>
+                </tr>
+              </table>
+			  
+              </td>
+  </tr>
+</table>
+<table width="90%" border="0" align="center" cellpadding="0" cellspacing="0">
+                  <tr>
+                    <td valign="middle" class="search-txt"><div class="gundong"><span class="search-txt-l">&nbsp;<a href="#" target="_blank">发型</a></span>&nbsp;|&nbsp;<a href="#" target="_blank">发型设计</a>&nbsp;|&nbsp; <a href="#" target="_blank">流行发型</a>&nbsp;|&nbsp; <a href="#" target="_blank">新娘发型</a>&nbsp;|&nbsp;<a href="#" target="_blank">非主流发型</a>&nbsp;|&nbsp;<a href="#" target="_blank">短发发型</a>&nbsp;|&nbsp;<a href="#" target="_blank">卷发发型</a>&nbsp;|&nbsp;烫发&nbsp;|&nbsp;<a href="#" target="_blank">直发发型</a><br />
+                    &nbsp;<a href="#" target="_blank">染发护发</a>&nbsp;|&nbsp;<a href="#" target="_blank">如何护发</a>&nbsp;|&nbsp;<a href="#" target="_blank">春季护发</a>&nbsp;|&nbsp;<a href="#" target="_blank">沙宣</a>&nbsp;|&nbsp;<a href="#" target="_blank">托尼盖</a>&nbsp;|&nbsp;<a href="#" target="_blank">洗发水</a>&nbsp;|&nbsp;<a href="#" target="_blank">淑女发型</a>&nbsp;|&nbsp;<a href="#" target="_blank">日系发型</a>&nbsp;|&nbsp;<a href="#" target="_blank">通勤发型</a> </div></td>
+                  </tr>
+          </table>					
+ </div>
+</body>
+</html>
+

@@ -1,0 +1,101 @@
+/* CSS Document */
+body {
+	margin-left: 0px;
+	margin-top: 0px;
+	margin-right: 0px;
+	margin-bottom: 0px;
+	background-color: #f9f9f9;
+}
+img {border:0px;}
+a:link {text-decoration: none;}
+a:visited {text-decoration: none;}
+a:hover {text-decoration: underline;}
+a:active {text-decoration: none;}
+
+.white12 {color:#FFFFFF;line-height:22px;font-size:12px;}
+.white14b {color:#FFFFFF;line-height:22px;font-size:14px;font-weight:bold;}
+.white14b-e {color:#FFFFFF;line-height:22px;font-size:14px;font-weight:bold;font-family: "ºÚÌå";}
+.white12 a:link,.white12 a:visited,.white12 a:hover,.white14b a:link,.white14b a:visited,.white14b a:hover {color:#ffffff;}
+
+.white12b {color:#FFFFFF;line-height:22px;font-size:12px;font-weight:bold;text-decoration:underline;}
+.white12b a:link,.white12b a:visited,.white12b a:hover {color:#ffffff;text-decoration:underline;}
+
+#main {	margin:0 auto;width:980px;background-image: url(../images/bbs-blog_list-bg.gif);background-repeat: repeat-y;}
+#main-l {float:left;width:265px;}
+#main-m {width:548px;float:left;}
+#main-r {width:160px;float:left;}
+#main-r-r {width:7px;float:right;}
+.clear {clear:both;}
+
+.lanmu-l {font-size:14px;color:#333333;line-height:19px;font-weight:bold;}
+.lanmu-l a:link,.lanmu-l a:visited {color:#333333;}
+.lanmu-l a:hover {color:#cc0033;}
+.lanmu-picarea {border:#cccccc 1px solid;width:86px;height:130px;text-align:center;line-height:20px;font-size:12px;color:#333333;background-color:#FFFFFF;}
+.lanmu-picarea img {width:80px;height:105px;clear:both;margin:3px auto 0px auto;}
+.lanmu-picarea a:link,.lanmu-picarea a:visited,.lanmu-picarea {color:#333333;}
+.lanmu-picarea a:hover {color:#cc0033;}
+
+.black12 {color:#333333;line-height:20px;font-size:12px;}
+.black12 a:link,.black12 a:visited {color:#333333;}
+.black12 a:hover {color:#cc0033;}
+.into {float:right;clear:both;text-align:right;color:#cc0033;line-height:20px;
+margin-top:10px;font-size:12px;}
+.into a:link,.into a:visited,.into a:hover {color:#cc0033;}
+.lanmu-picarea1 {border:#cccccc 1px solid;width:86px;height:108px;text-align:center;line-height:20px;font-size:12px;color:#333333;background-color:#FFFFFF;}
+
+.td-4line {
+	border:#ffcccc 1px solid;
+	background-image: url(../images/bbs-blog_06.gif);
+	background-repeat: repeat-x;
+	height:27px;
+	text-align:left;
+	font-size:14px;
+	color:#cc0033;
+	line-height:27px;
+	font-weight:bold;
+}
+.td-4line a:link,.td-4line a:visited,.td-4line a:hover {
+color:#cc0033;}
+.td-3line {
+border-left:#ffcccc 1px solid;
+border-right:#ffcccc 1px solid;
+border-bottom:#ffcccc 1px solid;
+padding:15px 15px 0px 15px;
+}
+.right-ad {width:160px;
+height:600px;clear:both;}
+.right-ad img{
+width:160px;
+height:600px;
+clear:both;
+float:left;}
+.point {background-image: url(../images/bbs-blog_list-point.gif);background-repeat: repeat-x;background-position: center center;}
+
+.red14b {text-align:left;font-size:14px;color:#cc0033;line-height:22px;font-weight:bold;}
+.red14b a:link,.red14b a:visited,.red14b a:hover {color:#cc0033;}
+
+#jcpp {
+width:160px;
+	background-image: url(../images/bbs-blog_r-bg.gif);
+	background-repeat: no-repeat;
+	background-position: left top;
+	font-size:12px;
+	float:left;
+	clear:both;
+}
+#jcpp img {width:105px;height:140px;border:#ffffff 1px solid;margin:10px auto 5px auto;clear:both;}
+
+.red12b-72hour {
+font-size:12px;
+color:#cc0033;
+font-weight:bold;
+line-height:15px;}
+.gray-72hour {color:#333333;font-size:10px;font-family: Arial;line-height:10px;}
+	
+.black14 {color:#333333;line-height:26px;font-size:14px;}
+.black14 a:link,.black14 a:visited {color:#333333;}
+.black14 a:hover {color:#cc0033;}
+
+.dateandtime {color:#707070;line-height:26px;font-size:9px;font-family: Arial;}
+.red12 {color:#cc0033;line-height:20px;font-size:12px;}
+.red12 a:link,.red12 a:visited,.red12 a:hover {color:#cc0033;}
