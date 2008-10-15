@@ -77,8 +77,26 @@ namespace Web.UserControls
                     this.p1.Visible = true;
                     this.p2.Visible = false;
 
-                    this.lblPrintNum.Text = "打印的次数";
-                    this.lblPrintCoupon.Text = "<a href=\"#\">打印此优惠券</a>";
+                    using (SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["MSSqlServer"].ConnectionString))
+                    {
+                        string commString = "select top 1 * from Coupon where hairshopID=" + this.HairShopID;
+                        using (SqlCommand comm = new SqlCommand())
+                        {
+                            comm.CommandText = commString;
+                            comm.Connection = conn;
+                            conn.Open();
+
+                            using (SqlDataReader sdr = comm.ExecuteReader())
+                            {
+                                if (sdr.Read())
+                                {
+                                    this.lblCouponPic.Text = "<img src=\""+sdr["ImageSmallUrl"].ToString()+"\" width=\"122\" height=\"73\" />";
+                                    this.lblPrintNum.Text = sdr["HitNum"].ToString()+"&nbsp;次";
+                                    this.lblPrintCoupon.Text = "<a href=\"#\">打印此优惠券</a>";
+                                }
+                            }
+                        }
+                    }
                 }
 
                 this.lblComment.Text = "<a href=\"#\" target=\"_blank\">[评 论]</a>";

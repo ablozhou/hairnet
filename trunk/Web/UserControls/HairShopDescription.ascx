@@ -81,10 +81,10 @@
 </table>
         <table width="98%" border="0" align="center" cellpadding="0" cellspacing="15" style="margin-top:5px" id="serTabC31">
           <tr>
-            <td width="19%" align="left" valign="top"><div class="pic-4"><a href="#"><img src="Theme/Images/sg-meifa_ls02.gif" /></a></div></td>
+            <td width="19%" align="left" valign="top"><div class="pic-4"><asp:Label ID="lbllHairShopPic" runat="server"></asp:Label></div></td>
             <td width="81%" valign="top"><table width="100%" border="0" cellspacing="0" cellpadding="0">
               <tr>
-                <td class="gray12-f"> &nbsp;&nbsp;&nbsp;&nbsp;<asp:Label ID="lblHairShopDescription" runat="server"></asp:Label></td>
+                <td style="height:40;" class="gray12-f"> &nbsp;&nbsp;&nbsp;&nbsp;<asp:Label ID="lblHairShopDescription" runat="server"></asp:Label></td>
               </tr>
               <tr>
                 <td height="30" align="right"><img src="Theme/Images/fair-mft25.gif" />&nbsp;<img src="Theme/Images/fair-mft26.gif" />&nbsp;<img src="Theme/Images/fair-mft27.gif" /></td>
@@ -94,7 +94,7 @@
         </table>
 		<table width="98%" border="0" align="center" cellpadding="0" cellspacing="15" style="margin-top:5px;display:none" id="serTabC32">
           <tr>
-            <td width="19%" align="left" valign="top"><div class="pic-4"><a href="#"><img src="Theme/Images/sg-meifa_ls02.gif" /></a></div></td>
+            <td width="19%" align="left" valign="top"><div class="pic-4"><asp:Label ID="lblHairEngineerPic" runat="server"></asp:Label></div></td>
             <td width="81%" valign="top"><table width="100%" border="0" cellspacing="0" cellpadding="0">
               <tr>
                 <td class="gray12-f"> &nbsp;&nbsp;&nbsp;&nbsp;<asp:Label ID="lblHairEngineerDescription" runat="server"></asp:Label></td>
