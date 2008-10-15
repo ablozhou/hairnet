@@ -10,6 +10,7 @@ using HairNet.Entry;
 using HairNet.Provider;
 using HairNet.Components;
 using System.Data.SqlClient;
+using HairNet.Business;
 
 namespace HairNet.Components.BackendBusiness
 {
@@ -112,8 +113,14 @@ namespace HairNet.Components.BackendBusiness
             cntBuilder.Append("是否有停车位：" + hs.IsPostStation.Equals(false).ToString() + "\n");
             cntBuilder.Append("是否刷卡：" + hs.IsPostMachine.Equals(false).ToString() + "\n");
             cntBuilder.Append("营业时间：" + hs.HairShopOpenTime.ToString() + "\n");
-            cntBuilder.Append(" 风格："  + "\n");
-
+            cntBuilder.Append(" 风格："  +InfoAdmin.GetTypeNameById(hs.TypeID)+ "\n");
+            cntBuilder.Append(" 主打产品：" + "\n");//InfoAdmin.GetProductByProductID+
+            cntBuilder.Append(" 打印折扣券：" + "\n");
+            cntBuilder.Append(" 折扣：" + "\n");
+            cntBuilder.Append(" 预约电话：" + "\n");
+            cntBuilder.Append(" 美发厅简介：" + "\n");
+            cntBuilder.Append(" 查看详情" + "\n");
+         
             content = cntBuilder.ToString();
             return true;
 

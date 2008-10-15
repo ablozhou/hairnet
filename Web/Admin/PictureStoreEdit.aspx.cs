@@ -69,7 +69,7 @@ namespace Web.Admin
             txtPictureStoreName.Text = ps.PictureStoreName;
             txtPictureStoreDescription.Text = ps.PictureStoreDescription;
             //txtPictureStoreTag.Text = InfoAdmin.GetPictureStoreTagNames(ps.PictureStoreTagIDs);
-
+           
             string[] PSGIDSCollection = ps.PictureStoreGroupIDs.Split(",".ToCharArray());
             foreach (string ss in PSGIDSCollection)
             {
@@ -99,7 +99,9 @@ namespace Web.Admin
                 }
             }
             string hairStyleTagIDs = "";
+
             string hairStyleID = "";
+
             using (SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["MSSqlServer"].ToString()))
             {
                 string commString = "select * from HairStyle where PictureStoreId=" + ps.PictureStoreID.ToString();
@@ -122,7 +124,10 @@ namespace Web.Admin
                             this.ddlOccasion.SelectedValue = sdr["occasion"].ToString();
                             this.ddlSex.SelectedValue = sdr["sex"].ToString();
                             this.ddlTemperament.SelectedValue = sdr["temperament"].ToString();
+                
+
                             this.txtBbsurl.Text = sdr["bbsUrl"].ToString();
+
                         }
                     }
                 }
@@ -178,7 +183,9 @@ namespace Web.Admin
             string imgString = string.Empty;
             using (SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["MSSqlServer"].ToString()))
             {
+
                 string commString = "select * from PictureStoreSet where PictureStoreId=" + hairStyleID;
+
                 using (SqlCommand comm = new SqlCommand())
                 {
                     comm.Connection = conn;
