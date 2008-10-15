@@ -305,7 +305,20 @@ namespace HairNet.Entry
         private int _couponNum = 0;
         private string _outLogs = string.Empty;
         private string _innerLogs = string.Empty;
+        private int _postid = 0;
+        private string _productsName = string.Empty;
+      
+        public string ProductsName
+        {
+            set { this._productsName = value; }
+            get { return this._productsName; }
+        }
 
+        public int Postid
+        {
+            set { this._postid = value; }
+            get { return this._postid; }
+        }
         public int CouponNum
         {
             set { this._couponNum = value; }

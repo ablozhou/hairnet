@@ -63,6 +63,7 @@ namespace Web.Admin
                 this.lblProductInfo.Text = "当前数据库里面没有产品，请先添加产品！";
             }
         }
+
         protected void btnSubmit_OnClick(object sender, EventArgs e)
         {
             HairShop hs = new HairShop();
@@ -147,16 +148,19 @@ namespace Web.Admin
                     if (num == 1)
                     {
                         productIDs = li.Value;
+                        hs.ProductsName = li.Text;
                     }
                     else
                     {
                         productIDs += ","+li.Value;
+                        hs.ProductsName += "," + li.Text;
                     }
                 }
             }
             hs.ProductIDs = productIDs;
             //InfoAdmin.AddHairShop(hs);
             InfoAdmin.AddHairShopInfo(hs);
+            Session["HairShopAdd"] = hs;
 
             string id = "";
             using (SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["MSSqlServer"].ConnectionString))

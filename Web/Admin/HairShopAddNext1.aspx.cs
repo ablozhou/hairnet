@@ -10,6 +10,9 @@ using System.Web.UI.WebControls.WebParts;
 using System.Web.UI.HtmlControls;
 using HairNet.Utilities;
 using System.Data.SqlClient;
+using HairNet.Entry;
+using System.Text;
+using HairNet.Components.BackendBusiness;
 
 namespace Web.Admin
 {
@@ -37,7 +40,8 @@ namespace Web.Admin
                 }
                 string outString = string.Empty;
                 string innerString = string.Empty;
-
+                string outpics=string.Empty;
+                string inpics = string.Empty;
                 using (SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["MSSqlServer"].ConnectionString))
                 {
                     string commString = "select * from shoppics where hairshopID=" + id + " and classid=2 order by id desc";
@@ -48,7 +52,7 @@ namespace Web.Admin
                         conn.Open();
 
                         int num = 0;
-
+                       
                         using (SqlDataReader sdr = comm.ExecuteReader())
                         {
                             while (sdr.Read())
@@ -56,13 +60,16 @@ namespace Web.Admin
                                 num++;
                                 if (num == 1)
                                 {
+                                    outpics = "[img=300,400]"+sdr["picurl"].ToString()+"[/img]\n";
                                     outString = "<img width=100 heigth=50 src='" + sdr["picsmallurl"].ToString() + "' />&nbsp;&nbsp;<img width=200 heigth=100 src='" + sdr["picurl"].ToString() + "' />&nbsp;&nbsp;<a href='hairshoppicoperate.aspx?type=out&id=" + sdr["id"].ToString() + "&hid=" + id.ToString() + "'>删除</a>";
                                 }
                                 else
                                 {
+                                    outpics += "[img=300,400]" + sdr["picurl"].ToString() + "[/img]\n";
                                     outString += "&nbsp;&nbsp;<img width=100 heigth=50 src='" + sdr["picsmallurl"].ToString() + "' />&nbsp;&nbsp;<img width=200 heigth=100 src='" + sdr["picurl"].ToString() + "' />&nbsp;&nbsp;<a href='hairshoppicoperate.aspx?type=out&id=" + sdr["id"].ToString() + "&hid=" + id.ToString() + "'>删除</a>";
                                 }
                             }
+                            ViewState["outpics"] = outpics;
                         }
                     }
                 }
@@ -84,13 +91,16 @@ namespace Web.Admin
                                 num++;
                                 if (num == 1)
                                 {
+                                    inpics = "[img=300,400]" + sdr["picurl"].ToString() + "[/img]\n";
                                     innerString = "<img width=100 heigth=50 src='" + sdr["picsmallurl"].ToString() + "' />&nbsp;&nbsp;<img width=200 heigth=100 src='" + sdr["picurl"].ToString() + "' />&nbsp;&nbsp;<a href='hairshoppicoperate.aspx?type=inner&id=" + sdr["id"].ToString() + "&hid=" + id.ToString() + "'>删除</a>";
                                 }
                                 else
                                 {
+                                    inpics += "[img=300,400]" + sdr["picurl"].ToString() + "[/img]\n";
                                     innerString += "&nbsp;&nbsp;<img width=100 heigth=50 src='" + sdr["picsmallurl"].ToString() + "' />&nbsp;&nbsp;<img width=200 heigth=100 src='" + sdr["picurl"].ToString() + "' />&nbsp;&nbsp;<a href='hairshoppicoperate.aspx?type=inner&id=" + sdr["id"].ToString() + "&hid=" + id.ToString() + "'>删除</a>";
                                 }
                             }
+                            ViewState["inpics"] = inpics;
                         }
                     }
                 }
@@ -235,9 +245,71 @@ namespace Web.Admin
                 }
             }
         }
-        
+
+
+        public string buildBBSContent(HairShop hs)
+        {
+            StringBuilder cntBuilder = new StringBuilder();
+            //foreach (string i in outpics)
+            //{
+            //    cntBuilder.AppendLine(i + ",");
+            //}
+            //foreach (string i in inpics)
+            //{
+            //    cntBuilder.AppendLine(i + ",");
+            //}
+            cntBuilder.AppendLine(ViewState["outpics"].ToString());
+            cntBuilder.AppendLine(ViewState["inpics"].ToString());
+
+            cntBuilder.AppendLine("地址：" + hs.HairShopAddress + "\n");
+            cntBuilder.AppendLine("交通：" + hs.LocationMapURL + "\n");
+            cntBuilder.AppendLine("面积：" + hs.Square.ToString() + "\n");
+            cntBuilder.AppendLine("是否有停车位：" + hs.IsPostStation.Equals(false).ToString() + "\n");
+            cntBuilder.AppendLine("是否刷卡：" + hs.IsPostMachine.Equals(false).ToString() + "\n");
+            cntBuilder.AppendLine("营业时间：" + hs.HairShopOpenTime.ToString() + "\n");
+            cntBuilder.AppendLine(" 风格：" + hs.TypeName);
+            cntBuilder.AppendLine(" 主打产品：" + hs.ProductsName);//InfoAdmin.GetProductByProductID+
+            cntBuilder.AppendLine(" 打印折扣券：" + "\n");//?
+            cntBuilder.AppendLine(" 折扣：" + hs.HairShopDiscount.ToString());
+            cntBuilder.AppendLine(" 预约电话：" + hs.HairShopPhoneNum );
+            cntBuilder.AppendLine(" 美发厅简介：" + hs.HairShopDescription);
+            cntBuilder.AppendLine(" [url=/HairShopContent.aspx?id="+hs.HairShopID.ToString()+"]查看详情[/url]");
+            return cntBuilder.ToString();
+        }
         public void btnSubmit_OnClick(object sender,EventArgs e)
         {
+            HairShop hs = (HairShop) Session["HairShop"];
+            int postid = 0;
+            if (hs != null)
+            {
+                string content = buildBBSContent(hs);
+                BBSPost post = new BBSPost();
+                bool bSuc = post.AddPost(hs.HairShopName, content, BBSPost.Category.HairShop, out postid);
+                if (bSuc)
+                {
+                    hs.Postid = postid;
+                    //update Hairshop.postid
+                    using (SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["MSSqlServer"].ConnectionString))
+                    {
+                        string commString = "update HairShop set postid="+hs.Postid.ToString() + " where HairShopID=" + this.Request.QueryString["id"].ToString();
+                        using (SqlCommand comm = new SqlCommand())
+                        {
+                            comm.CommandText = commString;
+                            comm.Connection = conn;
+                            conn.Open();
+                            try
+                            {
+                                comm.ExecuteNonQuery();
+                            }
+                            catch (Exception ex)
+                            {
+                                throw new Exception(ex.Message);
+                            }
+                        }
+                    }
+                }
+            }
+
             if (Session["oo"] == null || Session["oo"].ToString() == string.Empty)
             {
                 this.Response.Redirect("HairEngineerAdd.aspx");

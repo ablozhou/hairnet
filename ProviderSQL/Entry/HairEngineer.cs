@@ -33,10 +33,23 @@ namespace HairNet.Entry
         private string _hairEngineerConstellation = String.Empty;
         private bool _isImportant = false;
         private string _hairEngineerPhotoIDs = string.Empty;
-
+        private int _hairEngineerNormal = 0;
+        private int _postid = 0;
         #endregion
 
         #region HairEngineer Properties
+        public int PostId
+        {
+            set { this._postid = value; }
+            get { return this._postid; }
+        }
+
+        public int HairEngineerNormal
+        {
+            set { this._hairEngineerNormal = value; }
+            get { return this._hairEngineerNormal; }
+        }
+
         public bool IsImportant
         {
             set { this._isImportant = value; }
