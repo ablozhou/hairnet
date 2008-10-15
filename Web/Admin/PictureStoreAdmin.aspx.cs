@@ -14,6 +14,7 @@ using HairNet.Business;
 using HairNet.Enumerations;
 using HairNet.Utilities;
 using HairNet.Provider;
+using System.Data.SqlClient;
 
 namespace Web.Admin
 {
@@ -245,7 +246,29 @@ namespace Web.Admin
                 PictureStore pictureStore = e.Item.DataItem as PictureStore;
                 Label lblPictureUrl = e.Item.FindControl("lblPictureUrl") as Label;
 
-                //lblPictureUrl.Text = "<a href='" + pictureStore.PictureStoreRawUrl.ToString() + "'target='_blank'><img src='" + pictureStore.PictureStoreLittleUrl.ToString() + "' width='40' height='20' alt='点击查看大图' /></a>";
+                
+            string imgString = string.Empty;
+            using (SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["MSSqlServer"].ToString()))
+            {
+                string commString = "select * from PictureStoreSet where IsHairStyle = 0 and PictureStoreId=" + pictureStore.PictureStoreID.ToString();
+                using (SqlCommand comm = new SqlCommand())
+                {
+                    comm.Connection = conn;
+                    comm.CommandText = commString;
+                    conn.Open();
+
+                    using (SqlDataReader sdr = comm.ExecuteReader())
+                    {
+                        if (sdr.Read())
+                        {
+                            imgString = "<a href='" + sdr["PictureStoreURL"].ToString() + "' target='_blank'><img src='" + sdr["SmallPictureUrl"].ToString() + "' width=45 height=60 /></a>";
+                          
+                        }
+                    }
+                }
+            }
+
+            lblPictureUrl.Text = imgString;//"<a href='" + pictureStore.PictureStoreRawUrl.ToString() + "'target='_blank'><img src='" + pictureStore.PictureStoreLittleUrl.ToString() + "' width='40' height='20' alt='点击查看大图' /></a>";
 
             }
         }

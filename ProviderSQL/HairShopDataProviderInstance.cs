@@ -945,7 +945,40 @@ namespace HairNet.Provider
 
             return list;
         }
+        public string GetTypeNameById(int id)
+        {
+           TypeTable typeTable = new TypeTable();
 
+            string commText = "select * from TypeTable where id="+id.ToString ();
+
+            using (SqlConnection conn = new SqlConnection(DataHelper2.SqlConnectionString))
+            {
+                {
+                    using (SqlCommand comm = new SqlCommand())
+                    {
+                        comm.Connection = conn;
+                        comm.CommandText = commText;
+                        conn.Open();
+
+                        using (SqlDataReader sdr = comm.ExecuteReader())
+                        {
+                            if (sdr.Read())
+                            {
+                               
+
+                                typeTable.ID = int.Parse(sdr["TypeID"].ToString());
+                                typeTable.IsVisible = Convert.ToBoolean(sdr["TypeVisible"].ToString());
+                                typeTable.Name = sdr["TypeName"].ToString();
+
+                                
+                            }
+                        }
+                    }
+                }
+            }
+
+            return typeTable.Name;
+        }
         /// <summary>
         /// 美发店风格 添加，删除，修改
         /// </summary>

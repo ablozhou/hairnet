@@ -216,5 +216,12 @@ namespace HairNet.Provider
         /// </summary>
         /// <param name="couponID"></param>
         void DeleteCoupon(String couponID);
+
+        /// <summary>
+        /// 获取美发店风格字符串
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        string GetTypeNameById(int id);
     }
 }

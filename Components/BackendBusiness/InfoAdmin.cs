@@ -198,6 +198,17 @@ namespace HairNet.Business
         {
             return ProviderFactory.GetPictureStoreDataProviderInstance().GetPictureStoreRecommands(count);
         }
+
+        /// <summary>
+        /// 获取美发店风格字符串
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        public static string GetTypeNameById(int id)
+        {
+            return ProviderFactory.GetHairShopDataProviderInstance().GetTypeNameById(id);
+        }
+
         /// <summary>
         /// 获得图片推荐
         /// </summary>

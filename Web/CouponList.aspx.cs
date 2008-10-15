@@ -18,5 +18,16 @@ namespace Web
         {
             StringHelper.AddStyleSheet(this.Page, "Theme/Style/youhuiquan.css");
         }
+
+
+        protected void btnBusiZoneSearch_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void btnKeySearch_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
