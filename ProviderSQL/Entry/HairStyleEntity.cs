@@ -10,10 +10,15 @@ namespace HairNet.Entry
         private int id = 0;
         private string hairName = string.Empty;
         private Byte hairStyle = 0;
+        private string hairStyleText = string.Empty;//长,短,卷
         private Byte faceStyle = 0;
+        private string faceStyleName = string.Empty;
         private Byte temperament = 1;
+        private string temperamentName = string.Empty;
         private Byte occasion = 0;
+        private string occasionName = string.Empty;
         private Byte sex = 0;
+        private string sexName = string.Empty;
         private string bigPic = string.Empty;
         private string smallPic_F = string.Empty;
         private string smallPic_B = string.Empty;
@@ -23,9 +28,13 @@ namespace HairNet.Entry
         private string pic2 = string.Empty;
         private string pic3 = string.Empty;
         private int hairShopID = 0;
+        private string hairShopName = string.Empty;
         private int hairEngineerID = 0;
+        private string hairEngineerName = string.Empty;
         private int hairQuantity = 0;
+        private string hairQuantityName = string.Empty;
         private Byte hairNature = 0;
+        private string hairNatrueName = string.Empty;
         private Byte hairColor = 0;
         private DateTime createTime;
         private string bbsURL = string.Empty;
@@ -38,6 +47,68 @@ namespace HairNet.Entry
         private string psgids = string.Empty;
         private bool _isHairStyle = false;
         private int _postID = 0;
+
+        public string HairStyleText
+        {
+            set { this.hairStyleText = value; }
+            get { return this.hairStyleText; }
+        }
+
+        public string HairNatrueName
+        {
+            set { this.hairNatrueName = value; }
+            get { return this.hairNatrueName; }
+        }
+
+
+        public string HairQuantityName
+        {
+            set { this.hairQuantityName = value; }
+            get { return this.hairQuantityName; }
+        }
+
+
+        public string HairEngineerName
+        {
+            set { this.hairEngineerName = value; }
+            get { return this.hairEngineerName; }
+        }
+
+
+        public string HairShopName
+        {
+            set { this.hairShopName = value; }
+            get { return this.hairShopName; }
+        }
+
+
+        public string SexName
+        {
+            set { this.sexName = value; }
+            get { return this.sexName; }
+        }
+
+
+        public string OccasionName
+        {
+            set { this.occasionName = value; }
+            get { return this.occasionName; }
+        }
+
+
+        public string TemperamentName
+        {
+            set { this.temperamentName = value; }
+            get { return this.temperamentName; }
+        }
+
+
+        public string FaceStyleName
+        {
+            set { this.faceStyleName = value; }
+            get { return this.faceStyleName; }
+        }
+
 
         public bool IsHairStyle
         {
