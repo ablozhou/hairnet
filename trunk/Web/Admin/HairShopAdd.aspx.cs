@@ -70,6 +70,7 @@ namespace Web.Admin
             hs.HairShopName = txtHairShopName.Text.Trim();
             hs.HairShopShortName = txtHairShopShortName.Text.Trim();
             hs.TypeID = int.Parse(ddlTypeTable.SelectedValue);
+            hs.TypeName = ddlTypeTable.SelectedItem.Text;
             hs.HairShopWebSite = txtHairShopWebSite.Text.Trim();
             hs.HairShopEmail = txtHairShopEmail.Text.Trim();
             hs.HairShopDiscount = txtHairShopDiscount.Text.Trim();
@@ -160,7 +161,7 @@ namespace Web.Admin
             hs.ProductIDs = productIDs;
             //InfoAdmin.AddHairShop(hs);
             InfoAdmin.AddHairShopInfo(hs);
-            Session["HairShopAdd"] = hs;
+            Session["HairShop"] = hs;
 
             string id = "";
             using (SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["MSSqlServer"].ConnectionString))

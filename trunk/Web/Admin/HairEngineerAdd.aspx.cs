@@ -139,7 +139,7 @@ namespace Web.Admin
             content.AppendLine("美发师名称:" + he.HairEngineerName);
             content.AppendLine("所属美发店名称: " + he.HairShopName);
             content.AppendLine("简介: " + he.HairEngineerDescription);
-            content.AppendLine("职位: " + he.HairEngineerClassName);
+            content.AppendLine("职位: " + he.HairEngineerClassID);
             content.AppendLine("剪发价格: " + he.HairEngineerRawPrice.ToString());
             content.AppendLine("技术擅长: " + he.HairEngineerSkill);
             content.AppendLine("工作年限: " + he.HairEngineerYear.ToString());
@@ -162,7 +162,9 @@ namespace Web.Admin
             he.HairEngineerDescription = txtHairEngineerDescription.Text.Trim();
             he.HairEngineerConstellation = this.ddlConstellation.SelectedItem.Text;
             he.HairEngineerClassID = txtHairEngineerClass.Text.Trim();
+            he.HairEngineerClassName = txtHairEngineerClass.Text.Trim();
             he.HairShopID = int.Parse(ddlHairShop.SelectedValue);
+            he.HairShopName = ddlHairShop.SelectedItem.Text;
             he.IsImportant = this.chkIsImportant.Checked;
 
             UpLoadClass upload = new UpLoadClass();
@@ -170,13 +172,37 @@ namespace Web.Admin
 
             he.HairEngineerTagIDs = "";
 
-            Session["HairEngineerInfo"] = he;
-            string content=buildBBSContent(he);
+                
+            int id = InfoAdmin.AddHairEngineer(he);
+            he.HairEngineerID = id;
+           string content=buildBBSContent(he);
             int postId = 0;
             BBSPost post = new BBSPost();
             bool bSuc = post.AddPost(he.HairEngineerName, content, BBSPost.Category.HairEngineer, out postId);
-            
-            int id = InfoAdmin.AddHairEngineer(he);
+            if (bSuc)
+            {
+                //update postid
+                using (SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["MSSqlServer"].ConnectionString))
+                {
+                    string commString = "update HairEngineer set postid=" + he.PostId.ToString() + " where HairEngineerID=" + he.HairEngineerID.ToString();
+                    using (SqlCommand comm = new SqlCommand())
+                    {
+                        comm.CommandText = commString;
+                        comm.Connection = conn;
+                        conn.Open();
+                        try
+                        {
+                            comm.ExecuteNonQuery();
+                        }
+                        catch (Exception ex)
+                        {
+                            throw new Exception(ex.Message);
+                        }
+                    }
+                }
+            }
+
+            Session["HairEngineerInfo"] = he;
             //TAG逻辑
             string tagIDs = "";
             string[] tagCollection = txtHairEngineerTag.Text.Split(",".ToCharArray());

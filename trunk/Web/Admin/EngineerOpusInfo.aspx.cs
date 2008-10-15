@@ -18,6 +18,8 @@ using HairNet.Components.Utilities;
 using System.Data.SqlClient;
 using System.Collections.Generic;
 using HairNet.Provider;
+using System.Text;
+using HairNet.Components.BackendBusiness;
 
 namespace Web.Admin
 {
@@ -203,6 +205,25 @@ namespace Web.Admin
             result = path.Substring(path.IndexOf("uploadfiles") - 1);
             return result;
         }
+
+        public string buildBBSContent(HairStyleEntity hst)
+        {
+            StringBuilder cntBuilder = new StringBuilder();
+            cntBuilder.AppendLine("[img=300,400]" + lbl1.Text+"[/img]");//正面大图
+            cntBuilder.AppendLine("[img=90,120]" + lbl2Small.Text + "[/img]");//侧面小图
+            cntBuilder.AppendLine("[img=90,120]" + lbl3Small.Text + "[/img]");//背面小图
+            cntBuilder.AppendLine("发质："+hst.HairNatrueName);
+            cntBuilder.AppendLine("发量："+hst.HairQuantityName);
+            cntBuilder.AppendLine("脸型："+hst.FaceStyleName);
+            cntBuilder.AppendLine("场合："+hst.OccasionName);
+            cntBuilder.AppendLine("发型师："+hst.HairEngineerName);
+            cntBuilder.AppendLine("美发厅："+hst.HairShopName);
+            cntBuilder.AppendLine("发型解析："+hst.Description);
+            cntBuilder.AppendLine("[url=HairLastPage.aspx?id="+hst.ID.ToString()+"]查看详情[/url]");
+
+            return cntBuilder.ToString();
+        }
+ 
         /// <summary>
         /// 
         /// </summary>
@@ -246,32 +267,50 @@ namespace Web.Admin
             Byte iHairStyleClassName = Byte.Parse(this.ddlHairStyleClassName.SelectedItem.Value);
             Byte iTemperament = Byte.Parse(this.ddlTemperament.SelectedItem.Value);
             Byte iOccasion = Byte.Parse(this.ddlOccasion.SelectedItem.Value);
-            string bbsUrl = txtBbsurl.Text.Trim();
+            string bbsUrl = txtBbsurl.Text.Trim();//美发圈
             string keywords = txtKeywords.Text.Trim();
 
             int hairShopID = 0;
             int hairEngineerID = 0;
-
+            HairEngineer he = null;
+            string shopName = string.Empty;
+            string engineerName = string.Empty;
             try
             {
                 hairEngineerID = int.Parse(this.Request.QueryString["ENGINEERID"].ToString());
 
-                HairEngineer he = ProviderFactory.GetHairEngineerDataProviderInstance().GetHairEngineerByHairEngineerID(hairEngineerID);
+                 he = ProviderFactory.GetHairEngineerDataProviderInstance().GetHairEngineerByHairEngineerID(hairEngineerID);
 
-                hairShopID = he.HairShopID;
+   
+                if (he != null)
+                {   
+                    hairShopID = he.HairShopID; 
+                    shopName = he.HairShopName;
+                    engineerName = he.HairEngineerName;
+                }
             }
             catch
             { }
-            
+
+          
 
             //HairStyleEntity HairStyle = new HairStyleEntity(txtOpusName.Text.Trim(), newFrontFilePath, newFlankFilePath,
             //    newBackFilePath, newAssistanceFilePath, Byte.Parse(listHairStyle.SelectedValue), Byte.Parse(listFaceType.SelectedValue),
             //    Byte.Parse(listHairType.SelectedValue), Byte.Parse(listHairItem.SelectedValue), txtDesc.Text.Trim());
 
             HairStyleEntity HairStyle = new HairStyleEntity(txtOpusName.Text.Trim(),iHairQuantity, bbsUrl,hairShopID, hairEngineerID, iHairStyleClassName, iFaceStyle, iTemperament, iOccasion, iSex, iHairNature, txtDesc.Text.Trim(), PSGIDS, true, 0);
-
-
+            HairStyle.FaceStyleName = ddlFaceStyle.SelectedItem.Text;
+            HairStyle.HairEngineerName = engineerName;
+            HairStyle.HairNatrueName = ddlHairNature.SelectedItem.Text;
+            HairStyle.HairQuantityName = ddlHairQuantity.SelectedItem.Text;
+            HairStyle.HairShopName = shopName;
+            HairStyle.HairStyleText = ddlHairStyleClassName.SelectedItem.Text;
+            HairStyle.OccasionName = ddlOccasion.SelectedItem.Text;
+            HairStyle.SexName = ddlSex.SelectedItem.Text;
+            HairStyle.TemperamentName = ddlTemperament.SelectedItem.Text;
+            
             InfoAdmin.AddHairStyle(HairStyle);
+
             string id = "";
             using (SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["MSSqlServer"].ToString()))
             {
@@ -283,6 +322,37 @@ namespace Web.Admin
                     conn.Open();
 
                     id = comm.ExecuteScalar().ToString(); 
+                }
+            }
+
+            HairStyle.ID = int.Parse(id);
+            //add bbs post
+            string content = buildBBSContent(HairStyle);
+
+            BBSPost post = new BBSPost();
+            int postid = 0;
+            bool bSuc = post.AddPost(HairStyle.HairName, content, BBSPost.Category.HairStyle, out postid);
+            if (bSuc)
+            {
+                HairStyle.PostID = postid;
+
+                using (SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["MSSqlServer"].ConnectionString))
+                {
+                    string commString = "update hairstyle set postid=" + HairStyle.PostID.ToString() + " where ID=" + HairStyle.ID.ToString();
+                    using (SqlCommand comm = new SqlCommand())
+                    {
+                        comm.CommandText = commString;
+                        comm.Connection = conn;
+                        conn.Open();
+                        try
+                        {
+                            comm.ExecuteNonQuery();
+                        }
+                        catch (Exception ex)
+                        {
+                            throw new Exception(ex.Message);
+                        }
+                    }
                 }
             }
 
