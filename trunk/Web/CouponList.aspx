@@ -19,7 +19,9 @@
               <tr>
                 <td width="66%" class="search-bg" style="border-left:#cbcbcb 1px solid;"><input name="textfield" type="text" class="search-input" value="ÊäÈë¹Ø¼ü´Ê" onclick="javascript:if(this.value.substring(0,4)=='ÊäÈë¹Ø¼ü') this.value='';" /></td>
                 <td width="11%" align="left" class="search-bg"><img src="Theme/Images/sg-meifa_17.gif" width="26" height="23" /></td>
-                <td width="21%" align="center" class="search-bg"><span class="search"><a href="#" target="_blank">ËÑ&nbsp;Ë÷</a></span></td>
+                <td width="21%" align="center" class="search-bg"><span class="search"><a href="#" target="_blank">
+                    <asp:Button ID="btnBusiZoneSearch" runat="server" Text="ËÑ&nbsp;Ë÷" onclick="btnBusiZoneSearch_Click" 
+                         /></a></span></td>
                 <td width="2%" align="right" class="search-bg"><img src="Theme/Images/sg-meifa_14.gif" width="4" height="25" /></td>
               </tr></form>
             </table></td>
@@ -33,7 +35,9 @@
                 <tr>
                   <td width="66%" class="search-bg" style="border-left:#cbcbcb 1px solid;"><input name="textfield2" type="text" class="search-input" value="ÊäÈë¹Ø¼ü´Ê" onclick="javascript:if(this.value.substring(0,4)=='ÊäÈë¹Ø¼ü') this.value='';" /></td>
                   <td width="11%" align="left" class="search-bg"><img src="Theme/Images/sg-meifa_17.gif" width="26" height="23" /></td>
-                  <td width="21%" align="center" class="search-bg"><span class="search"><a href="#" target="_blank">ËÑ&nbsp;Ë÷</a></span></td>
+                  <td width="21%" align="center" class="search-bg"><span class="search"><a href="#" target="_blank">
+                      <asp:Button ID="btnKeySearch" runat="server" Text="ËÑ&nbsp;Ë÷" 
+                          onclick="btnKeySearch_Click" /></a></span></td>
                   <td width="2%" align="right" class="search-bg"><img src="Theme/Images/sg-meifa_14.gif" width="4" height="25" /></td>
                 </tr>
               </form>

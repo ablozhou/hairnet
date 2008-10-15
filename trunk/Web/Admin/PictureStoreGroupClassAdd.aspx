@@ -47,7 +47,7 @@
                         <asp:Label ID="lblAdmin" runat="server"></asp:Label>
                     </ItemTemplate>
                 </asp:TemplateColumn>
-                <asp:HyperLinkColumn DataNavigateUrlField="id" DataNavigateUrlFormatString="../FxkContent.aspx?id={0}" Target="_blank" Text="Ô¤ÀÀ"></asp:HyperLinkColumn>
+                <asp:HyperLinkColumn DataNavigateUrlField="id" DataNavigateUrlFormatString="../HairLastPage.aspx?id={0}" Target="_blank" Text="Ô¤ÀÀ"></asp:HyperLinkColumn>
                 <asp:TemplateColumn>
                     <ItemTemplate>
                         <asp:Label ID="lblEdit" runat="server"></asp:Label>

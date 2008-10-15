@@ -44,7 +44,7 @@
                     </ItemTemplate>
                 </asp:TemplateColumn>
                 <asp:BoundColumn DataField="hairname" HeaderText="Ãû³Æ"></asp:BoundColumn>
-                <asp:HyperLinkColumn DataNavigateUrlField="id" DataNavigateUrlFormatString="../FxkContent.aspx?id={0}" Target="_blank" Text="Ô¤ÀÀ"></asp:HyperLinkColumn>
+                <asp:HyperLinkColumn DataNavigateUrlField="id" DataNavigateUrlFormatString="../HairLastPage.aspx?id={0}" Target="_blank" Text="Ô¤ÀÀ"></asp:HyperLinkColumn>
                 <asp:TemplateColumn HeaderText="ÀàÐÍ">
                     <ItemTemplate>
                         <asp:Label ID="lblAdmin" runat="server"></asp:Label>
