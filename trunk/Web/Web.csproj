@@ -2033,6 +2033,20 @@
     <Compile Include="UserControls\Head.ascx.designer.cs">
       <DependentUpon>Head.ascx</DependentUpon>
     </Compile>
+    <Compile Include="UserControls\HotCouponList.ascx.cs">
+      <DependentUpon>HotCouponList.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UserControls\HotCouponList.ascx.designer.cs">
+      <DependentUpon>HotCouponList.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\HotHairEngineerList.ascx.cs">
+      <DependentUpon>HotHairEngineerList.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UserControls\HotHairEngineerList.ascx.designer.cs">
+      <DependentUpon>HotHairEngineerList.ascx</DependentUpon>
+    </Compile>
     <Compile Include="UserControls\SearchHead.ascx.cs">
       <DependentUpon>SearchHead.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -2257,6 +2271,8 @@
     <Content Include="UserControls\HairShopEngineerList.ascx" />
     <Content Include="UserControls\HairShopEntryControl.ascx" />
     <Content Include="UserControls\HairShopWorkList.ascx" />
+    <Content Include="UserControls\HotCouponList.ascx" />
+    <Content Include="UserControls\HotHairEngineerList.ascx" />
     <Content Include="UserControls\SearchHead.ascx" />
     <Content Include="ZTContent.aspx" />
     <Content Include="ZTList.aspx" />
