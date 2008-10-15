@@ -398,10 +398,26 @@ namespace Web.Admin
 
             this.Response.Redirect("PictureStoreAdmin.aspx");
         }
+        public string GetPath(string path)
+        {
+            string result = string.Empty;
+            path.Replace(@"\", @"/");
+            result = path.Substring(path.IndexOf("uploadfiles") - 1);
+            return result;
+        }
         protected void btnPicUpload1_OnClick(object sender, EventArgs e)
         {   
             UpLoadClass upload = new UpLoadClass();
-            string filepath = upload.UpLoadImg(uploadpic1, "/uploadfiles/pictures/");
+            string filepath = "";
+            string newfilepath = upload.UploadImageFile(uploadpic1, "/uploadfiles/pictures/");
+            PicOperate WaterMark = new PicOperate();
+
+            //Water Mark Operation
+            filepath = newfilepath.Substring(0, newfilepath.LastIndexOf(".")) + "_new" + System.IO.Path.GetExtension(newfilepath);
+
+            WaterMark.AddWaterMarkOperate(newfilepath, Server.MapPath(WaterSettings.WaterMarkPath), filepath, WaterSettings.CopyrightText);
+
+            filepath = GetPath(filepath);
             System.Threading.Thread.Sleep(1000);
             string filepathSmall = upload.UpLoadImg(uploadpicsmall, "/uploadfiles/pictures/");
 
@@ -424,8 +440,6 @@ namespace Web.Admin
                 }
                 else
                 {   
-                    
-
                     this.picString.Text += "&nbsp;&nbsp;<img width=100 heigth=50 src='" + filepathSmall + "' />&nbsp;&nbsp;<img width=200 heigth=100 src='" + filepath + "' />&nbsp;&nbsp;<a href='PictureStoreOperate2.aspx?num=" + num.ToString() + "'>删除</a>";
                     this.pic.Text += ";" + filepath;
                     this.picsmall.Text += ";" + filepathSmall;

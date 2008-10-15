@@ -110,7 +110,7 @@
             <tr>
                 <td width="120" align="right">图片：
                 </td>
-                <td><input id="uploadpic1" type="file" runat="server" />&nbsp;&nbsp;<asp:Button ID="btnPicUpload" runat="server" OnClick="btnPicUpload1_OnClick" Text="上传图片" />
+                <td><asp:FileUpload ID="uploadpic1" runat="server" Width="300" />&nbsp;&nbsp;<asp:Button ID="btnPicUpload" runat="server" OnClick="btnPicUpload1_OnClick" Text="上传图片" />
                 </td>
             </tr>
         </table>
