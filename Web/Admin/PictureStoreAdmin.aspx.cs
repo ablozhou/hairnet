@@ -245,12 +245,31 @@ namespace Web.Admin
 
                 PictureStore pictureStore = e.Item.DataItem as PictureStore;
                 Label lblPictureUrl = e.Item.FindControl("lblPictureUrl") as Label;
+                string hairStyleID = "";
+                using (SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["MSSqlServer"].ToString()))
+                {
+                    string commString = "select id from HairStyle where PictureStoreId=" + pictureStore.PictureStoreID.ToString();
+                    using (SqlCommand comm = new SqlCommand())
+                    {
+                        comm.Connection = conn;
+                        comm.CommandText = commString;
+                        conn.Open();
 
+                        using (SqlDataReader sdr = comm.ExecuteReader())
+                        {
+                            if (sdr.Read())
+                            {
+                                hairStyleID = sdr["id"].ToString();
+
+                            }
+                        }
+                    }
+                }
                 
             string imgString = string.Empty;
             using (SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["MSSqlServer"].ToString()))
             {
-                string commString = "select * from PictureStoreSet where IsHairStyle = 0 and PictureStoreId=" + pictureStore.PictureStoreID.ToString();
+                string commString = "select * from PictureStoreSet where IsHairStyle = 0 and PictureStoreId=" + hairStyleID;
                 using (SqlCommand comm = new SqlCommand())
                 {
                     comm.Connection = conn;
