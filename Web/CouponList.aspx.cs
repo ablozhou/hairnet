@@ -20,19 +20,19 @@ namespace Web
             StringHelper.AddStyleSheet(this.Page, "Theme/Style/youhuiquan.css");
 
 
-            string buziZone = Request.QueryString["buzizone"].ToString();
-            string shopName = Request.QueryString["shopname"].ToString();
+            //string buziZone = Request.QueryString["buzizone"].ToString();
+            //string shopName = Request.QueryString["shopname"].ToString();
 
-            if (buziZone != string.Empty)
-            {
-            }
-            else if (shopName != string.Empty)
-            {
-            }
-            else
-            {
-                InfoAdmin.GetCouponList();
-            }
+            //if (buziZone != string.Empty)
+            //{
+            //}
+            //else if (shopName != string.Empty)
+            //{
+            //}
+            //else
+            //{
+            //    InfoAdmin.GetCouponList();
+            //}
             
         }
 
