@@ -148,7 +148,7 @@ namespace Web.Admin
 
             WaterMark.AddWaterMarkOperate(assistanceFilePath, Server.MapPath(WaterSettings.WaterMarkPath), newAssistanceFilePath, WaterSettings.CopyrightText);
 
-            this.lbl4.Text = GetPath(newAssistanceFilePath);
+            this.lbl4.Text = GetPath(assistanceFilePath);
             i4.ImageUrl = this.lbl4.Text;
             i4.Visible = true;
         }

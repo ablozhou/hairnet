@@ -269,8 +269,11 @@ namespace HairNet.Utilities
 
             //位置
 
-            int xPosOfWm = ((phWidth - wmWidth)/2+100);
-            int yPosOfWm = ((phHeight - wmHeight)/4 -100);
+            //int xPosOfWm = ((phWidth - wmWidth)-10);
+            //int yPosOfWm = ((phHeight - wmHeight) -10);
+
+            int xPosOfWm = (phWidth/2+100);
+            int yPosOfWm = (phHeight/3*2);
 
             grWatermark.DrawImage(imgWatermark,new Rectangle(xPosOfWm, yPosOfWm, wmWidth,wmHeight),0,0,wmWidth,wmHeight,GraphicsUnit.Pixel,imageAttributes);
             
