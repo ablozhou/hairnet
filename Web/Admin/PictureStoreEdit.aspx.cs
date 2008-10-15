@@ -602,19 +602,35 @@ namespace Web.Admin
 
             this.Response.Redirect("PictureStoreAdmin.aspx");
         }
+        public string GetPath(string path)
+        {
+            string result = string.Empty;
+            path.Replace(@"\", @"/");
+            result = path.Substring(path.IndexOf("uploadfiles") - 1);
+            return result;
+        }
         protected void btnPicUpload1_OnClick(object sender, EventArgs e)
         {
             PictureStore ps = (PictureStore)ViewState["PictureStoreInfo"];
 
             UpLoadClass upload = new UpLoadClass();
-            string filepath = upload.UpLoadImg(uploadpic1, "/uploadfiles/pictures/");
+            string filepath = "";
+            string newfilepath = upload.UploadImageFile(uploadpic1, "/uploadfiles/pictures/");
+            PicOperate WaterMark = new PicOperate();
+
+            //Water Mark Operation
+            filepath = newfilepath.Substring(0, newfilepath.LastIndexOf(".")) + "_new" + System.IO.Path.GetExtension(newfilepath);
+
+            WaterMark.AddWaterMarkOperate(newfilepath, Server.MapPath(WaterSettings.WaterMarkPath), filepath, WaterSettings.CopyrightText);
+
+            filepath = GetPath(filepath);
             System.Threading.Thread.Sleep(1000);
             string filepathSmall = upload.UpLoadImg(uploadpicsmall, "/uploadfiles/pictures/");
 
             string hairStyleID = "";
             using (SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["MSSqlServer"].ToString()))
             {
-                string commString = "select id from HairStyle where PictureStoreId=" + pictureStore.PictureStoreID.ToString();
+                string commString = "select id from HairStyle where PictureStoreId=" + ps.PictureStoreID.ToString();
                 using (SqlCommand comm = new SqlCommand())
                 {
                     comm.Connection = conn;
