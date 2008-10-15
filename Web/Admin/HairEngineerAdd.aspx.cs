@@ -318,6 +318,7 @@ namespace Web.Admin
         {
             UpLoadClass upload = new UpLoadClass();
             string picPath = upload.UpLoadImg(fileLogo, "/uploadfiles/pictures/");
+            System.Threading.Thread.Sleep(1000);
             string picSmallPath = upload.UpLoadImg(smallLogo, "/uploadfiles/pictures/");
 
             if (picPath != string.Empty)

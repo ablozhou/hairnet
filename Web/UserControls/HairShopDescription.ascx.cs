@@ -22,7 +22,37 @@ namespace Web.UserControls
             HairShop hairShop = ProviderFactory.GetHairShopDataProviderInstance().GetHairShopByHairShopID(this.HairShopID);
 
             this.lblHairShopName.Text = hairShop.HairShopName;
+            this.lblHairShopDescription.Text = hairShop.HairShopDescription;
             this.lblMemberInfo.Text = hairShop.MemberInfo.ToString();
+
+            string[] hairShopPhotoID = hairShop.OutLogs.Split(",".ToCharArray());
+            if (hairShopPhotoID.Length ==1)
+            {
+
+                this.lbllHairShopPic.Text = "<a href=\"#\"><img width=98 height=98 src=\"Theme/Images/sg-meifa_ls02.gif\" /></a>";
+            }
+            else
+            {
+                using (SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["MSSqlServer"].ConnectionString))
+                {
+                    string commString = "select top 1 * from shoppics where id=" + hairShopPhotoID[1];
+                    using (SqlCommand comm = new SqlCommand())
+                    {
+                        comm.CommandText = commString;
+                        comm.Connection = conn;
+                        conn.Open();
+
+                        using (SqlDataReader sdr = comm.ExecuteReader())
+                        {
+                            if (sdr.Read())
+                            {
+                                this.lbllHairShopPic.Text = "<a href=\"#\"><img width=98 height=98 src=\""+sdr["picsmallurl"].ToString()+"\" /></a>";
+                            }
+                        }
+                    }
+                }
+                
+            }
 
             if (hairShop.HairShopEngineerNum == 0)
             {
@@ -30,22 +60,48 @@ namespace Web.UserControls
             }
             else
             {
+                string hairEngineerPhotoIDs = string.Empty;
                 using (SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["MSSqlServer"].ConnectionString))
                 {
-                    string commString = "select top 1 * from HairEngineer where hairshopID=" + this.HairShopID;
+                    string commString = "select top 1 * from HairEngineer where IsImportant=1 and hairshopID=" + this.HairShopID;
                     using (SqlCommand comm = new SqlCommand())
                     {
                         comm.CommandText = commString;
                         comm.Connection = conn;
                         conn.Open();
 
-                        int num = 0;
-
                         using (SqlDataReader sdr = comm.ExecuteReader())
                         {
                             if (sdr.Read())
                             {   
-                                this.lblHairShopDescription.Text = sdr["HairEngineerDescription"].ToString();
+                                this.lblHairEngineerDescription.Text = sdr["HairEngineerDescription"].ToString();
+                                hairEngineerPhotoIDs = sdr["HairEngineerPhotoIDs"].ToString();
+                            }
+                        }
+                    }
+                }
+                string[] photoID = hairEngineerPhotoIDs.Split(",".ToCharArray());
+                if (photoID.Length == 1)
+                {
+                    this.lblHairEngineerPic.Text = "<a href=\"#\"><img width=98 height=98 src=\"Theme/Images/sg-meifa_ls02.gif\" /></a>";
+                }
+                else
+                {
+                    using (SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["MSSqlServer"].ConnectionString))
+                    {
+                        string commString = "select top 1 * from enginpics where id=" + photoID[1];
+                        using (SqlCommand comm = new SqlCommand())
+                        {
+                            comm.CommandText = commString;
+                            comm.Connection = conn;
+                            conn.Open();
+
+                            using (SqlDataReader sdr = comm.ExecuteReader())
+                            {
+                                if (sdr.Read())
+                                {
+                                    this.lblHairEngineerPic.Text = "<a href=\"#\"><img width=98 height=98 src=\"" + sdr["picsmallurl"].ToString() + "\" /></a>";
+                                }
                             }
                         }
                     }

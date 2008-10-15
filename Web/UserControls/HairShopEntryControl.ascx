@@ -62,7 +62,7 @@
       <asp:Panel ID="p1" runat="server" Visible="false">
 	  <table width="360" border="0" align="center" cellpadding="0" cellspacing="0" style="margin-top:5px">
         <tr>
-          <td width="39%" align="left"><img src="Theme/Images/fair-yhq.gif" width="122" height="73" /></td>
+          <td width="39%" align="left"><asp:Label ID="lblCouponPic" runat="server"></asp:Label></td>
           <td width="61%" align="left" valign="middle" class="gray12-d">已打印：<span class="red12-c"><asp:Label ID="lblPrintNum" runat="server"></asp:Label></span><br />
           <span class="red12-line-c"><asp:Label ID="lblPrintCoupon" runat="server"></asp:Label></span></td>
         </tr>

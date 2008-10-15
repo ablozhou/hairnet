@@ -115,6 +115,7 @@ namespace Web.Admin
             }   
 
             string out1 = upload.UpLoadImg(out1c, "/uploadfiles/pictures/");
+            System.Threading.Thread.Sleep(1000);
             string outsmall1 = upload.UpLoadImg(outSmall, "/uploadfiles/pictures/");
             if (out1 != string.Empty)
             {
@@ -180,6 +181,7 @@ namespace Web.Admin
             } 
 
             string inner1 = upload.UpLoadImg(inner1c, "/uploadfiles/pictures/");
+            System.Threading.Thread.Sleep(1000);
             string innersmall1 = upload.UpLoadImg(innerSmall,"/uploadfiles/pictures/");
 
             if (inner1 != string.Empty)
