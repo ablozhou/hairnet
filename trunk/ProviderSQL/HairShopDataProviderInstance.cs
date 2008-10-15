@@ -463,7 +463,8 @@ namespace HairNet.Provider
                     hairShop.IsPostMachine = bool.Parse(sdr["IsPostMachine"].ToString());
                     hairShop.HairShopGood = int.Parse(sdr["HairShopGood"].ToString());
                     hairShop.HairShopBad = int.Parse(sdr["HairShopBad"].ToString());
-
+                    hairShop.OutLogs = sdr["outLogs"].ToString();
+                    hairShop.InnerLogs = sdr["innerLogs"].ToString();
                     Decimal parseValue;
 
                     Decimal.TryParse(sdr["HairCutPrice"].ToString(), out parseValue);

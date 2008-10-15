@@ -91,7 +91,7 @@ namespace Web.UserControls
                 }
                 if (num == 0)
                 {
-                    this.lblEngineerList.Text = "当前美发厅没有美发师";
+                    this.lblEngineerList.Text = "&nbsp;&nbsp;&nbsp;&nbsp;当前美发厅没有美发师";
                 }
                 else
                 {
