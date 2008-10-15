@@ -14,6 +14,9 @@ using HairNet.Entry;
 using HairNet.Utilities;
 using System.Data.SqlClient;
 using HairNet.Provider;
+using HairNet.Components.BackendBusiness;
+using System.Text;
+
 
 namespace Web.Admin
 {
@@ -123,6 +126,29 @@ namespace Web.Admin
             txtHairEngineerTag.Text = String.Empty;
         }
 
+        public string buildBBSContent(HairEngineer he)
+        {
+
+            StringBuilder content=new StringBuilder();
+            string[] pics = lblpicSring.Text.Split(";".ToCharArray());
+            foreach (string pic in pics)
+            {
+                content.AppendLine("[img=300,400]" + pic + "[/img]");
+
+            }
+            content.AppendLine("美发师名称:" + he.HairEngineerName);
+            content.AppendLine("所属美发店名称: " + he.HairShopName);
+            content.AppendLine("简介: " + he.HairEngineerDescription);
+            content.AppendLine("职位: " + he.HairEngineerClassName);
+            content.AppendLine("剪发价格: " + he.HairEngineerRawPrice.ToString());
+            content.AppendLine("技术擅长: " + he.HairEngineerSkill);
+            content.AppendLine("工作年限: " + he.HairEngineerYear.ToString());
+            content.AppendLine("星座: " + he.HairEngineerConstellation);
+            content.AppendLine("预约电话: " + he.HairEngineerTel);
+            content.AppendLine("[url=/HairdresserLastPage.aspx?id=" + he.HairEngineerID.ToString() + "]查看详情[/url]");
+
+            return content.ToString();
+        }
         protected void btnHairEngineerAdd_Click(object sender, EventArgs e)
         {
             HairEngineer he = new HairEngineer();
@@ -145,6 +171,11 @@ namespace Web.Admin
             he.HairEngineerTagIDs = "";
 
             Session["HairEngineerInfo"] = he;
+            string content=buildBBSContent(he);
+            int postId = 0;
+            BBSPost post = new BBSPost();
+            bool bSuc = post.AddPost(he.HairEngineerName, content, BBSPost.Category.HairEngineer, out postId);
+            
             int id = InfoAdmin.AddHairEngineer(he);
             //TAG逻辑
             string tagIDs = "";
