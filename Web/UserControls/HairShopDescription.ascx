@@ -1,37 +1,4 @@
 ﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="HairShopDescription.ascx.cs" Inherits="Web.UserControls.HairShopDescription" %>
-<script language="javascript">
-        function showTab(id) {
-        var c=["serTabC1","serTabC2","serTabC3"];
-        var x=["seatchTab1","seatchTab2","seatchTab3"];
-        for (var i=0;i<c.length;i++){
-	        if((i+1)==id){
-		        document.getElementById(c[i]).style.display="";
-		        document.getElementById(x[i]).style.display="";
-	        }
-	        else{
-		        document.getElementById(c[i]).style.display="none";
-		        document.getElementById(x[i]).style.display="none";
-	        }
-        }
-        }
-        </script>
-        
-        <script language="javascript">
-        function showTab3(id) {
-        var c=["serTabC31","serTabC32","serTabC33"];
-        var x=["seatchTab31","seatchTab32","seatchTab33"];
-        for (var i=0;i<c.length;i++){
-	        if((i+1)==id){
-		        document.getElementById(c[i]).style.display="";
-		        document.getElementById(x[i]).style.display="";
-	        }
-	        else{
-		        document.getElementById(c[i]).style.display="none";
-		        document.getElementById(x[i]).style.display="none";
-	        }
-        }
-        }
-        </script>
 
 <div id="mft-area"><table width="100%" border="0" cellspacing="0" cellpadding="0">
   <tr>

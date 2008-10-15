@@ -1,20 +1,5 @@
 ﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="HairShopEntryControl.ascx.cs" Inherits="Web.UserControls.HairShopEntryControl" %>
-<script language="javascript">
-        function showTab2(id) {
-        var c=["serTabC21","serTabC22"];
-        var x=["seatchTab21","seatchTab22"];
-        for (var i=0;i<c.length;i++){
-	        if((i+1)==id){
-		        document.getElementById(c[i]).style.display="";
-		        document.getElementById(x[i]).style.display="";
-	        }
-	        else{
-		        document.getElementById(c[i]).style.display="none";
-		        document.getElementById(x[i]).style.display="none";
-	        }
-        }
-        }
-</script>
+
 <div id="main-top2">
   <div id="area-1"><img src="Theme/Images/sg-meifa-ad2.jpg" /></div>
   <div id="area-2">

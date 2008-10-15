@@ -10,7 +10,6 @@
 
 namespace Web.UserControls {
     
-    public partial class HairShopWorkList {
-        protected System.Web.UI.WebControls.Label lblWorkList;
+    public partial class SearchHead {
     }
 }

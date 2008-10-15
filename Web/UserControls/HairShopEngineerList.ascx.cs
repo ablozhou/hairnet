@@ -20,10 +20,7 @@ namespace Web.UserControls
             if (!this.IsPostBack)
             {
                 StringBuilder sb = new StringBuilder();
-
-                sb.Append("<tr>");
-                sb.Append("</tr>");
-                string hairEngineerPhotoIDs = string.Empty;
+                
                 int num = 0;
                 using (SqlConnection conn1 = new SqlConnection(ConfigurationManager.ConnectionStrings["MSSqlServer"].ConnectionString))
                 {
@@ -91,7 +88,14 @@ namespace Web.UserControls
                         }
                     }
                 }
-                this.lblEngineerList.Text = sb.ToString();
+                if (num == 0)
+                {
+                    this.lblEngineerList.Text = "当前美发厅没有美发师";
+                }
+                else
+                {
+                    this.lblEngineerList.Text = sb.ToString();
+                }
             }
         }
         private int _hairShopID = 0;
