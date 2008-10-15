@@ -122,6 +122,7 @@ namespace Web.Admin
                             this.ddlOccasion.SelectedValue = sdr["occasion"].ToString();
                             this.ddlSex.SelectedValue = sdr["sex"].ToString();
                             this.ddlTemperament.SelectedValue = sdr["temperament"].ToString();
+                            this.txtBbsurl.Text = sdr["bbsUrl"].ToString();
                         }
                     }
                 }
