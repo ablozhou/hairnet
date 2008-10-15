@@ -608,13 +608,35 @@ namespace Web.Admin
 
             UpLoadClass upload = new UpLoadClass();
             string filepath = upload.UpLoadImg(uploadpic1, "/uploadfiles/pictures/");
+            System.Threading.Thread.Sleep(1000);
             string filepathSmall = upload.UpLoadImg(uploadpicsmall, "/uploadfiles/pictures/");
+
+            string hairStyleID = "";
+            using (SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["MSSqlServer"].ToString()))
+            {
+                string commString = "select id from HairStyle where PictureStoreId=" + pictureStore.PictureStoreID.ToString();
+                using (SqlCommand comm = new SqlCommand())
+                {
+                    comm.Connection = conn;
+                    comm.CommandText = commString;
+                    conn.Open();
+
+                    using (SqlDataReader sdr = comm.ExecuteReader())
+                    {
+                        if (sdr.Read())
+                        {
+                            hairStyleID = sdr["id"].ToString();
+
+                        }
+                    }
+                }
+            }
 
             if (filepath != string.Empty)
             {
                 using (SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["MSSqlServer"].ToString()))
                 {
-                    string commString = "insert into PictureStoreSet(PictureStoreId,PictureStoreURL,SmallPictureUrl,IsHairStyle,HairStylePos) values(" + ps.PictureStoreID.ToString() + ",'" + filepath + "','"+filepathSmall+"',0,0)";
+                    string commString = "insert into PictureStoreSet(PictureStoreId,PictureStoreURL,SmallPictureUrl,IsHairStyle,HairStylePos) values(" + hairStyleID + ",'" + filepath + "','" + filepathSmall + "',0,0)";
                     using (SqlCommand comm = new SqlCommand())
                     {
                         comm.Connection = conn;
