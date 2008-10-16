@@ -307,7 +307,13 @@ namespace HairNet.Entry
         private string _innerLogs = string.Empty;
         private int _postid = 0;
         private string _productsName = string.Empty;
-      
+        private int _hairShopNormal = 0;
+        public int HairShopNormal
+        {
+            set { this._hairShopNormal = value; }
+            get { return this._hairShopNormal; }
+        }
+
         public string ProductsName
         {
             set { this._productsName = value; }

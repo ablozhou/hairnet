@@ -15,6 +15,7 @@ namespace Web {
         protected Web.UserControls.HairShopDescription hairShopEntryDescription;
         protected Web.UserControls.HairShopEngineerList hairShopEngineerList;
         protected Web.UserControls.HairShopWorkList hairShopWorkList;
+        protected Web.UserControls.HairShopVoteControl hairShopVoteControl;
         protected Web.UserControls.HotHairEngineerList hotHairEngineerList;
         protected Web.UserControls.HotCouponList hotCouponList;
         protected Web.UserControls.SameHotZoneHairShopList sameHairShopList;
