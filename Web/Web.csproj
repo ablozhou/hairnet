@@ -2,7 +2,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProductVersion>8.0.50727</ProductVersion>
+    <ProductVersion>9.0.21022</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{AA67A172-FF0F-4C2B-B68A-10E02F9D12AD}</ProjectGuid>
     <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
@@ -35,6 +35,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="BusinessFacade, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL" />
     <Reference Include="DMSTime, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\Assembly\DMSTime.dll</HintPath>
@@ -42,6 +43,18 @@
     <Reference Include="FredCK.FCKeditorV2, Version=2.2.2106.29420, Culture=neutral, PublicKeyToken=4f86767c9b519a06">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\Assembly\FredCK.FCKeditorV2.dll</HintPath>
+    </Reference>
+    <Reference Include="HWCommon, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>HWCommon\DLL\HWCommon.dll</HintPath>
+    </Reference>
+    <Reference Include="HWKEY, Version=1.0.1460.35494, Culture=neutral">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>HWCommon\DLL\HWKEY.dll</HintPath>
+    </Reference>
+    <Reference Include="MySql.Data, Version=5.1.2.2, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>HWCommon\DLL\MySql.Data.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
@@ -1913,6 +1926,8 @@
     <Compile Include="CouponList.aspx.designer.cs">
       <DependentUpon>CouponList.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Cryptogram.cs" />
+    <Compile Include="DataHelper.cs" />
     <Compile Include="FxkContent.aspx.cs">
       <SubType>ASPXCodeBehind</SubType>
       <DependentUpon>FxkContent.aspx</DependentUpon>
@@ -2005,6 +2020,7 @@
     <Compile Include="SendFriends.aspx.designer.cs">
       <DependentUpon>SendFriends.aspx</DependentUpon>
     </Compile>
+    <Compile Include="SQLCommon.cs" />
     <Compile Include="test.aspx.cs">
       <SubType>ASPXCodeBehind</SubType>
       <DependentUpon>test.aspx</DependentUpon>
@@ -2012,6 +2028,8 @@
     <Compile Include="test.aspx.designer.cs">
       <DependentUpon>test.aspx</DependentUpon>
     </Compile>
+    <Compile Include="TokenManager.cs" />
+    <Compile Include="UserAuth.cs" />
     <Compile Include="UserControls\CouponDetailList.ascx.cs">
       <DependentUpon>CouponDetailList.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -2152,6 +2170,8 @@
     <Compile Include="UserControls\SearchHead.ascx.designer.cs">
       <DependentUpon>SearchHead.ascx</DependentUpon>
     </Compile>
+    <Compile Include="UserInfo.cs" />
+    <Compile Include="Util.cs" />
     <Compile Include="ZTContent.aspx.cs">
       <SubType>ASPXCodeBehind</SubType>
       <DependentUpon>ZTContent.aspx</DependentUpon>
@@ -2364,6 +2384,8 @@
     <Content Include="HairShopList.aspx" />
     <Content Include="HairStarList.aspx" />
     <Content Include="Home.Master" />
+    <Content Include="HWCommon.csproj" />
+    <Content Include="HWCommon.csproj.vspscc" />
     <Content Include="JiepaiList.aspx" />
     <Content Include="PrintCoupon.aspx" />
     <Content Include="SearchHeadPage.aspx" />
@@ -2443,6 +2465,7 @@
     <Content Include="UserControls\SearchHead.ascx" />
     <Content Include="ZTContent.aspx" />
     <Content Include="ZTList.aspx" />
+    <None Include="mssccprj.scc" />
     <None Include="Theme\Images\search-fxs.psd" />
     <None Include="Theme\Images\Thumbs.db" />
   </ItemGroup>
@@ -2473,6 +2496,7 @@
           <IISUrl>
           </IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
         </WebProjectProperties>
       </FlavorProperties>
     </VisualStudio>

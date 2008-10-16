@@ -94,22 +94,25 @@ namespace Web.UserControls
                 this.lblLocationMapUrl.Text = hairShop.LocationMapURL.ToString();
                 this.lblSquare.Text = hairShop.Square;
 
-                string[] productIDs = hairShop.ProductIDs.Split(",".ToCharArray());
-                string productString = "";
-                for (int k = 0; k < productIDs.Length; k++)
+                //process products
+                if (hairShop.ProductIDs != string.Empty)
                 {
-                    Product product = ProviderFactory.GetProductDataProviderInstance().GetProductByProductID(int.Parse(productIDs[k]));
-                    if (k == 0)
+                    string[] productIDs = hairShop.ProductIDs.Split(",".ToCharArray());
+                    string productString = "";
+                    for (int k = 0; k < productIDs.Length; k++)
                     {
-                        productString += product.ProductName;
+                        Product product = ProviderFactory.GetProductDataProviderInstance().GetProductByProductID(int.Parse(productIDs[k]));
+                        if (k == 0)
+                        {
+                            productString += product.ProductName;
+                        }
+                        else
+                        {
+                            productString += "&nbsp;&nbsp;" + product.ProductName;
+                        }
                     }
-                    else
-                    {
-                        productString += "&nbsp;&nbsp;" + product.ProductName;
-                    }
+                    this.lblProduct.Text = productString;
                 }
-                this.lblProduct.Text = productString;
-
                 if (hairShop.CouponNum == 0)
                 {
                     this.p1.Visible = false;
