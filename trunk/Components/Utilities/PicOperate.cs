@@ -254,26 +254,34 @@ namespace HairNet.Utilities
 
             imageAttributes.SetRemapTable(remapTable,ColorAdjustType.Bitmap);
 
+            /*
+             *   
+             */
             //5
-            float[][] colorMatrixElements = { 
+           float[][] colorMatrixElements = { 
                new float[] {1.0f,  0.0f,  0.0f,  0.0f, 0.0f},
                new float[] {0.0f,  1.0f,  0.0f,  0.0f, 0.0f},
                new float[] {0.0f,  0.0f,  1.0f,  0.0f, 0.0f},
-               new float[] {0.0f,  0.0f,  0.0f,  0.3f, 0.0f},
+               new float[] {0.0f,  0.0f,  0.0f,  1.0f, 0.0f},
                new float[] {0.0f,  0.0f,  0.0f,  0.0f, 1.0f}
             };
 
             ColorMatrix wmColorMatrix = new ColorMatrix(colorMatrixElements);
 
-            imageAttributes.SetColorMatrix(wmColorMatrix,ColorMatrixFlag.Default,ColorAdjustType.Bitmap);
+            imageAttributes.SetColorMatrix(wmColorMatrix,ColorMatrixFlag.Default ,ColorAdjustType.Bitmap);
 
             //位置
 
             //int xPosOfWm = ((phWidth - wmWidth)-10);
             //int yPosOfWm = ((phHeight - wmHeight) -10);
 
-            int xPosOfWm = (phWidth/2+100);
-            int yPosOfWm = (phHeight/3*2);
+            //int xPosOfWm = (phWidth/2+100);
+            int xPosOfWm = (phWidth / 5 *3);
+            if ((phWidth - xPosOfWm) < wmWidth)
+            {
+                xPosOfWm = phWidth - wmWidth;
+            }
+            int yPosOfWm = (phHeight / 3 * 2);
 
             grWatermark.DrawImage(imgWatermark,new Rectangle(xPosOfWm, yPosOfWm, wmWidth,wmHeight),0,0,wmWidth,wmHeight,GraphicsUnit.Pixel,imageAttributes);
             

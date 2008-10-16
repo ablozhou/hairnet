@@ -60,12 +60,12 @@ namespace Web.Admin
                                 num++;
                                 if (num == 1)
                                 {
-                                    outpics = "[img=300,400]"+sdr["picurl"].ToString()+"[/img]\n";
+                                    outpics = "[img=300,400]http://hair.sg.com.cn" + sdr["picurl"].ToString().Replace(@"\", @"/") + "[/img]\n";
                                     outString = "<img width=100 heigth=50 src='" + sdr["picsmallurl"].ToString() + "' />&nbsp;&nbsp;<img width=200 heigth=100 src='" + sdr["picurl"].ToString() + "' />&nbsp;&nbsp;<a href='hairshoppicoperate.aspx?type=out&id=" + sdr["id"].ToString() + "&hid=" + id.ToString() + "'>删除</a>";
                                 }
                                 else
                                 {
-                                    outpics += "[img=300,400]" + sdr["picurl"].ToString() + "[/img]\n";
+                                    outpics += "[img=300,400]http://hair.sg.com.cn" + sdr["picurl"].ToString().Replace(@"\", @"/") + "[/img]\n";
                                     outString += "&nbsp;&nbsp;<img width=100 heigth=50 src='" + sdr["picsmallurl"].ToString() + "' />&nbsp;&nbsp;<img width=200 heigth=100 src='" + sdr["picurl"].ToString() + "' />&nbsp;&nbsp;<a href='hairshoppicoperate.aspx?type=out&id=" + sdr["id"].ToString() + "&hid=" + id.ToString() + "'>删除</a>";
                                 }
                             }
@@ -91,12 +91,12 @@ namespace Web.Admin
                                 num++;
                                 if (num == 1)
                                 {
-                                    inpics = "[img=300,400]" + sdr["picurl"].ToString() + "[/img]\n";
+                                    inpics = "[img=300,400]http://hair.sg.com.cn" + sdr["picurl"].ToString().Replace(@"\", @"/") + "[/img]\n";
                                     innerString = "<img width=100 heigth=50 src='" + sdr["picsmallurl"].ToString() + "' />&nbsp;&nbsp;<img width=200 heigth=100 src='" + sdr["picurl"].ToString() + "' />&nbsp;&nbsp;<a href='hairshoppicoperate.aspx?type=inner&id=" + sdr["id"].ToString() + "&hid=" + id.ToString() + "'>删除</a>";
                                 }
                                 else
                                 {
-                                    inpics += "[img=300,400]" + sdr["picurl"].ToString() + "[/img]\n";
+                                    inpics += "[img=300,400]http://hair.sg.com.cn" + sdr["picurl"].ToString().Replace(@"\", @"/") + "[/img]\n";
                                     innerString += "&nbsp;&nbsp;<img width=100 heigth=50 src='" + sdr["picsmallurl"].ToString() + "' />&nbsp;&nbsp;<img width=200 heigth=100 src='" + sdr["picurl"].ToString() + "' />&nbsp;&nbsp;<a href='hairshoppicoperate.aspx?type=inner&id=" + sdr["id"].ToString() + "&hid=" + id.ToString() + "'>删除</a>";
                                 }
                             }
@@ -273,7 +273,7 @@ namespace Web.Admin
             cntBuilder.AppendLine(" 折扣：" + hs.HairShopDiscount.ToString());
             cntBuilder.AppendLine(" 预约电话：" + hs.HairShopPhoneNum );
             cntBuilder.AppendLine(" 美发厅简介：" + hs.HairShopDescription);
-            cntBuilder.AppendLine(" [url=/HairShopContent.aspx?id="+hs.HairShopID.ToString()+"]查看详情[/url]");
+            cntBuilder.AppendLine(" 原文：http://hair.sg.com.cn/HairShopContent.aspx?id=" + hs.HairShopID.ToString() );
             return cntBuilder.ToString();
         }
         public void btnSubmit_OnClick(object sender,EventArgs e)

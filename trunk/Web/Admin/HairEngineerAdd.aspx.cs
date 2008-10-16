@@ -130,10 +130,14 @@ namespace Web.Admin
         {
 
             StringBuilder content=new StringBuilder();
-            string[] pics = lblpicSring.Text.Split(";".ToCharArray());
+
+            string picstr = lblpicSring.Text.Replace(@"\", @"/");
+            string[] pics = picstr.Split(";".ToCharArray());
+
             foreach (string pic in pics)
             {
-                content.AppendLine("[img=300,400]" + pic + "[/img]");
+                string p1 = "http://hair.sg.com.cn" + pic;
+                content.AppendLine("[img=400,400]" + p1 + "[/img]");
 
             }
             content.AppendLine("美发师名称:" + he.HairEngineerName);
@@ -145,7 +149,7 @@ namespace Web.Admin
             content.AppendLine("工作年限: " + he.HairEngineerYear.ToString());
             content.AppendLine("星座: " + he.HairEngineerConstellation);
             content.AppendLine("预约电话: " + he.HairEngineerTel);
-            content.AppendLine("[url=/HairdresserLastPage.aspx?id=" + he.HairEngineerID.ToString() + "]查看详情[/url]");
+            content.AppendLine("原文：http://hair.sg.com.cn/HairdresserLastPage.aspx?id=" + he.HairEngineerID.ToString() );
 
             return content.ToString();
         }
