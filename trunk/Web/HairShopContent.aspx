@@ -49,101 +49,28 @@
             <td width="5" align="left" background="Theme/images/fair-mft12.gif"><img src="Theme/images/fair-mft10.gif" /></td>
             <td width="23" align="center" background="Theme/images/fair-mft12.gif"><img src="Theme/images/sg-meifa_02.gif" /></td>
             <td width="59" align="left" background="Theme/images/fair-mft12.gif" class="gray12-c">我要评论</td>
-            <td width="148" align="right" background="Theme/images/fair-mft12.gif" class="gray12-c">用户名:</td>
-            <td width="147" align="center" background="Theme/images/fair-mft12.gif"><input name="textfield2" type="text" class="pass" /></td>
-            <td width="52" align="right" background="Theme/images/fair-mft12.gif" class="gray12-c">密　码:</td>
-            <td width="160" align="center" background="Theme/images/fair-mft12.gif"><input name="textfield22" type="text" class="pass" /></td>
-            <td width="97" align="center" background="Theme/images/fair-mft12.gif" class="gray12-c"><a href="#" target="_blank">注册</a>   &nbsp;<a href="#" target="_blank">登陆</a></td>
+            <td width="14"</td>
+            <td width="148" align="right" background="Theme/images/fair-mft12.gif" class="gray12-c">
+                &nbsp;</td>
+            <td width="147" align="center" background="Theme/images/fair-mft12.gif">&nbsp;</td>
+            <td width="52" align="right" background="Theme/images/fair-mft12.gif" class="gray12-c">
+                &nbsp;</td>
+            <td width="160" align="center" background="Theme/images/fair-mft12.gif">&nbsp;</td>
+            <td width="97" align="center" background="Theme/images/fair-mft12.gif" class="gray12-c">
+                &nbsp;</td>
             <td width="10" align="right" background="Theme/images/fair-mft12.gif"><img src="Theme/images/fair-mft11.gif" /></td>
           </tr>
         </table>
-		<div class="pinglun-box"><textarea cols="" rows="" class="pl-box"></textarea></div>
+		<div class="pinglun-box">
+            <asp:TextBox ID="TextBox1" CssClass ="pl-box"  TextMode="MultiLine" runat="server"></asp:TextBox></div>
 		
-		<div class="submit"><a href="#" target="_blank"><img src="Theme/images/fair-submit.gif" border="0" /></a></div>
-		<div class="message-1">
-		  <div class="touxiang"><div class="touxiang-2"><img src="Theme/images/sg-meifa_ls01.gif" /></div></div>
-		  <div class="mes-content"><table width="100%" border="0" cellspacing="0" cellpadding="0">
-  <tr>
-    <td width="9%" align="left" valign="top" class="red12b">留言：</td>
-    <td width="69%" align="left" class="black12">恋恋红尘冲好评元/ML法国香料精品纯正香水恋恋红尘冲好评元/ML法国香料精品恋恋红尘冲好评元/ML法国香料精品纯正香水恋恋。</td>
-    <td width="22%" align="right" valign="top" class="gray12">2007-12-06 21：45<br />
-      <a href="#" target="_blank"><img src="Theme/images/fair-mft14.gif" width="59" height="19" border="0" /></a></td>
-  </tr>
-</table>
-<div class="point"></div>
-            <table width="100%" border="0" cellspacing="0" cellpadding="0">
-              <tr>
-                <td width="9%" align="left" valign="top" class="red12-c">回复：</td>
-                <td align="left" class="gray12-c">恋恋红尘冲好评元/ML法国香料精品纯正香水恋恋红尘冲好评元/ML法</td>
-              </tr>
-            </table>
-		  </div>
-		  <div class="clear"></div>
+		<div class="submit">
+            <asp:ImageButton ID="btnComment" ImageUrl= "Theme/images/fair-submit.gif" 
+                runat="server" onclick="btnComment_Click" />
+            </div>
+            <asp:Literal ID="UserComment" runat="server"></asp:Literal>
 		</div>
-		<div class="message-2">
-		  <div class="touxiang"><div class="touxiang-2"><img src="Theme/images/sg-meifa_ls01.gif" /></div></div>
-		  <div class="mes-content"><table width="100%" border="0" cellspacing="0" cellpadding="0">
-  <tr>
-    <td width="9%" align="left" valign="top" class="red12b">留言：</td>
-    <td width="69%" align="left" class="black12">恋恋红尘冲好评元/ML法国香料精品纯正香水恋恋红尘冲好评元/ML法国香料精品恋恋红尘冲好评元/ML法国香料精品纯正香水恋恋。</td>
-    <td width="22%" align="right" valign="top" class="gray12">2007-12-06 21：45<br />
-      <a href="#" target="_blank"><img src="Theme/images/fair-mft14.gif" width="59" height="19" border="0" /></a></td>
-  </tr>
-</table>
-<div class="point"></div>
-            <table width="100%" border="0" cellspacing="0" cellpadding="0">
-              <tr>
-                <td width="9%" align="left" valign="top" class="red12-c">回复：</td>
-                <td align="left" class="gray12-c">恋恋红尘冲好评元/ML法国香料精品纯正香水恋恋红尘冲好评元/ML法</td>
-              </tr>
-            </table>
-		  </div>
-		  <div class="clear"></div>
-		</div>
-		<div class="message-1">
-		  <div class="touxiang"><div class="touxiang-2"><img src="Theme/images/sg-meifa_ls01.gif" /></div></div>
-		  <div class="mes-content"><table width="100%" border="0" cellspacing="0" cellpadding="0">
-  <tr>
-    <td width="9%" align="left" valign="top" class="red12b">留言：</td>
-    <td width="69%" align="left" class="black12">恋恋红尘冲好评元/ML法国香料精品纯正香水恋恋红尘冲好评元/ML法国香料精品恋恋红尘冲好评元/ML法国香料精品纯正香水恋恋。</td>
-    <td width="22%" align="right" valign="top" class="gray12">2007-12-06 21：45<br />
-      <a href="#" target="_blank"><img src="Theme/images/fair-mft14.gif" width="59" height="19" border="0" /></a></td>
-  </tr>
-</table>
-<div class="point"></div>
-            <table width="100%" border="0" cellspacing="0" cellpadding="0">
-              <tr>
-                <td width="9%" align="left" valign="top" class="red12-c">回复：</td>
-                <td align="left" class="gray12-c">恋恋红尘冲好评元/ML法国香料精品纯正香水恋恋红尘冲好评元/ML法</td>
-              </tr>
-            </table>
-		  </div>
-		  <div class="clear"></div>
-		</div>
-		<div class="message-2">
-		  <div class="touxiang"><div class="touxiang-2"><img src="Theme/images/sg-meifa_ls01.gif" /></div></div>
-		  <div class="mes-content"><table width="100%" border="0" cellspacing="0" cellpadding="0">
-  <tr>
-    <td width="9%" align="left" valign="top" class="red12b">留言：</td>
-    <td width="69%" align="left" class="black12">恋恋红尘冲好评元/ML法国香料精品纯正香水恋恋红尘冲好评元/ML法国香料精品恋恋红尘冲好评元/ML法国香料精品纯正香水恋恋。</td>
-    <td width="22%" align="right" valign="top" class="gray12">2007-12-06 21：45<br />
-      <a href="#" target="_blank"><img src="Theme/images/fair-mft14.gif" width="59" height="19" border="0" /></a></td>
-  </tr>
-</table>
-<div class="point"></div>
-            <table width="100%" border="0" cellspacing="0" cellpadding="0">
-              <tr>
-                <td width="9%" align="left" valign="top" class="red12-c">回复：</td>
-                <td align="left" class="gray12-c">恋恋红尘冲好评元/ML法国香料精品纯正香水恋恋红尘冲好评元/ML法</td>
-              </tr>
-            </table>
-		  </div>
-		  <div class="clear"></div>
-		</div>	
-		<div class="page-all"><a href="#">第一页</a>  <a href="#">上一页</a>  <a href="#">1</a> <span class="red12">2</span> <a href="#">3</a> <a href="#">4</a> <a href="#">5</a> <a href="#">6</a>  &nbsp;<a href="#">下一页</a>&nbsp;&nbsp;<a href="#">最后一页</a>&nbsp;&nbsp;共8页</div>	
-<div class="clear"></div>
-      </div>
-  </div>
+		 </div>
   <div id="main-r"><table width="260" height="32" border="0" align="center" cellpadding="0" cellspacing="0" background="Theme/images/fair-09b.gif">
           <tr>
             <td width="32%" align="left" class="red14b">&nbsp;<a href="#" target="_blank">&nbsp;地址位置</a></td>
@@ -218,23 +145,15 @@
         <tr>
           <td><img src="Theme/images/sg-meifa_46.gif" width="256" height="2" /></td>
         </tr>
-      </table>
-	  <table width="90%" border="0" align="center" cellpadding="0" cellspacing="0" style="margin-top:15px">
-          <tr>
-            <td width="50%" align="center" valign="top"><div class="pic-5"><a href="#" target="_blank"><img src="Theme/images/sg-meifa_ls01.gif" alt="图片说明" /></a></div><div class="pic-5-title"><a href="#" target="_blank"><span class="gray">超模新男</span></a></div>
-            </td>
-            <td width="50%" align="center" valign="top"><div class="pic-5"><a href="#" target="_blank"><img src="Theme/images/sg-meifa_ls01.gif" alt="图片说明" /></a></div>
-                <div class="pic-5-title"><a href="#" target="_blank"><span class="gray">超模新男</span></a></div>
-             </td>
-            <td width="50%" align="center" valign="top"><div class="pic-5"><a href="#" target="_blank"><img src="Theme/images/sg-meifa_ls01.gif" alt="图片说明" /></a></div>
-                <div class="pic-5-title"><a href="#" target="_blank"><span class="gray">超模新男</span></a></div>
-              </td>
-          </tr>
-      </table>
+      </table><asp:Literal ID="UserBrow" runat="server"></asp:Literal>
+	  
 	  <table width="90%" border="0" align="center" cellpadding="0" cellspacing="0">
         <tr>
-          <td width="35%" align="left" class="gray12">&nbsp;<img src="Theme/images/sg-meifa_02.gif" width="5" height="9" />&nbsp;已有56人&nbsp;</td>
-          <td width="65%" align="left" class="gray12"><a href="#"><img src="Theme/images/fair-mft23.gif" width="59" height="19" border="0" /></a></td>
+          <td width="35%" align="left" class="gray12">&nbsp;<img src="Theme/images/sg-meifa_02.gif" width="5" height="9" />&nbsp;已有<asp:Label
+              ID="lblCaiCount" runat="server" Text="0"></asp:Label>人&nbsp;</td>
+          <td width="65%" align="left" class="gray12"><asp:ImageButton ID="CaiBottom" 
+                  runat="server" ImageUrl="Theme/images/fair-mft23.gif" width="59" height="19" onclick="CaiBottom_Click"
+                               /></td>
         </tr>
       </table>
 	  <table width="100%" border="0" cellspacing="0" cellpadding="0">
@@ -245,24 +164,7 @@
           <td><img src="Theme/images/sg-meifa_46.gif" width="256" height="2" /></td>
         </tr>
       </table>
-	  <table width="92%" border="0" align="center" cellpadding="0" cellspacing="0" style="margin-top:5px">
-        <tr>
-          <td width="83%" align="left" class="gray14-e">·&nbsp;<a href="#" target="_blank">翻的五味瓶用心体吉林向</a></td>
-          <td width="17%" align="center" class="red14">88折</td>
-        </tr>
-        <tr>
-          <td align="left" class="gray14-e">·&nbsp;<a href="#" target="_blank">林向海：鹤舞天池艾琳多</a></td>
-          <td width="17%" align="center" class="red14">88折</td>
-        </tr>
-        <tr>
-          <td align="left" class="gray14-e">·&nbsp;<a href="#" target="_blank">琳多南：令人惊诧打翻的</a></td>
-          <td width="17%" align="center" class="red14">88折</td>
-        </tr>
-        <tr>
-          <td align="left" class="gray14-e">·&nbsp;<a href="#" target="_blank">琳多南：令人惊诧打翻的</a></td>
-          <td align="center" class="red14">88折</td>
-        </tr>
-      </table>
+    <asp:Literal ID="HisBrow" runat="server"></asp:Literal>
 </div>				  
     </div>	
     <div id="main-rr"></div>
@@ -270,4 +172,5 @@
 	<div><img src="Theme/images/fair-mft15.gif" /></div>
 </div>
 <!--主体内容部分结束 -->
+    </div>
 </asp:Content>
