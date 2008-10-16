@@ -16,6 +16,8 @@ using System.IO;
 using HairNet.Components.Utilities;
 using System.Data.SqlClient;
 using HairNet.Provider;
+using HairNet.Components.BackendBusiness;
+using System.Text;
 
 namespace Web.Admin
 {
@@ -128,6 +130,24 @@ namespace Web.Admin
                 }
             }
         }
+
+        public string buildBBSContent(HairStyleEntity hst)
+        {
+            StringBuilder cntBuilder = new StringBuilder();
+            cntBuilder.AppendLine("[img=300,400]" + pic.Text + "[/img]");//正面大图
+            //cntBuilder.AppendLine("[img=90,120]" + lbl2Small.Text + "[/img]");//侧面小图
+            //cntBuilder.AppendLine("[img=90,120]" + lbl3Small.Text + "[/img]");//背面小图
+            //cntBuilder.AppendLine("发质：" + hst.HairNatrueName);
+            //cntBuilder.AppendLine("发量：" + hst.HairQuantityName);
+            //cntBuilder.AppendLine("脸型：" + hst.FaceStyleName);
+            //cntBuilder.AppendLine("场合：" + hst.OccasionName);
+            //cntBuilder.AppendLine("发型师：" + hst.HairEngineerName);
+            //cntBuilder.AppendLine("美发厅：" + hst.HairShopName);
+            //cntBuilder.AppendLine("发型解析：" + hst.Description);
+            cntBuilder.AppendLine("[url=HairLastPage.aspx?id=" + hst.ID.ToString() + "]查看详情[/url]");
+
+            return cntBuilder.ToString();
+        }
         public string GetPSGIDs()
         {
             string result = "";
@@ -238,6 +258,37 @@ namespace Web.Admin
                     conn.Open();
 
                     hstyleid = comm.ExecuteScalar().ToString();
+                    HairStyle.ID = int.Parse( hstyleid);
+                }
+            }
+
+            //发帖子
+            string content = buildBBSContent(HairStyle);
+
+            BBSPost post = new BBSPost();
+            int postid = 0;
+            bool bSuc = post.AddPost(HairStyle.HairName, content, BBSPost.Category.PhotoGroup, out postid);
+            if (bSuc)
+            {
+                HairStyle.PostID = postid;
+
+                using (SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["MSSqlServer"].ConnectionString))
+                {
+                    string commString = "update hairstyle set postid=" + HairStyle.PostID.ToString() + " where ID=" + HairStyle.ID.ToString();
+                    using (SqlCommand comm = new SqlCommand())
+                    {
+                        comm.CommandText = commString;
+                        comm.Connection = conn;
+                        conn.Open();
+                        try
+                        {
+                            comm.ExecuteNonQuery();
+                        }
+                        catch (Exception ex)
+                        {
+                            throw new Exception(ex.Message);
+                        }
+                    }
                 }
             }
 

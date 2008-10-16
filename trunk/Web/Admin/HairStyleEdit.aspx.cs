@@ -502,51 +502,53 @@ namespace Web.Admin
             }
 
             //
-
-            string[] PSGIDSCollection1 = ViewState["psgids"].ToString().Split(",".ToCharArray());
-            foreach (string sso in PSGIDSCollection1)
+            string coll = ViewState["psgids"].ToString();
+            if (ViewState["psgids"].ToString() != string.Empty)
             {
-                string ids = "";
-                using (SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["MSSqlServer"].ToString()))
+                string[] PSGIDSCollection1 = ViewState["psgids"].ToString().Split(",".ToCharArray());
+                foreach (string sso in PSGIDSCollection1)
                 {
-                    string commString = "select picturestoreids from picturestoregroup where picturestoregroupid=" + sso;
-                    using (SqlCommand comm = new SqlCommand())
+                    string ids = "";
+                    using (SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["MSSqlServer"].ToString()))
                     {
-                        comm.Connection = conn;
-                        comm.CommandText = commString;
-                        conn.Open();
-
-                        ids = comm.ExecuteScalar().ToString();
-                    }
-                }
-                string[] iids = ids.Split(",".ToCharArray());
-                ids = string.Empty;
-                for (int i = 1; i < iids.Length; i++)
-                {
-                    if (iids[i] != hstyleid)
-                    {
-                        ids += "," + iids[i];
-                    }
-                }
-                using (SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["MSSqlServer"].ToString()))
-                {
-                    string commString = "update picturestoregroup set picturestoreids = '" + ids + "' where picturestoregroupid=" + sso;
-                    using (SqlCommand comm = new SqlCommand())
-                    {
-                        comm.Connection = conn;
-                        comm.CommandText = commString;
-                        conn.Open();
-
-                        try
+                        string commString = "select picturestoreids from picturestoregroup where picturestoregroupid=" + sso;
+                        using (SqlCommand comm = new SqlCommand())
                         {
-                            comm.ExecuteNonQuery();
+                            comm.Connection = conn;
+                            comm.CommandText = commString;
+                            conn.Open();
+
+                            ids = comm.ExecuteScalar().ToString();
                         }
-                        catch
-                        { }
+                    }
+                    string[] iids = ids.Split(",".ToCharArray());
+                    ids = string.Empty;
+                    for (int i = 1; i < iids.Length; i++)
+                    {
+                        if (iids[i] != hstyleid)
+                        {
+                            ids += "," + iids[i];
+                        }
+                    }
+                    using (SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["MSSqlServer"].ToString()))
+                    {
+                        string commString = "update picturestoregroup set picturestoreids = '" + ids + "' where picturestoregroupid=" + sso;
+                        using (SqlCommand comm = new SqlCommand())
+                        {
+                            comm.Connection = conn;
+                            comm.CommandText = commString;
+                            conn.Open();
+
+                            try
+                            {
+                                comm.ExecuteNonQuery();
+                            }
+                            catch
+                            { }
+                        }
                     }
                 }
             }
-
             String frontFilePath = this.lbl1Small.Text;
             String flankFilePath = this.lbl2Small.Text;
             String backFilePath = this.lbl3Small.Text;
