@@ -25,6 +25,11 @@ namespace Web.UserControls
                 using (SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["MSSqlServer"].ConnectionString))
                 {
                     string commString = "select top 10 * from Coupon order by HitNum desc";
+
+                    if (CouponType == 1)
+                    {
+                        commString = "select top 10 * from Coupon order by ID desc";
+                    }
                     using (SqlCommand comm = new SqlCommand())
                     {
                         comm.CommandText = commString;
@@ -65,6 +70,12 @@ namespace Web.UserControls
                     this.lblText.Text = sb.ToString();
                 }
             }
+        }
+        private int _couponType = 0;
+        public int CouponType
+        {
+            set { this._couponType = value; }
+            get { return this._couponType; }
         }
     }
 }
