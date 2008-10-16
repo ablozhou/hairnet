@@ -49,7 +49,7 @@ namespace Web.UserControls
 
                                 using (SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["MSSqlServer"].ConnectionString))
                                 {
-                                    string commString = "select top 1 smallpicurl from PictureStoreSet where hairstylepos=1 amd picturestoreid=" + hairStyleID;
+                                    string commString = "select top 1 SmallPictureUrl from PictureStoreSet where hairstylepos=1 and picturestoreid=" + hairStyleID;
                                     using (SqlCommand comm = new SqlCommand())
                                     {
                                         comm.CommandText = commString;
@@ -60,7 +60,7 @@ namespace Web.UserControls
                                         {
                                             if (sdr.Read())
                                             {
-                                                smallPicUrl = sdr["smallpicurl"].ToString();
+                                                smallPicUrl = sdr["SmallPictureUrl"].ToString();
                                             }
                                         }
                                     }

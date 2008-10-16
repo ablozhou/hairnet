@@ -25,7 +25,7 @@
               </tr>
             </table></td>
             <td width="10" align="left" background="Theme/images/fair-mft12.gif"><img src="Theme/images/fair-mft11.gif" /></td>
-            <td width="93" align="right" background="Theme/images/fair-mft12.gif" class="gray12-c"><div align="center">按时间排序</div></td>
+            <td width="93" align="right" background="Theme/images/fair-mft12.gif" class="gray12-c"><div align="center">按人气排序</div></td>
             <td width="23" align="left" background="Theme/images/fair-mft12.gif" class="gray12-c"><table width="21%" border="0" cellspacing="2" cellpadding="0">
               <tr>
                 <td><div align="center"><a href="#"><img src="Theme/images/mfs_list_up.gif" width="8" height="7" /></a></div></td>
