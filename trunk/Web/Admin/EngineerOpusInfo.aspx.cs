@@ -209,9 +209,24 @@ namespace Web.Admin
         public string buildBBSContent(HairStyleEntity hst)
         {
             StringBuilder cntBuilder = new StringBuilder();
-            cntBuilder.AppendLine("[img=300,400]" + lbl1.Text+"[/img]");//正面大图
-            cntBuilder.AppendLine("[img=90,120]" + lbl2Small.Text + "[/img]");//侧面小图
-            cntBuilder.AppendLine("[img=90,120]" + lbl3Small.Text + "[/img]");//背面小图
+            string frontBigPic =  lbl1.Text.Replace(@"\",@"/");
+            string sideSmallPic = lbl2Small.Text.Replace(@"\", @"/");
+            string backSmallPic = lbl3Small.Text.Replace(@"\", @"/");
+            if (frontBigPic != string.Empty)
+            {
+                            
+              cntBuilder.AppendLine("[img=300,400]http://hair.sg.com.cn" + frontBigPic + "[/img]");//正面大图
+            }
+            if (sideSmallPic != string.Empty)
+            {
+               
+                cntBuilder.AppendLine("[img=90,120]http://hair.sg.com.cn" +sideSmallPic +"[/img]");//侧面小图
+            }
+            if (backSmallPic != string.Empty)
+            {
+                
+                cntBuilder.AppendLine("[img=90,120]http://hair.sg.com.cn" + backSmallPic+"[/img]");//背面小图
+            }
             cntBuilder.AppendLine("发质："+hst.HairNatrueName);
             cntBuilder.AppendLine("发量："+hst.HairQuantityName);
             cntBuilder.AppendLine("脸型："+hst.FaceStyleName);
@@ -219,7 +234,7 @@ namespace Web.Admin
             cntBuilder.AppendLine("发型师："+hst.HairEngineerName);
             cntBuilder.AppendLine("美发厅："+hst.HairShopName);
             cntBuilder.AppendLine("发型解析："+hst.Description);
-            cntBuilder.AppendLine("[url=HairLastPage.aspx?id="+hst.ID.ToString()+"]查看详情[/url]");
+            cntBuilder.AppendLine("原文：http://hair.sg.com.cn/HairLastPage.aspx?id=" + hst.ID.ToString() );
 
             return cntBuilder.ToString();
         }

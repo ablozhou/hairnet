@@ -2,7 +2,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProductVersion>8.0.50727</ProductVersion>
+    <ProductVersion>9.0.21022</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{AA67A172-FF0F-4C2B-B68A-10E02F9D12AD}</ProjectGuid>
     <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
@@ -2061,6 +2061,13 @@
     <Compile Include="UserControls\Head.ascx.designer.cs">
       <DependentUpon>Head.ascx</DependentUpon>
     </Compile>
+    <Compile Include="UserControls\hotcouponleft.ascx.cs">
+      <DependentUpon>hotcouponleft.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UserControls\hotcouponleft.ascx.designer.cs">
+      <DependentUpon>hotcouponleft.ascx</DependentUpon>
+    </Compile>
     <Compile Include="UserControls\HotCouponList.ascx.cs">
       <DependentUpon>HotCouponList.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -2088,6 +2095,13 @@
     </Compile>
     <Compile Include="UserControls\HotHairShopList.ascx.designer.cs">
       <DependentUpon>HotHairShopList.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\newcouponleft.ascx.cs">
+      <DependentUpon>newcouponleft.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UserControls\newcouponleft.ascx.designer.cs">
+      <DependentUpon>newcouponleft.ascx</DependentUpon>
     </Compile>
     <Compile Include="UserControls\NewWorkList.ascx.cs">
       <DependentUpon>NewWorkList.ascx</DependentUpon>
@@ -2393,10 +2407,12 @@
     <Content Include="UserControls\HairShopListControl.ascx" />
     <Content Include="UserControls\HairShopVoteControl.ascx" />
     <Content Include="UserControls\HairShopWorkList.ascx" />
+    <Content Include="UserControls\hotcouponleft.ascx" />
     <Content Include="UserControls\HotCouponList.ascx" />
     <Content Include="UserControls\HotCouponList2.ascx" />
     <Content Include="UserControls\HotHairEngineerList.ascx" />
     <Content Include="UserControls\HotHairShopList.ascx" />
+    <Content Include="UserControls\newcouponleft.ascx" />
     <Content Include="UserControls\NewWorkList.ascx" />
     <Content Include="UserControls\RecommandHairShopList.ascx" />
     <Content Include="UserControls\SameHotZoneHairShopList.ascx" />
@@ -2433,6 +2449,7 @@
           <IISUrl>
           </IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
         </WebProjectProperties>
       </FlavorProperties>
     </VisualStudio>
