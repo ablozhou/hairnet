@@ -27,8 +27,16 @@ namespace Web
             {
                 pageNum = 1;
             }
+            int sortType = 1;
+            try
+            {
+                sortType = int.Parse(this.Request.QueryString["sortID"].ToString());
+            }
+            catch
+            { }
             this.hairShopListControl.PageSize = 6;
             this.hairShopListControl.CurrentPage = pageNum;
+            this.hairShopListControl.SortType = sortType;
         }
     }
 }
