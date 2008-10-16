@@ -1,5 +1,5 @@
 <%@ Page Language="C#" AutoEventWireup="true" MasterPageFile="Home.Master" CodeBehind="HairShopContent.aspx.cs" Inherits="Web.HairShopContent" %>
-
+<%@ Register Src="UserControls/HairShopVoteControl.ascx" TagName="HairShopVoteControl" TagPrefix="HN" %>
 <%@ Register Src="UserControls/HairShopEntryControl.ascx" TagName="HairShopEntryControl" TagPrefix="HN" %>
 <%@ Register Src="UserControls/HairShopDescription.ascx" TagName="HairShopEntryDescription" TagPrefix="HN" %>
 <%@ Register Src="UserControls/HairShopEngineerList.ascx" TagName="HairShopEngineerList" TagPrefix="HN" %>
@@ -162,23 +162,12 @@
                   <td colspan="3" align="center"><img src="Theme/images/sg-meifa_46.gif" width="256" height="2" /></td>
                 </tr>
     </table>
-			 <table width="95%" border="0" align="center" cellpadding="0" cellspacing="0" style="margin-top:10px;margin-bottom:10px;">
-            <tr>
-              <td width="24%" align="center" class="red14-line"><a href="#">很好</a></td>
-              <td width="56%" align="left"><img src="Theme/images/fair-mft20.gif" width="129" height="11" /></td>
-              <td width="20%" align="center" class="gray12-lp">70%</td>
-            </tr>
-            <tr>
-              <td align="center" class="red14-line"><a href="#" target="_blank">普通</a></td>
-              <td align="left"><img src="Theme/images/fair-mft21.gif" width="129" height="11" /></td>
-              <td align="center" class="gray12-lp">20%</td>
-            </tr>
-            <tr>
-              <td align="center" class="red14-line"><a href="#" target="_blank">较差</a></td>
-              <td align="left"><img src="Theme/images/fair-mft22.gif" width="129" height="11" /></td>
-              <td align="center" class="gray12-lp">10%</td>
-            </tr>
-    </table>
+			 
+	    <!-- 投票 -->
+	    <HN:HairShopVoteControl ID="hairShopVoteControl" runat="server" />
+	    <!-- 投票结束 -->
+			 
+			 
 	<div class="main-r-box">
 	    <table width="100%" border="0" cellspacing="0" cellpadding="0">
           <tr>

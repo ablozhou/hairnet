@@ -18,13 +18,14 @@ namespace Web
         {
             StringHelper.AddStyleSheet(this.Page, "Theme/Style/meifating.css");
 
-            int hairShopID = int.Parse(this.Request.QueryString["id"].ToString());
-            //int hairShopID = 8;
+            //int hairShopID = int.Parse(this.Request.QueryString["id"].ToString());
+            int hairShopID = 8;
             this.hairShopEntryControl.HairShopID = hairShopID;
             this.hairShopEntryDescription.HairShopID = hairShopID;
             this.hairShopEngineerList.HairShopID = hairShopID;
             this.hairShopWorkList.HairShopID = hairShopID;
             this.sameHairShopList.HairShopID = hairShopID;
+            this.hairShopVoteControl.HairShopID = hairShopID;
         }
     }
 }

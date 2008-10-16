@@ -2040,6 +2040,13 @@
     <Compile Include="UserControls\HairShopListControl.ascx.designer.cs">
       <DependentUpon>HairShopListControl.ascx</DependentUpon>
     </Compile>
+    <Compile Include="UserControls\HairShopVoteControl.ascx.cs">
+      <DependentUpon>HairShopVoteControl.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UserControls\HairShopVoteControl.ascx.designer.cs">
+      <DependentUpon>HairShopVoteControl.ascx</DependentUpon>
+    </Compile>
     <Compile Include="UserControls\HairShopWorkList.ascx.cs">
       <DependentUpon>HairShopWorkList.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -2384,6 +2391,7 @@
     <Content Include="UserControls\HairShopEngineerList.ascx" />
     <Content Include="UserControls\HairShopEntryControl.ascx" />
     <Content Include="UserControls\HairShopListControl.ascx" />
+    <Content Include="UserControls\HairShopVoteControl.ascx" />
     <Content Include="UserControls\HairShopWorkList.ascx" />
     <Content Include="UserControls\HotCouponList.ascx" />
     <Content Include="UserControls\HotCouponList2.ascx" />
