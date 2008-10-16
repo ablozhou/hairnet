@@ -1848,6 +1848,11 @@ namespace HairNet.Provider
                 "select * from Coupon inner join HairShop ON Coupon.HairShopID = HairShop.HairShopID").Tables[0];
         }
 
+        //public List<Coupon> GetCouponListByShopId(int shopId)
+        //{
+
+        //}
+        
         /// <summary>
         /// 
         /// </summary>
