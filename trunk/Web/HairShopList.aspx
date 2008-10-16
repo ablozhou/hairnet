@@ -1,14 +1,13 @@
 <%@ Page Language="C#" AutoEventWireup="true" MasterPageFile="Home.Master" CodeBehind="HairShopList.aspx.cs" Inherits="Web.HairShopList" %>
-<%@ Register Src="UserControls/SearchHead.ascx" TagName="SearchHead" TagPrefix="HN" %>
 <%@ Register Src="UserControls/HotHairShopList.ascx" TagName="HotHairShopList" TagPrefix="HN" %>
 <%@ Register Src="UserControls/RecommandHairShopList.ascx" TagName="RecommandHairShopList" TagPrefix="HN" %>
 <%@ Register Src="UserControls/HotCouponList2.ascx" TagName="HotCouponList" TagPrefix="HN" %>
 <%@ Register Src="UserControls/HairShopListControl.ascx" TagName="HairShopListControl" TagPrefix="HN" %>
 
 <asp:Content ContentPlaceHolderID="BodyContentPosition" ID="BodyContent" runat="server">
-<!--搜美发厅开始 -->
-<HN:SearchHead ID="searchHead" runat="server" />
-<!--搜美发厅结束 -->
+<div style="text-align:center; height:160px;">
+<iframe src="SearchHeadPage.aspx" width="980" height="160" frameborder="no" border="0" marginwidth="0" marginheight="0" scrolling="no" allowtransparency="yes"></iframe>
+</div>
 <div id="main-top2"></div>
 <!--主体内容部分开始 -->
 <div id="main">
