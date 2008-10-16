@@ -18,7 +18,8 @@ namespace Web
         {
             StringHelper.AddStyleSheet(this.Page, "Theme/Style/meifating.css");
 
-            int hairShopID = int.Parse(this.Request.QueryString["id"].ToString());
+            //int hairShopID = int.Parse(this.Request.QueryString["id"].ToString());
+            int hairShopID = 8;
             this.hairShopEntryControl.HairShopID = hairShopID;
             this.hairShopEntryDescription.HairShopID = hairShopID;
             this.hairShopEngineerList.HairShopID = hairShopID;

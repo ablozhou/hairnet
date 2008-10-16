@@ -1,5 +1,5 @@
 <%@ Page Language="C#" AutoEventWireup="true" MasterPageFile="Home.Master" CodeBehind="HairShopContent.aspx.cs" Inherits="Web.HairShopContent" %>
-<%@ Register Src="UserControls/SearchHead.ascx" TagName="SearchHead" TagPrefix="HN" %>
+
 <%@ Register Src="UserControls/HairShopEntryControl.ascx" TagName="HairShopEntryControl" TagPrefix="HN" %>
 <%@ Register Src="UserControls/HairShopDescription.ascx" TagName="HairShopEntryDescription" TagPrefix="HN" %>
 <%@ Register Src="UserControls/HairShopEngineerList.ascx" TagName="HairShopEngineerList" TagPrefix="HN" %>
@@ -10,10 +10,9 @@
 <%@ Register Src="UserControls/NewWorkList.ascx" TagName="NewWorkList" TagPrefix="HN" %>
 
 <asp:Content ContentPlaceHolderID="BodyContentPosition" ID="BodyContent" runat="server">
-<!-- sou head -->
-<HN:SearchHead ID="searchHead" runat="server" />
-<!-- sou head end -->
-
+<div style="text-align:center; height:160px;">
+<iframe src="SearchHeadPage.aspx" width="980" height="160" frameborder="no" border="0" marginwidth="0" marginheight="0" scrolling="no" allowtransparency="yes"></iframe>
+</div>
 <!-- 美发厅基本信息 -->
 <HN:HairShopEntryControl ID="hairShopEntryControl" runat="server" />
 <!-- 美发厅基本信息结束 -->
