@@ -38,6 +38,8 @@ namespace Web.UserControls
                 this.lblHairShopType.Text = hairShop.TypeName;
 
                 StringBuilder picSB = new StringBuilder();
+                StringBuilder displayPicSb = new StringBuilder();
+                int displayNum = 0;
                 using (SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["MSSqlServer"].ConnectionString))
                 {
                     string commString = "select * from shoppics where hairshopID=" + this.HairShopID;
@@ -51,11 +53,26 @@ namespace Web.UserControls
                         {
                             while (sdr.Read())
                             {
+                                displayNum++;
+
+                                if (displayNum==1)
+                                {
+                                    displayPicSb.Append("<IMG id=oDIV1 src=\""+sdr["picurl"].ToString()+"\" border=0 alt=\"\">");
+                                }
+                                else
+                                {
+                                    displayPicSb.Append("<IMG id=oDIV"+displayNum.ToString()+" style=\"DISPLAY: none;\" src=\""+sdr["picurl"].ToString()+"\" border=0 alt=\"\">");
+                                }
+
                                 picSB.Append("<a href=\"#\"><img src=\"" + sdr["picsmallurl"].ToString() + "\" /></a>");
+
                             }
                         }
                     }
                 }
+
+               this.picDisplayPara.Text = "<script> var isie=document.all?true:false; var NowFrame = 1;var MaxFrame = "+displayNum.ToString()+";var bStart = 0;</script>";
+               this.picDisplayContent.Text = displayPicSb.ToString();
                 this.lblHairShopPicList.Text = picSB.ToString();
 
                 if (hairShop.IsPostMachine)
