@@ -270,5 +270,13 @@ padding:3px 3px 3px 3px;
 border:#cccccc 1px solid;
 margin:5px 10px 10px 10px}
 
-
-
+img { margin:0; padding:0; border:0; }
+#js_F {
+ position:relative;
+ top:10px; left:10px;
+ overflow:hidden;
+}
+#js_F img{
+ position:absolute;
+ top:0; left:0;
+}

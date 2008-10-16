@@ -1,6 +1,50 @@
 ﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="HairShopEntryControl.ascx.cs" Inherits="Web.UserControls.HairShopEntryControl" %>
 <div id="main-top2">
-  <div id="area-1"><img src="Theme/images/sg-meifa-ad2.jpg" /></div>
+  <div id="area-1">
+  <asp:Label ID="picDisplayPara" runat="server"></asp:Label>
+
+ <SCRIPT>
+function $(id){
+ return document.getElementById?document.getElementById(id):document.all(id)
+}
+function fnToggle() {
+    var next = NowFrame + 1;
+    if(next == MaxFrame+1)
+    {
+        NowFrame = MaxFrame;
+        next = 1;
+    }
+    if(bStart == 0)
+    {
+        bStart = 1;
+        setTimeout('fnToggle()', 5500);
+        return;
+    }
+    else
+    {
+  if (isie)
+  {
+   oTransContainer.filters[0].Apply();
+  }
+   $('oDIV'+next).style.display = "";
+   $('oDIV'+NowFrame).style.display = "none";
+  if (isie)
+  {
+     oTransContainer.filters[0].Play(duration=2);
+   }
+        if(NowFrame == MaxFrame)
+            NowFrame = 1;
+        else
+            NowFrame++;
+    }    setTimeout('fnToggle()', 3500);
+}
+fnToggle();
+</SCRIPT>
+<DIV id=oTransContainer style="FILTER: progid:DXImageTransform.Microsoft.Wipe(GradientSize=1.0,wipeStyle=0, motion='forward'); WIDTH: 259px; HEIGHT: 130px">
+<asp:Label ID="picDisplayContent" runat="server"></asp:Label>
+</DIV>
+  
+  </div>
   <div id="area-2">
     <table width="378" border="0" align="center" cellpadding="0" cellspacing="0">
       <tr>
