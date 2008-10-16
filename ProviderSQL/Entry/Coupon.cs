@@ -18,6 +18,21 @@ namespace HairNet.Entry
         private int _postID = 0;
         private string _imageSmallUrl = string.Empty;
 
+        private string _hairShopName = string.Empty;
+        private string _hotZoneName = string.Empty;
+
+        public string HairShopName
+        {
+            set { this._hairShopName = value; }
+            get { return this._hairShopName; }
+        }
+
+        public string HotZoneName
+        {
+            set { this._hotZoneName = value; }
+            get { return this._hotZoneName; }
+        }
+
         public int PostID
         {
             set { this._postID = value; }
@@ -28,7 +43,14 @@ namespace HairNet.Entry
         {
             set { this._imageSmallUrl = value; }
             get { return this._imageSmallUrl; }
-        }        
+        }
+
+        private int _hitNum = 0;
+        public int HitNum
+        {
+            set { this._hitNum = value; }
+            get { return this._hitNum; }
+        }
 
         public Coupon(int id, string name, int hairShopID, string discount, string expiredDate, string phoneNumber, string couponTag,
             string description)
@@ -56,6 +78,10 @@ namespace HairNet.Entry
             this.imageUrl = url;
             this.PostID = postID;
             this.ImageSmallUrl = imageSmallUrl;
+        }
+        public Coupon()
+        {
+ 
         }
         public string ImageUrl
         {

@@ -19,32 +19,42 @@ namespace Web
         {
             StringHelper.AddStyleSheet(this.Page, "Theme/Style/youhuiquan.css");
 
+            this.CouponDetailList1.PageSize = 6;
 
-            //string buziZone = Request.QueryString["buzizone"].ToString();
-            //string shopName = Request.QueryString["shopname"].ToString();
+            int pageNum = 1;
 
-            //if (buziZone != string.Empty)
-            //{
-            //}
-            //else if (shopName != string.Empty)
-            //{
-            //}
-            //else
-            //{
-            //    InfoAdmin.GetCouponList();
-            //}
-            
+            try
+            {
+                pageNum = int.Parse(this.Request.QueryString["pageNum"].ToString());
+            }
+            catch
+            { }
+
+            this.CouponDetailList1.CurrentPage = pageNum;
+
+            string selectCondition = "";
+
+            try
+            {
+                selectCondition = this.Request.QueryString["sc"].ToString();
+            }
+            catch
+            { }
+
+            this.CouponDetailList1.SelectCondition = selectCondition;
         }
 
 
         protected void btnBusiZoneSearch_Click(object sender, EventArgs e)
         {
-
+            string selection = " where hz.HotZoneName like '%"+this.txtBuziZone.Text.Trim()+"%'";
+            this.Response.Redirect("CouponList.aspx?sc="+selection);
         }
 
         protected void btnKeySearch_Click(object sender, EventArgs e)
         {
-
+            string selection = " where hs.HairShopName like '%" + this.txtHairShopName.Text.Trim() + "%'";
+            this.Response.Redirect("CouponList.aspx?sc=" + selection);
         }
     }
 }

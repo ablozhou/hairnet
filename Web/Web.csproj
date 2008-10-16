@@ -2,7 +2,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProductVersion>9.0.21022</ProductVersion>
+    <ProductVersion>8.0.50727</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{AA67A172-FF0F-4C2B-B68A-10E02F9D12AD}</ProjectGuid>
     <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
@@ -1983,6 +1983,13 @@
     <Compile Include="JiepaiList.aspx.designer.cs">
       <DependentUpon>JiepaiList.aspx</DependentUpon>
     </Compile>
+    <Compile Include="PrintCoupon.aspx.cs">
+      <SubType>ASPXCodeBehind</SubType>
+      <DependentUpon>PrintCoupon.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="PrintCoupon.aspx.designer.cs">
+      <DependentUpon>PrintCoupon.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SearchHeadPage.aspx.cs">
       <SubType>ASPXCodeBehind</SubType>
@@ -1990,6 +1997,13 @@
     </Compile>
     <Compile Include="SearchHeadPage.aspx.designer.cs">
       <DependentUpon>SearchHeadPage.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SendFriends.aspx.cs">
+      <SubType>ASPXCodeBehind</SubType>
+      <DependentUpon>SendFriends.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SendFriends.aspx.designer.cs">
+      <DependentUpon>SendFriends.aspx</DependentUpon>
     </Compile>
     <Compile Include="test.aspx.cs">
       <SubType>ASPXCodeBehind</SubType>
@@ -2344,7 +2358,9 @@
     <Content Include="HairStarList.aspx" />
     <Content Include="Home.Master" />
     <Content Include="JiepaiList.aspx" />
+    <Content Include="PrintCoupon.aspx" />
     <Content Include="SearchHeadPage.aspx" />
+    <Content Include="SendFriends.aspx" />
     <Content Include="shophottags.htm" />
     <Content Include="test.aspx" />
     <Content Include="Theme\Flash\yanshi.swf" />
@@ -2449,7 +2465,6 @@
           <IISUrl>
           </IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
-          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
         </WebProjectProperties>
       </FlavorProperties>
     </VisualStudio>
