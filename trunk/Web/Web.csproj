@@ -2316,6 +2316,7 @@
     <Content Include="HairStarList.aspx" />
     <Content Include="Home.Master" />
     <Content Include="JiepaiList.aspx" />
+    <Content Include="shophottags.htm" />
     <Content Include="test.aspx" />
     <Content Include="Theme\Flash\yanshi.swf" />
     <Content Include="Theme\Images\bbs-blog_05.gif" />

@@ -14,13 +14,22 @@ namespace Web {
     public partial class CouponList {
         
         /// <summary>
-        /// reptCoupon 控件。
+        /// HotCouponList1 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Repeater reptCoupon;
+        protected global::Web.UserControls.HotCouponList HotCouponList1;
+        
+        /// <summary>
+        /// HotCouponList21 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::Web.UserControls.HotCouponList2 HotCouponList21;
         
         /// <summary>
         /// CouponDetailList1 控件。

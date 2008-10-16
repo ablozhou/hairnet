@@ -74,20 +74,7 @@
           <td height="19"><img src="Theme/images/sg-meifa_46.gif" width="256" height="2" /></td>
         </tr>
       </table>
-	  <table width="98%" height="240" border="0" align="center" cellpadding="0" cellspacing="0" style="margin-top:3px;margin-bottom:3px">
-        <tr>
-          <td width="5%" align="left" valign="top" class="gray14-e">&nbsp;</td>
-          <td width="92%" height="240" align="left" valign="top"  style="line-height:30px;" ><span class="tag_1"><a href="#">发型</a></span>  <span class="tag_5"><a href="#">发型设计</a></span>  流行发型  <span class="tag_3"><a href="#">新娘发型</a></span><br />
-            <span class="tag_4"><a href="#">非主流发型</a></span>  <span class="tag_2"><a href="#">短发发型</a></span>  卷发发型<br />
-            <span class="tag_5"><a href="#">烫发</a></span>  刘海  直发发型  染发  <span class="tag_1"><a href="#">托尼盖</a></span><br />
-            如何护发  <span class="tag_3"><a href="#">春季护发</a></span>  沙宣  <span class="tag_5"><a href="#">水母发型</a></span><br />
-            洗发水  <span class="tag_1"><a href="#">淑女发型</a></span>  <span class="tag_2"><a href="#">日系发型</a></span>  通勤发型<br />
-            减龄发型  <span class="tag_5"><a href="#">瘦脸发型</a></span>  朋克发型  护发<br />
-            <span class="tag_3"><a href="#">出游发型</a></span>  <span class="tag_4"><a href="#">韩式发型</a></span>  BOB发型 <br />
-          <span class="tag_2"><a href="#">2008年流行发型</a></span>  <span class="tag_1"><a href="#">冬季发型</a></span> </td>
-          <td width="3%" align="left" valign="top" class="gray14-e">&nbsp;</td>
-        </tr>
-      </table>
+	 <!-- #include file="shophottags.htm" -->
 	</div>
 	<div class="main-r-box2">
 	  <table width="100%" height="43" border="0" cellpadding="0" cellspacing="0" style="margin-top:20px">
