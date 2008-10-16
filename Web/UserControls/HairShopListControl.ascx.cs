@@ -28,12 +28,12 @@ namespace Web.UserControls
                 if (SortType == 1)
                 {
                     //按时间
-                    list = ProviderFactory.GetHairShopDataProviderInstance().GetHairShops(0, OrderKey.ID);
+                    list = ProviderFactory.GetHairShopDataProviderInstance().GetHairShops(0,this.SelectCondition, OrderKey.ID);
                 }
                 else
                 {
                     //按点击数
-                    list = ProviderFactory.GetHairShopDataProviderInstance().GetHairShops(0, OrderKey.HitNum);
+                    list = ProviderFactory.GetHairShopDataProviderInstance().GetHairShops(0,this.SelectCondition, OrderKey.HitNum);
                 }
 
                 StringBuilder sb = new StringBuilder();
@@ -101,6 +101,17 @@ namespace Web.UserControls
                             HairShop hairShop = list[listID];
                             string picSmallUrl = "";
 
+                            int total = hairShop.HairShopGood+hairShop.HairShopBad+hairShop.HairShopNormal;
+                            int goodRate =0;
+                            if(total ==0)
+                            {
+                                goodRate =0;
+                            }
+                            else
+                            {
+                                goodRate = Convert.ToInt32(Convert.ToDouble(hairShop.HairShopGood)/Convert.ToDouble(total)*100);
+                            }
+
                             string[] photoID = hairShop.OutLogs.Split(",".ToCharArray());
                             if (photoID.Length == 1)
                             {
@@ -164,14 +175,25 @@ namespace Web.UserControls
                             sb.Append("<td width=\"13%\" height=\"27\"><a href=\"#\" target=\"_blank\"><img src=\"Theme/images/mfs_list_map.gif\" width=\"59\" height=\"19\" border=\"0\" /></a></td>");
                             sb.Append("<td width=\"28%\"><a onClick=\"window.external.AddFavorite('HairShopContent.aspx?id=" + hairShop.HairShopID.ToString() + "','" + hairShop.HairShopName + "');\" href=\"" + this.Request.Url.ToString() + "\"><img src=\"Theme/images/mft_list_collection.gif\" width=\"59\" height=\"19\" border=\"0\" /></a></td>");
                             sb.Append("<td width=\"8%\">[好评]</td>");
-                            sb.Append("<td width=\"16%\"><span class=\"red12\">"+hairShop.HairShopGood.ToString()+"次</span></td>");
-                            sb.Append("<td width=\"35%\"><a href=\"HairShopContent.aspx?id=" + hairShop.HairShopID.ToString() + "\" class=\"red12\" style=\" text-decoration:underline\">查 看</a> | <a href=\"#\" style=\" text-decoration:underline\">我要评论</a></td>");
+                            sb.Append("<td width=\"16%\"><span class=\"red12\">"+goodRate+"%</span></td>");
+                            sb.Append("<td width=\"35%\"><a href=\"HairShopContent.aspx?id=" + hairShop.HairShopID.ToString() + "\" class=\"red12\" style=\" text-decoration:underline\">查 看</a> | <a href=\"http://bbs.sg.com.cn/xxx_xxx.htm\" style=\" text-decoration:underline\">我要评论</a></td>");
                             sb.Append("</tr></table></td></tr></table></td></tr><tr><td>&nbsp;</td><td colspan=\"2\">&nbsp;</td></tr></table></div></div>");
                         }
                         else
                         {
                             HairShop hairShop = list[listID];
                             string picSmallUrl = "";
+
+                            int total = hairShop.HairShopGood+hairShop.HairShopBad+hairShop.HairShopNormal;
+                            int goodRate =0;
+                            if(total ==0)
+                            {
+                                goodRate =0;
+                            }
+                            else
+                            {
+                                goodRate = Convert.ToInt32(Convert.ToDouble(hairShop.HairShopGood)/Convert.ToDouble(total)*100);
+                            }
 
                             string[] photoID = hairShop.OutLogs.Split(",".ToCharArray());
                             if (photoID.Length == 1)
@@ -235,9 +257,8 @@ namespace Web.UserControls
                             sb.Append("<tr>");
                             sb.Append("<td width=\"13%\" height=\"27\"><a href=\"#\" target=\"_blank\"><img src=\"Theme/images/mfs_list_map.gif\" width=\"59\" height=\"19\" border=\"0\" /></a></td>");
                             sb.Append("<td width=\"28%\"><a onClick=\"window.external.AddFavorite('HairShopContent.aspx?id=" + hairShop.HairShopID.ToString() + "','" + hairShop.HairShopName + "');\" href=\"" + this.Request.Url.ToString() + "\"><img src=\"Theme/images/mft_list_collection.gif\" width=\"59\" height=\"19\" border=\"0\" /></a></td>");
-                            sb.Append("<td width=\"8%\">[好评]</td>");
-                            sb.Append("<td width=\"16%\"><span class=\"red12\">" + hairShop.HairShopGood.ToString() + "次</span></td>");
-                            sb.Append("<td width=\"35%\"><a href=\"HairShopContent.aspx?id=" + hairShop.HairShopID.ToString() + "\" class=\"red12\" style=\" text-decoration:underline\">查 看</a> | <a href=\"#\" style=\" text-decoration:underline\">我要评论</a></td>");
+                            sb.Append("<td width=\"16%\"><span class=\"red12\">" + goodRate + "%</span></td>");
+                            sb.Append("<td width=\"35%\"><a href=\"HairShopContent.aspx?id=" + hairShop.HairShopID.ToString() + "\" class=\"red12\" style=\" text-decoration:underline\">查 看</a> | <a href=\"http://bbs.sg.com.cn/xxx_xxx.htm\" style=\" text-decoration:underline\">我要评论</a></td>");
                             sb.Append("</tr></table></td></tr></table></td></tr><tr><td>&nbsp;</td><td colspan=\"2\">&nbsp;</td></tr></table></div></div>");
                         }
                     }
@@ -331,6 +352,12 @@ namespace Web.UserControls
         {
             set { this._sortType = value; }
             get { return this._sortType; }
+        }
+        private string _selectCondition = string.Empty;
+        public string SelectCondition
+        {
+            set { this._selectCondition = value; }
+            get { return this._selectCondition; }
         }
     }
 }

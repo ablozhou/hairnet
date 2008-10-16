@@ -754,6 +754,106 @@ namespace HairNet.Provider
 
             return list;
         }
+        public List<HairShop> GetHairShops(int count, string selectCondition, OrderKey ok)
+        {
+            List<HairShop> list = new List<HairShop>();
+
+            string orderKey = " order by ";
+            switch (ok)
+            {
+                case OrderKey.ID:
+                    orderKey += "hs.HairShopID desc";
+                    break;
+                case OrderKey.CommentNum:
+                    orderKey += "hs.HairShopGood+hs.HairShopBad desc";
+                    break;
+                case OrderKey.RecommandNum:
+                    orderKey += "hs.HairShopRecommandNum desc";
+                    break;
+                case OrderKey.HitNum:
+                    orderKey += "hs.HairShopVisitNum desc";
+                    break;
+                case OrderKey.OrderNum:
+                    orderKey += "hs.HairShopOrderNum desc";
+                    break;
+                default:
+                    orderKey += "hs.HairShopID desc";
+                    break;
+
+            }
+
+            string commText = "";
+            switch (count)
+            {
+                case 0:
+                    commText = "select * from HairShop hs inner join City c on hs.HairShopCityID=c.cityID inner join MapZone m on hs.HairShopMapZoneID = m.MapZoneID inner join HotZone h on hs.HairShopHotZoneID = h.HotZoneID inner join TypeTable tt on hs.TypeID=tt.TypeID "+ selectCondition + orderKey;
+                    break;
+                default:
+                    commText = "select top " + count.ToString() + " * from HairShop hs inner join City c on hs.HairShopCityID=c.cityID inner join MapZone m on hs.HairShopMapZoneID = m.MapZoneID inner join HotZone h on hs.HairShopHotZoneID = h.HotZoneID inner join TypeTable tt on hs.TypeID=tt.TypeID "+selectCondition + orderKey;
+                    break;
+            }
+
+            using (SqlConnection conn = new SqlConnection(DataHelper2.SqlConnectionString))
+            {
+                {
+                    using (SqlCommand comm = new SqlCommand())
+                    {
+                        comm.Connection = conn;
+                        comm.CommandText = commText;
+                        conn.Open();
+
+                        using (SqlDataReader sdr = comm.ExecuteReader())
+                        {
+                            while (sdr.Read())
+                            {
+                                HairShop hairShop = new HairShop();
+
+                                hairShop.HairShopID = int.Parse(sdr["HairShopID"].ToString());
+                                hairShop.HairShopName = sdr["HairShopName"].ToString();
+                                hairShop.HairShopCityID = int.Parse(sdr["HairShopCityID"].ToString());
+                                hairShop.HairShopCityName = sdr["CityName"].ToString();
+                                hairShop.HairShopMapZoneID = int.Parse(sdr["HairShopMapZoneID"].ToString());
+                                hairShop.HairShopMapZoneName = sdr["MapZoneName"].ToString();
+                                hairShop.HairShopHotZoneID = int.Parse(sdr["HairShopHotZoneID"].ToString());
+                                hairShop.HairShopHotZoneName = sdr["HotZoneName"].ToString();
+                                hairShop.HairShopAddress = sdr["HairShopAddress"].ToString();
+                                hairShop.HairShopPhoneNum = sdr["HairShopPhoneNum"].ToString();
+                                hairShop.HairShopPictureStoreIDs = sdr["HairShopPictureStoreIDs"].ToString();
+                                hairShop.HairShopMainIDs = sdr["HairShopMainIDs"].ToString();
+                                hairShop.HairShopPartialIDs = sdr["HairShopPartialIDs"].ToString();
+                                hairShop.HairShopEngineerNum = int.Parse(sdr["HairShopEngineerNum"].ToString());
+                                hairShop.HairShopOpenTime = sdr["HairShopOpenTime"].ToString();
+                                hairShop.HairShopOrderNum = int.Parse(sdr["HairShopOrderNum"].ToString());
+                                hairShop.HairShopVisitNum = int.Parse(sdr["HairShopVisitNum"].ToString());
+                                hairShop.WorkRangeIDs = sdr["WorkRangeIDs"].ToString();
+                                hairShop.HairShopWebSite = sdr["HairShopWebSite"].ToString();
+                                hairShop.HairShopEmail = sdr["HairShopEmail"].ToString();
+                                hairShop.HairShopDiscount = sdr["HairShopDiscount"].ToString();
+                                hairShop.HairShopLogo = sdr["HairShopLogo"].ToString();
+                                hairShop.HairShopRecommandNum = int.Parse(sdr["HairShopRecommandNum"].ToString());
+                                hairShop.HairShopCreateTime = sdr["HairShopCreateTime"].ToString();
+                                hairShop.HairShopDescription = sdr["HairShopDescription"].ToString();
+                                hairShop.ProductIDs = sdr["ProductIDs"].ToString();
+                                hairShop.HairShopTagIDs = sdr["HairShopTagIDs"].ToString();
+                                hairShop.HairShopShortName = sdr["HairShopShortName"].ToString();
+                                hairShop.IsBest = bool.Parse(sdr["IsBest"].ToString());
+                                hairShop.IsJoin = bool.Parse(sdr["IsJoin"].ToString());
+                                hairShop.TypeID = int.Parse(sdr["TypeID"].ToString());
+                                hairShop.TypeName = sdr["TypeName"].ToString();
+                                hairShop.IsPostStation = bool.Parse(sdr["IsPostStation"].ToString());
+                                hairShop.IsPostMachine = bool.Parse(sdr["IsPostMachine"].ToString());
+                                hairShop.HairShopGood = int.Parse(sdr["HairShopGood"].ToString());
+                                hairShop.HairShopBad = int.Parse(sdr["HairShopBad"].ToString());
+
+                                list.Add(hairShop);
+                            }
+                        }
+                    }
+                }
+            }
+
+            return list;
+        }
         /// <summary>
         /// 通过美发厅推荐ID获得美发厅推荐实体
         /// </summary>

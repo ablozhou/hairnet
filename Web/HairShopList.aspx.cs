@@ -9,6 +9,7 @@ using System.Web.UI.WebControls;
 using System.Web.UI.WebControls.WebParts;
 using System.Web.UI.HtmlControls;
 using HairNet.Utilities;
+using System.Text;
 
 namespace Web
 {
@@ -34,9 +35,24 @@ namespace Web
             }
             catch
             { }
+//            城区(district)
+//商圈(buzizone)
+//品牌(product)
+//营业面积(square)
+//关键字(keyword)
+            StringBuilder sb = new StringBuilder();
+
+            try
+            {
+
+            }
+            catch
+            {}
+
             this.hairShopListControl.PageSize = 6;
             this.hairShopListControl.CurrentPage = pageNum;
             this.hairShopListControl.SortType = sortType;
+            this.hairShopListControl.SelectCondition = sb.ToString();
         }
     }
 }

@@ -56,22 +56,22 @@ namespace Web {
         protected global::System.Web.UI.WebControls.LinkButton btnKeySearch;
         
         /// <summary>
-        /// HotCouponList1 控件。
+        /// clc1 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::Web.UserControls.HotCouponList HotCouponList1;
+        protected global::Web.UserControls.CouponListControl clc1;
         
         /// <summary>
-        /// HotCouponList21 控件。
+        /// clc2 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::Web.UserControls.HotCouponList2 HotCouponList21;
+        protected global::Web.UserControls.CouponListControl clc2;
         
         /// <summary>
         /// CouponDetailList1 控件。

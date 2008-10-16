@@ -1,7 +1,6 @@
 <%@ Page Language="C#" AutoEventWireup="true" EnableEventValidation="false" ValidateRequest="false" MasterPageFile="Home.Master" CodeBehind="CouponList.aspx.cs" Inherits="Web.CouponList" %>
 <%@ Register src="UserControls/CouponDetailList.ascx" tagname="CouponDetailList" tagprefix="uc1" %>
-<%@ Register src="UserControls/HotCouponList.ascx" tagname="HotCouponList" tagprefix="uc2" %>
-<%@ Register src="UserControls/HotCouponList2.ascx" tagname="HotCouponList2" tagprefix="uc3" %>
+<%@ Register src="UserControls/CouponListControl.ascx" tagname="CLC" tagprefix="HN" %>
 <asp:Content ContentPlaceHolderID="BodyContentPosition" runat="server" ID="BodyContent">
 <!-- 主体部分开始 -->
 <div id="main">
@@ -61,7 +60,7 @@
             &nbsp;&nbsp;最热优惠券</td>
       </tr>
       <tr>
-        <td background="Theme/images/fair-yhq-02.gif"><uc2:HotCouponList ID="HotCouponList1" runat="server" /></td>
+        <td background="Theme/images/fair-yhq-02.gif"> <HN:CLC ID="clc1" runat="server" CouponType="0" /></td>
       </tr>
       <tr>
         <td valign="top"><img src="Theme/images/fair-yhq-03.gif" /></td>
@@ -75,7 +74,7 @@
       <tr>
         <td background="Theme/images/fair-yhq-02.gif">
         
-            <uc3:HotCouponList2 ID="HotCouponList21" CouponType="1" runat="server" />
+            <HN:CLC ID="clc2" runat="server" CouponType="1" />
        
          </td>
       </tr>

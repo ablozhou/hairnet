@@ -2019,6 +2019,13 @@
     <Compile Include="UserControls\CouponDetailList.ascx.designer.cs">
       <DependentUpon>CouponDetailList.ascx</DependentUpon>
     </Compile>
+    <Compile Include="UserControls\CouponListControl.ascx.cs">
+      <DependentUpon>CouponListControl.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UserControls\CouponListControl.ascx.designer.cs">
+      <DependentUpon>CouponListControl.ascx</DependentUpon>
+    </Compile>
     <Compile Include="UserControls\Foot.ascx.cs">
       <DependentUpon>Foot.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -2417,6 +2424,7 @@
     <Content Include="Theme\Images\sg-meifa_picbg3.gif" />
     <Content Include="Theme\Style\chaoliu-list.css" />
     <Content Include="UserControls\CouponDetailList.ascx" />
+    <Content Include="UserControls\CouponListControl.ascx" />
     <Content Include="UserControls\HairShopDescription.ascx" />
     <Content Include="UserControls\HairShopEngineerList.ascx" />
     <Content Include="UserControls\HairShopEntryControl.ascx" />
