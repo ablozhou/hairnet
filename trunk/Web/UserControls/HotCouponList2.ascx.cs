@@ -26,10 +26,6 @@ namespace Web.UserControls
                 {
                     string commString = "select top 10 * from Coupon order by HitNum desc";
 
-                    if (CouponType == 1)
-                    {
-                        commString = "select top 10 * from Coupon order by ID desc";
-                    }
                     using (SqlCommand comm = new SqlCommand())
                     {
                         comm.CommandText = commString;
@@ -40,12 +36,14 @@ namespace Web.UserControls
                         {
                             while (sdr.Read())
                             {
+                                string couponID = string.Empty;
                                 string couponName = string.Empty;
                                 string hitNum = string.Empty;
                                 string picSmallUrl = string.Empty;
                                 string picUrl = string.Empty;
                                 string description = string.Empty;
 
+                                couponID = sdr["ID"].ToString();
                                 couponName = sdr["Name"].ToString();
                                 hitNum = sdr["HitNum"].ToString();
                                 picSmallUrl = sdr["ImageSmallUrl"].ToString();
@@ -55,7 +53,7 @@ namespace Web.UserControls
                                 num++;
           
                                 sb.Append("<tr>");
-                                sb.Append("<td align=\"left\" class=\"gray14-e\"><a href=\"#\" target=\"_blank\">·"+couponName+"</a></td>");
+                                sb.Append("<td align=\"left\" class=\"gray14-e\"><a href=\"PrintCoupon.aspx?id=" + couponID + "\" target=\"_blank\">·" + couponName + "</a></td>");
                                 sb.Append("</tr>");
                             }
                         }
@@ -70,12 +68,6 @@ namespace Web.UserControls
                     this.lblText.Text = sb.ToString();
                 }
             }
-        }
-        private int _couponType = 0;
-        public int CouponType
-        {
-            set { this._couponType = value; }
-            get { return this._couponType; }
         }
     }
 }

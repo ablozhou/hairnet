@@ -8,24 +8,28 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Web.UI.WebControls.WebParts;
 using System.Web.UI.HtmlControls;
-using System.Text;
 using System.Data.SqlClient;
+using System.Text;
 
-namespace Web
+namespace Web.UserControls
 {
-    public partial class PrintCoupon : System.Web.UI.Page
+    public partial class CouponListControl : System.Web.UI.UserControl
     {
         protected void Page_Load(object sender, EventArgs e)
-        {
-            string[] IDS = this.Request.QueryString["id"].ToString().Split(",".ToCharArray());
-
-            StringBuilder sb = new StringBuilder();
-            for (int i = 0; i < IDS.Length; i++)
+        {   
+            if (!this.IsPostBack)
             {
+                StringBuilder sb = new StringBuilder();
+
+                int num = 0;
                 using (SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["MSSqlServer"].ConnectionString))
                 {
-                    string commString = "select * from Coupon where ID="+IDS[i].ToString();
-                    
+                    string commString = "select top 7 * from Coupon order by HitNum desc";
+
+                    if (CouponType == 1)
+                    {
+                        commString = "select top 7 * from Coupon order by ID desc";
+                    }
                     using (SqlCommand comm = new SqlCommand())
                     {
                         comm.CommandText = commString;
@@ -34,7 +38,7 @@ namespace Web
 
                         using (SqlDataReader sdr = comm.ExecuteReader())
                         {
-                            if (sdr.Read())
+                            while (sdr.Read())
                             {
                                 string couponID = string.Empty;
                                 string couponName = string.Empty;
@@ -52,16 +56,31 @@ namespace Web
                                 description = sdr["Description"].ToString();
                                 discount = sdr["Discount"].ToString();
 
-                                sb.Append("<div>");
-                                sb.Append("打折券名称;"+couponName+"<br/>");
-                                sb.Append("图片:<img src='"+picUrl+"' />");
-                                sb.Append("</div>");
+                                num++;
+
+                                sb.Append("<tr>");
+                                sb.Append("<td width=\"83%\" align=\"left\" class=\"gray14-line\">·&nbsp;<a href=\"PrintCoupon.aspx?id="+couponID+"\" target=\"_blank\">"+couponName+"</a></td>");
+                                sb.Append("<td width=\"17%\" align=\"left\" class=\"gray14-line\"><span class=\"red14\">"+discount+"折</span></td>");
+                                sb.Append("</tr>");
                             }
                         }
                     }
                 }
+                if (num == 0)
+                {
+                    this.lblText.Text = "&nbsp;&nbsp;当前无优惠券";
+                }
+                else
+                {
+                    this.lblText.Text = sb.ToString();
+                }
             }
-            this.lblText.Text = sb.ToString();
+        }
+        private int _couponType = 0;
+        public int CouponType
+        {
+            set { this._couponType = value; }
+            get { return this._couponType; }
         }
     }
 }
