@@ -24,7 +24,17 @@ namespace Web.UserControls
         {
             if (!this.IsPostBack)
             {
-                List<HairShop> list = ProviderFactory.GetHairShopDataProviderInstance().GetHairShops(0, OrderKey.ID);
+                List<HairShop> list = new List<HairShop>();
+                if (SortType == 1)
+                {
+                    //按时间
+                    list = ProviderFactory.GetHairShopDataProviderInstance().GetHairShops(0, OrderKey.ID);
+                }
+                else
+                {
+                    //按点击数
+                    list = ProviderFactory.GetHairShopDataProviderInstance().GetHairShops(0, OrderKey.HitNum);
+                }
 
                 StringBuilder sb = new StringBuilder();
 
@@ -152,7 +162,7 @@ namespace Web.UserControls
                             sb.Append("<td colspan=\"7\"><table width=\"100%\" border=\"0\" cellspacing=\"0\" cellpadding=\"0\">");
                             sb.Append("<tr>");
                             sb.Append("<td width=\"13%\" height=\"27\"><a href=\"#\" target=\"_blank\"><img src=\"Theme/images/mfs_list_map.gif\" width=\"59\" height=\"19\" border=\"0\" /></a></td>");
-                            sb.Append("<td width=\"28%\"><a href=\"#\" target=\"_blank\"><img src=\"Theme/images/mft_list_collection.gif\" width=\"59\" height=\"19\" border=\"0\" /></a></td>");
+                            sb.Append("<td width=\"28%\"><a onClick=\"window.external.AddFavorite('HairShopContent.aspx?id=" + hairShop.HairShopID.ToString() + "','" + hairShop.HairShopName + "');\" href=\"" + this.Request.Url.ToString() + "\"><img src=\"Theme/images/mft_list_collection.gif\" width=\"59\" height=\"19\" border=\"0\" /></a></td>");
                             sb.Append("<td width=\"8%\">[好评]</td>");
                             sb.Append("<td width=\"16%\"><span class=\"red12\">"+hairShop.HairShopGood.ToString()+"次</span></td>");
                             sb.Append("<td width=\"35%\"><a href=\"HairShopContent.aspx?id=" + hairShop.HairShopID.ToString() + "\" class=\"red12\" style=\" text-decoration:underline\">查 看</a> | <a href=\"#\" style=\" text-decoration:underline\">我要评论</a></td>");
@@ -224,7 +234,7 @@ namespace Web.UserControls
                             sb.Append("<td colspan=\"7\"><table width=\"100%\" border=\"0\" cellspacing=\"0\" cellpadding=\"0\">");
                             sb.Append("<tr>");
                             sb.Append("<td width=\"13%\" height=\"27\"><a href=\"#\" target=\"_blank\"><img src=\"Theme/images/mfs_list_map.gif\" width=\"59\" height=\"19\" border=\"0\" /></a></td>");
-                            sb.Append("<td width=\"28%\"><a href=\"#\" target=\"_blank\"><img src=\"Theme/images/mft_list_collection.gif\" width=\"59\" height=\"19\" border=\"0\" /></a></td>");
+                            sb.Append("<td width=\"28%\"><a onClick=\"window.external.AddFavorite('HairShopContent.aspx?id=" + hairShop.HairShopID.ToString() + "','" + hairShop.HairShopName + "');\" href=\"" + this.Request.Url.ToString() + "\"><img src=\"Theme/images/mft_list_collection.gif\" width=\"59\" height=\"19\" border=\"0\" /></a></td>");
                             sb.Append("<td width=\"8%\">[好评]</td>");
                             sb.Append("<td width=\"16%\"><span class=\"red12\">" + hairShop.HairShopGood.ToString() + "次</span></td>");
                             sb.Append("<td width=\"35%\"><a href=\"HairShopContent.aspx?id=" + hairShop.HairShopID.ToString() + "\" class=\"red12\" style=\" text-decoration:underline\">查 看</a> | <a href=\"#\" style=\" text-decoration:underline\">我要评论</a></td>");
@@ -315,6 +325,12 @@ namespace Web.UserControls
         {
             set { this._currentPage = value; }
             get { return this._currentPage; }
+        }
+        private int _sortType = 0;
+        public int SortType
+        {
+            set { this._sortType = value; }
+            get { return this._sortType; }
         }
     }
 }

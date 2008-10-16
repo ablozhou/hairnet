@@ -136,9 +136,9 @@ namespace Web.UserControls
                 }
 
                 this.lblComment.Text = "<a href=\"#\" target=\"_blank\">[评 论]</a>";
-                this.lblStore.Text = "<a onClick='window.external.AddFavorite(location.href,document.title);' href='HairShopContent.aspx?HairShopID=" + this.HairShopID.ToString() + "' >[收 藏]</a>";
+                this.lblStore.Text = "<a onClick='window.external.AddFavorite(location.href,document.title);' href='HairShopContent.aspx?id=" + this.HairShopID.ToString() + "' >[收 藏]</a>";
                 this.lblComment2.Text = "<a href=\"#\" target=\"_blank\">[评 论]</a>";
-                this.lblStore2.Text = "<a onClick='window.external.AddFavorite(location.href,document.title);' href='HairShopContent.aspx?HairShopID=" + this.HairShopID.ToString() + "' >[收 藏]</a>";
+                this.lblStore2.Text = "<a onClick='window.external.AddFavorite(location.href,document.title);' href='HairShopContent.aspx?id=" + this.HairShopID.ToString() + "' >[收 藏]</a>";
             }
         }
         private int _hairShopID = 0;
