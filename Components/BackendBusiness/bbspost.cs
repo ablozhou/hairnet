@@ -83,10 +83,19 @@ namespace HairNet.Components.BackendBusiness
         /// <returns>布尔值，true表示该执行成功，false表示执行失败</returns>
             bool ret = false;
             int forumId = GetForumId(category);
-            
-            ret = BusinessFacade.DataAccess.postArticle(forumId, articleType, title, content, userid, username, connStr, out articleId);
-
-                        
+               int aid = 0;
+            try
+            {
+              
+                ret = BusinessFacade.DataAccess.postArticle(forumId, articleType, title, content, userid, username, connStr, out aid);
+               
+            }
+            catch
+            {
+                
+                //...failed
+            }
+              articleId = aid;           
             return ret;
         }
         /// <summary>
@@ -105,9 +114,17 @@ namespace HairNet.Components.BackendBusiness
             /// <param name="connStr">数据库连接串</param>
             /// <returns>布尔值，true表示该执行成功，false表示执行失败</returns>
             int forumId = GetForumId(category );
-            
-            bool ret = BusinessFacade.DataAccess.replyArticle(topicId,forumId,content, postUserId, postUserName, connStr);
+            bool ret = false;
+            try
+            {
 
+                ret = BusinessFacade.DataAccess.replyArticle(topicId,forumId,content, postUserId, postUserName, connStr);
+            }
+            catch
+            {
+
+                //...failed
+            }
             return ret;
 
         }
@@ -120,8 +137,18 @@ namespace HairNet.Components.BackendBusiness
         /// 
         public bool GetAllPostByTopicId(int topicId,out DataSet ds)
         {
-            
-            bool ret = BusinessFacade.DataAccess.getBBSInfoByTopicId(topicId.ToString (), connStr,out ds);
+            bool ret = false;
+            DataSet data = new DataSet();
+            try
+            {
+                ret = BusinessFacade.DataAccess.getBBSInfoByTopicId(topicId.ToString(), connStr, out data);
+            }
+             catch
+             {
+
+                 //...failed
+             }
+            ds = data;
             return ret;
         }
 

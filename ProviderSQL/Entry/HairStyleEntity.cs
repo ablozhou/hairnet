@@ -139,6 +139,10 @@ namespace HairNet.Entry
             get { return this.picturestoreid; }
         }
 
+        public HairStyleEntity(int id)
+        {
+            this.id = id;
+        }
         /// <summary>
         /// 
         /// </summary>

@@ -484,74 +484,89 @@ namespace Web.Admin
             }
 
             //大图
-            using (SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["MSSqlServer"].ToString()))
-            {
-                string commString = "insert into PictureStoreSet(PictureStoreId,PictureStoreURL,IsHairStyle,HairStylePos,SmallPictureUrl) values(" + id + ",'" + newFrontFilePath + "',1,1,'"+frontFilePath+"')";
-                using (SqlCommand comm = new SqlCommand())
-                {
-                    comm.Connection = conn;
-                    comm.CommandText = commString;
-                    conn.Open();
+            //if (newFrontFilePath != string.Empty || frontFilePath != string.Empty)
+            //{
 
-                    try
-                    {
-                        comm.ExecuteNonQuery();
-                    }
-                    catch (Exception ex)
-                    { }
-                }
-            }
-            using (SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["MSSqlServer"].ToString()))
-            {
-                string commString = "insert into PictureStoreSet(PictureStoreId,PictureStoreURL,IsHairStyle,HairStylePos,SmallPictureUrl) values(" + id + ",'" + newFlankFilePath + "',1,2,'"+flankFilePath+"')";
-                using (SqlCommand comm = new SqlCommand())
+                using (SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["MSSqlServer"].ToString()))
                 {
-                    comm.Connection = conn;
-                    comm.CommandText = commString;
-                    conn.Open();
-
-                    try
+                    string commString = "insert into PictureStoreSet(PictureStoreId,PictureStoreURL,IsHairStyle,HairStylePos,SmallPictureUrl) values(" + id + ",'" + newFrontFilePath + "',1,1,'" + frontFilePath + "')";
+                    using (SqlCommand comm = new SqlCommand())
                     {
-                        comm.ExecuteNonQuery();
+                        comm.Connection = conn;
+                        comm.CommandText = commString;
+                        conn.Open();
+
+                        try
+                        {
+                            comm.ExecuteNonQuery();
+                        }
+                        catch (Exception ex)
+                        { }
                     }
-                    catch (Exception ex)
-                    { }
                 }
-            }
-            using (SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["MSSqlServer"].ToString()))
-            {
-                string commString = "insert into PictureStoreSet(PictureStoreId,PictureStoreURL,IsHairStyle,HairStylePos,SmallPictureUrl) values(" + id + ",'" + newBackFilePath + "',1,3,'"+backFilePath+"')";
-                using (SqlCommand comm = new SqlCommand())
+            //}
+
+            //if (newFlankFilePath != string.Empty || flankFilePath != string.Empty)
+            //{
+                using (SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["MSSqlServer"].ToString()))
                 {
-                    comm.Connection = conn;
-                    comm.CommandText = commString;
-                    conn.Open();
-
-                    try
+                    string commString = "insert into PictureStoreSet(PictureStoreId,PictureStoreURL,IsHairStyle,HairStylePos,SmallPictureUrl) values(" + id + ",'" + newFlankFilePath + "',1,2,'" + flankFilePath + "')";
+                    using (SqlCommand comm = new SqlCommand())
                     {
-                        comm.ExecuteNonQuery();
+                        comm.Connection = conn;
+                        comm.CommandText = commString;
+                        conn.Open();
+
+                        try
+                        {
+                            comm.ExecuteNonQuery();
+                        }
+                        catch (Exception ex)
+                        { }
                     }
-                    catch (Exception ex)
-                    { }
                 }
-            }
-            using (SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["MSSqlServer"].ToString()))
-            {
-                string commString = "insert into PictureStoreSet(PictureStoreId,PictureStoreURL,IsHairStyle,HairStylePos,SmallPictureUrl) values(" + id + ",'" + newAssistanceFilePath + "',1,4,'"+assistanceFilePath+"')";
-                using (SqlCommand comm = new SqlCommand())
+            //}
+            //if (newBackFilePath != string.Empty || backFilePath != string.Empty)
+            //{
+                using (SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["MSSqlServer"].ToString()))
                 {
-                    comm.Connection = conn;
-                    comm.CommandText = commString;
-                    conn.Open();
-
-                    try
+                    string commString = "insert into PictureStoreSet(PictureStoreId,PictureStoreURL,IsHairStyle,HairStylePos,SmallPictureUrl) values(" + id + ",'" + newBackFilePath + "',1,3,'" + backFilePath + "')";
+                    using (SqlCommand comm = new SqlCommand())
                     {
-                        comm.ExecuteNonQuery();
+                        comm.Connection = conn;
+                        comm.CommandText = commString;
+                        conn.Open();
+
+                        try
+                        {
+                            comm.ExecuteNonQuery();
+                        }
+                        catch (Exception ex)
+                        { }
                     }
-                    catch (Exception ex)
-                    { }
                 }
-            }
+            //}
+            //if (newAssistanceFilePath != string.Empty || assistanceFilePath != string.Empty)
+            //{
+
+                using (SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["MSSqlServer"].ToString()))
+                {
+                    string commString = "insert into PictureStoreSet(PictureStoreId,PictureStoreURL,IsHairStyle,HairStylePos,SmallPictureUrl) values(" + id + ",'" + newAssistanceFilePath + "',1,4,'" + assistanceFilePath + "')";
+                    using (SqlCommand comm = new SqlCommand())
+                    {
+                        comm.Connection = conn;
+                        comm.CommandText = commString;
+                        conn.Open();
+
+                        try
+                        {
+                            comm.ExecuteNonQuery();
+                        }
+                        catch (Exception ex)
+                        { }
+                    }
+                }
+            //}
             
             if (hairEngineerID != 0)
             {

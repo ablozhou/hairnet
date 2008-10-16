@@ -915,7 +915,10 @@ namespace HairNet.Business
 
         public static bool DeleteHairStyle(int hairStyleID)
         {
-            throw new NotImplementedException();
+            HairStyleEntity hs = new HairStyleEntity(hairStyleID);
+             ProviderFactory.GetHairEngineerDataProviderInstance().HairStyleCreateDeleteUpdate(hs, UserAction.Delete);
+            return true;
+            //throw new NotImplementedException();
         }
     }
 }
