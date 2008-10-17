@@ -30,8 +30,8 @@ namespace Web
                 Response.Write("id not exist");
                 Response.End();
             }
-            //int hairShopID = int.Parse(HairShopID.ToString());
-            int hairShopID = 9;
+            int hairShopID = int.Parse(HairShopID.ToString());
+            //int hairShopID = 9;
             this.hairShopEntryControl.HairShopID = hairShopID;
             this.hairShopEntryDescription.HairShopID = hairShopID;
             this.hairShopEngineerList.HairShopID = hairShopID;
