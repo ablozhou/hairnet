@@ -228,7 +228,7 @@ namespace HairNet.Components.BackendBusiness
                     comm.Connection = conn;
                     conn.Open();
 
-                    int num = 0;
+                  
 
                     using (SqlDataReader sdr = comm.ExecuteReader())
                     {
@@ -254,7 +254,6 @@ namespace HairNet.Components.BackendBusiness
                     comm.Connection = conn;
                     conn.Open();
 
-                    int num = 0;
 
                     using (SqlDataReader sdr = comm.ExecuteReader())
                     {
