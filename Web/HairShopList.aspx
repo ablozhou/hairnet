@@ -76,89 +76,12 @@
 	 <!-- #include file="shophottags.htm" -->
 	</div>
 	<div class="main-r-box2">
-	  <table width="100%" height="43" border="0" cellpadding="0" cellspacing="0" style="margin-top:20px">
-        <tr>
-          <td height="24" align="left" class="red14b">&nbsp;&nbsp;最热店评&nbsp;<img src="Theme/images/sg-meifa_35.gif" width="9" height="13" /></td>
-        </tr>
-        <tr>
-          <td height="19"><img src="Theme/images/sg-meifa_46.gif" width="256" height="2" /></td>
-        </tr>
-      </table>
-	  <table width="98%" height="202" border="0" align="center" cellpadding="0" cellspacing="0" style="margin-top:3px;margin-bottom:3px">
-        <tr>
-          <td height="202" align="left" valign="top" class="gray14-e"><table width="92%" border="0" align="center" cellpadding="0" cellspacing="0" style="margin-top:5px;margin-bottom:12px">
-            <tr>
-              <td width="79%" align="left" class="gray14-e">·&nbsp;<a href="#" target="_blank">翻的五味瓶用心体吉林向</a></td>
-              <td width="21%" align="center" class="red14">[审美]</td>
-            </tr>
-            <tr>
-              <td align="left" class="gray14-e">·&nbsp;<a href="#" target="_blank">林向海：鹤舞天池艾琳多</a></td>
-              <td width="21%" align="center" class="red14">[审美]</td>
-            </tr>
-            <tr>
-              <td align="left" class="gray14-e">·&nbsp;<a href="#" target="_blank">琳多南：令人惊诧打翻的</a></td>
-              <td width="21%" align="center" class="red14">[审美]</td>
-            </tr>
-            <tr>
-              <td align="left" class="gray14-e">·&nbsp;<a href="#" target="_blank">翻的五味瓶用心体吉林向</a></td>
-              <td align="center" class="red14">[审美]</td>
-            </tr>
-            <tr>
-              <td align="left" class="gray14-e">·&nbsp;<a href="#" target="_blank">林向海：鹤舞天池艾琳多</a></td>
-              <td align="center" class="red14">[审美]</td>
-            </tr>
-            <tr>
-              <td align="left" class="gray14-e">·&nbsp;<a href="#" target="_blank">琳多南：令人惊诧打翻的</a></td>
-              <td align="center" class="red14">[审美]</td>
-            </tr>
-            <tr>
-              <td align="left" class="gray14-e">·&nbsp;<a href="#" target="_blank">琳多南：令人惊诧打翻的</a></td>
-              <td align="center" class="red14">[审美]</td>
-            </tr>
-          </table></td>
-        </tr>
-      </table>
-    </div>
+	<!-- #include file="shophotcomment.htm" -->
+	 </div>
 	<div class="main-r-box">
-	    <table width="100%" height="41" border="0" cellpadding="0" cellspacing="0" style="margin-top:20px">
-          <tr>
-            <td height="28" align="left" class="red14b">&nbsp;&nbsp;网友推荐店&nbsp;<img src="Theme/images/sg-meifa_35.gif" width="9" height="13" /></td>
-          </tr>
-          <tr>
-            <td height="8"><img src="Theme/images/sg-meifa_46.gif" width="256" height="2" /></td>
-          </tr>
-        </table>
-        <table width="92%" border="0" align="center" cellpadding="0" cellspacing="0" style="margin-top:5px;margin-bottom:12px">
-          <tr>
-            <td width="83%" align="left" class="gray14-e">·&nbsp;<a href="#" target="_blank">翻的五味瓶用心体吉林向</a></td>
-            <td width="17%" align="center" class="red14">88折</td>
-          </tr>
-          <tr>
-            <td align="left" class="gray14-e">·&nbsp;<a href="#" target="_blank">林向海：鹤舞天池艾琳多</a></td>
-            <td width="17%" align="center" class="red14">88折</td>
-          </tr>
-          <tr>
-            <td align="left" class="gray14-e">·&nbsp;<a href="#" target="_blank">琳多南：令人惊诧打翻的</a></td>
-            <td width="17%" align="center" class="red14">88折</td>
-          </tr>
-          <tr>
-            <td align="left" class="gray14-e">·&nbsp;<a href="#" target="_blank">翻的五味瓶用心体吉林向</a></td>
-            <td align="center" class="red14">88折</td>
-          </tr>
-          <tr>
-            <td align="left" class="gray14-e">·&nbsp;<a href="#" target="_blank">林向海：鹤舞天池艾琳多</a></td>
-            <td align="center" class="red14">88折</td>
-          </tr>
-          <tr>
-            <td align="left" class="gray14-e">·&nbsp;<a href="#" target="_blank">琳多南：令人惊诧打翻的</a></td>
-            <td align="center" class="red14">88折</td>
-          </tr>
-          <tr>
-            <td align="left" class="gray14-e">·&nbsp;<a href="#" target="_blank">琳多南：令人惊诧打翻的</a></td>
-            <td align="center" class="red14">88折</td>
-          </tr>
-        </table>
-  </div>
+	
+	<!-- #include file="userrecommendshop.htm" -->
+	</div>
   </div>
   <div id="main-rr"></div>
     <div class="clear"></div>
