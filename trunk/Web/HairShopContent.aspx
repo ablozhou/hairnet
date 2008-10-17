@@ -38,7 +38,7 @@
           <tr>
 		  <td width="3" bgcolor="#F7F7F7" ></td>
             <td width="10" align="left" background="Theme/images/fair-mft08.gif"><img src="Theme/images/fair-mft06.gif" width="3" height="29" /></td>
-            <td width="135" align="left" background="Theme/images/fair-mft08.gif" class="red14b"><a href="#" target="_blank">看看大家的评论</a></td>
+            <td width="135" align="left" background="Theme/images/fair-mft08.gif" class="red14b">看看大家的评论</td>
             <td width="472" align="left" background="Theme/images/fair-mft08.gif"><img src="Theme/images/fair-mft09.gif" width="23" height="7" /></td>
             <td width="84" align="right" background="Theme/images/fair-mft08.gif"><img src="Theme/images/fair-mft07.gif" width="3" height="29" /></td>
           </tr>
