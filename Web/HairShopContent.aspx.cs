@@ -31,6 +31,10 @@ namespace Web
                 Response.End();
             }
             int hairShopID = int.Parse(HairShopID.ToString());
+
+            //给美发厅访问+1
+            this.AddNumToHairShop(hairShopID.ToString());
+
             //int hairShopID = 9;
             this.hairShopEntryControl.HairShopID = hairShopID;
             this.hairShopEntryDescription.HairShopID = hairShopID;
@@ -47,7 +51,28 @@ namespace Web
             {
             }
         }
+        public void AddNumToHairShop(string hairShopID)
+        {
+            using (SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["MSSqlServer"].ConnectionString))
+            {
+                string commString = "update HairShop set HairShopVisitNum = HairShopVisitNum+1 where HairShopID=" + hairShopID;
+                using (SqlCommand comm = new SqlCommand())
+                {
+                    comm.CommandText = commString;
+                    comm.Connection = conn;
+                    conn.Open();
 
+                    try
+                    {
+                        comm.ExecuteNonQuery();
+                    }
+                    catch (Exception ex)
+                    {
+                        throw new Exception(ex.Message);
+                    }
+                }
+            }
+        }
         private System.Text.StringBuilder ReadComment(string BBSID)
         {
             System.Text.StringBuilder Txt = new System.Text.StringBuilder();

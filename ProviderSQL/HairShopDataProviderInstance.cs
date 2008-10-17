@@ -754,7 +754,7 @@ namespace HairNet.Provider
 
             return list;
         }
-        public List<HairShop> GetHairShops(int count, string selectCondition, OrderKey ok)
+        public List<HairShop> GetHairShops(int count, string selectCondition, OrderKey ok,Sort sort)
         {
             List<HairShop> list = new List<HairShop>();
 
@@ -762,22 +762,22 @@ namespace HairNet.Provider
             switch (ok)
             {
                 case OrderKey.ID:
-                    orderKey += "hs.HairShopID desc";
+                    orderKey += "hs.HairShopID";
                     break;
                 case OrderKey.CommentNum:
-                    orderKey += "hs.HairShopGood+hs.HairShopBad desc";
+                    orderKey += "hs.HairShopGood+hs.HairShopBad";
                     break;
                 case OrderKey.RecommandNum:
-                    orderKey += "hs.HairShopRecommandNum desc";
+                    orderKey += "hs.HairShopRecommandNum";
                     break;
                 case OrderKey.HitNum:
-                    orderKey += "hs.HairShopVisitNum desc";
+                    orderKey += "hs.HairShopVisitNum";
                     break;
                 case OrderKey.OrderNum:
-                    orderKey += "hs.HairShopOrderNum desc";
+                    orderKey += "hs.HairShopOrderNum";
                     break;
                 default:
-                    orderKey += "hs.HairShopID desc";
+                    orderKey += "hs.HairShopID";
                     break;
 
             }
@@ -786,10 +786,10 @@ namespace HairNet.Provider
             switch (count)
             {
                 case 0:
-                    commText = "select * from HairShop hs inner join City c on hs.HairShopCityID=c.cityID inner join MapZone m on hs.HairShopMapZoneID = m.MapZoneID inner join HotZone h on hs.HairShopHotZoneID = h.HotZoneID inner join TypeTable tt on hs.TypeID=tt.TypeID "+ selectCondition + orderKey;
+                    commText = "select * from HairShop hs inner join City c on hs.HairShopCityID=c.cityID inner join MapZone m on hs.HairShopMapZoneID = m.MapZoneID inner join HotZone h on hs.HairShopHotZoneID = h.HotZoneID inner join TypeTable tt on hs.TypeID=tt.TypeID "+ selectCondition + orderKey+" "+sort.ToString();
                     break;
                 default:
-                    commText = "select top " + count.ToString() + " * from HairShop hs inner join City c on hs.HairShopCityID=c.cityID inner join MapZone m on hs.HairShopMapZoneID = m.MapZoneID inner join HotZone h on hs.HairShopHotZoneID = h.HotZoneID inner join TypeTable tt on hs.TypeID=tt.TypeID "+selectCondition + orderKey;
+                    commText = "select top " + count.ToString() + " * from HairShop hs inner join City c on hs.HairShopCityID=c.cityID inner join MapZone m on hs.HairShopMapZoneID = m.MapZoneID inner join HotZone h on hs.HairShopHotZoneID = h.HotZoneID inner join TypeTable tt on hs.TypeID=tt.TypeID "+selectCondition + orderKey+" "+sort.ToString();
                     break;
             }
 

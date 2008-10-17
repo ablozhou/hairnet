@@ -28,18 +28,27 @@ namespace Web
             {
                 pageNum = 1;
             }
-            int sortType = 1;
+            int sortType = 0;
             try
             {
-                sortType = int.Parse(this.Request.QueryString["sortID"].ToString());
+                sortType = int.Parse(this.Request.QueryString["sortType"].ToString());
             }
             catch
             { }
-//            城区(district)
-//商圈(buzizone)
-//品牌(product)
-//营业面积(square)
-//关键字(keyword)
+
+            int sortItem = 1;
+            try
+            {
+                sortItem = int.Parse(this.Request.QueryString["sortItem"].ToString());
+            }
+            catch
+            { }
+
+            //城区(district)
+            //商圈(buzizone)
+            //品牌(product)
+            //营业面积(square)
+            //关键字(keyword)
             StringBuilder sb = new StringBuilder();
             string district = string.Empty;
             string buzizone = string.Empty;
@@ -110,6 +119,8 @@ namespace Web
             this.hairShopListControl.PageSize = 6;
             this.hairShopListControl.CurrentPage = pageNum;
             this.hairShopListControl.SortType = sortType;
+            this.hairShopListControl.SortItem = sortItem;
+
             this.hairShopListControl.SelectCondition = sb.ToString();
             this.hairShopListControl.ProductID = product;
             this.hairShopListControl.KeyWord = keyword;

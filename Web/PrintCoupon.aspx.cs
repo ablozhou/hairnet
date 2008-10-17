@@ -60,6 +60,26 @@ namespace Web
                         }
                     }
                 }
+
+                using (SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["MSSqlServer"].ConnectionString))
+                {
+                    string commString = "update coupon set HitNum = HitNum+1 where ID=" + IDS[i].ToString();
+                    using (SqlCommand comm = new SqlCommand())
+                    {
+                        comm.CommandText = commString;
+                        comm.Connection = conn;
+                        conn.Open();
+
+                        try
+                        {
+                            comm.ExecuteNonQuery();
+                        }
+                        catch(Exception ex)
+                        {
+                            throw new Exception(ex.Message);
+                        }
+                    }
+                }
             }
             this.lblText.Text = sb.ToString();
         }

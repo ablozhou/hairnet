@@ -143,12 +143,12 @@ namespace Web.UserControls
                                     this.lblCouponPic.Text = "<img src=\"" + sdr["ImageSmallUrl"].ToString() + "\" width=\"122\" height=\"73\" />";
 
                                     this.lblPrintNum.Text = sdr["HitNum"].ToString() + "&nbsp;次";
-                                    this.lblPrintCoupon.Text = "<a href=\"#\">打印此优惠券</a>";
+                                    this.lblPrintCoupon.Text = "<a target='_blank' href=\"PrintCoupon.aspx?id="+sdr["id"].ToString()+"\">打印此优惠券</a>";
 
                                     this.lblCouponPic2.Text = "<img src=\"" + sdr["ImageSmallUrl"].ToString() + "\" width=\"122\" height=\"73\" />";
 
                                     this.lblPrintNum2.Text = sdr["HitNum"].ToString() + "&nbsp;次";
-                                    this.lblPrintCoupon2.Text = "<a href=\"#\">打印此优惠券</a>";
+                                    this.lblPrintCoupon2.Text = "<a target='_blank' href=\"PrintCoupon.aspx?id="+sdr["id"].ToString()+"\">打印此优惠券</a>";
                                 }
                             }
                         }
