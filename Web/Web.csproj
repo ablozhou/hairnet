@@ -2395,7 +2395,6 @@
     <Content Include="HairStarList.aspx" />
     <Content Include="Home.Master" />
     <Content Include="HWCommon.csproj" />
-    <Content Include="HWCommon.csproj.vspscc" />
     <Content Include="JiepaiList.aspx" />
     <Content Include="PrintCoupon.aspx" />
     <Content Include="SearchHeadPage.aspx" />
@@ -2403,7 +2402,6 @@
     <Content Include="shophotcomment.htm" />
     <Content Include="shophottags.htm" />
     <Content Include="test.aspx" />
-    <Content Include="Theme\Flash\yanshi.swf" />
     <Content Include="Theme\Images\bbs-blog_05.gif" />
     <Content Include="Theme\Images\bbs-blog_06.gif" />
     <Content Include="Theme\Images\bbs-blog_linshi.gif" />
@@ -2455,7 +2453,6 @@
     <Content Include="Theme\Images\reg.gif" />
     <Content Include="Theme\Images\sg-08-index_test02.gif" />
     <Content Include="Theme\Images\sg-meifa_picbg3.gif" />
-    <Content Include="Theme\Style\chaoliu-list.css" />
     <Content Include="UserControls\CouponDetailList.ascx" />
     <Content Include="UserControls\CouponListControl.ascx" />
     <Content Include="UserControls\HairShopDescription.ascx" />
@@ -2477,13 +2474,13 @@
     <Content Include="userrecommendshop.htm" />
     <Content Include="ZTContent.aspx" />
     <Content Include="ZTList.aspx" />
-    <None Include="mssccprj.scc" />
     <None Include="Theme\Images\search-fxs.psd" />
     <None Include="Theme\Images\Thumbs.db" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Admin\FCKeditor\FCKeditor\editor\filemanager\browser\default\connectors\perl\temp\" />
     <Folder Include="AjaxHandle\" />
+    <Folder Include="Theme\Flash\" />
     <Folder Include="UploadFiles\" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
