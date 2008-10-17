@@ -11,6 +11,7 @@
 namespace Web.UserControls {
     
     public partial class HairShopVoteControl {
+        protected System.Web.UI.UpdatePanel updatePanel1;
         protected System.Web.UI.WebControls.LinkButton linkBtnGood;
         protected System.Web.UI.WebControls.Label lblGood;
         protected System.Web.UI.WebControls.Label lblGoodNum;
