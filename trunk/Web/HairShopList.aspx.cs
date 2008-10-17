@@ -102,7 +102,7 @@ namespace Web
 
             try
             {
-                keyword = this.Request.QueryString["keyword"].ToString();
+                keyword = Server.UrlDecode(this.Request.QueryString["keyword"].ToString());
             }
             catch
             { }
