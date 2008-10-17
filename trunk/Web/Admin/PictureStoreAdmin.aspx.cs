@@ -246,10 +246,11 @@ namespace Web.Admin
                 PictureStore pictureStore = e.Item.DataItem as PictureStore;
                 Label lblPreview = e.Item.FindControl("lblPreview") as Label;
                 Label lblPictureUrl = e.Item.FindControl("lblPictureUrl") as Label;
+                Label lblHitNum = e.Item.FindControl("lblHitNum") as Label;
                 string hairStyleID = "";
                 using (SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["MSSqlServer"].ToString()))
                 {
-                    string commString = "select id from HairStyle where PictureStoreId=" + pictureStore.PictureStoreID.ToString();
+                    string commString = "select id,hitnum from HairStyle where PictureStoreId=" + pictureStore.PictureStoreID.ToString();
                     using (SqlCommand comm = new SqlCommand())
                     {
                         comm.Connection = conn;
@@ -261,7 +262,7 @@ namespace Web.Admin
                             if (sdr.Read())
                             {
                                 hairStyleID = sdr["id"].ToString();
-
+                                lblHitNum.Text = sdr["hitnum"].ToString();
                             }
                         }
                     }

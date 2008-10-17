@@ -50,7 +50,11 @@
                         <asp:Label ID="lblPictureUrl" runat="server"></asp:Label>
                     </ItemTemplate>
                 </asp:TemplateColumn>
-                <asp:BoundColumn DataField="PictureStoreHits" HeaderText="点击数"></asp:BoundColumn>
+                <asp:TemplateColumn HeaderText="点击数">
+                    <ItemTemplate>
+                        <asp:Label ID="lblHitNum" runat="server"></asp:Label>
+                    </ItemTemplate>
+                </asp:TemplateColumn>
                 <asp:TemplateColumn HeaderText="预览">
                     <ItemTemplate>
                         <asp:Label ID="lblPreview" runat="server"></asp:Label>
