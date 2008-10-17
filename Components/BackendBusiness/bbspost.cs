@@ -22,7 +22,7 @@ namespace HairNet.Components.BackendBusiness
         private string connStr =  ConfigurationManager.AppSettings["Discuz_ConnectionString"].ToString();
         private int articleType = 0;
         public  enum Category { HairShop = 1, HairEngineer, HairStyle, PhotoGroup };
-        
+        private int price = 0;
         
         /// <summary>
         /// 获取论坛id
@@ -80,6 +80,8 @@ namespace HairNet.Components.BackendBusiness
         /// <param name="postUserName">发表用户名</param>
         /// <param name="connStr">数据库连接串</param>
         /// <param name="ariticleId">输出帖子ID</param>
+            /// <param name="price">悬赏帖时为设置悬赏金额，其它帖子类型时为0</param>
+
         /// <returns>布尔值，true表示该执行成功，false表示执行失败</returns>
             bool ret = false;
             int forumId = GetForumId(category);
@@ -87,7 +89,7 @@ namespace HairNet.Components.BackendBusiness
             try
             {
               
-                ret = BusinessFacade.DataAccess.postArticle(forumId, articleType, title, content, userid, username, connStr, out aid);
+                ret = BusinessFacade.DataAccess.postArticle(forumId,articleType,price, title, content, userid, username, connStr, out aid);
                
             }
             catch

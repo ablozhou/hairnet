@@ -452,7 +452,7 @@ namespace Web.Admin
         public string GetPath(string path)
         {
             string result = string.Empty;
-            path.Replace(@"\", @"/");
+            path = path.Replace(@"\", @"/");
             result = path.Substring(path.IndexOf("uploadfiles") - 1);
             return result;
         }
@@ -536,6 +536,8 @@ namespace Web.Admin
                             ListItem li = new ListItem();
                             li.Value = sdr["id"].ToString();
                             li.Text = sdr["hairnature"].ToString();
+                            if (li.Value == "2")
+                                li.Selected = true;
 
                             this.ddlHairNature.Items.Add(li);
                         }
@@ -582,6 +584,8 @@ namespace Web.Admin
                             ListItem li = new ListItem();
                             li.Value = sdr["id"].ToString();
                             li.Text = sdr["hairquantity"].ToString();
+                            if (li.Value == "2")
+                                li.Selected = true;
 
                             this.ddlHairQuantity.Items.Add(li);
                         }

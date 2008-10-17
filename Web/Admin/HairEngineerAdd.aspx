@@ -49,7 +49,7 @@ function Button1_onclick() {
             <td width="120px" align="right">性别：</td>
             <td width="120px"><asp:RadioButtonList ID="rBtnListHairEngineerSex" runat="server" Height="16px" 
                     onselectedindexchanged="rBtnListHairEngineerSex_SelectedIndexChanged" 
-                    Width="307px"><asp:ListItem Value="1" Selected="True">男</asp:ListItem>    <asp:ListItem Value="2">女</asp:ListItem></asp:RadioButtonList></td>
+                    Width="307px"><asp:ListItem Value="1" Selected="True">男</asp:ListItem>    <asp:ListItem Value="0">女</asp:ListItem></asp:RadioButtonList></td>
         </tr>
         <tr>
             <td width="120px" align="right">剪发价格：</td>
