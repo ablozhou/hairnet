@@ -615,6 +615,8 @@ namespace Web.Admin
                             ListItem li = new ListItem();
                             li.Value = sdr["id"].ToString();
                             li.Text = sdr["hairnature"].ToString();
+                            if (li.Value == "2")
+                                li.Selected = true;
 
                             this.ddlHairNature.Items.Add(li);
                         }
@@ -661,7 +663,8 @@ namespace Web.Admin
                             ListItem li = new ListItem();
                             li.Value = sdr["id"].ToString();
                             li.Text = sdr["hairquantity"].ToString();
-
+                            if (li.Value == "2")
+                                li.Selected = true;
                             this.ddlHairQuantity.Items.Add(li);
                         }
                     }

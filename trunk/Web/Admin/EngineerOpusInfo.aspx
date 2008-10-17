@@ -107,7 +107,7 @@
             <td width=120px align="right">脸型: </td>
             <td width=120px align="left"><asp:DropDownList ID="ddlFaceStyle" runat="server" Width="120px"></asp:DropDownList></td>
             <td width=120px align="right">性别: </td>
-            <td width=120px align="left"><asp:DropDownList ID="ddlSex" runat="server" Width="120px"><asp:ListItem Value="1">男</asp:ListItem><asp:ListItem Value="2">女</asp:ListItem></asp:DropDownList></td>
+            <td width=120px align="left"><asp:DropDownList ID="ddlSex" runat="server" Width="120px"><asp:ListItem Value="0">女</asp:ListItem><asp:ListItem Value="1">男</asp:ListItem></asp:DropDownList></td>
             <td width="15%"></td>
         </tr>
     </table>

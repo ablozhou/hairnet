@@ -36,7 +36,7 @@
         </tr>--%>
         <tr>
             <td width="120" align="right">性别：</td>
-            <td><asp:RadioButtonList ID="rBtnListHairEngineerSex" runat="server"><asp:ListItem Value="1" Selected="True">男</asp:ListItem><asp:ListItem Value="2">女</asp:ListItem></asp:RadioButtonList></td>
+            <td><asp:RadioButtonList ID="rBtnListHairEngineerSex" runat="server"><asp:ListItem Value="1" Selected="True">男</asp:ListItem><asp:ListItem Value="0">女</asp:ListItem></asp:RadioButtonList></td>
         </tr>
         <tr>
             <td width="120" align="right">剪发价格：</td>
