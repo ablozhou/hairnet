@@ -77,7 +77,7 @@ namespace HairNet.Provider
         /// <param name="count"></param>
         /// <param name="ok"></param>
         /// <returns></returns>
-        List<HairShop> GetHairShops(int count, string selectCondition, OrderKey ok);
+        List<HairShop> GetHairShops(int count, string selectCondition, OrderKey ok, Sort sort);
 
         /// <summary>
         /// 
