@@ -36,6 +36,69 @@ namespace Web.UserControls
                     list = ProviderFactory.GetHairShopDataProviderInstance().GetHairShops(0,this.SelectCondition, OrderKey.HitNum);
                 }
 
+                if (this.ProductID != string.Empty)
+                {
+                    //过滤产品
+                    List<HairShop> list2 = new List<HairShop>();
+                    for (int i = 0; i < list.Count; i++)
+                    {
+                        HairShop hairShop2 = list[i];
+
+                        string[] pCollection = hairShop2.ProductIDs.Split(",".ToCharArray());
+
+                        foreach(string s in pCollection)
+                        {
+                            if (s == this.ProductID)
+                            {
+                                list2.Add(hairShop2);
+                                break;
+                            }
+                        }
+                    }
+                    list = list2;
+                }
+                if (this.KeyWord != string.Empty)
+                {
+                    //过滤关键字
+
+                    List<HairShop> list2 = new List<HairShop>();
+                    for (int i = 0; i < list.Count; i++)
+                    {
+                        HairShop hairShop2 = list[i];
+
+                        string[] tCollection = hairShop2.HairShopTagIDs.Split(",".ToCharArray());
+
+                        foreach (string s in tCollection)
+                        {
+                            string tname = "";
+                            using (SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["MSSqlServer"].ConnectionString))
+                            {
+                                string commString = "select * from HairShopTag where HairShopTagID = "+s;
+                                using (SqlCommand comm = new SqlCommand())
+                                {
+                                    comm.CommandText = commString;
+                                    comm.Connection = conn;
+                                    conn.Open();
+
+                                    using (SqlDataReader sdr = comm.ExecuteReader())
+                                    {
+                                        if (sdr.Read())
+                                        {
+                                            tname = sdr["HairShopTagName"].ToString();
+                                        }
+                                    }
+                                }
+                            }
+                            if (tname.Contains(this.KeyWord))
+                            {
+                                list2.Add(hairShop2);
+                                break;
+                            }
+                        }
+                    }
+                    list = list2;
+                }
+
                 StringBuilder sb = new StringBuilder();
 
                 //page
@@ -358,6 +421,20 @@ namespace Web.UserControls
         {
             set { this._selectCondition = value; }
             get { return this._selectCondition; }
+        }
+
+        private string _productID = string.Empty;
+        public string ProductID
+        {
+            set { this._productID = value; }
+            get { return this._productID; }
+        }
+
+        private string _keyword = string.Empty;
+        public string KeyWord
+        {
+            set { this._keyword = value; }
+            get { return this._keyword; }
         }
     }
 }
