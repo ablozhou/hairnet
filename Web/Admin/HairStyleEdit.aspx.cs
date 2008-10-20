@@ -378,7 +378,7 @@ namespace Web.Admin
         public string GetPath(string path)
         {
             string result = string.Empty;
-            path.Replace(@"\", @"/");
+            path = path.Replace(@"\", @"/");
             result = path.Substring(path.IndexOf("uploadfiles") - 1);
             return result;
         }
