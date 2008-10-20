@@ -74,15 +74,24 @@ namespace Web.Admin
             hs.HairShopWebSite = txtHairShopWebSite.Text.Trim();
             hs.HairShopEmail = txtHairShopEmail.Text.Trim();
             hs.HairShopDiscount = txtHairShopDiscount.Text.Trim();
-            //获取上传图片后的路径
-            UpLoadClass upload = new UpLoadClass();
-            if (!PicOperate.isPermission(StringHelper.GetExtraType(fileLogo.Value)))
+
+            if (fileLogo.Value != string.Empty)
             {
-                this.lblInfo.Text = "上传图片格式不对";
-                this.lblInfo.Visible = true;
-                return;
-            } 
-            hs.HairShopLogo = upload.UpLoadImg(fileLogo, "/uploadfiles/logo/");
+                //获取上传图片后的路径
+                UpLoadClass upload = new UpLoadClass();
+
+                if (!PicOperate.isPermission(StringHelper.GetExtraType(fileLogo.Value)))
+                {
+                    this.lblInfo.Text = "上传图片格式不对";
+                    this.lblInfo.Visible = true;
+                    return;
+                }
+                hs.HairShopLogo = upload.UpLoadImg(fileLogo, "/uploadfiles/logo/");
+            }
+            else
+            {
+                hs.HairShopLogo = string.Empty;
+            }
 
             hs.HairShopCreateTime = txtHairShopCreateTime.Text.Trim();
             hs.HairShopCityID = int.Parse(ddlCity.SelectedValue);
@@ -117,21 +126,100 @@ namespace Web.Admin
             hs.HairShopDescription = txtDescription.Text.Trim();
 
             //Session["HairShopInfo"] = hs;
+            try
+            {
+                hs.HairCutDiscount = Decimal.Parse(tbHairCutDiscount.Text.Trim());
+            }
+            catch
+            {
+                hs.HairCutDiscount = 0;
+            }
+            try
+            {
+                hs.HairCutPirce = Decimal.Parse(tbHairCutPrice.Text.Trim());
+            }
+            catch
+            {
+                hs.HairCutPirce = 0;
+            }
+            try
+            {
+                hs.HairMarcelDiscount = Decimal.Parse(tbMarclDiscount.Text.Trim());
+            }
+            catch
+            {
+                hs.HairMarcelDiscount = 0;
+            }
+            try
+            {
+                hs.HairMarcelPrice = Decimal.Parse(tbMarcelPrice.Text.Trim());
+            }
+            catch
+            {
+                hs.HairMarcelPrice = 0;
+            }
 
-            hs.HairCutDiscount = Decimal.Parse(tbHairCutDiscount.Text.Trim());
-            hs.HairCutPirce = Decimal.Parse(tbHairCutPrice.Text.Trim());
-            hs.HairMarcelDiscount = Decimal.Parse(tbMarclDiscount.Text.Trim());
-            hs.HairMarcelPrice = Decimal.Parse(tbMarcelPrice.Text.Trim());
-            hs.HairDyeDiscount = Decimal.Parse(tbHairDyeDiscount.Text.Trim());
-            hs.HairDyePrice = Decimal.Parse(tbHairDyePrice.Text.Trim());
+            try
+            {
+                hs.HairDyeDiscount = Decimal.Parse(tbHairDyeDiscount.Text.Trim());
+            }
+            catch
+            {
+                hs.HairDyeDiscount = 0;
+            }
+            try
+            {
 
-            hs.HairShapePrice = Decimal.Parse(tbShapePrice.Text.Trim());
-            hs.HairShapeDiscount = Decimal.Parse(tbShapeDiscount.Text.Trim());
-            hs.HairConservationPrice = Decimal.Parse(tbConservationPrice.Text.Trim());
-            hs.HairConservationDiscount = Decimal.Parse(tbConservationDiscount.Text.Trim());
+                hs.HairDyePrice = Decimal.Parse(tbHairDyePrice.Text.Trim());
+            }
+            catch
+            {
+                hs.HairDyePrice = 0;
+            }
+
+            try
+            {
+                hs.HairShapePrice = Decimal.Parse(tbShapePrice.Text.Trim());
+            }
+            catch
+            {
+                hs.HairShapePrice = 0;
+            }
+            try
+            {
+                hs.HairShapeDiscount = Decimal.Parse(tbShapeDiscount.Text.Trim());
+            }
+            catch
+            {
+                hs.HairShapeDiscount = 0;
+            }
+            try
+            {
+                hs.HairConservationPrice = Decimal.Parse(tbConservationPrice.Text.Trim());
+            }
+            catch
+            {
+                hs.HairConservationPrice = 0;
+            }
+            try
+            {
+                hs.HairConservationDiscount = Decimal.Parse(tbConservationDiscount.Text.Trim());
+            }
+            catch 
+            {
+                hs.HairConservationDiscount = 0;
+            }
 
             hs.LocationMapURL = tbLocation.Text.Trim();
-            hs.Square = TextBox4.Text.Trim();
+
+            try
+            {
+                hs.Square = int.Parse(TextBox4.Text.Trim()).ToString();
+            }
+            catch
+            {
+                hs.Square = "0";
+            }
 
             hs.IsServeHairCut = chkCut.Checked;
             hs.IsServeMarce = chkMarcel.Checked;
@@ -160,27 +248,12 @@ namespace Web.Admin
             }
             hs.ProductIDs = productIDs;
             //InfoAdmin.AddHairShop(hs);
-            InfoAdmin.AddHairShopInfo(hs);
+            int newid = 0;
+            InfoAdmin.AddHairShopInfo(hs,out newid);
             Session["HairShop"] = hs;
 
-            string id = "";
-            using (SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["MSSqlServer"].ConnectionString))
-            {
-                string commString = "select top 1 * from HairShop order by HairShopID desc";
-                using (SqlCommand comm = new SqlCommand())
-                {
-                    comm.CommandText = commString;
-                    comm.Connection = conn;
-                    conn.Open();
-                    using (SqlDataReader sdr = comm.ExecuteReader())
-                    {
-                        if (sdr.Read())
-                        {
-                            id = sdr["HairShopID"].ToString();
-                        }
-                    }
-                }
-            }
+            string id = newid.ToString();
+
             string tagIDs = "";
             string[] tagCollection = txtHairShopTag.Text.Split(",".ToCharArray());
             for (int k = 0; k < tagCollection.Length; k++)
@@ -280,7 +353,8 @@ namespace Web.Admin
             }
             hs.HairShopTagIDs = tagIDs;
             hs.HairShopID = int.Parse(id.ToString());
-            ProviderFactory.GetHairShopDataProviderInstance().HairShopCreateDeleteUpdate(hs, UserAction.Update);
+            int nnewid = 0;
+            ProviderFactory.GetHairShopDataProviderInstance().HairShopCreateDeleteUpdate(hs, UserAction.Update,out nnewid);
 
             this.Response.Redirect("HairShopAddNext1.aspx?id="+id.ToString());
 

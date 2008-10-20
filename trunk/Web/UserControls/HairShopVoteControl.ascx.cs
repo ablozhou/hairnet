@@ -18,6 +18,19 @@ namespace Web.UserControls
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            if (!this.IsPostBack)
+            {
+                this.databind();
+            }
+        }
+        private int _hairShopID = 0;
+        public int HairShopID
+        {
+            set { this._hairShopID = value; }
+            get { return this._hairShopID; }
+        }
+        public void databind()
+        {
             HairShop hairShop = ProviderFactory.GetHairShopDataProviderInstance().GetHairShopByHairShopID(this.HairShopID);
 
             double total = Convert.ToDouble(hairShop.HairShopGood + hairShop.HairShopBad + hairShop.HairShopNormal);
@@ -33,20 +46,59 @@ namespace Web.UserControls
                 normalRate = 100 - goodRate - badRate;
             }
 
-            this.lblBadNum.Text = badRate.ToString()+"%";
+            this.lblBadNum.Text = badRate.ToString() + "%";
             this.lblGoodNum.Text = goodRate.ToString() + "%";
             this.lblNormalNum.Text = normalRate.ToString() + "%";
 
-            this.lblBad.Text = "<table border=1 cellpadding='0' width='129' cellspacing='0'><tr><td width=" + 129/100 * badRate + " bgcolor='gray' height='11'></td><td bgcolor=white height='11'></td></table>";
-            this.lblGood.Text = "<table border=1 cellpadding='0' width='129' cellspacing='0'><tr><td width=" + 129 / 100 * goodRate + " bgcolor='red' height='11'></td><td bgcolor=white height='11'></td></table>";
-            this.lblNormal.Text = "<table border=1 cellpadding='0' width='129' cellspacing='0'><tr><td width=" + 129 / 100 * normalRate + " bgcolor='yellow' height='11'></td><td bgcolor=white height='11'></td></table>";
+            if (badRate == 0)
+            {
+                this.lblBad.Text = "<table border=1 cellpadding='0' width='129' cellspacing='0'><tr><td bgcolor=white height='11'></td></tr></table>";
+            }
+            else
+            {
+                if (badRate == 100)
+                {
+                    this.lblBad.Text = "<table border=1 cellpadding='0' width='129' cellspacing='0'><tr><td width='129' bgcolor='gray' height='11'></td></tr></table>";
+                }
+                else
+                {
+                    this.lblBad.Text = "<table border=1 cellpadding='0' width='129' cellspacing='0'><tr><td width='" + 129 / 100 * badRate + "' bgcolor='gray' height='11'></td><td bgcolor=white height='11'></td></tr></table>";
+                }
+            }
 
-        }
-        private int _hairShopID = 0;
-        public int HairShopID
-        {
-            set { this._hairShopID = value; }
-            get { return this._hairShopID; }
+            if (goodRate == 0)
+            {
+
+                this.lblGood.Text = "<table border=1 cellpadding='0' width='129' cellspacing='0'><tr><td bgcolor=white height='11'></td></tr></table>"; 
+            }
+            else
+            {
+                if (goodRate == 100)
+                {
+                    this.lblGood.Text = "<table border=1 cellpadding='0' width='129' cellspacing='0'><tr><td width='129' bgcolor='red' height='11'></td></tr></table>";
+                }
+                else
+                {
+                    this.lblGood.Text = "<table border=1 cellpadding='0' width='129' cellspacing='0'><tr><td width='" + 129 / 100 * goodRate + "' bgcolor='red' height='11'></td><td bgcolor=white height='11'></td></tr></table>";
+                }
+            }
+
+            if (normalRate == 0)
+            {
+                this.lblNormal.Text = "<table border=1 cellpadding='0' width='129' cellspacing='0'><tr><td bgcolor=white height='11'></td></tr></table>"; 
+            }
+            else
+            {
+                if (normalRate == 100)
+                {
+                    this.lblNormal.Text = "<table border=1 cellpadding='0' width='129' cellspacing='0'><tr><td width='129' bgcolor='yellow' height='11'></td></tr></table>";
+                }
+                else
+                {
+                    this.lblNormal.Text = "<table border=1 cellpadding='0' width='129' cellspacing='0'><tr><td width='" + 129 / 100 * normalRate + "' bgcolor='yellow' height='11'></td><td bgcolor=white height='11'></td></tr></table>";
+                }
+            }
+
         }
         public void linkBtnGood_OnClick(object sender, EventArgs e)
         {
@@ -68,6 +120,7 @@ namespace Web.UserControls
                     }
                 }
             }
+            this.databind();
         }
         public void linkBtnNormal_OnClick(object sender, EventArgs e)
         {
@@ -89,6 +142,7 @@ namespace Web.UserControls
                     }
                 }
             }
+            this.databind();
         }
         public void linkBtnBad_OnClick(object sender, EventArgs e)
         {
@@ -110,6 +164,7 @@ namespace Web.UserControls
                     }
                 }
             }
+            this.databind();
         }
     }
 }

@@ -340,20 +340,101 @@ namespace Web.Admin
             hs.HairShopTagIDs = "";
 
 
-            hs.HairCutDiscount = Decimal.Parse(tbHairCutDiscount.Text.Trim());
-            hs.HairCutPirce = Decimal.Parse(tbHairCutPrice.Text.Trim());
-            hs.HairMarcelDiscount = Decimal.Parse(tbMarclDiscount.Text.Trim());
-            hs.HairMarcelPrice = Decimal.Parse(tbMarcelPrice.Text.Trim());
-            hs.HairDyeDiscount = Decimal.Parse(tbHairDyeDiscount.Text.Trim());
-            hs.HairDyePrice = Decimal.Parse(tbHairDyePrice.Text.Trim());
+            try
+            {
+                hs.HairCutDiscount = Decimal.Parse(tbHairCutDiscount.Text.Trim());
+            }
+            catch
+            {
+                hs.HairCutDiscount = 0;
+            }
+            try
+            {
+                hs.HairCutPirce = Decimal.Parse(tbHairCutPrice.Text.Trim());
+            }
+            catch
+            {
+                hs.HairCutPirce = 0;
+            }
+            try
+            {
+                hs.HairMarcelDiscount = Decimal.Parse(tbMarclDiscount.Text.Trim());
+            }
+            catch
+            {
+                hs.HairMarcelDiscount = 0;
+            }
+            try
+            {
+                hs.HairMarcelPrice = Decimal.Parse(tbMarcelPrice.Text.Trim());
+            }
+            catch
+            {
+                hs.HairMarcelPrice = 0;
+            }
 
-            hs.HairShapePrice = Decimal.Parse(tbShapePrice.Text.Trim());
-            hs.HairShapeDiscount = Decimal.Parse(tbShapeDiscount.Text.Trim());
-            hs.HairConservationPrice = Decimal.Parse(tbConservationPrice.Text.Trim());
-            hs.HairConservationDiscount = Decimal.Parse(tbConservationDiscount.Text.Trim());
+            try
+            {
+                hs.HairDyeDiscount = Decimal.Parse(tbHairDyeDiscount.Text.Trim());
+            }
+            catch
+            {
+                hs.HairDyeDiscount = 0;
+            }
+            try
+            {
+
+                hs.HairDyePrice = Decimal.Parse(tbHairDyePrice.Text.Trim());
+            }
+            catch
+            {
+                hs.HairDyePrice = 0;
+            }
+
+            try
+            {
+                hs.HairShapePrice = Decimal.Parse(tbShapePrice.Text.Trim());
+            }
+            catch
+            {
+                hs.HairShapePrice = 0;
+            }
+            try
+            {
+                hs.HairShapeDiscount = Decimal.Parse(tbShapeDiscount.Text.Trim());
+            }
+            catch
+            {
+                hs.HairShapeDiscount = 0;
+            }
+            try
+            {
+                hs.HairConservationPrice = Decimal.Parse(tbConservationPrice.Text.Trim());
+            }
+            catch
+            {
+                hs.HairConservationPrice = 0;
+            }
+            try
+            {
+                hs.HairConservationDiscount = Decimal.Parse(tbConservationDiscount.Text.Trim());
+            }
+            catch
+            {
+                hs.HairConservationDiscount = 0;
+            }
 
             hs.LocationMapURL = tbLocation.Text.Trim();
-            hs.Square = tbSquare.Text.Trim(); 
+
+            try
+            {
+                hs.Square = int.Parse(tbSquare.Text.Trim()).ToString();
+            }
+            catch
+            {
+                hs.Square = "0";
+            }
+
 
             hs.IsServeHairCut = chkCut.Checked;
             hs.IsServeMarce = chkMarcel.Checked;

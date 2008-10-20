@@ -130,6 +130,10 @@ namespace Web.UserControls
 
             int pageCount = list.Count / this.PageSize + 1;
 
+            if (PageSize == list.Count)
+            {
+                pageCount = list.Count/this.PageSize;
+            }
             if (pageCount > 1)
             {
                 if (currentPage == pageCount)
@@ -197,31 +201,28 @@ namespace Web.UserControls
                         goodRate = Convert.ToInt32(Convert.ToDouble(hairShop.HairShopGood) / Convert.ToDouble(total) * 100);
                     }
 
-                    string[] photoID = hairShop.OutLogs.Split(",".ToCharArray());
-                    if (photoID.Length == 1)
+                    using (SqlConnection conn1 = new SqlConnection(ConfigurationManager.ConnectionStrings["MSSqlServer"].ConnectionString))
                     {
-                        picSmallUrl = "Theme/Images/sg-meifa_ls02.gif";
-                    }
-                    else
-                    {
-                        using (SqlConnection conn1 = new SqlConnection(ConfigurationManager.ConnectionStrings["MSSqlServer"].ConnectionString))
+                        string commString1 = "select top 1 * from shoppics where classid=2 and hairshopid=" + hairShop.HairShopID.ToString();
+                        using (SqlCommand comm1 = new SqlCommand())
                         {
-                            string commString1 = "select top 1 * from shoppics where id=" + photoID[1];
-                            using (SqlCommand comm1 = new SqlCommand())
-                            {
-                                comm1.CommandText = commString1;
-                                comm1.Connection = conn1;
-                                conn1.Open();
+                            comm1.CommandText = commString1;
+                            comm1.Connection = conn1;
+                            conn1.Open();
 
-                                using (SqlDataReader sdr1 = comm1.ExecuteReader())
+                            using (SqlDataReader sdr1 = comm1.ExecuteReader())
+                            {
+                                if (sdr1.Read())
                                 {
-                                    if (sdr1.Read())
-                                    {
-                                        picSmallUrl = sdr1["picsmallurl"].ToString();
-                                    }
+                                    picSmallUrl = sdr1["picsmallurl"].ToString();
                                 }
                             }
                         }
+                    }
+
+                    if (picSmallUrl.ToString() == string.Empty)
+                    {
+                        picSmallUrl = "Theme/Images/sg-meifa_ls02.gif";
                     }
 
                     sb.Append("<div class=\"message-2\">");
@@ -234,7 +235,7 @@ namespace Web.UserControls
                     sb.Append("<tr>");
                     sb.Append("<td width=\"4%\" height=\"12\">&nbsp;</td>");
                     sb.Append("<td width=\"12%\">[名称]</td>");
-                    sb.Append("<td width=\"27%\" class=\"red12\"><strong>" + hairShop.HairShopName + "</strong></td>");
+                    sb.Append("<td width=\"27%\" class=\"red12\"><strong>" + hairShop.HairShopShortName + "</strong></td>");
                     sb.Append("<td width=\"8%\">[价格]</td>");
                     sb.Append("<td width=\"21%\">" + hairShop.HairShapePrice.ToString() + "元</td>");
                     sb.Append("<td width=\"4%\"><img src=\"Theme/images/mft_list_arrow.gif\" width=\"9\" height=\"13\" /></td>");
@@ -258,10 +259,10 @@ namespace Web.UserControls
                     sb.Append("<td colspan=\"7\"><table width=\"100%\" border=\"0\" cellspacing=\"0\" cellpadding=\"0\">");
                     sb.Append("<tr>");
                     sb.Append("<td width=\"13%\" height=\"27\"><a href=\"#\" target=\"_blank\"><img src=\"Theme/images/mfs_list_map.gif\" width=\"59\" height=\"19\" border=\"0\" /></a></td>");
-                    sb.Append("<td width=\"28%\"><a onClick=\"window.external.AddFavorite('HairShopContent.aspx?id=" + hairShop.HairShopID.ToString() + "','" + hairShop.HairShopName + "');\" href=\"" + this.Request.Url.ToString() + "\"><img src=\"Theme/images/mft_list_collection.gif\" width=\"59\" height=\"19\" border=\"0\" /></a></td>");
+                    sb.Append("<td width=\"28%\"><img src=\"Theme/images/mft_list_collection.gif\" width=\"59\" height=\"19\" border=\"0\" /></td>");
                     sb.Append("<td width=\"8%\">[好评]</td>");
                     sb.Append("<td width=\"16%\"><span class=\"red12\">" + goodRate + "%</span></td>");
-                    sb.Append("<td width=\"35%\"><a href=\"HairShopContent.aspx?id=" + hairShop.HairShopID.ToString() + "\" class=\"red12\" style=\" text-decoration:underline\">查 看</a> | <a href=\"http://bbs.sg.com.cn/xxx_xxx.htm\" style=\" text-decoration:underline\">我要评论</a></td>");
+                    sb.Append("<td width=\"35%\"><a href=\"HairShopContent.aspx?id=" + hairShop.HairShopID.ToString() + "\" class=\"red12\" style=\" text-decoration:underline\">查 看</a> | <a href=\"http://bbs.sg.com.cn/thread-" + hairShop.Postid.ToString() + "-1-1.html\" style=\" text-decoration:underline\">我要评论</a></td>");
                     sb.Append("</tr></table></td></tr></table></td></tr><tr><td>&nbsp;</td><td colspan=\"2\">&nbsp;</td></tr></table></div></div>");
                 }
                 else
@@ -280,31 +281,28 @@ namespace Web.UserControls
                         goodRate = Convert.ToInt32(Convert.ToDouble(hairShop.HairShopGood) / Convert.ToDouble(total) * 100);
                     }
 
-                    string[] photoID = hairShop.OutLogs.Split(",".ToCharArray());
-                    if (photoID.Length == 1)
+                    using (SqlConnection conn1 = new SqlConnection(ConfigurationManager.ConnectionStrings["MSSqlServer"].ConnectionString))
                     {
-                        picSmallUrl = "Theme/Images/sg-meifa_ls02.gif";
-                    }
-                    else
-                    {
-                        using (SqlConnection conn1 = new SqlConnection(ConfigurationManager.ConnectionStrings["MSSqlServer"].ConnectionString))
+                        string commString1 = "select top 1 * from shoppics where classid=2 and hairshopid=" + hairShop.HairShopID.ToString();
+                        using (SqlCommand comm1 = new SqlCommand())
                         {
-                            string commString1 = "select top 1 * from shoppics where id=" + photoID[1];
-                            using (SqlCommand comm1 = new SqlCommand())
-                            {
-                                comm1.CommandText = commString1;
-                                comm1.Connection = conn1;
-                                conn1.Open();
+                            comm1.CommandText = commString1;
+                            comm1.Connection = conn1;
+                            conn1.Open();
 
-                                using (SqlDataReader sdr1 = comm1.ExecuteReader())
+                            using (SqlDataReader sdr1 = comm1.ExecuteReader())
+                            {
+                                if (sdr1.Read())
                                 {
-                                    if (sdr1.Read())
-                                    {
-                                        picSmallUrl = sdr1["picsmallurl"].ToString();
-                                    }
+                                    picSmallUrl = sdr1["picsmallurl"].ToString();
                                 }
                             }
                         }
+                    }
+
+                    if (picSmallUrl.ToString() == string.Empty)
+                    {
+                        picSmallUrl = "Theme/Images/sg-meifa_ls02.gif";
                     }
 
                     sb.Append("<div class=\"message-1\">");
@@ -317,7 +315,7 @@ namespace Web.UserControls
                     sb.Append("<tr>");
                     sb.Append("<td width=\"4%\" height=\"12\">&nbsp;</td>");
                     sb.Append("<td width=\"12%\">[名称]</td>");
-                    sb.Append("<td width=\"27%\" class=\"red12\"><strong>" + hairShop.HairShopName + "</strong></td>");
+                    sb.Append("<td width=\"27%\" class=\"red12\"><strong>" + hairShop.HairShopShortName + "</strong></td>");
                     sb.Append("<td width=\"8%\">[价格]</td>");
                     sb.Append("<td width=\"21%\">" + hairShop.HairShapePrice.ToString() + "元</td>");
                     sb.Append("<td width=\"4%\"><img src=\"Theme/images/mft_list_arrow.gif\" width=\"9\" height=\"13\" /></td>");
@@ -341,9 +339,10 @@ namespace Web.UserControls
                     sb.Append("<td colspan=\"7\"><table width=\"100%\" border=\"0\" cellspacing=\"0\" cellpadding=\"0\">");
                     sb.Append("<tr>");
                     sb.Append("<td width=\"13%\" height=\"27\"><a href=\"#\" target=\"_blank\"><img src=\"Theme/images/mfs_list_map.gif\" width=\"59\" height=\"19\" border=\"0\" /></a></td>");
-                    sb.Append("<td width=\"28%\"><a onClick=\"window.external.AddFavorite('HairShopContent.aspx?id=" + hairShop.HairShopID.ToString() + "','" + hairShop.HairShopName + "');\" href=\"" + this.Request.Url.ToString() + "\"><img src=\"Theme/images/mft_list_collection.gif\" width=\"59\" height=\"19\" border=\"0\" /></a></td>");
+                    sb.Append("<td width=\"28%\"><img src=\"Theme/images/mft_list_collection.gif\" width=\"59\" height=\"19\" border=\"0\" /></td>");
+                    sb.Append("<td width=\"8%\">[好评]</td>");
                     sb.Append("<td width=\"16%\"><span class=\"red12\">" + goodRate + "%</span></td>");
-                    sb.Append("<td width=\"35%\"><a href=\"HairShopContent.aspx?id=" + hairShop.HairShopID.ToString() + "\" class=\"red12\" style=\" text-decoration:underline\">查 看</a> | <a href=\"http://bbs.sg.com.cn/xxx_xxx.htm\" style=\" text-decoration:underline\">我要评论</a></td>");
+                    sb.Append("<td width=\"35%\"><a href=\"HairShopContent.aspx?id=" + hairShop.HairShopID.ToString() + "\" class=\"red12\" style=\" text-decoration:underline\">查 看</a> | <a href=\"http://bbs.sg.com.cn/thread-" + hairShop.Postid.ToString() + "-1-1.html\" style=\" text-decoration:underline\">我要评论</a></td>");
                     sb.Append("</tr></table></td></tr></table></td></tr><tr><td>&nbsp;</td><td colspan=\"2\">&nbsp;</td></tr></table></div></div>");
                 }
             }
@@ -351,15 +350,57 @@ namespace Web.UserControls
             this.lblDisplayText.Text = sb.ToString();
 
             //this.lblCurrentPage.Text = currentPage.ToString();
-            this.lblHairShopCount.Text = list.Count.ToString();
-            this.lblFrontPage.Text = "<a href=\"HairShopList.aspx?pageNum=" + frontPage.ToString() + "\">上一页</a>";
-            this.lblNextPage.Text = "<a href=\"HairShopList.aspx?pageNum=" + backPage.ToString() + "\">下一页</a>";
+            if (list.Count != 0)
+            {
+                this.lblHairShopCount.Text = list.Count.ToString();
+            }
+            else
+            {
+                this.lblHairShopCount.Text = "0";
+            }
+            if (currentPage == 1)
+            {
+                this.lblFrontPage.Text = "上一页";
+                if (pageCount > 1)
+                {
+                    this.lblNextPage.Text = "<a href=\"#\" class=\"gray12-d\"><a href=\"HairShopList.aspx?pageNum=" + backPage.ToString() + "\">下一页</a></a>";
+                }
+                else
+                {
+                    this.lblNextPage.Text = "下一页";
+                }
+            }
+            else
+            {
+                if (currentPage == pageCount)
+                {   
+                    this.lblFrontPage.Text = "<a href=\"#\" class=\"gray12-d\"><a href=\"HairShopList.aspx?pageNum=" + frontPage.ToString() + "\">上一页</a></a>";
+                    this.lblNextPage.Text = "下一页";
+                }
+                else
+                {
+                    this.lblFrontPage.Text = "<a href=\"#\" class=\"gray12-d\"><a href=\"HairShopList.aspx?pageNum=" + frontPage.ToString() + "\">上一页</a></a>";
+                    this.lblNextPage.Text = "<a href=\"#\" class=\"gray12-d\"><a href=\"HairShopList.aspx?pageNum=" + backPage.ToString() + "\">下一页</a></a>";
+                }
+            }
+            
+
             this.lblPageCount.Text = pageCount.ToString();
 
             StringBuilder sb2 = new StringBuilder();
             sb2.Append("<div class=\"page-all\">");
-            sb2.Append("<a href=\"HairShopList.aspx?pageNum=1\">第一页</a>");
-            sb2.Append("&nbsp;<a href=\"HairShopList.aspx?pageNum=" + frontPage.ToString() + "\">上一页</a>&nbsp;");
+            if (this.CurrentPage > 1)
+            {
+                sb2.Append("<a href=\"HairShopList.aspx?pageNum=1\">第一页</a>");
+                sb2.Append("&nbsp;<a href=\"HairShopList.aspx?pageNum=" + frontPage.ToString() + "\">上一页</a>&nbsp;");
+            }
+            else
+            {
+                sb2.Append("第一页");
+                sb2.Append("&nbsp;上一页&nbsp;");
+            }
+            
+            
 
             if (CurrentPage < 3)
             {
@@ -367,11 +408,11 @@ namespace Web.UserControls
                 {
                     if (m == currentPage)
                     {
-                        sb2.Append("<span class=\"red12\"><a href=\"HairShopList.aspx?pageNum=" + m.ToString() + "\">" + m.ToString() + "</a></span>");
+                        sb2.Append("&nbsp;<span class=\"red12\"><a href=\"HairShopList.aspx?pageNum=" + m.ToString() + "\">" + m.ToString() + "</a></span>&nbsp;");
                     }
                     else
                     {
-                        sb2.Append("<a href=\"HairShopList.aspx?pageNum=" + m.ToString() + "\">" + m.ToString() + "</a>");
+                        sb2.Append("&nbsp;<a href=\"HairShopList.aspx?pageNum=" + m.ToString() + "\">" + m.ToString() + "</a>&nbsp;");
                     }
                     if (m == 5)
                     {
@@ -387,11 +428,11 @@ namespace Web.UserControls
                     {
                         if (m == currentPage)
                         {
-                            sb2.Append("<span class=\"red12\"><a href=\"HairShopList.aspx?pageNum=" + m.ToString() + "\">" + m.ToString() + "</a></span>");
+                            sb2.Append("&nbsp;<span class=\"red12\"><a href=\"HairShopList.aspx?pageNum=" + m.ToString() + "\">" + m.ToString() + "</a></span>&nbsp;");
                         }
                         else
                         {
-                            sb2.Append("<a href=\"HairShopList.aspx?pageNum=" + m.ToString() + "\">" + m.ToString() + "</a>");
+                            sb2.Append("&nbsp;<a href=\"HairShopList.aspx?pageNum=" + m.ToString() + "\">" + m.ToString() + "</a>&nbsp;");
                         }
                     }
                 }
@@ -401,18 +442,25 @@ namespace Web.UserControls
                     {
                         if (m == currentPage)
                         {
-                            sb2.Append("<span class=\"red12\"><a href=\"HairShopList.aspx?pageNum=" + m.ToString() + "\">" + m.ToString() + "</a></span>");
+                            sb2.Append("&nbsp;<span class=\"red12\"><a href=\"HairShopList.aspx?pageNum=" + m.ToString() + "\">" + m.ToString() + "</a></span>&nbsp;");
                         }
                         else
                         {
-                            sb2.Append("<a href=\"HairShopList.aspx?pageNum=" + m.ToString() + "\">" + m.ToString() + "</a>");
+                            sb2.Append("&nbsp;<a href=\"HairShopList.aspx?pageNum=" + m.ToString() + "\">" + m.ToString() + "</a>&nbsp;");
                         }
                     }
                 }
             }
-
-            sb2.Append("&nbsp;<a href=\"HairShopList.aspx?pageNum=" + backPage.ToString() + "\">下一页</a>");
-            sb2.Append("&nbsp;<a href=\"HairShopList.aspx?pageNum=" + pageCount.ToString() + "\">最后一页</a>");
+            if (this.CurrentPage < pageCount)
+            {
+                sb2.Append("&nbsp;<a href=\"HairShopList.aspx?pageNum=" + backPage.ToString() + "\">下一页</a>");
+                sb2.Append("&nbsp;<a href=\"HairShopList.aspx?pageNum=" + pageCount.ToString() + "\">最后一页</a>");
+            }
+            else
+            {
+                sb2.Append("&nbsp;下一页");
+                sb2.Append("&nbsp;最后一页");
+            }
             sb2.Append("&nbsp;共" + pageCount.ToString() + "页</div>");
 
             this.lblPageText.Text = sb2.ToString();

@@ -7,6 +7,8 @@
 function $(id){
  return document.getElementById?document.getElementById(id):document.all(id)
 }
+var timeout1;
+var timeout2;
 function fnToggle() {
     var next = NowFrame + 1;
     if(next == MaxFrame+1)
@@ -17,7 +19,7 @@ function fnToggle() {
     if(bStart == 0)
     {
         bStart = 1;
-        setTimeout('fnToggle()', 5500);
+        timeout1 = setTimeout('fnToggle()', 5500);
         return;
     }
     else
@@ -36,11 +38,30 @@ function fnToggle() {
             NowFrame = 1;
         else
             NowFrame++;
-    }    setTimeout('fnToggle()', 3500);
+    }    timeout2 = setTimeout('fnToggle()', 3500);
 }
 fnToggle();
+function GoToPic(id)
+{
+      clearTimeout(timeout1);
+      clearTimeout(timeout2);
+      if (isie)
+      {
+       oTransContainer.filters[0].Apply();
+      }
+      if(id != NowFrame)
+      {
+       $('oDIV'+id).style.display = "";
+       $('oDIV'+NowFrame).style.display = "none";
+      if (isie)
+      {
+         oTransContainer.filters[0].Play(duration=2);
+       }}
+       NowFrame = id;           
+       
+}
 </SCRIPT>
-<DIV id=oTransContainer style="FILTER: progid:DXImageTransform.Microsoft.Wipe(GradientSize=1.0,wipeStyle=0, motion='forward'); WIDTH: 259px; HEIGHT: 130px">
+<DIV id=oTransContainer style="FILTER: progid:DXImageTransform.Microsoft.Wipe(GradientSize=1.0,wipeStyle=0, motion='forward'); position:relative; WIDTH: 259px; HEIGHT: 130px">
 <asp:Label ID="picDisplayContent" runat="server"></asp:Label>
 </DIV>
   
@@ -74,8 +95,8 @@ fnToggle();
       </table>
 	  <table width="360" border="0" align="center" cellpadding="0" cellspacing="0">
         <tr>
-          <td width="39%" align="left" class="gray12-d"><span class="red12-c">[面 积] </span><asp:Label ID="lblSquare" runat="server"></asp:Label></td>
-          <td width="61%" align="left" class="gray12-d"><span class="red12-c">[停车位]</span> <asp:Label ID="lblIsPostStation" runat="server"></asp:Label></td>
+          <td width="37%" align="left" class="gray12-d"><span class="red12-c">[面 积] </span><asp:Label ID="lblSquare" runat="server"></asp:Label></td>
+          <td width="63%" align="left" class="gray12-d"><span class="red12-c">[停车位]</span> <asp:Label ID="lblIsPostStation" runat="server"></asp:Label></td>
         </tr>
         <tr>
           <td align="left" class="gray12-d"><span class="red12-c">[可否刷卡]</span> <asp:Label ID="lblIsPostMachine" runat="server"></asp:Label></td>

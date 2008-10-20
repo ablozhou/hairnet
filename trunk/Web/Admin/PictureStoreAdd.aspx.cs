@@ -390,7 +390,7 @@ namespace Web.Admin
                     tagIDs += "," + tagID;
                 }
             }
-            HairStyleEntity HairStyle1 = new HairStyleEntity(int.Parse(hstyleid),tagIDs,txtPictureStoreName.Text.Trim(), iHairQuantity, bbsUrl, hairShopID, hairEngineerID, iHairStyleClassName, iFaceStyle, iTemperament, iOccasion, iSex, iHairNature, ps.PictureStoreID, this.txtPictureStoreDescription.Text.Trim(), PSGIDS, false, 0);
+            HairStyleEntity HairStyle1 = new HairStyleEntity(int.Parse(hstyleid),tagIDs,txtPictureStoreName.Text.Trim(), iHairQuantity, bbsUrl, hairShopID, hairEngineerID, iHairStyleClassName, iFaceStyle, iTemperament, iOccasion, iSex, iHairNature, ps.PictureStoreID, this.txtPictureStoreDescription.Text.Trim(), PSGIDS, false, postid);
             
             InfoAdmin.UpdateHairStyle(HairStyle1);
             //
@@ -660,6 +660,7 @@ namespace Web.Admin
                         }
                     }
                 }
+                this.ddlOccasion.SelectedValue = "3";
             }
         }
     }

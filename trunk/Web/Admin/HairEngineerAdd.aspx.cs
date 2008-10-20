@@ -183,6 +183,7 @@ namespace Web.Admin
             int postId = 0;
             BBSPost post = new BBSPost();
             bool bSuc = post.AddPost(he.HairEngineerName, content, BBSPost.Category.HairEngineer, out postId);
+            he.PostId = postId;
             if (bSuc)
             {
                 //update postid

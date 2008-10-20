@@ -57,14 +57,14 @@ namespace Web.UserControls
 
                                 if (displayNum==1)
                                 {
-                                    displayPicSb.Append("<IMG id=oDIV1 src=\""+sdr["picurl"].ToString()+"\" border=0 alt=\"\">");
+                                    displayPicSb.Append("<IMG width='563' height='290' id=oDIV1 src=\""+sdr["picurl"].ToString()+"\" border=0 alt=\"\">");
                                 }
                                 else
                                 {
-                                    displayPicSb.Append("<IMG id=oDIV"+displayNum.ToString()+" style=\"DISPLAY: none;\" src=\""+sdr["picurl"].ToString()+"\" border=0 alt=\"\">");
+                                    displayPicSb.Append("<IMG width='563' height='290' id=oDIV"+displayNum.ToString()+" style=\"DISPLAY: none;\" src=\""+sdr["picurl"].ToString()+"\" border=0 alt=\"\">");
                                 }
 
-                                picSB.Append("<a href=\"#\"><img src=\"" + sdr["picsmallurl"].ToString() + "\" /></a>");
+                                picSB.Append("<a onClick='GoToPic("+displayNum.ToString()+")'><img src=\"" + sdr["picsmallurl"].ToString() + "\" /></a>");
 
                             }
                         }
@@ -156,9 +156,9 @@ namespace Web.UserControls
                 }
 
                 this.lblComment.Text = "<a href=\"#\" target=\"_blank\">[评 论]</a>";
-                this.lblStore.Text = "<a onClick='window.external.AddFavorite(location.href,document.title);' href='HairShopContent.aspx?id=" + this.HairShopID.ToString() + "' >[收 藏]</a>";
+                this.lblStore.Text = "<a onClick='window.external.AddFavorite(location.href,document.title);' href='#'>[收 藏]</a>";
                 this.lblComment2.Text = "<a href=\"#\" target=\"_blank\">[评 论]</a>";
-                this.lblStore2.Text = "<a onClick='window.external.AddFavorite(location.href,document.title);' href='HairShopContent.aspx?id=" + this.HairShopID.ToString() + "' >[收 藏]</a>";
+                this.lblStore2.Text = "<a onClick='window.external.AddFavorite(location.href,document.title);' href='#'>[收 藏]</a>";
             }
         }
         private int _hairShopID = 0;

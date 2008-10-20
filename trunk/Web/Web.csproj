@@ -2,7 +2,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProductVersion>9.0.21022</ProductVersion>
+    <ProductVersion>8.0.50727</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{AA67A172-FF0F-4C2B-B68A-10E02F9D12AD}</ProjectGuid>
     <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
@@ -54,7 +54,7 @@
     </Reference>
     <Reference Include="HWCommon, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>HWCommon\DLL\HWCommon.dll</HintPath>
+      <HintPath>D:\hair\HWCommon\bin\Debug\HWCommon.dll</HintPath>
     </Reference>
     <Reference Include="HWKEY, Version=1.0.1460.35494, Culture=neutral">
       <SpecificVersion>False</SpecificVersion>
@@ -66,9 +66,6 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
-    <Reference Include="System.Data.DataSetExtensions, Version=3.5.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
-      <RequiredTargetFramework>3.5</RequiredTargetFramework>
-    </Reference>
     <Reference Include="System.Drawing" />
     <Reference Include="System.Web" />
     <Reference Include="System.Web.Extensions, Version=1.0.61025.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
@@ -84,9 +81,6 @@
     <Reference Include="System.Web.Services" />
     <Reference Include="System.EnterpriseServices" />
     <Reference Include="System.Web.Mobile" />
-    <Reference Include="System.Xml.Linq, Version=3.5.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
-      <RequiredTargetFramework>3.5</RequiredTargetFramework>
-    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Content Include="Admin\AddCoupon.aspx" />
@@ -1113,7 +1107,6 @@
     <Content Include="Admin\UserInfoAdmin.aspx" />
     <Content Include="Admin\UserLogin.aspx" />
     <Content Include="Admin\welcome.aspx" />
-    <Content Include="Index.aspx" />
     <Content Include="Theme\Images\bbs-blog_01.gif" />
     <Content Include="Theme\Images\bbs-blog_02.gif" />
     <Content Include="Theme\Images\bbs-blog_04.gif" />
@@ -1922,12 +1915,12 @@
     <Compile Include="Admin\UserLogin.aspx.designer.cs">
       <DependentUpon>UserLogin.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Chaoliu.aspx.cs">
+    <Compile Include="CouponHead.Master.cs">
+      <DependentUpon>CouponHead.Master</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
-      <DependentUpon>Chaoliu.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Chaoliu.aspx.designer.cs">
-      <DependentUpon>Chaoliu.aspx</DependentUpon>
+    <Compile Include="CouponHead.Master.designer.cs">
+      <DependentUpon>CouponHead.Master</DependentUpon>
     </Compile>
     <Compile Include="CouponList.aspx.cs">
       <SubType>ASPXCodeBehind</SubType>
@@ -1935,36 +1928,6 @@
     </Compile>
     <Compile Include="CouponList.aspx.designer.cs">
       <DependentUpon>CouponList.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Cryptogram.cs" />
-    <Compile Include="DataHelper.cs" />
-    <Compile Include="FxkContent.aspx.cs">
-      <SubType>ASPXCodeBehind</SubType>
-      <DependentUpon>FxkContent.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="FxkContent.aspx.designer.cs">
-      <DependentUpon>FxkContent.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="FxkList.aspx.cs">
-      <SubType>ASPXCodeBehind</SubType>
-      <DependentUpon>FxkList.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="FxkList.aspx.designer.cs">
-      <DependentUpon>FxkList.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="HairEngineerContent.aspx.cs">
-      <SubType>ASPXCodeBehind</SubType>
-      <DependentUpon>HairEngineerContent.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="HairEngineerContent.aspx.designer.cs">
-      <DependentUpon>HairEngineerContent.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="HairEngineerList.aspx.cs">
-      <SubType>ASPXCodeBehind</SubType>
-      <DependentUpon>HairEngineerList.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="HairEngineerList.aspx.designer.cs">
-      <DependentUpon>HairEngineerList.aspx</DependentUpon>
     </Compile>
     <Compile Include="HairShopContent.aspx.cs">
       <SubType>ASPXCodeBehind</SubType>
@@ -1980,33 +1943,12 @@
     <Compile Include="HairShopList.aspx.designer.cs">
       <DependentUpon>HairShopList.aspx</DependentUpon>
     </Compile>
-    <Compile Include="HairStarList.aspx.cs">
-      <SubType>ASPXCodeBehind</SubType>
-      <DependentUpon>HairStarList.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="HairStarList.aspx.designer.cs">
-      <DependentUpon>HairStarList.aspx</DependentUpon>
-    </Compile>
     <Compile Include="Home.Master.cs">
       <DependentUpon>Home.Master</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Home.Master.designer.cs">
       <DependentUpon>Home.Master</DependentUpon>
-    </Compile>
-    <Compile Include="Index.aspx.cs">
-      <SubType>ASPXCodeBehind</SubType>
-      <DependentUpon>Index.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Index.aspx.designer.cs">
-      <DependentUpon>Index.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="JiepaiList.aspx.cs">
-      <SubType>ASPXCodeBehind</SubType>
-      <DependentUpon>JiepaiList.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="JiepaiList.aspx.designer.cs">
-      <DependentUpon>JiepaiList.aspx</DependentUpon>
     </Compile>
     <Compile Include="PrintCoupon.aspx.cs">
       <SubType>ASPXCodeBehind</SubType>
@@ -2030,16 +1972,6 @@
     <Compile Include="SendFriends.aspx.designer.cs">
       <DependentUpon>SendFriends.aspx</DependentUpon>
     </Compile>
-    <Compile Include="SQLCommon.cs" />
-    <Compile Include="test.aspx.cs">
-      <SubType>ASPXCodeBehind</SubType>
-      <DependentUpon>test.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="test.aspx.designer.cs">
-      <DependentUpon>test.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="TokenManager.cs" />
-    <Compile Include="UserAuth.cs" />
     <Compile Include="UserControls\CouponDetailList.ascx.cs">
       <DependentUpon>CouponDetailList.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -2179,22 +2111,6 @@
     </Compile>
     <Compile Include="UserControls\SearchHead.ascx.designer.cs">
       <DependentUpon>SearchHead.ascx</DependentUpon>
-    </Compile>
-    <Compile Include="UserInfo.cs" />
-    <Compile Include="Util.cs" />
-    <Compile Include="ZTContent.aspx.cs">
-      <SubType>ASPXCodeBehind</SubType>
-      <DependentUpon>ZTContent.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="ZTContent.aspx.designer.cs">
-      <DependentUpon>ZTContent.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="ZTList.aspx.cs">
-      <SubType>ASPXCodeBehind</SubType>
-      <DependentUpon>ZTList.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="ZTList.aspx.designer.cs">
-      <DependentUpon>ZTList.aspx</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
@@ -2383,25 +2299,21 @@
     <Content Include="Admin\PictureStoreOperate2.aspx" />
     <Content Include="Admin\UserCreate.aspx" />
     <Content Include="Admin\UserEdit.aspx" />
-    <Content Include="Chaoliu.aspx" />
     <Content Include="CouponList.aspx" />
     <Content Include="coupontags.htm" />
-    <Content Include="FxkContent.aspx" />
-    <Content Include="FxkList.aspx" />
-    <Content Include="HairEngineerContent.aspx" />
-    <Content Include="HairEngineerList.aspx" />
     <Content Include="HairShopContent.aspx" />
     <Content Include="HairShopList.aspx" />
-    <Content Include="HairStarList.aspx" />
     <Content Include="Home.Master" />
-    <Content Include="HWCommon.csproj" />
-    <Content Include="JiepaiList.aspx" />
+    <Content Include="include\Foot.html" />
+    <Content Include="include\Head.html" />
+    <Content Include="include\top-2.htm" />
+    <Content Include="include\top-4.htm" />
     <Content Include="PrintCoupon.aspx" />
     <Content Include="SearchHeadPage.aspx" />
     <Content Include="SendFriends.aspx" />
     <Content Include="shophotcomment.htm" />
     <Content Include="shophottags.htm" />
-    <Content Include="test.aspx" />
+    <Content Include="Theme\Flash\yanshi.swf" />
     <Content Include="Theme\Images\bbs-blog_05.gif" />
     <Content Include="Theme\Images\bbs-blog_06.gif" />
     <Content Include="Theme\Images\bbs-blog_linshi.gif" />
@@ -2453,6 +2365,7 @@
     <Content Include="Theme\Images\reg.gif" />
     <Content Include="Theme\Images\sg-08-index_test02.gif" />
     <Content Include="Theme\Images\sg-meifa_picbg3.gif" />
+    <Content Include="Theme\Style\chaoliu-list.css" />
     <Content Include="UserControls\CouponDetailList.ascx" />
     <Content Include="UserControls\CouponListControl.ascx" />
     <Content Include="UserControls\HairShopDescription.ascx" />
@@ -2472,15 +2385,13 @@
     <Content Include="UserControls\SameHotZoneHairShopList.ascx" />
     <Content Include="UserControls\SearchHead.ascx" />
     <Content Include="userrecommendshop.htm" />
-    <Content Include="ZTContent.aspx" />
-    <Content Include="ZTList.aspx" />
+    <Content Include="CouponHead.Master" />
     <None Include="Theme\Images\search-fxs.psd" />
     <None Include="Theme\Images\Thumbs.db" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Admin\FCKeditor\FCKeditor\editor\filemanager\browser\default\connectors\perl\temp\" />
     <Folder Include="AjaxHandle\" />
-    <Folder Include="Theme\Flash\" />
     <Folder Include="UploadFiles\" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
@@ -2505,7 +2416,6 @@
           <IISUrl>
           </IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
-          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
         </WebProjectProperties>
       </FlavorProperties>
     </VisualStudio>

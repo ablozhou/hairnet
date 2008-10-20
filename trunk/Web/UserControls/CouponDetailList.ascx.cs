@@ -35,6 +35,11 @@ namespace Web.UserControls
 
                     int pageCount = list.Count / this.PageSize + 1;
 
+                    if (PageSize == list.Count)
+                    {
+                        pageCount = list.Count / this.PageSize;
+                    }
+
                     if (pageCount > 1)
                     {
                         if (currentPage == pageCount)
@@ -128,7 +133,7 @@ namespace Web.UserControls
                             sb.Append("           联系方式 &nbsp;&nbsp;" + cp.PhoneNumber + "</td>");
                             sb.Append("     </tr>");
                             sb.Append("     <tr>");
-                            sb.Append("      <td align=\"center\" class=\"gray12-bg\"><a href=\"#\" target=\"_blank\">发表评论</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href=\"#\" target=\"_blank\">更多评论&gt;&gt;</a></td>");
+                            sb.Append("      <td align=\"center\" class=\"gray12-bg\"><a href=\"HairShopContent.aspx?id=" + cp.HairShopID + "\" target=\"_blank\">发表评论</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href=\"http://bbs.sg.com.cn/thread-"+cp.PostID.ToString()+"-1-1.html\" target=\"_blank\">更多评论&gt;&gt;</a></td>");
                             sb.Append("      <td>&nbsp;</td>");
                             sb.Append("      <td>&nbsp;</td>");
                             sb.Append("    </tr>");
@@ -143,8 +148,16 @@ namespace Web.UserControls
 
                     StringBuilder sb2 = new StringBuilder();
                     sb2.Append("<div class=\"page-all\">");
-                    sb2.Append("<a href=\"couponList.aspx?pageNum=1\">第一页</a>");
-                    sb2.Append("&nbsp;<a href=\"couponList.aspx?pageNum="+frontPage.ToString()+"\">上一页</a>&nbsp;");
+                    if (this.CurrentPage > 1)
+                    {
+                        sb2.Append("<a href=\"couponList.aspx?pageNum=1\">第一页</a>");
+                        sb2.Append("&nbsp;<a href=\"couponList.aspx?pageNum=" + frontPage.ToString() + "\">上一页</a>&nbsp;");
+                    }
+                    else
+                    {
+                        sb2.Append("第一页");
+                        sb2.Append("&nbsp;上一页&nbsp;");
+                    }
                     
                     if(CurrentPage<3)
                     {
@@ -195,9 +208,17 @@ namespace Web.UserControls
                             }
                         }
                     }
+                    if (this.CurrentPage < pageCount)
+                    {
+                        sb2.Append("&nbsp;<a href=\"couponList.aspx?pageNum="+backPage.ToString()+"\">下一页</a>");
+                        sb2.Append("&nbsp;<a href=\"couponList.aspx?pageNum="+pageCount.ToString()+"\">最后一页</a>");
+                    }
+                    else
+                    {
+                        sb2.Append("&nbsp;下一页");
+                        sb2.Append("&nbsp;最后一页");
+                    }
 
-                    sb2.Append("&nbsp;<a href=\"couponList.aspx?pageNum="+backPage.ToString()+"\">下一页</a>");
-                    sb2.Append("&nbsp;<a href=\"couponList.aspx?pageNum="+pageCount.ToString()+"\">最后一页</a>");
                     sb2.Append("&nbsp;共"+pageCount.ToString()+"页</div>");
 
                     this.lblPageText.Text = sb2.ToString();
@@ -226,7 +247,7 @@ namespace Web.UserControls
             List<Coupon> list = new List<Coupon>();
             using (SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["MSSqlServer"].ConnectionString))
             {
-                string commString = "select * from Coupon c inner join HairShop hs on c.hairshopid=hs.hairshopid inner join HotZone hz on hz.HotZoneID = hs.HairShopHotZoneID "+sc+" order by c.id desc";
+                string commString = "select c.Name,c.HitNum,c.ImageUrl,c.ImageSmallUrl,c.Description,c.ID,c.HairShopID,c.ExpiredDate,c.Discount,c.PhoneNumber,hs.HairShopName,hz.HotZoneName,hs.POSTID from Coupon c inner join HairShop hs on c.hairshopid=hs.hairshopid inner join HotZone hz on hz.HotZoneID = hs.HairShopHotZoneID "+sc+" order by c.id desc";
                 using (SqlCommand comm = new SqlCommand())
                 {
                     comm.CommandText = commString;
@@ -256,6 +277,14 @@ namespace Web.UserControls
                             coupon.PhoneNumber = sdr["PhoneNumber"].ToString();
                             coupon.HairShopName = sdr["HairShopName"].ToString();
                             coupon.HotZoneName = sdr["HotZoneName"].ToString();
+                            if (sdr["POSTID"].ToString() != string.Empty)
+                            {
+                                coupon.PostID = int.Parse(sdr["postid"].ToString());
+                            }
+                            else
+                            {
+                                coupon.PostID = 0;
+                            }
 
                             list.Add(coupon);
                         }
