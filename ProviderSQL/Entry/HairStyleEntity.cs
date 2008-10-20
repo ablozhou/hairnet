@@ -293,6 +293,25 @@ namespace HairNet.Entry
             this.PostID = postID;
             this.bbsURL = bbsUrl;
         }
+        public HairStyleEntity(string tagIDs, int hsid, int hairQuantity, string bbsUrl, string hairName, int hairShopID, int hairEngineerID, Byte hairStyle, Byte faceStyle, Byte temperament, Byte occasion, Byte sex, Byte hairNature, string idesc, string ppsgids, bool isHairStyle, int postID,string mei)
+        {
+            this.id = hsid;
+            this.tag = tagIDs;
+            this.hairName = hairName;
+            this.hairShopID = hairShopID;
+            this.hairEngineerID = hairEngineerID;
+            this.hairStyle = hairStyle;
+            this.faceStyle = faceStyle;
+            this.hairQuantity = hairQuantity;
+            this.hairNature = hairNature;
+            this.temperament = temperament;
+            this.occasion = occasion;
+            this.sex = sex;
+            this.description = idesc;
+            this.PSGIDS = ppsgids;
+            this.IsHairStyle = isHairStyle;
+            this.bbsURL = bbsUrl;
+        }
         public HairStyleEntity(string hairName, int hairQuantity, string bbsUrl, int hairShopID, int hairEngineerID, Byte hairStyle, Byte faceStyle, Byte temperament, Byte occasion, Byte sex, Byte hairNature, int picsid, string idesc, string ppsgids, bool isHairStyle, int postID)
         {
             this.hairName = hairName;

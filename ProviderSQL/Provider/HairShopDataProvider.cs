@@ -48,7 +48,7 @@ namespace HairNet.Provider
         /// </summary>
         /// <param name="hairShop"></param>
         /// <param name="action"></param>
-        void HairShopCreateDeleteUpdate(HairShop hairShop, UserAction action);
+        void HairShopCreateDeleteUpdate(HairShop hairShop, UserAction action,out int newid);
 
         /// <summary>
         /// 
