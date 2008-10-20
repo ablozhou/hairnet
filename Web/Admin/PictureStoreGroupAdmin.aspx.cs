@@ -110,9 +110,9 @@ namespace Web.Admin
                 }
                 string[] iiids = iids.Split(",".ToCharArray());
                 string psgids = "";
-                for (int k = 1; k < iiids.Length; k++)
+                for (int k = 0; k < iiids.Length; k++)
                 {
-                    if (iiids[k] != ids[i].ToString())
+                    if (iiids[k] != id.ToString())
                     {
                         psgids += "," + iiids[k];
                     }
