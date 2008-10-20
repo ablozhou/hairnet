@@ -54,7 +54,7 @@
     </Reference>
     <Reference Include="HWCommon, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>D:\hair\HWCommon\bin\Debug\HWCommon.dll</HintPath>
+      <HintPath>..\Assembly\HWCommon.dll</HintPath>
     </Reference>
     <Reference Include="HWKEY, Version=1.0.1460.35494, Culture=neutral">
       <SpecificVersion>False</SpecificVersion>
