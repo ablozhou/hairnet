@@ -30,7 +30,7 @@ namespace HairNet.Provider
         /// </summary>
         /// <param name="engineerOpusInfo">engineerOpusInfo</param>
         /// <param name="action">action</param>
-        void HairStyleCreateDeleteUpdate(HairStyleEntity engineerOpusInfo, UserAction action);
+        void HairStyleCreateDeleteUpdate(HairStyleEntity engineerOpusInfo, UserAction action,out int newid);
 
         /// <summary>
         /// 

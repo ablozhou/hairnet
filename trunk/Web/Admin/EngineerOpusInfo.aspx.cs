@@ -324,21 +324,23 @@ namespace Web.Admin
             HairStyle.SexName = ddlSex.SelectedItem.Text;
             HairStyle.TemperamentName = ddlTemperament.SelectedItem.Text;
             
-            InfoAdmin.AddHairStyle(HairStyle);
+            //问题1----------------------
+            int newid = 0;
+            InfoAdmin.AddHairStyle(HairStyle,out newid);
 
-            string id = "";
-            using (SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["MSSqlServer"].ToString()))
-            {
-                string commString = "select top 1 * from HairStyle order by id desc";
-                using (SqlCommand comm = new SqlCommand())
-                {
-                    comm.Connection = conn;
-                    comm.CommandText = commString;
-                    conn.Open();
+            string id = newid.ToString();
+            //using (SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["MSSqlServer"].ToString()))
+            //{
+            //    string commString = "select top 1 * from HairStyle order by id desc";
+            //    using (SqlCommand comm = new SqlCommand())
+            //    {
+            //        comm.Connection = conn;
+            //        comm.CommandText = commString;
+            //        conn.Open();
 
-                    id = comm.ExecuteScalar().ToString(); 
-                }
-            }
+            //        id = comm.ExecuteScalar().ToString(); 
+            //    }
+            //}
 
             HairStyle.ID = int.Parse(id);
             //add bbs post

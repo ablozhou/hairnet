@@ -692,7 +692,8 @@ namespace Web.Admin
 
             HairStyleEntity HairStyle = new HairStyleEntity(tagIDs,id,iHairQuantity,bbsUrl,txtOpusName.Text.Trim(), hairShopID, hairEngineerID, iHairStyleClassName, iFaceStyle, iTemperament, iOccasion, iSex, iHairNature, txtDesc.Text.Trim(),PSGIDS,true,0,"");
 
-            ProviderFactory.GetHairEngineerDataProviderInstance().HairStyleCreateDeleteUpdate(HairStyle,UserAction.Update);
+            int newid = 0;
+            ProviderFactory.GetHairEngineerDataProviderInstance().HairStyleCreateDeleteUpdate(HairStyle,UserAction.Update,out newid);
 
             string[] PPSGCollection = PSGIDS.Split(",".ToCharArray());
             foreach (string s in PPSGCollection)
