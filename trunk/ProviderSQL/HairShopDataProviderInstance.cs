@@ -126,8 +126,9 @@ namespace HairNet.Provider
         /// </summary>
         /// <param name="hairShop"></param>
         /// <param name="acion"></param>
-        public void HairShopCreateDeleteUpdate(HairShop hairShop, UserAction action)
+        public void HairShopCreateDeleteUpdate(HairShop hairShop, UserAction action, out int newid)
         {
+            newid = 0;
             if (action == UserAction.Create)
             {
                 StringBuilder cmdBuilder = new StringBuilder();
@@ -181,9 +182,34 @@ namespace HairNet.Provider
                 cmdBuilder.Append(hairShop.IsServeMarce.CompareTo(false).ToString() + "','");
                 cmdBuilder.Append(hairShop.IsServeDye.CompareTo(false).ToString() + "','");
                 cmdBuilder.Append(hairShop.IsServeHairCut.CompareTo(false).ToString() + " ',");
-                cmdBuilder.Append(hairShop.Square.ToString() + ",'"+hairShop.MemberInfo+"' )");
+                cmdBuilder.Append(hairShop.Square.ToString() + ",'"+hairShop.MemberInfo+"' );select @@identity;");
 
-                SqlHelper.ExecuteNonQuery(DataHelper2.SqlConnectionString, CommandType.Text, cmdBuilder.ToString());
+                using (SqlConnection conn = new SqlConnection(DataHelper2.SqlConnectionString))
+                {
+                    using (SqlCommand comm = new SqlCommand())
+                    {
+                        comm.CommandText = cmdBuilder.ToString();
+                        comm.Connection = conn;
+                        conn.Open();
+                        try
+                        {
+                            try
+                            {
+                                newid = Convert.ToInt32(comm.ExecuteScalar());
+                            }
+                            catch (InvalidCastException)
+                            {
+                                newid = 0;
+                            }
+                        }
+                        catch (Exception ex)
+                        {
+                            throw new Exception(ex.Message);
+                        }
+                    }
+                }
+
+                //newid = int.Parse(SqlHelper.ExecuteScalar(DataHelper2.SqlConnectionString, CommandType.Text, cmdBuilder.ToString()).ToString());
             }
 
             if (action == UserAction.Update)
@@ -214,6 +240,14 @@ namespace HairNet.Provider
             if (action == UserAction.Delete)
             {
                 HairShopDataPrividerCreateDeleteUpdate(hairShop, UserAction.Delete);
+            }
+            if (newid == 0)
+            {
+                newid = 0;
+            }
+            else
+            {
+                newid = newid;
             }
         }
 
@@ -323,7 +357,14 @@ namespace HairNet.Provider
                             hairShop.CouponNum = int.Parse(sdr["CouponNum"].ToString());
                             hairShop.OutLogs = sdr["outLogs"].ToString();
                             hairShop.InnerLogs = sdr["InnerLogs"].ToString();
-                            hairShop.HairShopNormal = int.Parse(sdr["HairShopNormal"].ToString());
+                            try
+                            {
+                                hairShop.HairShopNormal = int.Parse(sdr["HairShopNormal"].ToString());
+                            }
+                            catch
+                            {
+                                hairShop.HairShopNormal = 0;
+                            }
                             Decimal parseValue;
 
                             Decimal.TryParse(sdr["HairCutPrice"].ToString(), out parseValue);
@@ -450,7 +491,16 @@ namespace HairNet.Provider
                     hairShop.HairShopEmail = sdr["HairShopEmail"].ToString();
                     hairShop.HairShopDiscount = sdr["HairShopDiscount"].ToString();
                     hairShop.HairShopLogo = sdr["HairShopLogo"].ToString();
-                    hairShop.HairShopRecommandNum = int.Parse(sdr["HairShopRecommandNum"].ToString());
+                    
+                        try
+                        {
+                            hairShop.HairShopRecommandNum = int.Parse(sdr["HairShopRecommandNum"].ToString());
+                        }
+                    catch
+                        {
+                        hairShop.HairShopRecommandNum = 0;
+
+                    }
                     hairShop.HairShopCreateTime = sdr["HairShopCreateTime"].ToString();
                     hairShop.HairShopDescription = sdr["HairShopDescription"].ToString();
                     hairShop.ProductIDs = sdr["ProductIDs"].ToString();
@@ -509,6 +559,7 @@ namespace HairNet.Provider
                         hairShop.IsServeHairCut = true;
 
                     hairShop.Square = sdr["Square"].ToString();
+                    hairShop.HairShopNormal = int.Parse(sdr["HairShopNormal"].ToString());
 
                     list.Add(hairShop);
                 }
@@ -744,6 +795,9 @@ namespace HairNet.Provider
                                 hairShop.IsPostMachine = bool.Parse(sdr["IsPostMachine"].ToString());
                                 hairShop.HairShopGood = int.Parse(sdr["HairShopGood"].ToString());
                                 hairShop.HairShopBad = int.Parse(sdr["HairShopBad"].ToString());
+                                hairShop.OutLogs = sdr["outLogs"].ToString();
+                                hairShop.InnerLogs = sdr["innerLogs"].ToString();
+                                hairShop.HairShopNormal = int.Parse(sdr["HairShopNormal"].ToString());
 
                                 list.Add(hairShop);
                             }
@@ -830,7 +884,14 @@ namespace HairNet.Provider
                                 hairShop.HairShopEmail = sdr["HairShopEmail"].ToString();
                                 hairShop.HairShopDiscount = sdr["HairShopDiscount"].ToString();
                                 hairShop.HairShopLogo = sdr["HairShopLogo"].ToString();
-                                hairShop.HairShopRecommandNum = int.Parse(sdr["HairShopRecommandNum"].ToString());
+                                try
+                                {
+                                    hairShop.HairShopRecommandNum = int.Parse(sdr["HairShopRecommandNum"].ToString());
+                                }
+                                catch
+                                {
+                                    hairShop.HairShopRecommandNum = 0;
+                                }
                                 hairShop.HairShopCreateTime = sdr["HairShopCreateTime"].ToString();
                                 hairShop.HairShopDescription = sdr["HairShopDescription"].ToString();
                                 hairShop.ProductIDs = sdr["ProductIDs"].ToString();
@@ -844,6 +905,17 @@ namespace HairNet.Provider
                                 hairShop.IsPostMachine = bool.Parse(sdr["IsPostMachine"].ToString());
                                 hairShop.HairShopGood = int.Parse(sdr["HairShopGood"].ToString());
                                 hairShop.HairShopBad = int.Parse(sdr["HairShopBad"].ToString());
+                                try
+                                {
+                                    hairShop.Postid = int.Parse(sdr["postid"].ToString());
+                                }
+                                catch
+                                {
+                                    hairShop.Postid = 0;
+                                }
+                                hairShop.OutLogs = sdr["outLogs"].ToString();
+                                hairShop.InnerLogs = sdr["innerLogs"].ToString();
+                                hairShop.HairShopNormal = int.Parse(sdr["HairShopNormal"].ToString());
 
                                 list.Add(hairShop);
                             }

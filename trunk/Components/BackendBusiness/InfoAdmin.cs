@@ -566,19 +566,21 @@ namespace HairNet.Business
             return ProviderFactory.GetHairShopDataProviderInstance().AddHairShop(hairShop);
         }
 
-        public static void AddHairShopInfo(HairShop hairShop)
+        public static void AddHairShopInfo(HairShop hairShop,out int newid)
         {
-            ProviderFactory.GetHairShopDataProviderInstance().HairShopCreateDeleteUpdate(hairShop, UserAction.Create);
+            ProviderFactory.GetHairShopDataProviderInstance().HairShopCreateDeleteUpdate(hairShop, UserAction.Create,out newid);
         }
 
         public static void UpdateHairShopInfo(HairShop hairShop)
         {
-            ProviderFactory.GetHairShopDataProviderInstance().HairShopCreateDeleteUpdate(hairShop, UserAction.Update);
+            int newid = 0;
+            ProviderFactory.GetHairShopDataProviderInstance().HairShopCreateDeleteUpdate(hairShop, UserAction.Update,out newid);
         }
 
         public static void DeleteHairShopInfo(HairShop hairShop)
         {
-            ProviderFactory.GetHairShopDataProviderInstance().HairShopCreateDeleteUpdate(hairShop, UserAction.Delete);
+            int newid = 0;
+            ProviderFactory.GetHairShopDataProviderInstance().HairShopCreateDeleteUpdate(hairShop, UserAction.Delete,out newid);
         }
 
         [Obsolete("Not the latest version, please refet to UpdateHairShopInfo method")]
