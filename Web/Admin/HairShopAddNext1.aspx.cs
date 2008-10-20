@@ -264,12 +264,25 @@ namespace Web.Admin
             cntBuilder.AppendLine("地址：" + hs.HairShopAddress + "\n");
             cntBuilder.AppendLine("交通：" + hs.LocationMapURL + "\n");
             cntBuilder.AppendLine("面积：" + hs.Square.ToString() + "\n");
-            cntBuilder.AppendLine("是否有停车位：" + hs.IsPostStation.Equals(true).ToString() + "\n");
-            cntBuilder.AppendLine("是否刷卡：" + hs.IsPostMachine.Equals(true).ToString() + "\n");
+            if (hs.IsPostStation)
+            {
+                cntBuilder.AppendLine("是否有停车位：有 \n");
+            }
+            else
+            {
+                cntBuilder.AppendLine("是否有停车位：无 \n");
+            }
+            if (hs.IsPostMachine)
+            {
+                cntBuilder.AppendLine("是否可以刷卡：可以 \n");
+            }
+            else
+            {
+                cntBuilder.AppendLine("是否可以刷卡：不可以 \n");
+            }
             cntBuilder.AppendLine("营业时间：" + hs.HairShopOpenTime.ToString() + "\n");
             cntBuilder.AppendLine(" 风格：" + hs.TypeName);
             cntBuilder.AppendLine(" 主打产品：" + hs.ProductsName);//InfoAdmin.GetProductByProductID+
-            cntBuilder.AppendLine(" 打印折扣券：" + "\n");//?
             cntBuilder.AppendLine(" 折扣：" + hs.HairShopDiscount.ToString());
             cntBuilder.AppendLine(" 预约电话：" + hs.HairShopPhoneNum );
             cntBuilder.AppendLine(" 美发厅简介：" + hs.HairShopDescription);

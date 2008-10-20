@@ -8,69 +8,69 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Web.UserControls {
+namespace Web {
     
     
     /// <summary>
-    /// HairShopDescription 类。
+    /// CouponHead 类。
     /// </summary>
     /// <remarks>
     /// 自动生成的类。
     /// </remarks>
-    public partial class HairShopDescription {
+    public partial class CouponHead {
         
         /// <summary>
-        /// lblHairShopName 控件。
+        /// Head1 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblHairShopName;
+        protected global::System.Web.UI.HtmlControls.HtmlHead Head1;
         
         /// <summary>
-        /// lbllHairShopPic 控件。
+        /// form1 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbllHairShopPic;
+        protected global::System.Web.UI.HtmlControls.HtmlForm form1;
         
         /// <summary>
-        /// lblHairShopDescription 控件。
+        /// ScriptManager1 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblHairShopDescription;
+        protected global::System.Web.UI.ScriptManager ScriptManager1;
         
         /// <summary>
-        /// lblHairEngineerPic 控件。
+        /// headControl 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblHairEngineerPic;
+        protected global::Web.UserControls.Head headControl;
         
         /// <summary>
-        /// lblHairEngineerDescription 控件。
+        /// BodyContentPosition 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblHairEngineerDescription;
+        protected global::System.Web.UI.WebControls.ContentPlaceHolder BodyContentPosition;
         
         /// <summary>
-        /// lblMemberInfo 控件。
+        /// footControl1 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblMemberInfo;
+        protected global::Web.UserControls.Foot footControl1;
     }
 }

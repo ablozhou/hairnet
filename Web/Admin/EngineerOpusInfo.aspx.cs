@@ -470,7 +470,7 @@ namespace Web.Admin
                     tagIDs += "," + tagID;
                 }
             }
-            HairStyleEntity HairStyle1 = new HairStyleEntity(int.Parse(id),tagIDs,txtOpusName.Text.Trim(), iHairQuantity, bbsUrl, hairShopID, hairEngineerID, iHairStyleClassName, iFaceStyle, iTemperament, iOccasion, iSex, iHairNature, txtDesc.Text.Trim(), PSGIDS, true, 0);
+            HairStyleEntity HairStyle1 = new HairStyleEntity(int.Parse(id),tagIDs,txtOpusName.Text.Trim(), iHairQuantity, bbsUrl, hairShopID, hairEngineerID, iHairStyleClassName, iFaceStyle, iTemperament, iOccasion, iSex, iHairNature, txtDesc.Text.Trim(), PSGIDS, true,postid);
 
             InfoAdmin.UpdateHairStyle(HairStyle1);
 
@@ -739,7 +739,7 @@ namespace Web.Admin
                     }
                 }
             }
-
+            this.ddlOccasion.SelectedValue = "3";
             List<PictureStoreGroup> list1 = ProviderFactory.GetPictureStoreDataProviderInstance().GetPictureStoreGroupsByParentID(1, 0);
 
             for (int i = 0; i < list1.Count; i++)

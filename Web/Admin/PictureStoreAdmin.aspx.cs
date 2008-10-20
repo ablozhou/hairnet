@@ -219,9 +219,48 @@ namespace Web.Admin
                 if (e.CommandName == "delete")
                 {
                     int pictureStoreID = int.Parse(this.dg.DataKeys[e.Item.ItemIndex].ToString());
+                    int hairStyleID = 0;
 
                     if (InfoAdmin.DeletePictureStore(pictureStoreID))
                     {
+                        using (SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["MSSqlServer"].ConnectionString))
+                        {
+                            string commString = "select * from hairStyle where picturestoreid=" + pictureStoreID.ToString(); 
+                            using (SqlCommand comm = new SqlCommand())
+                            {
+                                comm.CommandText = commString;
+                                comm.Connection = conn;
+                                conn.Open();
+
+                                using (SqlDataReader sdr = comm.ExecuteReader())
+                                {
+                                    if (sdr.Read())
+                                    {
+                                        hairStyleID = int.Parse(sdr["id"].ToString());
+                                    }
+                                }
+                            }
+                        }
+                        using (SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["MSSqlServer"].ConnectionString))
+                        {
+                            string commString = "delete from picturestoreset where picturestoreid=" + hairStyleID.ToString();
+                            using (SqlCommand comm = new SqlCommand())
+                            {
+                                comm.CommandText = commString;
+                                comm.Connection = conn;
+                                conn.Open();
+
+                                try
+                                {
+                                    comm.ExecuteNonQuery();
+                                }
+                                catch
+                                {
+
+                                }
+                            }
+                        }
+
                         StringHelper.AlertInfo("删除成功", this.Page);
                         this.Response.Redirect("PictureStoreAdmin.aspx");
                     }

@@ -1,4 +1,4 @@
-<%@ Page Language="C#" AutoEventWireup="true" EnableEventValidation="false" ValidateRequest="false" MasterPageFile="Home.Master" CodeBehind="CouponList.aspx.cs" Inherits="Web.CouponList" %>
+<%@ Page Language="C#" AutoEventWireup="true" EnableEventValidation="false" ValidateRequest="false" MasterPageFile="CouponHead.Master" CodeBehind="CouponList.aspx.cs" Inherits="Web.CouponList" %>
 <%@ Register src="UserControls/CouponDetailList.ascx" tagname="CouponDetailList" tagprefix="uc1" %>
 <%@ Register src="UserControls/CouponListControl.ascx" tagname="CLC" tagprefix="HN" %>
 <asp:Content ContentPlaceHolderID="BodyContentPosition" runat="server" ID="BodyContent">

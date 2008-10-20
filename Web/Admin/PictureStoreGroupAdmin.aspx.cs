@@ -49,8 +49,10 @@ namespace Web.Admin
                     PictureStoreGroup psg = new PictureStoreGroup();
                     psg.ID = pictureStoreGroupID;
 
+                    this.deletePictureStore(pictureStoreGroupID);
+
                     if (ProviderFactory.GetPictureStoreDataProviderInstance().PictureStoreGroupCreateDeleteUpdate(psg, UserAction.Delete))
-                    {
+                    {   
                         //this.Response.Redirect("PictureStoreGroupAdmin.aspx");
                     }
                     else
@@ -60,6 +62,81 @@ namespace Web.Admin
                 }
             }
             this.Response.Redirect("PictureStoreGroupAdmin.aspx?id="+this.ddlPictureStoreGroup.SelectedItem.Value);
+        }
+
+        public void deletePictureStore(int id)
+        {
+            string idsString = "";
+            using (SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["MSSqlServer"].ConnectionString))
+            {
+                string commString = "select * from PictureStoreGroup where picturestoregroupID=" + id.ToString();
+                using (SqlCommand comm = new SqlCommand())
+                {
+                    comm.CommandText = commString;
+                    comm.Connection = conn;
+                    conn.Open();
+
+                    using (SqlDataReader sdr = comm.ExecuteReader())
+                    {
+                        if (sdr.Read())
+                        {
+                            idsString = sdr["PictureStoreIDs"].ToString();
+                        }
+                    }
+                }
+            }
+            string[] ids = idsString.Split(",".ToCharArray());
+
+            for (int i = 1; i < ids.Length; i++)
+            {
+                string iids = "";
+                using (SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["MSSqlServer"].ConnectionString))
+                {
+                    string commString = "select * from hairstyle where id=" + ids[i].ToString();
+                    using (SqlCommand comm = new SqlCommand())
+                    {
+                        comm.CommandText = commString;
+                        comm.Connection = conn;
+                        conn.Open();
+
+                        using (SqlDataReader sdr = comm.ExecuteReader())
+                        {
+                            if (sdr.Read())
+                            {
+                                iids = sdr["psgids"].ToString();
+                            }
+                        }
+                    }
+                }
+                string[] iiids = iids.Split(",".ToCharArray());
+                string psgids = "";
+                for (int k = 1; k < iiids.Length; k++)
+                {
+                    if (iiids[k] != ids[i].ToString())
+                    {
+                        psgids += "," + iiids[k];
+                    }
+                }
+                using (SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["MSSqlServer"].ConnectionString))
+                {
+                    string commString = "update hairstyle set psgids = '"+psgids+"' where id=" + ids[i].ToString();
+                    using (SqlCommand comm = new SqlCommand())
+                    {
+                        comm.CommandText = commString;
+                        comm.Connection = conn;
+                        conn.Open();
+
+                        try
+                        {
+                            comm.ExecuteNonQuery();
+                        }
+                        catch
+                        {
+
+                        }
+                    }
+                }
+            }
         }
 
         public void btnSelect_OnClick(object sender, EventArgs e)
@@ -128,7 +205,7 @@ namespace Web.Admin
                     int pictureStoreGroupID = int.Parse(this.dg.DataKeys[e.Item.ItemIndex].ToString());
                     PictureStoreGroup psg = new PictureStoreGroup();
                     psg.ID = pictureStoreGroupID;
-                    
+                    this.deletePictureStore(pictureStoreGroupID);
                     if (ProviderFactory.GetPictureStoreDataProviderInstance().PictureStoreGroupCreateDeleteUpdate(psg,UserAction.Delete))
                     {
                         StringHelper.AlertInfo("删除成功", this.Page);

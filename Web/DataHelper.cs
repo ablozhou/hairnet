@@ -11,6 +11,8 @@ using System.Web.UI.HtmlControls;
 using System.Data.SqlClient;
 using HairNet.DBUtility;
 
+namespace web
+{
 /// <summary>
 /// DataHelper 的摘要说明
 /// </summary>
@@ -374,4 +376,5 @@ FROM
         }
         return Txt;
     }
+}
 }

@@ -9,13 +9,13 @@ using System.Web.UI.WebControls;
 using System.Web.UI.WebControls.WebParts;
 using System.Web.UI.HtmlControls;
 
-namespace Web.UserControls
+namespace Web
 {
-    public partial class Head : System.Web.UI.UserControl
+    public partial class CouponHead : System.Web.UI.MasterPage
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-           
+
         }
     }
 }

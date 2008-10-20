@@ -42,39 +42,39 @@ namespace Web.UserControls
                                 string description = string.Empty;
                                 string photoIDs = string.Empty;
                                 string hairShopID = string.Empty;
+                                string hairShopShortName=string.Empty;
 
                                 hairShopID = sdr["HairShopID"].ToString();
                                 hairShopName = sdr["HairShopName"].ToString();
                                 hairShopVisitNum = sdr["HairShopVisitNum"].ToString();
                                 photoIDs = sdr["outLogs"].ToString();
                                 description = sdr["HairShopDescription"].ToString();
+                                hairShopShortName = sdr["HairShopShortName"].ToString();
 
-                                string[] photoID = photoIDs.Split(",".ToCharArray());
-                                if (photoID.Length == 1)
+
+                                using (SqlConnection conn1 = new SqlConnection(ConfigurationManager.ConnectionStrings["MSSqlServer"].ConnectionString))
                                 {
-                                    picUrl = "Theme/Images/sg-meifa_ls02.gif";
-                                }
-                                else
-                                {
-                                    using (SqlConnection conn1 = new SqlConnection(ConfigurationManager.ConnectionStrings["MSSqlServer"].ConnectionString))
+                                    string commString1 = "select top 1 * from shoppics where classid=2 and hairshopid=" + hairShopID;
+                                    using (SqlCommand comm1 = new SqlCommand())
                                     {
-                                        string commString1 = "select top 1 * from shoppics where id=" + photoID[1];
-                                        using (SqlCommand comm1 = new SqlCommand())
-                                        {
-                                            comm1.CommandText = commString1;
-                                            comm1.Connection = conn1;
-                                            conn1.Open();
+                                        comm1.CommandText = commString1;
+                                        comm1.Connection = conn1;
+                                        conn1.Open();
 
-                                            using (SqlDataReader sdr1 = comm1.ExecuteReader())
+                                        using (SqlDataReader sdr1 = comm1.ExecuteReader())
+                                        {
+                                            if (sdr1.Read())
                                             {
-                                                if (sdr1.Read())
-                                                {
-                                                    picUrl = sdr1["picurl"].ToString();
-                                                    picSmallUrl = sdr1["picsmallurl"].ToString();
-                                                }
+                                                picUrl = sdr1["picurl"].ToString();
+                                                picSmallUrl = sdr1["picsmallurl"].ToString();
                                             }
                                         }
                                     }
+                                }
+
+                                if (picSmallUrl.ToString() == string.Empty)
+                                {
+                                    picSmallUrl = "Theme/Images/sg-meifa_ls02.gif";
                                 }
 
                                 num++;
@@ -88,7 +88,7 @@ namespace Web.UserControls
                                         sb.Append("<tr>");
                                         sb.Append("<td width=\"29%\"><div class=\"pic-5\"><a href=\"HairShopContent.aspx?id="+hairShopID+"\" target=\"_blank\"><img src=\""+picSmallUrl+"\" alt=\""+description+"\" /></a></div></td>");
                                         sb.Append("<td width=\"6%\" align=\"left\"><span class=\"gray12-b\"><a href=\"#\" target=\"_blank\"></a></span><br /><span class=\"red12\"><a href=\"#\" target=\"_blank\"></a></span></td>");
-                                        sb.Append("<td width=\"65%\" align=\"left\"><span class=\"gray14-b\"><a href=\"HairShopContent.aspx?id=" + hairShopID + "\" target=\"_blank\">" + hairShopName + "</a></span><br />");
+                                        sb.Append("<td width=\"65%\" align=\"left\"><span class=\"gray14-b\"><a href=\"HairShopContent.aspx?id=" + hairShopID + "\" target=\"_blank\">" + hairShopShortName + "</a></span><br />");
                                         sb.Append("<span class=\"red12\">推荐指数："+hairShopVisitNum+"</span></td>");
                                         sb.Append("</tr>");
                                         sb.Append("</table></td></tr>");
@@ -100,7 +100,7 @@ namespace Web.UserControls
                                         sb.Append("<tr>");
                                         sb.Append("<td width=\"29%\"><div class=\"pic-5\"><a href=\"HairShopContent.aspx?id=" + hairShopID + "\" target=\"_blank\"><img src=\"" + picSmallUrl + "\" alt=\"" + description + "\" /></a></div></td>");
                                         sb.Append("<td width=\"6%\" align=\"left\"><span class=\"gray12-b\"><a href=\"#\" target=\"_blank\"></a></span><br /><span class=\"red12\"><a href=\"#\" target=\"_blank\"></a></span></td>");
-                                        sb.Append("<td width=\"65%\" align=\"left\"><span class=\"gray14-b\"><a href=\"HairShopContent.aspx?id=" + hairShopID + "\" target=\"_blank\">" + hairShopName + "</a></span><br />");
+                                        sb.Append("<td width=\"65%\" align=\"left\"><span class=\"gray14-b\"><a href=\"HairShopContent.aspx?id=" + hairShopID + "\" target=\"_blank\">" + hairShopShortName + "</a></span><br />");
                                         sb.Append("<span class=\"red12\">推荐指数：" + hairShopVisitNum + "</span></td>");
                                         sb.Append("</tr>");
                                         sb.Append("</table></td></tr>");
@@ -112,7 +112,7 @@ namespace Web.UserControls
                                         sb.Append("<tr>");
                                         sb.Append("<td width=\"29%\"><div class=\"pic-5\"><a href=\"HairShopContent.aspx?id=" + hairShopID + "\" target=\"_blank\"><img src=\"" + picSmallUrl + "\" alt=\"" + description + "\" /></a></div></td>");
                                         sb.Append("<td width=\"6%\" align=\"left\"><span class=\"gray12-b\"><a href=\"#\" target=\"_blank\"></a></span><br /><span class=\"red12\"><a href=\"#\" target=\"_blank\"></a></span></td>");
-                                        sb.Append("<td width=\"65%\" align=\"left\"><span class=\"gray14-b\"><a href=\"HairShopContent.aspx?id=" + hairShopID + "\" target=\"_blank\">" + hairShopName + "</a></span><br />");
+                                        sb.Append("<td width=\"65%\" align=\"left\"><span class=\"gray14-b\"><a href=\"HairShopContent.aspx?id=" + hairShopID + "\" target=\"_blank\">" + hairShopShortName + "</a></span><br />");
                                         sb.Append("<span class=\"red12\">推荐指数：" + hairShopVisitNum + "</span></td>");
                                         sb.Append("</tr>");
                                         sb.Append("</table></td></tr>");
@@ -120,7 +120,7 @@ namespace Web.UserControls
                                     default:
                                         sb.Append("<tr>");
                                         sb.Append("<td align=\"center\"><img src=\"Theme/images/sg-08bbs_"+num.ToString()+".gif\" /></td>");
-                                        sb.Append("<td align=\"left\" class=\"gray14-e\"><a href=\"HairShopContent.aspx?id=" + hairShopID + "\" target=\"_blank\">" + hairShopName + "&nbsp;&nbsp;推荐指数:" + hairShopVisitNum + "</a></td>");
+                                        sb.Append("<td align=\"left\" class=\"gray14-e\"><a href=\"HairShopContent.aspx?id=" + hairShopID + "\" target=\"_blank\">" + hairShopShortName + "&nbsp;&nbsp;推荐指数:" + hairShopVisitNum + "</a></td>");
                                         sb.Append("</tr>");
                                         break;
                                 }

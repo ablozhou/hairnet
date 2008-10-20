@@ -24,35 +24,36 @@ namespace Web.UserControls
             this.lblHairShopName.Text = hairShop.HairShopName;
             this.lblHairShopDescription.Text = hairShop.HairShopDescription;
             this.lblMemberInfo.Text = hairShop.MemberInfo.ToString();
+            string picUrl = string.Empty;
+            string picSmallUrl = string.Empty;
 
-            string[] hairShopPhotoID = hairShop.OutLogs.Split(",".ToCharArray());
-            if (hairShopPhotoID.Length ==1)
+            using (SqlConnection conn1 = new SqlConnection(ConfigurationManager.ConnectionStrings["MSSqlServer"].ConnectionString))
             {
-
-                this.lbllHairShopPic.Text = "<a href=\"#\"><img width=98 height=98 src=\"Theme/Images/sg-meifa_ls02.gif\" /></a>";
-            }
-            else
-            {
-                using (SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["MSSqlServer"].ConnectionString))
+                string commString1 = "select top 1 * from shoppics where classid=2 and hairshopid=" + this.HairShopID.ToString();
+                using (SqlCommand comm1 = new SqlCommand())
                 {
-                    string commString = "select top 1 * from shoppics where id=" + hairShopPhotoID[1];
-                    using (SqlCommand comm = new SqlCommand())
-                    {
-                        comm.CommandText = commString;
-                        comm.Connection = conn;
-                        conn.Open();
+                    comm1.CommandText = commString1;
+                    comm1.Connection = conn1;
+                    conn1.Open();
 
-                        using (SqlDataReader sdr = comm.ExecuteReader())
+                    using (SqlDataReader sdr1 = comm1.ExecuteReader())
+                    {
+                        if (sdr1.Read())
                         {
-                            if (sdr.Read())
-                            {
-                                this.lbllHairShopPic.Text = "<a href=\"#\"><img width=98 height=98 src=\""+sdr["picsmallurl"].ToString()+"\" /></a>";
-                            }
+                            picUrl = sdr1["picurl"].ToString();
+                            picSmallUrl = sdr1["picsmallurl"].ToString();
                         }
                     }
                 }
-                
             }
+
+            if (picSmallUrl.ToString() == string.Empty)
+            {
+                picSmallUrl = "Theme/Images/sg-meifa_ls02.gif";
+            }
+
+            this.lbllHairShopPic.Text = "<a href=\"#\"><img width=98 height=98 src=\"" + picSmallUrl + "\" /></a>";
+            
 
             if (hairShop.HairShopEngineerNum == 0)
             {

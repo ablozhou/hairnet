@@ -10,7 +10,7 @@
             <td width="15" align="left" background="Theme/images/fair-mft08.gif"><img src="Theme/images/fair-mft06.gif" width="3" height="29" /></td>
             <td width="138" align="left" background="Theme/images/fair-mft08.gif">共找到 <span class="red12"><asp:Label ID="lblHairShopCount" runat="server"></asp:Label></span> 家美发厅</td>
             <td width="395" align="left" background="Theme/images/fair-mft08.gif"><img src="Theme/images/fair-mft09.gif" width="23" height="7" /></td>
-            <td width="153" align="left" background="Theme/images/fair-mft08.gif"><img src="Theme/images/fair-mft07.gif" width="3" height="7" />共 <asp:Label ID="lblPageCount" runat="Server" Font-Bold="true"></asp:Label> 页 <a href="#" class="gray12-d"><asp:Label ID="lblFrontPage" runat="server"></asp:Label></a> <a href="#" class="gray12-d"><asp:Label ID="lblNextPage" runat="server"></asp:Label></a></td>
+            <td width="153" align="left" background="Theme/images/fair-mft08.gif"><img src="Theme/images/fair-mft07.gif" width="3" height="7" />共 <asp:Label ID="lblPageCount" runat="Server" Font-Bold="true"></asp:Label> 页 <asp:Label ID="lblFrontPage" runat="server"></asp:Label> <asp:Label ID="lblNextPage" runat="server"></asp:Label></td>
           </tr>
         </table>
 		<table width="704" border="0" cellspacing="0" cellpadding="0">

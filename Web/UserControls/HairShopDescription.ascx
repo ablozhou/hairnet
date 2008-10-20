@@ -50,7 +50,7 @@
                 <td class="gray12-f"> &nbsp;&nbsp;&nbsp;&nbsp;<asp:Label ID="lblHairShopDescription" runat="server"></asp:Label></td>
               </tr>
               <tr>
-                <td height="30" align="right"><img src="Theme/images/fair-mft25.gif" />&nbsp;<img src="Theme/images/fair-mft26.gif" />&nbsp;<img src="Theme/images/fair-mft27.gif" /></td>
+                <td height="30" align="right"><img src="Theme/images/fair-mft25.gif" />&nbsp;<a onClick='window.external.AddFavorite(location.href,document.title);' href='#'><img src="Theme/images/fair-mft26.gif" /></a></td>
               </tr>
             </table></td>
           </tr>
@@ -63,7 +63,7 @@
                 <td class="gray12-f"> &nbsp;&nbsp;&nbsp;&nbsp;<asp:Label ID="lblHairEngineerDescription" runat="server"></asp:Label></td>
               </tr>
               <tr>
-                <td height="30" align="right"><img src="Theme/images/fair-mft25.gif" />&nbsp;<img src="Theme/images/fair-mft26.gif" />&nbsp;<img src="Theme/images/fair-mft27.gif" /></td>
+                <td height="30" align="right"><img src="Theme/images/fair-mft25.gif" />&nbsp;<a onClick='window.external.AddFavorite(location.href,document.title);' href='#'><img src="Theme/images/fair-mft26.gif" /></a></td>
               </tr>
             </table></td>
           </tr>
@@ -76,7 +76,7 @@
                 <td class="gray12-f"> &nbsp;&nbsp;&nbsp;&nbsp;<asp:Label ID="lblMemberInfo" runat="server"></asp:Label></td>
               </tr>
               <tr>
-                <td height="30" align="right"><img src="Theme/images/fair-mft25.gif" />&nbsp;<img src="Theme/images/fair-mft26.gif" />&nbsp;<img src="Theme/images/fair-mft27.gif" /></td>
+                <td height="30" align="right"><img src="Theme/images/fair-mft25.gif" />&nbsp;<a onClick='window.external.AddFavorite(location.href,document.title);' href='#'><img src="Theme/images/fair-mft26.gif" /></a></td>
               </tr>
             </table></td>
           </tr>

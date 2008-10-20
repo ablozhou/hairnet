@@ -48,39 +48,35 @@ namespace Web.UserControls
                                 string picUrl = string.Empty;
                                 string picSmallUrl = string.Empty;
                                 string description = string.Empty;
-                                string photoIDs = string.Empty;
 
                                 hairShopName = sdr["HairShopName"].ToString();
                                 hairShopDiscount = sdr["HairShopDiscount"].ToString();
-                                photoIDs = sdr["outLogs"].ToString();
                                 description = sdr["HairShopDescription"].ToString();
 
-                                string[] photoID = photoIDs.Split(",".ToCharArray());
-                                if (photoID.Length == 1)
+                                using (SqlConnection conn1 = new SqlConnection(ConfigurationManager.ConnectionStrings["MSSqlServer"].ConnectionString))
                                 {
-                                    picUrl = "Theme/Images/sg-meifa_ls02.gif";
-                                }
-                                else
-                                {
-                                    using (SqlConnection conn1 = new SqlConnection(ConfigurationManager.ConnectionStrings["MSSqlServer"].ConnectionString))
+                                    string commString1 = "select top 1 * from shoppics where classid=2 and hairshopid=" + hairShop.HairShopID.ToString();
+                                    using (SqlCommand comm1 = new SqlCommand())
                                     {
-                                        string commString1 = "select top 1 * from shoppics where id=" + photoID[1];
-                                        using (SqlCommand comm1 = new SqlCommand())
-                                        {
-                                            comm1.CommandText = commString1;
-                                            comm1.Connection = conn1;
-                                            conn1.Open();
+                                        comm1.CommandText = commString1;
+                                        comm1.Connection = conn1;
+                                        conn1.Open();
 
-                                            using (SqlDataReader sdr1 = comm1.ExecuteReader())
+                                        using (SqlDataReader sdr1 = comm1.ExecuteReader())
+                                        {
+                                            if (sdr1.Read())
                                             {
-                                                if (sdr1.Read())
-                                                {
-                                                    picUrl = sdr1["picurl"].ToString();
-                                                    picSmallUrl = sdr1["picsmallurl"].ToString();
-                                                }
+                                                picUrl = sdr1["picurl"].ToString();
+                                                picSmallUrl = sdr1["picsmallurl"].ToString();
                                             }
                                         }
                                     }
+                                }
+
+                                if (picSmallUrl.ToString() == string.Empty)
+                                {
+                                    picSmallUrl = "Theme/Images/sg-meifa_ls02.gif";
+                                    picUrl = "#";
                                 }
 
                                 num++;

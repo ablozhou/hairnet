@@ -54,15 +54,20 @@ namespace Web.Admin
                 this.lblInfo.Visible = true;
                 return;
             }
-            if (!PicOperate.isPermission(StringHelper.GetExtraType(small.Value)))
-            {
-                this.lblInfo.Text = "小图片格式不对";
-                this.lblInfo.Visible = true;
-                return;
-            }
+            //if (!PicOperate.isPermission(StringHelper.GetExtraType(small.Value)))
+            //{
+            //    this.lblInfo.Text = "小图片格式不对";
+            //    this.lblInfo.Visible = true;
+            //    return;
+            //}
 
             string big1 = upload.UpLoadImg(big, "/uploadfiles/pictures/");
-            string small1 = upload.UpLoadImg(small, "/uploadfiles/pictures/");
+            System.Threading.Thread.Sleep(1000);
+            string small1 = string.Empty;
+            if (small.Value != string.Empty)
+            {
+                small1 = upload.UpLoadImg(small, "/uploadfiles/pictures/");
+            }
             this.lblBig.Text = big1;
             this.lblSmall.Text = small1;
 

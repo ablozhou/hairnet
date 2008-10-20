@@ -13,6 +13,7 @@ using System.Data.SqlClient;
 using System.Text;
 using HairNet.DBUtility;
 
+
 namespace Web
 {
     public partial class HairShopContent : System.Web.UI.Page
@@ -46,6 +47,7 @@ namespace Web
             {
                 WriteHistoy(0);
                 ShowBrowserHistory();
+                ShowComment();
             }
             catch 
             {
@@ -154,8 +156,8 @@ namespace Web
             DataHelper _DataHelper = new DataHelper();
             string Sql = "";
             string SqlTop = "";
-            Sql = string.Format("select * from dbo.History where ProductID={0} and type={1} order by id desc", HairShopID, type);
-            SqlTop = string.Format("select top 3 * from dbo.History where ProductID={0} and type={1} order by id desc", HairShopID, type);
+            Sql = string.Format("select * from dbo.History where ProductID={0} and type={1} order by HistoryId desc", HairShopID, type);
+            SqlTop = string.Format("select top 3 * from dbo.History where ProductID={0} and type={1} order by HistoryId desc", HairShopID, type);
 
             if (UserID != "")
             {
@@ -213,6 +215,25 @@ namespace Web
                 }
             }
         }
+
+        private void ShowComment()
+        {
+            DataSet ds;
+            DataHelper _DataHelper = new DataHelper();
+            int bbsid = 0;
+            
+                
+                ds = _DataHelper.ReadDb("select top 1 postid from HairShop where HairShopID=" + HairShopID);
+                if (ds.Tables[0].Rows.Count > 0)
+                {
+                    bbsid = int.Parse(ds.Tables[0].Rows[0][0].ToString());
+                    
+                    this.UserComment.Text = ReadComment(bbsid.ToString()).ToString();
+                }
+
+            
+        }
+
         protected void btnComment_Click(object sender, ImageClickEventArgs e)
         {
             DataSet ds;
@@ -225,7 +246,7 @@ namespace Web
                 if (ds.Tables[0].Rows.Count > 0)
                 {
                     bbsid = int.Parse(ds.Tables[0].Rows[0][0].ToString());
-                    bbsid = 185513;
+                   
                     if (UserID == "")
                     {
                         _DataHelper.NoNameComment(bbsid, 72, this.TextBox1.Text.Trim());
@@ -238,6 +259,7 @@ namespace Web
                 }
 
             }
+           
         }
 
         protected void CaiBottom_Click(object sender, ImageClickEventArgs e)
@@ -253,12 +275,12 @@ namespace Web
             StringBuilder Txt = new StringBuilder();
             if (UserID != "")
             {          
-                ds_Temp = _DataHelper.ReadDb(string.Format("select top 6 HairShopID,HairShopName,Discount from HairShop where HairShopID in (select ProductID from History where UserID in (select UserID from History where UserID<>{0} and ProductID={1} ))", UserID, HairShopID));
+                ds_Temp = _DataHelper.ReadDb(string.Format("select top 6 HairShopID,HairShopName,HairShopDiscount from HairShop where HairShopID in (select ProductID from History where UserID in (select UserID from History where UserID<>{0} and ProductID={1} ))", UserID, HairShopID));
 
             }
             else
             {
-                     ds_Temp = _DataHelper.ReadDb(string.Format("select top 6 HairShopID,HairShopName,Discount from HairShop where HairShopID in (select ProductID from History where UserID in (select UserID from History where ProductID={1} ))", UserID, HairShopID));
+                ds_Temp = _DataHelper.ReadDb(string.Format("select top 6 HairShopID,HairShopName,HairShopDiscount from HairShop where HairShopID in (select ProductID from History where UserID in (select UserID from History where ProductID={1} ))", UserID, HairShopID));
             }
             Txt = new System.Text.StringBuilder();
             Txt.AppendFormat("<table width=\"92%\" border=\"0\" align=\"center\" cellpadding=\"0\" cellspacing=\"0\" style=\"margin-top:5px\">");
