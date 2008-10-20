@@ -244,24 +244,26 @@ namespace Web.Admin
             int hairEngineerID = 0;
 
             HairStyleEntity HairStyle = new HairStyleEntity(this.txtPictureStoreName.Text.Trim(),iHairQuantity,bbsUrl, hairShopID, hairEngineerID, iHairStyleClassName, iFaceStyle, iTemperament, iOccasion, iSex, iHairNature,ps.PictureStoreID, this.txtPictureStoreDescription.Text.Trim(),PSGIDS,false,0);
+            int newid = 0;
+            InfoAdmin.AddHairStyle(HairStyle,out newid);
 
-            InfoAdmin.AddHairStyle(HairStyle);
+            //问题1--------------
+            string hstyleid = newid.ToString();
+            HairStyle.ID = int.Parse(hstyleid);
+            //using (SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["MSSqlServer"].ToString()))
+            //{
+            //    string commString = "select id from hairstyle order by id desc";
+            //    using (SqlCommand comm = new SqlCommand())
+            //    {
+            //        comm.Connection = conn;
+            //        comm.CommandText = commString;
+            //        conn.Open();
 
-            string hstyleid = string.Empty;
-            using (SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["MSSqlServer"].ToString()))
-            {
-                string commString = "select id from hairstyle order by id desc";
-                using (SqlCommand comm = new SqlCommand())
-                {
-                    comm.Connection = conn;
-                    comm.CommandText = commString;
-                    conn.Open();
-
-                    hstyleid = comm.ExecuteScalar().ToString();
-                    HairStyle.ID = int.Parse( hstyleid);
-                }
-            }
-
+            //        hstyleid = comm.ExecuteScalar().ToString();
+            //        HairStyle.ID = int.Parse( hstyleid);
+            //    }
+            //}
+            
             //发帖子
             string content = buildBBSContent(HairStyle);
 

@@ -139,7 +139,7 @@ namespace HairNet.Provider
         /// </summary>
         /// <param name="engineerOpusInfo"></param>
         /// <param name="action"></param>
-        public void HairStyleCreateDeleteUpdate(HairStyleEntity hairStyle, UserAction action)
+        public void HairStyleCreateDeleteUpdate(HairStyleEntity hairStyle, UserAction action,out int newid)
         {
             SqlParameter[] parameters = GetEngineerOpusParameters();
 
@@ -176,11 +176,41 @@ namespace HairNet.Provider
             parameters[27].Value = hairStyle.PSGIDS;
             parameters[28].Value = hairStyle.IsHairStyle;
             parameters[29].Value = hairStyle.PostID;
-            
 
+            newid = 0;
             if (action == UserAction.Create)
-                SqlHelper.ExecuteNonQuery(DataHelper2.SqlConnectionString, CommandType.StoredProcedure,
-                    "InsertHairStyle", parameters);
+            {
+                string commString = "INSERT INTO HairStyle VALUES ('"+hairStyle.HairName+"',"+hairStyle.HairStyle.ToString()+","+hairStyle.FaceStyle.ToString()+","+hairStyle.Temperament.ToString()+","+hairStyle.Occasion.ToString()+","+hairStyle.Sex.ToString()+",'"+hairStyle.BigPic+"','"+hairStyle.SmallPic_F.ToString()+"','"+hairStyle.SmallPic_B.ToString()+"','"+hairStyle.SmallPic_S.ToString()+"','"+hairStyle.Pic1+"','"+hairStyle.Pic2+"','"+hairStyle.Pic3+"',"+hairStyle.HairShopID.ToString()+","+hairStyle.HairEngineerID.ToString()+","+hairStyle.HairQuantity.ToString()+","+hairStyle.HairNature.ToString()+","+hairStyle.HairColor.ToString()+",'"+hairStyle.CreateTime.ToString()+"','"+hairStyle.BBSURL+"',"+hairStyle.Good.ToString()+","+hairStyle.Normal.ToString()+","+hairStyle.Bad.ToString()+",'"+hairStyle.Tag.ToString()+"',0,0,'"+hairStyle.Description+"',"+hairStyle.PictureStoreId.ToString()+",'"+hairStyle.PSGIDS+"',"+hairStyle.IsHairStyle.CompareTo(false).ToString()+","+hairStyle.PostID.ToString()+");select @@identity;";
+
+                using (SqlConnection conn = new SqlConnection(DataHelper2.SqlConnectionString))
+                {
+                    using (SqlCommand comm = new SqlCommand())
+                    {
+                        comm.CommandText = commString;
+                        comm.Connection = conn;
+                        conn.Open();
+                        try
+                        {
+                            try
+                            {
+                                newid = Convert.ToInt32(comm.ExecuteScalar());
+                            }
+                            catch (InvalidCastException)
+                            {
+                                newid = 0;
+                            }
+                        }
+                        catch (Exception ex)
+                        {
+                            throw new Exception(ex.Message);
+                        }
+
+                    }
+                }
+
+            }
+                //SqlHelper.ExecuteNonQuery(DataHelper2.SqlConnectionString, CommandType.StoredProcedure,
+                //    "InsertHairStyle", parameters);
 
             if (action == UserAction.Update)
                 SqlHelper.ExecuteNonQuery(DataHelper2.SqlConnectionString, CommandType.StoredProcedure,

@@ -830,9 +830,9 @@ namespace HairNet.Business
         /// Add HairStyle Entity
         /// </summary>
         /// <param name="HairStyleEnt"></param>
-        public static void AddHairStyle(HairStyleEntity HairStyleEnt)
+        public static void AddHairStyle(HairStyleEntity HairStyleEnt,out int newid)
         {
-            ProviderFactory.GetHairEngineerDataProviderInstance().HairStyleCreateDeleteUpdate(HairStyleEnt, UserAction.Create);
+            ProviderFactory.GetHairEngineerDataProviderInstance().HairStyleCreateDeleteUpdate(HairStyleEnt, UserAction.Create,out newid);
         }
 
         /// <summary>
@@ -841,7 +841,8 @@ namespace HairNet.Business
         /// <param name="HairStyleEnt"></param>
         public static void UpdateHairStyle(HairStyleEntity HairStyleEnt)
         {
-            ProviderFactory.GetHairEngineerDataProviderInstance().HairStyleCreateDeleteUpdate(HairStyleEnt, UserAction.Update);
+            int id = 0;
+            ProviderFactory.GetHairEngineerDataProviderInstance().HairStyleCreateDeleteUpdate(HairStyleEnt, UserAction.Update,out id);
         }
 
         /// <summary>
@@ -850,7 +851,8 @@ namespace HairNet.Business
         /// <param name="HairStyleEnt"></param>
         public static void DeleteHairStyle(HairStyleEntity HairStyleEnt)
         {
-            ProviderFactory.GetHairEngineerDataProviderInstance().HairStyleCreateDeleteUpdate(HairStyleEnt, UserAction.Delete);
+            int id = 0;
+            ProviderFactory.GetHairEngineerDataProviderInstance().HairStyleCreateDeleteUpdate(HairStyleEnt, UserAction.Delete,out id);
         }
 
         /// <summary>
@@ -918,7 +920,8 @@ namespace HairNet.Business
         public static bool DeleteHairStyle(int hairStyleID)
         {
             HairStyleEntity hs = new HairStyleEntity(hairStyleID);
-             ProviderFactory.GetHairEngineerDataProviderInstance().HairStyleCreateDeleteUpdate(hs, UserAction.Delete);
+            int id = 0;
+             ProviderFactory.GetHairEngineerDataProviderInstance().HairStyleCreateDeleteUpdate(hs, UserAction.Delete,out id);
             return true;
             //throw new NotImplementedException();
         }
