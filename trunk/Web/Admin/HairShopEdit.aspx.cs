@@ -120,7 +120,11 @@ namespace Web.Admin
             txtHairShopPhoneNum.Text = hs.HairShopPhoneNum;
             txtHairShopShortName.Text = hs.HairShopShortName;
             txtHairShopWebSite.Text = hs.HairShopWebSite;
-            
+            txtHairCutPriceMin.Text = hs.HairCutDiscountMin.ToString();
+            txtHairDyePriceMin.Text = hs.HairDyeDiscountMin.ToString();
+            txtMarcelPriceMin.Text = hs.HairMarcelDiscountMin.ToString();
+            txtConservationPriceMin.Text = hs.HairConservationDiscountMin.ToString();
+            txtShapePriceMin.Text = hs.HairShapeDiscountMin.ToString();
 
             imgLogo.ImageUrl = hs.HairShopLogo;
 
@@ -133,6 +137,7 @@ namespace Web.Admin
             this.bindhotzone();
             ddlHotZone.SelectedValue = hs.HairShopHotZoneID.ToString();
 
+            
 
             tbHairCutPrice.Text = hs.HairCutPirce.ToString();
             tbHairCutDiscount.Text = hs.HairCutDiscount.ToString();
@@ -326,6 +331,51 @@ namespace Web.Admin
             else
             {
                 hs.HairShopLogo = imgLogo.ImageUrl;
+            }
+
+            try
+            {
+                hs.HairCutDiscountMin = Decimal.Parse(txtHairCutPriceMin.Text.Trim());
+            }
+            catch
+            {
+                hs.HairCutDiscountMin = 0;
+            }
+
+            try
+            {
+                hs.HairMarcelDiscountMin = Decimal.Parse(txtMarcelPriceMin.Text.Trim());
+            }
+            catch
+            {
+                hs.HairMarcelDiscountMin = 0;
+            }
+
+            try
+            {
+                hs.HairDyeDiscountMin = Decimal.Parse(txtHairDyePriceMin.Text.Trim());
+            }
+            catch
+            {
+                hs.HairDyeDiscountMin = 0;
+            }
+
+            try
+            {
+                hs.HairShapeDiscountMin = Decimal.Parse(txtShapePriceMin.Text.Trim());
+            }
+            catch
+            {
+                hs.HairShapeDiscountMin = 0;
+            }
+
+            try
+            {
+                hs.HairConservationDiscountMin = Decimal.Parse(txtConservationPriceMin.Text.Trim());
+            }
+            catch
+            {
+                hs.HairConservationDiscountMin = 0;
             }
 
             hs.HairShopCreateTime = txtHairShopCreateTime.Text.Trim();

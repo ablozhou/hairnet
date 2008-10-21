@@ -14,6 +14,7 @@ using HairNet.Business;
 using HairNet.Enumerations;
 using HairNet.Utilities;
 using System.Data.SqlClient;
+using HairNet.Provider;
 
 namespace Web.Admin
 {
@@ -142,6 +143,18 @@ namespace Web.Admin
                  
              //}
             List<HairStyleEntity> hl = InfoAdmin.GetHairStyleList();
+            try
+            {
+                int hairEngineerID = int.Parse(this.Request.QueryString["eid"].ToString());
+                hl = ProviderFactory.GetHairEngineerDataProviderInstance().GetHairStyleListByHairEngineerID(hairEngineerID);
+                this.dg.PageSize = 1000;
+            }
+            catch
+            {
+                hl = InfoAdmin.GetHairStyleList();
+                this.dg.PageSize = 30;
+            }
+            
             this.dg.DataKeyField = "ID";
             dg.DataSource = hl;
             //this.dg.DataSource = list;

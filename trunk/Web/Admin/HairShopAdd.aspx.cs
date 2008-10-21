@@ -126,6 +126,54 @@ namespace Web.Admin
             hs.HairShopDescription = txtDescription.Text.Trim();
 
             //Session["HairShopInfo"] = hs;
+
+
+            try
+            {
+                hs.HairCutDiscountMin = Decimal.Parse(txtHairCutPriceMin.Text.Trim());
+            }
+            catch
+            {
+                hs.HairCutDiscountMin = 0;
+            }
+
+            try
+            {
+                hs.HairMarcelDiscountMin = Decimal.Parse(txtMarcelPriceMin.Text.Trim());
+            }
+            catch
+            {
+                hs.HairMarcelDiscountMin = 0;
+            }
+
+            try
+            {
+                hs.HairDyeDiscountMin = Decimal.Parse(txtHairDyePriceMin.Text.Trim());
+            }
+            catch
+            {
+                hs.HairDyeDiscountMin = 0;
+            }
+
+            try
+            {
+                hs.HairShapeDiscountMin = Decimal.Parse(txtShapePriceMin.Text.Trim());
+            }
+            catch
+            {
+                hs.HairShapeDiscountMin = 0;
+            }
+
+            try
+            {
+                hs.HairConservationDiscountMin = Decimal.Parse(txtConservationPriceMin.Text.Trim());
+            }
+            catch
+            {
+                hs.HairConservationDiscountMin = 0;
+            }
+
+
             try
             {
                 hs.HairCutDiscount = Decimal.Parse(tbHairCutDiscount.Text.Trim());

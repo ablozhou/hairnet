@@ -72,8 +72,8 @@ function GoToPic(id)
         <td height="15" colspan="2">&nbsp;</td>
       </tr>
       <tr>
-        <td width="179" height="25" align="left" class="red14b">&nbsp;&nbsp;<asp:Label ID="lblHairShopName" runat="server"></asp:Label></td>
-        <td width="201" align="right" valign="bottom"><table width="141" height="25" border="0" align="right" cellpadding="0" cellspacing="0" background="Theme/images/fair-mft-tab1.gif" id="seatchTab21">
+        <td width="234" height="25" align="left" class="red14b">&nbsp;&nbsp;<asp:Label ID="lblHairShopName" runat="server"></asp:Label></td>
+        <td width="144" align="right" valign="bottom"><table width="141" height="25" border="0" align="right" cellpadding="0" cellspacing="0" background="Theme/images/fair-mft-tab1.gif" id="seatchTab21">
           <tr>
             <td width="70" onclick="showTab2(1);" style="cursor:hand;">&nbsp;</td>
             <td width="71" onclick="showTab2(2);" style="cursor:hand;">&nbsp;</td>

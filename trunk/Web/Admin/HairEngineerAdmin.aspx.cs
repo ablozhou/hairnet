@@ -293,16 +293,17 @@ namespace Web.Admin
                 e.Item.Attributes.Add("onmouseover", "c=this.style.backgroundColor;this.style.backgroundColor='#ffffff';");
                 e.Item.Attributes.Add("onmouseout", "this.style.backgroundColor=c;");
                 //e.Item.Cells[12].Attributes.Add("onclick", "return confirm('确定推荐么?');");
-                e.Item.Cells[9].Attributes.Add("onclick", "return confirm('确定删除么?');");
+                e.Item.Cells[10].Attributes.Add("onclick", "return confirm('确定删除么?');");
 
                 HairEngineer hairEngineer = e.Item.DataItem as HairEngineer;
                 Label lblRecommandRate = e.Item.FindControl("lblRecommandRate") as Label;
                 //Label lblCommentTotal = e.Item.FindControl("lblCommentTotal") as Label;
                 Label lblCommentRate = e.Item.FindControl("lblCommentRate") as Label;
                 Label lblAddOupsInfo = e.Item.FindControl("lblAddOupsInfo") as Label;
-
+                Label lblWorks = e.Item.FindControl("lblWorks") as Label;
                 lblAddOupsInfo.Text = "<a href='EngineerOpusInfo.aspx?ENGINEERID="+hairEngineer.HairEngineerID.ToString()+"&shopid="+hairEngineer.HairShopID.ToString()+"' target='_self'>添加作品</a>";
 
+                lblWorks.Text = "<a href='HairStyleAdmin.aspx?eid="+hairEngineer.HairEngineerID.ToString()+"' target='_self'>编辑作品</a>";
                 ////推荐指数（点击数+好评评论数+我要推荐数）?美发师的预约数不应该计算在内么?
                 int recommandRate = hairEngineer.HairEngineerHits + hairEngineer.HairEngineerGood + hairEngineer.HairEngineerRecommandNum;
                 lblRecommandRate.Text = recommandRate.ToString();

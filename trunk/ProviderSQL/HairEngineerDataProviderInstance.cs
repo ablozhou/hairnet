@@ -7,6 +7,7 @@ using HairNet.Entry;
 using HairNet.Enumerations;
 
 using HairNet.DBUtility;
+using System.Configuration;
 
 namespace HairNet.Provider
 {
@@ -322,7 +323,35 @@ namespace HairNet.Provider
             return valueList;
 
         }
+        /// 
+        /// </summary>
+        /// <param name="engineerID"></param>
+        /// <returns></returns>
+        public List<HairStyleEntity> GetHairStyleListByHairEngineerID(Int32 ID)
+        {
+            List<HairStyleEntity> valueList = new List<HairStyleEntity>();
+            using (SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["MSSqlServer"].ConnectionString))
+            {
+                string commString = "select * from HairStyle where hairEngineerID="+ID.ToString();
+                using(SqlCommand comm = new SqlCommand())
+                {
+                    comm.CommandText = commString;
+                    comm.Connection = conn;
+                    conn.Open();
+                    using(SqlDataReader Reader = comm.ExecuteReader())
+                    {
+                        while (Reader.Read())
+                            valueList.Add(new HairStyleEntity(Reader.GetInt32(0), Reader.GetString(1), Reader.GetByte(2), Reader.GetByte(3),
+                                Reader.GetByte(4), Reader.GetByte(5), Reader.GetByte(6), Reader.GetString(7), Reader.GetString(8), Reader.GetString(9),
+                                Reader.GetString(10), Reader.GetString(11), Reader.GetString(12), Reader.GetString(13), Reader.GetInt32(14),
+                                Reader.GetInt32(15), Reader.GetByte(16), Reader.GetByte(17), Reader.GetByte(18), Reader.GetDateTime(19),
+                                Reader.GetString(20), Reader.GetInt32(21), Reader.GetInt32(22), Reader.GetInt32(23), Reader.GetString(24)));
+                    }
+                }
+            }
+            return valueList;
 
+        }
         /// <summary>
         /// 
         /// </summary>

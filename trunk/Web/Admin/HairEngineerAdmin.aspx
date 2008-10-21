@@ -72,6 +72,11 @@
                         <asp:Label ID="lblAddOupsInfo" runat="server"></asp:Label>
                     </ItemTemplate>
                 </asp:TemplateColumn>
+                <asp:TemplateColumn HeaderText="编辑作品">
+                    <ItemTemplate>
+                        <asp:Label ID="lblWorks" runat="server"></asp:Label>
+                    </ItemTemplate>
+                </asp:TemplateColumn>
                 <asp:ButtonColumn ButtonType="LinkButton" CommandName="delete" Text="删除" 
                     HeaderText="删除"></asp:ButtonColumn>
             </Columns>

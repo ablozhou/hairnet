@@ -93,20 +93,32 @@
             </tr>
            <tr>
                 <td align="right" class="style1">
-                    剪发价格：
+                    剪发价格小：
                 </td>
                 <td>
-                    <asp:TextBox ID="tbHairCutPrice" runat="server" Width="200" CssClass="TextBox"></asp:TextBox>
+                    <asp:TextBox ID="txtHairCutPriceMin" runat="server" Width="200" CssClass="TextBox">0</asp:TextBox>
+                    <asp:RegularExpressionValidator ID="RegularExpressionValidator16" runat="server" 
+                        ControlToValidate="tbHairCutDiscount" ErrorMessage="值不对" 
+                        ValidationExpression="\d*"></asp:RegularExpressionValidator>
+                </td>
+            </tr>
+            <tr>
+                <td align="right" class="style1">
+                    剪发价格大：
+                </td>
+                <td>
+                    <asp:TextBox ID="tbHairCutPrice" runat="server" Width="200" CssClass="TextBox">0</asp:TextBox>
                     <asp:RegularExpressionValidator ID="RegularExpressionValidator3" runat="server" 
                         ControlToValidate="tbHairCutPrice" ErrorMessage="值不对" ValidationExpression="\d*"></asp:RegularExpressionValidator>
                 </td>
             </tr>
+            
             <tr>
                 <td align="right" class="style1">
                     剪发折扣：
                 </td>
                 <td>
-                    <asp:TextBox ID="tbHairCutDiscount" runat="server" Width="200" CssClass="TextBox"></asp:TextBox>
+                    <asp:TextBox ID="tbHairCutDiscount" runat="server" Width="200" CssClass="TextBox">0</asp:TextBox>
                     <asp:RegularExpressionValidator ID="RegularExpressionValidator5" runat="server" 
                         ControlToValidate="tbHairCutDiscount" ErrorMessage="值不对" 
                         ValidationExpression="\d*"></asp:RegularExpressionValidator>
@@ -114,10 +126,20 @@
             </tr>
             <tr>
                 <td align="right" class="style1">
-                    烫发价格：
+                    烫发价格小：
                 </td>
                 <td>
-                    <asp:TextBox ID="tbMarcelPrice" runat="server" Width="200" CssClass="TextBox"></asp:TextBox>
+                    <asp:TextBox ID="txtMarcelPriceMin" runat="server" Width="200" CssClass="TextBox">0</asp:TextBox>
+                    <asp:RegularExpressionValidator ID="RegularExpressionValidator17" runat="server" 
+                        ControlToValidate="tbMarcelPrice" ErrorMessage="值不对" ValidationExpression="\d*"></asp:RegularExpressionValidator>
+                </td>
+            </tr>
+            <tr>
+                <td align="right" class="style1">
+                    烫发价格大：
+                </td>
+                <td>
+                    <asp:TextBox ID="tbMarcelPrice" runat="server" Width="200" CssClass="TextBox">0</asp:TextBox>
                     <asp:RegularExpressionValidator ID="RegularExpressionValidator6" runat="server" 
                         ControlToValidate="tbMarcelPrice" ErrorMessage="值不对" ValidationExpression="\d*"></asp:RegularExpressionValidator>
                 </td>
@@ -127,18 +149,28 @@
                     烫发折扣：
                 </td>
                 <td>
-                    <asp:TextBox ID="tbMarclDiscount" runat="server" Width="200" CssClass="TextBox"></asp:TextBox>
+                    <asp:TextBox ID="tbMarclDiscount" runat="server" Width="200" CssClass="TextBox">0</asp:TextBox>
                     <asp:RegularExpressionValidator ID="RegularExpressionValidator7" runat="server" 
                         ControlToValidate="tbMarclDiscount" ErrorMessage="值不对" 
                         ValidationExpression="\d*"></asp:RegularExpressionValidator>
                 </td>
-            </tr>   
+            </tr>  
             <tr>
                 <td align="right" class="style1">
-                    染发价格：
+                    染发价格小：
                 </td>
                 <td>
-                    <asp:TextBox ID="tbHairDyePrice" runat="server" Width="200" CssClass="TextBox"></asp:TextBox>
+                    <asp:TextBox ID="txtHairDyePriceMin" runat="server" Width="200" CssClass="TextBox">0</asp:TextBox>
+                    <asp:RegularExpressionValidator ID="RegularExpressionValidator18" runat="server" 
+                        ControlToValidate="tbHairDyePrice" ErrorMessage="值不对" ValidationExpression="\d*"></asp:RegularExpressionValidator>
+                </td>
+            </tr> 
+            <tr>
+                <td align="right" class="style1">
+                    染发价格大：
+                </td>
+                <td>
+                    <asp:TextBox ID="tbHairDyePrice" runat="server" Width="200" CssClass="TextBox">0</asp:TextBox>
                     <asp:RegularExpressionValidator ID="RegularExpressionValidator8" runat="server" 
                         ControlToValidate="tbHairDyePrice" ErrorMessage="值不对" ValidationExpression="\d*"></asp:RegularExpressionValidator>
                 </td>
@@ -148,7 +180,7 @@
                     染发折扣：
                 </td>
                 <td>
-                    <asp:TextBox ID="tbHairDyeDiscount" runat="server" Width="200" CssClass="TextBox"></asp:TextBox>
+                    <asp:TextBox ID="tbHairDyeDiscount" runat="server" Width="200" CssClass="TextBox">0</asp:TextBox>
                     <asp:RegularExpressionValidator ID="RegularExpressionValidator9" runat="server" 
                         ControlToValidate="tbHairDyeDiscount" ErrorMessage="值不对" 
                         ValidationExpression="\d*"></asp:RegularExpressionValidator>
@@ -156,10 +188,21 @@
             </tr>
             <tr>
                 <td align="right" class="style1">
-                    造型价格：
+                    造型价格小：
                 </td>
                 <td>
-                    <asp:TextBox ID="tbShapePrice" runat="server" Width="200" CssClass="TextBox"></asp:TextBox>
+                    <asp:TextBox ID="txtShapePriceMin" runat="server" Width="200" CssClass="TextBox">0</asp:TextBox>
+                    <asp:RegularExpressionValidator ID="RegularExpressionValidator19" 
+                        runat="server" ControlToValidate="tbShapePrice" ErrorMessage="值不对" 
+                        ValidationExpression="\d*"></asp:RegularExpressionValidator>
+                </td>
+            </tr>
+            <tr>
+                <td align="right" class="style1">
+                    造型价格大：
+                </td>
+                <td>
+                    <asp:TextBox ID="tbShapePrice" runat="server" Width="200" CssClass="TextBox">0</asp:TextBox>
                     <asp:RegularExpressionValidator ID="RegularExpressionValidator10" 
                         runat="server" ControlToValidate="tbShapePrice" ErrorMessage="值不对" 
                         ValidationExpression="\d*"></asp:RegularExpressionValidator>
@@ -170,7 +213,7 @@
                     造型折扣：
                 </td>
                 <td>
-                    <asp:TextBox ID="tbShapeDiscount" runat="server" Width="200" CssClass="TextBox"></asp:TextBox>
+                    <asp:TextBox ID="tbShapeDiscount" runat="server" Width="200" CssClass="TextBox">0</asp:TextBox>
                     <asp:RegularExpressionValidator ID="RegularExpressionValidator11" 
                         runat="server" ControlToValidate="tbShapeDiscount" ErrorMessage="值不对" 
                         ValidationExpression="\d*"></asp:RegularExpressionValidator>
@@ -178,10 +221,21 @@
             </tr>
             <tr>
                 <td align="right" class="style1">
-                    护理价格：
+                    护理价格小：
                 </td>
                 <td>
-                    <asp:TextBox ID="tbConservationPrice" runat="server" Width="200" CssClass="TextBox"></asp:TextBox>
+                    <asp:TextBox ID="txtConservationPriceMin" runat="server" Width="200" CssClass="TextBox">0</asp:TextBox>
+                    <asp:RegularExpressionValidator ID="RegularExpressionValidator20" 
+                        runat="server" ControlToValidate="tbConservationPrice" ErrorMessage="值不对" 
+                        ValidationExpression="\d*"></asp:RegularExpressionValidator>
+                </td>
+            </tr>
+            <tr>
+                <td align="right" class="style1">
+                    护理价格大：
+                </td>
+                <td>
+                    <asp:TextBox ID="tbConservationPrice" runat="server" Width="200" CssClass="TextBox">0</asp:TextBox>
                     <asp:RegularExpressionValidator ID="RegularExpressionValidator12" 
                         runat="server" ControlToValidate="tbConservationPrice" ErrorMessage="值不对" 
                         ValidationExpression="\d*"></asp:RegularExpressionValidator>
@@ -192,7 +246,7 @@
                     护理折扣：
                 </td>
                 <td>
-                    <asp:TextBox ID="tbConservationDiscount" runat="server" Width="200" CssClass="TextBox"></asp:TextBox>
+                    <asp:TextBox ID="tbConservationDiscount" runat="server" Width="200" CssClass="TextBox">0</asp:TextBox>
                     <asp:RegularExpressionValidator ID="RegularExpressionValidator13" 
                         runat="server" ControlToValidate="tbConservationDiscount" ErrorMessage="值不对" 
                         ValidationExpression="\d*"></asp:RegularExpressionValidator>
