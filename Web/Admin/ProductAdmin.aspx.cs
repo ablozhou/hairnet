@@ -13,6 +13,7 @@ using HairNet.Entry;
 using HairNet.Business;
 using HairNet.Enumerations;
 using HairNet.Utilities;
+using System.Data.SqlClient;
 namespace Web.Admin
 {
     public partial class ProductAdmin : System.Web.UI.Page
@@ -215,6 +216,80 @@ namespace Web.Admin
                 if (e.CommandName == "delete")
                 {
                     int productID = int.Parse(this.dg.DataKeys[e.Item.ItemIndex].ToString());
+
+                    Product product = InfoAdmin.GetProductByProductID(productID.ToString());
+
+                    //tag逻辑
+
+                    if (product.ProductTagIDs != string.Empty)
+                    {
+                        string[] tempTagC = product.ProductTagIDs.Split(",".ToCharArray());
+                        for (int k = 0; k < tempTagC.Length; k++)
+                        {
+                            ProductTag hst = new ProductTag();
+                            using (SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["MSSqlServer"].ConnectionString))
+                            {
+                                string commString = "select * from ProductTag where ProductTagID=" + tempTagC[k];
+                                using (SqlCommand comm = new SqlCommand())
+                                {
+                                    comm.CommandText = commString;
+                                    comm.Connection = conn;
+                                    conn.Open();
+                                    using (SqlDataReader sdr = comm.ExecuteReader())
+                                    {
+                                        if (sdr.Read())
+                                        {
+                                            try
+                                            {
+                                                hst.TagID = int.Parse(sdr["ProductTagID"].ToString());
+                                                hst.TagName = sdr["ProductTagName"].ToString();
+                                                hst.ProductIDs = sdr["ProductIDs"].ToString();
+                                            }
+                                            catch
+                                            { }
+                                        }
+                                    }
+                                }
+                            }
+                            string[] tempProductIDC = hst.ProductIDs.Split(",".ToCharArray());
+                            string ProductIDs = "";
+
+                            int tempNum = 0;
+                            for (int i = 0; i < tempProductIDC.Length; i++)
+                            {
+                                if (tempProductIDC[i] != product.ProductID.ToString())
+                                {
+                                    tempNum++;
+                                    if (tempNum == 1)
+                                    {
+                                        ProductIDs = tempProductIDC[i];
+                                    }
+                                    else
+                                    {
+                                        ProductIDs += "," + tempProductIDC[i];
+                                    }
+                                }
+                            }
+                            using (SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["MSSqlServer"].ConnectionString))
+                            {
+                                string commString = "update ProductTag set ProductIDs='" + ProductIDs + "' where ProductTagID=" + hst.TagID.ToString();
+                                using (SqlCommand comm = new SqlCommand())
+                                {
+                                    comm.CommandText = commString;
+                                    comm.Connection = conn;
+                                    conn.Open();
+                                    try
+                                    {
+                                        comm.ExecuteNonQuery();
+                                    }
+                                    catch
+                                    { }
+                                }
+                            }
+                        }
+                    }
+
+                    //
 
                     if (InfoAdmin.DeleteProduct(productID))
                     {

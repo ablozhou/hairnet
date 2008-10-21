@@ -192,6 +192,96 @@ namespace Web.Admin
                 {
                     int hairStyleID = int.Parse(this.dg.DataKeys[e.Item.ItemIndex].ToString());
 
+                    string hstyleid = hairStyleID.ToString();
+
+                    //tag
+                    string hairStyleTagIDs = "";
+                    using (SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["MSSqlServer"].ToString()))
+                    {
+                        string commString = "select id,tag from hairstyle where id =" + hstyleid;
+                        using (SqlCommand comm = new SqlCommand())
+                        {
+                            comm.Connection = conn;
+                            comm.CommandText = commString;
+                            conn.Open();
+                            using (SqlDataReader sdr = comm.ExecuteReader())
+                            {
+                                if (sdr.Read())
+                                {
+                                    hairStyleTagIDs = sdr["tag"].ToString();
+                                }
+                            }
+                        }
+                    }
+                    //先处理TAG逻辑，先删除HS所对应的所有TAG
+                    if (hairStyleTagIDs != string.Empty)
+                    {
+                        string[] tempTagC = hairStyleTagIDs.Split(",".ToCharArray());
+                        for (int k = 0; k < tempTagC.Length; k++)
+                        {
+                            PictureStoreTag hst = new PictureStoreTag();
+                            using (SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["MSSqlServer"].ConnectionString))
+                            {
+                                string commString = "select * from PictureStoreTag where PictureStoreTagID=" + tempTagC[k];
+                                using (SqlCommand comm = new SqlCommand())
+                                {
+                                    comm.CommandText = commString;
+                                    comm.Connection = conn;
+                                    conn.Open();
+                                    using (SqlDataReader sdr = comm.ExecuteReader())
+                                    {
+                                        if (sdr.Read())
+                                        {
+                                            try
+                                            {
+                                                hst.TagID = int.Parse(sdr["PictureStoreTagID"].ToString());
+                                                hst.TagName = sdr["PictureStoreTagName"].ToString();
+                                                hst.PictureStoreIDs = sdr["PictureStoreIDs"].ToString();
+                                            }
+                                            catch
+                                            { }
+                                        }
+                                    }
+                                }
+                            }
+                            string[] tempPictureStoreIDC = hst.PictureStoreIDs.Split(",".ToCharArray());
+                            string pictureStoreIDs = "";
+
+                            int tempNum = 0;
+                            for (int i = 0; i < tempPictureStoreIDC.Length; i++)
+                            {
+                                if (tempPictureStoreIDC[i] != hstyleid.ToString())
+                                {
+                                    tempNum++;
+                                    if (tempNum == 1)
+                                    {
+                                        pictureStoreIDs = tempPictureStoreIDC[i];
+                                    }
+                                    else
+                                    {
+                                        pictureStoreIDs += "," + tempPictureStoreIDC[i];
+                                    }
+                                }
+                            }
+                            using (SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["MSSqlServer"].ConnectionString))
+                            {
+                                string commString = "update PictureStoreTag set PictureStoreIDs='" + pictureStoreIDs + "' where PictureStoreTagID=" + hst.TagID.ToString();
+                                using (SqlCommand comm = new SqlCommand())
+                                {
+                                    comm.CommandText = commString;
+                                    comm.Connection = conn;
+                                    conn.Open();
+                                    try
+                                    {
+                                        comm.ExecuteNonQuery();
+                                    }
+                                    catch
+                                    { }
+                                }
+                            }
+                        }
+                    }
+
                     this.deleteHairStyle(hairStyleID);
                     if (InfoAdmin.DeleteHairStyle(hairStyleID))
                     {

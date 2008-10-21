@@ -236,6 +236,78 @@ namespace Web.Admin
 
                     HairEngineer he = ProviderFactory.GetHairEngineerDataProviderInstance().GetHairEngineerByHairEngineerID(hairEngineerID);
 
+                    //tag逻辑
+                    //先处理TAG逻辑，先删除HS所对应的所有TAG
+                    if (he.HairEngineerTagIDs != string.Empty)
+                    {
+                        string[] tempTagC = he.HairEngineerTagIDs.Split(",".ToCharArray());
+                        for (int k = 0; k < tempTagC.Length; k++)
+                        {
+                            HairEngineerTag hst = new HairEngineerTag();
+                            using (SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["MSSqlServer"].ConnectionString))
+                            {
+                                string commString = "select * from HairEngineerTag where HairEngineerTagID=" + tempTagC[k];
+                                using (SqlCommand comm = new SqlCommand())
+                                {
+                                    comm.CommandText = commString;
+                                    comm.Connection = conn;
+                                    conn.Open();
+                                    using (SqlDataReader sdr = comm.ExecuteReader())
+                                    {
+                                        if (sdr.Read())
+                                        {
+                                            try
+                                            {
+                                                hst.TagID = int.Parse(sdr["HairEngineerTagID"].ToString());
+                                                hst.TagName = sdr["HairEngineerTagName"].ToString();
+                                                hst.HairEngineerIDs = sdr["HairEngineerIDs"].ToString();
+                                            }
+                                            catch
+                                            { }
+                                        }
+                                    }
+                                }
+                            }
+                            string[] tempHairEngineerIDC = hst.HairEngineerIDs.Split(",".ToCharArray());
+                            string hairEngineerIDs = "";
+
+                            int tempNum = 0;
+                            for (int i = 0; i < tempHairEngineerIDC.Length; i++)
+                            {
+                                if (tempHairEngineerIDC[i] != he.HairEngineerID.ToString())
+                                {
+                                    tempNum++;
+                                    if (tempNum == 1)
+                                    {
+                                        hairEngineerIDs = tempHairEngineerIDC[i];
+                                    }
+                                    else
+                                    {
+                                        hairEngineerIDs += "," + tempHairEngineerIDC[i];
+                                    }
+                                }
+                            }
+                            using (SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["MSSqlServer"].ConnectionString))
+                            {
+                                string commString = "update HairEngineerTag set HairEngineerIDs='" + hairEngineerIDs + "' where HairEngineerTagID=" + hst.TagID.ToString();
+                                using (SqlCommand comm = new SqlCommand())
+                                {
+                                    comm.CommandText = commString;
+                                    comm.Connection = conn;
+                                    conn.Open();
+                                    try
+                                    {
+                                        comm.ExecuteNonQuery();
+                                    }
+                                    catch
+                                    { }
+                                }
+                            }
+                        }
+                    }
+                    //
+
+
                     using (SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["MSSqlServer"].ConnectionString))
                     {
                         string commString = "update HairShop set HairShopEngineerNum = HairShopEngineerNum-1 where HairShopID=" + he.HairShopID.ToString();

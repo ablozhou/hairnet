@@ -14,6 +14,7 @@ using HairNet.Business;
 using HairNet.Enumerations;
 using HairNet.Utilities;
 using System.Data.SqlClient;
+using HairNet.Provider;
 
 namespace Web.Admin
 {
@@ -247,6 +248,76 @@ namespace Web.Admin
                 if (e.CommandName == "delete")
                 {
                     int hairShopID = int.Parse(this.dg.DataKeys[e.Item.ItemIndex].ToString());
+
+                    HairShop hs = ProviderFactory.GetHairShopDataProviderInstance().GetHairShopByHairShopID(hairShopID);
+                    //先处理TAG逻辑，先删除HS所对应的所有TAG
+                    if (hs.HairShopTagIDs != string.Empty)
+                    {
+                        string[] tempTagC = hs.HairShopTagIDs.Split(",".ToCharArray());
+                        for (int k = 0; k < tempTagC.Length; k++)
+                        {
+                            HairShopTag hst = new HairShopTag();
+                            using (SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["MSSqlServer"].ConnectionString))
+                            {
+                                string commString = "select * from HairShopTag where HairShopTagID=" + tempTagC[k];
+                                using (SqlCommand comm = new SqlCommand())
+                                {
+                                    comm.CommandText = commString;
+                                    comm.Connection = conn;
+                                    conn.Open();
+                                    using (SqlDataReader sdr = comm.ExecuteReader())
+                                    {
+                                        if (sdr.Read())
+                                        {
+                                            try
+                                            {
+                                                hst.TagID = int.Parse(sdr["HairShopTagID"].ToString());
+                                                hst.TagName = sdr["HairShopTagName"].ToString();
+                                                hst.HairShopIDs = sdr["HairShopIDs"].ToString();
+                                            }
+                                            catch
+                                            { }
+                                        }
+                                    }
+                                }
+                            }
+                            string[] tempHairShopIDC = hst.HairShopIDs.Split(",".ToCharArray());
+                            string hairShopIDs = "";
+
+                            int tempNum = 0;
+                            for (int i = 0; i < tempHairShopIDC.Length; i++)
+                            {
+                                if (tempHairShopIDC[i] != hs.HairShopID.ToString())
+                                {
+                                    tempNum++;
+                                    if (tempNum == 1)
+                                    {
+                                        hairShopIDs = tempHairShopIDC[i];
+                                    }
+                                    else
+                                    {
+                                        hairShopIDs += "," + tempHairShopIDC[i];
+                                    }
+                                }
+                            }
+                            using (SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["MSSqlServer"].ConnectionString))
+                            {
+                                string commString = "update HairShopTag set HairShopIDs='" + hairShopIDs + "' where HairShopTagID=" + hst.TagID.ToString();
+                                using (SqlCommand comm = new SqlCommand())
+                                {
+                                    comm.CommandText = commString;
+                                    comm.Connection = conn;
+                                    conn.Open();
+                                    try
+                                    {
+                                        comm.ExecuteNonQuery();
+                                    }
+                                    catch
+                                    { }
+                                }
+                            }
+                        }
+                    }
 
                     if (InfoAdmin.DeleteHairShop(hairShopID))
                     {
