@@ -290,10 +290,42 @@ namespace HairNet.Entry
         private Decimal hairConservationPrice = 0;
 
         private Decimal hairCutDiscount = 0;
+        private Decimal _hairCuteDiscountMin = 0;
+        
         private Decimal hairMarcelDiscount = 0;
+        private Decimal _hairMarcelDiscountMin = 0;
         private Decimal hairDyeDiscount = 0;
+        private Decimal _hairDyeDiscountMin = 0;
         private Decimal hairShapeDiscount = 0;
+        private Decimal _hairShapeDiscountMin = 0;
         private Decimal hairConservationDiscount = 0;
+        private Decimal _hairConservationDicountMin = 0;
+
+        public Decimal HairCutDiscountMin
+        {
+            set { this._hairCuteDiscountMin = value; }
+            get { return this._hairCuteDiscountMin; }
+        }
+        public Decimal HairMarcelDiscountMin
+        {
+            set { this._hairMarcelDiscountMin = value; }
+            get { return this._hairMarcelDiscountMin; }
+        }
+        public Decimal HairDyeDiscountMin
+        {
+            set { this._hairDyeDiscountMin = value; }
+            get { return this._hairDyeDiscountMin; }
+        }
+        public Decimal HairShapeDiscountMin
+        {
+            set { this._hairShapeDiscountMin = value; }
+            get { return this._hairShapeDiscountMin; }
+        }
+        public Decimal HairConservationDiscountMin
+        {
+            set { this._hairConservationDicountMin = value; }
+            get { return this._hairConservationDicountMin; }
+        }
 
         private string locationMapURL = String.Empty;
         private string square = String.Empty;
@@ -307,6 +339,7 @@ namespace HairNet.Entry
         private string _innerLogs = string.Empty;
         private int _postid = 0;
         private string _productsName = string.Empty;
+
         private int _hairShopNormal = 0;
         public int HairShopNormal
         {

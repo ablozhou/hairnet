@@ -77,7 +77,7 @@ namespace Web.UserControls
                                     sb.Append("<tr>");
                                 }
 
-                                sb.Append("<td width=\"20%\" align=\"center\"><div class=\"pic-1\"><a href=\"#\" target=\"_blank\"><img src=\""+smallPicUrl+"\" alt=\""+hairStyleDescription+"\" /></a><br /><a href=\"#\" target=\"_blank\">"+hairStyleName+"<br />"+hairShopName+"</a></div></td>");
+                                sb.Append("<td width=\"20%\" align=\"center\"><div class=\"pic-1\"><a href=\"HairLastPage.aspx?id=" + hairStyleID.ToString() + "\" target=\"_blank\"><img src=\"" + smallPicUrl + "\" alt=\"" + hairStyleDescription + "\" /></a><br /><a href=\"HairLastPage.aspx?id=" + hairStyleID.ToString() + "\" target=\"_blank\">" + hairStyleName + "</a></div></td>");
                                 
                                 if (num % 6 == 0)
                                 {

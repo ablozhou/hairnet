@@ -231,39 +231,43 @@ namespace Web.UserControls
                     sb.Append("<tr><td>&nbsp;</td><td height=\"13\" valign=\"top\">&nbsp;</td><td valign=\"top\">&nbsp;</td></tr>");
                     sb.Append("<tr><td width=\"27\">&nbsp;</td>");
                     sb.Append("<td width=\"100\" height=\"104\" valign=\"top\"><a href=\"HairShopContent.aspx?id=" + hairShop.HairShopID.ToString() + "\"><img src=\"" + picSmallUrl + "\" width=\"96\" height=\"96\" class=\"pic_padding_glay\" /></a></td>");
-                    sb.Append("<td width=\"561\" valign=\"top\"><table width=\"100%\" border=\"0\" cellpadding=\"0\" cellspacing=\"0\" class=\"gray12-lp\">");
+                    sb.Append("<td width=\"561\" valign=\"top\">");
+
+                    sb.Append("<table width=\"100%\" border=\"0\" cellpadding=\"0\" cellspacing=\"0\" class=\"gray12-lp\">");
                     sb.Append("<tr>");
                     sb.Append("<td width=\"4%\" height=\"12\">&nbsp;</td>");
-                    sb.Append("<td width=\"12%\">[名称]</td>");
-                    sb.Append("<td width=\"27%\" class=\"red12\"><strong>" + hairShop.HairShopShortName + "</strong></td>");
-                    sb.Append("<td width=\"8%\">[价格]</td>");
-                    sb.Append("<td width=\"21%\">" + hairShop.HairShapePrice.ToString() + "元</td>");
-                    sb.Append("<td width=\"4%\"><img src=\"Theme/images/mft_list_arrow.gif\" width=\"9\" height=\"13\" /></td>");
-                    sb.Append("<td width=\"10%\"><a href=\"HairShopContent.aspx?id=" + hairShop.HairShopID.ToString() + "\"   style=\" text-decoration:underline\">连锁店</a></td>");
-                    sb.Append("<td width=\"14%\">折扣：<span class=\"red12\">" + hairShop.HairShopDiscount.ToString() + "折</span></td></tr>");
+                    sb.Append("<td width=\"8%\">[店名]</td>");
+                    sb.Append("<td width=\"41%\" class=\"red12\"><strong>"+hairShop.HairShopName+"</strong></td>");
+                    sb.Append("<td width=\"19%\">[电话] "+hairShop.HairShopPhoneNum.ToString()+" </td>");
+                    sb.Append("<td width=\"10%\" align=\"right\">[价格]</td>");
+                    sb.Append("<td width=\"18%\" rowspan=\"4\" valign=\"top\">&nbsp;&nbsp;剪：" + hairShop.HairCutDiscountMin.ToString() + "-" + hairShop.HairCutPirce.ToString() + "元<br />&nbsp;&nbsp;染：" + hairShop.HairDyeDiscountMin.ToString() + "-" + hairShop.HairDyePrice.ToString() + "元<br />&nbsp;&nbsp;烫：" + hairShop.HairMarcelDiscountMin.ToString() + "-"+hairShop.HairMarcelPrice.ToString()+"元<br /> &nbsp;&nbsp;护："+hairShop.HairConservationDiscountMin.ToString()+"-"+hairShop.HairConservationPrice.ToString()+"元<br /> &nbsp;造型："+hairShop.HairConservationDiscountMin.ToString()+"-"+hairShop.HairConservationPrice.ToString()+"元</td>");
+                    sb.Append("</tr>");
                     sb.Append("<tr>");
                     sb.Append("<td height=\"20\">&nbsp;</td>");
                     sb.Append("<td>[地址]</td>");
-                    sb.Append("<td>" + hairShop.HairShopAddress + "</td>");
-                    sb.Append("<td>[电话]</td>");
-                    sb.Append("<td>" + hairShop.HairShopPhoneNum + "</td>");
-                    sb.Append("<td colspan=\"3\" valign=\"top\">&nbsp;</td>");
-                    sb.Append("</tr>");
-                    sb.Append("<tr>");
-                    sb.Append("<td height=\"42\">&nbsp;</td>");
-                    sb.Append("<td valign=\"top\">[简介]</td>");
-                    sb.Append("<td colspan=\"6\" valign=\"top\">" + hairShop.HairShopDescription + "</td>");
-                    sb.Append("</tr>");
-                    sb.Append("<tr>");
+                    sb.Append("<td colspan=\"2\">"+hairShop.HairShopAddress.ToString()+"</td>");
                     sb.Append("<td>&nbsp;</td>");
-                    sb.Append("<td colspan=\"7\"><table width=\"100%\" border=\"0\" cellspacing=\"0\" cellpadding=\"0\">");
+                    sb.Append("</tr>");
                     sb.Append("<tr>");
-                    sb.Append("<td width=\"13%\" height=\"27\"><a href=\"#\" target=\"_blank\"><img src=\"Theme/images/mfs_list_map.gif\" width=\"59\" height=\"19\" border=\"0\" /></a></td>");
-                    sb.Append("<td width=\"28%\"><img src=\"Theme/images/mft_list_collection.gif\" width=\"59\" height=\"19\" border=\"0\" /></td>");
-                    sb.Append("<td width=\"8%\">[好评]</td>");
-                    sb.Append("<td width=\"16%\"><span class=\"red12\">" + goodRate + "%</span></td>");
-                    sb.Append("<td width=\"35%\"><a href=\"HairShopContent.aspx?id=" + hairShop.HairShopID.ToString() + "\" class=\"red12\" style=\" text-decoration:underline\">查 看</a> | <a href=\"http://bbs.sg.com.cn/thread-" + hairShop.Postid.ToString() + "-1-1.html\" style=\" text-decoration:underline\">我要评论</a></td>");
-                    sb.Append("</tr></table></td></tr></table></td></tr><tr><td>&nbsp;</td><td colspan=\"2\">&nbsp;</td></tr></table></div></div>");
+                    sb.Append("<td height=\"21\">&nbsp;</td>");
+                    sb.Append("<td valign=\"top\">[简介]</td>");
+                    sb.Append("<td colspan=\"2\" valign=\"top\">"+hairShop.HairShopDescription+"</td>");
+                    sb.Append("<td rowspan=\"2\" valign=\"top\">&nbsp;</td>");
+                    sb.Append("</tr>");
+                    sb.Append("<tr>");
+                    sb.Append("<td height=\"21\">&nbsp;</td>");
+                    sb.Append("<td valign=\"top\">&nbsp;</td>");
+                    sb.Append("<td align=\"left\" valign=\"top\"><a href=\"HairShopContent.aspx?id="+hairShop.HairShopID.ToString()+"\"   style=\" text-decoration:underline\">连锁店</a>&nbsp;&nbsp;<span style=\"text-decoration:underline\">折扣：</span><span class=\"red12\">"+hairShop.HairShopDiscount.ToString()+"折&nbsp;</span>&nbsp;好评：<span class=\"red12\">"+goodRate.ToString()+"%</span></td>");
+                    sb.Append("<td align=\"left\" valign=\"top\"><img src=\"Theme/images/mft_list_arrow.gif\" width=\"9\" height=\"13\" />&nbsp;<a href=\"HairShopContent.aspx?id="+hairShop.HairShopID.ToString()+"\" target=\"_blank\"><span class=\"red12\">详情</span></a></td>");
+                    sb.Append("</tr>");
+                    sb.Append("<tr>");
+                    sb.Append("<td colspan=\"6\"><table width=\"100%\" border=\"0\" cellspacing=\"0\" cellpadding=\"0\">");
+                    sb.Append("<tr>");
+                    sb.Append("<td height=\"30\" align=\"right\" valign=\"bottom\"><a href=\"#\" target=\"_blank\"><img src=\"Theme/images/mfs_list_map.gif\" width=\"59\" height=\"19\" border=\"0\" /></a>&nbsp;<a href='http://bbs.sg.com.cn/thread-" + hairShop.Postid.ToString() + "-1-1.html'><img src=\"Theme/images/fair-mfd_06b.gif\" /></a>&nbsp;&nbsp;</td>");
+                    sb.Append("</tr>");
+                    sb.Append("</table></td> </tr></table>");
+
+                    sb.Append("</td></tr><tr><td>&nbsp;</td><td colspan=\"2\">&nbsp;</td></tr></table></div></div>");
                 }
                 else
                 {
@@ -311,39 +315,44 @@ namespace Web.UserControls
                     sb.Append("<tr><td>&nbsp;</td><td height=\"13\" valign=\"top\">&nbsp;</td><td valign=\"top\">&nbsp;</td></tr>");
                     sb.Append("<tr><td width=\"27\">&nbsp;</td>");
                     sb.Append("<td width=\"100\" height=\"104\" valign=\"top\"><a href=\"HairShopContent.aspx?id=" + hairShop.HairShopID.ToString() + "\"><img src=\"" + picSmallUrl + "\" width=\"96\" height=\"96\" class=\"pic_padding_glay\" /></a></td>");
-                    sb.Append("<td width=\"561\" valign=\"top\"><table width=\"100%\" border=\"0\" cellpadding=\"0\" cellspacing=\"0\" class=\"gray12-lp\">");
+                    sb.Append("<td width=\"561\" valign=\"top\">");
+
+                    sb.Append("<table width=\"100%\" border=\"0\" cellpadding=\"0\" cellspacing=\"0\" class=\"gray12-lp\">");
                     sb.Append("<tr>");
                     sb.Append("<td width=\"4%\" height=\"12\">&nbsp;</td>");
-                    sb.Append("<td width=\"12%\">[名称]</td>");
-                    sb.Append("<td width=\"27%\" class=\"red12\"><strong>" + hairShop.HairShopShortName + "</strong></td>");
-                    sb.Append("<td width=\"8%\">[价格]</td>");
-                    sb.Append("<td width=\"21%\">" + hairShop.HairShapePrice.ToString() + "元</td>");
-                    sb.Append("<td width=\"4%\"><img src=\"Theme/images/mft_list_arrow.gif\" width=\"9\" height=\"13\" /></td>");
-                    sb.Append("<td width=\"10%\"><a href=\"HairShopContent.aspx?id=" + hairShop.HairShopID.ToString() + "\"   style=\" text-decoration:underline\">连锁店</a></td>");
-                    sb.Append("<td width=\"14%\">折扣：<span class=\"red12\">" + hairShop.HairShopDiscount.ToString() + "折</span></td></tr>");
+                    sb.Append("<td width=\"8%\">[店名]</td>");
+                    sb.Append("<td width=\"41%\" class=\"red12\"><strong>" + hairShop.HairShopName + "</strong></td>");
+                    sb.Append("<td width=\"19%\">[电话] " + hairShop.HairShopPhoneNum.ToString() + " </td>");
+                    sb.Append("<td width=\"10%\" align=\"right\">[价格]</td>");
+                    sb.Append("<td width=\"18%\" rowspan=\"4\" valign=\"top\">&nbsp;&nbsp;剪：" + hairShop.HairCutDiscountMin.ToString() + "-" + hairShop.HairCutPirce.ToString() + "元<br />&nbsp;&nbsp;染：" + hairShop.HairDyeDiscountMin.ToString() + "-" + hairShop.HairDyePrice.ToString() + "元<br />&nbsp;&nbsp;烫：" + hairShop.HairMarcelDiscountMin.ToString() + "-" + hairShop.HairMarcelPrice.ToString() + "元<br /> &nbsp;&nbsp;护：" + hairShop.HairConservationDiscountMin.ToString() + "-" + hairShop.HairConservationPrice.ToString() + "元<br /> &nbsp;造型：" + hairShop.HairConservationDiscountMin.ToString() + "-" + hairShop.HairConservationPrice.ToString() + "元</td>");
+                    sb.Append("</tr>");
                     sb.Append("<tr>");
                     sb.Append("<td height=\"20\">&nbsp;</td>");
                     sb.Append("<td>[地址]</td>");
-                    sb.Append("<td>" + hairShop.HairShopAddress + "</td>");
-                    sb.Append("<td>[电话]</td>");
-                    sb.Append("<td>" + hairShop.HairShopPhoneNum + "</td>");
-                    sb.Append("<td colspan=\"3\" valign=\"top\">&nbsp;</td>");
-                    sb.Append("</tr>");
-                    sb.Append("<tr>");
-                    sb.Append("<td height=\"42\">&nbsp;</td>");
-                    sb.Append("<td valign=\"top\">[简介]</td>");
-                    sb.Append("<td colspan=\"6\" valign=\"top\">" + hairShop.HairShopDescription + "</td>");
-                    sb.Append("</tr>");
-                    sb.Append("<tr>");
+                    sb.Append("<td colspan=\"2\">" + hairShop.HairShopAddress.ToString() + "</td>");
                     sb.Append("<td>&nbsp;</td>");
-                    sb.Append("<td colspan=\"7\"><table width=\"100%\" border=\"0\" cellspacing=\"0\" cellpadding=\"0\">");
+                    sb.Append("</tr>");
                     sb.Append("<tr>");
-                    sb.Append("<td width=\"13%\" height=\"27\"><a href=\"#\" target=\"_blank\"><img src=\"Theme/images/mfs_list_map.gif\" width=\"59\" height=\"19\" border=\"0\" /></a></td>");
-                    sb.Append("<td width=\"28%\"><img src=\"Theme/images/mft_list_collection.gif\" width=\"59\" height=\"19\" border=\"0\" /></td>");
-                    sb.Append("<td width=\"8%\">[好评]</td>");
-                    sb.Append("<td width=\"16%\"><span class=\"red12\">" + goodRate + "%</span></td>");
-                    sb.Append("<td width=\"35%\"><a href=\"HairShopContent.aspx?id=" + hairShop.HairShopID.ToString() + "\" class=\"red12\" style=\" text-decoration:underline\">查 看</a> | <a href=\"http://bbs.sg.com.cn/thread-" + hairShop.Postid.ToString() + "-1-1.html\" style=\" text-decoration:underline\">我要评论</a></td>");
-                    sb.Append("</tr></table></td></tr></table></td></tr><tr><td>&nbsp;</td><td colspan=\"2\">&nbsp;</td></tr></table></div></div>");
+                    sb.Append("<td height=\"21\">&nbsp;</td>");
+                    sb.Append("<td valign=\"top\">[简介]</td>");
+                    sb.Append("<td colspan=\"2\" valign=\"top\">" + hairShop.HairShopDescription + "</td>");
+                    sb.Append("<td rowspan=\"2\" valign=\"top\">&nbsp;</td>");
+                    sb.Append("</tr>");
+                    sb.Append("<tr>");
+                    sb.Append("<td height=\"21\">&nbsp;</td>");
+                    sb.Append("<td valign=\"top\">&nbsp;</td>");
+                    sb.Append("<td align=\"left\" valign=\"top\"><a href=\"HairShopContent.aspx?id=" + hairShop.HairShopID.ToString() + "\"   style=\" text-decoration:underline\">连锁店</a>&nbsp;&nbsp;<span style=\"text-decoration:underline\">折扣：</span><span class=\"red12\">" + hairShop.HairShopDiscount.ToString() + "折&nbsp;</span>&nbsp;好评：<span class=\"red12\">" + goodRate.ToString() + "%</span></td>");
+                    sb.Append("<td align=\"left\" valign=\"top\"><img src=\"Theme/images/mft_list_arrow.gif\" width=\"9\" height=\"13\" />&nbsp;<a href=\"HairShopContent.aspx?id=" + hairShop.HairShopID.ToString() + "\" target=\"_blank\"><span class=\"red12\">详情</span></a></td>");
+                    sb.Append("</tr>");
+                    sb.Append("<tr>");
+                    sb.Append("<td colspan=\"6\"><table width=\"100%\" border=\"0\" cellspacing=\"0\" cellpadding=\"0\">");
+                    sb.Append("<tr>");
+                    sb.Append("<td height=\"30\" align=\"right\" valign=\"bottom\"><a href=\"#\" target=\"_blank\"><img src=\"Theme/images/mfs_list_map.gif\" width=\"59\" height=\"19\" border=\"0\" /></a>&nbsp;<a href='http://bbs.sg.com.cn/thread-" + hairShop.Postid.ToString() + "-1-1.html'><img src=\"Theme/images/fair-mfd_06b.gif\" /></a>&nbsp;&nbsp;</td>");
+                    sb.Append("</tr>");
+                    sb.Append("</table></td> </tr></table>");
+
+
+                    sb.Append("</td></tr><tr><td>&nbsp;</td><td colspan=\"2\">&nbsp;</td></tr></table></div></div>");
                 }
             }
 
@@ -363,7 +372,7 @@ namespace Web.UserControls
                 this.lblFrontPage.Text = "上一页";
                 if (pageCount > 1)
                 {
-                    this.lblNextPage.Text = "<a href=\"#\" class=\"gray12-d\"><a href=\"HairShopList.aspx?pageNum=" + backPage.ToString() + "\">下一页</a></a>";
+                    this.lblNextPage.Text = "<a class=\"gray12-d\" href=\"HairShopList.aspx?pageNum=" + backPage.ToString() + "\">下一页</a>";
                 }
                 else
                 {
@@ -374,13 +383,13 @@ namespace Web.UserControls
             {
                 if (currentPage == pageCount)
                 {   
-                    this.lblFrontPage.Text = "<a href=\"#\" class=\"gray12-d\"><a href=\"HairShopList.aspx?pageNum=" + frontPage.ToString() + "\">上一页</a></a>";
+                    this.lblFrontPage.Text = "<a class=\"gray12-d\" href=\"HairShopList.aspx?pageNum=" + frontPage.ToString() + "\">上一页</a>";
                     this.lblNextPage.Text = "下一页";
                 }
                 else
                 {
-                    this.lblFrontPage.Text = "<a href=\"#\" class=\"gray12-d\"><a href=\"HairShopList.aspx?pageNum=" + frontPage.ToString() + "\">上一页</a></a>";
-                    this.lblNextPage.Text = "<a href=\"#\" class=\"gray12-d\"><a href=\"HairShopList.aspx?pageNum=" + backPage.ToString() + "\">下一页</a></a>";
+                    this.lblFrontPage.Text = "<a class=\"gray12-d\" href=\"HairShopList.aspx?pageNum=" + frontPage.ToString() + "\">上一页</a>";
+                    this.lblNextPage.Text = "<a class=\"gray12-d\" href=\"HairShopList.aspx?pageNum=" + backPage.ToString() + "\">下一页</a>";
                 }
             }
             
@@ -408,7 +417,7 @@ namespace Web.UserControls
                 {
                     if (m == currentPage)
                     {
-                        sb2.Append("&nbsp;<span class=\"red12\"><a href=\"HairShopList.aspx?pageNum=" + m.ToString() + "\">" + m.ToString() + "</a></span>&nbsp;");
+                        sb2.Append("&nbsp;<a class=\"red12\" href=\"HairShopList.aspx?pageNum=" + m.ToString() + "\">" + m.ToString() + "</a>&nbsp;");
                     }
                     else
                     {
@@ -428,7 +437,7 @@ namespace Web.UserControls
                     {
                         if (m == currentPage)
                         {
-                            sb2.Append("&nbsp;<span class=\"red12\"><a href=\"HairShopList.aspx?pageNum=" + m.ToString() + "\">" + m.ToString() + "</a></span>&nbsp;");
+                            sb2.Append("&nbsp;<a class=\"red12\" href=\"HairShopList.aspx?pageNum=" + m.ToString() + "\">" + m.ToString() + "</a>&nbsp;");
                         }
                         else
                         {
@@ -442,7 +451,7 @@ namespace Web.UserControls
                     {
                         if (m == currentPage)
                         {
-                            sb2.Append("&nbsp;<span class=\"red12\"><a href=\"HairShopList.aspx?pageNum=" + m.ToString() + "\">" + m.ToString() + "</a></span>&nbsp;");
+                            sb2.Append("&nbsp;<a class=\"red12\" href=\"HairShopList.aspx?pageNum=" + m.ToString() + "\">" + m.ToString() + "</a>&nbsp;");
                         }
                         else
                         {

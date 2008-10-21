@@ -40,7 +40,9 @@ namespace Web.UserControls
                                 string hairEngineerRawPrice = string.Empty;
                                 string hairEngineerPic = string.Empty;
                                 string hairEngineerDescription = string.Empty;
-
+                                string hairEngineerID = string.Empty;
+                                
+                                hairEngineerID = sdr1["HairEngineerID"].ToString();
                                 hairEngineerName = sdr1["HairEngineerName"].ToString();
                                 hairEngineerPosition = sdr1["HairEngineerClassID"].ToString();
                                 hairEngineerRawPrice = sdr1["HairEngineerRawPrice"].ToString();
@@ -79,7 +81,7 @@ namespace Web.UserControls
                                     sb.Append("<tr>");
                                 }
 
-                                sb.Append("<td width=\"20%\" align=\"center\"><div class=\"pic-2\"><a href=\"#\" target=\"_blank\"><img src=\"" + hairEngineerPic + "\" alt=\"" + hairEngineerDescription + "\" /></a><br /><a href=\"#\" target=\"_blank\">" + hairEngineerName + "&nbsp;&nbsp;" + hairEngineerPosition + "<br />剪发价格&nbsp;&nbsp;&nbsp;&nbsp;" + hairEngineerRawPrice + "</a></div></td>");
+                                sb.Append("<td width=\"20%\" align=\"center\"><div class=\"pic-2\"><a href=\"HairdresserLastPage.aspx?ID=" + hairEngineerID + "\" target=\"_blank\"><img src=\"" + hairEngineerPic + "\" alt=\"" + hairEngineerDescription + "\" /></a><br /><a href=\"HairdresserLastPage.aspx?ID=" + hairEngineerID + "\" target=\"_blank\">" + hairEngineerName + "&nbsp;&nbsp;" + hairEngineerPosition + "<br />剪发价格&nbsp;&nbsp;&nbsp;&nbsp;" + hairEngineerRawPrice + "</a></div></td>");
 
                                 if (num % 6 == 0)
                                 {

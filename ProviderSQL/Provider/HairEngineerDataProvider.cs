@@ -62,6 +62,8 @@ namespace HairNet.Provider
         /// <returns></returns>
         List<HairEngineer> GetHairEngineers(int count, OrderKey ok,string hairEngineerName);
 
+        List<HairStyleEntity> GetHairStyleListByHairEngineerID(Int32 ID);
+
         /// <summary>
         /// 通过美发师推荐ID来获取美发师推荐实体
         /// </summary>

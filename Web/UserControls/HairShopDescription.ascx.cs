@@ -62,6 +62,7 @@ namespace Web.UserControls
             else
             {
                 string hairEngineerPhotoIDs = string.Empty;
+                string hairEngineerID = "0";
                 using (SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["MSSqlServer"].ConnectionString))
                 {
                     string commString = "select top 1 * from HairEngineer where IsImportant=1 and hairshopID=" + this.HairShopID;
@@ -76,39 +77,38 @@ namespace Web.UserControls
                             if (sdr.Read())
                             {   
                                 this.lblHairEngineerDescription.Text = sdr["HairEngineerDescription"].ToString();
-                                hairEngineerPhotoIDs = sdr["HairEngineerPhotoIDs"].ToString();
+                                
+                                hairEngineerID = sdr["HairEngineerID"].ToString();
                             }
                         }
                     }
                 }
-                string[] photoID = hairEngineerPhotoIDs.Split(",".ToCharArray());
-                if (photoID.Length == 1)
+                
+                using (SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["MSSqlServer"].ConnectionString))
                 {
-                    this.lblHairEngineerPic.Text = "<a href=\"#\"><img width=98 height=98 src=\"Theme/Images/sg-meifa_ls02.gif\" /></a>";
-                }
-                else
-                {
-                    using (SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["MSSqlServer"].ConnectionString))
+                    string commString = "select top 1 * from enginpics where ownerid=" + hairEngineerID.ToString();
+                    using (SqlCommand comm = new SqlCommand())
                     {
-                        string commString = "select top 1 * from enginpics where id=" + photoID[1];
-                        using (SqlCommand comm = new SqlCommand())
-                        {
-                            comm.CommandText = commString;
-                            comm.Connection = conn;
-                            conn.Open();
+                        comm.CommandText = commString;
+                        comm.Connection = conn;
+                        conn.Open();
 
-                            using (SqlDataReader sdr = comm.ExecuteReader())
+                        using (SqlDataReader sdr = comm.ExecuteReader())
+                        {
+                            if (sdr.Read())
                             {
-                                if (sdr.Read())
-                                {
-                                    this.lblHairEngineerPic.Text = "<a href=\"#\"><img width=98 height=98 src=\"" + sdr["picsmallurl"].ToString() + "\" /></a>";
-                                }
+                                this.lblHairEngineerPic.Text = "<a href=\"HairdresserLastPage.aspx?ID=" + hairEngineerID + "\"><img width=98 height=98 src=\"" + sdr["picsmallurl"].ToString() + "\" /></a>";
+                                
                             }
                         }
                     }
+                }
+                if (hairEngineerID == string.Empty)
+                {
+                    this.lblHairEngineerPic.Text = "<a href=\"HairdresserLastPage.aspx?ID=" + hairEngineerID + "\"><img width=98 height=98 src=\"Theme/Images/sg-meifa_ls02.gif\" /></a>";
+                    this.lblHairEngineerDescription.Text = "&nbsp;&nbsp;当前美发厅没有领军美发师！";
                 }
             }
-
         }
         private int _hairShopID = 0;
         public int HairShopID

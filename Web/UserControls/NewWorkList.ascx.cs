@@ -67,8 +67,8 @@ namespace Web.UserControls
                                 {
                                     sb.Append("<tr>");
                                 }
-                                
-                                sb.Append("<td width=\"50%\" align=\"center\"><div class=\"pic-4\"><a href=\"#\"><img src=\""+picSmallUrl+"\" width=\"94\" height=\"94\" alt='"+description+"' /></a></div></td>");
+
+                                sb.Append("<td width=\"50%\" align=\"center\"><div class=\"pic-4\"><a href=\"HairLastPage.aspx?id=" + hairStyleID.ToString()+ "\"><img src=\"" + picSmallUrl + "\" width=\"94\" height=\"94\" alt='" + description + "' /></a></div></td>");
 
                                 if (num == 2)
                                 {
