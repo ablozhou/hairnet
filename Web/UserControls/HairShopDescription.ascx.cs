@@ -83,30 +83,32 @@ namespace Web.UserControls
                         }
                     }
                 }
-                
-                using (SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["MSSqlServer"].ConnectionString))
+                if (hairEngineerID == string.Empty)
                 {
-                    string commString = "select top 1 * from enginpics where ownerid=" + hairEngineerID.ToString();
-                    using (SqlCommand comm = new SqlCommand())
+                    this.lblHairEngineerPic.Text = "<img width=98 height=98 src=\"Theme/Images/sg-meifa_ls02.gif\" />";
+                    this.lblHairEngineerDescription.Text = "&nbsp;&nbsp;当前美发厅没有领军美发师！";
+                }
+                else
+                {
+                    using (SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["MSSqlServer"].ConnectionString))
                     {
-                        comm.CommandText = commString;
-                        comm.Connection = conn;
-                        conn.Open();
-
-                        using (SqlDataReader sdr = comm.ExecuteReader())
+                        string commString = "select top 1 * from enginpics where ownerid=" + hairEngineerID.ToString();
+                        using (SqlCommand comm = new SqlCommand())
                         {
-                            if (sdr.Read())
+                            comm.CommandText = commString;
+                            comm.Connection = conn;
+                            conn.Open();
+
+                            using (SqlDataReader sdr = comm.ExecuteReader())
                             {
-                                this.lblHairEngineerPic.Text = "<a href=\"HairdresserLastPage.aspx?ID=" + hairEngineerID + "\"><img width=98 height=98 src=\"" + sdr["picsmallurl"].ToString() + "\" /></a>";
-                                
+                                if (sdr.Read())
+                                {
+                                    this.lblHairEngineerPic.Text = "<a href=\"HairdresserLastPage.aspx?ID=" + hairEngineerID + "\"><img width=98 height=98 src=\"" + sdr["picsmallurl"].ToString() + "\" /></a>";
+
+                                }
                             }
                         }
                     }
-                }
-                if (hairEngineerID == string.Empty)
-                {
-                    this.lblHairEngineerPic.Text = "<a href=\"HairdresserLastPage.aspx?ID=" + hairEngineerID + "\"><img width=98 height=98 src=\"Theme/Images/sg-meifa_ls02.gif\" /></a>";
-                    this.lblHairEngineerDescription.Text = "&nbsp;&nbsp;当前美发厅没有领军美发师！";
                 }
             }
         }
