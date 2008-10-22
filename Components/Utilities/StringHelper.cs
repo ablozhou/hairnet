@@ -27,7 +27,19 @@ namespace HairNet.Utilities
                 return content;
             }
         }
-         
+        public static string GetDescription2(string content, int num)
+        {
+            System.Text.RegularExpressions.Regex regex = new System.Text.RegularExpressions.Regex(@"(<)[^>]*(>)", System.Text.RegularExpressions.RegexOptions.IgnoreCase);
+            content = regex.Replace(content, "");
+            if (content.Length > num)
+            {
+                return content.Substring(0, num);
+            }
+            else
+            {
+                return content;
+            }
+        }
         public static string UrlRedirect(string url)
         {
             string urlRedirect = "/SiteFiles/User/Login.aspx?returnurl=" + url;
