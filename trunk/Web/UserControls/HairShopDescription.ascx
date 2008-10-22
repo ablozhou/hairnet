@@ -55,7 +55,7 @@
         </table>
 		<table width="98%" border="0" align="center" cellpadding="0" cellspacing="15" style="margin-top:5px;display:none" id="serTabC33">
           <tr>
-            <td width="19%" align="left" valign="top"><div class="pic-7"><a href="#"><img src="Theme/images/sg-meifa_ls02.gif" /></a></div></td>
+            <td width="19%" align="left" valign="top"><div class="pic-7"></div></td>
             <td width="81%" valign="top"><table width="100%" border="0" cellspacing="0" cellpadding="0">
               <tr>
                 <td class="gray12-f"> &nbsp;&nbsp;&nbsp;&nbsp;<asp:Label ID="lblMemberInfo" runat="server"></asp:Label></td>
