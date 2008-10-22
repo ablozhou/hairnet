@@ -10,6 +10,7 @@ using System.Web.UI.WebControls.WebParts;
 using System.Web.UI.HtmlControls;
 using System.Text;
 using System.Data.SqlClient;
+using HairNet.Utilities;
 
 namespace Web.UserControls
 {
@@ -88,7 +89,7 @@ namespace Web.UserControls
                                         sb.Append("<tr>");
                                         sb.Append("<td width=\"29%\"><div class=\"pic-5\"><a href=\"HairShopContent.aspx?id="+hairShopID+"\" target=\"_blank\"><img src=\""+picSmallUrl+"\" alt=\""+description+"\" /></a></div></td>");
                                         sb.Append("<td width=\"6%\" align=\"left\"><span class=\"gray12-b\"><a href=\"#\" target=\"_blank\"></a></span><br /><span class=\"red12\"><a href=\"#\" target=\"_blank\"></a></span></td>");
-                                        sb.Append("<td width=\"65%\" align=\"left\"><span class=\"gray14-b\"><a href=\"HairShopContent.aspx?id=" + hairShopID + "\" target=\"_blank\">" + hairShopShortName + "</a></span><br />");
+                                        sb.Append("<td width=\"65%\" align=\"left\"><span class=\"gray14-b\"><a href=\"HairShopContent.aspx?id=" + hairShopID + "\" target=\"_blank\">" + StringHelper.GetDescription(hairShopShortName,5) + "</a></span><br />");
                                         sb.Append("<span class=\"red12\">推荐指数："+hairShopVisitNum+"</span></td>");
                                         sb.Append("</tr>");
                                         sb.Append("</table></td></tr>");
@@ -100,7 +101,7 @@ namespace Web.UserControls
                                         sb.Append("<tr>");
                                         sb.Append("<td width=\"29%\"><div class=\"pic-5\"><a href=\"HairShopContent.aspx?id=" + hairShopID + "\" target=\"_blank\"><img src=\"" + picSmallUrl + "\" alt=\"" + description + "\" /></a></div></td>");
                                         sb.Append("<td width=\"6%\" align=\"left\"><span class=\"gray12-b\"><a href=\"#\" target=\"_blank\"></a></span><br /><span class=\"red12\"><a href=\"#\" target=\"_blank\"></a></span></td>");
-                                        sb.Append("<td width=\"65%\" align=\"left\"><span class=\"gray14-b\"><a href=\"HairShopContent.aspx?id=" + hairShopID + "\" target=\"_blank\">" + hairShopShortName + "</a></span><br />");
+                                        sb.Append("<td width=\"65%\" align=\"left\"><span class=\"gray14-b\"><a href=\"HairShopContent.aspx?id=" + hairShopID + "\" target=\"_blank\">" + StringHelper.GetDescription(hairShopShortName,5) + "</a></span><br />");
                                         sb.Append("<span class=\"red12\">推荐指数：" + hairShopVisitNum + "</span></td>");
                                         sb.Append("</tr>");
                                         sb.Append("</table></td></tr>");
@@ -112,7 +113,7 @@ namespace Web.UserControls
                                         sb.Append("<tr>");
                                         sb.Append("<td width=\"29%\"><div class=\"pic-5\"><a href=\"HairShopContent.aspx?id=" + hairShopID + "\" target=\"_blank\"><img src=\"" + picSmallUrl + "\" alt=\"" + description + "\" /></a></div></td>");
                                         sb.Append("<td width=\"6%\" align=\"left\"><span class=\"gray12-b\"><a href=\"#\" target=\"_blank\"></a></span><br /><span class=\"red12\"><a href=\"#\" target=\"_blank\"></a></span></td>");
-                                        sb.Append("<td width=\"65%\" align=\"left\"><span class=\"gray14-b\"><a href=\"HairShopContent.aspx?id=" + hairShopID + "\" target=\"_blank\">" + hairShopShortName + "</a></span><br />");
+                                        sb.Append("<td width=\"65%\" align=\"left\"><span class=\"gray14-b\"><a href=\"HairShopContent.aspx?id=" + hairShopID + "\" target=\"_blank\">" + StringHelper.GetDescription(hairShopShortName,5) + "</a></span><br />");
                                         sb.Append("<span class=\"red12\">推荐指数：" + hairShopVisitNum + "</span></td>");
                                         sb.Append("</tr>");
                                         sb.Append("</table></td></tr>");
@@ -120,7 +121,7 @@ namespace Web.UserControls
                                     default:
                                         sb.Append("<tr>");
                                         sb.Append("<td align=\"center\"><img src=\"Theme/images/sg-08bbs_"+num.ToString()+".gif\" /></td>");
-                                        sb.Append("<td align=\"left\" class=\"gray14-e\"><a href=\"HairShopContent.aspx?id=" + hairShopID + "\" target=\"_blank\">" + hairShopShortName + "&nbsp;&nbsp;推荐指数:" + hairShopVisitNum + "</a></td>");
+                                        sb.Append("<td align=\"left\" class=\"gray14-e\"><a href=\"HairShopContent.aspx?id=" + hairShopID + "\" target=\"_blank\">" + StringHelper.GetDescription(hairShopShortName,5) + "&nbsp;&nbsp;推荐指数:" + hairShopVisitNum + "</a></td>");
                                         sb.Append("</tr>");
                                         break;
                                 }

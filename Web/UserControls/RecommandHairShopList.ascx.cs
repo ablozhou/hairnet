@@ -13,6 +13,7 @@ using HairNet.Provider;
 using System.Collections.Generic;
 using System.Text;
 using System.Data.SqlClient;
+using HairNet.Utilities;
 
 namespace Web.UserControls
 {
@@ -66,7 +67,7 @@ namespace Web.UserControls
                     }
 
 
-                    sb.Append("<td width=\"20%\" align=\"center\"><div class=\"pic-2\"><a href=\"HairShopContent.aspx?id=" + hsr.HairShopRawID.ToString() + "\" target=\"_blank\"><img src=\"" + picSmallUrl + "\" alt=\"" + description + "\" /></a><br /><a href=\"HairShopContent.aspx?id="+hsr.HairShopRawID.ToString()+"\" target=\"_blank\">" + hairShopName + "</a></div></td>");
+                    sb.Append("<td width=\"20%\" align=\"center\"><div class=\"pic-2\"><a href=\"HairShopContent.aspx?id=" + hsr.HairShopRawID.ToString() + "\" target=\"_blank\"><img src=\"" + picSmallUrl + "\" alt=\"" + description + "\" /></a><br /><a href=\"HairShopContent.aspx?id="+hsr.HairShopRawID.ToString()+"\" target=\"_blank\">" + StringHelper.GetDescription(hairShopName,8) + "</a></div></td>");
 
                 }
      
