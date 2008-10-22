@@ -225,6 +225,8 @@ namespace Web.UserControls
                         picSmallUrl = "Theme/Images/sg-meifa_ls02.gif";
                     }
 
+
+
                     sb.Append("<div class=\"message-2\">");
                     sb.Append("<div class=\"clear\">");
                     sb.Append("<table width=\"98%\" height=\"129\" border=\"0\" cellpadding=\"0\" cellspacing=\"0\">");
