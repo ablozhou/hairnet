@@ -67,7 +67,7 @@ namespace Web.UserControls
                     }
 
 
-                    sb.Append("<td width=\"20%\" align=\"center\"><div class=\"pic-2\"><a href=\"HairShopContent.aspx?id=" + hsr.HairShopRawID.ToString() + "\" target=\"_blank\"><img src=\"" + picSmallUrl + "\" alt=\"" + description + "\" /></a><br /><a href=\"HairShopContent.aspx?id="+hsr.HairShopRawID.ToString()+"\" target=\"_blank\">" + StringHelper.GetDescription(hairShopName,8) + "</a></div></td>");
+                    sb.Append("<td width=\"20%\" align=\"center\"><div class=\"pic-2\"><a href=\"HairShopContent.aspx?id=" + hsr.HairShopRawID.ToString() + "\" target=\"_blank\"><img src=\"" + picSmallUrl + "\" alt=\"" + description + "\" /></a><br /><a href=\"HairShopContent.aspx?id="+hsr.HairShopRawID.ToString()+"\" target=\"_blank\">" + StringHelper.GetDescription2(hairShopName,8) + "</a></div></td>");
 
                 }
      
