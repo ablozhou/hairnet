@@ -355,13 +355,6 @@
                     <asp:CheckBox ID="chkIsJoin" runat="server" />
                 </td>
             </tr>
-            <tr>
-                <td align="right" class="style1">
-                    加盟详细信息：
-                </td>
-                <td>
-                    <asp:TextBox ID="txtMemberInfo" runat="server" />
-                </td>
             </tr>
             <tr>
                 <td width="120" align="right">
@@ -378,7 +371,14 @@
                 <td>
                     <asp:CheckBox ID="chkIsPostMachine" runat="server" />
                 </td>
-            </tr>
+            </tr>       <tr>
+                <td align="right" class="style1">
+                    加盟详细信息：
+                </td>
+                <td>
+                    <asp:TextBox ID="txtMemberInfo" runat="server" Height="200px"  TextMode="MultiLine/>
+                </td>
+     
             
             <tr>
                 <td width="120" align="right">

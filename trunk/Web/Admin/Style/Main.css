@@ -10,6 +10,7 @@ p, div, input, textarea, select, button, td {
 	font-size: 9pt;
 	text-decoration: none;
 	color: #4D2100;
+	height: 26px;
 }
 
 a:link {
