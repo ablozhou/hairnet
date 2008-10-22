@@ -225,6 +225,94 @@ namespace Web.UserControls
                         picSmallUrl = "Theme/Images/sg-meifa_ls02.gif";
                     }
 
+                    string cutPriceString = string.Empty;
+                    if (hairShop.HairCutDiscountMin == 0 && hairShop.HairCutPirce == 0)
+                    {
+                        cutPriceString = "-";
+                    }
+                    else
+                    {
+                        if (hairShop.HairCutDiscountMin == hairShop.HairCutPirce)
+                        {
+                            cutPriceString = hairShop.HairCutPirce.ToString()+"元";
+                        }
+                        else
+                        {
+                            cutPriceString = hairShop.HairCutDiscountMin.ToString() + "-" + hairShop.HairCutPirce.ToString() + "元";
+                        }
+                    }
+
+                    string dyePriceString = string.Empty;
+
+                    if (hairShop.HairDyeDiscountMin == 0 && hairShop.HairDyePrice == 0)
+                    {
+                        dyePriceString = "-";
+                    }
+                    else
+                    {
+                        if (hairShop.HairDyePrice == hairShop.HairDyeDiscountMin)
+                        {
+                            dyePriceString = hairShop.HairDyePrice.ToString() + "元";
+                        }
+                        else
+                        {
+                            dyePriceString = hairShop.HairDyeDiscountMin.ToString() + "-" + hairShop.HairDyePrice.ToString()+"元";
+                        }
+                    }
+
+                    string marcelPriceString = string.Empty;
+
+                    if (hairShop.HairMarcelPrice == 0 && hairShop.HairMarcelDiscountMin == 0)
+                    {
+                        marcelPriceString = "-";
+                    }
+                    else
+                    {
+                        if (hairShop.HairMarcelPrice == hairShop.HairMarcelDiscountMin)
+                        {
+                            marcelPriceString = hairShop.HairMarcelPrice.ToString() + "元";
+                        }
+                        else
+                        {
+                            marcelPriceString = hairShop.HairMarcelDiscountMin.ToString() + "-" + hairShop.HairMarcelPrice.ToString() + "元";
+                        }
+                    }
+
+                    string conservationPriceString = string.Empty;
+
+                    if (hairShop.HairConservationDiscountMin == 0 && hairShop.HairConservationPrice == 0)
+                    {
+                        conservationPriceString = "-";
+                    }
+                    else
+                    {
+                        if (hairShop.HairConservationPrice == hairShop.HairConservationDiscountMin)
+                        {
+                            conservationPriceString = hairShop.HairConservationPrice.ToString() + "元";
+                        }
+                        else
+                        {
+                            conservationPriceString = hairShop.HairConservationDiscountMin.ToString() + "-" + hairShop.HairConservationPrice.ToString() + "元";
+                        }
+                    }
+
+                    string shapePriceString = string.Empty;
+
+                    if (hairShop.HairShapeDiscountMin == 0 && hairShop.HairShapePrice == 0)
+                    {
+                        shapePriceString = "-";
+                    }
+                    else
+                    {
+                        if (hairShop.HairShapePrice == hairShop.HairShapeDiscountMin)
+                        {
+                            shapePriceString = hairShop.HairShapePrice.ToString() + "元";
+                        }
+                        else
+                        {
+                            shapePriceString = hairShop.HairShapeDiscountMin.ToString() + "" + hairShop.HairShapePrice.ToString() + "元";
+                        }
+                    }
 
 
                     sb.Append("<div class=\"message-2\">");
@@ -242,7 +330,7 @@ namespace Web.UserControls
                     sb.Append("<td width=\"41%\" class=\"red12\"><strong>"+hairShop.HairShopName+"</strong></td>");
                     sb.Append("<td width=\"19%\">[电话] "+hairShop.HairShopPhoneNum.ToString()+" </td>");
                     sb.Append("<td width=\"10%\" align=\"right\">[价格]</td>");
-                    sb.Append("<td width=\"18%\" rowspan=\"4\" valign=\"top\">&nbsp;&nbsp;剪：" + hairShop.HairCutDiscountMin.ToString() + "-" + hairShop.HairCutPirce.ToString() + "元<br />&nbsp;&nbsp;染：" + hairShop.HairDyeDiscountMin.ToString() + "-" + hairShop.HairDyePrice.ToString() + "元<br />&nbsp;&nbsp;烫：" + hairShop.HairMarcelDiscountMin.ToString() + "-"+hairShop.HairMarcelPrice.ToString()+"元<br /> &nbsp;&nbsp;护："+hairShop.HairConservationDiscountMin.ToString()+"-"+hairShop.HairConservationPrice.ToString()+"元<br /> &nbsp;造型："+hairShop.HairConservationDiscountMin.ToString()+"-"+hairShop.HairConservationPrice.ToString()+"元</td>");
+                    sb.Append("<td width=\"18%\" rowspan=\"4\" valign=\"top\">&nbsp;&nbsp;剪：" + cutPriceString + "<br />&nbsp;&nbsp;染：" + dyePriceString + "<br />&nbsp;&nbsp;烫：" + marcelPriceString +"<br /> &nbsp;&nbsp;护："+conservationPriceString+"<br /> &nbsp;造型："+shapePriceString+"</td>");
                     sb.Append("</tr>");
                     sb.Append("<tr>");
                     sb.Append("<td height=\"20\">&nbsp;</td>");
@@ -311,6 +399,95 @@ namespace Web.UserControls
                         picSmallUrl = "Theme/Images/sg-meifa_ls02.gif";
                     }
 
+                    string cutPriceString = string.Empty;
+                    if (hairShop.HairCutDiscountMin == 0 && hairShop.HairCutPirce == 0)
+                    {
+                        cutPriceString = "-";
+                    }
+                    else
+                    {
+                        if (hairShop.HairCutDiscountMin == hairShop.HairCutPirce)
+                        {
+                            cutPriceString = hairShop.HairCutPirce.ToString() + "元";
+                        }
+                        else
+                        {
+                            cutPriceString = hairShop.HairCutDiscountMin.ToString() + "-" + hairShop.HairCutPirce.ToString() + "元";
+                        }
+                    }
+
+                    string dyePriceString = string.Empty;
+
+                    if (hairShop.HairDyeDiscountMin == 0 && hairShop.HairDyePrice == 0)
+                    {
+                        dyePriceString = "-";
+                    }
+                    else
+                    {
+                        if (hairShop.HairDyePrice == hairShop.HairDyeDiscountMin)
+                        {
+                            dyePriceString = hairShop.HairDyePrice.ToString() + "元";
+                        }
+                        else
+                        {
+                            dyePriceString = hairShop.HairDyeDiscountMin.ToString() + "-" + hairShop.HairDyePrice.ToString() + "元";
+                        }
+                    }
+
+                    string marcelPriceString = string.Empty;
+
+                    if (hairShop.HairMarcelPrice == 0 && hairShop.HairMarcelDiscountMin == 0)
+                    {
+                        marcelPriceString = "-";
+                    }
+                    else
+                    {
+                        if (hairShop.HairMarcelPrice == hairShop.HairMarcelDiscountMin)
+                        {
+                            marcelPriceString = hairShop.HairMarcelPrice.ToString() + "元";
+                        }
+                        else
+                        {
+                            marcelPriceString = hairShop.HairMarcelDiscountMin.ToString() + "-" + hairShop.HairMarcelPrice.ToString() + "元";
+                        }
+                    }
+
+                    string conservationPriceString = string.Empty;
+
+                    if (hairShop.HairConservationDiscountMin == 0 && hairShop.HairConservationPrice == 0)
+                    {
+                        conservationPriceString = "-";
+                    }
+                    else
+                    {
+                        if (hairShop.HairConservationPrice == hairShop.HairConservationDiscountMin)
+                        {
+                            conservationPriceString = hairShop.HairConservationPrice.ToString() + "元";
+                        }
+                        else
+                        {
+                            conservationPriceString = hairShop.HairConservationDiscountMin.ToString() + "-" + hairShop.HairConservationPrice.ToString() + "元";
+                        }
+                    }
+
+                    string shapePriceString = string.Empty;
+
+                    if (hairShop.HairShapeDiscountMin == 0 && hairShop.HairShapePrice == 0)
+                    {
+                        shapePriceString = "-";
+                    }
+                    else
+                    {
+                        if (hairShop.HairShapePrice == hairShop.HairShapeDiscountMin)
+                        {
+                            shapePriceString = hairShop.HairShapePrice.ToString() + "元";
+                        }
+                        else
+                        {
+                            shapePriceString = hairShop.HairShapeDiscountMin.ToString() + "" + hairShop.HairShapePrice.ToString() + "元";
+                        }
+                    }
+
                     sb.Append("<div class=\"message-1\">");
                     sb.Append("<div class=\"clear\">");
                     sb.Append("<table width=\"98%\" height=\"129\" border=\"0\" cellpadding=\"0\" cellspacing=\"0\">");
@@ -326,7 +503,7 @@ namespace Web.UserControls
                     sb.Append("<td width=\"41%\" class=\"red12\"><strong>" + hairShop.HairShopName + "</strong></td>");
                     sb.Append("<td width=\"19%\">[电话] " + hairShop.HairShopPhoneNum.ToString() + " </td>");
                     sb.Append("<td width=\"10%\" align=\"right\">[价格]</td>");
-                    sb.Append("<td width=\"18%\" rowspan=\"4\" valign=\"top\">&nbsp;&nbsp;剪：" + hairShop.HairCutDiscountMin.ToString() + "-" + hairShop.HairCutPirce.ToString() + "元<br />&nbsp;&nbsp;染：" + hairShop.HairDyeDiscountMin.ToString() + "-" + hairShop.HairDyePrice.ToString() + "元<br />&nbsp;&nbsp;烫：" + hairShop.HairMarcelDiscountMin.ToString() + "-" + hairShop.HairMarcelPrice.ToString() + "元<br /> &nbsp;&nbsp;护：" + hairShop.HairConservationDiscountMin.ToString() + "-" + hairShop.HairConservationPrice.ToString() + "元<br /> &nbsp;造型：" + hairShop.HairConservationDiscountMin.ToString() + "-" + hairShop.HairConservationPrice.ToString() + "元</td>");
+                    sb.Append("<td width=\"18%\" rowspan=\"4\" valign=\"top\">&nbsp;&nbsp;剪：" + cutPriceString + "<br />&nbsp;&nbsp;染：" + dyePriceString + "<br />&nbsp;&nbsp;烫：" + marcelPriceString + "<br /> &nbsp;&nbsp;护：" + conservationPriceString + "<br /> &nbsp;造型：" + shapePriceString + "</td>");
                     sb.Append("</tr>");
                     sb.Append("<tr>");
                     sb.Append("<td height=\"20\">&nbsp;</td>");

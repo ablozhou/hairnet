@@ -27,6 +27,7 @@ namespace Web.UserControls
             string picUrl = string.Empty;
             string picSmallUrl = string.Empty;
 
+
             using (SqlConnection conn1 = new SqlConnection(ConfigurationManager.ConnectionStrings["MSSqlServer"].ConnectionString))
             {
                 string commString1 = "select top 1 * from shoppics where classid=2 and hairshopid=" + this.HairShopID.ToString();

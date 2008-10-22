@@ -16,7 +16,7 @@
       <table width="706" height="36" border="0" align="center" cellpadding="0" cellspacing="0" background="Theme/images/fair-mft04-a.gif">
         <tr>
           <td width="17%" align="left" valign="middle" class="red14b">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;发型厅推荐</td>
-          <td width="12%" align="left" valign="middle"><img src="Theme/images/mft_list_salon.gif" alt="发型师推荐" /></td>
+          <td width="12%" align="left" valign="middle"><img src="Theme/images/mft_list_salon.gif" alt="发型厅推荐" /></td>
           <td width="61%" align="left" valign="bottom"><a href="#" target="_blank"></a></td>
           <td width="10%" align="left" valign="middle">&nbsp;</td>
         </tr>
