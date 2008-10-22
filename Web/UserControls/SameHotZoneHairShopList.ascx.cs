@@ -12,6 +12,7 @@ using HairNet.Entry;
 using HairNet.Provider;
 using System.Data.SqlClient;
 using System.Text;
+using HairNet.Utilities;
 
 namespace Web.UserControls
 {
@@ -48,7 +49,9 @@ namespace Web.UserControls
                                 string picUrl = string.Empty;
                                 string picSmallUrl = string.Empty;
                                 string description = string.Empty;
+                                string hid = string.Empty;
 
+                                hid = sdr["hairshopID"].ToString();
                                 hairShopName = sdr["HairShopName"].ToString();
                                 hairShopDiscount = sdr["HairShopDiscount"].ToString();
                                 description = sdr["HairShopDescription"].ToString();
@@ -84,16 +87,16 @@ namespace Web.UserControls
                                 switch (num)
                                 {
                                     case 1:
-                                        sb.Append("<td width=\"50%\" align=\"center\" valign=\"top\"><div class=\"pic-3\"><a href=\""+picUrl+"\"><img src=\""+picSmallUrl+"\" alt=\""+description+"\" /></a><br />");
-                                        sb.Append("<a href=\"#\" target=\"_blank\">"+hairShopName+"&nbsp;"+hairShopDiscount+"折</a></div></td>");
+                                        sb.Append("<td width=\"50%\" align=\"center\" valign=\"top\"><div class=\"pic-3\"><a href=\"HairShopContent.aspx?id=" + hid + "\" target=\"_blank\"><img src=\"" + picSmallUrl + "\" alt=\"" + description + "\" /></a><br />");
+                                        sb.Append("<a href=\"HairShopContent.aspx?id=" + hid + "\" target=\"_blank\">" + StringHelper.GetDescription(hairShopName, 8) + "&nbsp;" + hairShopDiscount + "折</a></div></td>");
                                         break;
                                     case 2:
-                                        sb.Append("<td width=\"50%\" align=\"center\" valign=\"top\"><div class=\"pic-3\"><a href=\""+picUrl+"\"><img src=\""+picSmallUrl+"\" alt=\""+description+"\" /></a><br />");
-                                        sb.Append("<a href=\"#\" target=\"_blank\">"+hairShopName+"&nbsp;"+hairShopDiscount+"折</a></div></td>");
+                                        sb.Append("<td width=\"50%\" align=\"center\" valign=\"top\"><div class=\"pic-3\"><a href=\"HairShopContent.aspx?id=" + hid + "\" target=\"_blank\"><img src=\"" + picSmallUrl + "\" alt=\"" + description + "\" /></a><br />");
+                                        sb.Append("<a href=\"HairShopContent.aspx?id=" + hid + "\" target=\"_blank\">" + StringHelper.GetDescription(hairShopName, 8) + "&nbsp;" + hairShopDiscount + "折</a></div></td>");
                                         break;
                                     default:
                                         sb2.Append("<tr>");
-                                        sb2.Append("<td width=\"83%\" align=\"left\" class=\"gray14-e\">·&nbsp;<a href=\"#\" target=\"_blank\">"+hairShopName+"</a></td>");
+                                        sb2.Append("<td width=\"83%\" align=\"left\" class=\"gray14-e\">·&nbsp;<a href=\"HairShopContent.aspx?id=" + hid + "\" target=\"_blank\">" + StringHelper.GetDescription(hairShopName, 8) + "</a></td>");
                                         sb2.Append("<td width=\"17%\" align=\"center\" class=\"red14\">"+hairShopDiscount+"折</td>");
                                         sb2.Append("</tr>");
                                         break;
