@@ -61,7 +61,7 @@ namespace HairNet.Utilities
         }
         public static void AlertInfo(string info,System.Web.UI.Page page)
         {
-            page.Response.Write("<script>alert('"+info+"')</script>");
+            page.Response.Write("<script>alert('"+info+"');</script><script>window.location.href='"+page.Request.Url.ToString()+"';</script>");
         }
         public static void AddStyleSheet(Page page, string cssPath)
         {
