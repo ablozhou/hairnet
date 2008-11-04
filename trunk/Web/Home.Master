@@ -66,7 +66,7 @@
         }
         </script>
     <!-- 头部开始 -->
-    <HN:HeadControl ID="headControl" runat="server" />
+    <!-- #include file="include/top-4.htm" -->
     <!-- 头部结束 -->
 
     <!-- 主体部分 -->

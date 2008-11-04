@@ -8,11 +8,10 @@
 <%@ Register Src="UserControls/HotCouponList.ascx" TagName="HotCouponList" TagPrefix="HN" %>
 <%@ Register Src="UserControls/SameHotZoneHairShopList.ascx" TagName="SameHairShopList" TagPrefix="HN" %>
 <%@ Register Src="UserControls/NewWorkList.ascx" TagName="NewWorkList" TagPrefix="HN" %>
+<%@ Register Src="UserControls/HairShopMapInfo.ascx" TagName="HairShopMapInfo" TagPrefix="HN" %>
 
 <asp:Content ContentPlaceHolderID="BodyContentPosition" ID="BodyContent" runat="server">
-<div style="text-align:center; height:160px;">
-<iframe src="SearchHeadPage.aspx" width="980" height="160" frameborder="no" border="0" marginwidth="0" marginheight="0" scrolling="no" allowtransparency="yes"></iframe>
-</div>
+
 <!-- 美发厅基本信息 -->
 <HN:HairShopEntryControl ID="hairShopEntryControl" runat="server" />
 <!-- 美发厅基本信息结束 -->
@@ -20,6 +19,7 @@
 <!--主体内容部分开始 -->
 <div id="main">
   <div id="main-l">
+
     <!-- 美发厅相关信息 -->
     <HN:HairShopEntryDescription ID="hairShopEntryDescription" runat="server" />
     <!-- 美发厅相关信息结束 -->
@@ -49,7 +49,7 @@
             <td width="5" align="left" background="Theme/images/fair-mft12.gif"><img src="Theme/images/fair-mft10.gif" /></td>
             <td width="23" align="center" background="Theme/images/fair-mft12.gif"><img src="Theme/images/sg-meifa_02.gif" /></td>
             <td width="59" align="left" background="Theme/images/fair-mft12.gif" class="gray12-c">我要评论</td>
-            <td width="14"</td>
+
             <td width="148" align="right" background="Theme/images/fair-mft12.gif" class="gray12-c">
                 &nbsp;</td>
             <td width="147" align="center" background="Theme/images/fair-mft12.gif">&nbsp;</td>
@@ -62,26 +62,33 @@
           </tr>
         </table>
 		<div class="pinglun-box">
-            <asp:TextBox ID="TextBox1" CssClass ="pl-box"  TextMode="MultiLine" runat="server"></asp:TextBox></div>
+            <asp:TextBox ID="TextBox1" CssClass ="pl-box"  TextMode="MultiLine" runat="server" style="WIDTH: 620px; HEIGHT: 120px; BACKGROUND-COLOR: transparent; OVERFLOW-x: hidder;OVERFLOW-y: scroll; scrollbar-face-color: #FFFFFF; scrollbar-shadow-color: #84aecf; scrollbar-g-color: #84aecf; scrollbar-3dlight-color: #FFFFFF; scrollbar-darkshadow-color: #FFFFFF; scrollbar-track-color: #FFFFFF; scrollbar-arrow-color: #84aecf; border:#cccccc 1px solid;text-align:left;padding-left:10px;font-size:12px;color:#333333;line-height:24px;border:#cccccc 1px solid;"></asp:TextBox></div>
 		
 		<div class="submit">
             <asp:ImageButton ID="btnComment" ImageUrl= "Theme/images/fair-submit.gif" 
                 runat="server" onclick="btnComment_Click" />
             </div>
             <asp:Literal ID="UserComment" runat="server"></asp:Literal>
+            
+            
 		</div>
+		<table width="90%" border="0" cellspacing="0" cellpadding="0" align="center">
+        <tr>
+          <td height="25" align="right" class="gray12-c">
+              <asp:Label ID="lblMoreComment" runat="server"></asp:Label></td>
+        </tr>
+      </table>
 		 </div>
-  <div id="main-r"><table width="260" height="32" border="0" align="center" cellpadding="0" cellspacing="0" background="Theme/images/fair-09b.gif">
-          <tr>
-            <td width="32%" align="left" class="red14b">&nbsp;<a href="#" target="_blank">&nbsp;地址位置</a></td>
-            <td width="46%" align="left" ><img src="Theme/images/sg-meifa_35.gif" width="9" height="13" /></td>
-            <td width="22%" align="left" ><a href="#" target="_blank"></a></td>
-          </tr>
-        </table>
-      <div class="sitemap"><img src="Theme/images/fair-mft19.gif" /></div>
+  <div id="main-r">
+  
+        <!-- 地图 -->
+        <HN:HairShopMapInfo ID="hairShopMapInfo" runat="server" />
+	    
+	    <!-- 地图结束 -->
+  
 	  <table width="100%" border="0" cellspacing="0" cellpadding="0">
                 <tr>
-                  <td width="32%" height="35" align="left" valign="middle" class="red14b">&nbsp;&nbsp;<a href="#" target="_blank">我要投票</a></td>
+                  <td width="32%" height="35" align="left" valign="middle" class="red14b">&nbsp;&nbsp;我要投票</td>
                   <td width="48%" align="left"><span style="border-right:#ffffff 1px solid"><img src="Theme/images/sg-meifa_35.gif" width="9" height="13" /></span></td>
                   <td width="20%" align="left"><a href="#" target="_blank"></a></td>
                 </tr>

@@ -15,6 +15,7 @@ using HairNet.Enumerations;
 using System.Text;
 using System.Drawing;
 using System.Data.SqlClient;
+using HairNet.Utilities;
 
 namespace Web.UserControls
 {
@@ -24,6 +25,8 @@ namespace Web.UserControls
         {
             if (!this.IsPostBack)
             {
+                Session["st"] = 0;
+                Session["si"] = 0;
                 this.databind();
             }
         }
@@ -31,6 +34,60 @@ namespace Web.UserControls
         public void databind()
         {
             List<HairShop> list = new List<HairShop>();
+
+
+            try
+            {
+                this.SortType = int.Parse(this.Request.QueryString["st"].ToString());
+            }
+            catch
+            {
+                this.SortType = int.Parse(Session["st"].ToString());
+            }
+
+            try
+            {
+                this.SortItem = int.Parse(this.Request.QueryString["si"].ToString());
+            }
+            catch
+            {
+                this.SortItem = int.Parse(Session["si"].ToString());
+            }
+
+            if (this.SortItem != 0)
+            {
+                if (this.SortType != 1)
+                {
+                    this.SortType = 1;
+                    this.btnID1.ImageUrl = "../Theme/images/fxk-list-04.gif";
+                    this.btnHitNum1.ImageUrl = "../Theme/images/fxk-list-05.gif";
+                }
+                else
+                {
+                    this.SortType = 0;
+                    this.btnID1.ImageUrl = "../Theme/images/fxk-list-04b.gif";
+                    this.btnHitNum1.ImageUrl = "../Theme/images/fxk-list-05.gif";
+                }
+            }
+            else
+            {
+                if (this.SortType != 1)
+                {
+                    this.SortType = 1;
+                    this.btnHitNum1.ImageUrl = "../Theme/images/fxk-list-04.gif";
+                    this.btnID1.ImageUrl = "../Theme/images/fxk-list-05.gif";
+                }
+                else
+                {
+                    this.SortType = 0;
+                    this.btnHitNum1.ImageUrl = "../Theme/images/fxk-list-04b.gif";
+                    this.btnID1.ImageUrl = "../Theme/images/fxk-list-05.gif";
+                }
+            }
+
+            
+
+
             if (SortItem == 1)
             {
                 if (SortType == 1)
@@ -130,7 +187,7 @@ namespace Web.UserControls
 
             int pageCount = list.Count / this.PageSize + 1;
 
-            if (PageSize == list.Count)
+            if ((list.Count % this.PageSize) == 0)
             {
                 pageCount = list.Count/this.PageSize;
             }
@@ -164,7 +221,7 @@ namespace Web.UserControls
             //display
             if (list.Count == 0)
             {
-                this.lblDisplayText.Text = "当前没有美发厅！";
+                this.lblDisplayText.Text = "&nbsp;&nbsp;&nbsp;&nbsp;当前没有美发厅！";
                 this.lblDisplayText.ForeColor = Color.Red;
                 return;
             }
@@ -310,7 +367,7 @@ namespace Web.UserControls
                         }
                         else
                         {
-                            shapePriceString = hairShop.HairShapeDiscountMin.ToString() + "" + hairShop.HairShapePrice.ToString() + "元";
+                            shapePriceString = hairShop.HairShapeDiscountMin.ToString() + "-" + hairShop.HairShapePrice.ToString() + "元";
                         }
                     }
 
@@ -327,7 +384,7 @@ namespace Web.UserControls
                     sb.Append("<tr>");
                     sb.Append("<td width=\"4%\" height=\"12\">&nbsp;</td>");
                     sb.Append("<td width=\"8%\">[店名]</td>");
-                    sb.Append("<td width=\"41%\" class=\"red12\"><strong>"+hairShop.HairShopName+"</strong></td>");
+                    sb.Append("<td width=\"41%\" class=\"red12\"><a href='HairShopContent.aspx?id=" + hairShop.HairShopID.ToString() + "'><strong>" + hairShop.HairShopName + "</strong></a></td>");
                     sb.Append("<td width=\"19%\">[电话] "+hairShop.HairShopPhoneNum.ToString()+" </td>");
                     sb.Append("<td width=\"10%\" align=\"right\">[价格]</td>");
                     sb.Append("<td width=\"18%\" rowspan=\"4\" valign=\"top\">&nbsp;&nbsp;剪：" + cutPriceString + "<br />&nbsp;&nbsp;染：" + dyePriceString + "<br />&nbsp;&nbsp;烫：" + marcelPriceString +"<br /> &nbsp;&nbsp;护："+conservationPriceString+"<br /> &nbsp;造型："+shapePriceString+"</td>");
@@ -341,7 +398,7 @@ namespace Web.UserControls
                     sb.Append("<tr>");
                     sb.Append("<td height=\"21\">&nbsp;</td>");
                     sb.Append("<td valign=\"top\">[简介]</td>");
-                    sb.Append("<td colspan=\"2\" valign=\"top\">"+hairShop.HairShopDescription+"</td>");
+                    sb.Append("<td colspan=\"2\" valign=\"top\">" + StringHelper.GetDescription(hairShop.HairShopDescription, 50) + "</td>");
                     sb.Append("<td rowspan=\"2\" valign=\"top\">&nbsp;</td>");
                     sb.Append("</tr>");
                     sb.Append("<tr>");
@@ -353,7 +410,7 @@ namespace Web.UserControls
                     sb.Append("<tr>");
                     sb.Append("<td colspan=\"6\"><table width=\"100%\" border=\"0\" cellspacing=\"0\" cellpadding=\"0\">");
                     sb.Append("<tr>");
-                    sb.Append("<td height=\"30\" align=\"right\" valign=\"bottom\"><a href=\"#\" target=\"_blank\"><img src=\"Theme/images/mfs_list_map.gif\" width=\"59\" height=\"19\" border=\"0\" /></a>&nbsp;<a href='http://bbs.sg.com.cn/thread-" + hairShop.Postid.ToString() + "-1-1.html'><img src=\"Theme/images/fair-mfd_06b.gif\" /></a>&nbsp;&nbsp;</td>");
+                    sb.Append("<td height=\"30\" align=\"right\" valign=\"bottom\"><a href=\"MapInfo.aspx?id="+hairShop.HairShopID.ToString()+"\" target=\"_blank\"><img src=\"Theme/images/mfs_list_map.gif\" width=\"59\" height=\"19\" border=\"0\" /></a>&nbsp;<a href='http://bbs.sg.com.cn/thread-" + hairShop.Postid.ToString() + "-1-1.html'><img src=\"Theme/images/fair-mfd_06b.gif\" /></a>&nbsp;&nbsp;</td>");
                     sb.Append("</tr>");
                     sb.Append("</table></td> </tr></table>");
 
@@ -484,7 +541,7 @@ namespace Web.UserControls
                         }
                         else
                         {
-                            shapePriceString = hairShop.HairShapeDiscountMin.ToString() + "" + hairShop.HairShapePrice.ToString() + "元";
+                            shapePriceString = hairShop.HairShapeDiscountMin.ToString() + "-" + hairShop.HairShapePrice.ToString() + "元";
                         }
                     }
 
@@ -500,7 +557,7 @@ namespace Web.UserControls
                     sb.Append("<tr>");
                     sb.Append("<td width=\"4%\" height=\"12\">&nbsp;</td>");
                     sb.Append("<td width=\"8%\">[店名]</td>");
-                    sb.Append("<td width=\"41%\" class=\"red12\"><strong>" + hairShop.HairShopName + "</strong></td>");
+                    sb.Append("<td width=\"41%\" class=\"red12\"><a href='HairShopContent.aspx?id=" + hairShop.HairShopID.ToString() + "'><strong>" + hairShop.HairShopName + "</strong></a></td>");
                     sb.Append("<td width=\"19%\">[电话] " + hairShop.HairShopPhoneNum.ToString() + " </td>");
                     sb.Append("<td width=\"10%\" align=\"right\">[价格]</td>");
                     sb.Append("<td width=\"18%\" rowspan=\"4\" valign=\"top\">&nbsp;&nbsp;剪：" + cutPriceString + "<br />&nbsp;&nbsp;染：" + dyePriceString + "<br />&nbsp;&nbsp;烫：" + marcelPriceString + "<br /> &nbsp;&nbsp;护：" + conservationPriceString + "<br /> &nbsp;造型：" + shapePriceString + "</td>");
@@ -514,7 +571,7 @@ namespace Web.UserControls
                     sb.Append("<tr>");
                     sb.Append("<td height=\"21\">&nbsp;</td>");
                     sb.Append("<td valign=\"top\">[简介]</td>");
-                    sb.Append("<td colspan=\"2\" valign=\"top\">" + hairShop.HairShopDescription + "</td>");
+                    sb.Append("<td colspan=\"2\" valign=\"top\">" + StringHelper.GetDescription(hairShop.HairShopDescription,50) + "</td>");
                     sb.Append("<td rowspan=\"2\" valign=\"top\">&nbsp;</td>");
                     sb.Append("</tr>");
                     sb.Append("<tr>");
@@ -526,7 +583,7 @@ namespace Web.UserControls
                     sb.Append("<tr>");
                     sb.Append("<td colspan=\"6\"><table width=\"100%\" border=\"0\" cellspacing=\"0\" cellpadding=\"0\">");
                     sb.Append("<tr>");
-                    sb.Append("<td height=\"30\" align=\"right\" valign=\"bottom\"><a href=\"#\" target=\"_blank\"><img src=\"Theme/images/mfs_list_map.gif\" width=\"59\" height=\"19\" border=\"0\" /></a>&nbsp;<a href='http://bbs.sg.com.cn/thread-" + hairShop.Postid.ToString() + "-1-1.html'><img src=\"Theme/images/fair-mfd_06b.gif\" /></a>&nbsp;&nbsp;</td>");
+                    sb.Append("<td height=\"30\" align=\"right\" valign=\"bottom\"><a href=\"MapInfo.aspx?id=" + hairShop.HairShopID.ToString() + "\" target=\"_blank\"><img src=\"Theme/images/mfs_list_map.gif\" width=\"59\" height=\"19\" border=\"0\" /></a>&nbsp;<a href='http://bbs.sg.com.cn/thread-" + hairShop.Postid.ToString() + "-1-1.html'><img src=\"Theme/images/fair-mfd_06b.gif\" /></a>&nbsp;&nbsp;</td>");
                     sb.Append("</tr>");
                     sb.Append("</table></td> </tr></table>");
 
@@ -546,29 +603,46 @@ namespace Web.UserControls
             {
                 this.lblHairShopCount.Text = "0";
             }
+
+            //分页状态
+            string strPageStatus = String.Empty;
+            foreach (string Key in Request.QueryString.AllKeys)
+            {
+                
+                if (Key!=null && Key.ToLower() != "pagenum")
+                    strPageStatus += "&" + Key + "=" + Server.UrlEncode(Request.QueryString[Key]) ;
+                
+
+                
+            }
+            
+            //for (int i = 0; i < Request.QueryString.Count; i++)
+            //{ 
+            //    if (Request.QueryString.AllKeys)
+            //}
             if (currentPage == 1)
             {
-                this.lblFrontPage.Text = "上一页";
+                this.lblFrontPage.Text = "<span class=\"gray12-d\">上一页</span>";
                 if (pageCount > 1)
                 {
-                    this.lblNextPage.Text = "<a class=\"gray12-d\" href=\"HairShopList.aspx?pageNum=" + backPage.ToString() + "\">下一页</a>";
+                    this.lblNextPage.Text = "<a class=\"gray12-d\" href=\"HairShopList.aspx?st="+Session["st"].ToString()+"&si="+Session["si"].ToString()+"&pageNum=" + backPage.ToString() +strPageStatus+ "\">下一页</a>";
                 }
                 else
                 {
-                    this.lblNextPage.Text = "下一页";
+                    this.lblNextPage.Text = "<span class=\"gray12-d\">下一页</span>";
                 }
             }
             else
             {
                 if (currentPage == pageCount)
-                {   
-                    this.lblFrontPage.Text = "<a class=\"gray12-d\" href=\"HairShopList.aspx?pageNum=" + frontPage.ToString() + "\">上一页</a>";
-                    this.lblNextPage.Text = "下一页";
+                {
+                    this.lblFrontPage.Text = "<a class=\"gray12-d\" href=\"HairShopList.aspx?st=" + Session["st"].ToString() + "&si=" + Session["si"].ToString() + "&pageNum=" + frontPage.ToString() + strPageStatus + "\">上一页</a>";
+                    this.lblNextPage.Text = "<span class=\"gray12-d\">下一页</span>";
                 }
                 else
                 {
-                    this.lblFrontPage.Text = "<a class=\"gray12-d\" href=\"HairShopList.aspx?pageNum=" + frontPage.ToString() + "\">上一页</a>";
-                    this.lblNextPage.Text = "<a class=\"gray12-d\" href=\"HairShopList.aspx?pageNum=" + backPage.ToString() + "\">下一页</a>";
+                    this.lblFrontPage.Text = "<a class=\"gray12-d\" href=\"HairShopList.aspx?st=" + Session["st"].ToString() + "&si=" + Session["si"].ToString() + "&pageNum=" + frontPage.ToString() + strPageStatus + "\">上一页</a>";
+                    this.lblNextPage.Text = "<a class=\"gray12-d\" href=\"HairShopList.aspx?st=" + Session["st"].ToString() + "&si=" + Session["si"].ToString() + "&pageNum=" + backPage.ToString() + strPageStatus + "\">下一页</a>";
                 }
             }
             
@@ -579,8 +653,8 @@ namespace Web.UserControls
             sb2.Append("<div class=\"page-all\">");
             if (this.CurrentPage > 1)
             {
-                sb2.Append("<a href=\"HairShopList.aspx?pageNum=1\">第一页</a>");
-                sb2.Append("&nbsp;<a href=\"HairShopList.aspx?pageNum=" + frontPage.ToString() + "\">上一页</a>&nbsp;");
+                sb2.Append("<a href=\"HairShopList.aspx?st=" + Session["st"].ToString() + "&si=" + Session["si"].ToString() + "&pageNum=1" + strPageStatus + "\">第一页</a>");
+                sb2.Append("&nbsp;<a href=\"HairShopList.aspx?st=" + Session["st"].ToString() + "&si=" + Session["si"].ToString() + "&pageNum=" + frontPage.ToString() + strPageStatus + "\">上一页</a>&nbsp;");
             }
             else
             {
@@ -596,11 +670,11 @@ namespace Web.UserControls
                 {
                     if (m == currentPage)
                     {
-                        sb2.Append("&nbsp;<a class=\"red12\" href=\"HairShopList.aspx?pageNum=" + m.ToString() + "\">" + m.ToString() + "</a>&nbsp;");
+                        sb2.Append("&nbsp;<a class=\"red12\" href=\"HairShopList.aspx?st=" + Session["st"].ToString() + "&si=" + Session["si"].ToString() + "&pageNum=" + m.ToString() + strPageStatus + "\"><span class=\"red12\">" + m.ToString() + "</span></a>&nbsp;");
                     }
                     else
                     {
-                        sb2.Append("&nbsp;<a href=\"HairShopList.aspx?pageNum=" + m.ToString() + "\">" + m.ToString() + "</a>&nbsp;");
+                        sb2.Append("&nbsp;<a href=\"HairShopList.aspx?st=" + Session["st"].ToString() + "&si=" + Session["si"].ToString() + "&pageNum=" + m.ToString() + strPageStatus + "\">" + m.ToString() + "</a>&nbsp;");
                     }
                     if (m == 5)
                     {
@@ -616,11 +690,11 @@ namespace Web.UserControls
                     {
                         if (m == currentPage)
                         {
-                            sb2.Append("&nbsp;<a class=\"red12\" href=\"HairShopList.aspx?pageNum=" + m.ToString() + "\">" + m.ToString() + "</a>&nbsp;");
+                            sb2.Append("&nbsp;<a class=\"red12\" href=\"HairShopList.aspx?st=" + Session["st"].ToString() + "&si=" + Session["si"].ToString() + "&pageNum=" + m.ToString() + strPageStatus + "\"><span class=\"red12\">" + m.ToString() + "</span></a>&nbsp;");
                         }
                         else
                         {
-                            sb2.Append("&nbsp;<a href=\"HairShopList.aspx?pageNum=" + m.ToString() + "\">" + m.ToString() + "</a>&nbsp;");
+                            sb2.Append("&nbsp;<a href=\"HairShopList.aspx?st=" + Session["st"].ToString() + "&si=" + Session["si"].ToString() + "&pageNum=" + m.ToString() + strPageStatus + "\">" + m.ToString() + "</a>&nbsp;");
                         }
                     }
                 }
@@ -630,24 +704,29 @@ namespace Web.UserControls
                     {
                         if (m == currentPage)
                         {
-                            sb2.Append("&nbsp;<a class=\"red12\" href=\"HairShopList.aspx?pageNum=" + m.ToString() + "\">" + m.ToString() + "</a>&nbsp;");
+                            sb2.Append("&nbsp;<a class=\"red12\" href=\"HairShopList.aspx?st=" + Session["st"].ToString() + "&si=" + Session["si"].ToString() + "&pageNum=" + m.ToString() + strPageStatus + "\"><span class=\"red12\">" + m.ToString() + "</span></a>&nbsp;");
                         }
                         else
                         {
-                            sb2.Append("&nbsp;<a href=\"HairShopList.aspx?pageNum=" + m.ToString() + "\">" + m.ToString() + "</a>&nbsp;");
+                            sb2.Append("&nbsp;<a href=\"HairShopList.aspx?st=" + Session["st"].ToString() + "&si=" + Session["si"].ToString() + "&pageNum=" + m.ToString() + strPageStatus + "\">" + m.ToString() + "</a>&nbsp;");
                         }
                     }
                 }
             }
             if (this.CurrentPage < pageCount)
             {
-                sb2.Append("&nbsp;<a href=\"HairShopList.aspx?pageNum=" + backPage.ToString() + "\">下一页</a>");
-                sb2.Append("&nbsp;<a href=\"HairShopList.aspx?pageNum=" + pageCount.ToString() + "\">最后一页</a>");
+                sb2.Append("&nbsp;<a href=\"HairShopList.aspx?st=" + Session["st"].ToString() + "&si=" + Session["si"].ToString() + "&pageNum=" + backPage.ToString() + strPageStatus + "\">下一页</a>");
+                sb2.Append("&nbsp;<a href=\"HairShopList.aspx?st=" + Session["st"].ToString() + "&si=" + Session["si"].ToString() + "&pageNum=" + pageCount.ToString() + strPageStatus + "\">最后一页</a>");
             }
             else
             {
                 sb2.Append("&nbsp;下一页");
                 sb2.Append("&nbsp;最后一页");
+            }
+            if (list.Count == 0)
+            {
+                this.lblHairShopCount.Text = "0";
+                this.lblPageCount.Text = "1";
             }
             sb2.Append("&nbsp;共" + pageCount.ToString() + "页</div>");
 
@@ -745,36 +824,118 @@ namespace Web.UserControls
             this.ProductID = product;
             this.KeyWord = keyword;
         }
-        public void btnID0_OnClick(object sender, EventArgs e)
+        public void lBtnID1_OnClick(object sender, EventArgs e)
         {
+            //升序降序文字排序
             this.setStatusValue();
-            this.SortType = 0;
+            if (Session["st"] == null || Session["st"].ToString() == string.Empty)
+            { }
+            else
+            {
+                this.SortType = int.Parse(Session["st"].ToString());
+            }
+
+            if (this.SortType != 1)
+            {
+                this.SortType = 1;
+                this.btnID1.ImageUrl = "../Theme/images/fxk-list-04.gif";
+                this.btnHitNum1.ImageUrl = "../Theme/images/fxk-list-05.gif";
+            }
+            else
+            {
+                this.SortType = 0;
+                this.btnID1.ImageUrl = "../Theme/images/fxk-list-04b.gif";
+                this.btnHitNum1.ImageUrl = "../Theme/images/fxk-list-05.gif";
+            }
+
+            Session["st"] = this.SortType.ToString();
+            Session["si"] = this.SortItem.ToString();
             this.SortItem = 1;
 
+            this.databind();
+
+        }
+
+        public void lBtnHit1_OnClick(object sender, EventArgs e)
+        {
+            this.setStatusValue();
+            if (Session["st"] == null || Session["st"].ToString() == string.Empty)
+            { }
+            else
+            {
+                this.SortType = int.Parse(Session["st"].ToString());
+            }
+            if (this.SortType != 1)
+            {
+                this.SortType = 1;
+                this.btnHitNum1.ImageUrl = "../Theme/images/fxk-list-04.gif";
+                this.btnID1.ImageUrl = "../Theme/images/fxk-list-05.gif";
+            }
+            else
+            {
+                this.SortType = 0;
+                this.btnHitNum1.ImageUrl = "../Theme/images/fxk-list-04b.gif";
+                this.btnID1.ImageUrl = "../Theme/images/fxk-list-05.gif";
+            }
+            this.SortItem = 0;
+            Session["st"] = this.SortType.ToString();
+
+            Session["si"] = this.SortItem.ToString();
             this.databind();
         }
         public void btnID1_OnClick(object sender, EventArgs e)
         {
             this.setStatusValue();
-            this.SortType = 1;
+            if (Session["st"] == null || Session["st"].ToString() == string.Empty)
+            { }
+            else
+            {
+                this.SortType = int.Parse(Session["st"].ToString());
+            }
+            if (this.SortType != 1)
+            {
+                this.SortType = 1;
+                this.btnID1.ImageUrl = "../Theme/images/fxk-list-04.gif";
+                this.btnHitNum1.ImageUrl = "../Theme/images/fxk-list-05.gif";
+            }
+            else
+            {
+                this.SortType = 0;
+                this.btnID1.ImageUrl = "../Theme/images/fxk-list-04b.gif";
+                this.btnHitNum1.ImageUrl = "../Theme/images/fxk-list-05.gif";
+            }
+            
+            
             this.SortItem = 1;
-
+            Session["st"] = this.SortType.ToString();
+            Session["si"] = this.SortItem.ToString();
             this.databind();
         }
-        public void btnHitNum0_OnClick(object sender, EventArgs e)
-        {
-            this.setStatusValue();
-            this.SortType = 0;
-            this.SortItem = 0;
 
-            this.databind();
-        }
         public void btnHitNum1_OnClick(object sender, EventArgs e)
         {
             this.setStatusValue();
-            this.SortType = 1;
+            if (Session["st"] == null || Session["st"].ToString() == string.Empty)
+            { }
+            else
+            {
+                this.SortType = int.Parse(Session["st"].ToString());
+            }
+            if (this.SortType != 1)
+            {
+                this.SortType = 1;
+                this.btnHitNum1.ImageUrl = "../Theme/images/fxk-list-04.gif";
+                this.btnID1.ImageUrl = "../Theme/images/fxk-list-05.gif";
+            }
+            else
+            {
+                this.SortType = 0;
+                this.btnHitNum1.ImageUrl = "../Theme/images/fxk-list-04b.gif";
+                this.btnID1.ImageUrl = "../Theme/images/fxk-list-05.gif";
+            }
             this.SortItem = 0;
-
+            Session["st"] = this.SortType.ToString();
+            Session["si"] = this.SortItem.ToString();
             this.databind();
         }
         private int _pageSize = 0;

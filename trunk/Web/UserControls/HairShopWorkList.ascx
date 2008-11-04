@@ -8,13 +8,13 @@
 
   <table width="96%" border="0" align="center" cellpadding="0" cellspacing="0" style="margin-top:5px">
           <tr>
-            <td width="3%" align="center" valign="middle"><img src="Theme/images/sg-meifa_l.gif" width="9" height="33" /><br />
+            <td width="3%" align="center" valign="middle"><br />
             <br /></td>
             <td width="94%"><table width="100%" border="0" align="center" cellpadding="0" cellspacing="0">
               <asp:Label ID="lblWorkList" runat="server"></asp:Label>
             </table>
 </td>
-            <td width="3%" align="center" valign="middle"><img src="Theme/images/sg-meifa_r.gif" width="9" height="33" /><br />
+            <td width="3%" align="center" valign="middle"><br />
               <br />
 </td>
           </tr>

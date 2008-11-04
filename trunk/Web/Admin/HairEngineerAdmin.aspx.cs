@@ -24,7 +24,7 @@ namespace Web.Admin
         {
             if (!this.IsPostBack)
             {
-                this.databind();
+                
 
                 Session["query"] = null;
                 this.txtQueryName.Visible = true;
@@ -34,6 +34,7 @@ namespace Web.Admin
                 this.lblStartTime.Visible = false;
                 this.lblTimeSpace.Visible = false;
                 this.lblQueryNameSpace.Visible = true;
+                this.databind();
             }
         }
         public void ddlQuery_OnSelectedIndexChanged(object sender, EventArgs e)
@@ -331,6 +332,48 @@ namespace Web.Admin
                     {
                         using (SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["MSSqlServer"].ConnectionString))
                         {
+                            string commString = "select * from HairStyle where ownerid=" + hairEngineerID.ToString();
+                            using (SqlCommand comm = new SqlCommand())
+                            {
+                                comm.CommandText = commString;
+                                comm.Connection = conn;
+                                conn.Open();
+
+                                using (SqlDataReader sdr = comm.ExecuteReader())
+                                {
+                                    if (sdr.Read())
+                                    {
+                                        string hid = sdr["ID"].ToString();
+
+                                        this.deleteHairStyle(int.Parse(hid));
+
+                                        using (SqlConnection conn2 = new SqlConnection(ConfigurationManager.ConnectionStrings["MSSqlServer"].ConnectionString))
+                                        {
+                                            string commString2 = "delete from picturestoreset where picturestoreid=" + hid;
+                                            using (SqlCommand comm2 = new SqlCommand())
+                                            {
+                                                comm2.CommandText = commString2;
+                                                comm2.Connection = conn2;
+                                                conn2.Open();
+
+                                                try
+                                                {
+                                                    comm.ExecuteNonQuery();
+                                                }
+                                                catch
+                                                {
+
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+
+                        
+                        using (SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["MSSqlServer"].ConnectionString))
+                        {
                             string commString = "delete from enginpics where ownerid=" + hairEngineerID.ToString();
                             using (SqlCommand comm = new SqlCommand())
                             {
@@ -354,6 +397,82 @@ namespace Web.Admin
                     else
                     {
                         StringHelper.AlertInfo("删除失败", this.Page);
+                    }
+                }
+            }
+        }
+        public void deleteHairStyle(int id)
+        {
+            //先删除PICTURESTORESET所对应的ID
+
+            string idsString = "";
+            using (SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["MSSqlServer"].ConnectionString))
+            {
+                string commString = "select * from HairStyle where ID=" + id.ToString();
+                using (SqlCommand comm = new SqlCommand())
+                {
+                    comm.CommandText = commString;
+                    comm.Connection = conn;
+                    conn.Open();
+
+                    using (SqlDataReader sdr = comm.ExecuteReader())
+                    {
+                        if (sdr.Read())
+                        {
+                            idsString = sdr["PSGIDS"].ToString();
+                        }
+                    }
+                }
+            }
+            string[] ids = idsString.Split(",".ToCharArray());
+
+            for (int i = 0; i < ids.Length; i++)
+            {
+                string iids = "";
+                using (SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["MSSqlServer"].ConnectionString))
+                {
+                    string commString = "select * from picturestoregroup where picturestoregroupid=" + ids[i].ToString();
+                    using (SqlCommand comm = new SqlCommand())
+                    {
+                        comm.CommandText = commString;
+                        comm.Connection = conn;
+                        conn.Open();
+
+                        using (SqlDataReader sdr = comm.ExecuteReader())
+                        {
+                            if (sdr.Read())
+                            {
+                                iids = sdr["picturestoreids"].ToString();
+                            }
+                        }
+                    }
+                }
+                string[] iiids = iids.Split(",".ToCharArray());
+                string psids = "";
+                for (int k = 1; k < iiids.Length; k++)
+                {
+                    if (iiids[k] != id.ToString())
+                    {
+                        psids += "," + iiids[k];
+                    }
+                }
+                using (SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["MSSqlServer"].ConnectionString))
+                {
+                    string commString = "update picturestoregroup set picturestoreids = '" + psids + "' where picturestoregroupid=" + ids[i].ToString();
+                    using (SqlCommand comm = new SqlCommand())
+                    {
+                        comm.CommandText = commString;
+                        comm.Connection = conn;
+                        conn.Open();
+
+                        try
+                        {
+                            comm.ExecuteNonQuery();
+                        }
+                        catch
+                        {
+
+                        }
                     }
                 }
             }

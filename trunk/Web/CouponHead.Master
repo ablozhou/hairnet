@@ -68,7 +68,7 @@
         }
         </script>
     <!-- 头部开始 -->
-    <HN:HeadControl ID="headControl" runat="server" />
+
     <!-- 头部结束 -->
 
     <!-- 主体部分 -->

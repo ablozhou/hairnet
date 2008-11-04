@@ -37,10 +37,10 @@
             <td width="19%" align="left" valign="top"><div class="pic-7"><asp:Label ID="lbllHairShopPic" runat="server"></asp:Label></div></td>
             <td width="81%" valign="top"><table width="100%" border="0" cellspacing="0" cellpadding="0">
               <tr>
-                <td class="gray12-f"> &nbsp;&nbsp;&nbsp;&nbsp;<asp:Label ID="lblHairShopDescription" runat="server"></asp:Label></td>
+                <td class="gray12-f"> <div style="border:#e5e5e5 1px solid;float:right;padding-top:8px;WIDTH: 540px; HEIGHT: 90px; BACKGROUND-COLOR: transparent; OVERFLOW-x: hidder;OVERFLOW-y: scroll; scrollbar-face-color: #FFFFFF; scrollbar-shadow-color: #84aecf; scrollbar-g-color: #84aecf; scrollbar-3dlight-color: #FFFFFF; scrollbar-darkshadow-color: #FFFFFF; scrollbar-track-color: #FFFFFF; scrollbar-arrow-color: #84aecf;padding-left:10px;margin-bottom:5px;">&nbsp;&nbsp;&nbsp;&nbsp;<asp:Label ID="lblHairShopDescription" runat="server"></asp:Label></div></td>
               </tr>
               <tr>
-                <td height="30" align="right"><img src="Theme/images/fair-mft25.gif" />&nbsp;<a onClick='window.external.AddFavorite(location.href,document.title);' href='#'><img src="Theme/images/fair-mft26.gif" /></a></td>
+                <td height="30" align="right"><asp:Label ID="lblMapText2" runat="server"></asp:Label>&nbsp;<a href='javascript:window.external.AddFavorite(location.href,document.title)'><img src="Theme/images/fair-mft26.gif" /></a></td>
               </tr>
             </table></td>
           </tr>
@@ -50,10 +50,10 @@
             <td width="19%" align="left" valign="top"><div class="pic-7"><asp:Label ID="lblHairEngineerPic" runat="server"></asp:Label></div></td>
             <td width="81%" valign="top"><table width="100%" border="0" cellspacing="0" cellpadding="0">
               <tr>
-                <td class="gray12-f"> &nbsp;&nbsp;&nbsp;&nbsp;<asp:Label ID="lblHairEngineerDescription" runat="server"></asp:Label></td>
+                <td class="gray12-f"><div style="border:#e5e5e5 1px solid;float:right;padding-top:8px;WIDTH: 540px; HEIGHT: 90px; BACKGROUND-COLOR: transparent; OVERFLOW-x: hidder;OVERFLOW-y: scroll; scrollbar-face-color: #FFFFFF; scrollbar-shadow-color: #84aecf; scrollbar-g-color: #84aecf; scrollbar-3dlight-color: #FFFFFF; scrollbar-darkshadow-color: #FFFFFF; scrollbar-track-color: #FFFFFF; scrollbar-arrow-color: #84aecf;padding-left:10px;margin-bottom:5px;"> &nbsp;&nbsp;&nbsp;&nbsp;<asp:Label ID="lblHairEngineerDescription" runat="server"></asp:Label></div></td>
               </tr>
               <tr>
-                <td height="30" align="right"><img src="Theme/images/fair-mft25.gif" />&nbsp;<a onClick='window.external.AddFavorite(location.href,document.title);' href='#'><img src="Theme/images/fair-mft26.gif" /></a></td>
+                <td height="30" align="right"><asp:Label ID="lblMapText3" runat="server"></asp:Label>&nbsp;<a href='javascript:window.external.AddFavorite(location.href,document.title)'><img src="Theme/images/fair-mft26.gif" /></a></td>
               </tr>
             </table></td>
           </tr>
@@ -63,10 +63,10 @@
             <td width="19%" align="left" valign="top"><div class="pic-7"></div></td>
             <td width="81%" valign="top"><table width="100%" border="0" cellspacing="0" cellpadding="0">
               <tr>
-                <td class="gray12-f"> &nbsp;&nbsp;&nbsp;&nbsp;<asp:Label ID="lblMemberInfo" runat="server"></asp:Label></td>
+                <td class="gray12-f"> <div style="border:#e5e5e5 1px solid;float:right;padding-top:8px;WIDTH: 540px; HEIGHT: 90px; BACKGROUND-COLOR: transparent; OVERFLOW-x: hidder;OVERFLOW-y: scroll; scrollbar-face-color: #FFFFFF; scrollbar-shadow-color: #84aecf; scrollbar-g-color: #84aecf; scrollbar-3dlight-color: #FFFFFF; scrollbar-darkshadow-color: #FFFFFF; scrollbar-track-color: #FFFFFF; scrollbar-arrow-color: #84aecf;padding-left:10px;margin-bottom:5px;"><asp:Label ID="lblMemberInfo" runat="server"></asp:Label></div></td>
               </tr>
               <tr>
-                <td height="30" align="right"><img src="Theme/images/fair-mft25.gif" />&nbsp;<a onClick='window.external.AddFavorite(location.href,document.title);' href='#'><img src="Theme/images/fair-mft26.gif" /></a></td>
+                <td height="30" align="right"><asp:Label ID="lblMapText1" runat="server"></asp:Label>&nbsp;<a href='javascript:window.external.AddFavorite(location.href,document.title)'><img src="Theme/images/fair-mft26.gif" /></a></td>
               </tr>
             </table></td>
           </tr>

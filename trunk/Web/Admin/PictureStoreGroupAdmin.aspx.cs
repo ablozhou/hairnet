@@ -110,11 +110,20 @@ namespace Web.Admin
                 }
                 string[] iiids = iids.Split(",".ToCharArray());
                 string psgids = "";
+                int tempNum = 0;
                 for (int k = 0; k < iiids.Length; k++)
                 {
                     if (iiids[k] != id.ToString())
                     {
-                        psgids += "," + iiids[k];
+                        tempNum++;
+                        if (tempNum == 1)
+                        {
+                            psgids += iiids[k];
+                        }
+                        else
+                        {
+                            psgids += "," + iiids[k];
+                        }
                     }
                 }
                 using (SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["MSSqlServer"].ConnectionString))

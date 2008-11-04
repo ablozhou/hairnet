@@ -17,7 +17,7 @@ namespace Web
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            StringHelper.AddStyleSheet(this.Page, "Theme/Style/youhuiquan.css");
+            StringHelper.AddStyleSheet(this.Page, "css/youhuiquan.css");
 
             this.CouponDetailList1.PageSize = 6;
 
@@ -48,13 +48,13 @@ namespace Web
         protected void btnBusiZoneSearch_Click(object sender, EventArgs e)
         {
             string selection = " where hz.HotZoneName like '%"+this.txtBuziZone.Text.Trim()+"%'";
-            this.Response.Redirect("CouponList.aspx?sc="+selection);
+            this.Response.Redirect("CouponList.aspx?sc="+Server.UrlEncode(selection));
         }
 
         protected void btnKeySearch_Click(object sender, EventArgs e)
         {
             string selection = " where hs.HairShopName like '%" + this.txtHairShopName.Text.Trim() + "%'";
-            this.Response.Redirect("CouponList.aspx?sc=" + selection);
+            this.Response.Redirect("CouponList.aspx?sc=" + Server.UrlEncode(selection));
         }
     }
 }

@@ -85,11 +85,11 @@ namespace Web.UserControls
                                     case 1:
                                         sb.Append("<tr>");
                                         sb.Append("<td width=\"15%\" height=\"68\" align=\"center\"><img src=\"Theme/images/sg-08bbs_1.gif\" /></td>");
-                                        sb.Append("<td width=\"85%\" align=\"left\"><table width=\"100%\" border=\"0\" align=\"center\" cellpadding=\"0\" cellspacing=\"0\">");
+                                        sb.Append("<td colspan=\"2\" align=\"left\"><table width=\"100%\" border=\"0\" align=\"center\" cellpadding=\"0\" cellspacing=\"0\">");
                                         sb.Append("<tr>");
                                         sb.Append("<td width=\"29%\"><div class=\"pic-5\"><a href=\"HairShopContent.aspx?id="+hairShopID+"\" target=\"_blank\"><img src=\""+picSmallUrl+"\" alt=\""+description+"\" /></a></div></td>");
                                         sb.Append("<td width=\"6%\" align=\"left\"><span class=\"gray12-b\"><a href=\"#\" target=\"_blank\"></a></span><br /><span class=\"red12\"><a href=\"#\" target=\"_blank\"></a></span></td>");
-                                        sb.Append("<td width=\"65%\" align=\"left\"><span class=\"gray14-b\"><a href=\"HairShopContent.aspx?id=" + hairShopID + "\" target=\"_blank\">" + StringHelper.GetDescription(hairShopShortName,5) + "</a></span><br />");
+                                        sb.Append("<td width=\"65%\" align=\"left\"><span class=\"gray14-b\"><a href=\"HairShopContent.aspx?id=" + hairShopID + "\" target=\"_blank\">" + StringHelper.GetDescription2(hairShopShortName,6) + "</a></span><br />");
                                         sb.Append("<span class=\"red12\">推荐指数："+hairShopVisitNum+"</span></td>");
                                         sb.Append("</tr>");
                                         sb.Append("</table></td></tr>");
@@ -97,11 +97,11 @@ namespace Web.UserControls
                                     case 2:
                                         sb.Append("<tr>");
                                         sb.Append("<td width=\"15%\" height=\"68\" align=\"center\"><img src=\"Theme/images/sg-08bbs_2.gif\" /></td>");
-                                        sb.Append("<td width=\"85%\" align=\"left\"><table width=\"100%\" border=\"0\" align=\"center\" cellpadding=\"0\" cellspacing=\"0\">");
+                                        sb.Append("<td colspan=\"2\" align=\"left\"><table width=\"100%\" border=\"0\" align=\"center\" cellpadding=\"0\" cellspacing=\"0\">");
                                         sb.Append("<tr>");
                                         sb.Append("<td width=\"29%\"><div class=\"pic-5\"><a href=\"HairShopContent.aspx?id=" + hairShopID + "\" target=\"_blank\"><img src=\"" + picSmallUrl + "\" alt=\"" + description + "\" /></a></div></td>");
                                         sb.Append("<td width=\"6%\" align=\"left\"><span class=\"gray12-b\"><a href=\"#\" target=\"_blank\"></a></span><br /><span class=\"red12\"><a href=\"#\" target=\"_blank\"></a></span></td>");
-                                        sb.Append("<td width=\"65%\" align=\"left\"><span class=\"gray14-b\"><a href=\"HairShopContent.aspx?id=" + hairShopID + "\" target=\"_blank\">" + StringHelper.GetDescription(hairShopShortName,5) + "</a></span><br />");
+                                        sb.Append("<td width=\"65%\" align=\"left\"><span class=\"gray14-b\"><a href=\"HairShopContent.aspx?id=" + hairShopID + "\" target=\"_blank\">" + StringHelper.GetDescription2(hairShopShortName,6) + "</a></span><br />");
                                         sb.Append("<span class=\"red12\">推荐指数：" + hairShopVisitNum + "</span></td>");
                                         sb.Append("</tr>");
                                         sb.Append("</table></td></tr>");
@@ -109,11 +109,11 @@ namespace Web.UserControls
                                     case 3:
                                         sb.Append("<tr>");
                                         sb.Append("<td width=\"15%\" height=\"68\" align=\"center\"><img src=\"Theme/images/sg-08bbs_3.gif\" /></td>");
-                                        sb.Append("<td width=\"85%\" align=\"left\"><table width=\"100%\" border=\"0\" align=\"center\" cellpadding=\"0\" cellspacing=\"0\">");
+                                        sb.Append("<td colspan=\"2\" align=\"left\"><table width=\"100%\" border=\"0\" align=\"center\" cellpadding=\"0\" cellspacing=\"0\">");
                                         sb.Append("<tr>");
                                         sb.Append("<td width=\"29%\"><div class=\"pic-5\"><a href=\"HairShopContent.aspx?id=" + hairShopID + "\" target=\"_blank\"><img src=\"" + picSmallUrl + "\" alt=\"" + description + "\" /></a></div></td>");
                                         sb.Append("<td width=\"6%\" align=\"left\"><span class=\"gray12-b\"><a href=\"#\" target=\"_blank\"></a></span><br /><span class=\"red12\"><a href=\"#\" target=\"_blank\"></a></span></td>");
-                                        sb.Append("<td width=\"65%\" align=\"left\"><span class=\"gray14-b\"><a href=\"HairShopContent.aspx?id=" + hairShopID + "\" target=\"_blank\">" + StringHelper.GetDescription(hairShopShortName,5) + "</a></span><br />");
+                                        sb.Append("<td width=\"65%\" align=\"left\"><span class=\"gray14-b\"><a href=\"HairShopContent.aspx?id=" + hairShopID + "\" target=\"_blank\">" + StringHelper.GetDescription2(hairShopShortName,6) + "</a></span><br />");
                                         sb.Append("<span class=\"red12\">推荐指数：" + hairShopVisitNum + "</span></td>");
                                         sb.Append("</tr>");
                                         sb.Append("</table></td></tr>");
@@ -121,7 +121,8 @@ namespace Web.UserControls
                                     default:
                                         sb.Append("<tr>");
                                         sb.Append("<td align=\"center\"><img src=\"Theme/images/sg-08bbs_"+num.ToString()+".gif\" /></td>");
-                                        sb.Append("<td align=\"left\" class=\"gray14-e\"><a href=\"HairShopContent.aspx?id=" + hairShopID + "\" target=\"_blank\">" + StringHelper.GetDescription(hairShopShortName,5) + "&nbsp;&nbsp;推荐指数:" + hairShopVisitNum + "</a></td>");
+                                        sb.Append("<td align=\"left\" class=\"gray14-e\"  width=\"50%\"><a href=\"HairShopContent.aspx?id=" + hairShopID + "\" target=\"_blank\">" + StringHelper.GetDescription2(hairShopShortName, 8) + "</a></td>");
+                                        sb.Append("<td align=\"right\" class=\"gray12\" width=\"35%\">推荐指数:" + hairShopVisitNum + "&nbsp;&nbsp;</td>");
                                         sb.Append("</tr>");
                                         break;
                                 }

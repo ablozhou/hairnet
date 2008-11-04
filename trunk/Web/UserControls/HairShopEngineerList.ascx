@@ -12,6 +12,7 @@
               <asp:Label ID="lblEngineerList" runat="server"></asp:Label>
               
       </table>
+      <div class="clear"></div>
       <table width="706" border="0" align="center" cellpadding="0" cellspacing="0">
         <tr>
           <td><img src="Theme/images/fair-mft04-d.gif" width="706" height="18" /></td>

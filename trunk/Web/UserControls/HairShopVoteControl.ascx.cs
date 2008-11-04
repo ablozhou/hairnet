@@ -52,50 +52,50 @@ namespace Web.UserControls
 
             if (badRate == 0)
             {
-                this.lblBad.Text = "<table border=1 cellpadding='0' width='129' cellspacing='0'><tr><td bgcolor=white height='11'></td></tr></table>";
+                this.lblBad.Text = "<img src=\"Theme/images/meirong-08_ls03.gif\" width=\"0\" height=\"2\" />";
             }
             else
             {
                 if (badRate == 100)
                 {
-                    this.lblBad.Text = "<table border=1 cellpadding='0' width='129' cellspacing='0'><tr><td width='129' bgcolor='gray' height='11'></td></tr></table>";
+                    this.lblBad.Text = "<img src=\"Theme/images/meirong-08_ls03.gif\" width=\"129\" height=\"2\" />";
                 }
                 else
                 {
-                    this.lblBad.Text = "<table border=1 cellpadding='0' width='129' cellspacing='0'><tr><td width='" + 129 / 100 * badRate + "' bgcolor='gray' height='11'></td><td bgcolor=white height='11'></td></tr></table>";
+                    this.lblBad.Text = "<img src=\"Theme/images/meirong-08_ls03.gif\" width='" + 129 / 100 * badRate + "' height=\"2\" />";
                 }
             }
 
             if (goodRate == 0)
             {
 
-                this.lblGood.Text = "<table border=1 cellpadding='0' width='129' cellspacing='0'><tr><td bgcolor=white height='11'></td></tr></table>"; 
+                this.lblGood.Text = "<img src=\"Theme/images/meirong-08_ls01.gif\" width=\"0\" height=\"2\" />"; 
             }
             else
             {
                 if (goodRate == 100)
                 {
-                    this.lblGood.Text = "<table border=1 cellpadding='0' width='129' cellspacing='0'><tr><td width='129' bgcolor='red' height='11'></td></tr></table>";
+                    this.lblGood.Text = "<img src=\"Theme/images/meirong-08_ls01.gif\" width=\"129\" height=\"2\" />";
                 }
                 else
                 {
-                    this.lblGood.Text = "<table border=1 cellpadding='0' width='129' cellspacing='0'><tr><td width='" + 129 / 100 * goodRate + "' bgcolor='red' height='11'></td><td bgcolor=white height='11'></td></tr></table>";
+                    this.lblGood.Text = "<img src=\"Theme/images/meirong-08_ls01.gif\" width=\"" + 129 / 100 * goodRate + "\" height=\"2\" />";
                 }
             }
 
             if (normalRate == 0)
             {
-                this.lblNormal.Text = "<table border=1 cellpadding='0' width='129' cellspacing='0'><tr><td bgcolor=white height='11'></td></tr></table>"; 
+                this.lblNormal.Text = "<img src=\"Theme/images/meirong-08_ls02.gif\" width=\"0\" height=\"2\" />"; 
             }
             else
             {
                 if (normalRate == 100)
                 {
-                    this.lblNormal.Text = "<table border=1 cellpadding='0' width='129' cellspacing='0'><tr><td width='129' bgcolor='yellow' height='11'></td></tr></table>";
+                    this.lblNormal.Text = "<img src=\"Theme/images/meirong-08_ls02.gif\" width=\"129\" height=\"2\" />";
                 }
                 else
                 {
-                    this.lblNormal.Text = "<table border=1 cellpadding='0' width='129' cellspacing='0'><tr><td width='" + 129 / 100 * normalRate + "' bgcolor='yellow' height='11'></td><td bgcolor=white height='11'></td></tr></table>";
+                    this.lblNormal.Text = "<img src=\"Theme/images/meirong-08_ls02.gif\" width=\"" + 129 / 100 * normalRate + "\" height=\"2\" />";
                 }
             }
 

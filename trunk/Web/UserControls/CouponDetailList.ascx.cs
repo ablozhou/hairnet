@@ -14,6 +14,7 @@ using HairNet.Provider;
 using System.Text;
 using System.Drawing;
 using System.Data.SqlClient;
+using HairNet.Utilities;
 
 namespace Web.UserControls
 {
@@ -24,7 +25,11 @@ namespace Web.UserControls
         {
                 if (!this.IsPostBack)
                 {
-                    List<Coupon> list = GetCouponList(this.SelectCondition);
+                    
+                    this.SelectCondition += " and c.discount <> 0";
+
+
+                    List<Coupon> list = GetCouponList(Server.UrlDecode(this.SelectCondition));
 
                     StringBuilder sb = new StringBuilder();
 
@@ -35,7 +40,7 @@ namespace Web.UserControls
 
                     int pageCount = list.Count / this.PageSize + 1;
 
-                    if (PageSize == list.Count)
+                    if ((list.Count % this.PageSize) == 0)
                     {
                         pageCount = list.Count / this.PageSize;
                     }
@@ -114,7 +119,7 @@ namespace Web.UserControls
                             sb.Append("       <td align=\"center\" class=\"yhq-pic\"><img src=\"" + cp.ImageSmallUrl.ToString() + "\" width=\"160\" height=\"95\" /></td>");
                             sb.Append("     </tr>");
                             sb.Append("     <tr>");
-                            sb.Append("       <td height=\"50\" align=\"center\" valign=\"middle\"><a href=\"PrintCoupon.aspx?id="+cp.ID.ToString()+"\" target='_blank'><img src=\"Theme/images/fair-yhq-07.gif\" width=\"59\" height=\"19\" border=\"0\" /></a>&nbsp;&nbsp;<a href=\"SendFriends.aspx?id="+cp.ID.ToString()+"\" target='_blank'><img src=\"Theme/images/fair-yhq-08.gif\" width=\"59\" height=\"19\" border=\"0\" /></a></td>");
+                            sb.Append("       <td height=\"50\" align=\"center\" valign=\"middle\"><a href=\"PrintCoupon.aspx?id=" + cp.ID.ToString() + "\" target='_blank'><img src=\"Theme/images/fair-yhq-07.gif\" width=\"59\" height=\"19\" border=\"0\" /></a>&nbsp;&nbsp;<a href=\"javascript:copyToClipBoard(document.title,location.href)\"><img src=\"Theme/images/fair-yhq-08.gif\" width=\"59\" height=\"19\" border=\"0\" /></a></td>");
                             sb.Append("     </tr>");
                             sb.Append("   </table></td>");
                             sb.Append("   <td width=\"64%\" align=\"left\" valign=\"top\"><table width=\"95%\" border=\"0\" cellspacing=\"0\" cellpadding=\"0\" style=\"margin-top:20px;\">");
@@ -127,7 +132,7 @@ namespace Web.UserControls
                             sb.Append("       </tr>");
                             sb.Append("     <tr>");
                             sb.Append("       <td width=\"46%\" height=\"65\" valign=\"top\" class=\"gray12-d\"> ");
-                            sb.Append("           &nbsp;&nbsp;&nbsp;&nbsp;" + cp.Description + " </td>");
+                            sb.Append("           &nbsp;&nbsp;&nbsp;&nbsp;" + StringHelper.GetDescription(cp.Description,20) + " </td>");
                             sb.Append("       <td width=\"22%\" align=\"center\" valign=\"top\" class=\"gray14\">"+cp.HotZoneName+"</td>");
                             sb.Append("       <td width=\"32%\" valign=\"top\" class=\"gray12-d\">有 效 期&nbsp;&nbsp;至" + cp.ExpiredDate.ToString() + "<br />");
                             sb.Append("           联系方式 &nbsp;&nbsp;" + cp.PhoneNumber + "</td>");
@@ -165,11 +170,11 @@ namespace Web.UserControls
                         {
                             if(m==currentPage)
                             {
-                                sb2.Append("<span class=\"red12\"><a href=\"couponList.aspx?pageNum="+m.ToString()+"\">"+m.ToString()+"</a></span>");
+                                sb2.Append("&nbsp;<span class=\"red12\"><a href=\"couponList.aspx?pageNum=" + m.ToString() + "\">" + m.ToString() + "</a></span>");
                             }
                             else
                             {
-                                sb2.Append("<a href=\"couponList.aspx?pageNum="+m.ToString()+"\">"+m.ToString()+"</a>");
+                                sb2.Append("&nbsp;<a href=\"couponList.aspx?pageNum=" + m.ToString() + "\">" + m.ToString() + "</a>");
                             }
                             if(m==5)
                             {
@@ -185,11 +190,11 @@ namespace Web.UserControls
                             {
                                 if(m==currentPage)
                                 {
-                                    sb2.Append("<span class=\"red12\"><a href=\"couponList.aspx?pageNum="+m.ToString()+"\">"+m.ToString()+"</a></span>");
+                                    sb2.Append("&nbsp;<span class=\"red12\"><a href=\"couponList.aspx?pageNum=" + m.ToString() + "\">" + m.ToString() + "</a></span>&nbsp;");
                                 }
                                 else
                                 {
-                                    sb2.Append("<a href=\"couponList.aspx?pageNum="+m.ToString()+"\">"+m.ToString()+"</a>");
+                                    sb2.Append("&nbsp;<a href=\"couponList.aspx?pageNum=" + m.ToString() + "\">" + m.ToString() + "</a>&nbsp;");
                                 }
                             }
                         }
@@ -199,11 +204,11 @@ namespace Web.UserControls
                             {
                                 if(m==currentPage)
                                 {
-                                    sb2.Append("<span class=\"red12\"><a href=\"couponList.aspx?pageNum="+m.ToString()+"\">"+m.ToString()+"</a></span>");
+                                    sb2.Append("&nbsp;<span class=\"red12\"><a href=\"couponList.aspx?pageNum=" + m.ToString() + "\">" + m.ToString() + "</a></span>&nbsp;");
                                 }
                                 else
                                 {
-                                    sb2.Append("<a href=\"couponList.aspx?pageNum="+m.ToString()+"\">"+m.ToString()+"</a>");
+                                    sb2.Append("&nbsp;<a href=\"couponList.aspx?pageNum=" + m.ToString() + "\">" + m.ToString() + "</a>&nbsp;");
                                 }
                             }
                         }
@@ -247,7 +252,7 @@ namespace Web.UserControls
             List<Coupon> list = new List<Coupon>();
             using (SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["MSSqlServer"].ConnectionString))
             {
-                string commString = "select c.Name,c.HitNum,c.ImageUrl,c.ImageSmallUrl,c.Description,c.ID,c.HairShopID,c.ExpiredDate,c.Discount,c.PhoneNumber,hs.HairShopName,hz.HotZoneName,hs.POSTID from Coupon c inner join HairShop hs on c.hairshopid=hs.hairshopid inner join HotZone hz on hz.HotZoneID = hs.HairShopHotZoneID "+sc+" order by c.id desc";
+                string commString = "select c.Name,c.HitNum,c.ImageUrl,c.ImageSmallUrl,c.Description,c.ID,c.HairShopID,c.ExpiredDate,c.Discount,c.PhoneNumber,hs.HairShopName,hz.HotZoneName,hs.POSTID from Coupon c inner join HairShop hs on c.hairshopid=hs.hairshopid inner join HotZone hz on hz.HotZoneID = hs.HairShopHotZoneID "+sc+" order by Convert(int,c.discount) asc";
                 using (SqlCommand comm = new SqlCommand())
                 {
                     comm.CommandText = commString;

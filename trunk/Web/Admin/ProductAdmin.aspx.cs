@@ -22,7 +22,7 @@ namespace Web.Admin
         {
             if (!this.IsPostBack)
             {
-                this.databind();
+                
 
                 Session["query"] = null;
                 this.txtQueryName.Visible = true;
@@ -32,6 +32,7 @@ namespace Web.Admin
                 this.lblStartTime.Visible = false;
                 this.lblTimeSpace.Visible = false;
                 this.lblQueryNameSpace.Visible = true;
+                this.databind();
             }
         }
         public void ddlQuery_OnSelectedIndexChanged(object sender, EventArgs e)

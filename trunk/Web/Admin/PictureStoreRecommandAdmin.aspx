@@ -32,18 +32,6 @@
                     </ItemTemplate>
                 </asp:TemplateColumn>
                 <asp:BoundColumn DataField="PictureStoreName" HeaderText="名称"></asp:BoundColumn>
-                <asp:TemplateColumn HeaderText="图片">
-                    <ItemTemplate>
-                        <asp:Label ID="lblPictureUrl" runat="server"></asp:Label>
-                    </ItemTemplate>
-                </asp:TemplateColumn>
-                <asp:BoundColumn DataField="PictureStoreHits" HeaderText="点击数"></asp:BoundColumn>
-                <asp:HyperLinkColumn DataNavigateUrlField="PictureStoreRawID" DataNavigateUrlFormatString="PictureStoreDetails.aspx?id={0}" Target="_blank" Text="详细"></asp:HyperLinkColumn>
-                <asp:TemplateColumn>
-                    <ItemTemplate>
-                        <asp:Label ID="lblEdit" runat="server"></asp:Label>
-                    </ItemTemplate>
-                </asp:TemplateColumn>
                 <asp:ButtonColumn ButtonType="LinkButton" CommandName="delete" Text="删除"></asp:ButtonColumn>
             </Columns>
         </asp:DataGrid>

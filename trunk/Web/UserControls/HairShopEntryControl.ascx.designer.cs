@@ -29,15 +29,6 @@ namespace Web.UserControls {
         protected global::System.Web.UI.WebControls.Label picDisplayPara;
         
         /// <summary>
-        /// picDisplayContent 控件。
-        /// </summary>
-        /// <remarks>
-        /// 自动生成的字段。
-        /// 要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label picDisplayContent;
-        
-        /// <summary>
         /// lblHairShopName 控件。
         /// </summary>
         /// <remarks>
