@@ -460,6 +460,13 @@ namespace HairNet.Entry
             get { return isServeMarce; }
         }
 
+        private string _travelInfo = string.Empty;
+        public string TravelInfo
+        {
+            set { this._travelInfo = value; }
+            get { return this._travelInfo; }
+        }
+
         public Boolean IsServeDye
         {
             set { isServeDye = value; }

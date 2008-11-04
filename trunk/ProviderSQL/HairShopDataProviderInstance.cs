@@ -7,6 +7,7 @@ using System.Data.SqlClient;
 using System.Data;
 
 using HairNet.DBUtility;
+using System.Configuration;
 
 namespace HairNet.Provider
 {
@@ -135,7 +136,7 @@ namespace HairNet.Provider
                 cmdBuilder.Append("insert into HairShop(HairShopName,HairShopCityID,HairShopMapZoneID,HairShopHotZoneID,HairShopAddress,HairShopPhoneNum,HairShopPictureStoreIDs,HairShopMainIDs,HairShopPartialIDs,HairShopEngineerNum,HairShopOpenTime,WorkRangeIDs,HairShopWebSite,HairShopEmail,HairShopDiscount,HairShopLogo,HairShopCreateTime,HairShopDescription,ProductIDs,HairShopTagIDs,HairShopShortName,IsBest,IsJoin,TypeID,IsPostStation,IsPostMachine,");
                 cmdBuilder.Append("HairCutPrice, HairMarcelPrice, HairDyePrice, HairCutDiscount, HairMarcelDiscount, HairDyeDiscount,");
                 cmdBuilder.Append("HairShapePrice, HairShapeDiscount, HairConservationPrice, HairConservationDiscount,");
-                cmdBuilder.Append("LocationMapURL, IsServeMarcel, IsServeDye, IsServeHairCut, [Square],MemberInfo) ");
+                cmdBuilder.Append("LocationMapURL, IsServeMarcel, IsServeDye, IsServeHairCut, [Square],MemberInfo,travelInfo) ");
                 cmdBuilder.Append(" VALUES(' ");
 
                 #region
@@ -182,7 +183,7 @@ namespace HairNet.Provider
                 cmdBuilder.Append(hairShop.IsServeMarce.CompareTo(false).ToString() + "','");
                 cmdBuilder.Append(hairShop.IsServeDye.CompareTo(false).ToString() + "','");
                 cmdBuilder.Append(hairShop.IsServeHairCut.CompareTo(false).ToString() + " ',");
-                cmdBuilder.Append(hairShop.Square.ToString() + ",'"+hairShop.MemberInfo+"' );select @@identity;");
+                cmdBuilder.Append(hairShop.Square.ToString() + ",'"+hairShop.MemberInfo+"' ,'"+hairShop.TravelInfo+"');select @@identity;");
 
                 using (SqlConnection conn = new SqlConnection(DataHelper2.SqlConnectionString))
                 {
@@ -241,7 +242,7 @@ namespace HairNet.Provider
                 cmdBuilder.Append(",HairShapePriceMin = " + Convert.ToDecimal(hairShop.HairShapeDiscountMin.ToString()));
                 cmdBuilder.Append(",HairConservationPriceMin = " + Convert.ToDecimal(hairShop.HairConservationDiscountMin.ToString()));
 
-                cmdBuilder.Append(",MemberInfo='"+hairShop.MemberInfo+"'");
+                cmdBuilder.Append(",MemberInfo='"+hairShop.MemberInfo+"',TravelInfo='"+hairShop.TravelInfo+"'");
 
                 cmdBuilder.Append(" where HairShopID = " + hairShop.HairShopID.ToString());
 
@@ -316,7 +317,7 @@ namespace HairNet.Provider
 
             using (SqlConnection conn = new SqlConnection(DataHelper2.SqlConnectionString))
             {
-                string commText = "select * from HairShop hs inner join City c on hs.HairShopCityID=c.cityID inner join MapZone m on hs.HairShopMapZoneID = m.MapZoneID inner join HotZone h on hs.HairShopHotZoneID = h.HotZoneID inner join TypeTable tt on hs.TypeID=tt.TypeID where hs.HairShopID = " + hairShopID.ToString();
+                string commText = "select * from HairShop hs left join City c on hs.HairShopCityID=c.cityID left join MapZone m on hs.HairShopMapZoneID = m.MapZoneID left join HotZone h on hs.HairShopHotZoneID = h.HotZoneID left join TypeTable tt on hs.TypeID=tt.TypeID where hs.HairShopID = " + hairShopID.ToString();
 
                 using (SqlCommand comm = new SqlCommand())
                 {
@@ -368,6 +369,7 @@ namespace HairNet.Provider
                             hairShop.CouponNum = int.Parse(sdr["CouponNum"].ToString());
                             hairShop.OutLogs = sdr["outLogs"].ToString();
                             hairShop.InnerLogs = sdr["InnerLogs"].ToString();
+                            hairShop.TravelInfo = sdr["TravelInfo"].ToString();
                             try
                             {
                                 hairShop.HairCutDiscountMin = Convert.ToDecimal(sdr["HairCutPriceMin"].ToString());
@@ -459,6 +461,7 @@ namespace HairNet.Provider
                                 hairShop.IsServeHairCut = true;
 
                             hairShop.Square = sdr["Square"].ToString();
+                            hairShop.Postid = int.Parse(sdr["postid"].ToString());
                         }
                     }
                 }
@@ -507,10 +510,10 @@ namespace HairNet.Provider
             switch (count)
             {
                 case 0:
-                    commText = "select * from HairShop hs inner join City c on hs.HairShopCityID=c.cityID inner join MapZone m on hs.HairShopMapZoneID = m.MapZoneID inner join HotZone h on hs.HairShopHotZoneID = h.HotZoneID inner join TypeTable tt on hs.TypeID=tt.TypeID"+orderKey;
+                    commText = "select * from HairShop hs left join City c on hs.HairShopCityID=c.cityID left join MapZone m on hs.HairShopMapZoneID = m.MapZoneID left join HotZone h on hs.HairShopHotZoneID = h.HotZoneID left join TypeTable tt on hs.TypeID=tt.TypeID"+orderKey;
                     break;
                 default:
-                    commText = "select top " + count.ToString() + " * from HairShop hs inner join City c on hs.HairShopCityID=c.cityID inner join MapZone m on hs.HairShopMapZoneID = m.MapZoneID inner join HotZone h on hs.HairShopHotZoneID = h.HotZoneID inner join TypeTable tt on hs.TypeID=tt.TypeID" + orderKey;
+                    commText = "select top " + count.ToString() + " * from HairShop hs left join City c on hs.HairShopCityID=c.cityID left join MapZone m on hs.HairShopMapZoneID = m.MapZoneID left join HotZone h on hs.HairShopHotZoneID = h.HotZoneID left join TypeTable tt on hs.TypeID=tt.TypeID" + orderKey;
                     break;
             }
 
@@ -542,6 +545,7 @@ namespace HairNet.Provider
                     hairShop.HairShopEmail = sdr["HairShopEmail"].ToString();
                     hairShop.HairShopDiscount = sdr["HairShopDiscount"].ToString();
                     hairShop.HairShopLogo = sdr["HairShopLogo"].ToString();
+                    hairShop.TravelInfo = sdr["TravelInfo"].ToString();
                     
                         try
                         {
@@ -611,6 +615,7 @@ namespace HairNet.Provider
 
                     hairShop.Square = sdr["Square"].ToString();
                     hairShop.HairShopNormal = int.Parse(sdr["HairShopNormal"].ToString());
+                    hairShop.Postid = int.Parse(sdr["postid"].ToString());
 
                     list.Add(hairShop);
                 }
@@ -788,10 +793,10 @@ namespace HairNet.Provider
             switch (count)
             {
                 case 0:
-                    commText = "select * from HairShop hs inner join City c on hs.HairShopCityID=c.cityID inner join MapZone m on hs.HairShopMapZoneID = m.MapZoneID inner join HotZone h on hs.HairShopHotZoneID = h.HotZoneID inner join TypeTable tt on hs.TypeID=tt.TypeID where hs.HairShopName like '%"+hairShopName+"%'" + orderKey;
+                    commText = "select * from HairShop hs left join City c on hs.HairShopCityID=c.cityID left join MapZone m on hs.HairShopMapZoneID = m.MapZoneID left join HotZone h on hs.HairShopHotZoneID = h.HotZoneID left join TypeTable tt on hs.TypeID=tt.TypeID where hs.HairShopName like '%" + hairShopName + "%'" + orderKey;
                     break;
                 default:
-                    commText = "select top " + count.ToString() + " * from HairShop hs inner join City c on hs.HairShopCityID=c.cityID inner join MapZone m on hs.HairShopMapZoneID = m.MapZoneID inner join HotZone h on hs.HairShopHotZoneID = h.HotZoneID inner join TypeTable tt on hs.TypeID=tt.TypeID where hs.HairShopName like '%" + hairShopName + "%'" + orderKey;
+                    commText = "select top "+count.ToString()+" * from HairShop hs left join City c on hs.HairShopCityID=c.cityID left join MapZone m on hs.HairShopMapZoneID = m.MapZoneID left join HotZone h on hs.HairShopHotZoneID = h.HotZoneID left join TypeTable tt on hs.TypeID=tt.TypeID where hs.HairShopName like '%" + hairShopName + "%'" + orderKey;
                     break;
             }
 
@@ -850,6 +855,18 @@ namespace HairNet.Provider
                                 hairShop.InnerLogs = sdr["innerLogs"].ToString();
                                 hairShop.HairShopNormal = int.Parse(sdr["HairShopNormal"].ToString());
 
+                                hairShop.HairConservationDiscountMin = decimal.Parse(sdr["HairConservationPriceMin"].ToString());
+                                hairShop.HairConservationPrice = decimal.Parse(sdr["HairConservationPrice"].ToString());
+                                hairShop.HairCutDiscountMin = decimal.Parse(sdr["HairCutPriceMin"].ToString());
+                                hairShop.HairCutPirce = decimal.Parse(sdr["HairCutPrice"].ToString());
+                                hairShop.HairDyeDiscountMin = decimal.Parse(sdr["HairDyePriceMin"].ToString());
+                                hairShop.HairDyePrice = decimal.Parse(sdr["HairDyePrice"].ToString());
+                                hairShop.HairMarcelDiscountMin = decimal.Parse(sdr["HairMarcelPriceMin"].ToString());
+                                hairShop.HairMarcelPrice = decimal.Parse(sdr["HairMarcelPrice"].ToString());
+                                hairShop.HairShapeDiscountMin = decimal.Parse(sdr["HairShapePriceMin"].ToString());
+                                hairShop.HairShapePrice = decimal.Parse(sdr["HairShapePrice"].ToString());
+                                
+
                                 list.Add(hairShop);
                             }
                         }
@@ -891,10 +908,10 @@ namespace HairNet.Provider
             switch (count)
             {
                 case 0:
-                    commText = "select * from HairShop hs inner join City c on hs.HairShopCityID=c.cityID inner join MapZone m on hs.HairShopMapZoneID = m.MapZoneID inner join HotZone h on hs.HairShopHotZoneID = h.HotZoneID inner join TypeTable tt on hs.TypeID=tt.TypeID "+ selectCondition + orderKey+" "+sort.ToString();
+                    commText = "select * from HairShop hs left join City c on hs.HairShopCityID=c.cityID left join MapZone m on hs.HairShopMapZoneID = m.MapZoneID left join HotZone h on hs.HairShopHotZoneID = h.HotZoneID left join TypeTable tt on hs.TypeID=tt.TypeID " + selectCondition + orderKey + " " + sort.ToString();
                     break;
                 default:
-                    commText = "select top " + count.ToString() + " * from HairShop hs inner join City c on hs.HairShopCityID=c.cityID inner join MapZone m on hs.HairShopMapZoneID = m.MapZoneID inner join HotZone h on hs.HairShopHotZoneID = h.HotZoneID inner join TypeTable tt on hs.TypeID=tt.TypeID "+selectCondition + orderKey+" "+sort.ToString();
+                    commText = "select top " + count.ToString() + " * from HairShop hs left join City c on hs.HairShopCityID=c.cityID left join MapZone m on hs.HairShopMapZoneID = m.MapZoneID left join HotZone h on hs.HairShopHotZoneID = h.HotZoneID left join TypeTable tt on hs.TypeID=tt.TypeID " + selectCondition + orderKey + " " + sort.ToString();
                     break;
             }
 
@@ -935,6 +952,7 @@ namespace HairNet.Provider
                                 hairShop.HairShopEmail = sdr["HairShopEmail"].ToString();
                                 hairShop.HairShopDiscount = sdr["HairShopDiscount"].ToString();
                                 hairShop.HairShopLogo = sdr["HairShopLogo"].ToString();
+                                hairShop.TravelInfo = sdr["TravelInfo"].ToString();
                                 try
                                 {
                                     hairShop.HairShopRecommandNum = int.Parse(sdr["HairShopRecommandNum"].ToString());
@@ -967,6 +985,86 @@ namespace HairNet.Provider
                                 hairShop.OutLogs = sdr["outLogs"].ToString();
                                 hairShop.InnerLogs = sdr["innerLogs"].ToString();
                                 hairShop.HairShopNormal = int.Parse(sdr["HairShopNormal"].ToString());
+                                try
+                                {
+                                    hairShop.HairConservationDiscountMin = decimal.Parse(sdr["HairConservationPriceMin"].ToString());
+                                }
+                                catch
+                                {
+                                    hairShop.HairConservationDiscountMin = 0;
+                                }
+                                try
+                                {
+                                    hairShop.HairConservationPrice = decimal.Parse(sdr["HairConservationPrice"].ToString());
+                                }
+                                catch
+                                {
+                                    hairShop.HairConservationPrice = 0;
+                                }
+                                try
+                                {
+                                    hairShop.HairCutDiscountMin = decimal.Parse(sdr["HairCutPriceMin"].ToString());
+                                }
+                                catch
+                                {
+                                    hairShop.HairCutDiscountMin = 0;
+                                }
+                                try
+                                {
+                                    hairShop.HairCutPirce = decimal.Parse(sdr["HairCutPrice"].ToString());
+                                }
+                                catch
+                                {
+                                    hairShop.HairCutPirce = 0;
+                                }
+                                try
+                                {
+                                    hairShop.HairDyeDiscountMin = decimal.Parse(sdr["HairDyePriceMin"].ToString());
+                                }
+                                catch
+                                {
+                                    hairShop.HairDyeDiscountMin = 0;
+                                }
+                                try
+                                {
+                                    hairShop.HairDyePrice = decimal.Parse(sdr["HairDyePrice"].ToString());
+                                }
+                                catch
+                                {
+                                    hairShop.HairDyePrice = 0;
+                                }
+                                try
+                                {
+                                    hairShop.HairMarcelDiscountMin = decimal.Parse(sdr["HairMarcelPriceMin"].ToString());
+                                }
+                                catch
+                                {
+                                    hairShop.HairMarcelDiscountMin = 0;
+                                }
+                                try
+                                {
+                                    hairShop.HairMarcelPrice = decimal.Parse(sdr["HairMarcelPrice"].ToString());
+                                }
+                                catch
+                                {
+                                    hairShop.HairMarcelPrice = 0;
+                                }
+                                try
+                                {
+                                    hairShop.HairShapeDiscountMin = decimal.Parse(sdr["HairShapePriceMin"].ToString());
+                                }
+                                catch
+                                {
+                                    hairShop.HairShapeDiscountMin = 0;
+                                }
+                                try
+                                {
+                                    hairShop.HairShapePrice = decimal.Parse(sdr["HairShapePrice"].ToString());
+                                }
+                                catch
+                                {
+                                    hairShop.HairShapePrice = 0;
+                                }
 
                                 list.Add(hairShop);
                             }
@@ -988,7 +1086,7 @@ namespace HairNet.Provider
 
             using (SqlConnection conn = new SqlConnection(DataHelper2.SqlConnectionString))
             {
-                string commText = "select * from HairShopRecommand hsr inner join HairShop hs on hsr.HairShopRawID = hs.HairShopID inner join City c on hs.HairShopCityID=c.cityID inner join MapZone m on hs.HairShopMapZoneID = m.MapZoneID inner join HotZone h on hs.HairShopHotZoneID = h.HotZoneID inner join TypeTable tt on hs.TypeID=tt.TypeID where hsr.HairShopRecommandID = " + hairShopRecommandID.ToString();
+                string commText = "select * from HairShopRecommand hsr left join HairShop hs on hsr.HairShopRawID = hs.HairShopID left join City c on hs.HairShopCityID=c.cityID left join MapZone m on hs.HairShopMapZoneID = m.MapZoneID left join HotZone h on hs.HairShopHotZoneID = h.HotZoneID left join TypeTable tt on hs.TypeID=tt.TypeID where hsr.HairShopRecommandID = " + hairShopRecommandID.ToString();
 
                 using (SqlCommand comm = new SqlCommand())
                 {
@@ -1060,10 +1158,10 @@ namespace HairNet.Provider
             switch (count)
             {
                 case 0:
-                    commText = "select * from HairShopRecommand hsr inner join HairShop hs on hsr.HairShopRawID = hs.HairShopID inner join City c on hs.HairShopCityID=c.cityID inner join MapZone m on hs.HairShopMapZoneID = m.MapZoneID inner join HotZone h on hs.HairShopHotZoneID = h.HotZoneID inner join TypeTable tt on hs.TypeID=tt.TypeID order by hsr.HairShopRecommandID desc";
+                    commText = "select * from HairShopRecommand hsr left join HairShop hs on hsr.HairShopRawID = hs.HairShopID left join City c on hs.HairShopCityID=c.cityID left join MapZone m on hs.HairShopMapZoneID = m.MapZoneID left join HotZone h on hs.HairShopHotZoneID = h.HotZoneID left join TypeTable tt on hs.TypeID=tt.TypeID order by hsr.HairShopRecommandID desc";
                     break;
                 default:
-                    commText = "select top " + count.ToString() + " * from HairShopRecommand hsr inner join HairShop hs on hsr.HairShopRawID = hs.HairShopID inner join City c on hs.HairShopCityID=c.cityID inner join MapZone m on hs.HairShopMapZoneID = m.MapZoneID inner join HotZone h on hs.HairShopHotZoneID = h.HotZoneID inner join TypeTable tt on hs.TypeID=tt.TypeID order by hsr.HairShopRecommandID desc";
+                    commText = "select top " + count.ToString() + " * from HairShopRecommand hsr left join HairShop hs on hsr.HairShopRawID = hs.HairShopID left join City c on hs.HairShopCityID=c.cityID left join MapZone m on hs.HairShopMapZoneID = m.MapZoneID left join HotZone h on hs.HairShopHotZoneID = h.HotZoneID left join TypeTable tt on hs.TypeID=tt.TypeID order by hsr.HairShopRecommandID desc";
                     break;
             }
 
@@ -1098,14 +1196,35 @@ namespace HairNet.Provider
                                 hairShopRecommand.HairShopPartialIDs = sdr["HairShopPartialIDs"].ToString();
                                 hairShopRecommand.HairShopEngineerNum = int.Parse(sdr["HairShopEngineerNum"].ToString());
                                 hairShopRecommand.HairShopOpenTime = sdr["HairShopOpenTime"].ToString();
-                                hairShopRecommand.HairShopOrderNum = int.Parse(sdr["HairShopOrderNum"].ToString());
-                                hairShopRecommand.HairShopVisitNum = int.Parse(sdr["HairShopVisitNum"].ToString());
+                                try
+                                {
+                                    hairShopRecommand.HairShopOrderNum = int.Parse(sdr["HairShopOrderNum"].ToString());
+                                }
+                                catch
+                                {
+                                    hairShopRecommand.HairShopOrderNum = 0;
+                                }
+                                try
+                                {
+                                    hairShopRecommand.HairShopVisitNum = int.Parse(sdr["HairShopVisitNum"].ToString());
+                                }
+                                catch
+                                {
+                                    hairShopRecommand.HairShopVisitNum = 0;
+                                }
                                 hairShopRecommand.WorkRangeIDs = sdr["WorkRangeIDs"].ToString();
                                 hairShopRecommand.HairShopWebSite = sdr["HairShopWebSite"].ToString();
                                 hairShopRecommand.HairShopEmail = sdr["HairShopEmail"].ToString();
                                 hairShopRecommand.HairShopDiscount = sdr["HairShopDiscount"].ToString();
                                 hairShopRecommand.HairShopLogo = sdr["HairShopLogo"].ToString();
-                                hairShopRecommand.HairShopRecommandNum = int.Parse(sdr["HairShopRecommandNum"].ToString());
+                                try
+                                {
+                                    hairShopRecommand.HairShopRecommandNum = int.Parse(sdr["HairShopRecommandNum"].ToString());
+                                }
+                                catch
+                                {
+                                    hairShopRecommand.HairShopRecommandNum = 0;
+                                }
                                 hairShopRecommand.HairShopCreateTime = sdr["HairShopCreateTime"].ToString();
                                 hairShopRecommand.HairShopDescription = sdr["HairShopDescription"].ToString();
                                 hairShopRecommand.ProductIDs = sdr["ProductIDs"].ToString();
@@ -1117,9 +1236,28 @@ namespace HairNet.Provider
                                 hairShopRecommand.TypeName = sdr["TypeName"].ToString();
                                 hairShopRecommand.IsPostStation = bool.Parse(sdr["IsPostStation"].ToString());
                                 hairShopRecommand.IsPostMachine = bool.Parse(sdr["IsPostMachine"].ToString());
-                                hairShopRecommand.HairShopGood = int.Parse(sdr["HairShopGood"].ToString());
-                                hairShopRecommand.HairShopBad = int.Parse(sdr["HairShopBad"].ToString());
+                                try
+                                {
+                                    hairShopRecommand.HairShopGood = int.Parse(sdr["HairShopGood"].ToString());
+                                }
+                                catch
+                                {
+                                    hairShopRecommand.HairShopGood = 0;
+                                }
+
+                                try
+                                {
+                                    hairShopRecommand.HairShopBad = int.Parse(sdr["HairShopBad"].ToString());
+                                }
+                                catch
+                                {
+                                    hairShopRecommand.HairShopBad = 0;
+                                }
+
+                             
                                 hairShopRecommand.HairShopRecommandEx = sdr["HairShopRecommandEx"].ToString();
+                             
+
                                 hairShopRecommand.HairShopRecommandInfo = sdr["HairShopRecommandInfo"].ToString();
 
                                 list.Add(hairShopRecommand);
@@ -2069,7 +2207,7 @@ namespace HairNet.Provider
         public DataTable GetCouponList()
         {
             return SqlHelper.ExecuteDataset(DataHelper2.SqlConnectionString, CommandType.Text, 
-                "select * from Coupon inner join HairShop ON Coupon.HairShopID = HairShop.HairShopID").Tables[0];
+                "select * from Coupon left join HairShop ON Coupon.HairShopID = HairShop.HairShopID").Tables[0];
         }
 
         //public List<Coupon> GetCouponListByShopId(int shopId)

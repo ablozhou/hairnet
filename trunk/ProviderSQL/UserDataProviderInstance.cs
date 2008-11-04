@@ -280,7 +280,7 @@ namespace HairNet.Provider
         {
             UserEntry ue = new UserEntry();
 
-            string commandText = "SELECT * FROM UserBasicInfo Inner join UserRole ur on UserBasicInfo.UserRoleID = ur.UserRoleID INNER JOIN UserBusinessInfo ON UserBasicInfo.UserID = UserBusinessInfo.UserID INNER JOIN UserContactInfo ON UserBasicInfo.UserID = UserContactInfo.UserID INNER JOIN UserPersonalInfo ON UserBasicInfo.UserID = UserPersonalInfo.UserID WHERE (UserBusinessInfo.UserID = " + userID + " )";
+            string commandText = "SELECT * FROM UserBasicInfo left join UserRole ur on UserBasicInfo.UserRoleID = ur.UserRoleID left JOIN UserBusinessInfo ON UserBasicInfo.UserID = UserBusinessInfo.UserID left JOIN UserContactInfo ON UserBasicInfo.UserID = UserContactInfo.UserID left JOIN UserPersonalInfo ON UserBasicInfo.UserID = UserPersonalInfo.UserID WHERE (UserBusinessInfo.UserID = " + userID + " )";
             using (SqlConnection conn = new SqlConnection(DataHelper2.SqlConnectionString))
             {
                 using (SqlCommand comm = new SqlCommand())
@@ -373,9 +373,9 @@ namespace HairNet.Provider
                   " UserPersonalInfo.LastName, UserPersonalInfo.Name, UserPersonalInfo.Country, " +
                   " UserPersonalInfo.City, UserPersonalInfo.PostalCode, UserPersonalInfo.Vocational, " +
                   " UserPersonalInfo.Location, UserPersonalInfo.Interest, UserBasicInfo.UserID" +
-            " FROM UserBasicInfo Inner join UserRole ur on UserBasicInfo.UserRoleID = ur.UserRoleID INNER JOIN " +
-                  " UserBusinessInfo ON UserBasicInfo.UserID = UserBusinessInfo.UserID INNER JOIN " +
-                 " UserContactInfo ON UserBasicInfo.UserID = UserContactInfo.UserID INNER JOIN " +
+            " FROM UserBasicInfo left join UserRole ur on UserBasicInfo.UserRoleID = ur.UserRoleID left JOIN " +
+                  " UserBusinessInfo ON UserBasicInfo.UserID = UserBusinessInfo.UserID left JOIN " +
+                 " UserContactInfo ON UserBasicInfo.UserID = UserContactInfo.UserID left JOIN " +
                  " UserPersonalInfo ON UserBasicInfo.UserID = UserPersonalInfo.UserID " +
             " WHERE (UserBasicInfo.UserName = '" + userName + "')";
 
@@ -462,9 +462,9 @@ namespace HairNet.Provider
             }
 
             //降序
-            string commandText = "select " + obj + " FROM UserBasicInfo Inner join UserRole ur on UserBasicInfo.UserRoleID = ur.UserRoleID INNER JOIN " +
-                " UserBusinessInfo ON UserBasicInfo.UserID = UserBusinessInfo.UserID INNER JOIN " +
-                " UserContactInfo ON UserBasicInfo.UserID = UserContactInfo.UserID INNER JOIN " +
+            string commandText = "select " + obj + " FROM UserBasicInfo left join UserRole ur on UserBasicInfo.UserRoleID = ur.UserRoleID left JOIN " +
+                " UserBusinessInfo ON UserBasicInfo.UserID = UserBusinessInfo.UserID left JOIN " +
+                " UserContactInfo ON UserBasicInfo.UserID = UserContactInfo.UserID left JOIN " +
                 " UserPersonalInfo ON UserBasicInfo.UserID = UserPersonalInfo.UserID ORDER BY UserBasicInfo.UserID DESC";
                         using (SqlConnection conn = new SqlConnection(DataHelper2.SqlConnectionString))
             {
@@ -547,7 +547,7 @@ namespace HairNet.Provider
             //    " UserContactInfo ON UserBasicInfo.UserID = UserContactInfo.UserID INNER JOIN " +
             //    " UserPersonalInfo ON UserBasicInfo.UserID = UserPersonalInfo.UserID WHERE (UserBasicInfo.UserName LIKE '%"+strUserName+"%') ";
 
-            string commandText = "select * FROM UserBasicInfo  Inner join UserRole ur on UserBasicInfo.UserRoleID = ur.UserRoleID WHERE (UserBasicInfo.UserName LIKE '%" + strUserName + "%') ";
+            string commandText = "select * FROM UserBasicInfo  left join UserRole ur on UserBasicInfo.UserRoleID = ur.UserRoleID WHERE (UserBasicInfo.UserName LIKE '%" + strUserName + "%') ";
 
             using (SqlConnection conn = new SqlConnection(DataHelper2.SqlConnectionString))
             {
