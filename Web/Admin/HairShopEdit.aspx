@@ -25,10 +25,12 @@
                     &nbsp;&nbsp; 区域：
                     <asp:DropDownList ID="ddlMapZone" runat="server" AutoPostBack="True" OnSelectedIndexChanged="ddlMapZone_SelectedIndexChanged">
                     </asp:DropDownList>
-                    &nbsp;&nbsp; 地段：<asp:DropDownList ID="ddlHotZone" runat="server">
+                    &nbsp;&nbsp; 商圈：<asp:DropDownList ID="ddlHotZone" runat="server">
                     </asp:DropDownList>
                 </td>
-            </tr>           <tr>
+            </tr>      
+            
+                 <tr>
                 <td width="120" align="right">
                     名称：
                 </td>
@@ -66,7 +68,7 @@
                     <asp:TextBox ID="txtHairShopWebSite" runat="server" Width="200" CssClass="TextBox"></asp:TextBox>
                     <asp:RegularExpressionValidator ID="RegularExpressionValidator4" runat="server" 
                         ControlToValidate="txtHairShopWebSite" ErrorMessage="值不对" 
-                        ValidationExpression="http(s)?://([\w-]+\.)+[\w-]+(/[\w- ./?%&amp;=]*)?"></asp:RegularExpressionValidator>
+                        ValidationExpression="(http(s)?://)?([\w-]+\.)+[\w-]+(/[\w- ./?%&=]*)?"></asp:RegularExpressionValidator>
                 </td>
             </tr>
             <tr>
@@ -85,10 +87,7 @@
                     美发厅折扣：
                 </td>
                 <td>
-                    <asp:TextBox ID="txtHairShopDiscount" runat="server" Width="200" CssClass="TextBox"></asp:TextBox>
-                    <asp:RegularExpressionValidator ID="RegularExpressionValidator2" runat="server" 
-                        ControlToValidate="txtHairShopDiscount" ErrorMessage="值不对" 
-                        ValidationExpression="\d*"></asp:RegularExpressionValidator>
+                    <asp:TextBox ID="txtHairShopDiscount" runat="server" Width="200" CssClass="TextBox">-</asp:TextBox>&nbsp;
                 </td>
             </tr>
            <tr>
@@ -266,10 +265,18 @@
             </tr>
             <tr>
                 <td align="right" class="style1">
-                    交通路线：
+                    地图接口：
                 </td>
                 <td>
                     <asp:TextBox ID="tbLocation" runat="server" Width="200" CssClass="TextBox"></asp:TextBox>
+                </td>
+            </tr>
+            <tr>
+                <td align="right" class="style1">
+                    交通信息：
+                </td>
+                <td>
+                    <asp:TextBox ID="txtTravelInfo" runat="server" Width="200" CssClass="TextBox"></asp:TextBox>
                 </td>
             </tr>
             <tr>
@@ -303,10 +310,7 @@
                     电话号码：
                 </td>
                 <td>
-                    <asp:TextBox ID="txtHairShopPhoneNum" runat="server" Width="200" CssClass="TextBox"></asp:TextBox>
-                    <asp:RegularExpressionValidator ID="RegularExpressionValidator15" 
-                        runat="server" ControlToValidate="txtHairShopPhoneNum" ErrorMessage="值不对" 
-                        ValidationExpression="(\d{3}|\d{3}-)?\d{8}"></asp:RegularExpressionValidator>
+                    <asp:TextBox ID="txtHairShopPhoneNum" runat="server" Width="200" CssClass="TextBox"></asp:TextBox>&nbsp;
                 </td>
             </tr>
             <tr>
@@ -355,7 +359,7 @@
                     <asp:CheckBox ID="chkIsJoin" runat="server" />
                 </td>
             </tr>
-            </tr>
+            
             <tr>
                 <td width="120" align="right">
                     是否停车：
@@ -376,7 +380,7 @@
                     加盟详细信息：
                 </td>
                 <td>
-                    <asp:TextBox ID="txtMemberInfo" runat="server" Height="200px"  TextMode="MultiLine/>
+                    <asp:TextBox ID="txtMemberInfo" runat="server" Height="200px" Width="900px"  TextMode="MultiLine"/>
                 </td>
      
             
@@ -385,8 +389,7 @@
                     描述：
                 </td>
                 <td>
-                    <asp:TextBox ID="txtDescription" runat="server" Height="200px" TextMode="MultiLine"
-                        Width="900px"></asp:TextBox>
+                    <asp:TextBox ID="txtDescription" runat="server" Height="200px" TextMode="MultiLine" Width="900px"></asp:TextBox>
                 </td>
             </tr>
             <tr>
@@ -400,7 +403,7 @@
             </tr>
             <tr>
                 <td colspan="2" align="center">
-                    <asp:Button ID="btnSubmit" runat="server" Text="提交 <<基本信息>>" OnClick="btnSubmit_OnClick" />
+                    <asp:Button ID="btnSubmit" runat="server" Text="提交 <<基本信息>>" OnClick="btnSubmit_OnClick" />&nbsp;&nbsp;<asp:Label ID="lblInfo" runat="server" ForeColor="red" Visible="false"></asp:Label>
                 </td>
             </tr>
         </table>

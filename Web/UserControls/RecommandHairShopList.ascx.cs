@@ -23,7 +23,7 @@ namespace Web.UserControls
         {
             if (!this.IsPostBack)
             {
-                List<HairShopRecommand> list = ProviderFactory.GetHairShopDataProviderInstance().GetHairShopRecommands(0);
+                List<HairShopRecommand> list = ProviderFactory.GetHairShopDataProviderInstance().GetHairShopRecommands(5);
 
                 StringBuilder sb = new StringBuilder();
                 

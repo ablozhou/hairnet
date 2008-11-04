@@ -76,22 +76,17 @@ namespace Web.Admin
             {
                 e.Item.Attributes.Add("onmouseover", "c=this.style.backgroundColor;this.style.backgroundColor='#ffffff';");
                 e.Item.Attributes.Add("onmouseout", "this.style.backgroundColor=c;");
-                e.Item.Cells[6].Attributes.Add("onclick", "return confirm('确定删除么?')");
+                e.Item.Cells[2].Attributes.Add("onclick", "return confirm('确定删除么?')");
 
                 PictureStoreRecommand pictureStoreRecommand = e.Item.DataItem as PictureStoreRecommand;
                 Label lblID = e.Item.FindControl("lblID") as Label;
-                Label lblPictureUrl = e.Item.FindControl("lblPictureUrl") as Label;
-                Label lblEdit = e.Item.FindControl("lblEdit") as Label;
+                
 
                 //序号
                 int num = int.Parse(Session["num"].ToString());
                 num++;
                 lblID.Text = num.ToString();
                 Session["num"] = num;
-                //预览图片
-                lblPictureUrl.Text = "<a href='" + DataBinder.Eval(e.Item.DataItem, "PictureStoreRawUrl").ToString() + "'target='_blank'><img src='" + DataBinder.Eval(e.Item.DataItem, "PictureStoreLittleUrl").ToString() + "' width='40' height='20' alt='点击查看大图' /></a>";
-
-                lblEdit.Text = "<a href='PictureStoreUpdate.aspx?PictureStoreRecommandID=" + pictureStoreRecommand.PictureStoreRecommandID.ToString() + "&PictureStoreID=" + pictureStoreRecommand.PictureStoreRawID.ToString() + "&operateType=2'>编辑</a>";
             }
         }
         public void dg_OnPageIndexChanged(object sender, DataGridPageChangedEventArgs e)

@@ -2,7 +2,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProductVersion>9.0.21022</ProductVersion>
+    <ProductVersion>8.0.50727</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{AA67A172-FF0F-4C2B-B68A-10E02F9D12AD}</ProjectGuid>
     <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
@@ -59,6 +59,10 @@
     <Reference Include="HWKEY, Version=1.0.1460.35494, Culture=neutral">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>HWCommon\DLL\HWKEY.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ApplicationBlocks.Data, Version=2.0.0.0, Culture=neutral">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Assembly\Microsoft.ApplicationBlocks.Data.dll</HintPath>
     </Reference>
     <Reference Include="MySql.Data, Version=5.1.2.2, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -1958,6 +1962,13 @@
     <Compile Include="Home.Master.designer.cs">
       <DependentUpon>Home.Master</DependentUpon>
     </Compile>
+    <Compile Include="MapInfo.aspx.cs">
+      <SubType>ASPXCodeBehind</SubType>
+      <DependentUpon>MapInfo.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="MapInfo.aspx.designer.cs">
+      <DependentUpon>MapInfo.aspx</DependentUpon>
+    </Compile>
     <Compile Include="PrintCoupon.aspx.cs">
       <SubType>ASPXCodeBehind</SubType>
       <DependentUpon>PrintCoupon.aspx</DependentUpon>
@@ -2028,6 +2039,13 @@
     </Compile>
     <Compile Include="UserControls\HairShopListControl.ascx.designer.cs">
       <DependentUpon>HairShopListControl.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\HairShopMapInfo.ascx.cs">
+      <DependentUpon>HairShopMapInfo.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UserControls\HairShopMapInfo.ascx.designer.cs">
+      <DependentUpon>HairShopMapInfo.ascx</DependentUpon>
     </Compile>
     <Compile Include="UserControls\HairShopVoteControl.ascx.cs">
       <DependentUpon>HairShopVoteControl.ascx</DependentUpon>
@@ -2317,12 +2335,14 @@
     <Content Include="include\Head.html" />
     <Content Include="include\top-2.htm" />
     <Content Include="include\top-4.htm" />
+    <Content Include="MapInfo.aspx" />
     <Content Include="PrintCoupon.aspx" />
     <Content Include="SearchHeadPage.aspx" />
     <Content Include="SendFriends.aspx" />
     <Content Include="shophotcomment.htm" />
     <Content Include="shophottags.htm" />
     <Content Include="Theme\Flash\yanshi.swf" />
+    <Content Include="Theme\Images\01.jpg" />
     <Content Include="Theme\Images\bbs-blog_05.gif" />
     <Content Include="Theme\Images\bbs-blog_06.gif" />
     <Content Include="Theme\Images\bbs-blog_linshi.gif" />
@@ -2370,18 +2390,22 @@
     <Content Include="Theme\Images\fxk2-08.gif" />
     <Content Include="Theme\Images\fxk2-09.gif" />
     <Content Include="Theme\Images\login.gif" />
+    <Content Include="Theme\Images\null-line.gif" />
     <Content Include="Theme\Images\reg-bg.gif" />
     <Content Include="Theme\Images\reg-bg0.gif" />
     <Content Include="Theme\Images\reg.gif" />
     <Content Include="Theme\Images\sg-08-index_test02.gif" />
     <Content Include="Theme\Images\sg-meifa_picbg3.gif" />
+    <Content Include="Theme\Js\scroll.js" />
     <Content Include="Theme\Style\chaoliu-list.css" />
+    <Content Include="Theme\Style\css.css" />
     <Content Include="UserControls\CouponDetailList.ascx" />
     <Content Include="UserControls\CouponListControl.ascx" />
     <Content Include="UserControls\HairShopDescription.ascx" />
     <Content Include="UserControls\HairShopEngineerList.ascx" />
     <Content Include="UserControls\HairShopEntryControl.ascx" />
     <Content Include="UserControls\HairShopListControl.ascx" />
+    <Content Include="UserControls\HairShopMapInfo.ascx" />
     <Content Include="UserControls\HairShopVoteControl.ascx" />
     <Content Include="UserControls\HairShopWorkList.ascx" />
     <Content Include="UserControls\hotcouponleft.ascx" />
@@ -2421,12 +2445,11 @@
         <WebProjectProperties>
           <UseIIS>False</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
-          <DevelopmentServerPort>1526</DevelopmentServerPort>
+          <DevelopmentServerPort>8931</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
           <IISUrl>
           </IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
-          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
         </WebProjectProperties>
       </FlavorProperties>
     </VisualStudio>

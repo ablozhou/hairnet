@@ -12,6 +12,7 @@ using HairNet.Entry;
 using HairNet.Provider;
 using System.Collections.Generic;
 using System.Data.SqlClient;
+using System.Text;
 
 namespace Web.UserControls
 {
@@ -23,14 +24,59 @@ namespace Web.UserControls
 
             this.lblHairShopName.Text = hairShop.HairShopName;
             this.lblHairShopDescription.Text = hairShop.HairShopDescription;
-            this.lblMemberInfo.Text = hairShop.MemberInfo.ToString();
+
+
+            //绑定美发厅加盟信息
+            StringBuilder memberSB = new StringBuilder();
+            int memberNum = 0;
+            if (hairShop.MemberInfo != string.Empty)
+            {
+                using (SqlConnection conn1 = new SqlConnection(ConfigurationManager.ConnectionStrings["MSSqlServer"].ConnectionString))
+                {
+                    string commString1 = "select * from hairshop where MemberInfo like '%" + hairShop.MemberInfo.ToString() + "%'";
+                    using (SqlCommand comm1 = new SqlCommand())
+                    {
+                        comm1.CommandText = commString1;
+                        comm1.Connection = conn1;
+                        conn1.Open();
+
+                        using (SqlDataReader sdr1 = comm1.ExecuteReader())
+                        {
+                            while (sdr1.Read())
+                            {
+                                memberNum++;
+                                if (memberNum == 1)
+                                {
+                                    memberSB.Append("&nbsp;&nbsp;&nbsp;&nbsp;" + memberNum.ToString() + "、&nbsp;&nbsp;<a target='_blank' href='HairShopContent.aspx?id=" + sdr1["HairShopID"].ToString() + "'>" + sdr1["HairShopShortName"].ToString() + "&nbsp;&nbsp;&nbsp;—&nbsp;&nbsp;&nbsp;" + sdr1["HairShopAddress"].ToString() + "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" + sdr1["HairShopPhoneNum"].ToString() + "</a>");
+                                }
+                                else
+                                {
+                                    memberSB.Append("<br/>&nbsp;&nbsp;&nbsp;&nbsp;" + memberNum.ToString() + "、&nbsp;&nbsp;<a target='_blank' href='HairShopContent.aspx?id=" + sdr1["HairShopID"].ToString() + "'>" + sdr1["HairShopShortName"].ToString() + "&nbsp;&nbsp;&nbsp;—&nbsp;&nbsp;&nbsp;" + sdr1["HairShopAddress"].ToString() + "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" + sdr1["HairShopPhoneNum"].ToString() + "</a>");
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+
+            if (memberSB.ToString() == string.Empty)
+            {
+                this.lblMemberInfo.Text = "当前没有连锁店信息";
+            }
+            else
+            {
+                this.lblMemberInfo.Text = memberSB.ToString();
+            }
+            
+                
+                
             string picUrl = string.Empty;
             string picSmallUrl = string.Empty;
 
 
             using (SqlConnection conn1 = new SqlConnection(ConfigurationManager.ConnectionStrings["MSSqlServer"].ConnectionString))
             {
-                string commString1 = "select top 1 * from shoppics where classid=2 and hairshopid=" + this.HairShopID.ToString();
+                string commString1 = "select top 1 * from shoppics where hairshopid=" + this.HairShopID.ToString();
                 using (SqlCommand comm1 = new SqlCommand())
                 {
                     comm1.CommandText = commString1;
@@ -54,7 +100,10 @@ namespace Web.UserControls
             }
 
             this.lbllHairShopPic.Text = "<a href=\"#\"><img width=98 height=98 src=\"" + picSmallUrl + "\" /></a>";
-            
+
+            this.lblMapText1.Text = "<a href='MapInfo.aspx?id="+hairShop.HairShopID.ToString()+"' target='_blank'><img src='Theme/images/fair-mft25.gif' /></a>";
+            this.lblMapText2.Text = "<a href='MapInfo.aspx?id=" + hairShop.HairShopID.ToString() + "' target='_blank'><img src='Theme/images/fair-mft25.gif' /></a>";
+            this.lblMapText3.Text = "<a href='MapInfo.aspx?id=" + hairShop.HairShopID.ToString() + "' target='_blank'><img src='Theme/images/fair-mft25.gif' /></a>";
 
             if (hairShop.HairShopEngineerNum == 0)
             {

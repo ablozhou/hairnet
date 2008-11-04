@@ -146,15 +146,6 @@ namespace Web.Admin {
         protected global::System.Web.UI.WebControls.TextBox txtHairShopDiscount;
         
         /// <summary>
-        /// RegularExpressionValidator2 控件。
-        /// </summary>
-        /// <remarks>
-        /// 自动生成的字段。
-        /// 要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.RegularExpressionValidator RegularExpressionValidator2;
-        
-        /// <summary>
         /// txtHairCutPriceMin 控件。
         /// </summary>
         /// <remarks>
@@ -452,6 +443,15 @@ namespace Web.Admin {
         protected global::System.Web.UI.WebControls.TextBox tbLocation;
         
         /// <summary>
+        /// txtTravelInfo 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtTravelInfo;
+        
+        /// <summary>
         /// fileLogo 控件。
         /// </summary>
         /// <remarks>
@@ -495,15 +495,6 @@ namespace Web.Admin {
         /// 要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtHairShopPhoneNum;
-        
-        /// <summary>
-        /// RegularExpressionValidator15 控件。
-        /// </summary>
-        /// <remarks>
-        /// 自动生成的字段。
-        /// 要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.RegularExpressionValidator RegularExpressionValidator15;
         
         /// <summary>
         /// txtHairShopOpenTime 控件。
@@ -569,15 +560,6 @@ namespace Web.Admin {
         protected global::System.Web.UI.WebControls.CheckBox chkIsJoin;
         
         /// <summary>
-        /// txtMemberInfo 控件。
-        /// </summary>
-        /// <remarks>
-        /// 自动生成的字段。
-        /// 要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtMemberInfo;
-        
-        /// <summary>
         /// chkIsPostStation 控件。
         /// </summary>
         /// <remarks>
@@ -594,6 +576,15 @@ namespace Web.Admin {
         /// 要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
         protected global::System.Web.UI.WebControls.CheckBox chkIsPostMachine;
+        
+        /// <summary>
+        /// txtMemberInfo 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtMemberInfo;
         
         /// <summary>
         /// txtDescription 控件。
@@ -630,5 +621,14 @@ namespace Web.Admin {
         /// 要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnSubmit;
+        
+        /// <summary>
+        /// lblInfo 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblInfo;
     }
 }

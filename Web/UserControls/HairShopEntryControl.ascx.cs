@@ -26,7 +26,8 @@ namespace Web.UserControls
                 HairShop hairShop = ProviderFactory.GetHairShopDataProviderInstance().GetHairShopByHairShopID(this.HairShopID);
 
                 this.Page.Header.Title = "美发频道 - " + hairShop.HairShopName;
-                this.lblHairShopName.Text = hairShop.HairShopName;
+                this.lblHairShopName.Text = hairShop.HairShopShortName;//.HairShopName;//取短名称
+
                 this.lblHairShopAddress.Text = hairShop.HairShopAddress + "【<span class=\"red12-c\">地图</span>】";
                 this.lblHairShopDiscount.Text = hairShop.HairShopDiscount + "折";
                 this.lblHairShopDiscount2.Text = hairShop.HairShopDiscount + "折";
@@ -39,6 +40,8 @@ namespace Web.UserControls
 
                 StringBuilder picSB = new StringBuilder();
                 StringBuilder displayPicSb = new StringBuilder();
+                displayPicSb.Append("<script language=javascript type=text/javascript> var fImgs = new Array();");
+
                 int displayNum = 0;
                 using (SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["MSSqlServer"].ConnectionString))
                 {
@@ -53,26 +56,21 @@ namespace Web.UserControls
                         {
                             while (sdr.Read())
                             {
+                                
+
+                                displayPicSb.Append("fImgs["+displayNum.ToString()+"] = {title:\"\",img:\""+sdr["picurl"].ToString()+"\",href:\"#\"};");
+
+                                picSB.Append("<a onclick='javascript:showImage("+displayNum.ToString()+");return false;'><img src=\"" + sdr["picsmallurl"].ToString() + "\" /></a>");
+                                
                                 displayNum++;
-
-                                if (displayNum==1)
-                                {
-                                    displayPicSb.Append("<IMG width='563' height='290' id=oDIV1 src=\""+sdr["picurl"].ToString()+"\" border=0 alt=\"\">");
-                                }
-                                else
-                                {
-                                    displayPicSb.Append("<IMG width='563' height='290' id=oDIV"+displayNum.ToString()+" style=\"DISPLAY: none;\" src=\""+sdr["picurl"].ToString()+"\" border=0 alt=\"\">");
-                                }
-
-                                picSB.Append("<a onClick='GoToPic("+displayNum.ToString()+")'><img src=\"" + sdr["picsmallurl"].ToString() + "\" /></a>");
-
                             }
                         }
                     }
                 }
+                displayPicSb.Append("imagePlay();</script>");
 
-               this.picDisplayPara.Text = "<script> var isie=document.all?true:false; var NowFrame = 1;var MaxFrame = "+displayNum.ToString()+";var bStart = 0;</script>";
-               this.picDisplayContent.Text = displayPicSb.ToString();
+                this.picDisplayPara.Text = displayPicSb.ToString();
+               
                 this.lblHairShopPicList.Text = picSB.ToString();
 
                 if (hairShop.IsPostMachine)
@@ -91,7 +89,8 @@ namespace Web.UserControls
                 {
                     this.lblIsPostStation.Text = "无";
                 }
-                this.lblLocationMapUrl.Text = hairShop.LocationMapURL.ToString();
+                
+                this.lblLocationMapUrl.Text = hairShop.TravelInfo.ToString();
                 this.lblSquare.Text = hairShop.Square;
 
                 //process products
@@ -155,10 +154,10 @@ namespace Web.UserControls
                     }
                 }
 
-                this.lblComment.Text = "<a href=\"#\" target=\"_blank\">[评 论]</a>";
-                this.lblStore.Text = "<a onClick='window.external.AddFavorite(location.href,document.title);' href='#'>[收 藏]</a>";
-                this.lblComment2.Text = "<a href=\"#\" target=\"_blank\">[评 论]</a>";
-                this.lblStore2.Text = "<a onClick='window.external.AddFavorite(location.href,document.title);' href='#'>[收 藏]</a>";
+                this.lblComment.Text = "<a href=\"http://bbs.sg.com.cn/thread-" + hairShop.Postid.ToString() + "-1-1.html\" target=\"_blank\">[评 论]</a>";
+                this.lblStore.Text = "<a href='javascript:window.external.AddFavorite(location.href,document.title)'>[收 藏]</a>";
+                this.lblComment2.Text = "<a href=\"http://bbs.sg.com.cn/thread-" + hairShop.Postid.ToString() + "-1-1.html\" target=\"_blank\">[评 论]</a>";
+                this.lblStore2.Text = "<a href='javascript:window.external.AddFavorite(location.href,document.title)'>[收 藏]</a>";
             }
         }
         private int _hairShopID = 0;
@@ -174,7 +173,6 @@ namespace Web.UserControls
             if (email == string.Empty)
             {
                 StringHelper.AlertInfo("邮件地址不能为空", this.Page);
-                this.Response.Redirect(this.Request.Url.ToString());
                 return;
             }
             using (SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["MSSqlServer"].ConnectionString))
@@ -204,7 +202,6 @@ namespace Web.UserControls
             if (email == string.Empty)
             {
                 StringHelper.AlertInfo("邮件地址不能为空", this.Page);
-                this.Response.Redirect(this.Request.Url.ToString());
                 return;
             }
             using (SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["MSSqlServer"].ConnectionString))

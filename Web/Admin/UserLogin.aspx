@@ -54,10 +54,10 @@
                                         <td align="right">
                                             <asp:Label ID="Label1" runat="server" AssociatedControlID="Password">验证码：</asp:Label></td>
                                         <td>
-                                            <asp:TextBox ID="GetCode" runat="server" Height="29px"  ></asp:TextBox>
+                                            <asp:TextBox ID="GetCode" runat="server"   ></asp:TextBox>
                                             <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ControlToValidate="Password"
                                                 ErrorMessage="必须填写“验证码”。" ToolTip="必须填写“验证码”。" ValidationGroup="Login1">*</asp:RequiredFieldValidator>
-                                            <asp:Image ID="Image2" Height=30px runat="server" 
+                                            <asp:Image ID="Image2"  runat="server" 
                                                 ImageUrl="./GetImageCode.aspx" ImageAlign="Top"
                                                                             alt="看不清？点击更换" onclick="this.src=this.src+'?'" 
                                                 Width="79px" />

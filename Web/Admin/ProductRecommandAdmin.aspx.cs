@@ -22,6 +22,7 @@ namespace Web.Admin
         {
             if (!this.IsPostBack)
             {
+
                 this.databind();
             }
         }

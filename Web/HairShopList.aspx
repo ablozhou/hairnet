@@ -5,13 +5,13 @@
 <%@ Register Src="UserControls/HairShopListControl.ascx" TagName="HairShopListControl" TagPrefix="HN" %>
 
 <asp:Content ContentPlaceHolderID="BodyContentPosition" ID="BodyContent" runat="server">
-<div style="text-align:center; height:160px;">
-<iframe src="SearchHeadPage.aspx" width="980" height="160" frameborder="no" border="0" marginwidth="0" marginheight="0" scrolling="no" allowtransparency="yes"></iframe>
-</div>
 <div id="main-top2"></div>
 <!--主体内容部分开始 -->
 <div id="main">
   <div id="main-l">
+      <!--搜美发厅开始 -->
+
+
     <div id="mfs-tj">
       <table width="706" height="36" border="0" align="center" cellpadding="0" cellspacing="0" background="Theme/images/fair-mft04-a.gif">
         <tr>
@@ -65,23 +65,26 @@
 	  </div>		
     </div> 	
     <div class="main-r-box2">
-	  <table width="100%" height="43" border="0" cellpadding="0" cellspacing="0" style="margin-top:20px">
-        <tr>
-          <td height="24" align="left" class="red14b">&nbsp;&nbsp;热门标签&nbsp;<img src="Theme/images/sg-meifa_35.gif" width="9" height="13" /></td>
-        </tr>
-        <tr>
-          <td height="19"><img src="Theme/images/sg-meifa_46.gif" width="256" height="2" /></td>
-        </tr>
-      </table>
-	 <!-- #include file="shophottags.htm" -->
+    <table width="100%" border="0" align="center" cellpadding="0" cellspacing="0">
+      <tr>
+        <td align="right"><img src="Theme/images/null-line.gif" /></td>
+      </tr>
+    </table>
+    <!-- #include file="/hair/include/page/hottag.htm" -->
+    
+    <table width="100%" border="0" align="center" cellpadding="0" cellspacing="0">
+      <tr>
+        <td align="right"><img src="Theme/images/null-line.gif" /></td>
+      </tr>
+    </table>
+    
 	</div>
 	<div class="main-r-box2">
-	<!-- #include file="shophotcomment.htm" -->
-	 </div>
-	<div class="main-r-box">
-	
-	<!-- #include file="userrecommendshop.htm" -->
-	</div>
+        <!-- #include file="/include/mft_list_zrdp.htm" -->
+    </div>
+	<div class="main-r-box2">
+     <!-- #include file="/include/mft_list_wytjd.htm" -->
+  </div>
   </div>
   <div id="main-rr"></div>
     <div class="clear"></div>

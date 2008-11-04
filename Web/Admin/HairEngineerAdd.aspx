@@ -61,10 +61,7 @@ function Button1_onclick() {
         </tr>
         <tr>
             <td width="120px" align="right">预约电话：</td>
-            <td><asp:TextBox ID="txtHairEngineerTel" runat="server" CssClass="TextBox"></asp:TextBox>
-                <asp:RegularExpressionValidator ID="RegularExpressionValidator3" runat="server" 
-                    ControlToValidate="txtHairEngineerTel" ErrorMessage="值不对" 
-                    ValidationExpression="(\d{3}|\d{3}-)?\d{8}"></asp:RegularExpressionValidator>
+            <td><asp:TextBox ID="txtHairEngineerTel" runat="server" CssClass="TextBox"></asp:TextBox>&nbsp;
                     </td>
         </tr>
           <tr>

@@ -21,7 +21,7 @@
               <tr>
                 <td width="66%" class="search-bg" style="border-left:#cbcbcb 1px solid;"><asp:TextBox ID="txtBuziZone" runat="server" CssClass="search-input"></asp:TextBox></td>
                 <td width="11%" align="left" class="search-bg"><img src="Theme/images/sg-meifa_17.gif" width="26" height="23" /></td>
-                <td width="21%" align="center" class="search-bg"><span class="search"><asp:LinkButton ID="linkBtnHotZone" runat="server" OnClick="btnBusiZoneSearch_Click" Text="ËÑ&nbsp;Ë÷"></asp:LinkButton></span></td>
+                <td width="21%" align="center" class="search-bg"><span class="search"><asp:LinkButton ID="linkBtnHotZone" runat="server" OnClick="btnBusiZoneSearch_Click" Text="ËÑ  Ë÷"></asp:LinkButton></span></td>
                 <td width="2%" align="right" class="search-bg"><img src="Theme/images/sg-meifa_14.gif" width="4" height="25" /></td>
               </tr>
             </table></td>
@@ -34,21 +34,13 @@
                 <tr>
                   <td width="66%" class="search-bg" style="border-left:#cbcbcb 1px solid;"><asp:TextBox ID="txtHairShopName" runat="server" CssClass="search-input"></asp:TextBox></td>
                   <td width="11%" align="left" class="search-bg"><img src="Theme/images/sg-meifa_17.gif" width="26" height="23" /></td>
-                  <td width="21%" align="center" class="search-bg"><span class="search"><asp:LinkButton ID="btnKeySearch" runat="server" OnClick="btnKeySearch_Click" Text="ËÑ&nbsp;Ë÷"></asp:LinkButton></span></td>
+                  <td width="21%" align="center" class="search-bg"><span class="search"><asp:LinkButton ID="btnKeySearch" runat="server" OnClick="btnKeySearch_Click" Text="ËÑ  Ë÷"></asp:LinkButton></span></td>
                   <td width="2%" align="right" class="search-bg"><img src="Theme/images/sg-meifa_14.gif" width="4" height="25" /></td>
                 </tr>
             </table></td>
           </tr>
         </table>
-		<table width="100%" border="0" align="center" cellpadding="0" cellspacing="0">
-		        <tr>
-                  <td height="35" align="left" class="red14b">&nbsp;&nbsp;¹Ø¼ü×Ö</td>
-                </tr>
-                <tr>
-                  <td height="10" align="center" valign="top"><img src="Theme/images/sg-meifa_46.gif" width="240" height="2" /></td>
-                </tr>
-          </table>
-		<!-- #include file="coupontags.htm" --> </td>
+</td>
       </tr>
       <tr>
         <td valign="top"><img src="Theme/images/fair-yhq-03.gif" /></td>

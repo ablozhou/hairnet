@@ -60,7 +60,7 @@ namespace Web.UserControls
 
                                 using (SqlConnection conn1 = new SqlConnection(ConfigurationManager.ConnectionStrings["MSSqlServer"].ConnectionString))
                                 {
-                                    string commString1 = "select top 1 * from shoppics where classid=2 and hairshopid=" + hairShop.HairShopID.ToString();
+                                    string commString1 = "select top 1 * from shoppics where classid=2 and hairshopid=" + hid.ToString();
                                     using (SqlCommand comm1 = new SqlCommand())
                                     {
                                         comm1.CommandText = commString1;

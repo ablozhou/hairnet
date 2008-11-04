@@ -29,6 +29,13 @@ else
     window.open(l,"优惠券打印");
 }
 }
+function copyToClipBoard(title,url){
+				var clipBoardContent="";//初始清空
+				clipBoardContent+=title;//写入Title
+				clipBoardContent+=url;//换行，写入URL
+				window.clipboardData.setData("Text",clipBoardContent);//写入ClipBoard
+				alert("成功复制标题及链接,现在可以粘贴给好朋友了!");//弹出提示，如不需要可删除或屏蔽此行
+			}
 </script>
 <div id="main-r">
    <table width="100%" height="34" border="0" cellpadding="0" cellspacing="0" background="Theme/images/fair-yhq-04.gif">

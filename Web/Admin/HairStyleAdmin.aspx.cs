@@ -24,9 +24,10 @@ namespace Web.Admin
         {
             if (!this.IsPostBack)
             {
-                this.databind();
+                
 
                 Session["query"] = null;
+                this.databind();
                 //this.txtQueryName.Visible = true;
                 
             }

@@ -51,7 +51,7 @@ namespace Web.Admin
             string id = this.Request.QueryString["id"].ToString();
             string pid = this.Request.QueryString["pid"].ToString();
 
-            PictureStoreGroup psg = new PictureStoreGroup();
+            PictureStoreGroup psg = ProviderFactory.GetPictureStoreDataProviderInstance().GetPictureStoreGroupByPictureStoreGroupID(int.Parse(pid));
             psg.Name = this.txtLittleGroupname.Text.Trim();
             psg.PictureStoreGroupParentID = int.Parse(id);
             psg.ID = int.Parse(pid);

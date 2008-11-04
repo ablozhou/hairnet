@@ -20,10 +20,31 @@ namespace Web
     {
 
         string HairShopID = "";
-        string UserID = "57907";
-        string UserName = "LHL";   
+
+
+        string UserID ="0";
+        string UserName = "";   
         protected void Page_Load(object sender, EventArgs e)
         {
+            if (Session["userid"] == null || Session["userid"].ToString() == string.Empty)
+            {
+                
+            }
+            else
+            {
+                UserID = Session["userid"].ToString();
+            }
+
+            if (Session["username"] == null || Session["userid"].ToString() == string.Empty)
+            {
+                //UserName = Session["username"].ToString();
+            }
+            else
+            {
+                UserName = Session["username"].ToString();
+            }
+            
+            
             StringHelper.AddStyleSheet(this.Page, "Theme/Style/meifating.css");
             HairShopID = Request.QueryString["id"];
             if (HairShopID == string.Empty)
@@ -43,6 +64,7 @@ namespace Web
             this.hairShopWorkList.HairShopID = hairShopID;
             this.sameHairShopList.HairShopID = hairShopID;
             this.hairShopVoteControl.HairShopID = hairShopID;
+            this.hairShopMapInfo.HairShopID = hairShopID;
             try
             {
                 WriteHistoy(0);
@@ -81,7 +103,7 @@ namespace Web
             Txt.Append("");
             DataSet ds = new DataSet();
             DataHelper _DataHelper = new DataHelper();
-            if (_DataHelper.ReadBssComment(BBSID, "3", out ds))
+            if (_DataHelper.ReadBssComment(BBSID, "10", out ds))
             {
                 if (ds.Tables[0].Rows.Count > 0)
                 {
@@ -91,16 +113,25 @@ namespace Web
                     foreach (DataRow thisRow in ds.Tables[0].Rows)
                     {
                         i++;
+                        string author = "";
+                        if (thisRow["author"].ToString() != string.Empty)
+                        {
+                            author = "<a href='http://u.sg.com.cn/space-" + thisRow["authorid"].ToString() + ".html' target='_blank'>" + thisRow["author"].ToString() + "</a>";
+                        }
+                        else
+                        {
+                            author ="精品发丝";
+                        }
 
                         Txt.AppendFormat("                            <div class=\"message-{0}\">", i % 2 == 1 ? 2 : 1);
                         Txt.AppendFormat("		");
-                        Txt.AppendFormat("		  <div class=\"touxiang\"><div class=\"touxiang-2\"><img src=\"http://bbs.sg.com.cn/ucenter/avatar.php?uid={0}&size=small\" /></div></div>", thisRow["authorid"].ToString());
+                        Txt.AppendFormat("		  <div class=\"touxiang\"><div class=\"touxiang-2\"><a href='http://u.sg.com.cn/space-" + thisRow["authorid"].ToString() + ".html' target='_blank'><img src=\"http://bbs.sg.com.cn/ucenter/avatar.php?uid={0}&size=small\" /></a></div></div>", thisRow["authorid"].ToString());
                         Txt.AppendFormat("		  <div class=\"mes-content\"><table width=\"100%\" border=\"0\" cellspacing=\"0\" cellpadding=\"0\">");
                         Txt.AppendFormat("  <tr>");
-                        Txt.AppendFormat("    <td width=\"9%\" align=\"left\" valign=\"top\" class=\"red12b\">{0}：</td>", thisRow["author"].ToString());
-                        Txt.AppendFormat("<td width=\"69%\" align=\"left\" class=\"black12\">{0}</td>", thisRow["message"].ToString());
+                        Txt.AppendFormat("    <td width=\"18%\" align=\"left\" valign=\"top\" class=\"black12\">{0}：</td>", author);
+                        Txt.AppendFormat("<td width=\"60%\" align=\"left\" class=\"black12\">{0}</td>", thisRow["message"].ToString());
                         Txt.AppendFormat("<td width=\"22%\" align=\"right\" valign=\"top\" class=\"gray12\">{0}<br /></td>", HWCommon.Util.BBsDate(int.Parse(thisRow["lastpost"].ToString())));
-                        Txt.AppendFormat("      <a href=\"#\" target=\"_blank\"><img src=\"Theme/images/fair-mft14.gif\" width=\"59\" height=\"19\" border=\"0\" /></a></td>");
+                        Txt.AppendFormat("      </td>");
                         Txt.AppendFormat("  </tr>");
                         Txt.AppendFormat("</table>");
                         Txt.AppendFormat("<div class=\"point\"></div>");
@@ -115,41 +146,7 @@ namespace Web
             }
             return Txt;
         }
-        private void WriteHistoy(int type)
-        {
-            //记录历史
-            if (UserID != "")
-            {
-                //已经登陆才记录
-                DataHelper _DataHelper = new DataHelper();
-                DataSet ds = _DataHelper.ReadDb(string.Format("select * from History where UserID={0} and ProductID={1} and type={2}", UserID, HairShopID, type));
-                if (ds.Tables[0].Rows.Count == 0)
-                {
-                    using (SqlConnection conn = DataHelper.ConnString())
-                    {
-                        try
-                        {
-                            string Sql = string.Format("insert dbo.History (UserID,HistoryUrl,Title,ProductID,UserName,type) values('{0}','{1}','','{2}','{3}',{4})", UserID, Request.Url.AbsoluteUri.ToString(), HairShopID, UserName, type);
-                            SqlHelper.ExecuteNonQuery(conn, CommandType.Text, Sql);
-                        }
-                        catch
-                        {
-
-                        }
-                        finally
-                        {
-                            if (conn.State != System.Data.ConnectionState.Closed)
-                            {
-                                conn.Close();
-                                conn.Dispose();
-                            }
-                        }
-                    }
-                }
-
-            }
-            ShowInThisPage(type);
-        }
+      
         private void ShowInThisPage(int type)
         {
             System.Text.StringBuilder txt = new System.Text.StringBuilder();
@@ -185,7 +182,7 @@ namespace Web
             {
                 foreach (DataRow thisPicRow in dsTop.Tables[0].Rows)
                 {
-                    txt.AppendFormat("<td width=\"50%\" align=\"center\" valign=\"top\"><div class=\"pic-5\"><a href=\"http://u.sg.com.cn/space-{0}.html\"  target=\"_blank\"><img src=\"http://bbs.sg.com.cn/ucenter/avatar.php?uid={0}&size=small\" /></a></div><div class=\"pic-5-title\"><a href=\"#\" target=\"_blank\"><span class=\"gray\">{1}</span></a></div>", thisPicRow["UserID"].ToString(), thisPicRow["UserName"].ToString());
+                    txt.AppendFormat("<td width=\"50%\" align=\"center\" valign=\"top\"><div class=\"pic-5\"><a href=\"http://u.sg.com.cn/space-{0}.html\"  target=\"_blank\"><img src=\"http://bbs.sg.com.cn/ucenter/avatar.php?uid={0}&size=small\" /></a></div><div class=\"pic-5-title\"><a href=\"http://u.sg.com.cn/space-{0}.html\" target=\"_blank\"><span class=\"gray\">{1}</span></a></div>", thisPicRow["UserID"].ToString(), thisPicRow["UserName"].ToString());
                     txt.AppendFormat("</td>");
                     //txt.AppendFormat("<span class=\"gray12-c\"><a href=\"http://u.sg.com.cn/space-{0}.html\" target=\"_blank\">{1}</a></span></td>", thisPicRow["UserID"].ToString(), thisPicRow["UserName"].ToString());
                 }
@@ -230,7 +227,7 @@ namespace Web
                     
                     this.UserComment.Text = ReadComment(bbsid.ToString()).ToString();
                 }
-
+            this.lblMoreComment.Text = "<a href=\"http://bbs.sg.com.cn/thread-"+bbsid.ToString()+"-1-1.html\" target=\"_blank\">更多评论&gt;&gt;</a>";
             
         }
 
@@ -259,6 +256,7 @@ namespace Web
                 }
 
             }
+            this.Response.Redirect(this.Request.Url.ToString());
            
         }
 
@@ -266,7 +264,41 @@ namespace Web
         {
             WriteHistoy(0);
         }
+        private void WriteHistoy(int type)
+        {
+            //记录历史
+            if (UserID != "")
+            {
+                //已经登陆才记录
+                DataHelper _DataHelper = new DataHelper();
+                DataSet ds = _DataHelper.ReadDb(string.Format("select * from History where UserID={0} and ProductID={1} and type={2}", UserID, HairShopID, type));
+                if (ds.Tables[0].Rows.Count == 0)
+                {
+                    using (SqlConnection conn = DataHelper.ConnString())
+                    {
+                        try
+                        {
+                            string Sql = string.Format("insert dbo.History (UserID,HistoryUrl,ProductID,UserName,type) values({0},'{1}',{2},'{3}',{4})", int.Parse(UserID), Request.Url.AbsoluteUri.ToString(), int.Parse(HairShopID), UserName, type);
+                            SqlHelper.ExecuteNonQuery(conn, CommandType.Text, Sql);
+                        }
+                        catch
+                        {
 
+                        }
+                        finally
+                        {
+                            if (conn.State != System.Data.ConnectionState.Closed)
+                            {
+                                conn.Close();
+                                conn.Dispose();
+                            }
+                        }
+                    }
+                }
+
+            }
+            ShowInThisPage(type);
+        }
         private void ShowBrowserHistory()
         {
             DataHelper _DataHelper = new DataHelper();
@@ -274,8 +306,8 @@ namespace Web
             DataSet ds_Temp = new DataSet();
             StringBuilder Txt = new StringBuilder();
             if (UserID != "")
-            {          
-                ds_Temp = _DataHelper.ReadDb(string.Format("select top 6 HairShopID,HairShopName,HairShopDiscount from HairShop where HairShopID in (select ProductID from History where UserID in (select UserID from History where UserID<>{0} and ProductID={1} ))", UserID, HairShopID));
+            {
+                ds_Temp = _DataHelper.ReadDb(string.Format("select top 6 HairShopID,HairShopName,HairShopDiscount from HairShop where HairShopID in (select ProductID from History where UserID in (select UserID from History where UserID<>{0} and ProductID={1} ) and ProductID <> {1}) ", UserID, HairShopID));
 
             }
             else
@@ -284,18 +316,20 @@ namespace Web
             }
             Txt = new System.Text.StringBuilder();
             Txt.AppendFormat("<table width=\"92%\" border=\"0\" align=\"center\" cellpadding=\"0\" cellspacing=\"0\" style=\"margin-top:5px\">");
-            
-           
+
+
             foreach (DataRow thisPicRow in ds_Temp.Tables[0].Rows)
             {
                 Txt.AppendFormat("<tr>");
-                Txt.AppendFormat("  <td width=\"83%\" align=\"left\" class=\"gray14-e\">·&nbsp;<a href=\"#\" target=\"_blank\">{0}</a></td>", thisPicRow["HairShopName"].ToString());
-                Txt.AppendFormat(" <td width=\"17%\" align=\"center\" class=\"red14\">{0}折</td>",thisPicRow["Discount"].ToString());
-       
+                Txt.AppendFormat("  <td width=\"83%\" align=\"left\" class=\"gray14-e\">·&nbsp;<a href=\"HairShopContent.aspx?id={0}\" target=\"_blank\">{1}</a></td>", thisPicRow["HairShopID"].ToString(), StringHelper.GetDescription(thisPicRow["HairShopName"].ToString(), 12));
+                Txt.AppendFormat(" <td width=\"17%\" align=\"center\" class=\"red14\">{0}折</td>", thisPicRow["HairShopDiscount"].ToString());
+
                 Txt.AppendFormat("</tr>");
             }
             Txt.AppendFormat("</table>");
             this.HisBrow.Text = Txt.ToString();
         }
+
+
     }
 }

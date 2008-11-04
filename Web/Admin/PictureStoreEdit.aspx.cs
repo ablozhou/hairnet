@@ -375,7 +375,9 @@ namespace Web.Admin
                             comm.CommandText = commString;
                             conn.Open();
 
-                            ids = comm.ExecuteScalar().ToString();
+                            object obj= comm.ExecuteScalar();
+                            if(obj != null)
+                            ids = obj.ToString();
                         }
                     }
                     string[] iids = ids.Split(",".ToCharArray());

@@ -24,8 +24,6 @@ namespace Web.Admin
         {   
             if (!this.IsPostBack)
             {
-                this.databind();
-
                 Session["query"] = null;
                 this.txtQueryName.Visible = true;
                 this.txtStartTime.Visible = false;
@@ -34,6 +32,8 @@ namespace Web.Admin
                 this.lblStartTime.Visible = false;
                 this.lblTimeSpace.Visible = false;
                 this.lblQueryNameSpace.Visible = true;
+
+                this.databind();
             }
         }
         public void ddlQuery_OnSelectedIndexChanged(object sender, EventArgs e)
@@ -182,7 +182,7 @@ namespace Web.Admin
                         {
                             case "1":
                                 //发布时间，即ID
-                                table = InfoAdmin.GetHairShopList(0, OrderKey.ID, Session["query"].ToString());
+                                table = InfoAdmin.GetHairShopList(0, OrderKey.ID,  Session["query"].ToString());
                                 break;
                             case "2":
                                 //点击数
@@ -213,14 +213,14 @@ namespace Web.Admin
             }
 
             this.dg.DataKeyField = "HairShopID";
-            dg.DataSource = table;
+            dg.DataSource = table.DefaultView;
             //this.dg.DataSource = list;
             this.dg.DataBind();
             //绑定页码
             SetupPage();
             this.Page_nPage.Text = Convert.ToString(this.dg.CurrentPageIndex + 1);
             this.Page_nRecCount.Text = this.dg.PageCount.ToString();
-            this.Page_nRecCount_1.Text = list.Count.ToString();
+            this.Page_nRecCount_1.Text = table.Rows.Count.ToString();
             ispages.Text = this.Page_nPage.Text;
             IsFirstLastPage(this.dg.PageCount, this.dg.CurrentPageIndex);
             if (this.dg.PageCount == 1)
@@ -340,6 +340,26 @@ namespace Web.Admin
                                 }
                             }
                         }
+                        using (SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["MSSqlServer"].ConnectionString))
+                        {
+                            string commString = "delete from Coupon where hairshopid=" + hairShopID.ToString();
+                            using (SqlCommand comm = new SqlCommand())
+                            {
+                                comm.CommandText = commString;
+                                comm.Connection = conn;
+                                conn.Open();
+
+                                try
+                                {
+                                    comm.ExecuteNonQuery();
+                                }
+                                catch
+                                {
+
+                                }
+                            }
+                        }
+
                         StringHelper.AlertInfo("删除成功", this.Page);
                         this.Response.Redirect("HairShopAdmin.aspx");
                     }

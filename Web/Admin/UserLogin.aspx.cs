@@ -26,7 +26,7 @@ namespace Web.Admin
         protected void Login1_Authenticate(object sender, AuthenticateEventArgs e)
         {
             TextBox GetCode = Login1.FindControl("GetCode") as TextBox;//获取登陆控件中验证码文本框值
-            if (Request.Cookies["CheckCode"].Value == null)
+            if (Request.Cookies["CheckCode"] == null)
             {
                 Response.Write(@"<script language=JavaScript>{window.alert('您的浏览器设置已被禁用 Cookies，您必须设置浏览器允许使用 Cookies 选项后才能使用本系统！');}</script>");
                 return;
@@ -67,7 +67,9 @@ namespace Web.Admin
                                     Session["UserLoginID"] = UserLoginID;
                                     Session["UserLoginPwd"] = UserLoginPwd;
                                     e.Authenticated = true;//登录通过
-                                    Response.Redirect("./index.aspx");
+                                    System.Web.Security.FormsAuthentication.SetAuthCookie(UserLoginID, false);
+
+                                    //Response.Redirect("~/admin/index.aspx");
                                 }
                             }
                         }

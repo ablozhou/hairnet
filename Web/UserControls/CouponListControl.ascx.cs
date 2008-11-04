@@ -10,6 +10,7 @@ using System.Web.UI.WebControls.WebParts;
 using System.Web.UI.HtmlControls;
 using System.Data.SqlClient;
 using System.Text;
+using HairNet.Utilities;
 
 namespace Web.UserControls
 {
@@ -59,7 +60,7 @@ namespace Web.UserControls
                                 num++;
 
                                 sb.Append("<tr>");
-                                sb.Append("<td width=\"83%\" align=\"left\" class=\"gray14-line\">·&nbsp;<a href=\"PrintCoupon.aspx?id="+couponID+"\" target=\"_blank\">"+couponName+"</a></td>");
+                                sb.Append("<td width=\"83%\" align=\"left\" class=\"gray14-line\">·&nbsp;<a href=\"PrintCoupon.aspx?id="+couponID+"\" target=\"_blank\">"+StringHelper.GetDescription2(couponName,12)+"</a></td>");
                                 sb.Append("<td width=\"17%\" align=\"left\" class=\"gray14-line\"><span class=\"red14\">"+discount+"折</span></td>");
                                 sb.Append("</tr>");
                             }

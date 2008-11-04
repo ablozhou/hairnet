@@ -74,6 +74,7 @@ namespace Web.Admin
             hs.HairShopWebSite = txtHairShopWebSite.Text.Trim();
             hs.HairShopEmail = txtHairShopEmail.Text.Trim();
             hs.HairShopDiscount = txtHairShopDiscount.Text.Trim();
+            hs.TravelInfo = txtTravelInfo.Text.Trim();
 
             if (fileLogo.Value != string.Empty)
             {

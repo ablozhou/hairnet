@@ -85,7 +85,7 @@ namespace Web.UserControls
                                     case 1:
                                         sb.Append("<tr>");
                                         sb.Append("<td width=\"15%\" height=\"80\" align=\"center\"><img src=\"Theme/images/sg-08bbs_1.gif\" /></td>");
-                                        sb.Append("<td width=\"85%\" align=\"left\"><table width=\"100%\" border=\"0\" align=\"center\" cellpadding=\"0\" cellspacing=\"0\">");
+                                        sb.Append("<td colspan=\"2\" align=\"left\"><table width=\"100%\" border=\"0\" align=\"center\" cellpadding=\"0\" cellspacing=\"0\">");
                                         sb.Append("<tr>");
                                         sb.Append("<td width=\"29%\"><div class=\"pic-5\"><a href=\"HairdresserLastPage.aspx?ID=" + hairEngineerID + "\" target=\"_blank\"><img src=\"" + picSmallUrl + "\" alt=\"" + description + "\" /></a></div></td>");
                                         sb.Append("<td width=\"6%\" align=\"left\"><span class=\"gray12-b\"><a href=\"#\" target=\"_blank\"></a></span><br />");
@@ -99,19 +99,22 @@ namespace Web.UserControls
                                     case 2:
                                         sb.Append("<tr>");
                                         sb.Append("<td align=\"center\"><img src=\"Theme/images/sg-08bbs_2.gif\" /></td>");
-                                        sb.Append("<td align=\"left\" class=\"gray14-e\"><a href=\"HairdresserLastPage.aspx?ID=" + hairEngineerID + "\" target=\"_blank\">" + StringHelper.GetDescription(hairEngineerName,10) + "</a>&nbsp;&nbsp;推荐指数:" + hitNum + "</td>");
+                                        sb.Append("<td align=\"left\" class=\"gray14-e\" width=\"35%\"><a href=\"HairdresserLastPage.aspx?ID=" + hairEngineerID + "\" target=\"_blank\">" + StringHelper.GetDescription(hairEngineerName,10) + "</a></td>");
+                                        sb.Append("<td align=\"left\" class=\"gray12-c\" width=\"50%\">推荐指数:" + hitNum + "</td>");
                                         sb.Append("</tr>");
                                         break;
                                     case 3:
                                         sb.Append("<tr>");
                                         sb.Append("<td align=\"center\"><img src=\"Theme/images/sg-08bbs_3.gif\" /></td>");
-                                        sb.Append("<td align=\"left\" class=\"gray14-e\"><a href=\"HairdresserLastPage.aspx?ID=" + hairEngineerID + "\" target=\"_blank\">" + StringHelper.GetDescription(hairEngineerName,10) + "</a>&nbsp;&nbsp;推荐指数:" + hitNum + "</td>");
+                                        sb.Append("<td align=\"left\" class=\"gray14-e\" width=\"35%\"><a href=\"HairdresserLastPage.aspx?ID=" + hairEngineerID + "\" target=\"_blank\">" + StringHelper.GetDescription(hairEngineerName,10) + "</a></td>");
+                                        sb.Append("<td align=\"left\" class=\"gray12-c\" width=\"50%\">推荐指数:" + hitNum + "</td>");
                                         sb.Append("</tr>");
                                         break;
                                     default:
                                         sb.Append("<tr>");
                                         sb.Append("<td align=\"center\"><img src=\"Theme/images/sg-08bbs_"+num.ToString()+".gif\" /></td>");
-                                        sb.Append("<td align=\"left\" class=\"gray14-e\"><a href=\"HairdresserLastPage.aspx?ID=" + hairEngineerID + "\" target=\"_blank\">" + StringHelper.GetDescription(hairEngineerName,10) + "</a>&nbsp;&nbsp;推荐指数:" + hitNum + "</td>");
+                                        sb.Append("<td align=\"left\" class=\"gray14-e\" width=\"35%\"><a href=\"HairdresserLastPage.aspx?ID=" + hairEngineerID + "\" target=\"_blank\">" + StringHelper.GetDescription(hairEngineerName,10) + "</a></td>");
+                                        sb.Append("<td align=\"left\" class=\"gray12-c\" width=\"50%\">推荐指数:" + hitNum + "</td>");
                                         sb.Append("</tr>");
                                         break;
                                 }

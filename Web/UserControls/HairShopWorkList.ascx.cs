@@ -22,6 +22,7 @@ namespace Web.UserControls
                 StringBuilder sb = new StringBuilder();
 
                 int num = 0;
+                int jinum = 0;
                 using (SqlConnection conn1 = new SqlConnection(ConfigurationManager.ConnectionStrings["MSSqlServer"].ConnectionString))
                 {
                     string commString1 = "select hst.descr,hst.hairname,hs.HairShopName,hst.id from HairStyle hst inner join HairShop hs on hst.hairshopid = hs.HairShopID where hst.hairshopid=" + this.HairShopID.ToString();
@@ -71,22 +72,38 @@ namespace Web.UserControls
                                     smallPicUrl = "Theme/Images/sg-meifa_ls01.gif";
                                 }
 
-                                num++;
-                                if (num % 6 == 0)
+                                if (num % 5 == 0 && num > 1)
+                                {
+                                    sb.Append("</tr>");
+                                }
+
+                                if (num % 5 == 0)
                                 {
                                     sb.Append("<tr>");
                                 }
 
                                 sb.Append("<td width=\"20%\" align=\"center\"><div class=\"pic-1\"><a href=\"HairLastPage.aspx?id=" + hairStyleID.ToString() + "\" target=\"_blank\"><img src=\"" + smallPicUrl + "\" alt=\"" + hairStyleDescription + "\" /></a><br /><a href=\"HairLastPage.aspx?id=" + hairStyleID.ToString() + "\" target=\"_blank\">" + hairStyleName + "</a></div></td>");
+
+
                                 
-                                if (num % 6 == 0)
-                                {
-                                    sb.Append("</tr>");
-                                }
+                                jinum++; 
+                                num++;
                             }
                         }
                     }
                 }
+                if (jinum < 5)
+                {
+                    for (int i = jinum; i < 5; i++)
+                    {
+                        sb.Append("<td width=\"20%\" align=\"center\"></td>");
+                    }
+                }
+                if (num % 5 != 0 && num > 0)
+                {
+                    sb.Append("</tr>");
+                }
+
                 if (num == 0)
                 {
                     this.lblWorkList.Text = "当前美发厅没有作品";

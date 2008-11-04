@@ -109,7 +109,7 @@ namespace Web.Admin
                     }
                 }
             }
-
+            txtTravelInfo.Text = hs.TravelInfo;
             txtDescription.Text = hs.HairShopDescription;
             txtHairShopAddress.Text = hs.HairShopAddress;
             txtHairShopCreateTime.Text = hs.HairShopCreateTime.ToString();
@@ -244,6 +244,13 @@ namespace Web.Admin
 
         protected void btnSubmit_OnClick(object sender, EventArgs e)
         {
+            if (ddlHotZone.SelectedItem.Value == "28")
+            {
+                this.lblInfo.Visible = true;
+                this.lblInfo.Text = "美发商圈未指定！";
+                return;
+            }
+
             HairShop hs = (HairShop)ViewState["HairShop"];
             //先处理TAG逻辑，先删除HS所对应的所有TAG
             if (hs.HairShopTagIDs != string.Empty)
@@ -385,7 +392,7 @@ namespace Web.Admin
             hs.HairShopAddress = txtHairShopAddress.Text.Trim();
             hs.HairShopPhoneNum = txtHairShopPhoneNum.Text.Trim();
             hs.HairShopOpenTime = txtHairShopOpenTime.Text.Trim();
-
+            hs.TravelInfo = txtTravelInfo.Text.Trim();
 
             hs.HairShopTagIDs = "";
 

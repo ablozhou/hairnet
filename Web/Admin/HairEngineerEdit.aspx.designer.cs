@@ -11,6 +11,12 @@
 namespace Web.Admin {
     
     
+    /// <summary>
+    /// HairEngineerEdit 类。
+    /// </summary>
+    /// <remarks>
+    /// 自动生成的类。
+    /// </remarks>
     public partial class HairEngineerEdit {
         
         /// <summary>
@@ -18,7 +24,7 @@ namespace Web.Admin {
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
-        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// 要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlHead Head1;
         
@@ -27,7 +33,7 @@ namespace Web.Admin {
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
-        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// 要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlForm form1;
         
@@ -36,7 +42,7 @@ namespace Web.Admin {
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
-        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// 要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtHairEngineerName;
         
@@ -45,7 +51,7 @@ namespace Web.Admin {
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
-        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// 要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
         protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidator1;
         
@@ -54,7 +60,7 @@ namespace Web.Admin {
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
-        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// 要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList ddlHairShop;
         
@@ -63,7 +69,7 @@ namespace Web.Admin {
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
-        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// 要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
         protected global::System.Web.UI.WebControls.CheckBox chkIsImportant;
         
@@ -72,7 +78,7 @@ namespace Web.Admin {
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
-        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// 要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
         protected global::System.Web.UI.WebControls.RadioButtonList rBtnListHairEngineerSex;
         
@@ -81,7 +87,7 @@ namespace Web.Admin {
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
-        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// 要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtHairEngineerRawPrice;
         
@@ -90,7 +96,7 @@ namespace Web.Admin {
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
-        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// 要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
         protected global::System.Web.UI.WebControls.RegularExpressionValidator RegularExpressionValidator1;
         
@@ -99,25 +105,16 @@ namespace Web.Admin {
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
-        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// 要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtHairEngineerTel;
-        
-        /// <summary>
-        /// RegularExpressionValidator2 控件。
-        /// </summary>
-        /// <remarks>
-        /// 自动生成的字段。
-        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.RegularExpressionValidator RegularExpressionValidator2;
         
         /// <summary>
         /// ddlConstellation 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
-        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// 要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList ddlConstellation;
         
@@ -126,7 +123,7 @@ namespace Web.Admin {
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
-        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// 要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtHairEngineerClass;
         
@@ -135,7 +132,7 @@ namespace Web.Admin {
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
-        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// 要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlInputFile smallLogo;
         
@@ -144,7 +141,7 @@ namespace Web.Admin {
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
-        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// 要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlInputFile fileLogo;
         
@@ -153,7 +150,7 @@ namespace Web.Admin {
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
-        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// 要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnPicSubmit;
         
@@ -162,7 +159,7 @@ namespace Web.Admin {
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
-        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// 要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lblpicSring;
         
@@ -171,7 +168,7 @@ namespace Web.Admin {
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
-        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// 要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lblpicsmallString;
         
@@ -180,7 +177,7 @@ namespace Web.Admin {
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
-        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// 要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lblPic;
         
@@ -189,7 +186,7 @@ namespace Web.Admin {
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
-        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// 要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtHairEngineerYear;
         
@@ -198,7 +195,7 @@ namespace Web.Admin {
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
-        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// 要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
         protected global::System.Web.UI.WebControls.RegularExpressionValidator RegularExpressionValidator3;
         
@@ -207,7 +204,7 @@ namespace Web.Admin {
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
-        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// 要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtHairEngineerSkill;
         
@@ -216,7 +213,7 @@ namespace Web.Admin {
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
-        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// 要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtHairEngineerTag;
         
@@ -225,7 +222,7 @@ namespace Web.Admin {
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
-        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// 要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtHairEngineerDescription;
         
@@ -234,7 +231,7 @@ namespace Web.Admin {
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
-        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// 要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnSubmit;
     }
