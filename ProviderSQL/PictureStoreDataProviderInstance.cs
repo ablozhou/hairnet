@@ -322,7 +322,7 @@ namespace HairNet.Provider
 
             using (SqlConnection conn = new SqlConnection(DataHelper2.SqlConnectionString))
             {
-                string commText = "select * from PictureStoreRecommand psr inner join PictureStore ps on psr.PictureStoreRawID=ps.PictureStoreID where psr.PictureStoreRecommandID=" + pictureStoreRecommandID.ToString() + " order by psr.PictureStoreRecommandID desc";
+                string commText = "select * from PictureStoreRecommand psr left join PictureStore ps on psr.PictureStoreRawID=ps.PictureStoreID where psr.PictureStoreRecommandID=" + pictureStoreRecommandID.ToString() + " order by psr.PictureStoreRecommandID desc";
 
                 using (SqlCommand comm = new SqlCommand())
                 {
@@ -340,7 +340,7 @@ namespace HairNet.Provider
                             pictureStoreRecommand.PictureStoreRawUrl = sdr["PictureStoreRawUrl"].ToString();
                             pictureStoreRecommand.PictureStoreLittleUrl = sdr["PictureStoreLittleUrl"].ToString();
                             pictureStoreRecommand.PictureStoreTagIDs = sdr["PictureStoreTagIDs"].ToString();
-                            pictureStoreRecommand.PictureStoreHits = int.Parse(sdr["PictureStoreHits"].ToString());
+                            pictureStoreRecommand.PictureStoreHits = 0;
                             pictureStoreRecommand.PictureStoreDescription = sdr["PictureStoreDescription"].ToString();
                             pictureStoreRecommand.PictureStoreHairEngineerIDs = sdr["HairEngineerIDs"].ToString();
                             pictureStoreRecommand.PictureStoreHairShopIDs = sdr["HairShopIDs"].ToString();
@@ -364,10 +364,10 @@ namespace HairNet.Provider
             switch (count)
             {
                 case 0:
-                    commText = "select * from PictureStoreRecommand psr inner join PictureStore ps on psr.PictureStoreRawID=ps.PictureStoreID order by psr.PictureStoreRecommandID desc";
+                    commText = "select * from PictureStoreRecommand psr left join PictureStore ps on psr.PictureStoreRawID=ps.PictureStoreID order by psr.PictureStoreRecommandID desc";
                     break;
                 default:
-                    commText = "select top " + count.ToString() + " * from PictureStoreRecommand psr inner join PictureStore ps on psr.PictureStoreRawID=ps.PictureStoreID order by psr.PictureStoreRecommandID desc";
+                    commText = "select top " + count.ToString() + " * from PictureStoreRecommand psr left join PictureStore ps on psr.PictureStoreRawID=ps.PictureStoreID order by psr.PictureStoreRecommandID desc";
                     break;
             }
 
@@ -392,7 +392,8 @@ namespace HairNet.Provider
                                 pictureStoreRecommand.PictureStoreRawUrl = sdr["PictureStoreRawUrl"].ToString();
                                 pictureStoreRecommand.PictureStoreLittleUrl = sdr["PictureStoreLittleUrl"].ToString();
                                 pictureStoreRecommand.PictureStoreTagIDs = sdr["PictureStoreTagIDs"].ToString();
-                                pictureStoreRecommand.PictureStoreHits = int.Parse(sdr["PictureStoreHits"].ToString());
+                                
+                                pictureStoreRecommand.PictureStoreHits = 0;
                                 pictureStoreRecommand.PictureStoreDescription = sdr["PictureStoreDescription"].ToString();
                                 pictureStoreRecommand.PictureStoreHairEngineerIDs = sdr["HairEngineerIDs"].ToString();
                                 pictureStoreRecommand.PictureStoreHairShopIDs = sdr["HairShopIDs"].ToString();

@@ -327,7 +327,7 @@ namespace HairNet.Provider
 
             using (SqlConnection conn = new SqlConnection(DataHelper2.SqlConnectionString))
             {
-                string commText = "select * from ProductRecommand pr inner join Product p on pr.ProductRawID = p.ProductID where pr.ProductRecommandID=" + productRecommandID.ToString();
+                string commText = "select * from ProductRecommand pr left join Product p on pr.ProductRawID = p.ProductID where pr.ProductRecommandID=" + productRecommandID.ToString();
 
                 using (SqlCommand comm = new SqlCommand())
                 {
@@ -375,10 +375,10 @@ namespace HairNet.Provider
             switch (count)
             {
                 case 0:
-                    commText = "select * from ProductRecommand pr inner join Product p on pr.ProductRawID = p.ProductID order by pr.ProductRecommandID desc";
+                    commText = "select * from ProductRecommand pr left join Product p on pr.ProductRawID = p.ProductID order by pr.ProductRecommandID desc";
                     break;
                 default:
-                    commText = "select top "+count.ToString()+" * from ProductRecommand pr inner join Product p on pr.ProductRawID = p.ProductID order by pr.ProductRecommandID desc";
+                    commText = "select top "+count.ToString()+" * from ProductRecommand pr left join Product p on pr.ProductRawID = p.ProductID order by pr.ProductRecommandID desc";
                     break;
             }
 
