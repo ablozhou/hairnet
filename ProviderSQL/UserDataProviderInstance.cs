@@ -42,7 +42,7 @@ namespace HairNet.Provider
 
                 }
             }
-
+            /*
             commandText = "SELECT UserID FROM UserBasicInfo WHERE UserName = '" + user.UserName + "'";
             using (SqlConnection conn = new SqlConnection(DataHelper2.SqlConnectionString))
             {
@@ -136,6 +136,7 @@ namespace HairNet.Provider
 
                 }
             }
+             */
             return result;
         }
 
@@ -170,6 +171,8 @@ namespace HairNet.Provider
 
                 }
             }
+
+            /*
             commandText = "delete from UserBusinessInfo where UserID=" + userID.ToString();
 
             using (SqlConnection conn = new SqlConnection(DataHelper2.SqlConnectionString))
@@ -232,7 +235,7 @@ namespace HairNet.Provider
                     }
                 }
             }
-
+            */
             return result;
         }
 
@@ -246,8 +249,7 @@ namespace HairNet.Provider
         {
             bool result = false;
             //string commandText = "UPDATE UserBasicInfo SET UserID = " + user.UserID + ", UserName = '" + user.UserName + "', Password = '" + user.Password + "', FindPassQus = '" + user.FindPassQus + "', FindPassAsw = '" + user.FindPassAsw + "', ActivatedIDS = '" + user.ActivatedIDS + "', Email = '" + user.Email + "', Integral = " + user.Integral + ", UserRoleID = " + user.UserRoleID +
-            //    " FROM UserBasicInfo INNER JOIN  UserBusinessInfo ON UserBasicInfo.UserID = UserBusinessInfo.UserID INNER JOIN UserContactInfo ON UserBasicInfo.UserID = UserContactInfo.UserID INNER JOIN " +
-            //    "  UserPersonalInfo ON UserBasicInfo.UserID = UserPersonalInfo.UserID ";
+            //    " FROM UserBasicInfo ";
             //using (SqlConnection conn = new SqlConnection(DataHelper2.SqlConnectionString))
             //{
             //    using (SqlCommand comm = new SqlCommand())
@@ -280,7 +282,7 @@ namespace HairNet.Provider
         {
             UserEntry ue = new UserEntry();
 
-            string commandText = "SELECT * FROM UserBasicInfo left join UserRole ur on UserBasicInfo.UserRoleID = ur.UserRoleID left JOIN UserBusinessInfo ON UserBasicInfo.UserID = UserBusinessInfo.UserID left JOIN UserContactInfo ON UserBasicInfo.UserID = UserContactInfo.UserID left JOIN UserPersonalInfo ON UserBasicInfo.UserID = UserPersonalInfo.UserID WHERE (UserBusinessInfo.UserID = " + userID + " )";
+            string commandText = "SELECT * FROM UserBasicInfo left join UserRole ur on UserBasicInfo.UserRoleID = ur.UserRoleID where UserID= "+userID;/*left JOIN UserBusinessInfo ON UserBasicInfo.UserID = UserBusinessInfo.UserID left JOIN UserContactInfo ON UserBasicInfo.UserID = UserContactInfo.UserID left JOIN UserPersonalInfo ON UserBasicInfo.UserID = UserPersonalInfo.UserID WHERE (UserBusinessInfo.UserID = " + userID + " )";*/
             using (SqlConnection conn = new SqlConnection(DataHelper2.SqlConnectionString))
             {
                 using (SqlCommand comm = new SqlCommand())
@@ -304,7 +306,7 @@ namespace HairNet.Provider
                             ue.UserRoleID = int.Parse(reader["UserRoleID"].ToString());
                             ue.UserRoleName = reader["UserRoleName"].ToString();
                             ue.IsActive = Convert.ToBoolean(reader["IsActive"].ToString());
-                            ue.Duty = reader["Duty"].ToString();
+                            /*ue.Duty = reader["Duty"].ToString();
                             ue.Company = reader["Company"].ToString();
                             ue.CompanyCountry = reader["CompanyCountry"].ToString();
                             ue.CompanyCity = reader["CompanyCity"].ToString();
@@ -337,7 +339,7 @@ namespace HairNet.Provider
                             ue.PostalCode = reader["PostalCode"].ToString();
                             ue.Vocational = reader["Vocational"].ToString();
                             ue.Location = reader["Location"].ToString();
-                            ue.Interest = reader["Interest"].ToString();
+                            ue.Interest = reader["Interest"].ToString();*/
                         }
                     }
                 }
@@ -357,7 +359,7 @@ namespace HairNet.Provider
             string commandText = "SELECT UserBasicInfo.UserName,UserBasicInfo.IsActive,ur.UserRoleName, UserBasicInfo.Password, UserBasicInfo.FindPassQus, " +
                   " UserBasicInfo.FindPassAsw, UserBasicInfo.ActivatedIDS, UserBasicInfo.Email, " +
                   " UserBasicInfo.Integral, UserBasicInfo.UserRoleID, " +
-                  " UserBusinessInfo.UserID AS Expr1, UserBusinessInfo.Duty, " +
+                 /* " UserBusinessInfo.UserID AS Expr1, UserBusinessInfo.Duty, " +
                   " UserBusinessInfo.Company, UserBusinessInfo.CompanyCountry, " +
                   " UserBusinessInfo.CompanyCity, UserBusinessInfo.OfficeCity, " +
                   " UserBusinessInfo.OfficeAddr, UserBusinessInfo.OfficeTel1, " +
@@ -376,8 +378,9 @@ namespace HairNet.Provider
             " FROM UserBasicInfo left join UserRole ur on UserBasicInfo.UserRoleID = ur.UserRoleID left JOIN " +
                   " UserBusinessInfo ON UserBasicInfo.UserID = UserBusinessInfo.UserID left JOIN " +
                  " UserContactInfo ON UserBasicInfo.UserID = UserContactInfo.UserID left JOIN " +
-                 " UserPersonalInfo ON UserBasicInfo.UserID = UserPersonalInfo.UserID " +
-            " WHERE (UserBasicInfo.UserName = '" + userName + "')";
+                 " UserPersonalInfo ON UserBasicInfo.UserID = UserPersonalInfo.UserID " +*/
+             " FROM UserBasicInfo left join UserRole ur on UserBasicInfo.UserRoleID = ur.UserRoleID "+
+                 " WHERE (UserBasicInfo.UserName = '" + userName + "')";
 
             using (SqlConnection conn = new SqlConnection(DataHelper2.SqlConnectionString))
             {
@@ -402,7 +405,7 @@ namespace HairNet.Provider
                             ue.UserRoleID = int.Parse(reader["UserRoleID"].ToString());
                             ue.UserRoleName = reader["UserRoleName"].ToString();
                             ue.IsActive = Convert.ToBoolean(reader["IsActive"].ToString());
-                            ue.Duty = reader["Duty"].ToString();
+                           /* ue.Duty = reader["Duty"].ToString();
                             ue.Company = reader["Company"].ToString();
                             ue.CompanyCountry = reader["CompanyCountry"].ToString();
                             ue.CompanyCity = reader["CompanyCity"].ToString();
@@ -436,6 +439,7 @@ namespace HairNet.Provider
                             ue.Vocational = reader["Vocational"].ToString();
                             ue.Location = reader["Location"].ToString();
                             ue.Interest = reader["Interest"].ToString();
+                            * */
                         }
                     }   
                 }
@@ -462,10 +466,11 @@ namespace HairNet.Provider
             }
 
             //降序
-            string commandText = "select " + obj + " FROM UserBasicInfo left join UserRole ur on UserBasicInfo.UserRoleID = ur.UserRoleID left JOIN " +
+            string commandText = "select " + obj + " FROM UserBasicInfo left join UserRole ur on UserBasicInfo.UserRoleID = ur.UserRoleID "+/*left JOIN " +
                 " UserBusinessInfo ON UserBasicInfo.UserID = UserBusinessInfo.UserID left JOIN " +
                 " UserContactInfo ON UserBasicInfo.UserID = UserContactInfo.UserID left JOIN " +
-                " UserPersonalInfo ON UserBasicInfo.UserID = UserPersonalInfo.UserID ORDER BY UserBasicInfo.UserID DESC";
+                " UserPersonalInfo ON UserBasicInfo.UserID = UserPersonalInfo.UserID */
+                "ORDER BY UserBasicInfo.UserID DESC";
                         using (SqlConnection conn = new SqlConnection(DataHelper2.SqlConnectionString))
             {
                 using (SqlCommand comm = new SqlCommand())
@@ -490,7 +495,7 @@ namespace HairNet.Provider
                             ue.UserRoleID = int.Parse(reader["UserRoleID"].ToString());
                             ue.UserRoleName = reader["UserRoleName"].ToString();
                             ue.IsActive = Convert.ToBoolean(reader["IsActive"].ToString());
-                            ue.Duty = reader["Duty"].ToString();
+                           /* ue.Duty = reader["Duty"].ToString();
                             ue.Company = reader["Company"].ToString();
                             ue.CompanyCountry = reader["CompanyCountry"].ToString();
                             ue.CompanyCity = reader["CompanyCity"].ToString();
@@ -524,7 +529,7 @@ namespace HairNet.Provider
                             ue.Vocational = reader["Vocational"].ToString();
                             ue.Location = reader["Location"].ToString();
                             ue.Interest = reader["Interest"].ToString();
-
+                            */
                             li.Add(ue);
                         }
                     }   
