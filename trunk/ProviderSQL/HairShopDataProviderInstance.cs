@@ -615,8 +615,16 @@ namespace HairNet.Provider
 
                     hairShop.Square = sdr["Square"].ToString();
                     hairShop.HairShopNormal = int.Parse(sdr["HairShopNormal"].ToString());
-                    hairShop.Postid = int.Parse(sdr["postid"].ToString());
 
+                    //zhh add check
+                    if (sdr["postid"] == null)
+                    {
+                        hairShop.Postid = 0;
+                    }
+                    else
+                    {
+                        hairShop.Postid = int.Parse(sdr["postid"].ToString());
+                    }
                     list.Add(hairShop);
                 }
             }
