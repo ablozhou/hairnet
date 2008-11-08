@@ -341,7 +341,7 @@ namespace Web.Admin
 
                                 using (SqlDataReader sdr = comm.ExecuteReader())
                                 {
-                                    if (sdr.Read())
+                                    while (sdr.Read())
                                     {
                                         string hid = sdr["ID"].ToString();
 
@@ -358,7 +358,7 @@ namespace Web.Admin
 
                                                 try
                                                 {
-                                                    comm.ExecuteNonQuery();
+                                                    comm2.ExecuteNonQuery();
                                                 }
                                                 catch
                                                 {
@@ -424,55 +424,79 @@ namespace Web.Admin
                     }
                 }
             }
+
+
             string[] ids = idsString.Split(",".ToCharArray());
 
-            for (int i = 0; i < ids.Length; i++)
+            if (ids[0] != string.Empty)
             {
-                string iids = "";
-                using (SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["MSSqlServer"].ConnectionString))
+                for (int i = 0; i < ids.Length; i++)
                 {
-                    string commString = "select * from picturestoregroup where picturestoregroupid=" + ids[i].ToString();
-                    using (SqlCommand comm = new SqlCommand())
+                    string iids = "";
+                    using (SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["MSSqlServer"].ConnectionString))
                     {
-                        comm.CommandText = commString;
-                        comm.Connection = conn;
-                        conn.Open();
-
-                        using (SqlDataReader sdr = comm.ExecuteReader())
+                        string commString = "select * from picturestoregroup where picturestoregroupid=" + ids[i].ToString();
+                        using (SqlCommand comm = new SqlCommand())
                         {
-                            if (sdr.Read())
+                            comm.CommandText = commString;
+                            comm.Connection = conn;
+                            conn.Open();
+
+                            using (SqlDataReader sdr = comm.ExecuteReader())
                             {
-                                iids = sdr["picturestoreids"].ToString();
+                                if (sdr.Read())
+                                {
+                                    iids = sdr["picturestoreids"].ToString();
+                                }
+                            }
+                        }
+                    }
+                    string[] iiids = iids.Split(",".ToCharArray());
+                    string psids = "";
+                    for (int k = 1; k < iiids.Length; k++)
+                    {
+                        if (iiids[k] != id.ToString())
+                        {
+                            psids += "," + iiids[k];
+                        }
+                    }
+                    using (SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["MSSqlServer"].ConnectionString))
+                    {
+                        string commString = "update picturestoregroup set picturestoreids = '" + psids + "' where picturestoregroupid=" + ids[i].ToString();
+                        using (SqlCommand comm = new SqlCommand())
+                        {
+                            comm.CommandText = commString;
+                            comm.Connection = conn;
+                            conn.Open();
+
+                            try
+                            {
+                                comm.ExecuteNonQuery();
+                            }
+                            catch
+                            {
+
                             }
                         }
                     }
                 }
-                string[] iiids = iids.Split(",".ToCharArray());
-                string psids = "";
-                for (int k = 1; k < iiids.Length; k++)
+            }
+            using (SqlConnection conn2 = new SqlConnection(ConfigurationManager.ConnectionStrings["MSSqlServer"].ConnectionString))
+            {
+                string commString2 = "delete from hairstyle where id=" + id;
+                using (SqlCommand comm2 = new SqlCommand())
                 {
-                    if (iiids[k] != id.ToString())
+                    comm2.CommandText = commString2;
+                    comm2.Connection = conn2;
+                    conn2.Open();
+
+                    try
                     {
-                        psids += "," + iiids[k];
+                        comm2.ExecuteNonQuery();
                     }
-                }
-                using (SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["MSSqlServer"].ConnectionString))
-                {
-                    string commString = "update picturestoregroup set picturestoreids = '" + psids + "' where picturestoregroupid=" + ids[i].ToString();
-                    using (SqlCommand comm = new SqlCommand())
+                    catch(Exception ex)
                     {
-                        comm.CommandText = commString;
-                        comm.Connection = conn;
-                        conn.Open();
-
-                        try
-                        {
-                            comm.ExecuteNonQuery();
-                        }
-                        catch
-                        {
-
-                        }
+                        throw new Exception(ex.Message);
                     }
                 }
             }
