@@ -1,0 +1,73 @@
+1.添加图片后，picturestoregroup, ids没有填（OK）
+
+2.添加美发师后，再添加多个作品，或继续添加美发师（OK）
+
+3.每个图片都要有对应的缩略图上传，同时修改相应的表（美发师（OK），美发厅（OK），优惠券（OK），作品包括正面大，镂空大，正面侧面背面小五张，而且可能只有正面+某几张），已经修改了picturestoreset,增加了smallpic字段。小图允许为空（OK）
+
+4.页面返回就过期了（验证问题，合并在和容错性一起检查）
+
+5.美发师职位变成文本输入框（因为每个公司职位不一样），可以考虑输入如果数据库没有则添加到hairEngineerClass表中。或直接将HairEngineer表里面的HairEngineerclassid改为varchar字段。（将hairEngineerClassid改为VARCHAR，同时，HAIReNGINEERrECOMMAND的HAIReNGINEERcLASSID也修改为varchar，并且废弃HAIReNGINEERcLASS表和类及一切数据库操作）
+
+6.增加美发师，美发厅时如果图片路径不对（如随便输入的），做一下容错。（雷同问题4）
+
+7.美发厅，美发师，优惠券编辑修改的逻辑检查一下有的有问题。（雷同问题4）
+
+8.搜索很多不能用，而且点搜索后再点左边的普通图库索引出错。
+
+9.tag的逻辑操作都需要检查一下，尤其是HairStyle的tag,tag为空，图库和发型添加缺一个tag输入
+
+10.商圈改成不与城区绑定，任何城区都看到所有商圈（OK）
+
+11.模特添加删除管理页面
+
+12.“推荐”功能，完善一下，看是否都能用。至少保证没有错误页面或推荐无效。推荐部分的表和现有表的差异，可以暂时按老的设计做。
+
+bug:
+
+增加完美发厅，添加了图片和一个美发师，和该美发师作品，看到
+
+添加完美发师：
+HairEngineerStoreIds 为空
+HairEngineerPhotoIDs 为空
+
+
+添加完作品：
+hairstyle库里hairshopid为0
+hairquantity为0
+tag为空，图库和发型添加缺一个tag输入
+
+修改后，HairEngineerid也为0 了。
+
+添加优惠券，增加完后图片还在。（OK）
+
+美发厅：
+HairShopPictureStoreIDs 空
+HairShopMainIDs 空
+HairShopEngineerNum 为0
+workRangeIDs 为空
+Hairshoplog为D:\source\hairnet\Web\uploadfiles\logo\2008\10\12\images\2008101216191913067420.jpg,应为相对地址。
+outlogs为空，innerlogs为空
+
+
+添加和编辑美发师时，把擅长改长，把添加作品放下一页去。
+
+----------------
+
+下面几点作为完善功能的需求，有时间就做
+1.可以点编辑某个美发师界面显示他的所有作品，增删改他的作品
+2.点编辑某个美发厅界面下面显示他的所有美发师，增删改它下面的美发师，所有优惠券，增删改优惠券
+
+3.编辑还希望增加发型和图片时，美发厅和美发师能够有一个输入框，让他们输入。下拉框对于几百家美发厅和几千个美发师，很难操作。但输入的会和数据库中的没法一致。所以后面想到可以点按钮进入一个列表选择页，单选一个。或者搜索。
+4.输入的容错性检查
+
+美发师，美发厅，图片，发型，Picturestoregroup添加时都要存到BBS中，所以应该有一个位置存放postid, 数据库已经修改
+
+
+数据库修改，增加了：
+1 PictureStoreGroup 添加 AddTime，postid, 添加时间为当前时间，增加组时填写
+2 PictureStoreSet   添加 SmallPic ，缩略图地址
+3 HairStyle         添加 IsHairStyle，postid，与Picturestoreset表的IsHairStyle一致，作为冗余便于搜索，表示是发型，在增加发型时需要填写
+4 HairShop 	添加postid
+5 coupon	添加postid
+
+最新数据库放在svn的datasql目录下。

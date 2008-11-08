@@ -1,0 +1,62 @@
+/* CSS Document */
+.daohang {color:#666666;font-size:12px;line-height:30px;}
+.daohang a:link,.daohang a:visited {color:#666666;}
+.daohang a:hover {color:#cc0033;}
+
+#top {width:980px;height:105px;margin:0 auto;clear:both;}
+#logo {float:left;width:240px;height:100px;}
+.logo-ad {width:740px;height:100px;float:right;text-align:right;}
+.logo-ad img {width:728px;height:90px;margin-top:5px;}
+
+#menu-box {
+	width:980px;
+	height:43px;
+	margin:0px auto;
+	padding:0px 0px 0px 0px;
+	clear:both;
+	background-image: url(../images/reg-bg0.gif);
+	background-repeat: repeat-x;
+	background-position: center top;
+}
+#menu-box-2 {width:980px;height:34px;margin:0px auto;}
+#menu-box2 {
+	width:770px;
+	height:34px;
+	line-height:34px;
+	font-size:12px;
+	color:#FFFFFF;
+	float:right;
+	clear:both;
+	background-image: url(../images/fair-menu-r.gif);
+	background-repeat: no-repeat;
+	background-position: right top;
+	text-align:left;
+}
+#menu-box2 a:link,#menu-box2 a:visited,#menu-box2 a:hover {color:#FFFFFF;}
+
+.menu {float:left;margin:0px 0px 0px 0px;}
+.reg {
+	width:250px;
+	height:43px;
+	float:right;
+	background-image: url(../images/reg-bg.gif);
+	background-repeat: no-repeat;
+	text-align:center;
+	background-position: right center;
+	line-height:43px;
+	color:#333333;
+	text-align:center;
+}
+.reg a:link,.reg a:visited,.reg a:hover {color:#333333;text-decoration:underline;}
+.reg a:hover {color:#cc0033;text-decoration:underline;}
+.reg img {margin-top:10px;}
+
+.end-black12 {color:#000000;line-height:20px;font-size:12px;}
+.end-black12 a:link,.end-black12 a:visited {color:#000000;}
+.end-black12 a:hover {color:#cc0033;}
+
+.end-white12 {color:#FFFFFF;line-height:22px;font-size:12px;}
+
+.end-white12 a:link,.end-white12 a:visited,.end-white12 a:hover {color:#ffffff;}
+
+

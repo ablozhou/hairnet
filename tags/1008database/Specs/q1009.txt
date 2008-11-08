@@ -1,0 +1,54 @@
+美发师有个字段 HairEngineerPrice，需修改为HairEngineerTel,并增加一个中评字段
+0	HairEngineerNormal	int	4	1	中评数
+hair-mfs-content_b.htm
+有评价他的服务，评价他的水平，评价他的形象
+这样导致我们美发师的评价有多个方面，所以评价不得不单独成表。 
+comment
+ 1	id	int	4	0
+0	good	int	4	-1
+0	normal	int	4	-1
+0	bad	int	4	-1
+0	other	int	4	-1
+0	ownerid	int	4	-1
+0	classname	varchar	50	-1
+0	commentobject	varchar	200	-1
+0	description	varchar	200	-1
+
+(          ok         )
+ 
+
+添加美发厅时把剪烫染的运营项目缺省选上(OK)
+
+就把属性大全的，都整合到图片属性里面,包括发量，增加缺失的表，并添加到数据字典中dict.xls
+
+把发型和普通图片，都需要所有图片属性，把普通图和发型要想办法统一起来管理
+以便统一搜索
+
+
+
+增加专题管理
+
+图片按分类有入口，见meifa.vsd
+
+推荐部分，保证能用（发现并把错误去掉），但还需要确认到底用不用，暂不处理
+
+添加模特表，包含id，图片地址，性别，描述
+model 表：
+
+id，picurl，sex，descrpt (OK)
+
+可能的bug：
+美发厅图片管理，厅外图片上传失败
+美发厅编辑页面的提交没有修改
+
+-------------------
+发型库添加: 发型库为空
+提供工程师ID
+参数名: 缺少参数
+
+说明: 执行当前 Web 请求期间，出现未处理的异常。请检查堆栈跟踪信息，以了解有关该错误以及代码中导致错误的出处的详细信息。 
+
+
+-------------
+所有列表页显示数量改为20.
+

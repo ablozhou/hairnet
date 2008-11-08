@@ -1,0 +1,160 @@
+#main {
+	width:980px;
+	margin:15px auto 0px auto;
+	clear:both;
+	background-image: url(../images/fxk-01b.gif);
+	background-repeat: repeat-y;
+	background-position: center top;
+}
+#main-l {width:160px;float:left;}
+#main-r {width:806px;float:left;}
+#fxk-logo {
+width:138px;
+height:138px;
+margin:0 auto;
+clear:both;}
+#dangqian {
+float:right;
+    width:805px;
+	font-size: 12px;
+	line-height: 31px;
+	background-image: url(../images/fxk-02.gif);
+	background-repeat: no-repeat;
+	background-position: right top;
+	font-size:12px;color:#666666;text-align:left;line-height:31px;
+	clear:both;
+}
+#dangqian a:link,#dangqian a:visited {color:#666666;}
+#dangqian a:hover {color:#cc0033;}
+
+#show-area {
+	width:790px;
+	float:right;
+
+	background-image: url(../images/fxk-03.gif);
+	background-repeat: no-repeat;
+	background-position: center top;
+	background-color:#ffffff;
+}
+.r-null {
+height:100px;
+float:right;
+width:8px;}
+
+h1 {
+color:#df0001;
+font-size:22px;
+line-height:45px;
+height:45px;
+margin:0 auto;
+padding:0px;}
+.dateandtime {
+color:#818181;
+font-size:12px;
+line-height:35px;}
+
+.nullarea {height:15px;margin:0 auto;width:100%;clear:both;}
+
+
+.white12 {font-size:12px;color:#ffffff;line-height:26px;}
+.white12 a:link,.white12 a:visited {color:#ffffff;}
+.white12 a:hover {color:#cc0033;}
+.pic-page {font-size:14px;color:#b3b3b3;line-height:26px;}
+
+.show-pic img {width:600px;height:725px;}
+.fxk-pic-s {
+	background-image: url(../images/fair-zt10.gif);
+	background-repeat: no-repeat;
+	background-position: center top;
+	height: 156px;
+	width: 137px;
+	margin:0 auto;
+	text-align:center;
+}
+.fxk-pic-s img {width:96px;height:128px;margin-top:12px;}
+.fxk-pic-null {width:100%;height:12px;margin:0 auto;clear:both;
+line-height:10px;}
+
+.pre {
+	width:139px;
+	height:23px;
+	margin:0 auto;
+	clear:both;
+	background-image: url(../images/fair-zt08.gif);
+	background-repeat: no-repeat;
+	background-position: center top;
+	color:#FFFFFF;
+	line-height:23px;
+	font-size:12px;
+	text-align:center;
+}
+.next {
+	width:139px;
+	height:23px;
+	margin:0 auto;
+	clear:both;
+	background-image: url(../images/fair-zt09.gif);
+	background-repeat: no-repeat;
+	background-position: center top;
+	color:#FFFFFF;
+	line-height:23px;
+	font-size:12px;
+	text-align:center;
+}
+.pre a:link,.pre a:visited,.next a:link,.next a:visited {color:#ffffff;}
+.pre a:hover,.next a:hover {color:#cc0033;}
+
+.main-top-end {width:781px;margin:0 auto;clear:both;}
+
+
+.red12b {font-size:12px;font-weight:bold;line-height:24px;color:#cc0033;}
+.red12b a:link,.red12b a:visited,.red12b a:hover {color:#cc0033;}
+.black12 {color:#000000;line-height:24px;font-size:12px;}
+.black12 a:link,.black12 a:visited {color:#000000;}
+.black12 a:hover {color:#cc0033;}
+
+.page-all {
+width:90%;
+height:24px;
+margin:8px auto;
+clear:both;
+text-align:center;
+font-size:12px;line-height:24px;color:#666666;}
+.page-all a:link,.page-all a:visited {color:#666666;}
+.page-all a:hover {color:#cc0033;}
+
+
+.pic-5 {
+width:162px;
+height:112px;
+border:#d3d3d3 1px solid;
+margin:5px auto 5px auto;}
+.pic-5 img {width:160px;height:110px;margin-top:1px;margin-bottom:1px;}
+
+.lanmu-l {
+	width:137px;
+	height:6px;
+	margin:0 auto;
+	clear:both;
+	background-image: url(../images/fxk-14.gif);
+	background-repeat: no-repeat;
+	background-position: center center;
+}
+
+.black12-b {font-size:12px;font-weight:bold;line-height:30px;color:#000000;}
+.black12-b a:link,.black12-b a:visited {color:#000000;}
+.black12-b a:hover {color:#cc0033;}
+
+.lanmu-12 {font-size:12px;line-height:30px;color:#000000;}
+.lanmu-12 a:link,.lanmu-12 a:visited {color:#000000;}
+.lanmu-12 a:hover {color:#cc0033;}
+
+.list-red14 {font-size:14px;line-height:24px;color:#cc0033;}
+.list-red14 a:link,.list-red14 a:visited,.list-red14 a:hover {color:#cc0033;}
+
+
+
+
+
+
+

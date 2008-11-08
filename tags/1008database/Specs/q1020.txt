@@ -1,0 +1,5 @@
+1. 字段修改,价格为区间HairCutPriceMin int Unchecked HairCutPrice int Unchecked HairMarcelPriceMin int Unchecked HairMarcelPrice int Unchecked HairDyePriceMin int Unchecked HairDyePrice int Unchecked HairShapePriceMin int Unchecked HairShapePrice int Unchecked HairConservationPriceMin int Unchecked HairConservationPrice int Unchecked 
+2. logo可以为空
+3. 评论,踩一脚,还浏览过功能测试
+4. BBS发帖为何有不成功
+5.登录功能的整合

@@ -1,0 +1,46 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+<title>top</title>
+<link href="css/default.css" rel="stylesheet" type="text/css" />
+<style type="text/css">
+<!--
+.STYLE1 {font-size: 18px}
+-->
+</style>
+</head>
+
+<body class="topBgcolor">
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td width="107" class="inputTitle STYLE1">美发后台</td>
+    <td width="121">&nbsp;</td>
+    <td valign="top"><table width="100%" border="0" cellspacing="0" cellpadding="2">
+      <tr>
+        <td align="right">&nbsp;</td>
+        <td height="30" align="right" class="topColor">          <script>
+todayDate = new Date();
+date = todayDate.getDate();
+month= todayDate.getMonth() +1;
+year= todayDate.getYear();
+document.write(year);
+document.write("年");
+document.write(month);
+document.write("月");
+document.write(date);
+document.write("日");
+if (todayDate.getDay() == 5) document.write("周五")
+if (todayDate.getDay() == 6) document.write("周六")
+if (todayDate.getDay() == 0) document.write("周日")
+if (todayDate.getDay() == 1) document.write("周一")
+if (todayDate.getDay() == 2) document.write("周二")
+if (todayDate.getDay() == 3) document.write("周三")
+if (todayDate.getDay() == 4) document.write("周四")
+          </script>        </td>
+        <td width="20" align="right" class="blacklink">&nbsp;</td>
+      </tr>
+    </table></td>
+  </tr>
+</table>
+</body>
+</html>

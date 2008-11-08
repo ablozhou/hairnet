@@ -1,0 +1,29 @@
+图库分类进入添加，发型库和图库的添加，编辑 优先级（包括完整属性）1
+整理数据库，将发型HairStyle里面图片上传到PictureStoreSet来管理
+将普通图库的属性写到hairstyle内（不再使用picturestore表）。普通图库的美发师id和美发厅ID可以为空.
+将hairstyle表里面的bigpic,smallpic废弃
+picturestoreset表：
+3	ID	int	4	0
+0	PictureStoreId	int	4	0   外键，HairStyle的ID
+0	PictureStoreURL	varchar	1024	1   
+0	IsHairStyle	bit	1	1   是否发型 1.是发型
+0	HairStylePos	int	4	1  1,2,3，4：正面侧面背面镂空大图，5，6，7,8对应正面侧面背面镂空小图，添加发型页面也增加 正面大图，正面小图，侧，背，辅助5个上传。其余空
+
+将 
+1	bigpic	varchar	1024	0
+0	smallpic_f	varchar	1024	1
+0	smallpic_b	varchar	1024	1
+0	smallpic_s	varchar	1024	1
+0	pic1	text	16	1
+0	pic2	text	16	1
+0	pic3	text	16	1
+停止使用
+其余不变。
+这样，统一图库入口。
+
+
+
+专题，优先级2
+
+
+

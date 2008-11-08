@@ -1,0 +1,80 @@
+<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Home.master.cs" Inherits="Web.Home" %>
+<%@ Register Assembly="System.Web.Extensions, Version=1.0.61025.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35" Namespace="System.Web.UI" TagPrefix="asp" %>
+<%@ Register Src="UserControls/Head.ascx" TagName="HeadControl" TagPrefix="HN" %>
+<%@ Register Src="UserControls/Foot.ascx" TagName="FootControl" TagPrefix="HN" %>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" >
+<head runat="server">
+    <meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+    <title>美发频道</title>
+    <link href="Theme/Style/daohang-end-08.css" rel="stylesheet" type="text/css" />
+    <link href="Theme/Style/hair-main.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+
+<form id="form1" runat="server">
+    <asp:ScriptManager ID="ScriptManager1" runat="server" EnablePartialRendering="true">
+    </asp:ScriptManager>
+    <script type="text/javascript" src="Theme/js/chrome.js"></script>
+    <script language="javascript">
+        function showTab(id) {
+        var c=["serTabC1","serTabC2","serTabC3"];
+        var x=["seatchTab1","seatchTab2","seatchTab3"];
+        for (var i=0;i<c.length;i++){
+	        if((i+1)==id){
+		        document.getElementById(c[i]).style.display="";
+		        document.getElementById(x[i]).style.display="";
+	        }
+	        else{
+		        document.getElementById(c[i]).style.display="none";
+		        document.getElementById(x[i]).style.display="none";
+	        }
+        }
+        }
+        </script>
+        <script language="javascript">
+        function showTab2(id) {
+        var c=["serTabC21","serTabC22"];
+        var x=["seatchTab21","seatchTab22"];
+        for (var i=0;i<c.length;i++){
+	        if((i+1)==id){
+		        document.getElementById(c[i]).style.display="";
+		        document.getElementById(x[i]).style.display="";
+	        }
+	        else{
+		        document.getElementById(c[i]).style.display="none";
+		        document.getElementById(x[i]).style.display="none";
+	        }
+        }
+        }
+        </script>
+        <script language="javascript">
+        function showTab3(id) {
+        var c=["serTabC31","serTabC32","serTabC33"];
+        var x=["seatchTab31","seatchTab32","seatchTab33"];
+        for (var i=0;i<c.length;i++){
+	        if((i+1)==id){
+		        document.getElementById(c[i]).style.display="";
+		        document.getElementById(x[i]).style.display="";
+	        }
+	        else{
+		        document.getElementById(c[i]).style.display="none";
+		        document.getElementById(x[i]).style.display="none";
+	        }
+        }
+        }
+        </script>
+    <!-- 头部开始 -->
+    <!-- #include file="include/top-4.htm" -->
+    <!-- 头部结束 -->
+
+    <!-- 主体部分 -->
+        <asp:ContentPlaceHolder ID="BodyContentPosition" runat="server"></asp:ContentPlaceHolder>
+    <!-- 主部分结束 -->
+    <!-- 底部开始 -->
+    <HN:FootControl ID="footControl1" runat="server" />
+    <!-- 底部结束 -->
+    </form>
+</body>
+</html>

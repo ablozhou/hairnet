@@ -1,0 +1,68 @@
+/* CSS Document */
+#top-flash {width:980px;height:305px;margin:15px auto 0px auto;clear:both;}
+#main {
+	background-image: url(../images/fair-cl-bg.gif);
+	background-repeat: repeat-y;
+	background-position: center top;
+	clear: both;
+	width: 980px;
+	margin:0 auto;
+}
+.main-1 {width:5px;float:left;}
+.main-2 {width:40px;float:left;}
+.main-3 {width:22px;float:left;}
+#main-l {width:215px;float:left;}
+#main-m {width:430px;float:left;}
+#main-r {width:260px;float:left;}
+.main-top-end {width:980px;margin:0 auto;clear:both;}
+
+.title-list {margin:0 auto;clear:both;width:88%;}
+.title-list li{font-size:12px;line-height:28px;color:#666666;text-align:left;background-image: url(../images/sg-meifa-line01.gif);background-repeat: repeat-x;background-position: bottom;}
+.title-list li a:link,.title-list a:visited {color:#666666;}
+.title-list li a:hover {color:#cc0033;}
+
+.pic-1 {text-align:center;margin:0px auto;width:115px;height:150px;border:#dfdfdf 1px solid;}
+.pic-1 img {width:105px;height:140px;margin-top:5px;}
+.pic-1 a:link,.pic-1 a:visited {color:#818181;}
+.pic-1 a:hover {color:#cc0033;}
+
+.pic-2 img {width:105px;height:140px;border:#dfdfdf 1px solid;}
+
+.pic-5 {text-align:center;margin:0px auto;width:57px;height:57px;border:#d0d0d0 1px solid;}
+.pic-5 img {width:55px;height:55px;margin-top:1px;}
+.pic-5-title {width:57px;margin:0 auto;clear:both;color:#121212;font-size:12px;line-height:26px;}
+.pic-5-title a:link,.pic-5-title a:visited {color:#121212;}
+.pic-5-title a:hover {color:#cc0033;}
+
+.line {
+	width:88%;
+	height:5px;
+	line-height:5px;
+	background-image: url(../images/sg-meifa-line01.gif);
+	background-repeat: repeat-x;
+	background-position: center center;
+	margin:0 auto;
+	clear:both;
+}
+.red12b {font-size:12px;font-weight:bold;line-height:24px;color:#cc0033;}
+.red12b a:link,.red12b a:visited,.red12b a:hover {color:#cc0033;}
+
+.gray-bg {
+	background-image: url(../images/fair-26.gif);
+	background-repeat: repeat-x;
+	background-position: center center;
+	text-align:right;
+}
+
+.title-list-14r {margin:0 auto;clear:both;width:88%;}
+.title-list-14l {margin:0px 0px 0px 0px;clear:both;width:94%;}
+.title-list-14l li,.title-list-14r li {font-size:14px;line-height:28px;color:#333333;text-align:left;background-image: url(../images/sg-meifa-line01.gif);background-repeat: repeat-x;background-position: bottom;}
+.title-list-14l li a:link,.title-list-14l a:visited,.title-list-14r li a:link,.title-list-14r a:visited {color:#333333;}
+.title-list-14r li a:hover,.title-list-14l li a:hover {color:#cc0033;}
+
+.r-ad {
+width:260px;
+height:300px;
+margin:0 auto;
+clear:both;
+text-align:center;}
