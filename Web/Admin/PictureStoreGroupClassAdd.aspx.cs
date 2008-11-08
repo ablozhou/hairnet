@@ -41,6 +41,11 @@ namespace Web.Admin
                     string hstyleid = this.dg.DataKeys[dgi.ItemIndex].ToString();
                     string id = this.Request.QueryString["id"].ToString();
 
+                    if (this.isExistCurrentID(hstyleid, id))
+                    {
+                        //this.Response.Write("<script>alert('信息ID"+hstyleid.ToString()+"已经存在');</script>");
+                        continue;
+                    }
 
                     using (SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["MSSqlServer"].ToString()))
                     {
@@ -195,6 +200,43 @@ namespace Web.Admin
             }
         }
 
+        public bool isExistCurrentID(string hstyleid, string id)
+        {
+            string psids = string.Empty;
+            bool result = false;
+
+            using (SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["MSSqlServer"].ToString()))
+            {
+                string commString = "select * from PictureStoreGroup where PictureStoreGroupID=" + id;
+                using (SqlCommand comm = new SqlCommand())
+                {
+                    comm.Connection = conn;
+                    comm.CommandText = commString;
+                    conn.Open();
+
+                    using (SqlDataReader sdr = comm.ExecuteReader())
+                    {
+                        if (sdr.Read())
+                        {
+                            psids = sdr["PictureStoreIDs"].ToString();
+                        }
+                    }
+                }
+            }
+
+            string[] s = psids.Split(",".ToCharArray());
+            for (int i = 0; i < s.Length; i++)
+            {
+                if (s[i] == hstyleid)
+                {
+                    result = true;
+                    break;
+                }
+            }
+
+            return result;
+        }
+
         public void dg_OnItemCommand(object sender, DataGridCommandEventArgs e)
         {
             if (e.Item.ItemType == ListItemType.AlternatingItem || e.Item.ItemType == ListItemType.Item)
@@ -204,6 +246,11 @@ namespace Web.Admin
                     string hstyleid = this.dg.DataKeys[e.Item.ItemIndex].ToString();
                     string id = this.Request.QueryString["id"].ToString();
 
+                    if (this.isExistCurrentID(hstyleid, id))
+                    {
+                        this.Response.Write("<script>alert('当前信息已经添加');</script><script>window.location.href='"+this.Request.Url.ToString()+"'</script>");
+                        return;
+                    }
 
                     using (SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["MSSqlServer"].ToString()))
                     {
@@ -307,7 +354,7 @@ namespace Web.Admin
                 e.Item.Attributes.Add("onmouseover", "c=this.style.backgroundColor;this.style.backgroundColor='#ffffff';");
                 e.Item.Attributes.Add("onmouseout", "this.style.backgroundColor=c;");
 
-                e.Item.Cells[5].Attributes.Add("onclick", "return confirm('确定删除么?');");
+                e.Item.Cells[5].Attributes.Add("onclick", "return confirm('确定添加么?');");
 
                 Label lblEdit = e.Item.FindControl("lblEdit") as Label;
                 Label lblAdmin = e.Item.FindControl("lblAdmin") as Label;
