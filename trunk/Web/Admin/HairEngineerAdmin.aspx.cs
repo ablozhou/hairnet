@@ -391,6 +391,27 @@ namespace Web.Admin
                                 }
                             }
                         }
+
+                        using (SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["MSSqlServer"].ConnectionString))
+                        {
+                            string commString = "delete from HairEngineerRecommand where HairEngineerRawID=" + hairEngineerID.ToString();
+                            using (SqlCommand comm = new SqlCommand())
+                            {
+                                comm.CommandText = commString;
+                                comm.Connection = conn;
+                                conn.Open();
+
+                                try
+                                {
+                                    comm.ExecuteNonQuery();
+                                }
+                                catch
+                                {
+
+                                }
+                            }
+                        }
+
                         StringHelper.AlertInfo("删除成功",this.Page);
                         this.Response.Redirect("HairEngineerAdmin.aspx");
                     }
