@@ -13,7 +13,7 @@ namespace HairNet.Entry
         private string _hairEngineerName = string.Empty;
         private string _hairEngineerAge = string.Empty;
         private int _hairEngineerSex = 0;
-        private string _hairEngineerPhoto = string.Empty;
+        //private string _hairEngineerPhoto = string.Empty;
         private int _hairShopID = 0;
         private string _hairShopName = string.Empty;
         private string _hairEngineerYear = string.Empty;
@@ -22,8 +22,8 @@ namespace HairNet.Entry
         private string _hairEngineerPictureStoreIDs = string.Empty;
         private int _hairEngineerHits = 0;
         private string _hairEngineerDescription = string.Empty;
-        private int _hairEngineerOrderNum = 0;
-        private int _hairEngineerRecommandNum = 0;
+        //private int _hairEngineerOrderNum = 0;
+        //private int _hairEngineerRecommandNum = 0;
         private string _hairEngineerRawPrice = string.Empty;
         private string _hairEngineerTel = string.Empty;
         private int _hairEngineerGood = 0;
@@ -84,11 +84,11 @@ namespace HairNet.Entry
             get { return this._hairEngineerSex; }
         }
 
-        public string HairEngineerPhoto
-        {
-            set { this._hairEngineerPhoto = value; }
-            get { return this._hairEngineerPhoto; }
-        }
+        //public string HairEngineerPhoto
+        //{
+        //    set { this._hairEngineerPhoto = value; }
+        //    get { return this._hairEngineerPhoto; }
+        //}
 
         public int HairShopID
         {
@@ -138,17 +138,17 @@ namespace HairNet.Entry
             get { return this._hairEngineerDescription; }
         }
 
-        public int HairEngineerOrderNum
-        {
-            set { this._hairEngineerOrderNum = value; }
-            get { return this._hairEngineerOrderNum; }
-        }
+        //public int HairEngineerOrderNum
+        //{
+        //    set { this._hairEngineerOrderNum = value; }
+        //    get { return this._hairEngineerOrderNum; }
+        //}
 
-        public int HairEngineerRecommandNum
-        {
-            set { this._hairEngineerRecommandNum = value; }
-            get { return this._hairEngineerRecommandNum; }
-        }
+        //public int HairEngineerRecommandNum
+        //{
+        //    set { this._hairEngineerRecommandNum = value; }
+        //    get { return this._hairEngineerRecommandNum; }
+        //}
 
         public string HairEngineerRawPrice
         {

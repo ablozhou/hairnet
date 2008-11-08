@@ -172,7 +172,7 @@ namespace Web.Admin
             he.IsImportant = this.chkIsImportant.Checked;
 
             UpLoadClass upload = new UpLoadClass();
-            he.HairEngineerPhoto = upload.UpLoadImg(fileLogo, "/uploadfiles/pictures/");
+            //he.HairEngineerPhoto = upload.UpLoadImg(fileLogo, "/uploadfiles/pictures/");
 
             he.HairEngineerTagIDs = "";
 
