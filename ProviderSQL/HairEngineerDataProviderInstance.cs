@@ -152,36 +152,36 @@ namespace HairNet.Provider
             parameters[5].Value = hairStyle.Occasion;
             parameters[6].Value = hairStyle.Sex;
 
-            parameters[7].Value = hairStyle.BigPic;
-            parameters[8].Value = hairStyle.SmallPic_F;
-            parameters[9].Value = hairStyle.SmallPic_B;
-            parameters[10].Value = hairStyle.SmallPic_S;
-            parameters[11].Value = hairStyle.Pic1;
-            parameters[12].Value = hairStyle.Pic2;
-            parameters[13].Value = hairStyle.Pic3;
+            //parameters[7].Value = hairStyle.BigPic;
+            //parameters[8].Value = hairStyle.SmallPic_F;
+            //parameters[9].Value = hairStyle.SmallPic_B;
+            //parameters[10].Value = hairStyle.SmallPic_S;
+            //parameters[11].Value = hairStyle.Pic1;
+            //parameters[12].Value = hairStyle.Pic2;
+            //parameters[13].Value = hairStyle.Pic3;
 
-            parameters[14].Value = hairStyle.HairShopID;
-            parameters[15].Value = hairStyle.HairEngineerID;
-            parameters[16].Value = hairStyle.HairQuantity;
-            parameters[17].Value = hairStyle.HairNature;
-            parameters[18].Value = hairStyle.HairColor;
+            parameters[7].Value = hairStyle.HairShopID;
+            parameters[8].Value = hairStyle.HairEngineerID;
+            parameters[9].Value = hairStyle.HairQuantity;
+            parameters[10].Value = hairStyle.HairNature;
+            parameters[11].Value = hairStyle.HairColor;
 
-            parameters[19].Value = hairStyle.CreateTime;
-            parameters[20].Value = hairStyle.BBSURL;
-            parameters[21].Value = hairStyle.Good;
-            parameters[22].Value = hairStyle.Normal;
-            parameters[23].Value = hairStyle.Bad;
-            parameters[24].Value = hairStyle.Tag;
-            parameters[25].Value = hairStyle.Description;
-            parameters[26].Value = hairStyle.PictureStoreId;
-            parameters[27].Value = hairStyle.PSGIDS;
-            parameters[28].Value = hairStyle.IsHairStyle;
-            parameters[29].Value = hairStyle.PostID;
+            parameters[12].Value = hairStyle.CreateTime;
+            parameters[13].Value = hairStyle.BBSURL;
+            parameters[14].Value = hairStyle.Good;
+            parameters[15].Value = hairStyle.Normal;
+            parameters[16].Value = hairStyle.Bad;
+            parameters[17].Value = hairStyle.Tag;
+            parameters[18].Value = hairStyle.Description;
+            parameters[19].Value = hairStyle.PictureStoreId;
+            parameters[20].Value = hairStyle.PSGIDS;
+            parameters[21].Value = hairStyle.IsHairStyle;
+            parameters[22].Value = hairStyle.PostID;
 
             newid = 0;
             if (action == UserAction.Create)
             {
-                string commString = "INSERT INTO HairStyle VALUES ('"+hairStyle.HairName+"',"+hairStyle.HairStyle.ToString()+","+hairStyle.FaceStyle.ToString()+","+hairStyle.Temperament.ToString()+","+hairStyle.Occasion.ToString()+","+hairStyle.Sex.ToString()+",'"+hairStyle.BigPic+"','"+hairStyle.SmallPic_F.ToString()+"','"+hairStyle.SmallPic_B.ToString()+"','"+hairStyle.SmallPic_S.ToString()+"','"+hairStyle.Pic1+"','"+hairStyle.Pic2+"','"+hairStyle.Pic3+"',"+hairStyle.HairShopID.ToString()+","+hairStyle.HairEngineerID.ToString()+","+hairStyle.HairQuantity.ToString()+","+hairStyle.HairNature.ToString()+","+hairStyle.HairColor.ToString()+",'"+hairStyle.CreateTime.ToString()+"','"+hairStyle.BBSURL+"',"+hairStyle.Good.ToString()+","+hairStyle.Normal.ToString()+","+hairStyle.Bad.ToString()+",'"+hairStyle.Tag.ToString()+"',0,0,'"+hairStyle.Description+"',"+hairStyle.PictureStoreId.ToString()+",'"+hairStyle.PSGIDS+"',"+hairStyle.IsHairStyle.CompareTo(false).ToString()+","+hairStyle.PostID.ToString()+");select @@identity;";
+                string commString = "INSERT INTO HairStyle VALUES ('"+hairStyle.HairName+"',"+hairStyle.HairStyle.ToString()+","+hairStyle.FaceStyle.ToString()+","+hairStyle.Temperament.ToString()+","+hairStyle.Occasion.ToString()+","+hairStyle.Sex.ToString()+","+hairStyle.HairShopID.ToString()+","+hairStyle.HairEngineerID.ToString()+","+hairStyle.HairQuantity.ToString()+","+hairStyle.HairNature.ToString()+","+hairStyle.HairColor.ToString()+",'"+hairStyle.CreateTime.ToString()+"','"+hairStyle.BBSURL+"',"+hairStyle.Good.ToString()+","+hairStyle.Normal.ToString()+","+hairStyle.Bad.ToString()+",'"+hairStyle.Tag.ToString()+"',0,0,'"+hairStyle.Description+"',"+hairStyle.PictureStoreId.ToString()+",'"+hairStyle.PSGIDS+"',"+hairStyle.IsHairStyle.CompareTo(false).ToString()+","+hairStyle.PostID.ToString()+");select @@identity;";
 
                 using (SqlConnection conn = new SqlConnection(DataHelper2.SqlConnectionString))
                 {
@@ -239,10 +239,11 @@ namespace HairNet.Provider
              {
                  while (Reader.Read())
                      valueList.Add(new HairStyleEntity(Reader.GetInt32(0), Reader.GetString(1), Reader.GetByte(2), Reader.GetByte(3),
-                         Reader.GetByte(4), Reader.GetByte(5), Reader.GetByte(6), Reader.GetString(7), Reader.GetString(8), Reader.GetString(9),
-                         Reader.GetString(10), Reader.GetString(11), Reader.GetString(12), Reader.GetString(13), Reader.GetInt32(14),
-                         Reader.GetInt32(15), Reader.GetByte(16), Reader.GetByte(17), Reader.GetByte(18), Reader.GetDateTime(19),
-                         Reader.GetString(20), Reader.GetInt32(21), Reader.GetInt32(22), Reader.GetInt32(23), Reader.GetString(24)));
+                         Reader.GetByte(4), Reader.GetByte(5), Reader.GetByte(6), /*Reader.GetString(7), Reader.GetString(8), Reader.GetString(9),
+                         Reader.GetString(10), Reader.GetString(11), Reader.GetString(12), Reader.GetString(13),*/
+                                                                                                                   Reader.GetInt32(7),
+                        Reader.GetInt32(8), Reader.GetByte(9), Reader.GetByte(10), Reader.GetByte(11), Reader.GetDateTime(12),
+                        Reader.GetString(13), Reader.GetInt32(14), Reader.GetInt32(15), Reader.GetInt32(16), Reader.GetString(17)));
              }
 
              return valueList;
@@ -264,10 +265,10 @@ namespace HairNet.Provider
             {
                 while (Reader.Read())
                     valueList.Add(new HairStyleEntity(Reader.GetInt32(0), Reader.GetString(1), Reader.GetByte(2), Reader.GetByte(3),
-                        Reader.GetByte(4), Reader.GetByte(5), Reader.GetByte(6), Reader.GetString(7), Reader.GetString(8), Reader.GetString(9),
-                        Reader.GetString(10), Reader.GetString(11), Reader.GetString(12), Reader.GetString(13), Reader.GetInt32(14),
-                        Reader.GetInt32(15), Reader.GetByte(16), Reader.GetByte(17), Reader.GetByte(18), Reader.GetDateTime(19),
-                        Reader.GetString(20), Reader.GetInt32(21), Reader.GetInt32(22), Reader.GetInt32(23), Reader.GetString(24)));
+                        Reader.GetByte(4), Reader.GetByte(5), Reader.GetByte(6), /*Reader.GetString(7), Reader.GetString(8), Reader.GetString(9),
+                        Reader.GetString(10), Reader.GetString(11), Reader.GetString(12), Reader.GetString(13),*/ Reader.GetInt32(7),
+                        Reader.GetInt32(8), Reader.GetByte(9), Reader.GetByte(10), Reader.GetByte(11), Reader.GetDateTime(12),
+                        Reader.GetString(13), Reader.GetInt32(14), Reader.GetInt32(15), Reader.GetInt32(16), Reader.GetString(17)));
             }
 
             return valueList;
@@ -289,10 +290,11 @@ namespace HairNet.Provider
             {
                 while (Reader.Read())
                     valueList.Add(new HairStyleEntity(Reader.GetInt32(0), Reader.GetString(1), Reader.GetByte(2), Reader.GetByte(3),
-                        Reader.GetByte(4), Reader.GetByte(5), Reader.GetByte(6), Reader.GetString(7), Reader.GetString(8), Reader.GetString(9),
-                        Reader.GetString(10), Reader.GetString(11), Reader.GetString(12), Reader.GetString(13), Reader.GetInt32(14),
-                        Reader.GetInt32(15), Reader.GetByte(16), Reader.GetByte(17), Reader.GetByte(18), Reader.GetDateTime(19),
-                        Reader.GetString(20), Reader.GetInt32(21), Reader.GetInt32(22), Reader.GetInt32(23), Reader.GetString(24)));
+                        Reader.GetByte(4), Reader.GetByte(5), Reader.GetByte(6), /*Reader.GetString(7), Reader.GetString(8), Reader.GetString(9),
+                        Reader.GetString(10), Reader.GetString(11), Reader.GetString(12), Reader.GetString(13),*/
+                                                                                                                  Reader.GetInt32(7),
+                        Reader.GetInt32(8), Reader.GetByte(9), Reader.GetByte(10), Reader.GetByte(11), Reader.GetDateTime(12),
+                        Reader.GetString(13), Reader.GetInt32(14), Reader.GetInt32(15), Reader.GetInt32(16), Reader.GetString(17)));
             }
 
             return valueList;
@@ -314,10 +316,11 @@ namespace HairNet.Provider
             {
                 while (Reader.Read())
                     valueList.Add(new HairStyleEntity(Reader.GetInt32(0), Reader.GetString(1), Reader.GetByte(2), Reader.GetByte(3),
-                        Reader.GetByte(4), Reader.GetByte(5), Reader.GetByte(6), Reader.GetString(7), Reader.GetString(8), Reader.GetString(9),
-                        Reader.GetString(10), Reader.GetString(11), Reader.GetString(12), Reader.GetString(13), Reader.GetInt32(14),
-                        Reader.GetInt32(15), Reader.GetByte(16), Reader.GetByte(17), Reader.GetByte(18), Reader.GetDateTime(19),
-                        Reader.GetString(20), Reader.GetInt32(21), Reader.GetInt32(22), Reader.GetInt32(23), Reader.GetString(24)));
+                        Reader.GetByte(4), Reader.GetByte(5), Reader.GetByte(6),/* Reader.GetString(7), Reader.GetString(8), Reader.GetString(9),
+                        Reader.GetString(10), Reader.GetString(11), Reader.GetString(12), Reader.GetString(13),*/
+                                                                                                                  Reader.GetInt32(7),
+                        Reader.GetInt32(8), Reader.GetByte(9), Reader.GetByte(10), Reader.GetByte(11), Reader.GetDateTime(12),
+                        Reader.GetString(13), Reader.GetInt32(14), Reader.GetInt32(15), Reader.GetInt32(16), Reader.GetString(17)));
             }
 
             return valueList;
@@ -342,10 +345,11 @@ namespace HairNet.Provider
                     {
                         while (Reader.Read())
                             valueList.Add(new HairStyleEntity(Reader.GetInt32(0), Reader.GetString(1), Reader.GetByte(2), Reader.GetByte(3),
-                                Reader.GetByte(4), Reader.GetByte(5), Reader.GetByte(6), Reader.GetString(7), Reader.GetString(8), Reader.GetString(9),
-                                Reader.GetString(10), Reader.GetString(11), Reader.GetString(12), Reader.GetString(13), Reader.GetInt32(14),
-                                Reader.GetInt32(15), Reader.GetByte(16), Reader.GetByte(17), Reader.GetByte(18), Reader.GetDateTime(19),
-                                Reader.GetString(20), Reader.GetInt32(21), Reader.GetInt32(22), Reader.GetInt32(23), Reader.GetString(24)));
+                                Reader.GetByte(4), Reader.GetByte(5), Reader.GetByte(6),/* Reader.GetString(7), Reader.GetString(8), Reader.GetString(9),
+                                Reader.GetString(10), Reader.GetString(11), Reader.GetString(12), Reader.GetString(13),*/
+                                                                                                                         Reader.GetInt32(7),
+                        Reader.GetInt32(8), Reader.GetByte(9), Reader.GetByte(10), Reader.GetByte(11), Reader.GetDateTime(12),
+                        Reader.GetString(13), Reader.GetInt32(14), Reader.GetInt32(15), Reader.GetInt32(16), Reader.GetString(17)));
                     }
                 }
             }
@@ -371,14 +375,14 @@ namespace HairNet.Provider
                     new SqlParameter("@Temperament",SqlDbType.SmallInt),
                     new SqlParameter("@Occasion",SqlDbType.SmallInt),
                     new SqlParameter("@Sex",SqlDbType.SmallInt),
-                    new SqlParameter("@BigPic",SqlDbType.VarChar,1024),
-                    new SqlParameter("@SmallPic_F",SqlDbType.VarChar,1024),
-                    new SqlParameter("@SmallPic_B",SqlDbType.VarChar,1024),
-                    new SqlParameter("@SmallPic_S",SqlDbType.VarChar,1024),
+                    //new SqlParameter("@BigPic",SqlDbType.VarChar,1024),
+                    //new SqlParameter("@SmallPic_F",SqlDbType.VarChar,1024),
+                    //new SqlParameter("@SmallPic_B",SqlDbType.VarChar,1024),
+                    //new SqlParameter("@SmallPic_S",SqlDbType.VarChar,1024),
 
-                    new SqlParameter("@Pic1",SqlDbType.Text),
-                    new SqlParameter("@Pic2",SqlDbType.Text),
-                    new SqlParameter("@Pic3",SqlDbType.Text),
+                    //new SqlParameter("@Pic1",SqlDbType.Text),
+                    //new SqlParameter("@Pic2",SqlDbType.Text),
+                    //new SqlParameter("@Pic3",SqlDbType.Text),
                     new SqlParameter("@HairShopID",SqlDbType.Int),
                     new SqlParameter("@HairEngineerID",SqlDbType.Int),
                     new SqlParameter("@HairQuantity",SqlDbType.SmallInt),
