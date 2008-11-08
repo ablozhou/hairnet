@@ -107,7 +107,7 @@
             <tr>
                 <td width="120" align="right">图片：
                 </td>
-                <td><asp:FileUpload ID="uploadpic1" runat="server" Width="300" />&nbsp;&nbsp;<asp:Button ID="btnPicUpload" runat="server" OnClick="btnPicUpload1_OnClick" Text="上传图片1" />
+                <td><asp:FileUpload ID="uploadpic1" runat="server" Width="300" />&nbsp;&nbsp;<asp:Button ID="btnPicUpload" runat="server" OnClick="btnPicUpload1_OnClick" Text="上传图片1" />&nbsp;&nbsp;<asp:Label ID="lblRedInfo" runat="server" ForeColor="red" Visible="false"></asp:Label>
                 </td>
             </tr>
         </table>
