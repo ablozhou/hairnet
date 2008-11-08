@@ -172,7 +172,7 @@ namespace Web.Admin
                 int userID = int.Parse(this.dg.DataKeys[e.Item.ItemIndex].ToString());
 
                 //删除并不是真正删除，只是标记当前用户不可使用，及IsActive为false
-                if (UserAdmin.UserUpdateStatus(userID,false))
+                if (UserAdmin.DeleteUserByUserID(userID))
                 {
                     this.Response.Redirect("UserInfoAdmin.aspx");
                 }

@@ -19,14 +19,14 @@ namespace HairNet.Entry
         private string occasionName = string.Empty;
         private Byte sex = 0;
         private string sexName = string.Empty;
-        private string bigPic = string.Empty;
-        private string smallPic_F = string.Empty;
-        private string smallPic_B = string.Empty;
-        private string smallPic_S = string.Empty;
+        //private string bigPic = string.Empty;
+        //private string smallPic_F = string.Empty;
+        //private string smallPic_B = string.Empty;
+        //private string smallPic_S = string.Empty;
 
-        private string pic1 = string.Empty;
-        private string pic2 = string.Empty;
-        private string pic3 = string.Empty;
+        //private string pic1 = string.Empty;
+        //private string pic2 = string.Empty;
+        //private string pic3 = string.Empty;
         private int hairShopID = 0;
         private string hairShopName = string.Empty;
         private int hairEngineerID = 0;
@@ -172,7 +172,7 @@ namespace HairNet.Entry
         /// <param name="bad">bad</param>
         /// <param name="tag">tag</param>
         public HairStyleEntity(int id, string hairName, Byte hairStyle, Byte faceStyle, Byte temperament, Byte occasion, Byte sex,
-            string bigPic, string smallPic_F, string smallPic_B, string smallPic_S, string pic1, string pic2, string pic3,
+            //string bigPic, string smallPic_F, string smallPic_B, string smallPic_S, string pic1, string pic2, string pic3,
             int hairShopID, int hairEngineerID, int hairQuantity, Byte hairNature, Byte hairColor, DateTime createTime, 
             string bbsURL, int good, int normal, int bad, string tag)
         {
@@ -183,13 +183,13 @@ namespace HairNet.Entry
             this.temperament = temperament;
             this.occasion = occasion;
             this.sex = sex;
-            this.bigPic = bigPic;
-            this.smallPic_F = smallPic_F;
-            this.smallPic_B = smallPic_B;
-            this.smallPic_S = smallPic_S;
-            this.pic1 = pic1;
-            this.pic2 = pic2;
-            this.pic3 = pic3;
+            //this.bigPic = bigPic;
+            //this.smallPic_F = smallPic_F;
+            //this.smallPic_B = smallPic_B;
+            //this.smallPic_S = smallPic_S;
+            //this.pic1 = pic1;
+            //this.pic2 = pic2;
+            //this.pic3 = pic3;
             this.hairShopID = hairShopID;
             this.hairEngineerID = hairEngineerID;
             this.hairQuantity = hairQuantity;
@@ -352,14 +352,14 @@ namespace HairNet.Entry
             this.PostID = postID;
             this.bbsURL = bbsUrl;
         }
-        public HairStyleEntity(string hairName, string bigPic, string bbsUrl, string smallPic_F, string smallPic_B, string smallPic_S, Byte hairStyle,
+        public HairStyleEntity(string hairName, /*string bigPic,*/ string bbsUrl,/* string smallPic_F, string smallPic_B, string smallPic_S,*/ Byte hairStyle,
             Byte faceStyle, Byte hairQuantity, Byte hairNature, string tag, string desc, int pictureid, bool isHairStyle, int postID)
         {
             this.hairName = hairName;
-            this.bigPic = bigPic;
-            this.smallPic_F = smallPic_F;
-            this.smallPic_B = smallPic_B;
-            this.smallPic_S = smallPic_S;
+            //this.bigPic = bigPic;
+            //this.smallPic_F = smallPic_F;
+            //this.smallPic_B = smallPic_B;
+            //this.smallPic_S = smallPic_S;
             this.hairStyle = hairStyle;
             this.faceStyle = faceStyle;
             this.hairQuantity = hairQuantity;
@@ -414,47 +414,47 @@ namespace HairNet.Entry
             get { return sex; }
         }
 
-        public String BigPic
-        {
-            set { bigPic = value; }
-            get { return bigPic; }
-        }
+        //public String BigPic
+        //{
+        //    set { bigPic = value; }
+        //    get { return bigPic; }
+        //}
 
-        public String SmallPic_F
-        {
-            set { smallPic_F = value; }
-            get { return smallPic_F; }
-        }
+        //public String SmallPic_F
+        //{
+        //    set { smallPic_F = value; }
+        //    get { return smallPic_F; }
+        //}
 
-        public String SmallPic_B
-        {
-            set { smallPic_B = value; }
-            get { return smallPic_B; }
-        }
+        //public String SmallPic_B
+        //{
+        //    set { smallPic_B = value; }
+        //    get { return smallPic_B; }
+        //}
 
-        public String SmallPic_S
-        {
-            set { smallPic_S = value; }
-            get { return smallPic_S; }
-        }
+        //public String SmallPic_S
+        //{
+        //    set { smallPic_S = value; }
+        //    get { return smallPic_S; }
+        //}
 
-        public String Pic1
-        {
-            set { pic1 = value; }
-            get { return pic1; }
-        }
+        //public String Pic1
+        //{
+        //    set { pic1 = value; }
+        //    get { return pic1; }
+        //}
 
-        public String Pic2
-        {
-            set { pic2 = value; }
-            get { return pic2; }
-        }
+        //public String Pic2
+        //{
+        //    set { pic2 = value; }
+        //    get { return pic2; }
+        //}
 
-        public String Pic3
-        {
-            set { pic3 = value; }
-            get { return pic3; }
-        }
+        //public String Pic3
+        //{
+        //    set { pic3 = value; }
+        //    get { return pic3; }
+        //}
 
         public Int32 HairShopID
         {
