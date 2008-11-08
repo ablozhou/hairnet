@@ -459,7 +459,14 @@ namespace Web.Admin
             return result;
         }
         protected void btnPicUpload1_OnClick(object sender, EventArgs e)
-        {   
+        {
+            if (uploadpic1.FileName == string.Empty || uploadpicsmall.Value == string.Empty)
+            {
+                this.lblRedInfo.Text = "上传大小图片地址不能为空！";
+                this.lblRedInfo.Visible = true;
+                return;
+            }
+
             UpLoadClass upload = new UpLoadClass();
             string filepath = "";
             string newfilepath = upload.UploadImageFile(uploadpic1, "/uploadfiles/pictures/");
