@@ -623,10 +623,14 @@ namespace Web.Admin
         }
         protected void btnPicUpload1_OnClick(object sender, EventArgs e)
         {
+            this.lblRedInfo.Visible = false;
+            this.btnPicUpload.Enabled = false;
+
             if (uploadpic1.FileName == string.Empty || uploadpicsmall.Value == string.Empty)
             {
                 this.lblRedInfo.Text = "上传大小图片地址不能为空！";
                 this.lblRedInfo.Visible = true;
+                this.btnPicUpload.Enabled = true;
                 return;
             }
 
@@ -707,6 +711,8 @@ namespace Web.Admin
                 }
 
                 this.lblImg.Text = "<img src='" + filepathSmall + "' width=100 height=50 /><a href='" + filepath + "' target='_blank'><img src='" + filepath + "' width=200 height=100 /></a>&nbsp;&nbsp;<a href='PictureStoreOperate.aspx?id=" + pssid + "&pid=" + ps.PictureStoreID.ToString() + "'>删除</a>" + "&nbsp;&nbsp;" + this.lblImg.Text;
+
+                this.btnPicUpload.Enabled = true;
             }
         }
         protected void BindControlData()

@@ -460,10 +460,13 @@ namespace Web.Admin
         }
         protected void btnPicUpload1_OnClick(object sender, EventArgs e)
         {
+            this.lblRedInfo.Visible = false;
+            this.btnPicUpload.Enabled = false;
             if (uploadpic1.FileName == string.Empty || uploadpicsmall.Value == string.Empty)
             {
                 this.lblRedInfo.Text = "上传大小图片地址不能为空！";
                 this.lblRedInfo.Visible = true;
+                this.btnPicUpload.Enabled = true;
                 return;
             }
 
@@ -525,6 +528,8 @@ namespace Web.Admin
                 Session["iTemperament"] = this.ddlTemperament.SelectedItem.Value;
                 Session["iOccasion"] = this.ddlOccasion.SelectedItem.Value;
                 Session["bbsUrl"] = txtBbsurl.Text.Trim();
+
+                this.btnPicUpload.Enabled = true;
             }
         }
         protected void BindControlData()
