@@ -623,6 +623,13 @@ namespace Web.Admin
         }
         protected void btnPicUpload1_OnClick(object sender, EventArgs e)
         {
+            if (uploadpic1.FileName == string.Empty || uploadpicsmall.Value == string.Empty)
+            {
+                this.lblRedInfo.Text = "上传大小图片地址不能为空！";
+                this.lblRedInfo.Visible = true;
+                return;
+            }
+
             PictureStore ps = (PictureStore)ViewState["PictureStoreInfo"];
 
             UpLoadClass upload = new UpLoadClass();
