@@ -332,7 +332,7 @@ namespace Web.Admin
                     {
                         using (SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["MSSqlServer"].ConnectionString))
                         {
-                            string commString = "select * from HairStyle where ownerid=" + hairEngineerID.ToString();
+                            string commString = "select * from HairStyle where hairEngineerID=" + hairEngineerID.ToString();
                             using (SqlCommand comm = new SqlCommand())
                             {
                                 comm.CommandText = commString;
@@ -496,7 +496,7 @@ namespace Web.Admin
 
                 lblWorks.Text = "<a href='HairStyleAdmin.aspx?eid="+hairEngineer.HairEngineerID.ToString()+"' target='_self'>编辑作品</a>";
                 ////推荐指数（点击数+好评评论数+我要推荐数）?美发师的预约数不应该计算在内么?
-                int recommandRate = hairEngineer.HairEngineerHits + hairEngineer.HairEngineerGood + hairEngineer.HairEngineerRecommandNum;
+                int recommandRate = hairEngineer.HairEngineerHits + hairEngineer.HairEngineerGood;
                 lblRecommandRate.Text = recommandRate.ToString();
 
                 ////好评率（好评数/评论数）

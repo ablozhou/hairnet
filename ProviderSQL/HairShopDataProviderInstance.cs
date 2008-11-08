@@ -29,22 +29,22 @@ namespace HairNet.Provider
             switch (ua)
             {
                 case UserAction.Create:
-                    commandText = "insert into HairShop(HairShopName,HairShopCityID,HairShopMapZoneID,HairShopHotZoneID,HairShopAddress,HairShopPhoneNum,HairShopPictureStoreIDs,"+
-                        "HairShopMainIDs,HairShopPartialIDs,HairShopEngineerNum,HairShopOpenTime,WorkRangeIDs,HairShopWebSite,HairShopEmail,"+
+                    commandText = "insert into HairShop(HairShopName,HairShopCityID,HairShopMapZoneID,HairShopHotZoneID,HairShopAddress,HairShopPhoneNum,"+
+                        "HairShopEngineerNum,HairShopOpenTime,HairShopWebSite,HairShopEmail,"+
                         "HairShopDiscount,HairShopLogo,HairShopCreateTime,HairShopDescription,ProductIDs,HairShopTagIDs,HairShopShortName,"+
-                        "IsBest,IsJoin,TypeID,IsPostStation,IsPostMachine) values('" 
+                        "IsJoin,TypeID,IsPostStation,IsPostMachine) values('" 
                         + hairShop.HairShopName + 
                         "'," + hairShop.HairShopCityID.ToString() + 
                         "," + hairShop.HairShopMapZoneID.ToString() + 
                         "," + hairShop.HairShopHotZoneID.ToString() + 
                         ",'" + hairShop.HairShopAddress + 
                         "','" + hairShop.HairShopPhoneNum + 
-                        "','" + hairShop.HairShopPictureStoreIDs + 
-                        "','" + hairShop.HairShopMainIDs + 
-                        "','" + hairShop.HairShopPartialIDs + 
+
+
+
                         "'," + hairShop.HairShopEngineerNum.ToString() + 
                         ",'" + hairShop.HairShopOpenTime + 
-                        "','" + hairShop.WorkRangeIDs + 
+
                         "','" + hairShop.HairShopWebSite + 
                         "','" + hairShop.HairShopEmail + 
                         "','" + hairShop.HairShopDiscount + 
@@ -54,7 +54,7 @@ namespace HairNet.Provider
                         "','" + hairShop.ProductIDs + 
                         "','" + hairShop.HairShopTagIDs + 
                         "','" + hairShop.HairShopShortName + 
-                        "'," + hairShop.IsBest.CompareTo(false).ToString() + 
+
                         "," + hairShop.IsJoin.CompareTo(false).ToString() + 
                         "," + hairShop.TypeID.ToString() + 
                         "," + hairShop.IsPostStation.CompareTo(false).ToString() + 
@@ -66,14 +66,14 @@ namespace HairNet.Provider
                 case UserAction.Update:
                     commandText = "update HairShop set HairShopName='" + hairShop.HairShopName + "',HairShopCityID=" + hairShop.HairShopCityID.ToString() +
                         ",HairShopMapZoneID=" + hairShop.HairShopMapZoneID.ToString() + ",HairShopHotZoneID=" + hairShop.HairShopHotZoneID.ToString() + 
-                        ",HairShopAddress='" + hairShop.HairShopAddress + "',HairShopPhoneNum='" + hairShop.HairShopPhoneNum + "',HairShopPictureStoreIDs='" + 
-                        hairShop.HairShopPictureStoreIDs + "',HairShopMainIDs='" + hairShop.HairShopMainIDs + "',HairShopPartialIDs='" + hairShop.HairShopPartialIDs +
+                        ",HairShopAddress='" + hairShop.HairShopAddress + "',HairShopPhoneNum='" + hairShop.HairShopPhoneNum +  
+                        
                         "',HairShopEngineerNum=" + hairShop.HairShopEngineerNum.ToString() + ",HairShopOpenTime='" + hairShop.HairShopOpenTime + 
-                        "',WorkRangeIDs='" + hairShop.WorkRangeIDs + "',HairShopWebSite='" + hairShop.HairShopWebSite + "',HairShopEmail='" + 
+                        "',HairShopWebSite='" + hairShop.HairShopWebSite + "',HairShopEmail='" + 
                         hairShop.HairShopEmail + "',HairShopDiscount='" + hairShop.HairShopDiscount + "',HairShopLogo='" + hairShop.HairShopLogo + 
                         "',HairShopCreateTime='" + hairShop.HairShopCreateTime + "',HairShopDescription='" + hairShop.HairShopDescription +
                         "',ProductIDs='" + hairShop.ProductIDs + "',HairShopTagIDs='" + hairShop.HairShopTagIDs + "',HairShopShortName='" +
-                        hairShop.HairShopShortName + "',IsBest=" + hairShop.IsBest.CompareTo(false).ToString() + ",IsJoin=" + hairShop.IsJoin.CompareTo(false).ToString() + ",TypeID=" + hairShop.TypeID.ToString() + ",IsPostStation=" + hairShop.IsPostStation.CompareTo(false).ToString() + ",IsPostMachine=" + hairShop.IsPostMachine.CompareTo(false).ToString() + " where HairShopID = " + hairShop.HairShopID.ToString();
+                        hairShop.HairShopShortName + ",IsJoin=" + hairShop.IsJoin.CompareTo(false).ToString() + ",TypeID=" + hairShop.TypeID.ToString() + ",IsPostStation=" + hairShop.IsPostStation.CompareTo(false).ToString() + ",IsPostMachine=" + hairShop.IsPostMachine.CompareTo(false).ToString() + " where HairShopID = " + hairShop.HairShopID.ToString();
                     break;
             }
             using (SqlConnection conn = new SqlConnection(DataHelper2.SqlConnectionString))
@@ -133,7 +133,7 @@ namespace HairNet.Provider
             if (action == UserAction.Create)
             {
                 StringBuilder cmdBuilder = new StringBuilder();
-                cmdBuilder.Append("insert into HairShop(HairShopName,HairShopCityID,HairShopMapZoneID,HairShopHotZoneID,HairShopAddress,HairShopPhoneNum,HairShopPictureStoreIDs,HairShopMainIDs,HairShopPartialIDs,HairShopEngineerNum,HairShopOpenTime,WorkRangeIDs,HairShopWebSite,HairShopEmail,HairShopDiscount,HairShopLogo,HairShopCreateTime,HairShopDescription,ProductIDs,HairShopTagIDs,HairShopShortName,IsBest,IsJoin,TypeID,IsPostStation,IsPostMachine,");
+                cmdBuilder.Append("insert into HairShop(HairShopName,HairShopCityID,HairShopMapZoneID,HairShopHotZoneID,HairShopAddress,HairShopPhoneNum,HairShopEngineerNum,HairShopOpenTime,HairShopWebSite,HairShopEmail,HairShopDiscount,HairShopLogo,HairShopCreateTime,HairShopDescription,ProductIDs,HairShopTagIDs,HairShopShortName,IsJoin,TypeID,IsPostStation,IsPostMachine,");
                 cmdBuilder.Append("HairCutPrice, HairMarcelPrice, HairDyePrice, HairCutDiscount, HairMarcelDiscount, HairDyeDiscount,");
                 cmdBuilder.Append("HairShapePrice, HairShapeDiscount, HairConservationPrice, HairConservationDiscount,");
                 cmdBuilder.Append("LocationMapURL, IsServeMarcel, IsServeDye, IsServeHairCut, [Square],MemberInfo,travelInfo) ");
@@ -146,12 +146,12 @@ namespace HairNet.Provider
                 cmdBuilder.Append(hairShop.HairShopHotZoneID.ToString() + "','");
                 cmdBuilder.Append(hairShop.HairShopAddress + "','");
                 cmdBuilder.Append(hairShop.HairShopPhoneNum + "','");
-                cmdBuilder.Append(hairShop.HairShopPictureStoreIDs + "','");
-                cmdBuilder.Append(hairShop.HairShopMainIDs + "','");
-                cmdBuilder.Append(hairShop.HairShopPartialIDs + "','");
+                //cmdBuilder.Append(hairShop.HairShopPictureStoreIDs + "','");
+                //cmdBuilder.Append(hairShop.HairShopMainIDs + "','");
+                //cmdBuilder.Append(hairShop.HairShopPartialIDs + "','");
                 cmdBuilder.Append(hairShop.HairShopEngineerNum.ToString() + "','");
                 cmdBuilder.Append(hairShop.HairShopOpenTime + "','");
-                cmdBuilder.Append(hairShop.WorkRangeIDs + "','");
+                //cmdBuilder.Append(hairShop.WorkRangeIDs + "','");
                 cmdBuilder.Append(hairShop.HairShopWebSite + "','");
                 cmdBuilder.Append(hairShop.HairShopEmail + "','");
                 cmdBuilder.Append(hairShop.HairShopDiscount + "','");
@@ -161,7 +161,7 @@ namespace HairNet.Provider
                 cmdBuilder.Append(hairShop.ProductIDs + "','");
                 cmdBuilder.Append(hairShop.HairShopTagIDs + "','");
                 cmdBuilder.Append(hairShop.HairShopShortName + "','");
-                cmdBuilder.Append(hairShop.IsBest.CompareTo(false).ToString() + "','");
+                //cmdBuilder.Append(hairShop.IsBest.CompareTo(false).ToString() + "','");
                 cmdBuilder.Append(hairShop.IsJoin.CompareTo(false).ToString() + "','");
                 cmdBuilder.Append(hairShop.TypeID.ToString() + "','");
                 cmdBuilder.Append(hairShop.IsPostStation.CompareTo(false).ToString() + "','");
@@ -215,7 +215,7 @@ namespace HairNet.Provider
 
             if (action == UserAction.Update)
             {
-                string commandText = "update HairShop set HairShopName='" + hairShop.HairShopName + "',HairShopCityID=" + hairShop.HairShopCityID.ToString() + ",HairShopMapZoneID=" + hairShop.HairShopMapZoneID.ToString() + ",HairShopHotZoneID=" + hairShop.HairShopHotZoneID.ToString() + ",HairShopAddress='" + hairShop.HairShopAddress + "',HairShopPhoneNum='" + hairShop.HairShopPhoneNum + "',HairShopPictureStoreIDs='" + hairShop.HairShopPictureStoreIDs + "',HairShopMainIDs='" + hairShop.HairShopMainIDs + "',HairShopPartialIDs='" + hairShop.HairShopPartialIDs + "',HairShopEngineerNum=" + hairShop.HairShopEngineerNum.ToString() + ",HairShopOpenTime='" + hairShop.HairShopOpenTime + "',WorkRangeIDs='" + hairShop.WorkRangeIDs + "',HairShopWebSite='" + hairShop.HairShopWebSite + "',HairShopEmail='" + hairShop.HairShopEmail + "',HairShopDiscount='" + hairShop.HairShopDiscount + "',HairShopLogo='" + hairShop.HairShopLogo + "',HairShopCreateTime='" + hairShop.HairShopCreateTime + "',HairShopDescription='" + hairShop.HairShopDescription + "',ProductIDs='" + hairShop.ProductIDs + "',HairShopTagIDs='" + hairShop.HairShopTagIDs + "',HairShopShortName='" + hairShop.HairShopShortName + "',IsBest=" + hairShop.IsBest.CompareTo(false).ToString() + ",IsJoin=" + hairShop.IsJoin.CompareTo(false).ToString() + ",TypeID=" + hairShop.TypeID.ToString() + ",IsPostStation=" + hairShop.IsPostStation.CompareTo(false).ToString() + ",IsPostMachine=" + hairShop.IsPostMachine.CompareTo(false).ToString();
+                string commandText = "update HairShop set HairShopName='" + hairShop.HairShopName + "',HairShopCityID=" + hairShop.HairShopCityID.ToString() + ",HairShopMapZoneID=" + hairShop.HairShopMapZoneID.ToString() + ",HairShopHotZoneID=" + hairShop.HairShopHotZoneID.ToString() + ",HairShopAddress='" + hairShop.HairShopAddress + "',HairShopPhoneNum='" + hairShop.HairShopPhoneNum + "',HairShopEngineerNum=" + hairShop.HairShopEngineerNum.ToString() + ",HairShopOpenTime='" + hairShop.HairShopOpenTime +  "',HairShopWebSite='" + hairShop.HairShopWebSite + "',HairShopEmail='" + hairShop.HairShopEmail + "',HairShopDiscount='" + hairShop.HairShopDiscount + "',HairShopLogo='" + hairShop.HairShopLogo + "',HairShopCreateTime='" + hairShop.HairShopCreateTime + "',HairShopDescription='" + hairShop.HairShopDescription + "',ProductIDs='" + hairShop.ProductIDs + "',HairShopTagIDs='" + hairShop.HairShopTagIDs + "',HairShopShortName='" + hairShop.HairShopShortName + "',IsJoin=" + hairShop.IsJoin.CompareTo(false).ToString() + ",TypeID=" + hairShop.TypeID.ToString() + ",IsPostStation=" + hairShop.IsPostStation.CompareTo(false).ToString() + ",IsPostMachine=" + hairShop.IsPostMachine.CompareTo(false).ToString();
                 StringBuilder cmdBuilder = new StringBuilder();
 
                 cmdBuilder.Append(commandText);
@@ -339,25 +339,25 @@ namespace HairNet.Provider
                             hairShop.HairShopHotZoneName = sdr["HotZoneName"].ToString();
                             hairShop.HairShopAddress = sdr["HairShopAddress"].ToString();
                             hairShop.HairShopPhoneNum = sdr["HairShopPhoneNum"].ToString();
-                            hairShop.HairShopPictureStoreIDs = sdr["HairShopPictureStoreIDs"].ToString();
-                            hairShop.HairShopMainIDs = sdr["HairShopMainIDs"].ToString();
-                            hairShop.HairShopPartialIDs = sdr["HairShopPartialIDs"].ToString();
+                            //hairShop.HairShopPictureStoreIDs = sdr["HairShopPictureStoreIDs"].ToString();
+                            //hairShop.HairShopMainIDs = sdr["HairShopMainIDs"].ToString();
+                            //hairShop.HairShopPartialIDs = sdr["HairShopPartialIDs"].ToString();
                             hairShop.HairShopEngineerNum = int.Parse(sdr["HairShopEngineerNum"].ToString());
                             hairShop.HairShopOpenTime = sdr["HairShopOpenTime"].ToString();
-                            hairShop.HairShopOrderNum = int.Parse(sdr["HairShopOrderNum"].ToString());
+                            //hairShop.HairShopOrderNum = int.Parse(sdr["HairShopOrderNum"].ToString());
                             hairShop.HairShopVisitNum = int.Parse(sdr["HairShopVisitNum"].ToString());
-                            hairShop.WorkRangeIDs = sdr["WorkRangeIDs"].ToString();
+                            //hairShop.WorkRangeIDs = sdr["WorkRangeIDs"].ToString();
                             hairShop.HairShopWebSite = sdr["HairShopWebSite"].ToString();
                             hairShop.HairShopEmail = sdr["HairShopEmail"].ToString();
                             hairShop.HairShopDiscount = sdr["HairShopDiscount"].ToString();
                             hairShop.HairShopLogo = sdr["HairShopLogo"].ToString();
-                            hairShop.HairShopRecommandNum = int.Parse(sdr["HairShopRecommandNum"].ToString());
+                            //hairShop.HairShopRecommandNum = int.Parse(sdr["HairShopRecommandNum"].ToString());
                             hairShop.HairShopCreateTime = sdr["HairShopCreateTime"].ToString();
                             hairShop.HairShopDescription = sdr["HairShopDescription"].ToString();
                             hairShop.ProductIDs = sdr["ProductIDs"].ToString();
                             hairShop.HairShopTagIDs = sdr["HairShopTagIDs"].ToString();
                             hairShop.HairShopShortName = sdr["HairShopShortName"].ToString();
-                            hairShop.IsBest = bool.Parse(sdr["IsBest"].ToString());
+                            //hairShop.IsBest = bool.Parse(sdr["IsBest"].ToString());
                             hairShop.IsJoin = bool.Parse(sdr["IsJoin"].ToString());
                             hairShop.TypeID = int.Parse(sdr["TypeID"].ToString());
                             hairShop.TypeName = sdr["TypeName"].ToString();
@@ -533,35 +533,35 @@ namespace HairNet.Provider
                     hairShop.HairShopHotZoneName = sdr["HotZoneName"].ToString();
                     hairShop.HairShopAddress = sdr["HairShopAddress"].ToString();
                     hairShop.HairShopPhoneNum = sdr["HairShopPhoneNum"].ToString();
-                    hairShop.HairShopPictureStoreIDs = sdr["HairShopPictureStoreIDs"].ToString();
-                    hairShop.HairShopMainIDs = sdr["HairShopMainIDs"].ToString();
-                    hairShop.HairShopPartialIDs = sdr["HairShopPartialIDs"].ToString();
+                    ///hairShop.HairShopPictureStoreIDs = sdr["HairShopPictureStoreIDs"].ToString();
+                    //hairShop.HairShopMainIDs = sdr["HairShopMainIDs"].ToString();
+                    //hairShop.HairShopPartialIDs = sdr["HairShopPartialIDs"].ToString();
                     hairShop.HairShopEngineerNum = int.Parse(sdr["HairShopEngineerNum"].ToString());
                     hairShop.HairShopOpenTime = sdr["HairShopOpenTime"].ToString();
-                    hairShop.HairShopOrderNum = int.Parse(sdr["HairShopOrderNum"].ToString());
+                    //hairShop.HairShopOrderNum = int.Parse(sdr["HairShopOrderNum"].ToString());
                     hairShop.HairShopVisitNum = int.Parse(sdr["HairShopVisitNum"].ToString());
-                    hairShop.WorkRangeIDs = sdr["WorkRangeIDs"].ToString();
+                    //hairShop.WorkRangeIDs = sdr["WorkRangeIDs"].ToString();
                     hairShop.HairShopWebSite = sdr["HairShopWebSite"].ToString();
                     hairShop.HairShopEmail = sdr["HairShopEmail"].ToString();
                     hairShop.HairShopDiscount = sdr["HairShopDiscount"].ToString();
                     hairShop.HairShopLogo = sdr["HairShopLogo"].ToString();
                     hairShop.TravelInfo = sdr["TravelInfo"].ToString();
                     
-                        try
-                        {
-                            hairShop.HairShopRecommandNum = int.Parse(sdr["HairShopRecommandNum"].ToString());
-                        }
-                    catch
-                        {
-                        hairShop.HairShopRecommandNum = 0;
+                    //    try
+                    //    {
+                    //        hairShop.HairShopRecommandNum = int.Parse(sdr["HairShopRecommandNum"].ToString());
+                    //    }
+                    //catch
+                    //    {
+                    //    hairShop.HairShopRecommandNum = 0;
 
-                    }
+                    //}
                     hairShop.HairShopCreateTime = sdr["HairShopCreateTime"].ToString();
                     hairShop.HairShopDescription = sdr["HairShopDescription"].ToString();
                     hairShop.ProductIDs = sdr["ProductIDs"].ToString();
                     hairShop.HairShopTagIDs = sdr["HairShopTagIDs"].ToString();
                     hairShop.HairShopShortName = sdr["HairShopShortName"].ToString();
-                    hairShop.IsBest = bool.Parse(sdr["IsBest"].ToString());
+                    //hairShop.IsBest = bool.Parse(sdr["IsBest"].ToString());
                     hairShop.IsJoin = bool.Parse(sdr["IsJoin"].ToString());
                     hairShop.TypeID = int.Parse(sdr["TypeID"].ToString());
                     hairShop.TypeName = sdr["TypeName"].ToString();
@@ -643,9 +643,9 @@ namespace HairNet.Provider
                 case OrderKey.CommentNum:
                     orderKey.Append("HairShopGood+hs.HairShopBad desc");
                     break;
-                case OrderKey.RecommandNum:
-                    orderKey.Append("HairShopRecommandNum desc");
-                    break;
+                //case OrderKey.RecommandNum:
+                //    orderKey.Append("HairShopRecommandNum desc");
+                //    break;
                 case OrderKey.HitNum:
                     orderKey.Append("HairShopVisitNum desc");
                     break;
@@ -663,13 +663,13 @@ namespace HairNet.Provider
             switch (Top)
             {
                 case 0:
-                    cmdText = @"SELECT HairShopID, HairShopName, HairShopVisitNum, HairShopRecommandNum, 
+                    cmdText = @"SELECT HairShopID, HairShopName, HairShopVisitNum, 
                                 CASE WHEN HairShopGood = 0 OR HairShopBad = 0 THEN 0 WHEN HairShopGood != 0 AND HairShopBad != 0
                                 THEN HairShopGood/(HairShopGood + HairShopBad) END AS 'HairGoodPraisedRate',HairShopLogo
                                 FROM HairShop " + orderKey.ToString();
                     break;
                 default:
-                    cmdText = "SELECT Top " + Top.ToString() + @" HairShopID, HairShopName, HairShopVisitNum, HairShopRecommandNum, 
+                    cmdText = "SELECT Top " + Top.ToString() + @" HairShopID, HairShopName, HairShopVisitNum,  
                                 CASE WHEN HairShopGood = 0 OR HairShopBad = 0 THEN 0 WHEN HairShopGood != 0 AND HairShopBad != 0
                                 THEN HairShopGood/(HairShopGood + HairShopBad) END AS 'HairGoodPraisedRate',HairShopLogo
                                 FROM HairShop " + orderKey.ToString();
@@ -679,7 +679,7 @@ namespace HairNet.Provider
             DataTable table = new DataTable("HairShopInfo");
             DataColumnCollection columnList = table.Columns;
 
-            foreach (string str in new String[] { "HairShopID", "HairShopName", "HairShopVisitNum", "HairShopRecommandNum", "HairGoodPraisedRate", "HairShopLogo", })
+            foreach (string str in new String[] { "HairShopID", "HairShopName", "HairShopVisitNum",  "HairGoodPraisedRate", "HairShopLogo", })
             {
                 columnList.Add(str);
             }
@@ -729,13 +729,13 @@ namespace HairNet.Provider
             switch (Top)
             {
                 case 0:
-                    cmdText = @"SELECT HairShopID, HairShopName, HairShopVisitNum, HairShopRecommandNum, 
+                    cmdText = @"SELECT HairShopID, HairShopName, HairShopVisitNum, 
                                 CASE WHEN HairShopGood = 0 OR HairShopBad = 0 THEN 0 WHEN HairShopGood != 0 AND HairShopBad != 0
                                 THEN HairShopGood/(HairShopGood + HairShopBad) END AS 'HairGoodPraisedRate',HairShopLogo
                                 FROM HairShop WHERE " + WhereCaused + orderKey.ToString();
                     break;
                 default:
-                    cmdText = "SELECT Top " + Top.ToString() + @" HairShopID, HairShopName, HairShopVisitNum, HairShopRecommandNum, 
+                    cmdText = "SELECT Top " + Top.ToString() + @" HairShopID, HairShopName, HairShopVisitNum, 
                                 CASE WHEN HairShopGood = 0 OR HairShopBad = 0 THEN 0 WHEN HairShopGood != 0 AND HairShopBad != 0
                                 THEN HairShopGood/(HairShopGood + HairShopBad) END AS 'HairGoodPraisedRate',HairShopLogo
                                 FROM HairShop WHERE " + WhereCaused + orderKey.ToString();
@@ -745,7 +745,7 @@ namespace HairNet.Provider
             DataTable table = new DataTable("HairShopInfo");
             DataColumnCollection columnList = table.Columns;
 
-            foreach (string str in new String[] { "HairShopID", "HairShopName", "HairShopVisitNum", "HairShopRecommandNum", "HairGoodPraisedRate", "HairShopLogo", })
+            foreach (string str in new String[] { "HairShopID", "HairShopName", "HairShopVisitNum", "HairGoodPraisedRate", "HairShopLogo", })
             {
                 columnList.Add(str);
             }
@@ -825,25 +825,25 @@ namespace HairNet.Provider
                                 hairShop.HairShopHotZoneName = sdr["HotZoneName"].ToString();
                                 hairShop.HairShopAddress = sdr["HairShopAddress"].ToString();
                                 hairShop.HairShopPhoneNum = sdr["HairShopPhoneNum"].ToString();
-                                hairShop.HairShopPictureStoreIDs = sdr["HairShopPictureStoreIDs"].ToString();
-                                hairShop.HairShopMainIDs = sdr["HairShopMainIDs"].ToString();
-                                hairShop.HairShopPartialIDs = sdr["HairShopPartialIDs"].ToString();
+                                //hairShop.HairShopPictureStoreIDs = sdr["HairShopPictureStoreIDs"].ToString();
+                                //HairShopMainIDs = sdr["HairShopMainIDs"].ToString();
+                                //hairShop.HairShopPartialIDs = sdr["HairShopPartialIDs"].ToString();
                                 hairShop.HairShopEngineerNum = int.Parse(sdr["HairShopEngineerNum"].ToString());
                                 hairShop.HairShopOpenTime = sdr["HairShopOpenTime"].ToString();
-                                hairShop.HairShopOrderNum = int.Parse(sdr["HairShopOrderNum"].ToString());
+                                //hairShop.HairShopOrderNum = int.Parse(sdr["HairShopOrderNum"].ToString());
                                 hairShop.HairShopVisitNum = int.Parse(sdr["HairShopVisitNum"].ToString());
-                                hairShop.WorkRangeIDs = sdr["WorkRangeIDs"].ToString();
+                                //hairShop.WorkRangeIDs = sdr["WorkRangeIDs"].ToString();
                                 hairShop.HairShopWebSite = sdr["HairShopWebSite"].ToString();
                                 hairShop.HairShopEmail = sdr["HairShopEmail"].ToString();
                                 hairShop.HairShopDiscount = sdr["HairShopDiscount"].ToString();
                                 hairShop.HairShopLogo = sdr["HairShopLogo"].ToString();
-                                hairShop.HairShopRecommandNum = int.Parse(sdr["HairShopRecommandNum"].ToString());
+                                //hairShop.HairShopRecommandNum = int.Parse(sdr["HairShopRecommandNum"].ToString());
                                 hairShop.HairShopCreateTime = sdr["HairShopCreateTime"].ToString();
                                 hairShop.HairShopDescription = sdr["HairShopDescription"].ToString();
                                 hairShop.ProductIDs = sdr["ProductIDs"].ToString();
                                 hairShop.HairShopTagIDs = sdr["HairShopTagIDs"].ToString();
                                 hairShop.HairShopShortName = sdr["HairShopShortName"].ToString();
-                                hairShop.IsBest = bool.Parse(sdr["IsBest"].ToString());
+                                //hairShop.IsBest = bool.Parse(sdr["IsBest"].ToString());
                                 hairShop.IsJoin = bool.Parse(sdr["IsJoin"].ToString());
                                 hairShop.TypeID = int.Parse(sdr["TypeID"].ToString());
                                 hairShop.TypeName = sdr["TypeName"].ToString();
@@ -940,33 +940,33 @@ namespace HairNet.Provider
                                 hairShop.HairShopHotZoneName = sdr["HotZoneName"].ToString();
                                 hairShop.HairShopAddress = sdr["HairShopAddress"].ToString();
                                 hairShop.HairShopPhoneNum = sdr["HairShopPhoneNum"].ToString();
-                                hairShop.HairShopPictureStoreIDs = sdr["HairShopPictureStoreIDs"].ToString();
-                                hairShop.HairShopMainIDs = sdr["HairShopMainIDs"].ToString();
-                                hairShop.HairShopPartialIDs = sdr["HairShopPartialIDs"].ToString();
+                                //hairShop.HairShopPictureStoreIDs = sdr["HairShopPictureStoreIDs"].ToString();
+                                //hairShop.HairShopMainIDs = sdr["HairShopMainIDs"].ToString();
+                                //hairShop.HairShopPartialIDs = sdr["HairShopPartialIDs"].ToString();
                                 hairShop.HairShopEngineerNum = int.Parse(sdr["HairShopEngineerNum"].ToString());
                                 hairShop.HairShopOpenTime = sdr["HairShopOpenTime"].ToString();
-                                hairShop.HairShopOrderNum = int.Parse(sdr["HairShopOrderNum"].ToString());
+                                //hairShop.HairShopOrderNum = int.Parse(sdr["HairShopOrderNum"].ToString());
                                 hairShop.HairShopVisitNum = int.Parse(sdr["HairShopVisitNum"].ToString());
-                                hairShop.WorkRangeIDs = sdr["WorkRangeIDs"].ToString();
+                                //hairShop.WorkRangeIDs = sdr["WorkRangeIDs"].ToString();
                                 hairShop.HairShopWebSite = sdr["HairShopWebSite"].ToString();
                                 hairShop.HairShopEmail = sdr["HairShopEmail"].ToString();
                                 hairShop.HairShopDiscount = sdr["HairShopDiscount"].ToString();
                                 hairShop.HairShopLogo = sdr["HairShopLogo"].ToString();
                                 hairShop.TravelInfo = sdr["TravelInfo"].ToString();
-                                try
-                                {
-                                    hairShop.HairShopRecommandNum = int.Parse(sdr["HairShopRecommandNum"].ToString());
-                                }
-                                catch
-                                {
-                                    hairShop.HairShopRecommandNum = 0;
-                                }
+                                //try
+                                //{
+                                //    hairShop.HairShopRecommandNum = int.Parse(sdr["HairShopRecommandNum"].ToString());
+                                //}
+                                //catch
+                                //{
+                                //    hairShop.HairShopRecommandNum = 0;
+                                //}
                                 hairShop.HairShopCreateTime = sdr["HairShopCreateTime"].ToString();
                                 hairShop.HairShopDescription = sdr["HairShopDescription"].ToString();
                                 hairShop.ProductIDs = sdr["ProductIDs"].ToString();
                                 hairShop.HairShopTagIDs = sdr["HairShopTagIDs"].ToString();
                                 hairShop.HairShopShortName = sdr["HairShopShortName"].ToString();
-                                hairShop.IsBest = bool.Parse(sdr["IsBest"].ToString());
+                                //hairShop.IsBest = bool.Parse(sdr["IsBest"].ToString());
                                 hairShop.IsJoin = bool.Parse(sdr["IsJoin"].ToString());
                                 hairShop.TypeID = int.Parse(sdr["TypeID"].ToString());
                                 hairShop.TypeName = sdr["TypeName"].ToString();
@@ -1965,7 +1965,7 @@ namespace HairNet.Provider
             int newID = 0;
             using (SqlConnection conn = new SqlConnection(DataHelper2.SqlConnectionString))
             {
-                string insertSQL = "INSERT INTO [hairshop] ([HairShopName], [HairShopCityID], [HairShopMapZoneID], [HairShopHotZoneID], [HairShopAddress], [HairShopPhoneNum], [HairShopPictureStoreIDs], [HairShopMainIDs], [HairShopPartialIDs], [HairShopEngineerNum], [HairShopOpenTime], [HairShopOrderNum], [HairShopVisitNum], [WorkRangeIDs], [HairShopWebSite], [HairShopEmail], [HairshopDiscount], [HairShopLogo], [HairShopRecommandNum], [HairShopCreateTime], [HairShopDescription], [ProductIDs], [HairShopTagIDs], [HairShopShortName], [IsBest], [IsJoin], [TypeID], [IsPostStation], [IsPostMachine], [HairShopGood], [HairShopBad],[HairCutPriceMin],[HairMarcelPriceMin],[HairDyePriceMin],[HairShapePriceMin],[HairConservationPriceMin]) VALUES ('" + hairShop.HairShopName + "', " + hairShop.HairShopCityID + ", " + hairShop.HairShopMapZoneID + ", " + hairShop.HairShopHotZoneID + ", '" + hairShop.HairShopAddress + "', '" + hairShop.HairShopPhoneNum + "', '" + hairShop.HairShopPictureStoreIDs + "', '" + hairShop.HairShopMainIDs + "', '" + hairShop.HairShopPartialIDs + "', " + hairShop.HairShopEngineerNum + ", '" + hairShop.HairShopOpenTime + "', " + hairShop.HairShopOrderNum + ", " + hairShop.HairShopVisitNum + ", '" + hairShop.WorkRangeIDs + "', '" + hairShop.HairShopWebSite + "', '" + hairShop.HairShopEmail + "', '" + hairShop.HairShopDiscount + "', '" + hairShop.HairShopLogo + "', " + hairShop.HairShopRecommandNum + ", '" + hairShop.HairShopCreateTime + "', '" + hairShop.HairShopDescription + "', '" + hairShop.ProductIDs + "', '" + hairShop.HairShopTagIDs + "', '" + hairShop.HairShopShortName + "', '" + hairShop.IsBest + "', '" + hairShop.IsJoin + "', " + hairShop.TypeID + ", '" + hairShop.IsPostStation + "', '" + hairShop.IsPostMachine + "', " + hairShop.HairShopGood + ", " + hairShop.HairShopBad + ","+hairShop.HairCutDiscountMin.ToString()+","+hairShop.HairMarcelDiscountMin.ToString()+","+hairShop.HairDyeDiscountMin.ToString()+","+hairShop.HairShapeDiscountMin.ToString()+","+hairShop.HairConservationDiscountMin.ToString()+");select @@identity;";
+                string insertSQL = "INSERT INTO [hairshop] ([HairShopName], [HairShopCityID], [HairShopMapZoneID], [HairShopHotZoneID], [HairShopAddress], [HairShopPhoneNum], [HairShopEngineerNum], [HairShopOpenTime], [HairShopVisitNum], [HairShopWebSite], [HairShopEmail], [HairshopDiscount], [HairShopLogo], [HairShopCreateTime], [HairShopDescription], [ProductIDs], [HairShopTagIDs], [HairShopShortName], [IsJoin], [TypeID], [IsPostStation], [IsPostMachine], [HairShopGood], [HairShopBad],[HairCutPriceMin],[HairMarcelPriceMin],[HairDyePriceMin],[HairShapePriceMin],[HairConservationPriceMin]) VALUES ('" + hairShop.HairShopName + "', " + hairShop.HairShopCityID + ", " + hairShop.HairShopMapZoneID + ", " + hairShop.HairShopHotZoneID + ", '" + hairShop.HairShopAddress + "', '" + hairShop.HairShopPhoneNum +  "', " + hairShop.HairShopEngineerNum + ", '" + hairShop.HairShopOpenTime  + ", " + hairShop.HairShopVisitNum +  "', '" + hairShop.HairShopWebSite + "', '" + hairShop.HairShopEmail + "', '" + hairShop.HairShopDiscount + "', '" + hairShop.HairShopLogo +  ", '" + hairShop.HairShopCreateTime + "', '" + hairShop.HairShopDescription + "', '" + hairShop.ProductIDs + "', '" + hairShop.HairShopTagIDs + "', '" + hairShop.HairShopShortName  + "', '" + hairShop.IsJoin + "', " + hairShop.TypeID + ", '" + hairShop.IsPostStation + "', '" + hairShop.IsPostMachine + "', " + hairShop.HairShopGood + ", " + hairShop.HairShopBad + ","+hairShop.HairCutDiscountMin.ToString()+","+hairShop.HairMarcelDiscountMin.ToString()+","+hairShop.HairDyeDiscountMin.ToString()+","+hairShop.HairShapeDiscountMin.ToString()+","+hairShop.HairConservationDiscountMin.ToString()+");select @@identity;";
 
                 SqlCommand cmd = new SqlCommand(insertSQL, conn);
                 conn.Open();
@@ -1995,26 +1995,26 @@ namespace HairNet.Provider
             Parameters[4].Value = hairShop.HairShopHotZoneID;
             Parameters[5].Value = hairShop.HairShopAddress;
             Parameters[6].Value = hairShop.HairShopPhoneNum;
-            Parameters[7].Value = hairShop.HairShopPictureStoreIDs;
-            Parameters[8].Value = hairShop.HairShopMainIDs;
-            Parameters[9].Value = hairShop.HairShopPartialIDs;
+            Parameters[7].Value = "";// hairShop.HairShopPictureStoreIDs;
+            Parameters[8].Value = "";// hairShop.HairShopMainIDs;
+            Parameters[9].Value = "";// hairShop.HairShopPartialIDs;
             Parameters[10].Value = hairShop.HairShopEngineerNum;
             Parameters[11].Value = hairShop.HairShopOpenTime;
-            Parameters[12].Value = hairShop.HairShopOrderNum;
+            Parameters[12].Value = "";// hairShop.HairShopOrderNum;
             Parameters[13].Value = hairShop.HairShopVisitNum;
-            Parameters[14].Value = hairShop.WorkRangeIDs;
+            Parameters[14].Value = "";// hairShop.WorkRangeIDs;
             Parameters[15].Value = hairShop.HairShopWebSite;
             Parameters[16].Value = hairShop.HairShopEmail;
             Parameters[17].Value = hairShop.HairShopDiscount;
             Parameters[18].Value = hairShop.HairShopLogo;
-            Parameters[19].Value = hairShop.HairShopRecommandNum;
+            Parameters[19].Value = "";// hairShop.HairShopRecommandNum;
             Parameters[20].Value = hairShop.HairShopCreateTime;
             Parameters[21].Value = hairShop.HairShopDescription;
             Parameters[22].Value = hairShop.ProductIDs;
             Parameters[23].Value = hairShop.HairShopTagIDs;
             Parameters[24].Value = hairShop.HairShopShortName;
             Parameters[25].Value = hairShop.HairShopShortName;
-            Parameters[26].Value = hairShop.IsBest;
+            Parameters[26].Value = "";// hairShop.IsBest;
             Parameters[27].Value = hairShop.IsJoin;
             Parameters[28].Value = hairShop.IsPostStation;
             Parameters[29].Value = hairShop.IsPostMachine;

@@ -247,10 +247,10 @@ namespace HairNet.Business
             hairShopRecommand.HairShopHotZoneID = hairShop.HairShopHotZoneID;
             hairShopRecommand.HairShopAddress = hairShop.HairShopAddress;
             hairShopRecommand.HairShopPhoneNum = hairShop.HairShopPhoneNum;
-            hairShopRecommand.HairShopPictureStoreIDs = hairShop.HairShopPictureStoreIDs;
+            hairShopRecommand.HairShopPictureStoreIDs = "";//hairShop.HairShopPictureStoreIDs;
             hairShopRecommand.HairShopEngineerNum = hairShop.HairShopEngineerNum;
             hairShopRecommand.HairShopOpenTime = hairShop.HairShopOpenTime;
-            hairShopRecommand.WorkRangeIDs = hairShop.WorkRangeIDs;
+            hairShopRecommand.WorkRangeIDs = "";// hairShop.WorkRangeIDs;
             hairShopRecommand.HairShopWebSite = hairShop.HairShopWebSite;
             hairShopRecommand.HairShopEmail = hairShop.HairShopEmail;
             hairShopRecommand.HairShopDiscount = hairShop.HairShopDiscount;
@@ -260,7 +260,7 @@ namespace HairNet.Business
             hairShopRecommand.ProductIDs = hairShop.ProductIDs;
             hairShopRecommand.HairShopTagIDs = hairShop.HairShopTagIDs;
             hairShopRecommand.HairShopShortName = hairShop.HairShopShortName;
-            hairShopRecommand.IsBest = hairShop.IsBest;
+            hairShopRecommand.IsBest = true;// hairShop.IsBest;
             hairShopRecommand.IsJoin = hairShop.IsJoin;
             hairShopRecommand.TypeID = hairShop.TypeID;
             hairShopRecommand.IsPostMachine = hairShop.IsPostMachine;
@@ -297,7 +297,7 @@ namespace HairNet.Business
             hairEngineerRecommand.HairEngineerName = hairEngineer.HairEngineerName;
             hairEngineerRecommand.HairEngineerAge = hairEngineer.HairEngineerAge;
             hairEngineerRecommand.HairEngineerSex = hairEngineer.HairEngineerSex;
-            hairEngineerRecommand.HairEngineerPhoto = hairEngineer.HairEngineerPhoto;
+            //hairEngineerRecommand.HairEngineerPhoto = hairEngineer.HairEngineerPhoto;
             hairEngineerRecommand.HairShopID = hairEngineer.HairShopID;
             hairEngineerRecommand.HairEngineerYear = hairEngineer.HairEngineerYear;
             hairEngineerRecommand.HairEngineerSkill = hairEngineer.HairEngineerSkill;

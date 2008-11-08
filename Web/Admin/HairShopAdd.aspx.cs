@@ -28,7 +28,7 @@ namespace Web.Admin
                 this.bindmapzone();
                 this.bindhotzone();
                 this.bindtype();
-                this.bindworkranges();
+                //this.bindworkranges();
                 this.bindProductChklist();
             }
         }

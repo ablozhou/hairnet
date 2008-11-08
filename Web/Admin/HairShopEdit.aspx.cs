@@ -26,7 +26,7 @@ namespace Web.Admin
             if (!IsPostBack)
             {
                 this.bindtype();
-                this.bindworkranges();
+                //this.bindworkranges();
                 this.bindProductChklist();
                 this.bindBaseInfo();
             }
