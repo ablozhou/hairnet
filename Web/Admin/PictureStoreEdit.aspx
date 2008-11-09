@@ -28,7 +28,7 @@
                     关键字：
                 </td>
                 <td>
-                    <asp:TextBox ID="txtPictureStoreTag" runat="server" CssClass="TextBox" Width="200"></asp:TextBox>
+                    <asp:TextBox ID="txtPictureStoreTag" runat="server" CssClass="TextBox" Width="200"></asp:TextBox><asp:Label ID="lblRedInfo1" runat="server" ForeColor="red" Visible="false"></asp:Label>
                 </td>
             </tr>
              <tr>

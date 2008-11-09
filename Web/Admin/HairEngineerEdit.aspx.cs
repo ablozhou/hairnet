@@ -153,6 +153,22 @@ namespace Web.Admin
         }
         protected void btnSubmit_OnClick(object sender, EventArgs e)
         {
+            if (this.txtHairEngineerTag.Text.Trim() != string.Empty)
+            {
+                string[] tagCondition = this.txtHairEngineerTag.Text.Split(",".ToCharArray());
+                this.lblRedInfo.Visible = false;
+
+                for (int k = 0; k < tagCondition.Length; k++)
+                {
+                    if (tagCondition[k] == string.Empty)
+                    {
+                        this.lblRedInfo.Text = "TAG格式不正确(正确的格式&nbsp;&nbsp; 1,2,3)";
+                        this.lblRedInfo.Visible = true;
+                        return;
+                    }
+                }
+            }
+
             HairEngineer he = (HairEngineer)ViewState["HairEngineerInfo"];
 
             //tag逻辑
@@ -256,99 +272,102 @@ namespace Web.Admin
             string id = he.HairEngineerID.ToString();
             string tagIDs = "";
             string[] tagCollection = txtHairEngineerTag.Text.Split(",".ToCharArray());
-            for (int k = 0; k < tagCollection.Length; k++)
+            if (tagCollection[0] != string.Empty)
             {
-                string tagID = "";
-                bool isExist = false;
-                HairEngineerTag hst = new HairEngineerTag();
-                using (SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["MSSqlServer"].ConnectionString))
+                for (int k = 0; k < tagCollection.Length; k++)
                 {
-                    string commString = "select * from HairEngineerTag where HairEngineerTagName='" + tagCollection[k] + "'";
-                    using (SqlCommand comm = new SqlCommand())
-                    {
-                        comm.CommandText = commString;
-                        comm.Connection = conn;
-                        conn.Open();
-                        using (SqlDataReader sdr = comm.ExecuteReader())
-                        {
-                            if (sdr.Read())
-                            {
-                                try
-                                {
-                                    hst.TagID = int.Parse(sdr["HairEngineerTagID"].ToString());
-                                    hst.TagName = sdr["HairEngineerTagName"].ToString();
-                                    hst.HairEngineerIDs = sdr["HairEngineerIDs"].ToString();
-                                }
-                                catch
-                                { }
-                            }
-                        }
-                    }
-                }
-                if (hst.TagID == 0)
-                {
+                    string tagID = "";
+                    bool isExist = false;
+                    HairEngineerTag hst = new HairEngineerTag();
                     using (SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["MSSqlServer"].ConnectionString))
                     {
-                        string commString = "insert HairEngineerTag(HairEngineerTagName,HairEngineerIDs) values('" + tagCollection[k] + "','" + id.ToString() + "');select @@identity;";
+                        string commString = "select * from HairEngineerTag where HairEngineerTagName='" + tagCollection[k] + "'";
                         using (SqlCommand comm = new SqlCommand())
                         {
                             comm.CommandText = commString;
                             comm.Connection = conn;
                             conn.Open();
-
-                            tagID = comm.ExecuteScalar().ToString();
+                            using (SqlDataReader sdr = comm.ExecuteReader())
+                            {
+                                if (sdr.Read())
+                                {
+                                    try
+                                    {
+                                        hst.TagID = int.Parse(sdr["HairEngineerTagID"].ToString());
+                                        hst.TagName = sdr["HairEngineerTagName"].ToString();
+                                        hst.HairEngineerIDs = sdr["HairEngineerIDs"].ToString();
+                                    }
+                                    catch
+                                    { }
+                                }
+                            }
                         }
                     }
-                }
-                else
-                {
-                    tagID = hst.TagID.ToString();
-                    if (hst.HairEngineerIDs == string.Empty)
+                    if (hst.TagID == 0)
                     {
                         using (SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["MSSqlServer"].ConnectionString))
                         {
-                            string commString = "update HairEngineerTag set HairEngineerIDs='" + id.ToString() + "' where HairEngineerTagID=" + hst.TagID.ToString();
+                            string commString = "insert HairEngineerTag(HairEngineerTagName,HairEngineerIDs) values('" + tagCollection[k] + "','" + id.ToString() + "');select @@identity;";
                             using (SqlCommand comm = new SqlCommand())
                             {
                                 comm.CommandText = commString;
                                 comm.Connection = conn;
                                 conn.Open();
-                                try
-                                {
-                                    comm.ExecuteNonQuery();
-                                }
-                                catch
-                                { }
+
+                                tagID = comm.ExecuteScalar().ToString();
                             }
                         }
                     }
                     else
                     {
-                        using (SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["MSSqlServer"].ConnectionString))
+                        tagID = hst.TagID.ToString();
+                        if (hst.HairEngineerIDs == string.Empty)
                         {
-                            string commString = "update HairEngineerTag set HairEngineerIDs=HairEngineerIDs+'," + id.ToString() + "' where HairEngineerTagID=" + hst.TagID.ToString();
-                            using (SqlCommand comm = new SqlCommand())
+                            using (SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["MSSqlServer"].ConnectionString))
                             {
-                                comm.CommandText = commString;
-                                comm.Connection = conn;
-                                conn.Open();
-                                try
+                                string commString = "update HairEngineerTag set HairEngineerIDs='" + id.ToString() + "' where HairEngineerTagID=" + hst.TagID.ToString();
+                                using (SqlCommand comm = new SqlCommand())
                                 {
-                                    comm.ExecuteNonQuery();
+                                    comm.CommandText = commString;
+                                    comm.Connection = conn;
+                                    conn.Open();
+                                    try
+                                    {
+                                        comm.ExecuteNonQuery();
+                                    }
+                                    catch
+                                    { }
                                 }
-                                catch
-                                { }
+                            }
+                        }
+                        else
+                        {
+                            using (SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["MSSqlServer"].ConnectionString))
+                            {
+                                string commString = "update HairEngineerTag set HairEngineerIDs=HairEngineerIDs+'," + id.ToString() + "' where HairEngineerTagID=" + hst.TagID.ToString();
+                                using (SqlCommand comm = new SqlCommand())
+                                {
+                                    comm.CommandText = commString;
+                                    comm.Connection = conn;
+                                    conn.Open();
+                                    try
+                                    {
+                                        comm.ExecuteNonQuery();
+                                    }
+                                    catch
+                                    { }
+                                }
                             }
                         }
                     }
-                }
-                if (k == 0)
-                {
-                    tagIDs = tagID;
-                }
-                else
-                {
-                    tagIDs += "," + tagID;
+                    if (k == 0)
+                    {
+                        tagIDs = tagID;
+                    }
+                    else
+                    {
+                        tagIDs += "," + tagID;
+                    }
                 }
             }
             he.HairEngineerTagIDs = tagIDs;

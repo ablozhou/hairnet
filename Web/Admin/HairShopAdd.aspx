@@ -339,7 +339,7 @@
                     关键字：
                 </td>
                 <td>
-                    <asp:TextBox ID="txtHairShopTag" runat="server" Width="500" CssClass="TextBox"></asp:TextBox>
+                    <asp:TextBox ID="txtHairShopTag" runat="server" Width="500" CssClass="TextBox"></asp:TextBox><asp:Label ID="lblRedInfo" runat="server" ForeColor="red" Visible="false"></asp:Label>
                 </td>
             </tr>
             <tr>

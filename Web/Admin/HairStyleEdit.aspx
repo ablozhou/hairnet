@@ -19,7 +19,7 @@
             <td><asp:TextBox ID="txtOpusName" runat=server CssClass="TextBox" Width="300px"></asp:TextBox></td>
         </tr>      <tr>
             <td width="120px" align="right">关键字: </td>
-            <td><asp:TextBox ID="txtKeywords" runat=server CssClass="TextBox" Width="300px"></asp:TextBox>
+            <td><asp:TextBox ID="txtKeywords" runat=server CssClass="TextBox" Width="300px"></asp:TextBox><asp:Label ID="lblRedInfo1" runat="server" ForeColor="red" Visible="false"></asp:Label>
                     </td>
         </tr>
             <tr>

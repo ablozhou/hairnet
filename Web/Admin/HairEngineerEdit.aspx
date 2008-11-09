@@ -103,7 +103,7 @@
         </tr>
         <tr>
             <td width="120" align="right">关键字：</td>
-            <td><asp:TextBox ID="txtHairEngineerTag" runat="server" CssClass="TextBox"></asp:TextBox></td>
+            <td><asp:TextBox ID="txtHairEngineerTag" runat="server" CssClass="TextBox"></asp:TextBox><asp:Label ID="lblRedInfo" runat="server" ForeColor="red" Visible="false"></asp:Label></td>
         </tr>
         <tr>
             <td width="120" align="right">所获奖项及描述：</td>

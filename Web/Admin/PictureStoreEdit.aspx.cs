@@ -266,6 +266,22 @@ namespace Web.Admin
         }
         protected void btnSubmit_OnClick(object sender, EventArgs e)
         {
+            if (this.txtPictureStoreTag.Text.Trim() != string.Empty)
+            {
+                string[] tagCondition = this.txtPictureStoreTag.Text.Split(",".ToCharArray());
+                this.lblRedInfo1.Visible = false;
+
+                for (int k = 0; k < tagCondition.Length; k++)
+                {
+                    if (tagCondition[k] == string.Empty)
+                    {
+                        this.lblRedInfo1.Text = "TAG格式不正确(正确的格式&nbsp;&nbsp; 1,2,3)";
+                        this.lblRedInfo1.Visible = true;
+                        return;
+                    }
+                }
+            }
+
             string PSGIDS = this.GetPSGIDs();
             PictureStore ps = (PictureStore)ViewState["PictureStoreInfo"];
 
@@ -474,99 +490,102 @@ namespace Web.Admin
             //tag逻辑
             string tagIDs = "";
             string[] tagCollection = txtPictureStoreTag.Text.Split(",".ToCharArray());
-            for (int k = 0; k < tagCollection.Length; k++)
+            if (tagCollection[0] != string.Empty)
             {
-                string tagID = "";
-                bool isExist = false;
-                PictureStoreTag hst = new PictureStoreTag();
-                using (SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["MSSqlServer"].ConnectionString))
+                for (int k = 0; k < tagCollection.Length; k++)
                 {
-                    string commString = "select * from PictureStoreTag where PictureStoreTagName='" + tagCollection[k] + "'";
-                    using (SqlCommand comm = new SqlCommand())
-                    {
-                        comm.CommandText = commString;
-                        comm.Connection = conn;
-                        conn.Open();
-                        using (SqlDataReader sdr = comm.ExecuteReader())
-                        {
-                            if (sdr.Read())
-                            {
-                                try
-                                {
-                                    hst.TagID = int.Parse(sdr["PictureStoreTagID"].ToString());
-                                    hst.TagName = sdr["PictureStoreTagName"].ToString();
-                                    hst.PictureStoreIDs = sdr["PictureStoreIDs"].ToString();
-                                }
-                                catch
-                                { }
-                            }
-                        }
-                    }
-                }
-                if (hst.TagID == 0)
-                {
+                    string tagID = "";
+                    bool isExist = false;
+                    PictureStoreTag hst = new PictureStoreTag();
                     using (SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["MSSqlServer"].ConnectionString))
                     {
-                        string commString = "insert PictureStoreTag(PictureStoreTagName,PictureStoreIDs) values('" + tagCollection[k] + "','" + hstyleid.ToString() + "');select @@identity;";
+                        string commString = "select * from PictureStoreTag where PictureStoreTagName='" + tagCollection[k] + "'";
                         using (SqlCommand comm = new SqlCommand())
                         {
                             comm.CommandText = commString;
                             comm.Connection = conn;
                             conn.Open();
-
-                            tagID = comm.ExecuteScalar().ToString();
+                            using (SqlDataReader sdr = comm.ExecuteReader())
+                            {
+                                if (sdr.Read())
+                                {
+                                    try
+                                    {
+                                        hst.TagID = int.Parse(sdr["PictureStoreTagID"].ToString());
+                                        hst.TagName = sdr["PictureStoreTagName"].ToString();
+                                        hst.PictureStoreIDs = sdr["PictureStoreIDs"].ToString();
+                                    }
+                                    catch
+                                    { }
+                                }
+                            }
                         }
                     }
-                }
-                else
-                {
-                    tagID = hst.TagID.ToString();
-                    if (hst.PictureStoreIDs == string.Empty)
+                    if (hst.TagID == 0)
                     {
                         using (SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["MSSqlServer"].ConnectionString))
                         {
-                            string commString = "update PictureStoreTag set PictureStoreIDs='" + hstyleid.ToString() + "' where PictureStoreTagID=" + hst.TagID.ToString();
+                            string commString = "insert PictureStoreTag(PictureStoreTagName,PictureStoreIDs) values('" + tagCollection[k] + "','" + hstyleid.ToString() + "');select @@identity;";
                             using (SqlCommand comm = new SqlCommand())
                             {
                                 comm.CommandText = commString;
                                 comm.Connection = conn;
                                 conn.Open();
-                                try
-                                {
-                                    comm.ExecuteNonQuery();
-                                }
-                                catch
-                                { }
+
+                                tagID = comm.ExecuteScalar().ToString();
                             }
                         }
                     }
                     else
                     {
-                        using (SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["MSSqlServer"].ConnectionString))
+                        tagID = hst.TagID.ToString();
+                        if (hst.PictureStoreIDs == string.Empty)
                         {
-                            string commString = "update PictureStoreTag set PictureStoreIDs=PictureStoreIDs+'," + hstyleid.ToString() + "' where PictureStoreTagID=" + hst.TagID.ToString();
-                            using (SqlCommand comm = new SqlCommand())
+                            using (SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["MSSqlServer"].ConnectionString))
                             {
-                                comm.CommandText = commString;
-                                comm.Connection = conn;
-                                conn.Open();
-                                try
+                                string commString = "update PictureStoreTag set PictureStoreIDs='" + hstyleid.ToString() + "' where PictureStoreTagID=" + hst.TagID.ToString();
+                                using (SqlCommand comm = new SqlCommand())
                                 {
-                                    comm.ExecuteNonQuery();
+                                    comm.CommandText = commString;
+                                    comm.Connection = conn;
+                                    conn.Open();
+                                    try
+                                    {
+                                        comm.ExecuteNonQuery();
+                                    }
+                                    catch
+                                    { }
                                 }
-                                catch
-                                { }
+                            }
+                        }
+                        else
+                        {
+                            using (SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["MSSqlServer"].ConnectionString))
+                            {
+                                string commString = "update PictureStoreTag set PictureStoreIDs=PictureStoreIDs+'," + hstyleid.ToString() + "' where PictureStoreTagID=" + hst.TagID.ToString();
+                                using (SqlCommand comm = new SqlCommand())
+                                {
+                                    comm.CommandText = commString;
+                                    comm.Connection = conn;
+                                    conn.Open();
+                                    try
+                                    {
+                                        comm.ExecuteNonQuery();
+                                    }
+                                    catch
+                                    { }
+                                }
                             }
                         }
                     }
-                }
-                if (k == 0)
-                {
-                    tagIDs = tagID;
-                }
-                else
-                {
-                    tagIDs += "," + tagID;
+                    if (k == 0)
+                    {
+                        tagIDs = tagID;
+                    }
+                    else
+                    {
+                        tagIDs += "," + tagID;
+                    }
                 }
             }
             //
