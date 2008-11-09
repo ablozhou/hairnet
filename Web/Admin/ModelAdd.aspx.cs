@@ -41,6 +41,49 @@ namespace Web.Admin
                         }
                     }
                 }
+
+                string mID = string.Empty;
+
+                try
+                {
+                    mID = this.Request.QueryString["mid"].ToString();
+                    this.btnSubmit.Text = "修改";
+                    using (SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["MSSqlServer"].ToString()))
+                    {
+                        string commString = "select * from ModelList where id="+mID;
+                        using (SqlCommand comm = new SqlCommand())
+                        {
+                            comm.Connection = conn;
+                            comm.CommandText = commString;
+                            conn.Open();
+
+                            using (SqlDataReader sdr = comm.ExecuteReader())
+                            {
+                                if (sdr.Read())
+                                {
+                                    this.ddlSex.SelectedValue = sdr["sex"].ToString();
+                                    this.txtModelName.Text = sdr["ModelName"].ToString();
+                                    this.ddlFaceStyle.SelectedValue = sdr["facestyle"].ToString();
+
+                                    string big1 = sdr["bigurl"].ToString();
+                                    string small1 = sdr["thumburl"].ToString();
+
+                                    this.lblBig.Text = big1;
+                                    this.lblSmall.Text = small1;
+
+                                    this.lblInfo.Visible = true;
+                                    this.lblInfo.Text = "<img width=100 height=50 src='" + small1 + "'></img>&nbsp;&nbsp;<img src='" + big1 + "' width=200 height=100></img>";
+                                }
+                            }
+                        }
+                    }
+
+                }
+                catch
+                {
+ 
+                }
+
             }
         }
         public void btnUpload_OnClick(object sender, EventArgs e)
@@ -82,25 +125,54 @@ namespace Web.Admin
             string thumburl = this.lblSmall.Text;
             string modelname = this.txtModelName.Text.Trim();
 
-            using (SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["MSSqlServer"].ConnectionString))
+            string mID = string.Empty;
+            try
             {
-                string commString = "insert into ModelList(ModelName,sex,facestyle,bigurl,thumburl) values('"+modelname+"','"+sex+"',"+facestyle+",'"+bigurl+"','"+thumburl+"')";
-                using (SqlCommand comm = new SqlCommand())
+                mID = this.Request.QueryString["mid"].ToString();
+
+                using (SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["MSSqlServer"].ConnectionString))
                 {
-                    comm.CommandText = commString;
-                    comm.Connection = conn;
-                    conn.Open();
-                    try
+                    string commString = "update ModelList set sex='"+sex+"',facestyle="+facestyle+",bigurl='"+bigurl+"',thumburl='"+thumburl+"',ModelName='"+modelname+"' where id="+mID;
+                    using (SqlCommand comm = new SqlCommand())
                     {
-                        comm.ExecuteNonQuery();
+                        comm.CommandText = commString;
+                        comm.Connection = conn;
+                        conn.Open();
+                        try
+                        {
+                            comm.ExecuteNonQuery();
+                        }
+                        catch (Exception ex)
+                        {
+                            throw new Exception(ex.Message);
+                        }
                     }
-                    catch (Exception ex)
+                }
+
+            }
+            catch
+            {
+                using (SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["MSSqlServer"].ConnectionString))
+                {
+                    string commString = "insert into ModelList(ModelName,sex,facestyle,bigurl,thumburl) values('" + modelname + "','" + sex + "'," + facestyle + ",'" + bigurl + "','" + thumburl + "')";
+                    using (SqlCommand comm = new SqlCommand())
                     {
-                        throw new Exception(ex.Message);
+                        comm.CommandText = commString;
+                        comm.Connection = conn;
+                        conn.Open();
+                        try
+                        {
+                            comm.ExecuteNonQuery();
+                        }
+                        catch (Exception ex)
+                        {
+                            throw new Exception(ex.Message);
+                        }
                     }
                 }
             }
 
+        
             this.Response.Redirect("ModelAdmin.aspx");
         }
     }

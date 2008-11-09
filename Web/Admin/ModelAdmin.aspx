@@ -44,6 +44,7 @@
                 </asp:TemplateColumn>
                 <asp:BoundColumn DataField="ModelName" HeaderText="名称"></asp:BoundColumn>
                 <asp:BoundColumn DataField="Sex" HeaderText="性别"></asp:BoundColumn>
+                <asp:ButtonColumn ButtonType="LinkButton" CommandName="edit" Text="编辑"></asp:ButtonColumn>
                  <asp:ButtonColumn ButtonType="LinkButton" CommandName="delete" Text="删除"></asp:ButtonColumn>
             </Columns>
         </asp:DataGrid>

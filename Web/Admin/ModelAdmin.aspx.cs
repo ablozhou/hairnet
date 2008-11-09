@@ -123,9 +123,9 @@ namespace Web.Admin
         {
             if (e.Item.ItemType == ListItemType.AlternatingItem || e.Item.ItemType == ListItemType.Item)
             {
+                string id = this.dg.DataKeys[e.Item.ItemIndex].ToString();
                 if (e.CommandName == "delete")
-                {
-                    string id = this.dg.DataKeys[e.Item.ItemIndex].ToString();
+                {   
                     using (SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["MSSqlServer"].ConnectionString))
                     {
                         string commString = "delete from ModelList where id="+id;
@@ -146,6 +146,10 @@ namespace Web.Admin
                     }
                     this.databind();
                 }
+                if (e.CommandName == "edit")
+                {
+                    this.Response.Redirect("ModelAdd.aspx?mid="+id);
+                }
             }
         }
         public void dg_OnItemDataBound(object sender, DataGridItemEventArgs e)
@@ -155,7 +159,7 @@ namespace Web.Admin
                 e.Item.Attributes.Add("onmouseover", "c=this.style.backgroundColor;this.style.backgroundColor='#ffffff';");
                 e.Item.Attributes.Add("onmouseout", "this.style.backgroundColor=c;");
 
-                e.Item.Cells[3].Attributes.Add("onclick", "return confirm('确定删除么?');");
+                e.Item.Cells[4].Attributes.Add("onclick", "return confirm('确定删除么?');");
             }
         }
         public void dg_OnPageIndexChanged(object sender, DataGridPageChangedEventArgs e)
