@@ -52,7 +52,16 @@ namespace Web
                 Response.Write("id not exist");
                 Response.End();
             }
-            int hairShopID = int.Parse(HairShopID.ToString());
+            int hairShopID = 0;
+            try
+            {
+                hairShopID = int.Parse(HairShopID.ToString());
+            }
+            catch
+            {
+                Response.Write("防止注入！");
+                Response.End();
+            }
 
             //给美发厅访问+1
             this.AddNumToHairShop(hairShopID.ToString());
