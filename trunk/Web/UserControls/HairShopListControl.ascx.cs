@@ -149,29 +149,32 @@ namespace Web.UserControls
 
                     foreach (string s in tCollection)
                     {
-                        string tname = "";
-                        using (SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["MSSqlServer"].ConnectionString))
+                        if (s != string.Empty)
                         {
-                            string commString = "select * from HairShopTag where HairShopTagID = " + s;
-                            using (SqlCommand comm = new SqlCommand())
+                            string tname = "";
+                            using (SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["MSSqlServer"].ConnectionString))
                             {
-                                comm.CommandText = commString;
-                                comm.Connection = conn;
-                                conn.Open();
-
-                                using (SqlDataReader sdr = comm.ExecuteReader())
+                                string commString = "select * from HairShopTag where HairShopTagID = " + s;
+                                using (SqlCommand comm = new SqlCommand())
                                 {
-                                    if (sdr.Read())
+                                    comm.CommandText = commString;
+                                    comm.Connection = conn;
+                                    conn.Open();
+
+                                    using (SqlDataReader sdr = comm.ExecuteReader())
                                     {
-                                        tname = sdr["HairShopTagName"].ToString();
+                                        if (sdr.Read())
+                                        {
+                                            tname = sdr["HairShopTagName"].ToString();
+                                        }
                                     }
                                 }
                             }
-                        }
-                        if (tname.Contains(this.KeyWord))
-                        {
-                            list2.Add(hairShop2);
-                            break;
+                            if (tname.Contains(this.KeyWord))
+                            {
+                                list2.Add(hairShop2);
+                                break;
+                            }
                         }
                     }
                 }
