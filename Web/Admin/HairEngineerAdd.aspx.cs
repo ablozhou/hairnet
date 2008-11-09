@@ -333,7 +333,8 @@ namespace Web.Admin
             //个人图片逻辑
             string photoIDs = "";
             string[] photoSmallString = lblpicsmallString.Text.Split(";".ToCharArray());
-            string[] photoString = lblpicSring.Text.Split(";".ToCharArray());
+            string[] photoString = lblpicSring.Text.Split(";".ToCharArray(), StringSplitOptions.RemoveEmptyEntries);
+
             for(int k=0;k<photoString.Length;k++)
             {
                 using (SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["MSSqlServer"].ConnectionString))
