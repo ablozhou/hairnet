@@ -136,7 +136,8 @@ namespace HairNet.Provider
                 cmdBuilder.Append("insert into HairShop(HairShopName,HairShopCityID,HairShopMapZoneID,HairShopHotZoneID,HairShopAddress,HairShopPhoneNum,HairShopEngineerNum,HairShopOpenTime,HairShopWebSite,HairShopEmail,HairShopDiscount,HairShopLogo,HairShopCreateTime,HairShopDescription,ProductIDs,HairShopTagIDs,HairShopShortName,IsJoin,TypeID,IsPostStation,IsPostMachine,");
                 cmdBuilder.Append("HairCutPrice, HairMarcelPrice, HairDyePrice, HairCutDiscount, HairMarcelDiscount, HairDyeDiscount,");
                 cmdBuilder.Append("HairShapePrice, HairShapeDiscount, HairConservationPrice, HairConservationDiscount,");
-                cmdBuilder.Append("LocationMapURL, IsServeMarcel, IsServeDye, IsServeHairCut, [Square],MemberInfo,travelInfo) ");
+                cmdBuilder.Append("LocationMapURL, IsServeMarcel, IsServeDye, IsServeHairCut, [Square],MemberInfo,travelInfo,HairCutPriceMin,HairMarcelPriceMin,HairDyePriceMin,HairShapePriceMin,HairConservationPriceMin) ");
+                
                 cmdBuilder.Append(" VALUES(' ");
 
                 #region
@@ -183,7 +184,12 @@ namespace HairNet.Provider
                 cmdBuilder.Append(hairShop.IsServeMarce.CompareTo(false).ToString() + "','");
                 cmdBuilder.Append(hairShop.IsServeDye.CompareTo(false).ToString() + "','");
                 cmdBuilder.Append(hairShop.IsServeHairCut.CompareTo(false).ToString() + " ',");
-                cmdBuilder.Append(hairShop.Square.ToString() + ",'"+hairShop.MemberInfo+"' ,'"+hairShop.TravelInfo+"');select @@identity;");
+                cmdBuilder.Append(hairShop.Square.ToString() + ",'" + hairShop.MemberInfo + "' ,'" + hairShop.TravelInfo);
+                cmdBuilder.Append("', " + hairShop.HairCutDiscountMin.ToString());
+                cmdBuilder.Append(", " +hairShop.HairMarcelDiscountMin.ToString());
+                cmdBuilder.Append(", " + hairShop.HairDyeDiscountMin.ToString());
+                cmdBuilder.Append(", " + hairShop.HairShapeDiscountMin.ToString());
+                cmdBuilder.Append(", " +hairShop.HairConservationDiscountMin.ToString()+");select @@identity;");
 
                 using (SqlConnection conn = new SqlConnection(DataHelper2.SqlConnectionString))
                 {
@@ -253,14 +259,14 @@ namespace HairNet.Provider
             {
                 HairShopDataPrividerCreateDeleteUpdate(hairShop, UserAction.Delete);
             }
-            if (newid == 0)
-            {
-                newid = 0;
-            }
-            else
-            {
-                newid = newid;
-            }
+            //if (newid == 0)
+            //{
+            //    newid = 0;
+            //}
+            //else
+            //{
+            //    newid = newid;
+            //}
         }
 
         /// <summary>
@@ -445,17 +451,17 @@ namespace HairNet.Provider
 
                             hairShop.LocationMapURL = sdr["LocationMapURL"].ToString();
 
-                            if (sdr["IsServeMarcel"] == null || sdr["IsServeMarcel"].ToString() == "0")
+                            if (sdr["IsServeMarcel"] == null || bool.Parse(sdr["IsServeMarcel"].ToString()) == false)
                                 hairShop.IsServeMarce = false;
                             else
                                 hairShop.IsServeMarce = true;
 
-                            if (sdr["IsServeDye"] == null || sdr["IsServeDye"].ToString() == "0")
+                            if (sdr["IsServeDye"] == null || bool.Parse(sdr["IsServeDye"].ToString()) == false )
                                 hairShop.IsServeDye = false;
                             else
                                 hairShop.IsServeDye = true;
 
-                            if (sdr["IsServeHairCut"] == null || sdr["IsServeHairCut"].ToString() == "0")
+                            if (sdr["IsServeHairCut"] == null || bool.Parse(sdr["IsServeHairCut"].ToString()) == false)
                                 hairShop.IsServeHairCut = false;
                             else
                                 hairShop.IsServeHairCut = true;

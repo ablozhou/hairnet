@@ -57,7 +57,7 @@ window.location.href = "CouponManagement.aspx";
             </tr>
             <tr>
                 <td align="right" width="85px">联系方式：</td>
-                <td><asp:TextBox ID="tbDesc" runat="server" CssClass="TextBox" 
+                <td><asp:TextBox ID="tbPhone" runat="server" CssClass="TextBox" 
                         Width="200"></asp:TextBox></td>
             </tr>
             <tr>
@@ -67,7 +67,7 @@ window.location.href = "CouponManagement.aspx";
             </tr>
             <tr>
                 <td align="right" width="85px" valign="top">优惠券描述：</td>
-                <td><asp:TextBox ID="tbPhone" runat="server" CssClass="TextBox" 
+                <td><asp:TextBox ID="tbDesc" runat="server" CssClass="TextBox" 
                         TextMode="MultiLine" Height="110px" Width="480px"></asp:TextBox></td>
             </tr>
             <tr>

@@ -13,6 +13,9 @@
     所属大类:<asp:Label ID="lblGroupName" runat="server"></asp:Label>
     <br />
     分类名称:<asp:TextBox ID="txtLittleGroupname" runat="server" Width="200"></asp:TextBox>
+        <asp:RegularExpressionValidator ID="RegularExpressionValidator1" runat="server" 
+            ControlToValidate="txtLittleGroupname" ErrorMessage="字符串长度不得超过40及非法字符" 
+            ValidationExpression="[^&lt;&gt;'=]{0,40}"></asp:RegularExpressionValidator>
     <br />
     <asp:Label ID="lblInfo" runat="server" ForeColor="red"></asp:Label>
     <br />

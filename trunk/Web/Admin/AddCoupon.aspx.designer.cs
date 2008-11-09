@@ -86,13 +86,13 @@ namespace Web.Admin {
         protected global::System.Web.UI.WebControls.TextBox tbExpired;
         
         /// <summary>
-        /// tbDesc 控件。
+        /// tbPhone 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox tbDesc;
+        protected global::System.Web.UI.WebControls.TextBox tbPhone;
         
         /// <summary>
         /// tbTag 控件。
@@ -104,13 +104,13 @@ namespace Web.Admin {
         protected global::System.Web.UI.WebControls.TextBox tbTag;
         
         /// <summary>
-        /// tbPhone 控件。
+        /// tbDesc 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox tbPhone;
+        protected global::System.Web.UI.WebControls.TextBox tbDesc;
         
         /// <summary>
         /// picSmall 控件。

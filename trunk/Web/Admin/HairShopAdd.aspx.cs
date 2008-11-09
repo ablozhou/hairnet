@@ -138,8 +138,8 @@ namespace Web.Admin
 
             //hs.IsBest = chkIsBest.Checked;
             hs.IsJoin = chkIsJoin.Checked;
-            hs.IsPostMachine = chkIsPostStation.Checked;
-            hs.IsPostStation = chkIsPostMachine.Checked;
+            hs.IsPostMachine = chkIsPostMachine.Checked;
+            hs.IsPostStation = chkIsPostStation.Checked;
             hs.HairShopDescription = txtDescription.Text.Trim();
 
             //Session["HairShopInfo"] = hs;
@@ -288,7 +288,7 @@ namespace Web.Admin
 
             hs.IsServeHairCut = chkCut.Checked;
             hs.IsServeMarce = chkMarcel.Checked;
-            hs.IsServeDye = chkCut.Checked;
+            hs.IsServeDye = chkDye.Checked;
 
             hs.MemberInfo = txtMemberInfo.Text.Trim();
 

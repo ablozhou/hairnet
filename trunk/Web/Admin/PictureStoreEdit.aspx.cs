@@ -589,9 +589,10 @@ namespace Web.Admin
                 }
             }
             //
+            
             using (SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["MSSqlServer"].ToString()))
             {
-                string commString = "update HairStyle set tag='"+tagIDs+"',hairname='" + ps.PictureStoreName + "',hairShopID=" + hairShopID.ToString() + ",hairEngineerID=" + hairEngineerID.ToString() + ",hairnature=" + iHairNature + ",hairquantity=" + iHairQuantity + ",facestyle=" + iFaceStyle + ",sex=" + iSex + ",hairstyle=" + iHairStyleClassName + ",temperament=" + iTemperament + ",occasion=" + iOccasion + ",descr='" + ps.PictureStoreDescription + "', psgids='" + PSGIDS + "' where picturestoreid=" + ps.PictureStoreID.ToString();
+                string commString = "update HairStyle set tag='" + tagIDs + "',bbsUrl='"+txtBbsurl.Text+"',hairname='" + ps.PictureStoreName + "',hairShopID=" + hairShopID.ToString() + ",hairEngineerID=" + hairEngineerID.ToString() + ",hairnature=" + iHairNature + ",hairquantity=" + iHairQuantity + ",facestyle=" + iFaceStyle + ",sex=" + iSex + ",hairstyle=" + iHairStyleClassName + ",temperament=" + iTemperament + ",occasion=" + iOccasion + ",descr='" + ps.PictureStoreDescription + "', psgids='" + PSGIDS + "' where picturestoreid=" + ps.PictureStoreID.ToString();
                 using (SqlCommand comm = new SqlCommand())
                 {
                     comm.Connection = conn;

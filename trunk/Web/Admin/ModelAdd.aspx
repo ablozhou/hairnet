@@ -10,7 +10,7 @@
 <body>
     <form id="form1" runat="server">
     <div style="text-align:left;">
-        模特添加<br /><br />
+        模特添加/修改<br /><br />
         模特名称:<asp:TextBox ID="txtModelName" runat="server" CssClass="TextBox"></asp:TextBox>
         <br />
         性别:<asp:DropDownList ID="ddlSex" runat="server"><asp:ListItem Value="female">女</asp:ListItem><asp:ListItem Value="male">男</asp:ListItem></asp:DropDownList>
