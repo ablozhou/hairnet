@@ -177,6 +177,88 @@ namespace Web.Admin
                         break;
                     case "2":
                         //关键字
+                        List<PictureStore> list2 = new List<PictureStore>();
+                        //根据排序绑定,均是倒序
+                        switch (this.ddlOrderWay.SelectedValue)
+                        {
+                            case "1":
+                                //发布时间，即ID
+                                list2 = InfoAdmin.GetPictureStores(0, OrderKey.ID);
+                                break;
+                            case "2":
+                                //点击数
+                                list2 = InfoAdmin.GetPictureStores(0, OrderKey.HitNum);
+                                break;
+                            case "3":
+                                //评论数
+                                //目前未实现评论数排序，目前为对评论数进行预处理，故DESIGN改变后，再实现
+                                //list = InfoAdmin.GetPictureStores(0, OrderKey.CommentNum);
+                                break;
+                        }
+
+                        foreach (PictureStore ps in list2)
+                        {
+                            string keyword = this.txtQueryName.Text.Trim();
+
+                            if (keyword != string.Empty)
+                            {
+                                //过滤关键字
+                                string[] tCollection = new string[] { };
+
+                                using (SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["MSSqlServer"].ConnectionString))
+                                {
+                                    string commString = "select tag from HairStyle where PictureStoreID = " + ps.PictureStoreID.ToString();
+                                    using (SqlCommand comm = new SqlCommand())
+                                    {
+                                        comm.CommandText = commString;
+                                        comm.Connection = conn;
+                                        conn.Open();
+
+                                        using (SqlDataReader sdr = comm.ExecuteReader())
+                                        {
+                                            if (sdr.Read())
+                                            {
+                                                tCollection = sdr["tag"].ToString().Split(",".ToCharArray());
+                                            }
+                                        }
+                                    }
+                                } 
+
+                                
+
+                                foreach (string s in tCollection)
+                                {
+                                    if (s != string.Empty)
+                                    {
+                                        string tname = "";
+                                        using (SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["MSSqlServer"].ConnectionString))
+                                        {
+                                            string commString = "select * from PictureStoreTag where PictureStoreTagID = " + s;
+                                            using (SqlCommand comm = new SqlCommand())
+                                            {
+                                                comm.CommandText = commString;
+                                                comm.Connection = conn;
+                                                conn.Open();
+
+                                                using (SqlDataReader sdr = comm.ExecuteReader())
+                                                {
+                                                    if (sdr.Read())
+                                                    {
+                                                        tname = sdr["PictureStoreTagName"].ToString();
+                                                    }
+                                                }
+                                            }
+                                        }
+                                        if (tname.Contains(keyword))
+                                        {
+                                            list.Add(ps);
+                                            break;
+                                        }
+                                    }
+                                }
+                            }
+                        }
+
                         break;
                     case "3":
                         //时间段
