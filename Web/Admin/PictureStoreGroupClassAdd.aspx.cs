@@ -139,7 +139,8 @@ namespace Web.Admin
                     
                 }
             }
-            this.databind();
+            this.Response.Write("<script>alert('信息添加操作完成！');</script><script>window.location.href='" + this.Request.Url.ToString() + "'</script>");
+            //this.databind();
         }
 
         public void btnSelect_OnClick(object sender, EventArgs e)
@@ -342,8 +343,8 @@ namespace Web.Admin
                             }
                         }
                     }
-
-                    this.databind();
+                    this.Response.Write("<script>alert('信息添加操作完成！');</script><script>window.location.href='" + this.Request.Url.ToString() + "'</script>");
+                    //this.databind();
                 }
             }
         }

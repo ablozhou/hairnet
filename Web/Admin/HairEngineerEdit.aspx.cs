@@ -359,6 +359,24 @@ namespace Web.Admin
             {
                 Session["HairEngineerInfo"] = he;
 
+                //更新美发师作品所对应的美发厅id
+                using (SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["MSSqlServer"].ConnectionString))
+                {
+                    string commString = "update HairStyle set HairShopID="+he.HairShopID.ToString()+" where HairEngineerID=" + he.HairEngineerID.ToString();
+                    using (SqlCommand comm = new SqlCommand())
+                    {
+                        comm.CommandText = commString;
+                        comm.Connection = conn;
+                        conn.Open();
+                        try
+                        {
+                            comm.ExecuteNonQuery();
+                        }
+                        catch
+                        { }
+                    }
+                }
+
                 this.Response.Redirect("HairEngineerAdmin.aspx");
             }
             else
