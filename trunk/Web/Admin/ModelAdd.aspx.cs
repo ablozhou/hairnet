@@ -69,7 +69,7 @@ namespace Web.Admin
                                     string small1 = sdr["thumburl"].ToString();
 
                                     this.lblBig.Text = big1;
-                                    this.lblSmall.Text = small1;
+                                    this.lblSmall.Text = small1; 
 
                                     this.lblInfo.Visible = true;
                                     this.lblInfo.Text = "<img width=100 height=50 src='" + small1 + "'></img>&nbsp;&nbsp;<img src='" + big1 + "' width=200 height=100></img>";
