@@ -36,7 +36,15 @@ namespace Web
 
             try
             {
-                selectCondition = this.Request.QueryString["sc"].ToString();
+                string tt = this.Request.QueryString["tt"].ToString();
+                if (Session["selection"] == null || Session["selection"].ToString() == string.Empty)
+                {
+
+                }
+                else
+                {
+                    selectCondition = Session["selection"].ToString();//this.Request.QueryString["sc"].ToString();
+                }
             }
             catch
             { }
@@ -47,14 +55,20 @@ namespace Web
 
         protected void btnBusiZoneSearch_Click(object sender, EventArgs e)
         {
-            string selection = " where hz.HotZoneName like '%"+this.txtBuziZone.Text.Trim()+"%'";
-            this.Response.Redirect("CouponList.aspx?sc="+Server.UrlEncode(selection));
+            if (StringHelper.StringFilter(this.txtBuziZone.Text.Trim()))
+            {
+                Session["selection"] = Server.UrlEncode(" where hz.HotZoneName like '%" + this.txtBuziZone.Text.Trim() + "%'");
+                this.Response.Redirect("CouponList.aspx?tt=1");
+            }
         }
 
         protected void btnKeySearch_Click(object sender, EventArgs e)
         {
-            string selection = " where hs.HairShopName like '%" + this.txtHairShopName.Text.Trim() + "%'";
-            this.Response.Redirect("CouponList.aspx?sc=" + Server.UrlEncode(selection));
+            if (StringHelper.StringFilter(this.txtHairShopName.Text.Trim()))
+            {
+                Session["selection"] = Server.UrlEncode(" where hs.HairShopName like '%" + this.txtHairShopName.Text.Trim() + "%'");
+                this.Response.Redirect("CouponList.aspx?tt=1");
+            }
         }
     }
 }

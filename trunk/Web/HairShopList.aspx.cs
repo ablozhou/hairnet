@@ -59,7 +59,7 @@ namespace Web
             try
             {
                 district = this.Request.QueryString["district"].ToString();
-                if (district != string.Empty)
+                if (district != string.Empty && StringHelper.StringFilter(district))
                 {
                     sb.Append(" where m.MapZoneID = "+district);
                 }
@@ -70,7 +70,7 @@ namespace Web
             try
             {
                 buzizone = this.Request.QueryString["buzizone"].ToString();
-                if (buzizone != string.Empty)
+                if (buzizone != string.Empty&&StringHelper.StringFilter(buzizone))
                 {
                     if (sb.ToString() == string.Empty)
                     {
@@ -88,7 +88,7 @@ namespace Web
             try
             {
                 square = this.Request.QueryString["square"].ToString();
-                if (square != string.Empty)
+                if (square != string.Empty&&StringHelper.StringFilter(square))
                 {
                     if (sb.ToString() == string.Empty)
                     {
@@ -105,6 +105,10 @@ namespace Web
             try
             {
                 product = this.Request.QueryString["product"].ToString();
+                if (!StringHelper.StringFilter(product))
+                {
+                    product = string.Empty;
+                }
             }
             catch
             { }
@@ -112,6 +116,11 @@ namespace Web
             try
             {
                 keyword = Server.UrlDecode(this.Request.QueryString["keyword"].ToString());
+
+                if (!StringHelper.StringFilter(keyword))
+                {
+                    keyword = string.Empty;
+                }
             }
             catch
             { }

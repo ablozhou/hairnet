@@ -76,5 +76,45 @@ namespace HairNet.Utilities
             int start = path.LastIndexOf(".")+1;
             return path.Substring(start);
         }
+        /// <summary>
+        /// 过滤字符
+        /// </summary>
+        /// <param name="s"></param>
+        /// <returns></returns>
+        public static bool StringFilter(string s)
+        {
+            string[] sList = new string[]{"net user",
+                                    "xp_cmdshell",
+                                    "/add",
+                                    "exec master.dbo.xp_cmdshell",
+                                    "net localgroup administrators",
+                                    "select",
+                                    "count",
+                                    "Asc",
+                                    "char",
+                                    "mid",
+                                    "'",
+                                    "\"",
+                                    ":",
+                                    "insert",
+                                    "delete from",
+                                    "drop table",
+                                    "update",
+                                    "truncate",
+                                    "from",
+                                    "%",
+                                    "<",
+                                    ">"};
+
+            foreach (string ss in sList)
+            {
+                if (s.Contains(ss))
+                {
+                    return false;
+                }
+            }
+
+            return true;
+        }
     }
 }
