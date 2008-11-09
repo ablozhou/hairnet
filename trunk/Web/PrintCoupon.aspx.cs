@@ -22,6 +22,17 @@ namespace Web
             StringBuilder sb = new StringBuilder();
             for (int i = 0; i < IDS.Length; i++)
             {
+                int id = 0;
+                try
+                {
+                    id = int.Parse(IDS[i].ToString());
+                }
+                catch
+                {
+                    Response.Write("防止注入！");
+                    Response.End();
+                }
+
                 using (SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["MSSqlServer"].ConnectionString))
                 {
                     string commString = "select * from Coupon where ID="+IDS[i].ToString();
