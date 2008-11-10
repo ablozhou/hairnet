@@ -120,11 +120,13 @@
     function enableButton()
     {
 	    var o = document.getElementById("a1");
+	    var o2 = document.getElementById("a2");
 	    o.style.display = "none";
+	    o2.innerHTML = '信息提交中,请等待...';
     }
     </script>
-    <div onclick='enableButton()' id="a1">
-        <asp:Button ID="btnSubmit" Text="提交图片信息" runat="server" OnClick="btnSubmit_OnClick" />
+    <div>
+        <span id="a2"></span><span id="a1" onclick='enableButton()'><asp:Button ID="btnSubmit" Text="提交图片信息" runat="server" OnClick="btnSubmit_OnClick" /></span>
     </div>
     <div>
         <asp:Label ID="picString" runat="server"></asp:Label><asp:Label ID="pic" runat="server" Visible="false"></asp:Label><asp:Label ID="picsmall" runat="server" Visible="false"></asp:Label>
