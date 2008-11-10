@@ -45,7 +45,7 @@
             </tr>
             <tr>
                 <td width="120" align="right">关键字：</td>
-                <td><asp:TextBox ID="txtProductTag" runat="server" CssClass="TextBox" Width="200"></asp:TextBox></td>
+                <td><asp:TextBox ID="txtProductTag" runat="server" CssClass="TextBox" Width="200"></asp:TextBox><asp:Label ID="lblRedInfo1" runat="server" ForeColor="red" Visible="false"></asp:Label></td>
             </tr>
             <tr>
                 <td width="120" align="right">产品描述：</td>
