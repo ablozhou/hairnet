@@ -6,6 +6,8 @@ using HairNet.Provider;
 using HairNet.Enumerations;
 using System.Collections;
 using System.Data;
+using System.Data.SqlClient;
+using System.Configuration;
 
 namespace HairNet.Business
 {
@@ -374,6 +376,24 @@ namespace HairNet.Business
         {
             bool result = false;
 
+            int count = 0;
+            using (SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["MSSqlServer"].ConnectionString))
+            {
+                string commString = "select count(*) from PictureStoreRecommand where PictureStoreRawID = "+pictureStoreID.ToString();
+                using (SqlCommand comm = new SqlCommand())
+                {
+                    comm.Connection = conn;
+                    comm.CommandText = commString;
+                    conn.Open();
+
+                    count = int.Parse(comm.ExecuteScalar().ToString());
+                }
+            }
+            if (count > 0)
+            {
+                return true;
+            }
+            
             PictureStore product = ProviderFactory.GetPictureStoreDataProviderInstance().GetPictureStoreByPictureStoreID(pictureStoreID);
 
             if (product == null)
