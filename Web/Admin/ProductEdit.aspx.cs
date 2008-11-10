@@ -85,6 +85,22 @@ namespace Web.Admin
 
         protected void btnSubmit_OnClick(object sender, EventArgs e)
         {
+            if (this.txtProductTag.Text.Trim() != string.Empty)
+            {
+                string[] tagCondition = this.txtProductTag.Text.Split(",".ToCharArray());
+                this.lblRedInfo1.Visible = false;
+
+                for (int k = 0; k < tagCondition.Length; k++)
+                {
+                    if (tagCondition[k] == string.Empty)
+                    {
+                        this.lblRedInfo1.Text = "TAG格式不正确(正确的格式&nbsp;&nbsp; 1,2,3)";
+                        this.lblRedInfo1.Visible = true;
+                        return;
+                    }
+                }
+            }
+
             Product product = (Product)ViewState["ProductInfo"];
             //tag逻辑
 
@@ -169,99 +185,102 @@ namespace Web.Admin
             int id = product.ProductID;
             string tagIDs = "";
             string[] tagCollection = txtProductTag.Text.Split(",".ToCharArray());
-            for (int k = 0; k < tagCollection.Length; k++)
+            if (tagCollection[0] != string.Empty)
             {
-                string tagID = "";
-                bool isExist = false;
-                ProductTag hst = new ProductTag();
-                using (SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["MSSqlServer"].ConnectionString))
+                for (int k = 0; k < tagCollection.Length; k++)
                 {
-                    string commString = "select * from ProductTag where ProductTagName='" + tagCollection[k] + "'";
-                    using (SqlCommand comm = new SqlCommand())
-                    {
-                        comm.CommandText = commString;
-                        comm.Connection = conn;
-                        conn.Open();
-                        using (SqlDataReader sdr = comm.ExecuteReader())
-                        {
-                            if (sdr.Read())
-                            {
-                                try
-                                {
-                                    hst.TagID = int.Parse(sdr["ProductTagID"].ToString());
-                                    hst.TagName = sdr["ProductTagName"].ToString();
-                                    hst.ProductIDs = sdr["ProductIDs"].ToString();
-                                }
-                                catch
-                                { }
-                            }
-                        }
-                    }
-                }
-                if (hst.TagID == 0)
-                {
+                    string tagID = "";
+                    bool isExist = false;
+                    ProductTag hst = new ProductTag();
                     using (SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["MSSqlServer"].ConnectionString))
                     {
-                        string commString = "insert ProductTag(ProductTagName,ProductIDs) values('" + tagCollection[k] + "','" + id.ToString() + "');select @@identity;";
+                        string commString = "select * from ProductTag where ProductTagName='" + tagCollection[k] + "'";
                         using (SqlCommand comm = new SqlCommand())
                         {
                             comm.CommandText = commString;
                             comm.Connection = conn;
                             conn.Open();
-
-                            tagID = comm.ExecuteScalar().ToString();
+                            using (SqlDataReader sdr = comm.ExecuteReader())
+                            {
+                                if (sdr.Read())
+                                {
+                                    try
+                                    {
+                                        hst.TagID = int.Parse(sdr["ProductTagID"].ToString());
+                                        hst.TagName = sdr["ProductTagName"].ToString();
+                                        hst.ProductIDs = sdr["ProductIDs"].ToString();
+                                    }
+                                    catch
+                                    { }
+                                }
+                            }
                         }
                     }
-                }
-                else
-                {
-                    tagID = hst.TagID.ToString();
-                    if (hst.ProductIDs == string.Empty)
+                    if (hst.TagID == 0)
                     {
                         using (SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["MSSqlServer"].ConnectionString))
                         {
-                            string commString = "update ProductTag set ProductIDs='" + id.ToString() + "' where ProductTagID=" + hst.TagID.ToString();
+                            string commString = "insert ProductTag(ProductTagName,ProductIDs) values('" + tagCollection[k] + "','" + id.ToString() + "');select @@identity;";
                             using (SqlCommand comm = new SqlCommand())
                             {
                                 comm.CommandText = commString;
                                 comm.Connection = conn;
                                 conn.Open();
-                                try
-                                {
-                                    comm.ExecuteNonQuery();
-                                }
-                                catch
-                                { }
+
+                                tagID = comm.ExecuteScalar().ToString();
                             }
                         }
                     }
                     else
                     {
-                        using (SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["MSSqlServer"].ConnectionString))
+                        tagID = hst.TagID.ToString();
+                        if (hst.ProductIDs == string.Empty)
                         {
-                            string commString = "update ProductTag set ProductIDs=ProductIDs+'," + id.ToString() + "' where ProductTagID=" + hst.TagID.ToString();
-                            using (SqlCommand comm = new SqlCommand())
+                            using (SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["MSSqlServer"].ConnectionString))
                             {
-                                comm.CommandText = commString;
-                                comm.Connection = conn;
-                                conn.Open();
-                                try
+                                string commString = "update ProductTag set ProductIDs='" + id.ToString() + "' where ProductTagID=" + hst.TagID.ToString();
+                                using (SqlCommand comm = new SqlCommand())
                                 {
-                                    comm.ExecuteNonQuery();
+                                    comm.CommandText = commString;
+                                    comm.Connection = conn;
+                                    conn.Open();
+                                    try
+                                    {
+                                        comm.ExecuteNonQuery();
+                                    }
+                                    catch
+                                    { }
                                 }
-                                catch
-                                { }
+                            }
+                        }
+                        else
+                        {
+                            using (SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["MSSqlServer"].ConnectionString))
+                            {
+                                string commString = "update ProductTag set ProductIDs=ProductIDs+'," + id.ToString() + "' where ProductTagID=" + hst.TagID.ToString();
+                                using (SqlCommand comm = new SqlCommand())
+                                {
+                                    comm.CommandText = commString;
+                                    comm.Connection = conn;
+                                    conn.Open();
+                                    try
+                                    {
+                                        comm.ExecuteNonQuery();
+                                    }
+                                    catch
+                                    { }
+                                }
                             }
                         }
                     }
-                }
-                if (k == 0)
-                {
-                    tagIDs = tagID;
-                }
-                else
-                {
-                    tagIDs += "," + tagID;
+                    if (k == 0)
+                    {
+                        tagIDs = tagID;
+                    }
+                    else
+                    {
+                        tagIDs += "," + tagID;
+                    }
                 }
             }
             product.ProductTagIDs = tagIDs;
