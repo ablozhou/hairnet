@@ -116,7 +116,14 @@
         </table>
         
     </div>
-    <div>
+    <script>
+    function enableButton()
+    {
+	    var o = document.getElementById("a1");
+	    o.style.display = "none";
+    }
+    </script>
+    <div onclick='enableButton()' id="a1">
         <asp:Button ID="btnSubmit" Text="提交图片信息" runat="server" OnClick="btnSubmit_OnClick" />
     </div>
     <div>

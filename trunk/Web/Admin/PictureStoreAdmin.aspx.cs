@@ -458,52 +458,55 @@ namespace Web.Admin
             }
             string[] ids = idsString.Split(",".ToCharArray());
 
-            for (int i = 0; i < ids.Length; i++)
+            if (ids[0] != string.Empty)
             {
-                string iids = "";
-                using (SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["MSSqlServer"].ConnectionString))
+                for (int i = 0; i < ids.Length; i++)
                 {
-                    string commString = "select * from picturestoregroup where picturestoregroupid=" + ids[i].ToString();
-                    using (SqlCommand comm = new SqlCommand())
+                    string iids = "";
+                    using (SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["MSSqlServer"].ConnectionString))
                     {
-                        comm.CommandText = commString;
-                        comm.Connection = conn;
-                        conn.Open();
-
-                        using (SqlDataReader sdr = comm.ExecuteReader())
+                        string commString = "select * from picturestoregroup where picturestoregroupid=" + ids[i].ToString();
+                        using (SqlCommand comm = new SqlCommand())
                         {
-                            if (sdr.Read())
+                            comm.CommandText = commString;
+                            comm.Connection = conn;
+                            conn.Open();
+
+                            using (SqlDataReader sdr = comm.ExecuteReader())
                             {
-                                iids = sdr["picturestoreids"].ToString();
+                                if (sdr.Read())
+                                {
+                                    iids = sdr["picturestoreids"].ToString();
+                                }
                             }
                         }
                     }
-                }
-                string[] iiids = iids.Split(",".ToCharArray());
-                string psids = "";
-                for (int k = 1; k < iiids.Length; k++)
-                {
-                    if (iiids[k] != id.ToString())
+                    string[] iiids = iids.Split(",".ToCharArray());
+                    string psids = "";
+                    for (int k = 1; k < iiids.Length; k++)
                     {
-                        psids += "," + iiids[k];
-                    }
-                }
-                using (SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["MSSqlServer"].ConnectionString))
-                {
-                    string commString = "update picturestoregroup set picturestoreids = '" + psids + "' where picturestoregroupid=" + ids[i].ToString();
-                    using (SqlCommand comm = new SqlCommand())
-                    {
-                        comm.CommandText = commString;
-                        comm.Connection = conn;
-                        conn.Open();
-
-                        try
+                        if (iiids[k] != id.ToString())
                         {
-                            comm.ExecuteNonQuery();
+                            psids += "," + iiids[k];
                         }
-                        catch
+                    }
+                    using (SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["MSSqlServer"].ConnectionString))
+                    {
+                        string commString = "update picturestoregroup set picturestoreids = '" + psids + "' where picturestoregroupid=" + ids[i].ToString();
+                        using (SqlCommand comm = new SqlCommand())
                         {
+                            comm.CommandText = commString;
+                            comm.Connection = conn;
+                            conn.Open();
 
+                            try
+                            {
+                                comm.ExecuteNonQuery();
+                            }
+                            catch
+                            {
+
+                            }
                         }
                     }
                 }
