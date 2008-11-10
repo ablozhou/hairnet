@@ -201,6 +201,9 @@ namespace Web.Admin
         }
         protected void btnSubmit_OnClick(object sender,EventArgs e)
         {
+            this.btnSubmit.Enabled = false;
+            this.btnSubmit.Visible = false;
+
             if (this.txtPictureStoreTag.Text.Trim() != string.Empty)
             {
                 string[] tagCondition = this.txtPictureStoreTag.Text.Split(",".ToCharArray());
