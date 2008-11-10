@@ -62,7 +62,6 @@
                 </asp:TemplateColumn>
                 <asp:HyperLinkColumn DataNavigateUrlField="PictureStoreID" DataNavigateUrlFormatString="PictureStoreEdit.aspx?id={0}"
                     Target="_self" Text="编辑"></asp:HyperLinkColumn>
-                <asp:ButtonColumn ButtonType="LinkButton" CommandName="recommand" Text="推荐"></asp:ButtonColumn>
                 <asp:ButtonColumn ButtonType="LinkButton" CommandName="delete" Text="删除"></asp:ButtonColumn>
             </Columns>
         </asp:DataGrid>
