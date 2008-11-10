@@ -242,66 +242,69 @@ namespace Web.Admin
                     if (he.HairEngineerTagIDs != string.Empty)
                     {
                         string[] tempTagC = he.HairEngineerTagIDs.Split(",".ToCharArray());
-                        for (int k = 0; k < tempTagC.Length; k++)
+                        if (tempTagC[0] != string.Empty)
                         {
-                            HairEngineerTag hst = new HairEngineerTag();
-                            using (SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["MSSqlServer"].ConnectionString))
+                            for (int k = 0; k < tempTagC.Length; k++)
                             {
-                                string commString = "select * from HairEngineerTag where HairEngineerTagID=" + tempTagC[k];
-                                using (SqlCommand comm = new SqlCommand())
+                                HairEngineerTag hst = new HairEngineerTag();
+                                using (SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["MSSqlServer"].ConnectionString))
                                 {
-                                    comm.CommandText = commString;
-                                    comm.Connection = conn;
-                                    conn.Open();
-                                    using (SqlDataReader sdr = comm.ExecuteReader())
+                                    string commString = "select * from HairEngineerTag where HairEngineerTagID=" + tempTagC[k];
+                                    using (SqlCommand comm = new SqlCommand())
                                     {
-                                        if (sdr.Read())
+                                        comm.CommandText = commString;
+                                        comm.Connection = conn;
+                                        conn.Open();
+                                        using (SqlDataReader sdr = comm.ExecuteReader())
                                         {
-                                            try
+                                            if (sdr.Read())
                                             {
-                                                hst.TagID = int.Parse(sdr["HairEngineerTagID"].ToString());
-                                                hst.TagName = sdr["HairEngineerTagName"].ToString();
-                                                hst.HairEngineerIDs = sdr["HairEngineerIDs"].ToString();
+                                                try
+                                                {
+                                                    hst.TagID = int.Parse(sdr["HairEngineerTagID"].ToString());
+                                                    hst.TagName = sdr["HairEngineerTagName"].ToString();
+                                                    hst.HairEngineerIDs = sdr["HairEngineerIDs"].ToString();
+                                                }
+                                                catch
+                                                { }
                                             }
-                                            catch
-                                            { }
                                         }
                                     }
                                 }
-                            }
-                            string[] tempHairEngineerIDC = hst.HairEngineerIDs.Split(",".ToCharArray());
-                            string hairEngineerIDs = "";
+                                string[] tempHairEngineerIDC = hst.HairEngineerIDs.Split(",".ToCharArray());
+                                string hairEngineerIDs = "";
 
-                            int tempNum = 0;
-                            for (int i = 0; i < tempHairEngineerIDC.Length; i++)
-                            {
-                                if (tempHairEngineerIDC[i] != he.HairEngineerID.ToString())
+                                int tempNum = 0;
+                                for (int i = 0; i < tempHairEngineerIDC.Length; i++)
                                 {
-                                    tempNum++;
-                                    if (tempNum == 1)
+                                    if (tempHairEngineerIDC[i] != he.HairEngineerID.ToString())
                                     {
-                                        hairEngineerIDs = tempHairEngineerIDC[i];
-                                    }
-                                    else
-                                    {
-                                        hairEngineerIDs += "," + tempHairEngineerIDC[i];
+                                        tempNum++;
+                                        if (tempNum == 1)
+                                        {
+                                            hairEngineerIDs = tempHairEngineerIDC[i];
+                                        }
+                                        else
+                                        {
+                                            hairEngineerIDs += "," + tempHairEngineerIDC[i];
+                                        }
                                     }
                                 }
-                            }
-                            using (SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["MSSqlServer"].ConnectionString))
-                            {
-                                string commString = "update HairEngineerTag set HairEngineerIDs='" + hairEngineerIDs + "' where HairEngineerTagID=" + hst.TagID.ToString();
-                                using (SqlCommand comm = new SqlCommand())
+                                using (SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["MSSqlServer"].ConnectionString))
                                 {
-                                    comm.CommandText = commString;
-                                    comm.Connection = conn;
-                                    conn.Open();
-                                    try
+                                    string commString = "update HairEngineerTag set HairEngineerIDs='" + hairEngineerIDs + "' where HairEngineerTagID=" + hst.TagID.ToString();
+                                    using (SqlCommand comm = new SqlCommand())
                                     {
-                                        comm.ExecuteNonQuery();
+                                        comm.CommandText = commString;
+                                        comm.Connection = conn;
+                                        conn.Open();
+                                        try
+                                        {
+                                            comm.ExecuteNonQuery();
+                                        }
+                                        catch
+                                        { }
                                     }
-                                    catch
-                                    { }
                                 }
                             }
                         }
