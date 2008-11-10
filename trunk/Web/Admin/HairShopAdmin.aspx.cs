@@ -380,12 +380,321 @@ namespace Web.Admin
                             }
                         }
 
+                        using (SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["MSSqlServer"].ConnectionString))
+                        {
+                            string commString = "select * from HairEngineer where HairShopID=" + hairShopID.ToString();
+                            using (SqlCommand comm = new SqlCommand())
+                            {
+                                comm.CommandText = commString;
+                                comm.Connection = conn;
+                                conn.Open();
+
+                                using (SqlDataReader sdr = comm.ExecuteReader())
+                                {
+                                    while (sdr.Read())
+                                    {
+                                        int heid = int.Parse(sdr["HairEngineerID"].ToString());
+
+                                        this.deleteHairEngineer(heid);
+
+                                    }
+                                }
+                            }
+                        }
+
                         StringHelper.AlertInfo("删除成功", this.Page);
                         this.Response.Redirect("HairShopAdmin.aspx");
                     }
                     else
                     {
                         StringHelper.AlertInfo("删除失败", this.Page);
+                    }
+                }
+            }
+        }
+        public void deleteHairEngineer(int heid)
+        {
+            int hairEngineerID = heid;
+
+            HairEngineer he = ProviderFactory.GetHairEngineerDataProviderInstance().GetHairEngineerByHairEngineerID(hairEngineerID);
+
+            //tag逻辑
+            //先处理TAG逻辑，先删除HS所对应的所有TAG
+            if (he.HairEngineerTagIDs != string.Empty)
+            {
+                string[] tempTagC = he.HairEngineerTagIDs.Split(",".ToCharArray());
+                for (int k = 0; k < tempTagC.Length; k++)
+                {
+                    HairEngineerTag hst = new HairEngineerTag();
+                    using (SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["MSSqlServer"].ConnectionString))
+                    {
+                        string commString = "select * from HairEngineerTag where HairEngineerTagID=" + tempTagC[k];
+                        using (SqlCommand comm = new SqlCommand())
+                        {
+                            comm.CommandText = commString;
+                            comm.Connection = conn;
+                            conn.Open();
+                            using (SqlDataReader sdr = comm.ExecuteReader())
+                            {
+                                if (sdr.Read())
+                                {
+                                    try
+                                    {
+                                        hst.TagID = int.Parse(sdr["HairEngineerTagID"].ToString());
+                                        hst.TagName = sdr["HairEngineerTagName"].ToString();
+                                        hst.HairEngineerIDs = sdr["HairEngineerIDs"].ToString();
+                                    }
+                                    catch
+                                    { }
+                                }
+                            }
+                        }
+                    }
+                    string[] tempHairEngineerIDC = hst.HairEngineerIDs.Split(",".ToCharArray());
+                    string hairEngineerIDs = "";
+
+                    int tempNum = 0;
+                    for (int i = 0; i < tempHairEngineerIDC.Length; i++)
+                    {
+                        if (tempHairEngineerIDC[i] != he.HairEngineerID.ToString())
+                        {
+                            tempNum++;
+                            if (tempNum == 1)
+                            {
+                                hairEngineerIDs = tempHairEngineerIDC[i];
+                            }
+                            else
+                            {
+                                hairEngineerIDs += "," + tempHairEngineerIDC[i];
+                            }
+                        }
+                    }
+                    using (SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["MSSqlServer"].ConnectionString))
+                    {
+                        string commString = "update HairEngineerTag set HairEngineerIDs='" + hairEngineerIDs + "' where HairEngineerTagID=" + hst.TagID.ToString();
+                        using (SqlCommand comm = new SqlCommand())
+                        {
+                            comm.CommandText = commString;
+                            comm.Connection = conn;
+                            conn.Open();
+                            try
+                            {
+                                comm.ExecuteNonQuery();
+                            }
+                            catch
+                            { }
+                        }
+                    }
+                }
+            }
+            //
+
+
+            using (SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["MSSqlServer"].ConnectionString))
+            {
+                string commString = "update HairShop set HairShopEngineerNum = HairShopEngineerNum-1 where HairShopID=" + he.HairShopID.ToString();
+                using (SqlCommand comm = new SqlCommand())
+                {
+                    comm.CommandText = commString;
+                    comm.Connection = conn;
+                    conn.Open();
+                    try
+                    {
+                        comm.ExecuteNonQuery();
+                    }
+                    catch (Exception ex)
+                    {
+                        throw new Exception(ex.Message);
+                    }
+                }
+            }
+
+            if (InfoAdmin.DeleteHairEngineer(hairEngineerID))
+            {
+                using (SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["MSSqlServer"].ConnectionString))
+                {
+                    string commString = "select * from HairStyle where hairEngineerID=" + hairEngineerID.ToString();
+                    using (SqlCommand comm = new SqlCommand())
+                    {
+                        comm.CommandText = commString;
+                        comm.Connection = conn;
+                        conn.Open();
+
+                        using (SqlDataReader sdr = comm.ExecuteReader())
+                        {
+                            while (sdr.Read())
+                            {
+                                string hid = sdr["ID"].ToString();
+
+                                this.deleteHairStyle(int.Parse(hid));
+
+                                using (SqlConnection conn2 = new SqlConnection(ConfigurationManager.ConnectionStrings["MSSqlServer"].ConnectionString))
+                                {
+                                    string commString2 = "delete from picturestoreset where picturestoreid=" + hid;
+                                    using (SqlCommand comm2 = new SqlCommand())
+                                    {
+                                        comm2.CommandText = commString2;
+                                        comm2.Connection = conn2;
+                                        conn2.Open();
+
+                                        try
+                                        {
+                                            comm2.ExecuteNonQuery();
+                                        }
+                                        catch
+                                        {
+
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+
+
+                using (SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["MSSqlServer"].ConnectionString))
+                {
+                    string commString = "delete from enginpics where ownerid=" + hairEngineerID.ToString();
+                    using (SqlCommand comm = new SqlCommand())
+                    {
+                        comm.CommandText = commString;
+                        comm.Connection = conn;
+                        conn.Open();
+
+                        try
+                        {
+                            comm.ExecuteNonQuery();
+                        }
+                        catch
+                        {
+
+                        }
+                    }
+                }
+
+                using (SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["MSSqlServer"].ConnectionString))
+                {
+                    string commString = "delete from HairEngineerRecommand where HairEngineerRawID=" + hairEngineerID.ToString();
+                    using (SqlCommand comm = new SqlCommand())
+                    {
+                        comm.CommandText = commString;
+                        comm.Connection = conn;
+                        conn.Open();
+
+                        try
+                        {
+                            comm.ExecuteNonQuery();
+                        }
+                        catch
+                        {
+
+                        }
+                    }
+                }
+            }
+            else
+            {
+                StringHelper.AlertInfo("删除失败", this.Page);
+            }
+        }
+
+        public void deleteHairStyle(int id)
+        {
+            //先删除PICTURESTORESET所对应的ID
+
+            string idsString = "";
+            using (SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["MSSqlServer"].ConnectionString))
+            {
+                string commString = "select * from HairStyle where ID=" + id.ToString();
+                using (SqlCommand comm = new SqlCommand())
+                {
+                    comm.CommandText = commString;
+                    comm.Connection = conn;
+                    conn.Open();
+
+                    using (SqlDataReader sdr = comm.ExecuteReader())
+                    {
+                        if (sdr.Read())
+                        {
+                            idsString = sdr["PSGIDS"].ToString();
+                        }
+                    }
+                }
+            }
+
+
+            string[] ids = idsString.Split(",".ToCharArray());
+
+            if (ids[0] != string.Empty)
+            {
+                for (int i = 0; i < ids.Length; i++)
+                {
+                    string iids = "";
+                    using (SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["MSSqlServer"].ConnectionString))
+                    {
+                        string commString = "select * from picturestoregroup where picturestoregroupid=" + ids[i].ToString();
+                        using (SqlCommand comm = new SqlCommand())
+                        {
+                            comm.CommandText = commString;
+                            comm.Connection = conn;
+                            conn.Open();
+
+                            using (SqlDataReader sdr = comm.ExecuteReader())
+                            {
+                                if (sdr.Read())
+                                {
+                                    iids = sdr["picturestoreids"].ToString();
+                                }
+                            }
+                        }
+                    }
+                    string[] iiids = iids.Split(",".ToCharArray());
+                    string psids = "";
+                    for (int k = 1; k < iiids.Length; k++)
+                    {
+                        if (iiids[k] != id.ToString())
+                        {
+                            psids += "," + iiids[k];
+                        }
+                    }
+                    using (SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["MSSqlServer"].ConnectionString))
+                    {
+                        string commString = "update picturestoregroup set picturestoreids = '" + psids + "' where picturestoregroupid=" + ids[i].ToString();
+                        using (SqlCommand comm = new SqlCommand())
+                        {
+                            comm.CommandText = commString;
+                            comm.Connection = conn;
+                            conn.Open();
+
+                            try
+                            {
+                                comm.ExecuteNonQuery();
+                            }
+                            catch
+                            {
+
+                            }
+                        }
+                    }
+                }
+            }
+            using (SqlConnection conn2 = new SqlConnection(ConfigurationManager.ConnectionStrings["MSSqlServer"].ConnectionString))
+            {
+                string commString2 = "delete from hairstyle where id=" + id;
+                using (SqlCommand comm2 = new SqlCommand())
+                {
+                    comm2.CommandText = commString2;
+                    comm2.Connection = conn2;
+                    conn2.Open();
+
+                    try
+                    {
+                        comm2.ExecuteNonQuery();
+                    }
+                    catch (Exception ex)
+                    {
+                        throw new Exception(ex.Message);
                     }
                 }
             }
