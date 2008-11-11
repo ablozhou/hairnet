@@ -342,10 +342,9 @@ namespace Web.Admin
                     }
                 }
             }
-            string[] ids = idsString.Split(",".ToCharArray());
+            string[] ids = idsString.Split(",".ToCharArray(),StringSplitOptions.RemoveEmptyEntries);
 
-            if (ids[0] != string.Empty)
-            {
+          
                 for (int i = 0; i < ids.Length; i++)
                 {
                     string iids = "";
@@ -367,7 +366,7 @@ namespace Web.Admin
                             }
                         }
                     }
-                    string[] iiids = iids.Split(",".ToCharArray());
+                    string[] iiids = iids.Split(",".ToCharArray(), StringSplitOptions.RemoveEmptyEntries);
                     string psids = "";
                     for (int k = 1; k < iiids.Length; k++)
                     {
@@ -396,7 +395,7 @@ namespace Web.Admin
                         }
                     }
                 }
-            }
+            
         }
         public void dg_OnItemDataBound(object sender, DataGridItemEventArgs e)
         {
