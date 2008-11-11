@@ -1115,40 +1115,40 @@ namespace HairNet.Provider
                             hairShopRecommand.HairShopRecommandID = int.Parse(sdr["HairShopRecommandID"].ToString());
                             hairShopRecommand.HairShopRawID = int.Parse(sdr["HairShopRawID"].ToString());
                             hairShopRecommand.HairShopName = sdr["HairShopName"].ToString();
-                            hairShopRecommand.HairShopCityID = int.Parse(sdr["HairShopCityID"].ToString());
-                            hairShopRecommand.HairShopCityName = sdr["CityName"].ToString();
-                            hairShopRecommand.HairShopMapZoneID = int.Parse(sdr["HairShopMapZoneID"].ToString());
-                            hairShopRecommand.HairShopMapZoneName = sdr["MapZoneName"].ToString();
-                            hairShopRecommand.HairShopHotZoneID = int.Parse(sdr["HairShopHotZoneID"].ToString());
-                            hairShopRecommand.HairShopHotZoneName = sdr["HotZoneName"].ToString();
-                            hairShopRecommand.HairShopAddress = sdr["HairShopAddress"].ToString();
-                            hairShopRecommand.HairShopPhoneNum = sdr["HairShopPhoneNum"].ToString();
-                            hairShopRecommand.HairShopPictureStoreIDs = sdr["HairShopPictureStoreIDs"].ToString();
-                            hairShopRecommand.HairShopMainIDs = sdr["HairShopMainIDs"].ToString();
-                            hairShopRecommand.HairShopPartialIDs = sdr["HairShopPartialIDs"].ToString();
-                            hairShopRecommand.HairShopEngineerNum = int.Parse(sdr["HairShopEngineerNum"].ToString());
-                            hairShopRecommand.HairShopOpenTime = sdr["HairShopOpenTime"].ToString();
-                            hairShopRecommand.HairShopOrderNum = int.Parse(sdr["HairShopOrderNum"].ToString());
-                            hairShopRecommand.HairShopVisitNum = int.Parse(sdr["HairShopVisitNum"].ToString());
-                            hairShopRecommand.WorkRangeIDs = sdr["WorkRangeIDs"].ToString();
-                            hairShopRecommand.HairShopWebSite = sdr["HairShopWebSite"].ToString();
-                            hairShopRecommand.HairShopEmail = sdr["HairShopEmail"].ToString();
-                            hairShopRecommand.HairShopDiscount = sdr["HairShopDiscount"].ToString();
-                            hairShopRecommand.HairShopLogo = sdr["HairShopLogo"].ToString();
-                            hairShopRecommand.HairShopRecommandNum = int.Parse(sdr["HairShopRecommandNum"].ToString());
-                            hairShopRecommand.HairShopCreateTime = sdr["HairShopCreateTime"].ToString();
-                            hairShopRecommand.HairShopDescription = sdr["HairShopDescription"].ToString();
-                            hairShopRecommand.ProductIDs = sdr["ProductIDs"].ToString();
-                            hairShopRecommand.HairShopTagIDs = sdr["HairShopTagIDs"].ToString();
-                            hairShopRecommand.HairShopShortName = sdr["HairShopShortName"].ToString();
-                            hairShopRecommand.IsBest = bool.Parse(sdr["IsBest"].ToString());
-                            hairShopRecommand.IsJoin = bool.Parse(sdr["IsJoin"].ToString());
-                            hairShopRecommand.TypeID = int.Parse(sdr["TypeID"].ToString());
-                            hairShopRecommand.TypeName = sdr["TypeName"].ToString();
-                            hairShopRecommand.IsPostStation = bool.Parse(sdr["IsPostStation"].ToString());
-                            hairShopRecommand.IsPostMachine = bool.Parse(sdr["IsPostMachine"].ToString());
-                            hairShopRecommand.HairShopGood = int.Parse(sdr["HairShopGood"].ToString());
-                            hairShopRecommand.HairShopBad = int.Parse(sdr["HairShopBad"].ToString());
+                            //hairShopRecommand.HairShopCityID = int.Parse(sdr["HairShopCityID"].ToString());
+                            //hairShopRecommand.HairShopCityName = sdr["CityName"].ToString();
+                            //hairShopRecommand.HairShopMapZoneID = int.Parse(sdr["HairShopMapZoneID"].ToString());
+                            //hairShopRecommand.HairShopMapZoneName = sdr["MapZoneName"].ToString();
+                            //hairShopRecommand.HairShopHotZoneID = int.Parse(sdr["HairShopHotZoneID"].ToString());
+                            //hairShopRecommand.HairShopHotZoneName = sdr["HotZoneName"].ToString();
+                            //hairShopRecommand.HairShopAddress = sdr["HairShopAddress"].ToString();
+                            //hairShopRecommand.HairShopPhoneNum = sdr["HairShopPhoneNum"].ToString();
+                            //hairShopRecommand.HairShopPictureStoreIDs = sdr["HairShopPictureStoreIDs"].ToString();
+                            //hairShopRecommand.HairShopMainIDs = sdr["HairShopMainIDs"].ToString();
+                            //hairShopRecommand.HairShopPartialIDs = sdr["HairShopPartialIDs"].ToString();
+                            //hairShopRecommand.HairShopEngineerNum = int.Parse(sdr["HairShopEngineerNum"].ToString());
+                            //hairShopRecommand.HairShopOpenTime = sdr["HairShopOpenTime"].ToString();
+                            //hairShopRecommand.HairShopOrderNum = int.Parse(sdr["HairShopOrderNum"].ToString());
+                            //hairShopRecommand.HairShopVisitNum = int.Parse(sdr["HairShopVisitNum"].ToString());
+                            //hairShopRecommand.WorkRangeIDs = sdr["WorkRangeIDs"].ToString();
+                            //hairShopRecommand.HairShopWebSite = sdr["HairShopWebSite"].ToString();
+                            //hairShopRecommand.HairShopEmail = sdr["HairShopEmail"].ToString();
+                            //hairShopRecommand.HairShopDiscount = sdr["HairShopDiscount"].ToString();
+                            //hairShopRecommand.HairShopLogo = sdr["HairShopLogo"].ToString();
+                            //hairShopRecommand.HairShopRecommandNum = int.Parse(sdr["HairShopRecommandNum"].ToString());
+                            //hairShopRecommand.HairShopCreateTime = sdr["HairShopCreateTime"].ToString();
+                            //hairShopRecommand.HairShopDescription = sdr["HairShopDescription"].ToString();
+                            //hairShopRecommand.ProductIDs = sdr["ProductIDs"].ToString();
+                            //hairShopRecommand.HairShopTagIDs = sdr["HairShopTagIDs"].ToString();
+                            //hairShopRecommand.HairShopShortName = sdr["HairShopShortName"].ToString();
+                            //hairShopRecommand.IsBest = bool.Parse(sdr["IsBest"].ToString());
+                            //hairShopRecommand.IsJoin = bool.Parse(sdr["IsJoin"].ToString());
+                            //hairShopRecommand.TypeID = int.Parse(sdr["TypeID"].ToString());
+                            //hairShopRecommand.TypeName = sdr["TypeName"].ToString();
+                            //hairShopRecommand.IsPostStation = bool.Parse(sdr["IsPostStation"].ToString());
+                            //hairShopRecommand.IsPostMachine = bool.Parse(sdr["IsPostMachine"].ToString());
+                            //hairShopRecommand.HairShopGood = int.Parse(sdr["HairShopGood"].ToString());
+                            //hairShopRecommand.HairShopBad = int.Parse(sdr["HairShopBad"].ToString());
                             hairShopRecommand.HairShopRecommandEx = sdr["HairShopRecommandEx"].ToString();
                             hairShopRecommand.HairShopRecommandInfo = sdr["HairShopRecommandInfo"].ToString();
                         }
@@ -1197,76 +1197,76 @@ namespace HairNet.Provider
                                 hairShopRecommand.HairShopRecommandID = int.Parse(sdr["HairShopRecommandID"].ToString());
                                 hairShopRecommand.HairShopRawID = int.Parse(sdr["HairShopRawID"].ToString());
                                 hairShopRecommand.HairShopName = sdr["HairShopName"].ToString();
-                                hairShopRecommand.HairShopCityID = int.Parse(sdr["HairShopCityID"].ToString());
-                                hairShopRecommand.HairShopCityName = sdr["CityName"].ToString();
-                                hairShopRecommand.HairShopMapZoneID = int.Parse(sdr["HairShopMapZoneID"].ToString());
-                                hairShopRecommand.HairShopMapZoneName = sdr["MapZoneName"].ToString();
-                                hairShopRecommand.HairShopHotZoneID = int.Parse(sdr["HairShopHotZoneID"].ToString());
-                                hairShopRecommand.HairShopHotZoneName = sdr["HotZoneName"].ToString();
-                                hairShopRecommand.HairShopAddress = sdr["HairShopAddress"].ToString();
-                                hairShopRecommand.HairShopPhoneNum = sdr["HairShopPhoneNum"].ToString();
-                                hairShopRecommand.HairShopPictureStoreIDs = sdr["HairShopPictureStoreIDs"].ToString();
-                                hairShopRecommand.HairShopMainIDs = sdr["HairShopMainIDs"].ToString();
-                                hairShopRecommand.HairShopPartialIDs = sdr["HairShopPartialIDs"].ToString();
-                                hairShopRecommand.HairShopEngineerNum = int.Parse(sdr["HairShopEngineerNum"].ToString());
-                                hairShopRecommand.HairShopOpenTime = sdr["HairShopOpenTime"].ToString();
-                                try
-                                {
-                                    hairShopRecommand.HairShopOrderNum = int.Parse(sdr["HairShopOrderNum"].ToString());
-                                }
-                                catch
-                                {
-                                    hairShopRecommand.HairShopOrderNum = 0;
-                                }
-                                try
-                                {
-                                    hairShopRecommand.HairShopVisitNum = int.Parse(sdr["HairShopVisitNum"].ToString());
-                                }
-                                catch
-                                {
-                                    hairShopRecommand.HairShopVisitNum = 0;
-                                }
-                                hairShopRecommand.WorkRangeIDs = sdr["WorkRangeIDs"].ToString();
-                                hairShopRecommand.HairShopWebSite = sdr["HairShopWebSite"].ToString();
-                                hairShopRecommand.HairShopEmail = sdr["HairShopEmail"].ToString();
-                                hairShopRecommand.HairShopDiscount = sdr["HairShopDiscount"].ToString();
-                                hairShopRecommand.HairShopLogo = sdr["HairShopLogo"].ToString();
-                                try
-                                {
-                                    hairShopRecommand.HairShopRecommandNum = int.Parse(sdr["HairShopRecommandNum"].ToString());
-                                }
-                                catch
-                                {
-                                    hairShopRecommand.HairShopRecommandNum = 0;
-                                }
-                                hairShopRecommand.HairShopCreateTime = sdr["HairShopCreateTime"].ToString();
-                                hairShopRecommand.HairShopDescription = sdr["HairShopDescription"].ToString();
-                                hairShopRecommand.ProductIDs = sdr["ProductIDs"].ToString();
-                                hairShopRecommand.HairShopTagIDs = sdr["HairShopTagIDs"].ToString();
-                                hairShopRecommand.HairShopShortName = sdr["HairShopShortName"].ToString();
-                                hairShopRecommand.IsBest = bool.Parse(sdr["IsBest"].ToString());
-                                hairShopRecommand.IsJoin = bool.Parse(sdr["IsJoin"].ToString());
-                                hairShopRecommand.TypeID = int.Parse(sdr["TypeID"].ToString());
-                                hairShopRecommand.TypeName = sdr["TypeName"].ToString();
-                                hairShopRecommand.IsPostStation = bool.Parse(sdr["IsPostStation"].ToString());
-                                hairShopRecommand.IsPostMachine = bool.Parse(sdr["IsPostMachine"].ToString());
-                                try
-                                {
-                                    hairShopRecommand.HairShopGood = int.Parse(sdr["HairShopGood"].ToString());
-                                }
-                                catch
-                                {
-                                    hairShopRecommand.HairShopGood = 0;
-                                }
+                                //hairShopRecommand.HairShopCityID = int.Parse(sdr["HairShopCityID"].ToString());
+                                //hairShopRecommand.HairShopCityName = sdr["CityName"].ToString();
+                                //hairShopRecommand.HairShopMapZoneID = int.Parse(sdr["HairShopMapZoneID"].ToString());
+                                //hairShopRecommand.HairShopMapZoneName = sdr["MapZoneName"].ToString();
+                                //hairShopRecommand.HairShopHotZoneID = int.Parse(sdr["HairShopHotZoneID"].ToString());
+                                //hairShopRecommand.HairShopHotZoneName = sdr["HotZoneName"].ToString();
+                                //hairShopRecommand.HairShopAddress = sdr["HairShopAddress"].ToString();
+                                //hairShopRecommand.HairShopPhoneNum = sdr["HairShopPhoneNum"].ToString();
+                                //hairShopRecommand.HairShopPictureStoreIDs = sdr["HairShopPictureStoreIDs"].ToString();
+                                //hairShopRecommand.HairShopMainIDs = sdr["HairShopMainIDs"].ToString();
+                                //hairShopRecommand.HairShopPartialIDs = sdr["HairShopPartialIDs"].ToString();
+                                //hairShopRecommand.HairShopEngineerNum = int.Parse(sdr["HairShopEngineerNum"].ToString());
+                                //hairShopRecommand.HairShopOpenTime = sdr["HairShopOpenTime"].ToString();
+                                //try
+                                //{
+                                //    hairShopRecommand.HairShopOrderNum = int.Parse(sdr["HairShopOrderNum"].ToString());
+                                //}
+                                //catch
+                                //{
+                                //    hairShopRecommand.HairShopOrderNum = 0;
+                                //}
+                                //try
+                                //{
+                                //    hairShopRecommand.HairShopVisitNum = int.Parse(sdr["HairShopVisitNum"].ToString());
+                                //}
+                                //catch
+                                //{
+                                //    hairShopRecommand.HairShopVisitNum = 0;
+                                //}
+                                //hairShopRecommand.WorkRangeIDs = sdr["WorkRangeIDs"].ToString();
+                                //hairShopRecommand.HairShopWebSite = sdr["HairShopWebSite"].ToString();
+                                //hairShopRecommand.HairShopEmail = sdr["HairShopEmail"].ToString();
+                                //hairShopRecommand.HairShopDiscount = sdr["HairShopDiscount"].ToString();
+                                //hairShopRecommand.HairShopLogo = sdr["HairShopLogo"].ToString();
+                                //try
+                                //{
+                                //    hairShopRecommand.HairShopRecommandNum = int.Parse(sdr["HairShopRecommandNum"].ToString());
+                                //}
+                                //catch
+                                //{
+                                //    hairShopRecommand.HairShopRecommandNum = 0;
+                                //}
+                                //hairShopRecommand.HairShopCreateTime = sdr["HairShopCreateTime"].ToString();
+                                //hairShopRecommand.HairShopDescription = sdr["HairShopDescription"].ToString();
+                                //hairShopRecommand.ProductIDs = sdr["ProductIDs"].ToString();
+                                //hairShopRecommand.HairShopTagIDs = sdr["HairShopTagIDs"].ToString();
+                                //hairShopRecommand.HairShopShortName = sdr["HairShopShortName"].ToString();
+                                //hairShopRecommand.IsBest = bool.Parse(sdr["IsBest"].ToString());
+                                //hairShopRecommand.IsJoin = bool.Parse(sdr["IsJoin"].ToString());
+                                //hairShopRecommand.TypeID = int.Parse(sdr["TypeID"].ToString());
+                                //hairShopRecommand.TypeName = sdr["TypeName"].ToString();
+                                //hairShopRecommand.IsPostStation = bool.Parse(sdr["IsPostStation"].ToString());
+                                //hairShopRecommand.IsPostMachine = bool.Parse(sdr["IsPostMachine"].ToString());
+                                //try
+                                //{
+                                //    hairShopRecommand.HairShopGood = int.Parse(sdr["HairShopGood"].ToString());
+                                //}
+                                //catch
+                                //{
+                                //    hairShopRecommand.HairShopGood = 0;
+                                //}
 
-                                try
-                                {
-                                    hairShopRecommand.HairShopBad = int.Parse(sdr["HairShopBad"].ToString());
-                                }
-                                catch
-                                {
-                                    hairShopRecommand.HairShopBad = 0;
-                                }
+                                //try
+                                //{
+                                //    hairShopRecommand.HairShopBad = int.Parse(sdr["HairShopBad"].ToString());
+                                //}
+                                //catch
+                                //{
+                                //    hairShopRecommand.HairShopBad = 0;
+                                //}
 
                              
                                 hairShopRecommand.HairShopRecommandEx = sdr["HairShopRecommandEx"].ToString();
