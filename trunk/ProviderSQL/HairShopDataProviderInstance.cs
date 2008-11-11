@@ -467,7 +467,10 @@ namespace HairNet.Provider
                                 hairShop.IsServeHairCut = true;
 
                             hairShop.Square = sdr["Square"].ToString();
-                            hairShop.Postid = int.Parse(sdr["postid"].ToString());
+
+                            int value;
+                            int.TryParse(sdr["postid"].ToString(), out value);
+                            hairShop.Postid = value;
                         }
                     }
                 }
@@ -604,33 +607,30 @@ namespace HairNet.Provider
 
                     hairShop.LocationMapURL = sdr["LocationMapURL"].ToString();
 
-                    if (sdr["IsServeMarcel"] == null || sdr["IsServeMarcel"].ToString() == "0")
+                    if (sdr["IsServeMarcel"] == null || bool.Parse(sdr["IsServeMarcel"].ToString()) == false)
                         hairShop.IsServeMarce = false;
                     else
                         hairShop.IsServeMarce = true;
 
-                    if (sdr["IsServeDye"] == null || sdr["IsServeDye"].ToString() == "0")
+                    if (sdr["IsServeDye"] == null || bool.Parse(sdr["IsServeDye"].ToString()) == false)
                         hairShop.IsServeDye = false;
                     else
                         hairShop.IsServeDye = true;
 
-                    if (sdr["IsServeHairCut"] == null || sdr["IsServeHairCut"].ToString() == "0")
+                    if (sdr["IsServeHairCut"] == null || bool.Parse(sdr["IsServeHairCut"].ToString()) == false)
                         hairShop.IsServeHairCut = false;
                     else
                         hairShop.IsServeHairCut = true;
 
                     hairShop.Square = sdr["Square"].ToString();
-                    hairShop.HairShopNormal = int.Parse(sdr["HairShopNormal"].ToString());
-
                     //zhh add check
-                    if (sdr["postid"] == null)
-                    {
-                        hairShop.Postid = 0;
-                    }
-                    else
-                    {
-                        hairShop.Postid = int.Parse(sdr["postid"].ToString());
-                    }
+                    int value=0; 
+                    
+                    int.TryParse(sdr["HairShopNormal"].ToString(),out value);
+                    hairShop.HairShopNormal = value;
+                   
+                    int.TryParse(sdr["postid"].ToString(), out value);
+                    hairShop.Postid = value;
                     list.Add(hairShop);
                 }
             }
