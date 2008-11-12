@@ -233,6 +233,24 @@ namespace HairNet.Business
         {
             bool result = false;
 
+            int count = 0;
+            using (SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["MSSqlServer"].ConnectionString))
+            {
+                string commString = "select count(*) from HairShopRecommand where HairShopRawID = " + hairShopID.ToString();
+                using (SqlCommand comm = new SqlCommand())
+                {
+                    comm.Connection = conn;
+                    comm.CommandText = commString;
+                    conn.Open();
+
+                    count = int.Parse(comm.ExecuteScalar().ToString());
+                }
+            }
+            if (count > 0)
+            {
+                return true;
+            }
+
             HairShop hairShop = ProviderFactory.GetHairShopDataProviderInstance().GetHairShopByHairShopID(hairShopID);
 
             if (hairShop == null)
@@ -286,6 +304,25 @@ namespace HairNet.Business
         public static bool RecommandHairEngineer(int hairEngineerID, int hairEngineerRecommandID, string hairEngineerRecommandInfo, string hairEngineerRecommandEx, UserAction ua)
         {
             bool result = false;
+
+            int count = 0;
+            using (SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["MSSqlServer"].ConnectionString))
+            {
+                string commString = "select count(*) from HairEngineerRecommand where HairEngineerRawID = " + hairEngineerID.ToString();
+                using (SqlCommand comm = new SqlCommand())
+                {
+                    comm.Connection = conn;
+                    comm.CommandText = commString;
+                    conn.Open();
+
+                    count = int.Parse(comm.ExecuteScalar().ToString());
+                }
+            }
+            if (count > 0)
+            {
+                return true;
+            }
+
 
             HairEngineer hairEngineer = ProviderFactory.GetHairEngineerDataProviderInstance().GetHairEngineerByHairEngineerID(hairEngineerID);
 
