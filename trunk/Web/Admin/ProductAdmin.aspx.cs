@@ -218,6 +218,26 @@ namespace Web.Admin
                 {
                     int productID = int.Parse(this.dg.DataKeys[e.Item.ItemIndex].ToString());
 
+                    using (SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["MSSqlServer"].ConnectionString))
+                    {
+                        string commString = "delete from ProductRecommand where ProductRawID=" + productID.ToString();
+                        using (SqlCommand comm = new SqlCommand())
+                        {
+                            comm.CommandText = commString;
+                            comm.Connection = conn;
+                            conn.Open();
+
+                            try
+                            {
+                                comm.ExecuteNonQuery();
+                            }
+                            catch
+                            {
+
+                            }
+                        }
+                    }
+
                     Product product = InfoAdmin.GetProductByProductID(productID.ToString());
 
                     //tag逻辑
