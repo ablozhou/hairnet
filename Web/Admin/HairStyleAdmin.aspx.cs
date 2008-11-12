@@ -109,7 +109,19 @@ namespace Web.Admin
         public void btnAdd_OnClick(object sender, EventArgs e)
         {
             //添加操作，转向添加页面
-            this.Response.Redirect("EngineerOpusInfo.aspx");
+            string url = string.Empty;
+            try
+            {
+                int hairEngineerID = int.Parse(this.Request.QueryString["eid"].ToString());
+                int hairShopID = int.Parse(this.Request.QueryString["sid"].ToString());
+                url = "EngineerOpusInfo.aspx?ENGINEERID=" + hairEngineerID.ToString() + "&shopid=" + hairShopID.ToString();
+                
+            }
+            catch
+            {
+                url = "EngineerOpusInfo.aspx";
+            }
+            this.Response.Redirect(url);
         }
 
         public void databind()
