@@ -55,12 +55,18 @@
                     </ItemTemplate>
                  
                </asp:TemplateColumn>
-               <asp:HyperLinkColumn DataNavigateUrlField="HairEngineerID" 
-                    DataNavigateUrlFormatString="HairEngineer.aspx?id={0}" Target="_self" 
-                     HeaderText="美发师"></asp:HyperLinkColumn>
-                <asp:HyperLinkColumn DataNavigateUrlField="HairShopID" 
-                    DataNavigateUrlFormatString="HairShop.aspx?id={0}" Target="_self" 
-                     HeaderText="美发厅"></asp:HyperLinkColumn>
+               <asp:TemplateColumn HeaderText="美发师">
+                    <ItemTemplate>
+                        <asp:Label ID="lblHairEngineer" runat="server"></asp:Label>
+                    </ItemTemplate>
+                 
+               </asp:TemplateColumn>
+               <asp:TemplateColumn HeaderText="美发厅">
+                    <ItemTemplate>
+                        <asp:Label ID="lblHairShop" runat="server"></asp:Label>
+                    </ItemTemplate>
+                 
+               </asp:TemplateColumn>
  <asp:HyperLinkColumn DataNavigateUrlField="ID" 
                     DataNavigateUrlFormatString="../HairLastPage.aspx?id={0}" Target="_blank" 
                     Text="预览" HeaderText="预览"></asp:HyperLinkColumn>
