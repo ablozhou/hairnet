@@ -416,6 +416,17 @@ namespace Web.Admin
                 e.Item.Attributes.Add("onmouseover", "c=this.style.backgroundColor;this.style.backgroundColor='#ffffff';");
                 e.Item.Attributes.Add("onmouseout", "this.style.backgroundColor=c;");
 
+                HairStyleEntity hse = e.Item.DataItem as HairStyleEntity;
+
+                Label lblHairEngineer = e.Item.FindControl("lblHairEngineer") as Label;
+                Label lblHairShop = e.Item.FindControl("lblHairShop") as Label;
+
+                HairEngineer he = ProviderFactory.GetHairEngineerDataProviderInstance().GetHairEngineerByHairEngineerID(hse.HairEngineerID);
+                HairShop hs = ProviderFactory.GetHairShopDataProviderInstance().GetHairShopByHairShopID(hse.HairShopID);
+
+                lblHairEngineer.Text = he.HairEngineerName;
+                lblHairShop.Text = hs.HairShopName;
+
                 // Image pic = e.Item.FindControl("Image1") as Image;
                 // DataRowView row = e.Item.DataItem as DataRowView;
                 // pic.ImageUrl = @"D:\SourceCode\Web\uploadfiles\logo\2008\10\3\images\2008103353363175164.bmp";
