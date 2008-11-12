@@ -112,7 +112,16 @@
     </table>
     </div>
     <div>
-        <asp:Button ID="btnSubmit" runat="server" Text="提交 <<基本信息>>" OnClick="btnSubmit_OnClick" />
+        <script>
+            function enableButton()
+            {
+	            var o = document.getElementById("a1");
+	            var o2 = document.getElementById("a2");
+	            o.style.display = "none";
+	            o2.innerHTML = '信息提交中,请等待...';
+            }
+            </script>
+        <span id="a2"></span><span id="a1" onclick='enableButton()'><asp:Button ID="btnSubmit" runat="server" Text="提交 <<基本信息>>" OnClick="btnSubmit_OnClick" /></span>
     </div>
     </form>
 </body>

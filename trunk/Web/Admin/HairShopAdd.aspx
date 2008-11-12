@@ -417,7 +417,16 @@
                 </td>
             </tr>
             <tr><td class="style1"></td><td>
-                <asp:Button ID="btnSubmit" runat="server" Text="下一步"  OnClick="btnSubmit_OnClick" Width="98px"  /></td>
+                <script>
+                function enableButton()
+                {
+	                var o = document.getElementById("a1");
+	                var o2 = document.getElementById("a2");
+	                o.style.display = "none";
+	                o2.innerHTML = '信息提交中,请等待...';
+                }
+                </script>
+                <span id="a2"></span><span id="a1" onclick='enableButton()'><asp:Button ID="btnSubmit" runat="server" Text="下一步"  OnClick="btnSubmit_OnClick" Width="98px"  /></span></td>
                 <%--<asp:Button ID="btnAddCoupon" runat="server" Text="添加优惠券" Width="100px" 
                     onclick="btnAddCoupon_Click"  />--%>
                 </tr>
