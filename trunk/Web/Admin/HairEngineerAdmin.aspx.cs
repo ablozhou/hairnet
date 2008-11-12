@@ -542,7 +542,7 @@ namespace Web.Admin
                 Label lblWorks = e.Item.FindControl("lblWorks") as Label;
                 lblAddOupsInfo.Text = "<a href='EngineerOpusInfo.aspx?ENGINEERID="+hairEngineer.HairEngineerID.ToString()+"&shopid="+hairEngineer.HairShopID.ToString()+"' target='_self'>添加作品</a>";
 
-                lblWorks.Text = "<a href='HairStyleAdmin.aspx?eid="+hairEngineer.HairEngineerID.ToString()+"' target='_self'>编辑作品</a>";
+                lblWorks.Text = "<a href='HairStyleAdmin.aspx?eid="+hairEngineer.HairEngineerID.ToString()+"&sid="+hairEngineer.HairShopID.ToString()+"' target='_self'>编辑作品</a>";
                 ////推荐指数（点击数+好评评论数+我要推荐数）?美发师的预约数不应该计算在内么?
                 int recommandRate = hairEngineer.HairEngineerHits + hairEngineer.HairEngineerGood;
                 lblRecommandRate.Text = recommandRate.ToString();
