@@ -237,6 +237,26 @@ namespace Web.Admin
 
                     HairEngineer he = ProviderFactory.GetHairEngineerDataProviderInstance().GetHairEngineerByHairEngineerID(hairEngineerID);
 
+                    using (SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["MSSqlServer"].ConnectionString))
+                    {
+                        string commString = "delete from HairEngineerRecommand where HairEngineerRawID=" + hairEngineerID.ToString();
+                        using (SqlCommand comm = new SqlCommand())
+                        {
+                            comm.CommandText = commString;
+                            comm.Connection = conn;
+                            conn.Open();
+
+                            try
+                            {
+                                comm.ExecuteNonQuery();
+                            }
+                            catch
+                            {
+
+                            }
+                        }
+                    }
+
                     //tag逻辑
                     //先处理TAG逻辑，先删除HS所对应的所有TAG
                     if (he.HairEngineerTagIDs != string.Empty)
