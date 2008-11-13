@@ -484,9 +484,9 @@ namespace Web.Admin
         {
             this.lblRedInfo.Visible = false;
             this.btnPicUpload.Enabled = false;
-            if (uploadpic1.FileName == string.Empty && uploadpicsmall.Value == string.Empty)
+            if (uploadpic1.FileName == string.Empty || uploadpicsmall.Value == string.Empty)
             {
-                this.lblRedInfo.Text = "上传大小图片地址不能都为空！";
+                this.lblRedInfo.Text = "上传大小图片地址均不能为空！";
                 this.lblRedInfo.Visible = true;
                 this.btnPicUpload.Enabled = true;
                 return;
