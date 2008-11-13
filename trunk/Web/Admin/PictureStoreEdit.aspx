@@ -113,14 +113,23 @@
         </table>
     </div>
     <script>
-    function enableButton()
-    {
-	    var o = document.getElementById("a1");
-	    var o2 = document.getElementById("a2");
-	    o.style.display = "none";
-	    o2.innerHTML = '信息提交中,请等待...';
-    }
-    </script>
+                function enableButton()
+                {
+	                var o = document.getElementById("a1");
+	                var o2 = document.getElementById("a2");
+	                o.style.display = "none";
+	                o2.style.display = "";
+	                o2.innerHTML = "信息提交中，请稍后...";
+	                setTimeout("enableButton2()",3000);
+                }
+                function enableButton2()
+                {
+	                var o = document.getElementById("a1");
+	                var o2 = document.getElementById("a2");
+	                o2.style.display = "none";
+	                o.style.display = "";
+                }
+                </script>
     <div>
         <span id="a2"></span><span id="a1" onclick='enableButton()'><asp:Button ID="btnSubmit" Text="提交图片信息" runat="server" OnClick="btnSubmit_OnClick" /></span>
     </div>

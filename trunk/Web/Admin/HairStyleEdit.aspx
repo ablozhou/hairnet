@@ -136,9 +136,18 @@
 	                var o = document.getElementById("a1");
 	                var o2 = document.getElementById("a2");
 	                o.style.display = "none";
-	                o2.innerHTML = '信息提交中,请等待...';
+	                o2.style.display = "";
+	                o2.innerHTML = "信息提交中，请稍后...";
+	                setTimeout("enableButton2()",3000);
                 }
-            </script>
+                function enableButton2()
+                {
+	                var o = document.getElementById("a1");
+	                var o2 = document.getElementById("a2");
+	                o2.style.display = "none";
+	                o.style.display = "";
+                }
+                </script>
             <span id="a2"></span><span id="a1" onclick='enableButton()'><asp:Button ID="btnAdd" runat="server" Text="更新" Width="75px" onclick="btnAdd_Click" /></span></td>
         </tr>
     </table>
