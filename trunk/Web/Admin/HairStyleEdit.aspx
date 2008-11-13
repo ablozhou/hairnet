@@ -129,8 +129,17 @@
     </table>
     <table width="98%" border="0" cellpadding="2" cellspacing="2">
         <tr>
-            <td width="120px" align="right" valign="top"><asp:Button ID="btnAdd" runat="server" 
-                    Text="更新" Width="75px" onclick="btnAdd_Click" /></td>
+            <td width="120px" align="right" valign="top">
+            <script>
+                function enableButton()
+                {
+	                var o = document.getElementById("a1");
+	                var o2 = document.getElementById("a2");
+	                o.style.display = "none";
+	                o2.innerHTML = '信息提交中,请等待...';
+                }
+            </script>
+            <span id="a2"></span><span id="a1" onclick='enableButton()'><asp:Button ID="btnAdd" runat="server" Text="更新" Width="75px" onclick="btnAdd_Click" /></span></td>
         </tr>
     </table>
     <asp:Label ID="l1" runat="server" Visible="false"></asp:Label>
