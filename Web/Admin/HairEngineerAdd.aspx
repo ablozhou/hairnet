@@ -125,16 +125,25 @@ function Button1_onclick() {
             <td width="120px" align="right"></td>
             <td>
             <script>
-            function enableButton()
-            {
-	            var o = document.getElementById("a1");
-	            var o2 = document.getElementById("a2");
-	            o.style.display = "none";
-	            o2.innerHTML = '信息提交中,请等待...';
-            }
-            </script>
+                function enableButton()
+                {
+	                var o = document.getElementById("a1");
+	                var o2 = document.getElementById("a2");
+	                o.style.display = "none";
+	                o2.style.display = "";
+	                o2.innerHTML = "信息提交中，请稍后...";
+	                setTimeout("enableButton2()",3000);
+                }
+                function enableButton2()
+                {
+	                var o = document.getElementById("a1");
+	                var o2 = document.getElementById("a2");
+	                o2.style.display = "none";
+	                o.style.display = "";
+                }
+                </script>
             
-                <span id="a2"></span><span id="a1" onclick='enableButton()'><asp:Button ID="btnHairEngineerAdd" runat="server" OnClick="btnHairEngineerAdd_Click" Text="添加美发师" /></span></td>
+            <span id="a2"></span><span id="a1" onclick='enableButton()'><asp:Button ID="btnHairEngineerAdd" runat="server" OnClick="btnHairEngineerAdd_Click" Text="添加美发师" /></span></td>
         </tr>
     </table>
     </div>

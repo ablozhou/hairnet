@@ -66,6 +66,8 @@ namespace Web.Admin
 
         protected void btnSubmit_OnClick(object sender, EventArgs e)
         {
+            this.Response.Write("<script>enableButton();</script>");
+
             if (this.txtHairShopTag.Text.Trim() != string.Empty)
             {
                 string[] tagCondition = this.txtHairShopTag.Text.Split(",".ToCharArray());
