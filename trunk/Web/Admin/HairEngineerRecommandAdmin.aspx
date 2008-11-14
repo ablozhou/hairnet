@@ -51,12 +51,6 @@
                         <asp:Label ID="lblCommentRate" runat="server"></asp:Label>
                     </ItemTemplate>
                 </asp:TemplateColumn>
-                <asp:HyperLinkColumn DataNavigateUrlField="HairEngineerRawID" DataNavigateUrlFormatString="HairEngineerDetails.aspx?id={0}" Target="_blank" Text="详细"></asp:HyperLinkColumn>
-                <asp:TemplateColumn>
-                    <ItemTemplate>
-                        <asp:Label ID="lblEdit" runat="server"></asp:Label>
-                    </ItemTemplate>
-                </asp:TemplateColumn>
                 <asp:ButtonColumn ButtonType="LinkButton" CommandName="delete" Text="删除"></asp:ButtonColumn>
             </Columns>
         </asp:DataGrid>
