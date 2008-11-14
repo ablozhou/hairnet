@@ -608,7 +608,24 @@ namespace Web.Admin
                 }
             }
 
-            
+            //同步TAG
+            using (SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["MSSqlServer"].ToString()))
+            {
+                string commString = "update PictureStore set PictureStoreTagIDs = '" + tagIDs + "' where PictureStoreid=" + ps.PictureStoreID.ToString();
+                using (SqlCommand comm = new SqlCommand())
+                {
+                    comm.Connection = conn;
+                    comm.CommandText = commString;
+                    conn.Open();
+
+                    try
+                    {
+                        comm.ExecuteNonQuery();
+                    }
+                    catch (Exception ex)
+                    { }
+                }
+            }
 
             string[] PPSGCollection = PSGIDS.Split(",".ToCharArray());
             foreach (string s in PPSGCollection)
