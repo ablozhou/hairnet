@@ -76,14 +76,14 @@ namespace Web.Admin
             {
                 e.Item.Attributes.Add("onmouseover", "c=this.style.backgroundColor;this.style.backgroundColor='#ffffff';");
                 e.Item.Attributes.Add("onmouseout", "this.style.backgroundColor=c;");
-                e.Item.Cells[10].Attributes.Add("onclick", "return confirm('确定删除么?')");
+                e.Item.Cells[8].Attributes.Add("onclick", "return confirm('确定删除么?')");
 
                 HairShopRecommand hairShopRecommand = e.Item.DataItem as HairShopRecommand;
                 Label lblID = e.Item.FindControl("lblID") as Label;
                 Label lblRecommandRate = e.Item.FindControl("lblRecommandRate") as Label;
                 Label lblCommentTotal = e.Item.FindControl("lblCommentTotal") as Label;
                 Label lblCommentRate = e.Item.FindControl("lblCommentRate") as Label;
-                Label lblEdit = e.Item.FindControl("lblEdit") as Label;
+                //Label lblEdit = e.Item.FindControl("lblEdit") as Label;
 
                 //序号
                 int num = int.Parse(Session["num"].ToString());
@@ -110,7 +110,7 @@ namespace Web.Admin
                 }
                 lblCommentRate.Text = commentRate.ToString();
 
-                lblEdit.Text = "<a href='HairShopRecommandUpdate.aspx?HairShopRecommandID=" + hairShopRecommand.HairShopRecommandID.ToString() + "&HairShopID=" + hairShopRecommand.HairShopRawID.ToString() + "&operateType=2'>编辑</a>";
+                //lblEdit.Text = "<a href='HairShopRecommandUpdate.aspx?HairShopRecommandID=" + hairShopRecommand.HairShopRecommandID.ToString() + "&HairShopID=" + hairShopRecommand.HairShopRawID.ToString() + "&operateType=2'>编辑</a>";
             }
         }
         public void dg_OnPageIndexChanged(object sender, DataGridPageChangedEventArgs e)

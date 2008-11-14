@@ -330,8 +330,8 @@ namespace Web.Admin
             {
                 e.Item.Attributes.Add("onmouseover", "c=this.style.backgroundColor;this.style.backgroundColor='#ffffff';");
                 e.Item.Attributes.Add("onmouseout", "this.style.backgroundColor=c;");
-                e.Item.Cells[7].Attributes.Add("onclick", "return confirm('确定推荐么?');");
-                e.Item.Cells[8].Attributes.Add("onclick", "return confirm('确定删除么?');");
+                //e.Item.Cells[7].Attributes.Add("onclick", "return confirm('确定推荐么?');");
+                e.Item.Cells[7].Attributes.Add("onclick", "return confirm('确定删除么?');");
             }
         }
         public void dg_OnPageIndexChanged(object sender, DataGridPageChangedEventArgs e)

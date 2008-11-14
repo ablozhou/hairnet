@@ -24,7 +24,6 @@ namespace Web.Admin {
         protected System.Web.UI.WebControls.DropDownList ddlOrderWay;
         protected System.Web.UI.WebControls.Button btnSelect;
         protected System.Web.UI.WebControls.Button btnAdd;
-        protected System.Web.UI.WebControls.Button btnRecommand;
         protected System.Web.UI.WebControls.DataGrid dg;
         protected System.Web.UI.WebControls.LinkButton PageFirst;
         protected System.Web.UI.WebControls.LinkButton PagePrev;
