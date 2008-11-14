@@ -430,10 +430,10 @@ namespace Web.Admin
             ps.PictureStoreName = txtPictureStoreName.Text.Trim();
             ps.PictureStoreGroupIDs = PSGIDS;
             ps.PictureStoreDescription = txtPictureStoreDescription.Text.Trim();
-            ps.PictureStoreHits = 0;
+            //ps.PictureStoreHits = 0;
             ps.PictureStoreCreateTime = DateTime.Now;
-            ps.PictureStoreRawUrl = string.Empty;
-            ps.PictureStoreLittleUrl = string.Empty;
+            //ps.PictureStoreRawUrl = string.Empty;
+            //ps.PictureStoreLittleUrl = string.Empty;
 
             //if (uploadpic.Value != "")
             //{

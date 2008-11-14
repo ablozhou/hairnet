@@ -442,12 +442,12 @@ namespace HairNet.Business
             pictureStoreRecommand.PictureStoreRecommandID = pictureStoreRecommandID;
             pictureStoreRecommand.PictureStoreRawID = product.PictureStoreID;
             pictureStoreRecommand.PictureStoreName = product.PictureStoreName;
-            pictureStoreRecommand.PictureStoreRawUrl = product.PictureStoreRawUrl;
-            pictureStoreRecommand.PictureStoreLittleUrl = product.PictureStoreLittleUrl;
+            pictureStoreRecommand.PictureStoreRawUrl = "";//product.PictureStoreRawUrl;
+            pictureStoreRecommand.PictureStoreLittleUrl = "";//product.PictureStoreLittleUrl;
             pictureStoreRecommand.PictureStoreTagIDs = product.PictureStoreTagIDs;
             pictureStoreRecommand.PictureStoreDescription = product.PictureStoreDescription;
-            pictureStoreRecommand.PictureStoreHairEngineerIDs = product.PictureStoreHairEngineerIDs;
-            pictureStoreRecommand.PictureStoreHairShopIDs = product.PictureStoreHairShopIDs;
+            pictureStoreRecommand.PictureStoreHairEngineerIDs = "";//product.PictureStoreHairEngineerIDs;
+            pictureStoreRecommand.PictureStoreHairShopIDs = "";//product.PictureStoreHairShopIDs;
             pictureStoreRecommand.PictureStoreCreateTime = product.PictureStoreCreateTime;
             pictureStoreRecommand.PictureStoreGroupIDs = product.PictureStoreGroupIDs;
             pictureStoreRecommand.PictureStoreRecommandEx = pictureStoreRecommandEx;
@@ -730,19 +730,19 @@ namespace HairNet.Business
         public static void SetPictureStoreByHairShop(int HairShopID, int PictureStoreID)
         {
             PictureStore ps = ProviderFactory.GetPictureStoreDataProviderInstance().GetPictureStoreByPictureStoreID(PictureStoreID);
-            string[] hairshop_ids = ps.PictureStoreHairShopIDs.Split(',');
-            if (!ArrayIsExist<string>(HairShopID.ToString(), hairshop_ids))
-            {
-                if (ps.PictureStoreHairShopIDs == "")
-                {
-                    ps.PictureStoreHairShopIDs = HairShopID.ToString();
-                }
-                else
-                {
-                    ps.PictureStoreHairShopIDs += "," + HairShopID.ToString();
-                }
+            //string[] hairshop_ids = ps.PictureStoreHairShopIDs.Split(',');
+            //if (!ArrayIsExist<string>(HairShopID.ToString(), hairshop_ids))
+            //{
+                //if (ps.PictureStoreHairShopIDs == "")
+                //{
+                //    ps.PictureStoreHairShopIDs = HairShopID.ToString();
+                //}
+                //else
+                //{
+                //    ps.PictureStoreHairShopIDs += "," + HairShopID.ToString();
+                //}
                 ProviderFactory.GetPictureStoreDataProviderInstance().PictureStoreCreateDeleteUpdate(ps, UserAction.Update);
-            }
+            //}
         }
 
         public static void SetHairShopByProduct(int ProductID, int HairShopID)
@@ -766,19 +766,19 @@ namespace HairNet.Business
         public static void SetPictureStoreByHairEngineer(int HairEngineerID, int PictureStoreID)
         {
             PictureStore ps = ProviderFactory.GetPictureStoreDataProviderInstance().GetPictureStoreByPictureStoreID(PictureStoreID);
-            string[] he_ids = ps.PictureStoreHairShopIDs.Split(',');
-            if (!ArrayIsExist<string>(HairEngineerID.ToString(), he_ids))
-            {
-                if (ps.PictureStoreHairShopIDs == "")
-                {
-                    ps.PictureStoreHairShopIDs = HairEngineerID.ToString();
-                }
-                else
-                {
-                    ps.PictureStoreHairShopIDs += "," + HairEngineerID.ToString();
-                }
+            //string[] he_ids = ps.PictureStoreHairShopIDs.Split(',');
+            //if (!ArrayIsExist<string>(HairEngineerID.ToString(), he_ids))
+            //{
+            //    if (ps.PictureStoreHairShopIDs == "")
+            //    {
+            //        ps.PictureStoreHairShopIDs = HairEngineerID.ToString();
+            //    }
+            //    else
+            //    {
+            //        ps.PictureStoreHairShopIDs += "," + HairEngineerID.ToString();
+            //    }
                 ProviderFactory.GetPictureStoreDataProviderInstance().PictureStoreCreateDeleteUpdate(ps, UserAction.Update);
-            }
+            //}
         }
         public static void SetHairShopTag(int HairShopID, int HairShopTagID)
         {

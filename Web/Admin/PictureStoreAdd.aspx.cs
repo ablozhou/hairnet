@@ -244,10 +244,10 @@ namespace Web.Admin
             ps.PictureStoreGroupIDs = PSGIDS;
             ps.PictureStoreDescription = txtPictureStoreDescription.Text.Trim();
             
-            ps.PictureStoreHits = 0;
+            //ps.PictureStoreHits = 0;
             ps.PictureStoreCreateTime = DateTime.Now;
-            ps.PictureStoreRawUrl = "";
-            ps.PictureStoreLittleUrl = "";
+            //ps.PictureStoreRawUrl = "";
+            //ps.PictureStoreLittleUrl = "";
 
             ps.PictureStoreID = InfoAdmin.AddPictureStore(ps);
 

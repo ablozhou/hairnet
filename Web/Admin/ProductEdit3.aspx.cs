@@ -81,15 +81,15 @@ namespace Web.Admin
             ps.PictureStoreGroupIDs = ddlPicGroup.SelectedValue;
             ps.PictureStoreDescription = txtPictureStoreDescriptioin.Text.Trim();
             ps.PictureStoreTagIDs = InfoAdmin.GetPictureStoreTagIDs(txtPictureStoreTag.Text.Trim());
-            ps.PictureStoreHits = 0;
+            //ps.PictureStoreHits = 0;
             ps.PictureStoreCreateTime = DateTime.Now;
 
             //处理图片
             PicOperate po = new PicOperate();
             string newfilepath = filepath.Substring(0, filepath.LastIndexOf(".")) + "_new" + Path.GetExtension(filepath);
             po.AddWaterMarkOperate(Server.MapPath(filepath), Server.MapPath(WaterSettings.WaterMarkPath), Server.MapPath(newfilepath), WaterSettings.CopyrightText);
-            ps.PictureStoreRawUrl = newfilepath;
-            ps.PictureStoreLittleUrl = po.CreateMicroPic(newfilepath, "", WaterSettings.PictureScaleSize[0], WaterSettings.PictureScaleSize[1]);
+            //ps.PictureStoreRawUrl = newfilepath;
+            //ps.PictureStoreLittleUrl = po.CreateMicroPic(newfilepath, "", WaterSettings.PictureScaleSize[0], WaterSettings.PictureScaleSize[1]);
             po = null;
 
             //更新图片标签

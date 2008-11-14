@@ -17,13 +17,13 @@ namespace HairNet.Provider
             switch (ua)
             {
                 case UserAction.Create:
-                    commandText = "insert into PictureStore(PictureStoreName,PictureStoreRawUrl,PictureStoreLittleUrl,PictureStoreTagIDs,PictureStoreDescription,HairEngineerIDs,HairShopIDs,PictureStoreCreateTime,PictureStoreGroupIDs) values('" + pictureStore.PictureStoreName + "','" + pictureStore.PictureStoreRawUrl + "','" + pictureStore.PictureStoreLittleUrl + "','" + pictureStore.PictureStoreTagIDs + "','" + pictureStore.PictureStoreDescription + "','" + pictureStore.PictureStoreHairEngineerIDs + "','" + pictureStore.PictureStoreHairShopIDs + "','" + pictureStore.PictureStoreCreateTime.ToString() + "','" + pictureStore.PictureStoreGroupIDs + "')";
+                    commandText = "insert into PictureStore(PictureStoreName,PictureStoreTagIDs,PictureStoreDescription,PictureStoreCreateTime,PictureStoreGroupIDs) values('" + pictureStore.PictureStoreName  + "','" + pictureStore.PictureStoreTagIDs + "','" + pictureStore.PictureStoreDescription + "','" + pictureStore.PictureStoreCreateTime.ToString() + "','" + pictureStore.PictureStoreGroupIDs + "')";
                     break;
                 case UserAction.Delete:
                     commandText = "delete from PictureStore where PictureStoreID=" + pictureStore.PictureStoreID.ToString();
                     break;
                 case UserAction.Update:
-                    commandText = "update PictureStore set PictureStoreName = '" + pictureStore.PictureStoreName + "',PictureStoreRawUrl = '" + pictureStore.PictureStoreRawUrl + "',PictureStoreLittleUrl='" + pictureStore.PictureStoreLittleUrl + "',PictureStoreTagIDs='" + pictureStore.PictureStoreTagIDs + "',PictureStoreDescription='" + pictureStore.PictureStoreDescription + "',HairEngineerIDs='" + pictureStore.PictureStoreHairEngineerIDs + "',HairShopIDs='" + pictureStore.PictureStoreHairShopIDs + "',PictureStoreCreateTime='" + pictureStore.PictureStoreCreateTime.ToString() + "',PictureStoreGroupIDs='" + pictureStore.PictureStoreGroupIDs + "' where PictureStoreID=" + pictureStore.PictureStoreID.ToString();
+                    commandText = "update PictureStore set PictureStoreName = '" + pictureStore.PictureStoreName + "',PictureStoreTagIDs='" + pictureStore.PictureStoreTagIDs + "',PictureStoreDescription='" + pictureStore.PictureStoreDescription + "',PictureStoreCreateTime='" + pictureStore.PictureStoreCreateTime.ToString() + "',PictureStoreGroupIDs='" + pictureStore.PictureStoreGroupIDs + "' where PictureStoreID=" + pictureStore.PictureStoreID.ToString();
                     break;
             }
             using (SqlConnection conn = new SqlConnection(DataHelper2.SqlConnectionString))
@@ -105,13 +105,13 @@ namespace HairNet.Provider
                         {
                             pictureStore.PictureStoreID = int.Parse(sdr["PictureStoreID"].ToString());
                             pictureStore.PictureStoreName = sdr["PictureStoreName"].ToString();
-                            pictureStore.PictureStoreRawUrl = sdr["PictureStoreRawUrl"].ToString();
-                            pictureStore.PictureStoreLittleUrl = sdr["PictureStoreLittleUrl"].ToString();
-                            pictureStore.PictureStoreTagIDs = sdr["PictureStoreTagIDs"].ToString();
-                            pictureStore.PictureStoreHits = int.Parse(sdr["PictureStoreHits"].ToString());
+                            //pictureStore.PictureStoreRawUrl = sdr["PictureStoreRawUrl"].ToString();
+                            //pictureStore.PictureStoreLittleUrl = sdr["PictureStoreLittleUrl"].ToString();
+                            //pictureStore.PictureStoreTagIDs = sdr["PictureStoreTagIDs"].ToString();
+                            //pictureStore.PictureStoreHits = int.Parse(sdr["PictureStoreHits"].ToString());
                             pictureStore.PictureStoreDescription = sdr["PictureStoreDescription"].ToString();
-                            pictureStore.PictureStoreHairEngineerIDs = sdr["HairEngineerIDs"].ToString();
-                            pictureStore.PictureStoreHairShopIDs = sdr["HairShopIDs"].ToString();
+                            //pictureStore.PictureStoreHairEngineerIDs = sdr["HairEngineerIDs"].ToString();
+                            //pictureStore.PictureStoreHairShopIDs = sdr["HairShopIDs"].ToString();
                             pictureStore.PictureStoreCreateTime = Convert.ToDateTime(sdr["PictureStoreCreateTime"].ToString());
                             pictureStore.PictureStoreGroupIDs = sdr["PictureStoreGroupIDs"].ToString();
                         }
@@ -173,13 +173,13 @@ namespace HairNet.Provider
 
                                 pictureStore.PictureStoreID = int.Parse(sdr["PictureStoreID"].ToString());
                                 pictureStore.PictureStoreName = sdr["PictureStoreName"].ToString();
-                                pictureStore.PictureStoreRawUrl = sdr["PictureStoreRawUrl"].ToString();
-                                pictureStore.PictureStoreLittleUrl = sdr["PictureStoreLittleUrl"].ToString();
+                                //pictureStore.PictureStoreRawUrl = sdr["PictureStoreRawUrl"].ToString();
+                                //pictureStore.PictureStoreLittleUrl = sdr["PictureStoreLittleUrl"].ToString();
                                 pictureStore.PictureStoreTagIDs = sdr["PictureStoreTagIDs"].ToString();
-                                pictureStore.PictureStoreHits = int.Parse(sdr["PictureStoreHits"].ToString());
+                                //pictureStore.PictureStoreHits = int.Parse(sdr["PictureStoreHits"].ToString());
                                 pictureStore.PictureStoreDescription = sdr["PictureStoreDescription"].ToString();
-                                pictureStore.PictureStoreHairEngineerIDs = sdr["HairEngineerIDs"].ToString();
-                                pictureStore.PictureStoreHairShopIDs = sdr["HairShopIDs"].ToString();
+                                //pictureStore.PictureStoreHairEngineerIDs = sdr["HairEngineerIDs"].ToString();
+                                //pictureStore.PictureStoreHairShopIDs = sdr["HairShopIDs"].ToString();
                                 pictureStore.PictureStoreCreateTime = Convert.ToDateTime(sdr["PictureStoreCreateTime"].ToString());
                                 pictureStore.PictureStoreGroupIDs = sdr["PictureStoreGroupIDs"].ToString();
 
@@ -225,13 +225,13 @@ namespace HairNet.Provider
 
                                 pictureStore.PictureStoreID = int.Parse(sdr["PictureStoreID"].ToString());
                                 pictureStore.PictureStoreName = sdr["PictureStoreName"].ToString();
-                                pictureStore.PictureStoreRawUrl = sdr["PictureStoreRawUrl"].ToString();
-                                pictureStore.PictureStoreLittleUrl = sdr["PictureStoreLittleUrl"].ToString();
+                                //pictureStore.PictureStoreRawUrl = sdr["PictureStoreRawUrl"].ToString();
+                                //pictureStore.PictureStoreLittleUrl = sdr["PictureStoreLittleUrl"].ToString();
                                 pictureStore.PictureStoreTagIDs = sdr["PictureStoreTagIDs"].ToString();
-                                pictureStore.PictureStoreHits = int.Parse(sdr["PictureStoreHits"].ToString());
+                                //pictureStore.PictureStoreHits = int.Parse(sdr["PictureStoreHits"].ToString());
                                 pictureStore.PictureStoreDescription = sdr["PictureStoreDescription"].ToString();
-                                pictureStore.PictureStoreHairEngineerIDs = sdr["HairEngineerIDs"].ToString();
-                                pictureStore.PictureStoreHairShopIDs = sdr["HairShopIDs"].ToString();
+                                //pictureStore.PictureStoreHairEngineerIDs = sdr["HairEngineerIDs"].ToString();
+                                //pictureStore.PictureStoreHairShopIDs = sdr["HairShopIDs"].ToString();
                                 pictureStore.PictureStoreCreateTime = Convert.ToDateTime(sdr["PictureStoreCreateTime"].ToString());
                                 pictureStore.PictureStoreGroupIDs = sdr["PictureStoreGroupIDs"].ToString();
 
@@ -296,13 +296,13 @@ namespace HairNet.Provider
 
                                 pictureStore.PictureStoreID = int.Parse(sdr["PictureStoreID"].ToString());
                                 pictureStore.PictureStoreName = sdr["PictureStoreName"].ToString();
-                                pictureStore.PictureStoreRawUrl = sdr["PictureStoreRawUrl"].ToString();
-                                pictureStore.PictureStoreLittleUrl = sdr["PictureStoreLittleUrl"].ToString();
+                                //pictureStore.PictureStoreRawUrl = sdr["PictureStoreRawUrl"].ToString();
+                                //pictureStore.PictureStoreLittleUrl = sdr["PictureStoreLittleUrl"].ToString();
                                 pictureStore.PictureStoreTagIDs = sdr["PictureStoreTagIDs"].ToString();
-                                pictureStore.PictureStoreHits = int.Parse(sdr["PictureStoreHits"].ToString());
+                                //pictureStore.PictureStoreHits = int.Parse(sdr["PictureStoreHits"].ToString());
                                 pictureStore.PictureStoreDescription = sdr["PictureStoreDescription"].ToString();
-                                pictureStore.PictureStoreHairEngineerIDs = sdr["HairEngineerIDs"].ToString();
-                                pictureStore.PictureStoreHairShopIDs = sdr["HairShopIDs"].ToString();
+                                //pictureStore.PictureStoreHairEngineerIDs = sdr["HairEngineerIDs"].ToString();
+                                //pictureStore.PictureStoreHairShopIDs = sdr["HairShopIDs"].ToString();
                                 pictureStore.PictureStoreCreateTime = Convert.ToDateTime(sdr["PictureStoreCreateTime"].ToString());
                                 pictureStore.PictureStoreGroupIDs = sdr["PictureStoreGroupIDs"].ToString();
 
@@ -886,7 +886,7 @@ namespace HairNet.Provider
             {
                 //using (SqlDataAdapter adapter = new SqlDataAdapter("select top 1 * from picturestore", conn))
                 //{
-                string strsql = "insert into picturestore(PictureStoreName,PictureStoreRawUrl,PictureStoreLittleUrl,PictureStoreTagIDs,PictureStoreHits,PictureStoreGroupIDs,PictureStoreDescription,PictureStoreCreateTime) values('" + ps.PictureStoreName + "','" + ps.PictureStoreRawUrl + "','" + ps.PictureStoreLittleUrl + "','" + ps.PictureStoreTagIDs + "'," + ps.PictureStoreHits + ",'" + ps.PictureStoreGroupIDs + "','" + ps.PictureStoreDescription + "','" + ps.PictureStoreCreateTime.ToString("G") + "');select @@identity;";
+                string strsql = "insert into picturestore(PictureStoreName,PictureStoreTagIDs,PictureStoreGroupIDs,PictureStoreDescription,PictureStoreCreateTime) values('" + ps.PictureStoreName + "','" + ps.PictureStoreTagIDs + "','" + ps.PictureStoreGroupIDs + "','" + ps.PictureStoreDescription + "','" + ps.PictureStoreCreateTime.ToString("G") + "');select @@identity;";
                 SqlCommand cmd = new SqlCommand(strsql, conn);
                 conn.Open();
                 SqlDataReader dr = cmd.ExecuteReader();
