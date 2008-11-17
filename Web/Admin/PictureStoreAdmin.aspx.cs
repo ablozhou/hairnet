@@ -129,6 +129,31 @@ namespace Web.Admin
         }
         public void databind()
         {
+            //zhh add for test          
+          /*  List<int> myids = new List<int>();
+            using (SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["MSSqlServer"].ConnectionString))
+            {
+                string commString = "select * from PictureStore where PictureStoreID not in (  SELECT     PictureStore.PictureStoreID FROM         hairstyle INNER JOIN  PictureStore ON hairstyle.picturestoreid = PictureStore.PictureStoreID)";
+                using (SqlCommand comm = new SqlCommand())
+                {
+                    comm.CommandText = commString;
+                    comm.Connection = conn;
+                    conn.Open();
+
+                    using (SqlDataReader sdr = comm.ExecuteReader())
+                    {
+                        while (sdr.Read())
+                        {
+                            int aid = int.Parse(sdr["PictureStoreID"].ToString());
+                            myids.Add(aid);
+                        }
+                    }
+                }
+
+            } 
+            */
+            //
+
             List<PictureStore> list = new List<PictureStore>();
 
             if (Session["query"] == null || Session["query"].ToString() == string.Empty)
