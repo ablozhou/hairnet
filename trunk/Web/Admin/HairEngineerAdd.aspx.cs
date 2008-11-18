@@ -137,7 +137,7 @@ namespace Web.Admin
             foreach (string pic in pics)
             {
                 string p1 = "http://hair.sg.com.cn" + pic;
-                content.AppendLine("[img=400,400]" + p1 + "[/img]");
+                content.AppendLine("[img]" + p1 + "[/img]");
 
             }
             content.AppendLine("美发师名称:" + he.HairEngineerName);

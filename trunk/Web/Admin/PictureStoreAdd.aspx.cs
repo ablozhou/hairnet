@@ -134,7 +134,7 @@ namespace Web.Admin
         public string buildBBSContent(HairStyleEntity hst)
         {
             StringBuilder cntBuilder = new StringBuilder();
-            cntBuilder.AppendLine("[img=300,400]http://hair.sg.com.cn" + pic.Text.Replace(@"\", @"/") + "[/img]");//正面大图
+            cntBuilder.AppendLine("[img]http://hair.sg.com.cn" + pic.Text.Replace(@"\", @"/") + "[/img]");//正面大图
             //cntBuilder.AppendLine("[img=90,120]" + lbl2Small.Text + "[/img]");//侧面小图
             //cntBuilder.AppendLine("[img=90,120]" + lbl3Small.Text + "[/img]");//背面小图
             //cntBuilder.AppendLine("发质：" + hst.HairNatrueName);
