@@ -60,12 +60,12 @@ namespace Web.Admin
                                 num++;
                                 if (num == 1)
                                 {
-                                    outpics = "[img=300,400]http://hair.sg.com.cn" + sdr["picurl"].ToString().Replace(@"\", @"/") + "[/img]\n";
+                                    outpics = "[img]http://hair.sg.com.cn" + sdr["picurl"].ToString().Replace(@"\", @"/") + "[/img]\n";
                                     outString = "<img width=100 heigth=50 src='" + sdr["picsmallurl"].ToString() + "' />&nbsp;&nbsp;<img width=200 heigth=100 src='" + sdr["picurl"].ToString() + "' />&nbsp;&nbsp;<a href='hairshoppicoperate.aspx?type=out&id=" + sdr["id"].ToString() + "&hid=" + id.ToString() + "'>É¾³ý</a>";
                                 }
                                 else
                                 {
-                                    outpics += "[img=300,400]http://hair.sg.com.cn" + sdr["picurl"].ToString().Replace(@"\", @"/") + "[/img]\n";
+                                    outpics += "[img]http://hair.sg.com.cn" + sdr["picurl"].ToString().Replace(@"\", @"/") + "[/img]\n";
                                     outString += "&nbsp;&nbsp;<img width=100 heigth=50 src='" + sdr["picsmallurl"].ToString() + "' />&nbsp;&nbsp;<img width=200 heigth=100 src='" + sdr["picurl"].ToString() + "' />&nbsp;&nbsp;<a href='hairshoppicoperate.aspx?type=out&id=" + sdr["id"].ToString() + "&hid=" + id.ToString() + "'>É¾³ý</a>";
                                 }
                             }
@@ -91,12 +91,12 @@ namespace Web.Admin
                                 num++;
                                 if (num == 1)
                                 {
-                                    inpics = "[img=300,400]http://hair.sg.com.cn" + sdr["picurl"].ToString().Replace(@"\", @"/") + "[/img]\n";
+                                    inpics = "[img]http://hair.sg.com.cn" + sdr["picurl"].ToString().Replace(@"\", @"/") + "[/img]\n";
                                     innerString = "<img width=100 heigth=50 src='" + sdr["picsmallurl"].ToString() + "' />&nbsp;&nbsp;<img width=200 heigth=100 src='" + sdr["picurl"].ToString() + "' />&nbsp;&nbsp;<a href='hairshoppicoperate.aspx?type=inner&id=" + sdr["id"].ToString() + "&hid=" + id.ToString() + "'>É¾³ý</a>";
                                 }
                                 else
                                 {
-                                    inpics += "[img=300,400]http://hair.sg.com.cn" + sdr["picurl"].ToString().Replace(@"\", @"/") + "[/img]\n";
+                                    inpics += "[img]http://hair.sg.com.cn" + sdr["picurl"].ToString().Replace(@"\", @"/") + "[/img]\n";
                                     innerString += "&nbsp;&nbsp;<img width=100 heigth=50 src='" + sdr["picsmallurl"].ToString() + "' />&nbsp;&nbsp;<img width=200 heigth=100 src='" + sdr["picurl"].ToString() + "' />&nbsp;&nbsp;<a href='hairshoppicoperate.aspx?type=inner&id=" + sdr["id"].ToString() + "&hid=" + id.ToString() + "'>É¾³ý</a>";
                                 }
                             }

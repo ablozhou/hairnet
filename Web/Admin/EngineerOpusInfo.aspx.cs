@@ -215,17 +215,17 @@ namespace Web.Admin
             if (frontBigPic != string.Empty)
             {
                             
-              cntBuilder.AppendLine("[img=300,400]http://hair.sg.com.cn" + frontBigPic + "[/img]");//正面大图
+              cntBuilder.AppendLine("[img]http://hair.sg.com.cn" + frontBigPic + "[/img]");//正面大图
             }
             if (sideSmallPic != string.Empty)
             {
                
-                cntBuilder.AppendLine("[img=90,120]http://hair.sg.com.cn" +sideSmallPic +"[/img]");//侧面小图
+                cntBuilder.AppendLine("[img]http://hair.sg.com.cn" +sideSmallPic +"[/img]");//侧面小图
             }
             if (backSmallPic != string.Empty)
             {
                 
-                cntBuilder.AppendLine("[img=90,120]http://hair.sg.com.cn" + backSmallPic+"[/img]");//背面小图
+                cntBuilder.AppendLine("[img]http://hair.sg.com.cn" + backSmallPic+"[/img]");//背面小图
             }
             cntBuilder.AppendLine("发质："+hst.HairNatrueName);
             cntBuilder.AppendLine("发量："+hst.HairQuantityName);
